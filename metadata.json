@@ -1,0 +1,7 @@
+{
+  "name": "Life Intelligence - Vois",
+  "description": "The Executive Assistant that clears your mind",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
