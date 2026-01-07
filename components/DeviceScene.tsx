@@ -43,22 +43,7 @@ interface Scenario {
 }
 
 const scenarios: Scenario[] = [
-  // Scenario 1: Birthday Party Planning
-  {
-    title: "Son's Birthday Party",
-    subtitle: "Planning Checklist",
-    segments: [
-      { text: "First " },
-      { text: "of January we're going to have a birthday party for our son. ", category: 'events', highlightColor: allCategoryConfigs.events.highlight },
-      { text: "We will invite friends. Maybe " },
-      { text: "you can write a message to them as an invite. ", category: 'messages', highlightColor: allCategoryConfigs.messages.highlight },
-      { text: "We're having chicken salad. Can you make a " },
-      { text: "shopping list for that? ", category: 'shopping', highlightColor: allCategoryConfigs.shopping.highlight },
-      { text: "Also need a birthday gift." }
-    ],
-    categories: ['events', 'messages', 'shopping']
-  },
-  // Scenario 2: Commuter Chaos
+  // Scenario 1: Commuter Chaos
   {
     title: "Commuter Thoughts",
     subtitle: "On the way to work",
@@ -72,7 +57,7 @@ const scenarios: Scenario[] = [
     ],
     categories: ['work', 'errands', 'ideas']
   },
-  // Scenario 3: 3 AM Brain Dump
+  // Scenario 2: 3 AM Brain Dump
   {
     title: "Late Night Thoughts",
     subtitle: "Brain dump before sleep",
@@ -85,6 +70,21 @@ const scenarios: Scenario[] = [
       { text: "call Mom tomorrow, it's been a while.", category: 'social', highlightColor: allCategoryConfigs.social.highlight },
     ],
     categories: ['health', 'finance', 'social']
+  },
+  // Scenario 3: Birthday Party Planning
+  {
+    title: "Son's Birthday Party",
+    subtitle: "Planning Checklist",
+    segments: [
+      { text: "First " },
+      { text: "of January we're going to have a birthday party for our son. ", category: 'events', highlightColor: allCategoryConfigs.events.highlight },
+      { text: "We will invite friends. Maybe " },
+      { text: "you can write a message to them as an invite. ", category: 'messages', highlightColor: allCategoryConfigs.messages.highlight },
+      { text: "We're having chicken salad. Can you make a " },
+      { text: "shopping list for that? ", category: 'shopping', highlightColor: allCategoryConfigs.shopping.highlight },
+      { text: "Also need a birthday gift." }
+    ],
+    categories: ['events', 'messages', 'shopping']
   }
 ];
 
@@ -1398,6 +1398,9 @@ function SceneContent() {
       // Scroll up - starts immediately (0 to 0.10)
       const scrollAwayProgress = THREE.MathUtils.smoothstep(r, 0, 0.10);
       
+      // Scale down as we scroll (fade out during phase 1) - start fading at 5%, fully gone by 10%
+      const fadeOutProgress = THREE.MathUtils.smoothstep(r, 0.05, 0.10);
+      
       // Phase 3: Enter from left (0.17 to 0.19) - snaps into place right at section 3
       const enterFromLeftProgress = THREE.MathUtils.smoothstep(r, 0.17, 0.19);
       
@@ -1405,15 +1408,15 @@ function SceneContent() {
       let targetX, targetY, targetZ, targetScale, targetRotY, targetRotZ;
       
       if (r < 0.10) {
-        // Phase 1: Scroll up with hero
+        // Phase 1: Scroll up with hero, fade out as we go
         targetX = phoneRightPos.x;
         targetY = phoneRightPos.y + scrollAwayProgress * 2.0;
         targetZ = phoneRightPos.z;
-        targetScale = 0.55;
+        targetScale = 0.55 * (1 - fadeOutProgress); // Fade to 0 as we scroll
         targetRotY = basePhoneRotY;
         targetRotZ = 0;
       } else if (r < 0.17) {
-        // Phase 2: Hidden during video - off screen left
+        // Phase 2: Hidden during video - off screen left (already invisible)
         targetX = -2.5;
         targetY = -0.2; // Lower position to match text level
         targetZ = 0;
@@ -1461,6 +1464,9 @@ function SceneContent() {
       // Scroll up - starts immediately (0 to 0.10)
       const scrollAwayProgress = THREE.MathUtils.smoothstep(r, 0, 0.10);
       
+      // Scale down as we scroll (fade out during phase 1) - start fading at 5%, fully gone by 10%
+      const watchFadeOutProgress = THREE.MathUtils.smoothstep(r, 0.05, 0.10);
+      
       // Phase 3: Enter from right (0.17 to 0.19) - snaps into place at section 3
       const enterFromRightProgress = THREE.MathUtils.smoothstep(r, 0.17, 0.19);
       
@@ -1473,15 +1479,15 @@ function SceneContent() {
       const watchAmbientRotY = Math.cos(time * 0.8 + 1) * 0.025;
       
       if (r < 0.10) {
-        // Phase 1: Scroll up with hero
+        // Phase 1: Scroll up with hero, fade out as we go
         targetX = watchStartPos.x;
         targetY = watchStartPos.y + scrollAwayProgress * 2.0;
         targetZ = watchStartPos.z;
-        targetScale = 0.17;
+        targetScale = 0.17 * (1 - watchFadeOutProgress); // Fade to 0 as we scroll
         targetRotY = 0;
         targetRotZ = 0;
       } else if (r < 0.17) {
-        // Phase 2: Hidden during video - off screen right
+        // Phase 2: Hidden during video - off screen right (already invisible)
         targetX = 2.5;
         targetY = -0.15; // Lower position to match text level
         targetZ = 0;
