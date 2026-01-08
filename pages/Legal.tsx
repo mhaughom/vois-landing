@@ -774,3 +774,4 @@ const EULA = () => (
 
 export default Legal;
 
+

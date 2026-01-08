@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { DeviceScene } from './components/DeviceScene';
+import { DeviceScene, setCurrentSection, SectionId } from './components/DeviceScene';
 import { FlowVisualization } from './components/FlowVisualization';
+import NarrativeTransition from './components/NarrativeTransition';
 import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X } from 'lucide-react';
 
 // Stripe Payment Link - Replace with actual link
@@ -32,6 +33,13 @@ const faqData = [
 const App = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Refs for section tracking
+  const heroRef = useRef<HTMLElement>(null);
+  const videoTransitionRef = useRef<HTMLElement>(null);
+  const narrativeRef = useRef<HTMLDivElement>(null);
+  const captureRef = useRef<HTMLElement>(null);
+  const flowRef = useRef<HTMLElement>(null);
 
   // Handle scroll to section from query param (e.g., coming from login page)
   useEffect(() => {
@@ -45,6 +53,102 @@ const App = () => {
       }, 100);
     }
   }, [searchParams, setSearchParams]);
+  
+  // Section tracking with IntersectionObserver - tells DeviceScene which section is visible
+  useEffect(() => {
+    const sectionMap: { ref: React.RefObject<HTMLElement | HTMLDivElement | null>; id: SectionId }[] = [
+      { ref: heroRef, id: 'hero' },
+      { ref: videoTransitionRef, id: 'video-transition' },
+      { ref: narrativeRef, id: 'narrative' },
+      { ref: captureRef, id: 'capture' },
+      { ref: flowRef, id: 'flow' },
+    ];
+    
+    // Track visibility ratios for all sections
+    const visibilityMap = new Map<SectionId, number>();
+    sectionMap.forEach(({ id }) => visibilityMap.set(id, id === 'hero' ? 1 : 0));
+    
+    // Function to determine and set the current section
+    // NOTE: 'capture' section is handled directly by NarrativeTransition via scroll progress
+    // This observer handles hero, video-transition, narrative, and flow
+    const updateCurrentSection = () => {
+      const heroRatio = visibilityMap.get('hero') || 0;
+      const flowRatio = visibilityMap.get('flow') || 0;
+      
+      // Priority 1: Flow section (when scrolled far)
+      if (flowRatio > 0.3) {
+        setCurrentSection('flow');
+        return;
+      }
+      
+      // Priority 2: Hero if visible (narrative and capture handled by NarrativeTransition)
+      if (heroRatio > 0.3) {
+        setCurrentSection('hero');
+        return;
+      }
+      
+      // Default: pick the most visible section (excluding capture which is handled separately)
+      let maxRatio = 0;
+      let mostVisibleSection: SectionId = 'hero';
+      
+      visibilityMap.forEach((ratio, id) => {
+        // Skip capture - handled by NarrativeTransition
+        if (id === 'capture') return;
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          mostVisibleSection = id;
+        }
+      });
+      
+      if (maxRatio > 0.1) {
+        setCurrentSection(mostVisibleSection);
+      }
+    };
+    
+    const observers: IntersectionObserver[] = [];
+    
+    sectionMap.forEach(({ ref, id }) => {
+      if (!ref.current) return;
+      
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Update visibility ratio for this section
+            visibilityMap.set(id, entry.intersectionRatio);
+            // Determine which section is now most visible
+            updateCurrentSection();
+          });
+        },
+        { 
+          // More granular thresholds for smoother tracking
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+          rootMargin: '0px' // No margin - track actual visibility
+        }
+      );
+      
+      observer.observe(ref.current);
+      observers.push(observer);
+    });
+    
+    // CRITICAL: Run initial check immediately on mount
+    // This ensures correct section is set before user scrolls
+    setTimeout(() => {
+      sectionMap.forEach(({ ref, id }) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+          const ratio = Math.max(0, visibleHeight / rect.height);
+          visibilityMap.set(id, ratio);
+        }
+      });
+      updateCurrentSection();
+    }, 100);
+    
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
 
   const handleScrollToPricing = () => {
     scrollToSection('pricing');
@@ -73,7 +177,7 @@ const App = () => {
       <main className="w-full max-w-7xl mx-auto relative z-20">
         
         {/* HERO */}
-        <section id="hero" className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 pt-32 pb-12 gap-8 lg:gap-16">
+        <section ref={heroRef} id="hero" className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 pt-32 pb-12 gap-8 lg:gap-16">
           
           {/* Right: 3D Devices - Fixed, ON TOP of content */}
           <div className="fixed inset-0 z-30 pointer-events-none">
@@ -129,6 +233,7 @@ const App = () => {
 
         {/* THE UNIVERSAL LIE - Cinematic, borderless, Apple-style */}
         <section 
+          ref={videoTransitionRef}
           id="video-transition" 
           className="relative min-h-screen flex items-center snap-center snap-always overflow-hidden bg-white z-10"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
@@ -168,9 +273,9 @@ const App = () => {
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
             className="hidden lg:block absolute inset-0 overflow-hidden"
             style={{
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 100%), linear-gradient(to left, transparent 0%, black 25%, black 100%)',
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 100%), linear-gradient(to right, black 0%, black 35%, transparent 65%)',
               maskComposite: 'intersect',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 100%), linear-gradient(to left, transparent 0%, black 25%, black 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 100%), linear-gradient(to right, black 0%, black 35%, transparent 65%)',
               WebkitMaskComposite: 'source-in'
             }}
           >
@@ -215,29 +320,16 @@ const App = () => {
           </div>
         </section>
 
-        {/* CAPTURE SECTION - Phone left, Watch right, Text center */}
-        <section id="capture" className="min-h-screen flex items-center justify-center pt-32 pb-12 px-6 md:px-16 snap-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-md mx-auto text-center px-4"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-6 leading-[1.1] tracking-tight">
-              Capture at the speed of thought.
-            </h2>
-            <p className="text-base md:text-lg text-slate-500 mb-6 font-normal leading-snug max-w-sm mx-auto">
-              The best ideas vanish in seconds. Skip the friction of unlocking and typing. Just press the action button, lockscreen, or watchface.
-            </p>
-            <p className="text-xs md:text-sm font-semibold text-slate-900 uppercase tracking-widest">
-              Our vision is raw intent. Instantly captured.
-            </p>
-          </motion.div>
-        </section>
+        {/* NARRATIVE TRANSITION - Palate cleanser between Problem and Solution */}
+        <div ref={narrativeRef}>
+          <NarrativeTransition />
+        </div>
+
+        {/* CAPTURE SECTION - Detection now handled by NarrativeTransition via scroll progress */}
+        <section ref={captureRef} id="capture" className="h-0" />
 
         {/* FLOW VISUALIZATION - Hourglass data flow with waveforms */}
-        <section id="flow" className="relative min-h-[300vh]">
+        <section ref={flowRef} id="flow" className="relative min-h-[300vh]">
           <div className="sticky top-0 h-screen w-full">
             <FlowVisualization />
           </div>

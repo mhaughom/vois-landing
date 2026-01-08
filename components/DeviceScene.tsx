@@ -3,12 +3,27 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Global state (updated via window listeners)
+// Section identifiers for precise timing
+export type SectionId = 'hero' | 'video-transition' | 'narrative' | 'capture' | 'flow' | 'other';
+
+// Global state (updated via window listeners and section observers)
 const globalState = { 
   scrollProgress: 0, 
   mouseX: 0, 
   mouseY: 0,
-  animationStartTime: Date.now()
+  animationStartTime: Date.now(),
+  currentSection: 'hero' as SectionId,
+  narrativeScrollProgress: 0,  // Scroll progress within NarrativeTransition (0-1)
+};
+
+// Function to update current section from outside (called by App.tsx)
+export const setCurrentSection = (section: SectionId) => {
+  globalState.currentSection = section;
+};
+
+// Function to update narrative scroll progress (called by NarrativeTransition)
+export const setNarrativeScrollProgress = (progress: number) => {
+  globalState.narrativeScrollProgress = progress;
 };
 
 // Transcript segments with categories for highlighting
@@ -132,9 +147,6 @@ function SceneContent() {
   const phoneRef = useRef<THREE.Group>(null);
   const watchRef = useRef<THREE.Group>(null);
   
-  // Track scroll progress for screen content - use ref to avoid excessive re-renders
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const lastScrollRef = useRef(0);
   
   // Clear GLTF cache on EVERY render to ensure fresh original UVs
   // This is necessary because UV modifications persist in the cached model
@@ -1283,32 +1295,32 @@ function SceneContent() {
   const section3EnteredTimeRef = useRef<number | null>(null);
   const wasInSection3Ref = useRef(false);
   
-  // Update screen content based on scroll progress
+  // Update screen content based on current section (not scroll percentage)
   useFrame((state) => {
-    const r = globalState.scrollProgress;
     const time = state.clock.elapsedTime;
+    const currentSection = globalState.currentSection;
     
-    // Section 1 (hero): transcription screen | Section 3+: lock screen with widget
-    const isHeroSection = r < 0.10;
-    const isSection3 = r >= 0.19 && r < 0.35; // Section 3 range (capture + flow sections)
-    
-    // Track when we enter section 3
-    if (isSection3 && !wasInSection3Ref.current) {
+    // Section-based detection using IntersectionObserver
+    // Now reliable on first scroll since we track visibility continuously
+    const isHeroSection = currentSection === 'hero';
+    const inCapturePhase = currentSection === 'capture';  // Only capture section, not narrative
+    if (inCapturePhase && !wasInSection3Ref.current) {
       section3EnteredTimeRef.current = time;
       wasInSection3Ref.current = true;
-    } else if (!isSection3) {
+    } else if (!inCapturePhase) {
       wasInSection3Ref.current = false;
       section3EnteredTimeRef.current = null;
     }
     
     // Calculate if lock screen widgets should be recording (different timing for each device)
-    const timeInSection3 = section3EnteredTimeRef.current !== null ? time - section3EnteredTimeRef.current : 0;
-    const phoneLockScreenRecording = isSection3 && timeInSection3 > 2.0; // Phone after 2 sec
-    const watchLockScreenRecording = isSection3 && timeInSection3 > 3.0; // Watch after 3 sec
+    const timeInCapturePhase = section3EnteredTimeRef.current !== null ? time - section3EnteredTimeRef.current : 0;
+    // In capture phase: show recording state immediately (lock screen with red widget)
+    const phoneLockScreenRecording = inCapturePhase; // Always show recording state
+    const watchLockScreenRecording = inCapturePhase; // Always show recording state
     
-    // Phone recording active only in hero section
+    // Phone recording active only in hero section (transcription screen)
     const phoneRecording = isHeroSection;
-    // Watch recording active only in hero section
+    // Watch recording active only in hero section (recording screen)
     const watchRecording = isHeroSection;
     
     // Update timer when recording (shared timer for both devices)
@@ -1317,30 +1329,30 @@ function SceneContent() {
       lastTimeRef.current = time;
     }
     
-    // Update phone screen - transcription in hero, lock screen in section 3+
+    // Update phone screen - transcription in hero, lock screen in narrative fog phase
     if (phoneCanvasRef.current && phoneTextureRef.current) {
       const ctx = phoneCanvasRef.current.getContext('2d');
       if (ctx) {
         if (isHeroSection) {
-          // Section 1: Show transcription screen
+          // Hero: Show transcription screen (capturing/recording state)
           drawPhoneScreen(ctx, phoneCanvasRef.current.width, phoneCanvasRef.current.height, phoneRecording, timerRef.current);
         } else {
-          // Section 3+: Show lock screen with VOIS widget (recording state after 2 sec)
+          // Narrative fog phase and other sections: Show lock screen with VOIS widget (recording state)
           drawPhoneLockScreen(ctx, phoneCanvasRef.current.width, phoneCanvasRef.current.height, phoneLockScreenRecording);
         }
         phoneTextureRef.current.needsUpdate = true;
       }
     }
     
-    // Update watch screen - recording in hero, lock screen with complication in section 3+
+    // Update watch screen - recording in hero, watch face in narrative fog phase
     if (watchCanvasRef.current && watchTextureRef.current) {
       const ctx = watchCanvasRef.current.getContext('2d');
       if (ctx) {
         if (isHeroSection) {
-          // Section 1: Show recording screen
+          // Hero: Show recording screen (capturing state)
           drawWatchScreen(ctx, watchCanvasRef.current.width, watchCanvasRef.current.height, watchRecording, timerRef.current);
         } else {
-          // Section 3+: Show watch face with VOIS complication (recording state after 3 sec)
+          // Narrative fog phase and other sections: Show watch face with VOIS complication (recording state)
           drawWatchLockScreen(ctx, watchCanvasRef.current.width, watchCanvasRef.current.height, watchLockScreenRecording);
         }
         watchTextureRef.current.needsUpdate = true;
@@ -1348,15 +1360,8 @@ function SceneContent() {
     }
   });
   
-  // Update scroll progress for React state only when it changes significantly
-  useFrame(() => {
-    const current = globalState.scrollProgress;
-    // Only update state if scroll changed by more than 1%
-    if (Math.abs(current - lastScrollRef.current) > 0.01) {
-      lastScrollRef.current = current;
-      setScrollProgress(current);
-    }
-  });
+  // REMOVED: Unused scrollProgress state update that was causing unnecessary React re-renders
+  // The animation uses globalState.scrollProgress directly in useFrame, no React state needed
 
   // Constants - base rotation to show front screen (90° from model default)
   const basePhoneRotY = Math.PI / 2;
@@ -1372,6 +1377,9 @@ function SceneContent() {
   // Track time for ambient movement
   const timeRef = useRef(0);
   
+  // Track if devices have been initialized (prevents blink on first scroll)
+  const devicesInitializedRef = useRef(false);
+  
   useFrame((state, delta) => {
     timeRef.current += delta;
     const time = timeRef.current;
@@ -1386,90 +1394,123 @@ function SceneContent() {
     const ambientRotX = Math.sin(time * 0.5) * 0.02;
     const ambientRotY = Math.cos(time * 0.7) * 0.02;
     
-    // Define scroll phases (adjusted for longer page with flow section):
-    // Phase 1: 0-10% - Move up with hero section (no sideways movement)
-    // Phase 2: 10-17% - Video section (messy man) - devices hidden
-    // Phase 3: 17-19% - Phone enters from left, Watch enters from right (FAST!)
-    // Phase 4: 19-24% - Both stay in position for capture section
-    // Phase 5: 24%+ - Devices scroll up with page content (same speed as text)
+    // Section-based device visibility
+    // Devices visible in: hero, late narrative (fog phase), flow
+    // Devices hidden in: video-transition, early narrative, other
+    const currentSection = globalState.currentSection;
+    
+    // Section flags for clean logic
+    // Now using IntersectionObserver with continuous visibility tracking (from App.tsx)
+    // This provides reliable, device-independent section detection
+    const inHero = currentSection === 'hero';
+    const inCapturePhase = currentSection === 'capture';  // Only capture section, not narrative
+    const inFlow = currentSection === 'flow';
+    const devicesVisible = inHero || inCapturePhase || inFlow;
+    
+    // Lerp factor - use instant positioning on first frame to prevent blink
+    // Also disable mouse/ambient influence on first frame to prevent any jump
+    // Lower lerp factor (0.06) for smoother, slower movement
+    const isFirstFrame = !devicesInitializedRef.current;
+    const lerpFactor = isFirstFrame ? 1.0 : 0.06;
+    devicesInitializedRef.current = true;
     
     // -- PHONE ANIMATION --
     if (phoneRef.current) {
-      // Scroll up - starts immediately (0 to 0.10)
-      const scrollAwayProgress = THREE.MathUtils.smoothstep(r, 0, 0.10);
-      
-      // Scale down as we scroll (fade out during phase 1) - start fading at 5%, fully gone by 10%
-      const fadeOutProgress = THREE.MathUtils.smoothstep(r, 0.05, 0.10);
-      
-      // Phase 3: Enter from left (0.17 to 0.19) - snaps into place right at section 3
-      const enterFromLeftProgress = THREE.MathUtils.smoothstep(r, 0.17, 0.19);
-      
       // Position
-      let targetX, targetY, targetZ, targetScale, targetRotY, targetRotZ;
+      let targetX, targetY, targetZ, targetScale, targetRotX, targetRotY, targetRotZ;
       
-      if (r < 0.10) {
-        // Phase 1: Scroll up with hero, fade out as we go
+      if (inHero) {
+        // Hero section: phone on the right
+        // Scroll effect starts IMMEDIATELY (from 0) and completes by 0.08
+        // This gives a smooth, responsive feel as user scrolls toward the video
+        const heroScrollProgress = THREE.MathUtils.smoothstep(r, 0, 0.08);
         targetX = phoneRightPos.x;
-        targetY = phoneRightPos.y + scrollAwayProgress * 2.0;
+        targetY = phoneRightPos.y + heroScrollProgress * 1.8; // Move up smoothly
         targetZ = phoneRightPos.z;
-        targetScale = 0.55 * (1 - fadeOutProgress); // Fade to 0 as we scroll
+        targetScale = 0.55 * (1 - heroScrollProgress * 0.95); // Fade to near-zero
+        targetRotX = 0;
         targetRotY = basePhoneRotY;
-        targetRotZ = 0;
-      } else if (r < 0.17) {
-        // Phase 2: Hidden during video - off screen left (already invisible)
-        targetX = -2.5;
-        targetY = -0.2; // Lower position to match text level
-        targetZ = 0;
-        targetScale = 0;
-        targetRotY = basePhoneRotY + 0.5;
-        targetRotZ = 0.2;
-      } else {
-        // Phase 3+: Enter from left, snap into place at section 3, then scroll up
+        targetRotZ = heroScrollProgress * 0.1; // Slight tilt as it exits
+      } else if (inCapturePhase) {
+        // "Capture at the speed of thought": phone enters from left with dramatic slow spin
+        // Animation synced to NarrativeTransition scroll - complete by 0.70 when fog is fully white
+        const narrativeProgress = globalState.narrativeScrollProgress;
+        const captureProgress = THREE.MathUtils.smoothstep(narrativeProgress, 0.40, 0.70);
+        
+        // After devices land (0.72+), they track up with the "Capture" text
+        // Match the SAME easing curve as the text: ease-in (slow start, accelerates)
+        // Much slower movement to stay synced with text
+        let scrollAwayOffset = 0;
+        let scrollAwayProgress = 0;
+        if (narrativeProgress > 0.72) {
+          if (narrativeProgress < 0.78) {
+            scrollAwayProgress = THREE.MathUtils.smoothstep(narrativeProgress, 0.72, 0.78) * 0.04;
+          } else if (narrativeProgress < 0.85) {
+            scrollAwayProgress = 0.04 + THREE.MathUtils.smoothstep(narrativeProgress, 0.78, 0.85) * 0.14;
+          } else if (narrativeProgress < 0.92) {
+            scrollAwayProgress = 0.18 + THREE.MathUtils.smoothstep(narrativeProgress, 0.85, 0.92) * 0.37;
+          } else {
+            scrollAwayProgress = 0.55 + THREE.MathUtils.smoothstep(narrativeProgress, 0.92, 1.0) * 0.45;
+          }
+          scrollAwayOffset = scrollAwayProgress * 0.8; // Much slower - stay with text
+        }
+        
         const phoneLeftX = -0.50;
-        targetX = THREE.MathUtils.lerp(-1.8, phoneLeftX, enterFromLeftProgress);
-        
-        // Y position: centered with text, then scroll up after section 3
-        const scrollUpStart = 0.24;
-        const scrollUpAmount = r > scrollUpStart ? (r - scrollUpStart) * 8.0 : 0;
-        targetY = -0.1 + scrollUpAmount; // Lower Y to align with text
-        
+        targetX = THREE.MathUtils.lerp(-2.5, phoneLeftX, captureProgress);
+        targetY = THREE.MathUtils.lerp(0.3, -0.02, captureProgress) + scrollAwayOffset;
         targetZ = phoneLeftPos.z + 0.4;
-        targetScale = THREE.MathUtils.lerp(0, 0.28, enterFromLeftProgress);
-        
-        // Rotation: start with dramatic tilt, settle to subtle angle facing text
-        const tiltTowardCenter = 0.15;
-        targetRotY = THREE.MathUtils.lerp(basePhoneRotY + 0.7, basePhoneRotY + tiltTowardCenter, enterFromLeftProgress);
-        targetRotZ = THREE.MathUtils.lerp(0.2, 0, enterFromLeftProgress);
+        targetScale = THREE.MathUtils.lerp(0, 0.28, captureProgress) * (1 - scrollAwayProgress * 0.3);
+        // Dramatic spin effect: starts facing away, rotates ~90 degrees to front-facing
+        // 1.5 radians = ~86 degrees of rotation
+        targetRotY = THREE.MathUtils.lerp(basePhoneRotY + 1.5, basePhoneRotY + 0.15, captureProgress);
+        // More pronounced tilt that straightens out
+        targetRotZ = THREE.MathUtils.lerp(0.4, 0, captureProgress);
+        // More backward tilt that also straightens
+        targetRotX = THREE.MathUtils.lerp(0.3, 0, captureProgress);
+      } else if (inFlow) {
+        // Flow section: phone on left, scrolls with content
+        const flowProgress = THREE.MathUtils.smoothstep(r, 0.5, 0.7);
+        targetX = -0.50;
+        targetY = -0.02 + flowProgress * 2.0;  // Match capture phase end position
+        targetZ = phoneLeftPos.z + 0.4;
+        targetScale = 0.28 * (1 - flowProgress * 0.5);
+        targetRotX = 0;
+        targetRotY = basePhoneRotY + 0.15;
+        targetRotZ = 0;
+      } else {
+        // Hidden: off screen LEFT (where it will enter from during capture phase)
+        // Match the starting rotation for dramatic spin entry
+        targetX = -2.5;
+        targetY = 0.3;
+        targetZ = phoneLeftPos.z + 0.4;
+        targetScale = 0.0; // Invisible
+        targetRotX = 0.3;
+        targetRotY = basePhoneRotY + 1.5; // Facing more away for dramatic spin
+        targetRotZ = 0.4;
       }
       
-      // Mouse interaction - active in hero phase and during capture phase
-      const mouseInfluence = r < 0.10 ? (1 - scrollAwayProgress) : (r > 0.17 && r < 0.25 ? enterFromLeftProgress : 0);
+      // Mouse interaction - active in hero and capture phase, but NOT on first frame
+      const mouseInfluence = isFirstFrame ? 0 : ((inHero || inCapturePhase) ? 1.0 : 0);
       const mX = (mouseX - 0.6) * 0.35 * mouseInfluence;
       const mY = mouseY * 0.35 * mouseInfluence;
 
-      // Smooth updates - position with ambient + mouse movement (faster lerp for snappier response)
-      phoneRef.current.position.x = THREE.MathUtils.lerp(phoneRef.current.position.x, targetX - mX * 0.08 + ambientX * mouseInfluence, 0.15);
-      phoneRef.current.position.y = THREE.MathUtils.lerp(phoneRef.current.position.y, targetY - mY * 0.08 + ambientY * mouseInfluence, 0.15);
-      phoneRef.current.position.z = THREE.MathUtils.lerp(phoneRef.current.position.z, targetZ, 0.15);
-      phoneRef.current.scale.setScalar(THREE.MathUtils.lerp(phoneRef.current.scale.x, targetScale, 0.15));
+      // Ambient influence - also disabled on first frame
+      const ambientInfluence = isFirstFrame ? 0 : mouseInfluence;
+
+      // Smooth updates - position with ambient + mouse movement
+      phoneRef.current.position.x = THREE.MathUtils.lerp(phoneRef.current.position.x, targetX - mX * 0.08 + ambientX * ambientInfluence, lerpFactor);
+      phoneRef.current.position.y = THREE.MathUtils.lerp(phoneRef.current.position.y, targetY - mY * 0.08 + ambientY * ambientInfluence, lerpFactor);
+      phoneRef.current.position.z = THREE.MathUtils.lerp(phoneRef.current.position.z, targetZ, lerpFactor);
+      phoneRef.current.scale.setScalar(THREE.MathUtils.lerp(phoneRef.current.scale.x, targetScale, lerpFactor));
       
       // Rotation with ambient + mouse response
-      phoneRef.current.rotation.y = THREE.MathUtils.lerp(phoneRef.current.rotation.y, targetRotY + mX * 0.4 + ambientRotY * mouseInfluence, 0.15);
-      phoneRef.current.rotation.x = THREE.MathUtils.lerp(phoneRef.current.rotation.x, -mY * 0.4 + ambientRotX * mouseInfluence, 0.15);
-      phoneRef.current.rotation.z = THREE.MathUtils.lerp(phoneRef.current.rotation.z, targetRotZ, 0.15);
+      phoneRef.current.rotation.y = THREE.MathUtils.lerp(phoneRef.current.rotation.y, targetRotY + mX * 0.4 + ambientRotY * ambientInfluence, lerpFactor);
+      phoneRef.current.rotation.x = THREE.MathUtils.lerp(phoneRef.current.rotation.x, targetRotX - mY * 0.4 + ambientRotX * ambientInfluence, lerpFactor);
+      phoneRef.current.rotation.z = THREE.MathUtils.lerp(phoneRef.current.rotation.z, targetRotZ, lerpFactor);
     }
 
     // -- WATCH ANIMATION --
     if (watchRef.current) {
-      // Scroll up - starts immediately (0 to 0.10)
-      const scrollAwayProgress = THREE.MathUtils.smoothstep(r, 0, 0.10);
-      
-      // Scale down as we scroll (fade out during phase 1) - start fading at 5%, fully gone by 10%
-      const watchFadeOutProgress = THREE.MathUtils.smoothstep(r, 0.05, 0.10);
-      
-      // Phase 3: Enter from right (0.17 to 0.19) - snaps into place at section 3
-      const enterFromRightProgress = THREE.MathUtils.smoothstep(r, 0.17, 0.19);
-      
       let targetX, targetY, targetZ, targetScale, targetRotY, targetRotZ;
       
       // Ambient movement for watch
@@ -1478,60 +1519,93 @@ function SceneContent() {
       const watchAmbientRotX = Math.sin(time * 0.6 + 1) * 0.025;
       const watchAmbientRotY = Math.cos(time * 0.8 + 1) * 0.025;
       
-      if (r < 0.10) {
-        // Phase 1: Scroll up with hero, fade out as we go
+      if (inHero) {
+        // Hero section: watch next to phone
+        // Scroll effect starts IMMEDIATELY (from 0) and completes by 0.08
+        const heroScrollProgress = THREE.MathUtils.smoothstep(r, 0, 0.08);
         targetX = watchStartPos.x;
-        targetY = watchStartPos.y + scrollAwayProgress * 2.0;
+        targetY = watchStartPos.y + heroScrollProgress * 1.8; // Move up smoothly
         targetZ = watchStartPos.z;
-        targetScale = 0.17 * (1 - watchFadeOutProgress); // Fade to 0 as we scroll
+        targetScale = 0.17 * (1 - heroScrollProgress * 0.95); // Fade to near-zero
         targetRotY = 0;
-        targetRotZ = 0;
-      } else if (r < 0.17) {
-        // Phase 2: Hidden during video - off screen right (already invisible)
-        targetX = 2.5;
-        targetY = -0.15; // Lower position to match text level
-        targetZ = 0;
-        targetScale = 0;
-        targetRotY = -0.5;
-        targetRotZ = -0.2;
-      } else {
-        // Phase 3+: Enter from right, snap into place at section 3, then scroll up
+        targetRotZ = -heroScrollProgress * 0.1; // Slight opposite tilt
+      } else if (inCapturePhase) {
+        // "Capture at the speed of thought": watch enters from right with dramatic slow spin
+        // Animation synced to NarrativeTransition scroll - complete by 0.70 when fog is fully white
+        // Watch enters slightly after phone (0.42 vs 0.40)
+        const narrativeProgress = globalState.narrativeScrollProgress;
+        const captureProgress = THREE.MathUtils.smoothstep(narrativeProgress, 0.42, 0.70);
+        
+        // After devices land (0.72+), they track up with the "Capture" text
+        // Match the SAME easing curve as the text - much slower movement
+        let scrollAwayOffset = 0;
+        let scrollAwayProgress = 0;
+        if (narrativeProgress > 0.72) {
+          if (narrativeProgress < 0.78) {
+            scrollAwayProgress = THREE.MathUtils.smoothstep(narrativeProgress, 0.72, 0.78) * 0.04;
+          } else if (narrativeProgress < 0.85) {
+            scrollAwayProgress = 0.04 + THREE.MathUtils.smoothstep(narrativeProgress, 0.78, 0.85) * 0.14;
+          } else if (narrativeProgress < 0.92) {
+            scrollAwayProgress = 0.18 + THREE.MathUtils.smoothstep(narrativeProgress, 0.85, 0.92) * 0.37;
+          } else {
+            scrollAwayProgress = 0.55 + THREE.MathUtils.smoothstep(narrativeProgress, 0.92, 1.0) * 0.45;
+          }
+          scrollAwayOffset = scrollAwayProgress * 0.8; // Much slower - stay with text
+        }
+        
         const watchRightX = 0.40;
-        targetX = THREE.MathUtils.lerp(1.8, watchRightX, enterFromRightProgress);
-        
-        // Y position: centered with text, then scroll up after section 3
-        const scrollUpStart = 0.24;
-        const scrollUpAmount = r > scrollUpStart ? (r - scrollUpStart) * 8.0 : 0;
-        targetY = -0.05 + scrollUpAmount; // Lower Y to align with text
-        
+        targetX = THREE.MathUtils.lerp(2.5, watchRightX, captureProgress);
+        targetY = THREE.MathUtils.lerp(0.3, -0.12, captureProgress) + scrollAwayOffset;
         targetZ = watchRightPos.z + 0.4;
-        targetScale = THREE.MathUtils.lerp(0, 0.13, enterFromRightProgress);
-        
-        // Rotation: start with dramatic tilt, settle to subtle angle
-        targetRotY = THREE.MathUtils.lerp(-0.6, -0.1, enterFromRightProgress);
-        targetRotZ = THREE.MathUtils.lerp(-0.25, 0, enterFromRightProgress);
+        targetScale = THREE.MathUtils.lerp(0, 0.13, captureProgress) * (1 - scrollAwayProgress * 0.3);
+        // Dramatic spin effect: starts facing away, rotates ~90 degrees (opposite direction from phone)
+        // -1.5 radians = ~86 degrees of rotation
+        targetRotY = THREE.MathUtils.lerp(-1.5, -0.1, captureProgress);
+        // More pronounced tilt that straightens out
+        targetRotZ = THREE.MathUtils.lerp(-0.4, 0, captureProgress);
+      } else if (inFlow) {
+        // Flow section: watch on right, scrolls with content
+        const flowProgress = THREE.MathUtils.smoothstep(r, 0.5, 0.7);
+        targetX = 0.40;
+        targetY = -0.12 + flowProgress * 2.0;  // Match capture phase end position
+        targetZ = watchRightPos.z + 0.4;
+        targetScale = 0.13 * (1 - flowProgress * 0.5);
+        targetRotY = -0.1;
+        targetRotZ = 0;
+      } else {
+        // Hidden: off screen RIGHT (where it will enter from during capture phase)
+        // Match the starting rotation for dramatic spin entry
+        targetX = 2.5;
+        targetY = 0.3;
+        targetZ = watchRightPos.z + 0.4;
+        targetScale = 0.0; // Invisible
+        targetRotY = -1.5; // Facing more away for dramatic spin
+        targetRotZ = -0.4;
       }
       
-      // Mouse interaction - active in hero phase and during capture phase
-      const watchMouseInfluence = r < 0.10 ? (1 - scrollAwayProgress) : (r > 0.17 && r < 0.25 ? enterFromRightProgress : 0);
+      // Mouse interaction - active in hero and capture phase, but NOT on first frame
+      const watchMouseInfluence = isFirstFrame ? 0 : ((inHero || inCapturePhase) ? 1.0 : 0);
       const wMouseX = (mouseX - 0.6) * 0.4 * watchMouseInfluence;
       const wMouseY = mouseY * 0.4 * watchMouseInfluence;
       
-      watchRef.current.position.x = THREE.MathUtils.lerp(watchRef.current.position.x, targetX - wMouseX * 0.08 + watchAmbientX * watchMouseInfluence, 0.15);
-      watchRef.current.position.y = THREE.MathUtils.lerp(watchRef.current.position.y, targetY - wMouseY * 0.08 + watchAmbientY * watchMouseInfluence, 0.15);
-      watchRef.current.position.z = THREE.MathUtils.lerp(watchRef.current.position.z, targetZ, 0.15);
-      watchRef.current.scale.setScalar(THREE.MathUtils.lerp(watchRef.current.scale.x, targetScale, 0.15));
+      // Ambient influence - also disabled on first frame
+      const watchAmbientInfluence = isFirstFrame ? 0 : watchMouseInfluence;
+      
+      watchRef.current.position.x = THREE.MathUtils.lerp(watchRef.current.position.x, targetX - wMouseX * 0.08 + watchAmbientX * watchAmbientInfluence, lerpFactor);
+      watchRef.current.position.y = THREE.MathUtils.lerp(watchRef.current.position.y, targetY - wMouseY * 0.08 + watchAmbientY * watchAmbientInfluence, lerpFactor);
+      watchRef.current.position.z = THREE.MathUtils.lerp(watchRef.current.position.z, targetZ, lerpFactor);
+      watchRef.current.scale.setScalar(THREE.MathUtils.lerp(watchRef.current.scale.x, targetScale, lerpFactor));
       
       // Rotation with mouse + ambient
-      watchRef.current.rotation.y = THREE.MathUtils.lerp(watchRef.current.rotation.y, targetRotY + wMouseX * 0.6 * watchMouseInfluence + watchAmbientRotY * watchMouseInfluence, 0.15);
-      watchRef.current.rotation.x = THREE.MathUtils.lerp(watchRef.current.rotation.x, -wMouseY * 0.6 * watchMouseInfluence + watchAmbientRotX * watchMouseInfluence, 0.15);
-      watchRef.current.rotation.z = THREE.MathUtils.lerp(watchRef.current.rotation.z, targetRotZ, 0.15);
+      watchRef.current.rotation.y = THREE.MathUtils.lerp(watchRef.current.rotation.y, targetRotY + wMouseX * 0.6 * watchAmbientInfluence + watchAmbientRotY * watchAmbientInfluence, lerpFactor);
+      watchRef.current.rotation.x = THREE.MathUtils.lerp(watchRef.current.rotation.x, -wMouseY * 0.6 * watchAmbientInfluence + watchAmbientRotX * watchAmbientInfluence, lerpFactor);
+      watchRef.current.rotation.z = THREE.MathUtils.lerp(watchRef.current.rotation.z, targetRotZ, lerpFactor);
     }
   });
 
   return (
     <>
-      <group ref={phoneRef} scale={0.60} position={[0.6, -0.05, -0.2]}>
+      <group ref={phoneRef} scale={0.55} position={[0.6, -0.05, -0.2]} rotation={[0, Math.PI / 2, 0]}>
         <primitive object={phone.scene} />
       </group>
       
