@@ -1,7 +1,7 @@
 export const COPY = {
   hero: {
     headline: "The Executive Assistant that clears your mind.",
-    subheadline: "Voice in. Order out.",
+    subheadline: "Captured instantly. Organized for you.",
     definition: "TASKS  ·  CALENDAR  ·  IDEAS  ·  LISTS  ·  CUSTOM APPS",
     cta: "Request Access",
     trustText: "Nothing changes without your approval."
