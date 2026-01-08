@@ -197,32 +197,46 @@ const App = () => {
                Public Beta Live
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] mb-8 tracking-tight">
+            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] mb-6 tracking-tight">
               {COPY.hero.headline}
             </motion.h1>
             
-            <motion.div variants={itemVariants} className="mb-10 space-y-6">
-                <p className="text-xl text-slate-500 leading-relaxed font-normal">
-                  {COPY.hero.subheadline}
-                </p>
-                <p className="text-xl text-slate-500 leading-relaxed font-normal">
-                   It remembers everything, organizes your <span className="px-2 py-0.5 rounded-md bg-life-blue-light text-life-blue-dark">calendar</span>, structures your <span className="px-2 py-0.5 rounded-md bg-life-green-light text-life-green-dark">tasks</span>, and ensures your <span className="px-2 py-0.5 rounded-md bg-life-purple-light text-life-purple-dark">best ideas</span> are never lost.
-                </p>
+            <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-500 leading-relaxed font-normal mb-8">
+              {COPY.hero.subheadline}
+            </motion.p>
+
+            {/* Chips Row */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-10">
+              <span className="px-4 py-2 rounded-full bg-life-blue-light text-life-blue-dark text-sm font-medium">
+                Calendar
+              </span>
+              <span className="px-4 py-2 rounded-full bg-life-green-light text-life-green-dark text-sm font-medium">
+                Tasks
+              </span>
+              <span className="px-4 py-2 rounded-full bg-life-yellow-light text-life-yellow-dark text-sm font-medium">
+                Shopping List
+              </span>
+              <span className="px-4 py-2 rounded-full bg-life-purple-light text-life-purple-dark text-sm font-medium">
+                Business Ideas
+              </span>
+              <span className="px-4 py-2 rounded-full bg-slate-100 text-slate-500 text-sm font-medium border border-dashed border-slate-300">
+                + custom spaces you choose
+              </span>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+            <motion.div variants={itemVariants} className="flex flex-col gap-4">
                <motion.button 
                  onClick={handleScrollToPricing}
                  whileHover={{ scale: 1.05 }}
                  whileTap={{ scale: 0.95 }}
-                 className="bg-black text-white px-8 py-4 rounded-full text-base font-medium transition-transform flex items-center gap-2 shadow-xl shadow-black/10"
+                 className="bg-black text-white px-8 py-4 rounded-full text-base font-medium transition-transform flex items-center justify-center gap-2 shadow-xl shadow-black/10 w-fit"
                >
                  {COPY.hero.cta}
                  <ArrowRight size={18} />
                </motion.button>
-               <button className="px-8 py-4 rounded-full text-base font-medium text-slate-600 hover:bg-slate-50 transition-colors border border-slate-200">
-                 Watch the Film
-               </button>
+               <p className="text-sm text-slate-400">
+                 {COPY.hero.trustText}
+               </p>
             </motion.div>
           </motion.div>
 

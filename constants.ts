@@ -1,9 +1,10 @@
 export const COPY = {
   hero: {
-    headline: "The Executive Assistant that clears your mind",
-    subheadline: "Remove the bottleneck of pulling up your phone to type. One push, speak your mind, and let Vois build your Second Brain in less than a second.",
+    headline: "The Executive Assistant that clears your mind.",
+    subheadline: "Turn your voice into tasks, plans, and insights instantly.",
     hook: "It remembers everything, organizes your calendar, structures your tasks, and ensures your best ideas are never lost.",
-    cta: "Request Access"
+    cta: "Request Access",
+    trustText: "Nothing changes without your approval."
   },
   problem: {
     title: "The Universal Lie",
