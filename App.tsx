@@ -201,28 +201,14 @@ const App = () => {
               {COPY.hero.headline}
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-500 leading-relaxed font-normal mb-8">
+            <motion.p variants={itemVariants} className="text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-4">
               {COPY.hero.subheadline}
             </motion.p>
 
-            {/* Chips Row */}
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-10">
-              <span className="px-4 py-2 rounded-full bg-life-blue-light text-life-blue-dark text-sm font-medium">
-                Calendar
-              </span>
-              <span className="px-4 py-2 rounded-full bg-life-green-light text-life-green-dark text-sm font-medium">
-                Tasks
-              </span>
-              <span className="px-4 py-2 rounded-full bg-life-yellow-light text-life-yellow-dark text-sm font-medium">
-                Shopping List
-              </span>
-              <span className="px-4 py-2 rounded-full bg-life-purple-light text-life-purple-dark text-sm font-medium">
-                Business Ideas
-              </span>
-              <span className="px-4 py-2 rounded-full bg-slate-100 text-slate-500 text-sm font-medium border border-dashed border-slate-300">
-                + custom spaces you choose
-              </span>
-            </motion.div>
+            {/* Definition Row */}
+            <motion.p variants={itemVariants} className="text-xs md:text-sm text-slate-400 tracking-widest uppercase mb-10">
+              {COPY.hero.definition}
+            </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col gap-4">
                <motion.button 

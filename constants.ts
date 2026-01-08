@@ -1,8 +1,8 @@
 export const COPY = {
   hero: {
     headline: "The Executive Assistant that clears your mind.",
-    subheadline: "Turn your voice into tasks, plans, and insights instantly.",
-    hook: "It remembers everything, organizes your calendar, structures your tasks, and ensures your best ideas are never lost.",
+    subheadline: "Voice in. Order out.",
+    definition: "TASKS  ·  CALENDAR  ·  IDEAS  ·  LISTS  ·  CUSTOM APPS",
     cta: "Request Access",
     trustText: "Nothing changes without your approval."
   },
