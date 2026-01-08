@@ -288,16 +288,17 @@ const NarrativeTransition: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '1.5rem',
+                gap: 'clamp(1.5rem, 3vw, 3rem)',
                 padding: '0 2rem',
-                maxWidth: '800px',
+                maxWidth: '1200px',
+                width: '90%',
                 textAlign: 'center',
               }}
             >
               <h2
                 style={{
                   fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
+                  fontSize: 'clamp(2rem, 5vw, 4.5rem)',
                   color: '#0f172a',
                   lineHeight: 1.1,
                   fontWeight: 400,
@@ -310,11 +311,11 @@ const NarrativeTransition: React.FC = () => {
               <div
                 style={{
                   width: '100%',
-                  maxWidth: '500px',
+                  maxWidth: '800px',
                   aspectRatio: '16 / 9',
-                  borderRadius: '16px',
+                  borderRadius: 'clamp(12px, 2vw, 24px)',
                   overflow: 'hidden',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+                  boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
                 }}
               >
                 <img
