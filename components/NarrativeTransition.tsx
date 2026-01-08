@@ -277,8 +277,8 @@ const NarrativeTransition: React.FC = () => {
             </motion.h2>
 
             {/* ─────────────────────────────────────────────────────────────────
-                PHASE 3: "Capture at the speed of thought."
-                Headline + Video placeholder with rounded corners
+                PHASE 3: Hero Section
+                Headline + Subhead + Chips + CTA + Trust Text
             ───────────────────────────────────────────────────────────────── */}
             <motion.div
               style={{
@@ -288,46 +288,114 @@ const NarrativeTransition: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 'clamp(1.5rem, 3vw, 3rem)',
+                gap: 'clamp(1rem, 2vw, 1.5rem)',
                 padding: '0 2rem',
                 maxWidth: '1200px',
                 width: '90%',
                 textAlign: 'center',
+                pointerEvents: 'auto',
               }}
             >
+              {/* Headline */}
               <h2
                 style={{
                   fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+                  fontSize: 'clamp(2.5rem, 6vw, 5rem)',
                   color: '#0f172a',
                   lineHeight: 1.1,
                   fontWeight: 400,
+                  margin: 0,
+                }}
+              >
+                The Executive Assistant that clears your mind.
+              </h2>
+              
+              {/* Subhead */}
+              <p
+                style={{
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                  fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                  color: '#64748b',
+                  lineHeight: 1.5,
+                  margin: '0.5rem 0 1rem 0',
+                  maxWidth: '700px',
+                  fontWeight: 400,
+                }}
+              >
+                Turn your voice into tasks, plans, and insights instantly.
+              </p>
+              
+              {/* Chips Row */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  gap: 'clamp(0.5rem, 1vw, 0.75rem)',
                   marginBottom: '0.5rem',
                 }}
               >
-                Capture at the speed of thought.
-              </h2>
-              {/* Video placeholder - using image for now */}
-              <div
+                {['Calendar Tasks', 'Shopping List', 'Business Ideas', '+ Custom Spaces'].map((chip, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                      fontSize: 'clamp(0.85rem, 1.2vw, 1rem)',
+                      color: '#475569',
+                      backgroundColor: '#f1f5f9',
+                      padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 1.5vw, 1.25rem)',
+                      borderRadius: '100px',
+                      fontWeight: 500,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+              
+              {/* Primary CTA Button */}
+              <button
                 style={{
-                  width: '100%',
-                  maxWidth: '800px',
-                  aspectRatio: '16 / 9',
-                  borderRadius: 'clamp(12px, 2vw, 24px)',
-                  overflow: 'hidden',
-                  boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                  fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+                  fontWeight: 600,
+                  color: '#ffffff',
+                  backgroundColor: '#0f172a',
+                  border: 'none',
+                  padding: 'clamp(0.875rem, 1.5vw, 1.125rem) clamp(2rem, 3vw, 3rem)',
+                  borderRadius: '100px',
+                  cursor: 'pointer',
+                  marginTop: '0.5rem',
+                  transition: 'all 0.2s ease',
+                  boxShadow: '0 4px 14px rgba(15, 23, 42, 0.25)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#1e293b';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(15, 23, 42, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#0f172a';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(15, 23, 42, 0.25)';
                 }}
               >
-                <img
-                  src="/Photos/freepik__a-candid-cinematic-photograph-of-a-businesswoman-w__47549.png"
-                  alt="Capture at the speed of thought"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
+                Request Access
+              </button>
+              
+              {/* Trust Text */}
+              <p
+                style={{
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                  fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
+                  color: '#94a3b8',
+                  marginTop: '0.75rem',
+                  fontWeight: 400,
+                }}
+              >
+                Nothing changes without your approval.
+              </p>
             </motion.div>
           </motion.div>
         </div>
