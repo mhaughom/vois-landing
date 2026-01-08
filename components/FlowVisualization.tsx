@@ -46,14 +46,15 @@ CATEGORIES.forEach((_, i) => {
 });
 
 // Create hourglass-shaped input curve
+// Lines start from above viewport (behind devices) and flow down to AI core
 function createInputCurve(startX: number, startY: number): THREE.CubicBezierCurve3 {
-  // Hourglass shape: start wide, curve outward slightly, then sharply inward to center
-  const outwardBulge = startX < 0 ? -4 : 4; // Bulge outward from starting position
+  // Hourglass shape: start from device position, curve smoothly down to center
+  const outwardBulge = startX < 0 ? -3 : 3; // Subtle outward curve
   
   return new THREE.CubicBezierCurve3(
-    new THREE.Vector3(startX, startY, 0),           // Start at device
-    new THREE.Vector3(startX + outwardBulge, startY * 0.5, 0), // Control 1: curve outward first
-    new THREE.Vector3(startX * 0.15, 2, 0),         // Control 2: sharply inward
+    new THREE.Vector3(startX, startY, 0),           // Start behind device (off-screen top)
+    new THREE.Vector3(startX + outwardBulge, startY * 0.4, 0), // Control 1: gentle curve
+    new THREE.Vector3(startX * 0.2, 3, 0),          // Control 2: converge toward center
     new THREE.Vector3(0, 0, 0)                       // End at core center
   );
 }
@@ -201,9 +202,10 @@ function AnimatedLine({
 }
 
 // Input Lines Component - single continuous line per side
+// Lines start from higher up to appear as if coming from the phone/watch devices above
 function InputLines() {
-  const leftCurve = useMemo(() => createInputCurve(-10, 12), []);
-  const rightCurve = useMemo(() => createInputCurve(10, 12), []);
+  const leftCurve = useMemo(() => createInputCurve(-8, 18), []);  // Higher start, closer to center
+  const rightCurve = useMemo(() => createInputCurve(8, 18), []);
   
   return (
     <>

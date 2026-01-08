@@ -60,15 +60,14 @@ const NarrativeTransition: React.FC = () => {
   // Final white overlay fades in to lock the white screen (earlier)
   const finalWhiteOpacity = useTransform(scrollYProgress, [0.58, 0.75], [0, 1]);
   
-  // "Capture at the speed of thought" - scrolls up with easing, STICKY/MAGNETIC in center, then exits
-  const captureTextOpacity = useTransform(scrollYProgress, [0.45, 0.52, 0.90, 0.97], [0, 1, 1, 0]);
-  // Ease-out landing: 80vh -> 8vh -> 1vh -> 0vh (strong deceleration)
-  // LONG sticky period at 0vh (from 0.58 to 0.82 = 24% of scroll)
-  // Ease-in exit: 0vh -> -1vh -> -5vh -> -20vh -> -50vh (gradual acceleration)
+  // "Capture at the speed of thought" - scrolls up with easing, STICKS in center, then exits smoothly
+  const captureTextOpacity = useTransform(scrollYProgress, [0.45, 0.52, 0.88, 0.95], [0, 1, 1, 0]);
+  // Ease-out landing: 80vh -> 15vh -> 3vh -> 0vh (decelerating)
+  // Ease-in exit: 0vh -> -3vh -> -15vh -> -40vh (accelerating)
   const captureTextY = useTransform(
     scrollYProgress, 
-    [0.45, 0.50, 0.55, 0.58, 0.70, 0.82, 0.86, 0.90, 0.95, 1.0], 
-    ['80vh', '15vh', '3vh', '0vh', '0vh', '0vh', '-1vh', '-5vh', '-20vh', '-50vh']
+    [0.45, 0.52, 0.58, 0.65, 0.72, 0.78, 0.85, 0.92, 1.0], 
+    ['80vh', '20vh', '5vh', '0vh', '0vh', '-2vh', '-8vh', '-25vh', '-45vh']
   );
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -279,7 +278,7 @@ const NarrativeTransition: React.FC = () => {
 
             {/* ─────────────────────────────────────────────────────────────────
                 PHASE 3: "Capture at the speed of thought."
-                BLACK text on WHITE background - scrolls up into view
+                Headline + Video placeholder with rounded corners
             ───────────────────────────────────────────────────────────────── */}
             <motion.div
               style={{
@@ -291,31 +290,43 @@ const NarrativeTransition: React.FC = () => {
                 alignItems: 'center',
                 gap: '1.5rem',
                 padding: '0 2rem',
-                maxWidth: '600px',
+                maxWidth: '800px',
                 textAlign: 'center',
               }}
             >
               <h2
                 style={{
                   fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                  fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
                   color: '#0f172a',
                   lineHeight: 1.1,
                   fontWeight: 400,
+                  marginBottom: '0.5rem',
                 }}
               >
                 Capture at the speed of thought.
               </h2>
-              <p
+              {/* Video placeholder - using image for now */}
+              <div
                 style={{
-                  fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                  color: '#64748b',
-                  lineHeight: 1.6,
-                  fontWeight: 400,
+                  width: '100%',
+                  maxWidth: '500px',
+                  aspectRatio: '16 / 9',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
                 }}
               >
-                The best ideas vanish in seconds. Skip the friction of unlocking and typing.
-              </p>
+                <img
+                  src="/Photos/freepik__a-candid-cinematic-photograph-of-a-businesswoman-w__47549.png"
+                  alt="Capture at the speed of thought"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>

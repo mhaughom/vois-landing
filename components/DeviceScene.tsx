@@ -1409,9 +1409,9 @@ function SceneContent() {
     
     // Lerp factor - use instant positioning on first frame to prevent blink
     // Also disable mouse/ambient influence on first frame to prevent any jump
-    // Lower lerp factor (0.06) for smoother, slower movement
+    // Lerp factor 0.12 for responsive but smooth movement
     const isFirstFrame = !devicesInitializedRef.current;
-    const lerpFactor = isFirstFrame ? 1.0 : 0.06;
+    const lerpFactor = isFirstFrame ? 1.0 : 0.12;
     devicesInitializedRef.current = true;
     
     // -- PHONE ANIMATION --
