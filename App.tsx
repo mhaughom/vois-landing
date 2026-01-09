@@ -247,17 +247,17 @@ const App = () => {
             className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-center px-8 md:px-16 lg:px-20 z-10"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-slate-900 mb-8 lg:mb-12 leading-[1.1] tracking-tight">
-              The Universal Lie
+              Life doesn't wait for your notes app.
             </h2>
             <div className="space-y-6 text-lg md:text-xl text-slate-600 leading-relaxed font-light max-w-lg">
               <p>
-                We all carry a hidden weight. It's 2:00 PM. You are walking to your next meeting. In your head, you are juggling a grocery list, a breakthrough idea for a project, a worry about an email you sent.
+                Walking into the meeting. Standing in the shower. Halfway out the door.
               </p>
               <p>
-                You could stop. Pull out your phone. Type it all out. But you don't.
+                An invitation. A task. A thought you can't afford to lose.
               </p>
               <p className="text-2xl md:text-3xl font-serif text-slate-900 italic leading-snug">
-                You say to yourself: "I'll just remember that"
+                You tell yourself: "I'll just remember that."
               </p>
               <p className="text-slate-400">
                 (You won't.)
