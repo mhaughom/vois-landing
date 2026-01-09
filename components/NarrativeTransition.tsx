@@ -199,6 +199,27 @@ const NarrativeTransition: React.FC = () => {
                 pointerEvents: 'none',
               }}
             />
+            
+            {/* "VOIS wants to help." - scrolls with video, over mountains */}
+            <motion.h2
+              className="narrative-text-dark"
+              style={{
+                position: 'absolute',
+                top: '22%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                opacity: videoTextOpacity,
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                color: 'rgba(15, 23, 42, 0.5)',
+                textAlign: 'center',
+                padding: '0 2rem',
+                maxWidth: '90vw',
+                lineHeight: 1.3,
+                pointerEvents: 'none',
+              }}
+            >
+              VOIS wants to help.
+            </motion.h2>
           </motion.div>
 
           {/* ═════════════════════════════════════════════════════════════════
@@ -282,26 +303,6 @@ const NarrativeTransition: React.FC = () => {
               You don't have to carry it all.
             </motion.h2>
             
-            {/* ─────────────────────────────────────────────────────────────────
-                PHASE 1.5: "VOIS wants to help." (appears on video, over mountains)
-            ───────────────────────────────────────────────────────────────── */}
-            <motion.h2
-              className="narrative-text-dark"
-              style={{
-                position: 'absolute',
-                top: '18%',
-                opacity: videoTextOpacity,
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-                color: '#0f172a',
-                textAlign: 'center',
-                padding: '0 2rem',
-                maxWidth: '90vw',
-                lineHeight: 1.3,
-                zIndex: 15,
-              }}
-            >
-              VOIS wants to help.
-            </motion.h2>
 
             {/* ─────────────────────────────────────────────────────────────────
                 PHASE 3: "Capture at the speed of thought."
