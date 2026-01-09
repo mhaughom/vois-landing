@@ -191,11 +191,6 @@ const App = () => {
             animate="visible"
             className="flex-1 max-w-xl relative z-10"
           >
-
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-life-blue-light text-life-blue-dark text-xs font-semibold mb-8 uppercase tracking-wider">
-               <Sparkles size={12} />
-               Public Beta Live
-            </motion.div>
             
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] mb-6 tracking-tight">
               {COPY.hero.headline}
@@ -210,7 +205,7 @@ const App = () => {
               {COPY.hero.definition}
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-col gap-4">
+            <motion.div variants={itemVariants}>
                <motion.button 
                  onClick={handleScrollToPricing}
                  whileHover={{ scale: 1.05 }}
@@ -220,9 +215,6 @@ const App = () => {
                  {COPY.hero.cta}
                  <ArrowRight size={18} />
                </motion.button>
-               <p className="text-sm text-slate-400">
-                 {COPY.hero.trustText}
-               </p>
             </motion.div>
           </motion.div>
 
