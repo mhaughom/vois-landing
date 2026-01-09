@@ -283,12 +283,13 @@ const NarrativeTransition: React.FC = () => {
             </motion.h2>
             
             {/* ─────────────────────────────────────────────────────────────────
-                PHASE 1.5: "VOIS wants to help." (appears on video)
+                PHASE 1.5: "VOIS wants to help." (appears on video, over mountains)
             ───────────────────────────────────────────────────────────────── */}
             <motion.h2
               className="narrative-text-dark"
               style={{
                 position: 'absolute',
+                top: '18%',
                 opacity: videoTextOpacity,
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
                 color: '#0f172a',
