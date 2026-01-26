@@ -14,9 +14,8 @@ import { HeroDiscoveryDock, HeroDiscoveryContent, DiscoveryMode } from './compon
 import { TryNowDemo, DemoSteps, DemoStage } from './components/TryNowDemo';
 import { ChatDemo } from './components/ChatDemo';
 import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play } from 'lucide-react';
-
-// Stripe Payment Link - Replace with actual link
-const STRIPE_LINK = "#";
+import { CheckoutModal } from './components/CheckoutModal';
+import { useFounderSpots } from './hooks/useFounderSpots';
 
 const faqData = [
   {
@@ -212,6 +211,8 @@ const App = () => {
   const [discoveryMode, setDiscoveryMode] = useState<DiscoveryMode>(null);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showVideoClose, setShowVideoClose] = useState(false); // Track if 3D video is playing
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const { remaining, isSoldOut } = useFounderSpots();
   const prefersReducedMotion = usePrefersReducedMotion();
 
   // Demo state for step instructions
@@ -536,6 +537,13 @@ const App = () => {
         )}
       </AnimatePresence>
 
+      {/* Checkout Modal */}
+      <CheckoutModal
+        isOpen={showCheckoutModal}
+        onClose={() => setShowCheckoutModal(false)}
+        remaining={remaining}
+      />
+
       {/* Chat Demo - handles API calls for phone chat interface */}
       <ChatDemo onMessageSent={() => setChatMessageSent(true)} />
 
@@ -690,7 +698,7 @@ const App = () => {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => scrollToSection('pricing')}
+                          onClick={() => setShowCheckoutModal(true)}
                           className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
                           style={{
                             background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,235,255,0.85) 25%, rgba(235,245,255,0.85) 50%, rgba(255,245,235,0.85) 75%, rgba(255,255,255,0.85) 100%)',
@@ -734,7 +742,7 @@ const App = () => {
                           </span>
                           <span className="relative z-10 font-semibold text-slate-900">Get Early Access</span>
                           <span className="relative z-10 px-2.5 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-700 group-hover:bg-violet-500/25 transition-colors">
-                            71 left
+                            {remaining ?? '--'} left
                           </span>
                         </motion.button>
 
@@ -1239,19 +1247,17 @@ const App = () => {
                 <div className="flex items-center gap-2 mb-6 text-sm">
                   <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
                   <span className="text-slate-400">
-                    <span className="text-white font-semibold">74</span> / 100 Spots Remaining
+                    <span className="text-white font-semibold">{remaining ?? '--'}</span> / 100 Spots Remaining
                   </span>
                 </div>
                 
-                {/* CTA Button - Opens Stripe Payment Link */}
-                <a 
-                  href={STRIPE_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* CTA Button - Opens Checkout Modal */}
+                <button
+                  onClick={() => setShowCheckoutModal(true)}
                   className="block w-full bg-white text-slate-950 py-4 rounded-full text-lg font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg text-center"
                 >
-                  Get Early Access
-                </a>
+                  {isSoldOut ? 'Join Waitlist' : 'Get Early Access'}
+                </button>
                 
                 {/* Guarantee */}
                 <p className="text-center text-slate-500 text-sm mt-4">

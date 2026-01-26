@@ -8,6 +8,7 @@ import './index.css';
 const App = React.lazy(() => import('./App'));
 const Login = React.lazy(() => import('./pages/Login'));
 const Legal = React.lazy(() => import('./pages/Legal'));
+const Success = React.lazy(() => import('./pages/Success'));
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -24,6 +25,7 @@ root.render(
           <Route path="/login" element={<Login />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
