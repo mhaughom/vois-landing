@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, AlertCircle, CheckCircle } from 'lucide-react';
+import { Mic, AlertCircle, CheckCircle, RefreshCw } from 'lucide-react';
 import {
   setDemoRecording,
   setDemoProcessing,
