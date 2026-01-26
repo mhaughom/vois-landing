@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { DeviceScene, setCurrentSection, SectionId } from './components/DeviceScene';
+import { DeviceScene, setCurrentSection, SectionId, setVideoHoverState, setVideoPlayState, setOnChatOpen } from './components/DeviceScene';
 import { FlowVisualization } from './components/FlowVisualization';
 import NarrativeTransition from './components/NarrativeTransition';
-import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X } from 'lucide-react';
+import { HeroDiscoveryDock, HeroDiscoveryContent, DiscoveryMode } from './components/HeroDiscoveryDock';
+import { TryNowDemo, DemoSteps, DemoStage } from './components/TryNowDemo';
+import { ChatDemo } from './components/ChatDemo';
+import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play } from 'lucide-react';
 
 // Stripe Payment Link - Replace with actual link
 const STRIPE_LINK = "#";
@@ -30,10 +33,252 @@ const faqData = [
   }
 ];
 
+// Hook to detect user's motion preference
+const usePrefersReducedMotion = () => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  return prefersReducedMotion;
+};
+
+// Colorful carousel wave - one long gradient bar, smooth blended zones, pastel leading edge
+const ColorWaveTags: React.FC<{ tags: string[]; visible: boolean }> = ({ tags, visible }) => {
+  const spanRef = useRef<HTMLSpanElement>(null);
+
+  const gray = { r: 203, g: 213, b: 225 }; // #cbd5e1
+
+  // Zone colors (rgb) mapped to position 0-1
+  const zones = [
+    { r: 34, g: 197, b: 94 },   // green - TASKS
+    { r: 59, g: 130, b: 246 },  // blue - CALENDAR
+    { r: 234, g: 179, b: 8 },   // yellow - IDEAS
+    { r: 168, g: 85, b: 247 },  // purple - LISTS
+    { r: 236, g: 72, b: 153 },  // pink - CUSTOM APPS
+  ];
+
+  // Pastel shimmer colors for the leading edge
+  const shimmer = [
+    { r: 103, g: 232, b: 249 }, // cyan
+    { r: 196, g: 181, b: 253 }, // violet
+    { r: 253, g: 164, b: 175 }, // rose
+  ];
+
+  // Interpolate two rgb colors
+  const mix = (a: typeof gray, b: typeof gray, t: number) => ({
+    r: Math.round(a.r + (b.r - a.r) * t),
+    g: Math.round(a.g + (b.g - a.g) * t),
+    b: Math.round(a.b + (b.b - a.b) * t),
+  });
+
+  const toCSS = (c: typeof gray) => `rgb(${c.r},${c.g},${c.b})`;
+
+  // Direct DOM manipulation — no React re-renders, just style mutation
+  useEffect(() => {
+    if (!visible || !spanRef.current) return;
+
+    let animationId: number;
+    const startTime = Date.now();
+    const el = spanRef.current;
+
+    const tick = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = (elapsed % 12000) / 12000;
+      const waveCenter = progress;
+
+      const numStops = 20;
+      const stops: string[] = [];
+
+      for (let i = 0; i <= numStops; i++) {
+        const pos = i / numStops;
+        const pct = (pos * 100).toFixed(1);
+
+        const zoneIndex = Math.min(zones.length - 1, Math.floor(pos * zones.length));
+        const nextZone = Math.min(zones.length - 1, zoneIndex + 1);
+        const zoneLocalPos = (pos * zones.length) - zoneIndex;
+        const blendWidth = 0.3;
+        let zoneColor: typeof gray;
+        if (zoneLocalPos > (1 - blendWidth) && zoneIndex < zones.length - 1) {
+          const blendT = (zoneLocalPos - (1 - blendWidth)) / blendWidth;
+          zoneColor = mix(zones[zoneIndex], zones[nextZone], blendT);
+        } else {
+          zoneColor = zones[zoneIndex];
+        }
+
+        let dist = Math.abs(pos - waveCenter);
+        if (dist > 0.5) dist = 1 - dist;
+
+        const litRadius = 0.2;
+        const fadeRadius = 0.08;
+        const shimmerRadius = 0.04;
+
+        let color: typeof gray;
+
+        if (dist < litRadius - fadeRadius) {
+          color = zoneColor;
+        } else if (dist < litRadius) {
+          const fadeT = (dist - (litRadius - fadeRadius)) / fadeRadius;
+          const shimmerColor = shimmer[Math.floor(pos * shimmer.length * 3) % shimmer.length];
+          color = mix(zoneColor, shimmerColor, fadeT * 0.6);
+        } else if (dist < litRadius + shimmerRadius) {
+          const hazeT = (dist - litRadius) / shimmerRadius;
+          const shimmerColor = shimmer[Math.floor(pos * shimmer.length * 3) % shimmer.length];
+          color = mix(shimmerColor, gray, hazeT);
+        } else {
+          color = gray;
+        }
+
+        stops.push(`${toCSS(color)} ${pct}%`);
+      }
+
+      el.style.backgroundImage = `linear-gradient(90deg, ${stops.join(', ')})`;
+      animationId = requestAnimationFrame(tick);
+    };
+
+    animationId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animationId);
+  }, [visible]);
+
+  if (!visible) return null;
+
+  const tagString = tags.join('  ·  ');
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-wrap mb-8 min-h-[2rem] items-center -mt-6"
+    >
+      <span
+        ref={spanRef}
+        className="text-xs md:text-sm tracking-widest uppercase font-medium bg-clip-text text-transparent"
+        style={{ backgroundImage: `linear-gradient(90deg, rgb(203,213,225), rgb(203,213,225))` }}
+      >
+        {tagString}
+      </span>
+    </motion.div>
+  );
+};
+
 const App = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  
+  const [discoveryMode, setDiscoveryMode] = useState<DiscoveryMode>(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showVideoClose, setShowVideoClose] = useState(false); // Track if 3D video is playing
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  // Demo state for step instructions
+  const [demoStage, setDemoStage] = useState<DemoStage>('idle');
+  const [demoControls, setDemoControls] = useState<{ stopRecording: () => void; reset: () => void } | null>(null);
+  const [hasCompletedDemo, setHasCompletedDemo] = useState(false);
+  const [chatOpened, setChatOpened] = useState(false);
+
+  // Track when user completes demo (sees results) and reset chat state on new recording
+  useEffect(() => {
+    if (demoStage === 'results') {
+      setHasCompletedDemo(true);
+    }
+    // Reset chatOpened when a new recording starts so steps show again
+    if (demoStage === 'recording') {
+      setChatOpened(false);
+    }
+  }, [demoStage]);
+
+  // Set up callback to hide steps when chat is opened
+  useEffect(() => {
+    setOnChatOpen(() => {
+      setChatOpened(true);
+    });
+    return () => setOnChatOpen(null);
+  }, []);
+  // Staged hero animation state
+  const [heroStage, setHeroStage] = useState<'headline' | 'subheadline' | 'tags' | 'devices' | 'buttons' | 'complete'>('headline');
+  const [typedSubheadline, setTypedSubheadline] = useState('');
+  const [visibleTags, setVisibleTags] = useState<number>(0);
+  const [devicesReady, setDevicesReady] = useState(false);
+
+  // Tags to animate in (shown immediately, no animation)
+  const heroTags = ['TASKS', 'CALENDAR', 'IDEAS', 'LISTS', 'CUSTOM APPS'];
+
+  // Staged animation timing - faster, devices appear right after subheadline
+  useEffect(() => {
+    const fullSubheadline = COPY.hero.subheadline;
+    const timeouts: NodeJS.Timeout[] = [];
+    let typeIntervalRef: NodeJS.Timeout | null = null;
+
+    // Stage 1: Headline is already visible, start typing subheadline after 500ms
+    timeouts.push(setTimeout(() => {
+      setHeroStage('subheadline');
+
+      // Type out subheadline character by character (faster: 35ms per char)
+      let charIndex = 0;
+      typeIntervalRef = setInterval(() => {
+        charIndex++;
+        setTypedSubheadline(fullSubheadline.slice(0, charIndex));
+
+        if (charIndex >= fullSubheadline.length) {
+          if (typeIntervalRef) clearInterval(typeIntervalRef);
+
+          // Show tags immediately and trigger devices right after subheadline finishes
+          timeouts.push(setTimeout(() => {
+            setHeroStage('tags');
+            setVisibleTags(heroTags.length); // Show all tags at once
+
+            // Show devices immediately after
+            timeouts.push(setTimeout(() => {
+              setHeroStage('devices');
+              setDevicesReady(true);
+
+              // After devices animate in, show buttons
+              timeouts.push(setTimeout(() => {
+                setHeroStage('buttons');
+
+                // Mark complete
+                timeouts.push(setTimeout(() => {
+                  setHeroStage('complete');
+                }, 600));
+              }, 1800)); // Wait for device entrance
+            }, 200)); // Short pause before devices
+          }, 200)); // Short pause after typing
+        }
+      }, 35); // 35ms per character (faster typing)
+
+    }, 500)); // Start after 500ms
+
+    return () => {
+      timeouts.forEach(t => clearTimeout(t));
+      if (typeIntervalRef) clearInterval(typeIntervalRef);
+    };
+  }, []);
+
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll the 3D canvas with the page — applied synchronously in the scroll
+  // handler (not deferred to rAF) so it runs in the same frame as the browser's
+  // scroll paint, eliminating the one-frame jitter.
+  useEffect(() => {
+    const handleScroll = () => {
+      if (canvasContainerRef.current) {
+        canvasContainerRef.current.style.transform = `translateY(-${window.scrollY}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Refs for section tracking
   const heroRef = useRef<HTMLElement>(null);
   const videoTransitionRef = useRef<HTMLElement>(null);
@@ -71,19 +316,22 @@ const App = () => {
     // Function to determine and set the current section
     // NOTE: 'capture' section is handled directly by NarrativeTransition via scroll progress
     // This observer handles hero, video-transition, narrative, and flow
+    // IMPORTANT: Flow section overlaps with capture due to negative margin - don't override capture
     const updateCurrentSection = () => {
       const heroRatio = visibilityMap.get('hero') || 0;
       const flowRatio = visibilityMap.get('flow') || 0;
+      const narrativeRatio = visibilityMap.get('narrative') || 0;
       
-      // Priority 1: Flow section (when scrolled far)
-      if (flowRatio > 0.3) {
-        setCurrentSection('flow');
+      // Priority 1: Hero if visible
+      if (heroRatio > 0.3) {
+        setCurrentSection('hero');
         return;
       }
       
-      // Priority 2: Hero if visible (narrative and capture handled by NarrativeTransition)
-      if (heroRatio > 0.3) {
-        setCurrentSection('hero');
+      // Priority 2: Flow section - but only when narrative is NOT visible
+      // (capture is part of narrative, so if narrative is visible, let NarrativeTransition handle it)
+      if (flowRatio > 0.5 && narrativeRatio < 0.1) {
+        setCurrentSection('flow');
         return;
       }
       
@@ -93,7 +341,8 @@ const App = () => {
       
       visibilityMap.forEach((ratio, id) => {
         // Skip capture - handled by NarrativeTransition
-        if (id === 'capture') return;
+        // Skip flow - handled above with narrative check
+        if (id === 'capture' || id === 'flow') return;
         if (ratio > maxRatio) {
           maxRatio = ratio;
           mostVisibleSection = id;
@@ -119,9 +368,9 @@ const App = () => {
             updateCurrentSection();
           });
         },
-        { 
-          // More granular thresholds for smoother tracking
-          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        {
+          // OPTIMIZED: Reduced thresholds for better performance
+          threshold: [0, 0.3, 0.7, 1.0],
           rootMargin: '0px' // No margin - track actual visibility
         }
       );
@@ -167,67 +416,323 @@ const App = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const } }
   };
 
   return (
-    <div className="relative w-full min-h-screen font-sans bg-background scroll-smooth snap-y snap-mandatory">
+    <div className="relative w-full min-h-screen font-sans bg-background scroll-smooth snap-y snap-proximity">
       <Navbar />
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {showVideoModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+            onClick={() => setShowVideoModal(false)}
+          >
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              className="relative w-full max-w-4xl aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+              
+              {/* Placeholder Image - Replace with actual video later */}
+              <div className="relative w-full h-full">
+                <img 
+                  src="/Photos/freepik__a-candid-cinematic-photograph-of-a-businesswoman-w__47549.png"
+                  alt="Video Placeholder"
+                  className="w-full h-full object-cover"
+                />
+                {/* Play overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                  <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-xl">
+                    <Play size={32} className="text-slate-900 fill-current ml-1" />
+                  </div>
+                </div>
+                {/* Coming Soon Badge */}
+                <div className="absolute bottom-4 left-4 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-full text-white text-sm font-medium">
+                  Video Coming Soon
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Chat Demo - handles API calls for phone chat interface */}
+      <ChatDemo />
+
+      {/* 3D Video Player Close Button */}
+      <AnimatePresence>
+        {showVideoClose && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => {
+              setVideoPlayState(false);
+              setShowVideoClose(false);
+            }}
+            className="fixed top-24 right-6 z-50 w-12 h-12 bg-black/60 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors shadow-lg"
+          >
+            <X size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <main className="w-full max-w-7xl mx-auto relative z-20">
         
         {/* HERO */}
-        <section ref={heroRef} id="hero" className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 pt-32 pb-12 gap-8 lg:gap-16">
+        <section ref={heroRef} id="hero" className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 pt-32 pb-24 gap-8 lg:gap-16 relative">
           
-          {/* Right: 3D Devices - Fixed, ON TOP of content */}
-          <div className="fixed inset-0 z-30 pointer-events-none">
-             <DeviceScene />
-          </div>
+          {/* Right: 3D Devices - Fixed but scrolls with page via transform */}
+          {/* Disabled when user prefers reduced motion for better performance */}
+          {/* Only show after devicesReady to allow staged loading */}
+          {/* Memoized to prevent re-renders from affecting 3D canvas */}
+          {useMemo(() => (
+            !prefersReducedMotion && devicesReady ? (
+              <div
+                ref={canvasContainerRef}
+                className="fixed inset-0 z-30 pointer-events-none"
+                style={{ willChange: 'transform' }}
+              >
+                <DeviceScene />
+              </div>
+            ) : null
+          ), [prefersReducedMotion, devicesReady])}
+
 
           {/* Left: Text Content - with z-index to sit above 3D */}
+          {/* Shifts left when video is playing to give more room */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
             className="flex-1 max-w-xl relative z-10"
+            animate={{
+              x: showVideoClose ? -60 : 0,
+            }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
-            
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] mb-6 tracking-tight">
+            {/* Headline - always visible, centered initially then moves up */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: 1,
+                y: discoveryMode ? -30 : 0,
+                marginBottom: discoveryMode ? '1rem' : '1.5rem'
+              }}
+              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] tracking-tight"
+            >
               {COPY.hero.headline}
             </motion.h1>
-            
-            <motion.p variants={itemVariants} className="text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-4">
-              {COPY.hero.subheadline}
-            </motion.p>
 
-            {/* Definition Row */}
-            <motion.p variants={itemVariants} className="text-xs md:text-sm text-slate-400 tracking-widest uppercase mb-10">
-              {COPY.hero.definition}
-            </motion.p>
+            {/* Default Hero Content - fades out when discovery mode is active */}
+            <AnimatePresence mode="wait">
+              {!discoveryMode ? (
+                <motion.div
+                  key="default-content"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  {/* Subheadline - types out */}
+                  <p className="text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-0 min-h-[2.5em]">
+                    {typedSubheadline}
+                    {heroStage === 'subheadline' && (
+                      <motion.span
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ duration: 0.5, repeat: Infinity }}
+                        className="inline-block w-[3px] h-[1em] bg-slate-400 ml-1 align-middle"
+                      />
+                    )}
+                  </p>
 
-            <motion.div variants={itemVariants}>
-               <motion.button 
-                 onClick={handleScrollToPricing}
-                 whileHover={{ scale: 1.05 }}
-                 whileTap={{ scale: 0.95 }}
-                 className="bg-black text-white px-8 py-4 rounded-full text-base font-medium transition-transform flex items-center justify-center gap-2 shadow-xl shadow-black/10 w-fit"
-               >
-                 {COPY.hero.cta}
-                 <ArrowRight size={18} />
-               </motion.button>
-            </motion.div>
+                  {/* Tags - with colorful wind wave effect */}
+                  <ColorWaveTags tags={heroTags} visible={visibleTags >= heroTags.length} />
+
+                  {/* Buttons - CSS transition to avoid React re-render flicker */}
+                  <div
+                    className="flex items-start gap-4 flex-wrap transition-opacity duration-700 ease-out"
+                    style={{
+                      opacity: heroStage === 'buttons' || heroStage === 'complete' ? 1 : 0
+                    }}
+                  >
+                    {/* Watch Video - LEFT */}
+                    <button
+                      onClick={() => {
+                        if (showVideoClose) {
+                          // End video
+                          setVideoPlayState(false);
+                          setShowVideoClose(false);
+                        } else {
+                          // Start video - also reset demo state
+                          demoControls?.reset();
+                          setVideoHoverState(true);
+                          setVideoPlayState(true);
+                          setShowVideoClose(true);
+                        }
+                      }}
+                      className={`watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-black/20 overflow-hidden active:scale-95 transition-all duration-300 ${
+                        showVideoClose
+                          ? 'bg-white text-slate-900'
+                          : 'bg-slate-900 text-white'
+                      }`}
+                    >
+                      {/* Circular white fill expanding from play button on hover */}
+                      <span className={`watch-video-fill absolute bg-white rounded-full pointer-events-none ${showVideoClose ? 'opacity-0' : ''}`} />
+                      {/* Play button circle - inverts on hover */}
+                      <span className={`relative z-10 flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-200 ${
+                        showVideoClose
+                          ? 'bg-slate-900'
+                          : 'bg-slate-900 group-hover:bg-white'
+                      }`}>
+                        <Play size={14} className={`ml-0.5 transition-colors duration-200 ${
+                          showVideoClose
+                            ? 'fill-white text-white'
+                            : 'fill-white text-white group-hover:fill-slate-900 group-hover:text-slate-900'
+                        }`} />
+                      </span>
+                      {/* Text changes color on hover */}
+                      <span className={`relative z-10 transition-colors duration-500 delay-100 ${
+                        showVideoClose
+                          ? 'text-slate-900'
+                          : 'group-hover:text-slate-900'
+                      }`}>
+                        {showVideoClose ? 'End Video' : 'Watch Video'}
+                      </span>
+                    </button>
+
+                    {/* Get Early Access button - shown after demo completion */}
+                    {hasCompletedDemo && demoStage === 'idle' && (
+                      <motion.button
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => scrollToSection('pricing')}
+                        className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,235,255,0.85) 25%, rgba(235,245,255,0.85) 50%, rgba(255,245,235,0.85) 75%, rgba(255,255,255,0.85) 100%)',
+                        }}
+                      >
+                        {/* Animated gradient overlay - more visible on hover */}
+                        <motion.div
+                          className="absolute inset-0 opacity-50 group-hover:opacity-80 transition-opacity duration-300"
+                          style={{
+                            background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.25), rgba(129,140,248,0.25), rgba(251,191,36,0.15), transparent)',
+                            backgroundSize: '200% 100%',
+                          }}
+                          animate={{
+                            backgroundPosition: ['0% 0%', '200% 0%'],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: 'linear',
+                          }}
+                        />
+                        {/* Second layer that moves on hover */}
+                        <motion.div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-300"
+                          style={{
+                            background: 'linear-gradient(270deg, transparent, rgba(251,191,36,0.2), rgba(167,139,250,0.2), rgba(129,140,248,0.2), transparent)',
+                            backgroundSize: '200% 100%',
+                          }}
+                          animate={{
+                            backgroundPosition: ['200% 0%', '0% 0%'],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: 'linear',
+                          }}
+                        />
+                        {/* Sparkle icon circle - matches Watch Video play button size */}
+                        <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
+                          <span className="text-violet-600">✦</span>
+                        </span>
+                        <span className="relative z-10 font-semibold text-slate-900">Get Early Access</span>
+                        <span className="relative z-10 px-2.5 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-700 group-hover:bg-violet-500/25 transition-colors">
+                          71 left
+                        </span>
+                      </motion.button>
+                    )}
+
+                    {/* Try Now Demo - always rendered for recording functionality, hidden after completion when idle */}
+                    <div className={hasCompletedDemo && demoStage === 'idle' ? 'hidden' : ''}>
+                      <TryNowDemo
+                        hasCompletedDemo={hasCompletedDemo}
+                        onStageChange={(stage, controls) => {
+                          setDemoStage(stage);
+                          setDemoControls(controls);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Demo Steps - Below both buttons, hide when chat is opened */}
+                  {!chatOpened && (
+                    <DemoSteps
+                      stage={demoStage}
+                      onStopRecording={demoControls?.stopRecording}
+                      onReset={demoControls?.reset}
+                    />
+                  )}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="discovery-content"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <HeroDiscoveryContent activeMode={discoveryMode} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* Spacer to push content down if needed, but 3D is now fixed */}
           <div className="flex-1 h-[600px] hidden lg:block" /> 
 
+          {/* Discovery Dock - Positioned at bottom left, scrolls with hero */}
+          <HeroDiscoveryDock 
+            activeMode={discoveryMode} 
+            onModeChange={setDiscoveryMode}
+          />
+
         </section>
 
         {/* THE UNIVERSAL LIE - Cinematic, borderless, Apple-style */}
-        <section 
+        <section
           ref={videoTransitionRef}
-          id="video-transition" 
-          className="relative min-h-screen flex items-center snap-center snap-always overflow-hidden bg-white z-10"
+          id="video-transition"
+          className="relative min-h-screen flex items-center snap-center overflow-hidden bg-white z-10"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
         >
           {/* Right: Typography - Raw, no boxes */}
@@ -236,19 +741,19 @@ const App = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-center px-8 md:px-16 lg:px-20 z-10"
+            className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-20 z-10 pt-24 lg:pt-0"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-slate-900 mb-8 lg:mb-12 leading-[1.1] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-slate-900 mb-6 sm:mb-8 lg:mb-12 leading-[1.1] tracking-tight">
               Life doesn't wait for your notes app.
             </h2>
-            <div className="space-y-6 text-lg md:text-xl text-slate-600 leading-relaxed font-light max-w-lg">
+            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed font-light max-w-lg">
               <p>
                 Walking into the meeting. Standing in the shower. Halfway out the door.
               </p>
               <p>
                 An invitation. A task. A thought you can't afford to lose.
               </p>
-              <p className="text-2xl md:text-3xl font-serif text-slate-900 italic leading-snug">
+              <p className="text-xl sm:text-2xl md:text-3xl font-serif text-slate-900 italic leading-snug">
                 You tell yourself: "I'll just remember that."
               </p>
               <p className="text-slate-400">
@@ -257,19 +762,49 @@ const App = () => {
             </div>
           </motion.div>
 
-          {/* The Chaos - Full width, behind text, feathered edges (LEFT side) */}
+          {/* The Chaos - Video with responsive positioning */}
+          {/* Desktop: Left side with gradient fade to right */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
             className="hidden lg:block absolute inset-0 overflow-hidden"
-            style={{
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 100%), linear-gradient(to right, black 0%, black 35%, transparent 65%)',
-              maskComposite: 'intersect',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 100%), linear-gradient(to right, black 0%, black 35%, transparent 65%)',
-              WebkitMaskComposite: 'source-in'
-            }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-0 bottom-0 h-full object-cover"
+              style={{
+                width: '100%',
+                left: '-15%',
+                objectPosition: 'center center',
+              }}
+            >
+              <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
+              <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
+            </video>
+            {/* Gradient overlay - responsive fade */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `
+                  linear-gradient(to right, transparent 0%, transparent 40%, rgba(255,255,255,0.5) 50%, white 60%, white 100%),
+                  linear-gradient(to bottom, white 0%, transparent 8%, transparent 100%)
+                `
+              }}
+            />
+          </motion.div>
+
+          {/* Tablet: Video takes less space, centered */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+            className="hidden md:block lg:hidden absolute inset-0 overflow-hidden"
           >
             <video
               autoPlay
@@ -277,39 +812,54 @@ const App = () => {
               muted
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
-              style={{ 
-                objectPosition: '15% center',
-                transform: 'scale(1.08) translateX(-25%)'
+              style={{
+                objectPosition: '30% center',
               }}
             >
+              <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
               <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
-              <source src="/videos/messy-man-loop.mov" type="video/mp4" />
             </video>
+            {/* Stronger gradient for tablet to ensure text readability */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `
+                  linear-gradient(to right, transparent 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.8) 50%, white 70%, white 100%),
+                  linear-gradient(to bottom, white 0%, transparent 10%, transparent 100%)
+                `
+              }}
+            />
           </motion.div>
 
-          {/* Mobile: Stack layout */}
-          <div className="lg:hidden absolute inset-0 flex flex-col">
-            <div className="flex-1" /> {/* Spacer for text above */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="w-full overflow-hidden"
+          {/* Mobile: Video at bottom with top fade */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="md:hidden absolute bottom-0 left-0 right-0 h-[45vh] overflow-hidden"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                objectPosition: 'center 30%',
+              }}
             >
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full object-cover"
-                style={{ transform: 'scale(1.1)' }}
-              >
-                <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
-                <source src="/videos/messy-man-loop.mov" type="video/mp4" />
-              </video>
-            </motion.div>
-          </div>
+              <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
+              <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
+            </video>
+            {/* Top fade for mobile */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to bottom, white 0%, transparent 25%, transparent 100%)'
+              }}
+            />
+          </motion.div>
         </section>
 
         {/* NARRATIVE TRANSITION - Palate cleanser between Problem and Solution */}
@@ -320,11 +870,19 @@ const App = () => {
         {/* CAPTURE SECTION - Detection now handled by NarrativeTransition via scroll progress */}
         <section ref={captureRef} id="capture" className="h-0" />
 
-        {/* FLOW VISUALIZATION - Hourglass data flow with waveforms */}
-        <section ref={flowRef} id="flow" className="relative min-h-[300vh]">
-          <div className="sticky top-0 h-screen w-full">
+        {/* FLOW VISUALIZATION - Data flow animation, integrated with capture section */}
+        {/* Shows simple fallback when user prefers reduced motion */}
+        <section ref={flowRef} id="flow" className="relative min-h-screen -mt-[85vh]">
+          {prefersReducedMotion ? (
+            <div className="w-full h-screen bg-white flex items-center justify-center">
+              <div className="text-center">
+                <h2 className="text-3xl font-serif text-slate-900 mb-4">VOIS</h2>
+                <p className="text-slate-500">Intelligent categorization of your thoughts</p>
+              </div>
+            </div>
+          ) : (
             <FlowVisualization />
-          </div>
+          )}
         </section>
 
         {/* DEMO (Text Content) - LEFT side for watch on right */}

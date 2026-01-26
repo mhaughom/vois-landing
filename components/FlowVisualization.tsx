@@ -70,20 +70,26 @@ function createOutputCurve(catX: number): THREE.CubicBezierCurve3 {
 }
 
 // Single unified line with colored waveform sections - smoother version
-function AnimatedLine({ 
-  curve, 
-  lineIndex 
-}: { 
-  curve: THREE.CubicBezierCurve3; 
+// OPTIMIZED: Uses refs instead of state to avoid React re-renders
+function AnimatedLine({
+  curve,
+  lineIndex
+}: {
+  curve: THREE.CubicBezierCurve3;
   lineIndex: number;
 }) {
   const groupRef = useRef<THREE.Group>(null);
-  const [meshes, setMeshes] = useState<Array<{ geometry: THREE.TubeGeometry; color: string; key: string }>>([]);
-  
+  const meshRefs = useRef<THREE.Mesh[]>([]);
+  const geometryRefs = useRef<THREE.TubeGeometry[]>([]);
+  const materialRefs = useRef<THREE.MeshBasicMaterial[]>([]);
+  const initialized = useRef(false);
+  const staticGeometryRefs = useRef<THREE.TubeGeometry[]>([]); // Cache for static (no-pulse) geometries
+  const lastPulseProgressRef = useRef<number | null>(null); // Track pulse to detect changes
+  const frameSkipCounter = useRef(0); // Skip frames for performance
+
   // Pre-generate smooth noise values for irregular waveform
   const noiseValues = useMemo(() => {
     const values: number[] = [];
-    // Generate smoother noise using multiple octaves
     for (let i = 0; i < 300; i++) {
       const t = i / 300;
       const noise = Math.sin(t * 15) * 0.3 + Math.sin(t * 23 + 1) * 0.2 + Math.sin(t * 37 + 2) * 0.15;
@@ -91,121 +97,154 @@ function AnimatedLine({
     }
     return values;
   }, []);
-  
+
+  // Initialize meshes once - create static geometries from the curve
+  const numSegments = 20;
+  useEffect(() => {
+    if (!groupRef.current || initialized.current) return;
+    initialized.current = true;
+
+    const numPoints = 250;
+    const segmentSize = 1 / numSegments;
+
+    for (let seg = 0; seg < numSegments; seg++) {
+      // Create static geometry from actual curve points
+      const pts: THREE.Vector3[] = [];
+      const startIdx = Math.floor(seg * segmentSize * numPoints);
+      const endIdx = Math.floor((seg + 1) * segmentSize * numPoints);
+      for (let i = startIdx; i <= endIdx; i++) {
+        const t = Math.min(i / numPoints, 0.999);
+        pts.push(curve.getPoint(t));
+      }
+
+      const segmentCurve = new THREE.CatmullRomCurve3(pts);
+      const geometry = new THREE.TubeGeometry(segmentCurve, 15, 0.08, 8, false);
+      const staticGeometry = geometry.clone(); // Keep a copy for when no pulse
+
+      const material = new THREE.MeshBasicMaterial({ color: '#1a1a1a' });
+      const mesh = new THREE.Mesh(geometry, material);
+      groupRef.current.add(mesh);
+      meshRefs.current.push(mesh);
+      geometryRefs.current.push(geometry);
+      staticGeometryRefs.current.push(staticGeometry);
+      materialRefs.current.push(material);
+    }
+
+    return () => {
+      geometryRefs.current.forEach(g => g.dispose());
+      staticGeometryRefs.current.forEach(g => g.dispose());
+      materialRefs.current.forEach(m => m.dispose());
+    };
+  }, [curve]);
+
   useFrame((state) => {
+    if (!groupRef.current || meshRefs.current.length === 0) return;
+
+    // PERFORMANCE: Skip every other frame (30fps instead of 60fps for this animation)
+    frameSkipCounter.current++;
+    if (frameSkipCounter.current % 2 !== 0) return;
+
     const time = state.clock.elapsedTime;
-    const numPoints = 250; // More points for smoother curves
-    const newMeshes: Array<{ geometry: THREE.TubeGeometry; color: string; key: string }> = [];
-    
-    // Find pulse on this line
+    const numPoints = 250;
     const activePulse = globalState.pulses.find(p => p.lineIndex === lineIndex);
     const pulseWidth = 0.35;
-    
-    // Build the entire line as fewer, longer segments for smoothness
-    const numSegments = 20; // Fewer segments = smoother
     const segmentSize = 1 / numSegments;
-    
+
+    // PERFORMANCE: If no pulse, restore static geometries and skip heavy calculations
+    if (!activePulse) {
+      if (lastPulseProgressRef.current !== null) {
+        // Pulse just ended - restore all segments to static
+        for (let seg = 0; seg < numSegments; seg++) {
+          if (meshRefs.current[seg] && staticGeometryRefs.current[seg]) {
+            materialRefs.current[seg].color.set('#1a1a1a');
+          }
+        }
+        lastPulseProgressRef.current = null;
+      }
+      return; // No pulse = no geometry updates needed
+    }
+
+    lastPulseProgressRef.current = activePulse.progress;
+
     for (let seg = 0; seg < numSegments; seg++) {
       const segStart = seg * segmentSize;
       const segEnd = (seg + 1) * segmentSize;
       const segMid = (segStart + segEnd) / 2;
-      
-      // Determine if this segment is in a pulse area
-      let segmentColor = '#1a1a1a'; // Default black
-      let isInPulse = false;
-      
-      if (activePulse) {
-        const pulseStart = activePulse.progress - pulseWidth / 2;
-        const pulseEnd = activePulse.progress + pulseWidth / 2;
-        
-        if (segMid >= pulseStart && segMid <= pulseEnd) {
-          isInPulse = true;
-          // Determine which color segment this falls into
-          const posInPulse = (segMid - pulseStart) / pulseWidth;
-          const colorIndex = Math.min(
-            Math.floor(posInPulse * activePulse.colorSegments.length),
-            activePulse.colorSegments.length - 1
-          );
-          const color = activePulse.colorSegments[colorIndex];
-          segmentColor = `#${color.getHexString()}`;
-        }
+
+      // Check if this segment is affected by the pulse
+      const pulseStart = activePulse.progress - pulseWidth / 2;
+      const pulseEnd = activePulse.progress + pulseWidth / 2;
+      const isAffectedByPulse = segEnd >= pulseStart && segStart <= pulseEnd;
+
+      let segmentColor = '#1a1a1a';
+
+      if (segMid >= pulseStart && segMid <= pulseEnd) {
+        const posInPulse = (segMid - pulseStart) / pulseWidth;
+        const colorIndex = Math.min(
+          Math.floor(posInPulse * activePulse.colorSegments.length),
+          activePulse.colorSegments.length - 1
+        );
+        segmentColor = `#${activePulse.colorSegments[colorIndex].getHexString()}`;
       }
-      
-      // Generate more points for smoother segments
+
+      // PERFORMANCE: Only update geometry for segments affected by pulse
+      if (!isAffectedByPulse) {
+        materialRefs.current[seg].color.set(segmentColor);
+        continue;
+      }
+
       const pts: THREE.Vector3[] = [];
       const startIdx = Math.floor(segStart * numPoints);
       const endIdx = Math.floor(segEnd * numPoints);
-      
+
       for (let i = startIdx; i <= endIdx; i++) {
         const t = Math.min(i / numPoints, 0.999);
         const point = curve.getPoint(t);
-        
-        // Add waveform displacement only in pulse area with smooth transitions
-        if (activePulse) {
-          const pulseStart = activePulse.progress - pulseWidth / 2;
-          const pulseEnd = activePulse.progress + pulseWidth / 2;
-          
-          // Smooth fade in/out at edges
-          let intensity = 0;
-          if (t >= pulseStart && t <= pulseEnd) {
-            const posInPulse = (t - pulseStart) / pulseWidth;
-            // Smooth cosine fade at edges
-            intensity = Math.sin(posInPulse * Math.PI);
-          }
-          
-          if (intensity > 0.01) {
-            // Smoother waveform using combined frequencies
-            const baseFreq = i * 0.3;
-            const wave1 = Math.sin(baseFreq + time * 4) * 0.45;
-            const wave2 = Math.sin(baseFreq * 1.7 + time * 6 + 1.2) * 0.25;
-            const wave3 = Math.sin(baseFreq * 2.3 + time * 2.5) * 0.15;
-            const noise = noiseValues[i % noiseValues.length] * 0.25;
-            
-            const amplitude = (wave1 + wave2 + wave3 + noise) * intensity * 0.7;
-            
-            const tangent = curve.getTangentAt(t);
-            const normal = new THREE.Vector3(-tangent.y, tangent.x, 0).normalize();
-            
-            point.x += normal.x * amplitude;
-            point.y += normal.y * amplitude;
-          }
+
+        let intensity = 0;
+        if (t >= pulseStart && t <= pulseEnd) {
+          intensity = Math.sin(((t - pulseStart) / pulseWidth) * Math.PI);
         }
-        
+
+        if (intensity > 0.01) {
+          const baseFreq = i * 0.3;
+          const wave1 = Math.sin(baseFreq + time * 4) * 0.45;
+          const wave2 = Math.sin(baseFreq * 1.7 + time * 6 + 1.2) * 0.25;
+          const wave3 = Math.sin(baseFreq * 2.3 + time * 2.5) * 0.15;
+          const noise = noiseValues[i % noiseValues.length] * 0.25;
+          const amplitude = (wave1 + wave2 + wave3 + noise) * intensity * 0.7;
+
+          const tangent = curve.getTangentAt(t);
+          const normal = new THREE.Vector3(-tangent.y, tangent.x, 0).normalize();
+          point.x += normal.x * amplitude;
+          point.y += normal.y * amplitude;
+        }
         pts.push(point);
       }
-      
-      if (pts.length >= 2) {
+
+      if (pts.length >= 2 && meshRefs.current[seg]) {
         const segmentCurve = new THREE.CatmullRomCurve3(pts);
-        // More tubular segments for smoother appearance
-        const geometry = new THREE.TubeGeometry(segmentCurve, 15, 0.08, 8, false);
-        
-        newMeshes.push({
-          geometry,
-          color: segmentColor,
-          key: `seg-${lineIndex}-${seg}`
-        });
+        const newGeom = new THREE.TubeGeometry(segmentCurve, 15, 0.08, 8, false);
+
+        const oldGeom = geometryRefs.current[seg];
+        meshRefs.current[seg].geometry = newGeom;
+        geometryRefs.current[seg] = newGeom;
+        oldGeom.dispose();
+
+        materialRefs.current[seg].color.set(segmentColor);
       }
     }
-    
-    setMeshes(newMeshes);
   });
-  
-  return (
-    <group ref={groupRef}>
-      {meshes.map(m => (
-        <mesh key={m.key} geometry={m.geometry}>
-          <meshBasicMaterial color={m.color} />
-        </mesh>
-      ))}
-    </group>
-  );
+
+  return <group ref={groupRef} />;
 }
 
 // Input Lines Component - single continuous line per side
-// Lines start from higher up to appear as if coming from the phone/watch devices above
+// Lines start from top of viewport, appearing to come from the phone/watch devices in the section above
 function InputLines() {
-  const leftCurve = useMemo(() => createInputCurve(-8, 18), []);  // Higher start, closer to center
-  const rightCurve = useMemo(() => createInputCurve(8, 18), []);
+  // Wider start positions to align with device positions, starting from off-screen top
+  const leftCurve = useMemo(() => createInputCurve(-10, 22), []);  // Phone side (left)
+  const rightCurve = useMemo(() => createInputCurve(10, 22), []); // Watch side (right)
   
   return (
     <>
@@ -377,10 +416,21 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
 // Cards System Component - spawns cards as each color enters the core
 function CardsSystem() {
   const [, forceUpdate] = useState(0);
-  
+  const lastUpdateRef = useRef(0);
+
   useFrame(() => {
     let needsUpdate = false;
     const pulseWidth = 0.35;
+
+    // OPTIMIZATION: Limit array sizes to prevent unbounded growth
+    if (globalState.cards.length > 40) {
+      globalState.cards = globalState.cards.slice(-25);
+      needsUpdate = true;
+    }
+    if (globalState.pulses.length > 10) {
+      globalState.pulses = globalState.pulses.slice(-5);
+      needsUpdate = true;
+    }
     
     // Update pulse progress and spawn cards as colors enter core
     for (let i = globalState.pulses.length - 1; i >= 0; i--) {
@@ -460,7 +510,10 @@ function CardsSystem() {
       }
     }
     
-    if (needsUpdate) {
+    // OPTIMIZATION: Throttle React updates to max 10fps
+    const now = Date.now();
+    if (needsUpdate && now - lastUpdateRef.current > 100) {
+      lastUpdateRef.current = now;
       forceUpdate(n => n + 1);
     }
   });
@@ -542,11 +595,7 @@ function ResponsiveCamera() {
 function HTMLOverlay() {
   return (
     <div className="absolute inset-0 pointer-events-none z-10">
-      {/* Device labels */}
-      <div className="flow-device-label" style={{ left: '20%' }}>iPhone</div>
-      <div className="flow-device-label" style={{ right: '20%' }}>Watch</div>
-      
-      {/* Center brand */}
+      {/* Center brand - positioned where the AI core is */}
       <div className="flow-center-brand">
         <h2>VOIS</h2>
       </div>
@@ -584,7 +633,7 @@ export const FlowVisualization: React.FC = () => {
       <Canvas
         orthographic
         camera={{ 
-          position: [0, 0, 50],
+          position: [0, 8, 50],  // Shifted up more so lines start higher (under devices)
           near: 1,
           far: 1000,
           zoom: 1

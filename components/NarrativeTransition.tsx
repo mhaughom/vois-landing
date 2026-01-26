@@ -1,21 +1,47 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { setCurrentSection, setNarrativeScrollProgress } from './DeviceScene';
+import { CaptureDeviceScene } from './CaptureDeviceScene';
+import { CaptureInterface } from './CaptureInterface';
 
 const NarrativeTransition: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [videosActive, setVideosActive] = useState(false);
+  const lastProgressRef = useRef(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
-  
+
+  // Lazy load videos when section is near viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVideosActive(true);
+          // Once loaded, disconnect - no need to unload
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' } // Load 200px before visible
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   // Notify DeviceScene when we reach the "Capture at the speed of thought" section
-  // Also pass the scroll progress so devices can sync their animation to the fog timing
+  // THROTTLED: Only update if progress changed by more than 1%
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    // Skip if change is too small (less than 1%)
+    if (Math.abs(progress - lastProgressRef.current) < 0.01) return;
+    lastProgressRef.current = progress;
+
     // Always update the narrative scroll progress for device animation timing
     setNarrativeScrollProgress(progress);
-    
+
     // Capture text starts becoming visible at ~45%, trigger devices at 40% (before text appears)
     if (progress >= 0.40 && progress < 0.92) {
       setCurrentSection('capture');
@@ -50,30 +76,25 @@ const NarrativeTransition: React.FC = () => {
   const videoTextOpacity = useTransform(scrollYProgress, [0.25, 0.35, 0.50, 0.60], [0, 1, 1, 0]);
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // VIDEO REVEAL - White overlay fades out to reveal video
-  // Shortened video visibility time (~15% less scroll time)
-  // Video starts appearing at 12%, fully visible by 35%, fog returns sooner
+  // UNIFIED OVERLAY - Single smooth curve for video reveal and fog return
+  // Creates a valley at the scroll snap point (~0.27) where clarity is maximum
+  // Before snap: overlay decreases (video reveals)
+  // At snap: minimum overlay (clearest moment)
+  // After snap: overlay increases smoothly (fog returns)
   // ═══════════════════════════════════════════════════════════════════════════
-  const whiteMaskOpacity = useTransform(scrollYProgress, [0.12, 0.35], [1, 0]);
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // PHASE 2: FOG RE-ENTRY - starts sooner, completes faster
-  // ═══════════════════════════════════════════════════════════════════════════
+  const unifiedOverlayOpacity = useTransform(
+    scrollYProgress, 
+    [0.0, 0.12, 0.20, 0.27, 0.34, 0.45, 0.58],
+    [1, 1, 0.55, 0.35, 0.55, 0.85, 1]
+  );
   
-  // Fog starts returning earlier (35% instead of 40%)
-  const fogReturnOpacity = useTransform(scrollYProgress, [0.35, 0.62], [0, 1]);
-  
-  // Final white overlay fades in to lock the white screen (earlier)
-  const finalWhiteOpacity = useTransform(scrollYProgress, [0.58, 0.75], [0, 1]);
-  
-  // "Capture at the speed of thought" - scrolls up with easing, STICKS in center, then exits smoothly
-  const captureTextOpacity = useTransform(scrollYProgress, [0.45, 0.52, 0.88, 0.95], [0, 1, 1, 0]);
-  // Ease-out landing: 80vh -> 15vh -> 3vh -> 0vh (decelerating)
-  // Ease-in exit: 0vh -> -3vh -> -15vh -> -40vh (accelerating)
+  // "Capture at the speed of thought" - fades in as fog completes, stays visible
+  const captureTextOpacity = useTransform(scrollYProgress, [0.52, 0.60], [0, 1]);
+  // Content centered at 0vh (true center), then scrolls up naturally
   const captureTextY = useTransform(
     scrollYProgress, 
-    [0.45, 0.52, 0.58, 0.65, 0.72, 0.78, 0.85, 0.92, 1.0], 
-    ['80vh', '20vh', '5vh', '0vh', '0vh', '-2vh', '-8vh', '-25vh', '-45vh']
+    [0.45, 0.52, 0.58, 0.65, 0.70, 0.78, 0.88, 1.0], 
+    ['80vh', '20vh', '5vh', '0vh', '-5vh', '-15vh', '-30vh', '-50vh']
   );
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -109,6 +130,37 @@ const NarrativeTransition: React.FC = () => {
           marginLeft: 'calc(-50vw + 50%)',
         }}
       >
+        {/* ═══════════════════════════════════════════════════════════════════════
+            SCROLL SNAP TARGET 1 - Nature/mountain scene when fully revealed
+            Positioned at ~35% where the beautiful landscape is fully visible
+        ═══════════════════════════════════════════════════════════════════════ */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '35%',
+            left: 0,
+            width: '100%',
+            height: '1px',
+            scrollSnapAlign: 'center',
+            pointerEvents: 'none',
+          }}
+        />
+        
+        {/* ═══════════════════════════════════════════════════════════════════════
+            SCROLL SNAP TARGET 2 - "Capture at speed of thought" when centered
+            Positioned at ~65% where Capture text and image are centered
+        ═══════════════════════════════════════════════════════════════════════ */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '65%',
+            left: 0,
+            width: '100%',
+            height: '1px',
+            scrollSnapAlign: 'center',
+            pointerEvents: 'none',
+          }}
+        />
         {/* ═══════════════════════════════════════════════════════════════════
             STICKY VIEWPORT (locks to screen while scrolling)
         ═══════════════════════════════════════════════════════════════════ */}
@@ -138,22 +190,24 @@ const NarrativeTransition: React.FC = () => {
               y: videoTranslateY,
             }}
           >
-            {/* Full-screen video */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
-            >
-              <source src="/videos/kling_20260107_Image_to_Video_Static_sho_2574_2.mp4" type="video/mp4" />
-            </video>
+            {/* Full-screen video - lazy loaded */}
+            {videosActive && (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              >
+                <source src="/videos/kling_20260107_Image_to_Video_Static_sho_2574_2.mp4" type="video/mp4" />
+              </video>
+            )}
             
             {/* Softer vignette overlay - more landscape visible */}
             <div
@@ -223,45 +277,17 @@ const NarrativeTransition: React.FC = () => {
           </motion.div>
 
           {/* ═════════════════════════════════════════════════════════════════
-              LAYER 2: WHITE MASK (z-index: 10)
-              Covers video during text phases, fades to reveal video
+              LAYER 2: UNIFIED WHITE OVERLAY (z-index: 15)
+              Single smooth curve: reveals video → clearest at snap → fog returns
+              No discontinuity or "click" at the transition point
           ═════════════════════════════════════════════════════════════════ */}
           <motion.div
             style={{
               position: 'absolute',
               inset: 0,
               backgroundColor: '#ffffff',
-              opacity: whiteMaskOpacity,
-              zIndex: 10,
-              pointerEvents: 'none',
-            }}
-          />
-
-          {/* ═════════════════════════════════════════════════════════════════
-              LAYER 3: SEAMLESS FOG FADE (z-index: 18-25)
-              Fog returns gradually once video is visible, creating smooth exit
-          ═════════════════════════════════════════════════════════════════ */}
-          
-          {/* Fog returns slowly after video is revealed - like mist rolling back in */}
-          <motion.div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              zIndex: 20,
-              pointerEvents: 'none',
-              backgroundColor: '#ffffff',
-              opacity: fogReturnOpacity,
-            }}
-          />
-          
-          {/* Final white overlay - locks in the white permanently */}
-          <motion.div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundColor: '#ffffff',
-              opacity: finalWhiteOpacity,
-              zIndex: 25,
+              opacity: unifiedOverlayOpacity,
+              zIndex: 15,
               pointerEvents: 'none',
             }}
           />
@@ -300,13 +326,13 @@ const NarrativeTransition: React.FC = () => {
                 lineHeight: 1.3,
               }}
             >
-              You don't have to carry it all.
+              Your brain is for thinking, not for storage.
             </motion.h2>
             
 
             {/* ─────────────────────────────────────────────────────────────────
                 PHASE 3: "Capture at the speed of thought."
-                Headline + Video placeholder with rounded corners
+                Headline + Video with 3D devices on sides
             ───────────────────────────────────────────────────────────────── */}
             <motion.div
               style={{
@@ -335,26 +361,59 @@ const NarrativeTransition: React.FC = () => {
               >
                 Capture at the speed of thought.
               </h2>
-              {/* Video placeholder - using image for now */}
+
+              {/* Container for video with 3D devices on sides */}
               <div
                 style={{
+                  position: 'relative',
                   width: '100%',
-                  maxWidth: '800px',
-                  aspectRatio: '16 / 9',
-                  borderRadius: 'clamp(12px, 2vw, 24px)',
-                  overflow: 'hidden',
-                  boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
+                  maxWidth: '1000px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                <img
-                  src="/Photos/freepik__a-candid-cinematic-photograph-of-a-businesswoman-w__47549.png"
-                  alt="Capture at the speed of thought"
+                {/* 3D Devices Scene - positioned behind/around video */}
+                <div
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
+                    position: 'absolute',
+                    inset: '-20%',
+                    zIndex: 1,
+                    pointerEvents: 'none',
                   }}
-                />
+                >
+                  {videosActive && <CaptureDeviceScene />}
+                </div>
+
+                {/* Video container - lazy loaded */}
+                <div
+                  style={{
+                    position: 'relative',
+                    zIndex: 2,
+                    width: '100%',
+                    maxWidth: '700px',
+                    aspectRatio: '16 / 9',
+                    borderRadius: 'clamp(12px, 2vw, 24px)',
+                    overflow: 'hidden',
+                    boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
+                    backgroundColor: '#f1f5f9',
+                  }}
+                >
+                  {videosActive && (
+                    <video
+                      src="/videos/Situations.mov"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  )}
+                </div>
               </div>
             </motion.div>
           </motion.div>

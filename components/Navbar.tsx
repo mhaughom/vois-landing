@@ -50,23 +50,51 @@ export const Navbar = () => {
       </Link>
       
       {/* Right Side Navigation */}
-      <div className="pointer-events-auto flex items-center gap-4">
-        {/* Login Link */}
+      <div className="pointer-events-auto flex items-center gap-3">
+        {/* Vois for Work Link */}
         <Link 
-          to="/login"
+          to="/work"
           className="hidden sm:block text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-4 py-2"
+        >
+          Vois for Work
+        </Link>
+
+        {/* Login Link */}
+        <Link
+          to="/login"
+          className="hidden sm:block text-sm font-medium text-white bg-black hover:bg-black/80 transition-colors px-6 py-2.5 rounded-full"
         >
           Log In
         </Link>
-        
-        {/* Get Early Access Button */}
-        <motion.button 
+
+        {/* Get Early Access Button - Colorful animated gradient */}
+        <motion.button
           onClick={handleGetEarlyAccess}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:shadow-lg transition-all duration-300"
+          className="relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 overflow-hidden border-0"
+          style={{
+            background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 25%, #60a5fa 50%, #34d399 75%, #fbbf24 100%)',
+            backgroundSize: '200% 200%',
+          }}
         >
-          Get Early Access
+          {/* Animated gradient shift */}
+          <motion.div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 25%, #60a5fa 50%, #34d399 75%, #fbbf24 100%)',
+              backgroundSize: '200% 200%',
+            }}
+            animate={{
+              backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          />
+          <span className="relative z-10 text-white font-semibold">Get Early Access</span>
         </motion.button>
       </div>
     </motion.nav>
