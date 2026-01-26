@@ -127,6 +127,12 @@ export const setOnChatOpen = (callback: (() => void) | null) => {
   onChatOpenCallback = callback;
 };
 
+// Callback for when a chat message is actually sent
+let onChatMessageSentCallback: (() => void) | null = null;
+export const setOnChatMessageSent = (callback: (() => void) | null) => {
+  onChatMessageSentCallback = callback;
+};
+
 // Phone screen navigation functions
 export const setPhoneScreen = (screen: PhoneScreen) => {
   globalState.phoneScreenState.currentScreen = screen;
@@ -259,14 +265,118 @@ export const setDemoTip = (tip: string) => {
   globalState.demoState.tip = tip;
 };
 
+// Map icon name strings (SF Symbols / Material Icons) to emoji characters
+const iconNameToEmoji: Record<string, string> = {
+  // Calendar / Events
+  'calendar': '📅', 'calendar.fill': '📅', 'event': '📅',
+  // Tasks / Checkmarks
+  'checkmark': '✅', 'checkmark.circle': '✅', 'checkmark_circle': '✅',
+  'check': '✅', 'check_circle': '✅', 'done': '✅',
+  'checkmark.circle.fill': '✅', 'check.circle': '✅',
+  // Shopping
+  'cart': '🛒', 'cart.fill': '🛒', 'shopping_cart': '🛒', 'shopping': '🛒',
+  // Lists
+  'list': '📋', 'list.bullet': '📋', 'clipboard': '📋', 'assignment': '📋',
+  // Ideas
+  'lightbulb': '💡', 'lightbulb.fill': '💡', 'bulb': '💡', 'idea': '💡',
+  // Health
+  'heart': '❤️', 'heart.fill': '❤️', 'health': '❤️',
+  // Reminders
+  'bell': '🔔', 'bell.fill': '🔔', 'alarm': '⏰', 'reminder': '🔔',
+  // Notes
+  'note': '📝', 'note.text': '📝', 'pencil': '✏️', 'edit': '✏️',
+  // Social
+  'person': '👤', 'person.fill': '👤', 'person.2': '👥', 'people': '👥',
+  // Messages
+  'bubble': '💬', 'bubble.left': '💬', 'message': '💬', 'chat': '💬',
+  // Finance
+  'dollarsign': '💰', 'dollarsign.circle': '💰', 'money': '💰',
+  'creditcard': '💳', 'payment': '💳',
+  // Work
+  'briefcase': '💼', 'briefcase.fill': '💼', 'work': '💼',
+  // Star
+  'star': '⭐', 'star.fill': '⭐', 'favorite': '⭐',
+  // Book
+  'book': '📚', 'book.fill': '📚', 'reading': '📚',
+  // Home
+  'house': '🏠', 'house.fill': '🏠', 'home': '🏠',
+  // Travel
+  'airplane': '✈️', 'car.fill': '🚗',
+  // Food
+  'fork.knife': '🍽️', 'food': '🍽️', 'meal': '🍽️',
+  // Exercise
+  'dumbbell': '🏋️', 'figure.run': '🏃', 'fitness': '🏋️',
+  // Gift
+  'gift': '🎁', 'gift.fill': '🎁',
+  // Music
+  'music.note': '🎵', 'music': '🎵',
+  // Clock
+  'clock': '🕐', 'clock.fill': '🕐', 'time': '🕐',
+  // Tag
+  'tag': '🏷️', 'tag.fill': '🏷️',
+};
+
+// Fallback emoji based on item type/category
+const typeFallbackEmoji: Record<string, string> = {
+  'task': '✅', 'event': '📅', 'shopping': '🛒', 'reminder': '🔔',
+  'idea': '💡', 'note': '📝', 'health': '❤️', 'social': '👥',
+  'finance': '💰', 'work': '💼', 'list': '📋', 'grocery': '🛒',
+  'groceries': '🛒', 'errands': '📋', 'errand': '📋',
+};
+
+// Check if a string is an icon name (ASCII only) rather than an emoji
+const isIconName = (str: string): boolean => /^[a-zA-Z0-9._\-]+$/.test(str);
+
+// Resolve an icon string to an emoji character
+const resolveIcon = (icon: string, itemType?: string): string => {
+  if (!icon) return typeFallbackEmoji[itemType?.toLowerCase() || ''] || '📋';
+  // If already an emoji (contains non-ASCII), return as-is
+  if (!isIconName(icon)) return icon;
+  // Look up in icon name mapping
+  const key = icon.toLowerCase().replace(/_/g, '.').replace(/-/g, '.');
+  const mapped = iconNameToEmoji[key] || iconNameToEmoji[icon.toLowerCase()];
+  if (mapped) return mapped;
+  // Fall back to type-based emoji
+  return typeFallbackEmoji[itemType?.toLowerCase() || ''] || '📋';
+};
+
 export const setDemoResults = (results: {
   transcript: string;
   highlights: DemoState['highlights'];
   items: DemoState['items'];
 }) => {
-  globalState.demoState.transcript = results.transcript;
-  globalState.demoState.highlights = results.highlights;
-  globalState.demoState.items = results.items;
+  // Fix 1: Map icon name strings to emoji characters
+  const mappedItems = results.items.map(item => ({
+    ...item,
+    icon: resolveIcon(item.icon, item.type),
+  }));
+
+  // Fix 2: Build wider highlights from items' rawText when API highlights are too narrow
+  const transcript = results.transcript;
+  const lowerTranscript = transcript.toLowerCase();
+  const rawTextHighlights: DemoState['highlights'] = [];
+
+  for (const item of results.items) {
+    const rawText = item.rawText?.trim();
+    if (!rawText) continue;
+    const idx = lowerTranscript.indexOf(rawText.toLowerCase());
+    if (idx === -1) continue;
+    rawTextHighlights.push({
+      text: transcript.substring(idx, idx + rawText.length),
+      start: idx,
+      end: idx + rawText.length,
+      category: item.type?.toLowerCase() || 'task',
+      color: '',
+    });
+  }
+
+  // Use rawText-based highlights if available (they cover full phrases);
+  // otherwise fall back to API-provided highlights
+  const finalHighlights = rawTextHighlights.length > 0 ? rawTextHighlights : results.highlights;
+
+  globalState.demoState.transcript = transcript;
+  globalState.demoState.highlights = finalHighlights;
+  globalState.demoState.items = mappedItems;
   // Reset animation timer when new results arrive
   globalState.demoResultsStartTime = Date.now();
 };
@@ -615,6 +725,8 @@ const phoneClickableRegions: ClickableRegion[] = [
   { id: 'chat-reset', screen: 'magic', label: 'Reset', uv: { minX: 0.32, maxX: 0.68, minY: 0.21, maxY: 0.25 } },
   // Lockscreen VOIS button (record on phone)
   { id: 'lockscreen-vois', screen: 'lockscreen', label: 'Record', uv: { minX: 0.30, maxX: 0.70, minY: 0.28, maxY: 0.42 } },
+  // Stop recording button (center-bottom of phone during recording)
+  { id: 'stop-recording', screen: 'stream', label: 'Stop', uv: { minX: 0.25, maxX: 0.75, minY: 0.75, maxY: 0.92 } },
 ];
 
 // Callback for when the record button is clicked on phone
@@ -627,6 +739,12 @@ export const setOnPhoneRecordClick = (callback: (() => void) | null) => {
 let onWatchRecordClick: (() => void) | null = null;
 export const setOnWatchRecordClick = (callback: (() => void) | null) => {
   onWatchRecordClick = callback;
+};
+
+// Callback for stopping recording (click stop on phone or watch)
+let onStopRecordClick: (() => void) | null = null;
+export const setOnStopRecordClick = (callback: (() => void) | null) => {
+  onStopRecordClick = callback;
 };
 
 // Callback for chat message sending
@@ -658,6 +776,9 @@ const getHitButton = (uvX: number, uvY: number, currentScreen: PhoneScreen): Cli
 
     // Record button is only active in waiting-to-start mode (regardless of screen)
     if (region.id === 'record-phone' && !demoState.isWaitingToStart) continue;
+
+    // Stop button is only active during recording on phone
+    if (region.id === 'stop-recording' && !(demoState.isRecording && demoState.activeDevice === 'phone')) continue;
 
     // Skip nav buttons when in waiting-to-start mode (record button takes priority)
     if (region.id.startsWith('nav-') && demoState.isWaitingToStart) continue;
@@ -732,6 +853,10 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
               if (onPhoneRecordClick) {
                 setDemoActiveDevice('phone');
                 onPhoneRecordClick();
+              }
+            } else if (hitButton.id === 'stop-recording') {
+              if (onStopRecordClick) {
+                onStopRecordClick();
               }
             } else if (hitButton.id.startsWith('stream-card-')) {
               // Extract card index and set selected card
@@ -851,10 +976,12 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       // Don't handle clicks when video is playing
       if (globalState.videoPlayerState.isPlaying) return;
 
-      // Watch is always ready to record when idle (not recording or processing)
       const demoState = globalState.demoState;
+      const isRecordingOnWatch = demoState.isRecording && demoState.activeDevice === 'watch';
       const watchIsIdle = !demoState.isRecording && !demoState.isProcessing;
-      if (!watchIsIdle) return;
+
+      // Watch responds to clicks when idle (to start) or when recording on watch (to stop)
+      if (!watchIsIdle && !isRecordingOnWatch) return;
 
       const mesh = watchScreenMeshRef.current;
       if (!mesh) return;
@@ -871,8 +998,11 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       const intersects = raycasterRef.current.intersectObject(mesh, false);
 
       if (intersects.length > 0) {
-        // Watch screen was clicked in waiting mode - start recording on watch
-        if (onWatchRecordClick) {
+        if (isRecordingOnWatch && onStopRecordClick) {
+          // Stop recording when watch is clicked during recording
+          onStopRecordClick();
+        } else if (watchIsIdle && onWatchRecordClick) {
+          // Start recording on watch
           setDemoActiveDevice('watch');
           onWatchRecordClick();
         }
@@ -1276,6 +1406,15 @@ function SceneContent() {
       watchGroupRef = null;
     };
   });
+
+  // Preload watch face background image
+  const watchFaceBgRef = useRef<HTMLImageElement | null>(null);
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/Photos/freepik__i-want-an-image-of-only-the-watch-face-here-and-ju__22837.png';
+    img.onload = () => { watchFaceBgRef.current = img; };
+    return () => { watchFaceBgRef.current = null; };
+  }, []);
 
   // Load Models
   const phoneGLTF = useGLTF('/3d_models/iphone_16_pro_max.glb');
@@ -2875,10 +3014,27 @@ function SceneContent() {
       ctx.font = `500 ${height * 0.028}px -apple-system`;
       ctx.fillText('Recording...', width / 2, height * 0.72);
 
-      // Bottom hint
-      ctx.fillStyle = '#999999';
-      ctx.font = `400 ${height * 0.022}px -apple-system`;
-      ctx.fillText('Tap stop when done', width / 2, height * 0.85);
+      // Stop button (red rounded rect with white square icon)
+      const stopBtnY = height * 0.80;
+      const stopBtnW = width * 0.38;
+      const stopBtnH = height * 0.065;
+      const stopBtnX = (width - stopBtnW) / 2;
+
+      ctx.fillStyle = '#ef4444';
+      roundRect(ctx, stopBtnX, stopBtnY, stopBtnW, stopBtnH, stopBtnH / 2);
+      ctx.fill();
+
+      // White square icon
+      const sqSize = stopBtnH * 0.28;
+      ctx.fillStyle = '#ffffff';
+      roundRect(ctx, width / 2 - stopBtnW * 0.16 - sqSize / 2, stopBtnY + (stopBtnH - sqSize) / 2, sqSize, sqSize, 2);
+      ctx.fill();
+
+      // "Stop" label
+      ctx.fillStyle = '#ffffff';
+      ctx.font = `600 ${height * 0.026}px -apple-system`;
+      ctx.textAlign = 'center';
+      ctx.fillText('Stop', width / 2 + stopBtnW * 0.06, stopBtnY + stopBtnH / 2 + height * 0.008);
 
       return;
     }
@@ -2997,6 +3153,196 @@ function SceneContent() {
       }
       ctx.fillText(line, width / 2, lineY);
 
+      return;
+    }
+
+    // Helper to draw category-specific icons on action cards (vector-drawn, same style as hero demo)
+    const drawCardIcon = (ctx: CanvasRenderingContext2D, type: string, x: number, y: number, size: number, color: string) => {
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      const s = size * 0.4;
+
+      // Normalize API type names to hero demo category names
+      const t = type.toLowerCase();
+
+      if (t === 'task' || t === 'tasks' || t === 'work') {
+        // Checkmark icon
+        ctx.beginPath();
+        ctx.arc(x, y, s * 0.85, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.4, y);
+        ctx.lineTo(x - s * 0.1, y + s * 0.35);
+        ctx.lineTo(x + s * 0.45, y - s * 0.3);
+        ctx.stroke();
+      } else if (t === 'event' || t === 'events' || t === 'calendar' || t === 'appointment') {
+        // Calendar icon
+        ctx.beginPath();
+        roundRect(ctx, x - s, y - s * 0.6, s * 2, s * 1.4, 3);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x - s, y - s * 0.2);
+        ctx.lineTo(x + s, y - s * 0.2);
+        ctx.stroke();
+        // Calendar pins
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.35, y - s * 0.85);
+        ctx.lineTo(x - s * 0.35, y - s * 0.45);
+        ctx.moveTo(x + s * 0.35, y - s * 0.85);
+        ctx.lineTo(x + s * 0.35, y - s * 0.45);
+        ctx.stroke();
+        // Date dots
+        ctx.fillRect(x - s * 0.5, y + s * 0.1, s * 0.3, s * 0.3);
+        ctx.fillRect(x + s * 0.2, y + s * 0.1, s * 0.3, s * 0.3);
+      } else if (t === 'shopping' || t === 'grocery' || t === 'groceries' || t === 'list' || t === 'errands' || t === 'errand') {
+        // Shopping cart / checklist icon
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.8, y - s * 0.5);
+        ctx.lineTo(x - s * 0.4, y);
+        ctx.lineTo(x + s * 0.8, y - s * 0.8);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.8, y + s * 0.5);
+        ctx.lineTo(x + s * 0.8, y + s * 0.5);
+        ctx.stroke();
+      } else if (t === 'idea' || t === 'ideas') {
+        // Lightbulb icon
+        ctx.beginPath();
+        ctx.arc(x, y - s * 0.3, s * 0.6, Math.PI * 0.8, Math.PI * 2.2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.3, y + s * 0.3);
+        ctx.lineTo(x - s * 0.3, y + s * 0.6);
+        ctx.lineTo(x + s * 0.3, y + s * 0.6);
+        ctx.lineTo(x + s * 0.3, y + s * 0.3);
+        ctx.stroke();
+      } else if (t === 'health' || t === 'wellness' || t === 'sleep') {
+        // Heart icon
+        ctx.beginPath();
+        ctx.moveTo(x, y + s * 0.6);
+        ctx.bezierCurveTo(x - s * 1.2, y - s * 0.2, x - s * 0.6, y - s, x, y - s * 0.4);
+        ctx.bezierCurveTo(x + s * 0.6, y - s, x + s * 1.2, y - s * 0.2, x, y + s * 0.6);
+        ctx.stroke();
+      } else if (t === 'social' || t === 'messages' || t === 'message' || t === 'family') {
+        // Chat bubble icon
+        ctx.beginPath();
+        roundRect(ctx, x - s, y - s * 0.7, s * 2, s * 1.2, 4);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.3, y + s * 0.5);
+        ctx.lineTo(x - s * 0.5, y + s);
+        ctx.lineTo(x + s * 0.1, y + s * 0.5);
+        ctx.fill();
+      } else if (t === 'finance' || t === 'money' || t === 'budget') {
+        // Briefcase / document icon
+        ctx.beginPath();
+        roundRect(ctx, x - s, y - s * 0.6, s * 2, s * 1.4, 3);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.4, y - s * 0.6);
+        ctx.lineTo(x - s * 0.4, y - s);
+        ctx.lineTo(x + s * 0.4, y - s);
+        ctx.lineTo(x + s * 0.4, y - s * 0.6);
+        ctx.stroke();
+      } else if (t === 'reminder' || t === 'reminders') {
+        // Bell icon
+        ctx.beginPath();
+        ctx.arc(x, y - s * 0.3, s * 0.6, Math.PI * 1.1, Math.PI * 1.9);
+        ctx.lineTo(x + s * 0.7, y + s * 0.3);
+        ctx.lineTo(x - s * 0.7, y + s * 0.3);
+        ctx.closePath();
+        ctx.stroke();
+        // Clapper
+        ctx.beginPath();
+        ctx.arc(x, y + s * 0.5, s * 0.2, 0, Math.PI);
+        ctx.stroke();
+      } else if (t === 'note' || t === 'notes') {
+        // Document / note icon
+        ctx.beginPath();
+        roundRect(ctx, x - s * 0.7, y - s * 0.8, s * 1.4, s * 1.6, 2);
+        ctx.stroke();
+        // Lines inside the document
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.4, y - s * 0.3);
+        ctx.lineTo(x + s * 0.4, y - s * 0.3);
+        ctx.moveTo(x - s * 0.4, y + s * 0.05);
+        ctx.lineTo(x + s * 0.4, y + s * 0.05);
+        ctx.moveTo(x - s * 0.4, y + s * 0.4);
+        ctx.lineTo(x + s * 0.1, y + s * 0.4);
+        ctx.stroke();
+      } else {
+        // Default circle icon
+        ctx.beginPath();
+        ctx.arc(x, y, s * 0.6, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+    };
+
+    // === NO ITEMS RETRY SCREEN - Show when processing returned no action items ===
+    if (demoState.error === 'no_items' && !demoState.isProcessing) {
+      // Light background
+      ctx.fillStyle = '#f8f9fa';
+      ctx.fillRect(0, 0, width, height);
+
+      // Status bar
+      ctx.fillStyle = '#1a1a1a';
+      ctx.font = `600 ${height * 0.026}px -apple-system, sans-serif`;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('9:41', padding, height * 0.032);
+
+      // VOIS NOTE header
+      ctx.fillStyle = '#1a1a1a';
+      ctx.font = `600 ${height * 0.028}px -apple-system, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('VOIS NOTE', width / 2, height * 0.085);
+
+      // Retry icon - circular arrow
+      const iconY = height * 0.35;
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(width / 2, iconY, height * 0.04, -Math.PI * 0.3, Math.PI * 1.3);
+      ctx.stroke();
+      // Arrowhead
+      const arrowAngle = -Math.PI * 0.3;
+      const arrowR = height * 0.04;
+      const ax = width / 2 + arrowR * Math.cos(arrowAngle);
+      const ay = iconY + arrowR * Math.sin(arrowAngle);
+      const headLen = height * 0.015;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.lineTo(ax + headLen, ay - headLen * 0.3);
+      ctx.moveTo(ax, ay);
+      ctx.lineTo(ax + headLen * 0.3, ay + headLen);
+      ctx.stroke();
+
+      // Message text
+      ctx.fillStyle = '#1a1a1a';
+      ctx.font = `600 ${height * 0.028}px -apple-system, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText("Let's try that again", width / 2, height * 0.45);
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = `400 ${height * 0.024}px -apple-system, sans-serif`;
+      ctx.fillText('Be more specific about what', width / 2, height * 0.52);
+      ctx.fillText('you want to capture.', width / 2, height * 0.56);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = `400 ${height * 0.020}px -apple-system, sans-serif`;
+      ctx.fillText('Restarting automatically...', width / 2, height * 0.64);
+
+      // Bottom nav
+      drawBottomNav('stream');
       return;
     }
 
@@ -3285,32 +3631,11 @@ function SceneContent() {
         ctx.fillRect(curX + 2, curY, 3, textSize);
       }
 
-      // === EXTRACTED CARDS PANEL ===
+      // === ACTION CARDS + CHAT CTA (cards show first, then fade to CTA after 3s) ===
       const cardsPanelH = height * 0.34;
       const cardsPanelY = height * 0.52;
       const cardsPanelW = width - panelMargin * 2;
 
-      // "Action Cards" header
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.022}px -apple-system, sans-serif`;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('Action Cards', panelMargin, cardsPanelY - height * 0.02);
-
-      // Shadow layers
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
-      roundRect(ctx, panelMargin + 1, cardsPanelY + 8, cardsPanelW, cardsPanelH, panelRadius);
-      ctx.fill();
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      roundRect(ctx, panelMargin + 1, cardsPanelY + 4, cardsPanelW, cardsPanelH, panelRadius);
-      ctx.fill();
-
-      // Panel background
-      ctx.fillStyle = '#ffffff';
-      roundRect(ctx, panelMargin, cardsPanelY, cardsPanelW, cardsPanelH, panelRadius);
-      ctx.fill();
-
-      // Card styling
       const cardInnerPadding = panelPadding * 0.8;
       const cardStartY = cardsPanelY + cardInnerPadding;
       const cardH = height * 0.095;
@@ -3319,291 +3644,264 @@ function SceneContent() {
       const cardStartX = panelMargin + cardInnerPadding;
       const cardRadius = 20;
 
-      // Pastel colors for demo cards - FULL category list from WHY section
-      // Colors: Blue=Calendar/Events, Green=Tasks/Work, Orange=Errands/Goals/Habits,
-      //         Teal=Finance, Yellow=Ideas/Dreams/Research, Red=Health/Sleep/Tracking,
-      //         Purple=Shopping/Journal/Meals, Pink=Social/Family/Memories
-      const demoPastelColors: Record<string, { bg: string; accent: string; text: string; highlight: string; emoji: string }> = {
-        // GREEN - Tasks, Work, Projects, Meeting Notes
-        task: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '✓' },
-        tasks: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '✓' },
-        work: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '💼' },
-        projects: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '📁' },
-        project: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '📁' },
-        'meeting notes': { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '📝' },
-        meeting: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a', highlight: 'rgba(187, 247, 208, 0.7)', emoji: '📝' },
-
-        // BLUE - Calendar, Events
-        event: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb', highlight: 'rgba(191, 219, 254, 0.7)', emoji: '📅' },
-        events: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb', highlight: 'rgba(191, 219, 254, 0.7)', emoji: '📅' },
-        calendar: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb', highlight: 'rgba(191, 219, 254, 0.7)', emoji: '📅' },
-        appointment: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb', highlight: 'rgba(191, 219, 254, 0.7)', emoji: '📅' },
-
-        // ORANGE - Errands, Goals, Habits
-        errands: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c', highlight: 'rgba(254, 215, 170, 0.7)', emoji: '📋' },
-        errand: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c', highlight: 'rgba(254, 215, 170, 0.7)', emoji: '📋' },
-        goals: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c', highlight: 'rgba(254, 215, 170, 0.7)', emoji: '🎯' },
-        goal: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c', highlight: 'rgba(254, 215, 170, 0.7)', emoji: '🎯' },
-        habits: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c', highlight: 'rgba(254, 215, 170, 0.7)', emoji: '📈' },
-        habit: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c', highlight: 'rgba(254, 215, 170, 0.7)', emoji: '📈' },
-
-        // TEAL - Finance
-        finance: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2', highlight: 'rgba(165, 243, 252, 0.7)', emoji: '💰' },
-        money: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2', highlight: 'rgba(165, 243, 252, 0.7)', emoji: '💰' },
-        budget: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2', highlight: 'rgba(165, 243, 252, 0.7)', emoji: '💰' },
-        expense: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2', highlight: 'rgba(165, 243, 252, 0.7)', emoji: '💰' },
-
-        // YELLOW - Ideas, Dreams, Research, Gratitude
-        idea: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04', highlight: 'rgba(254, 240, 138, 0.7)', emoji: '💡' },
-        ideas: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04', highlight: 'rgba(254, 240, 138, 0.7)', emoji: '💡' },
-        dreams: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04', highlight: 'rgba(254, 240, 138, 0.7)', emoji: '✨' },
-        dream: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04', highlight: 'rgba(254, 240, 138, 0.7)', emoji: '✨' },
-        research: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04', highlight: 'rgba(254, 240, 138, 0.7)', emoji: '🔬' },
-        gratitude: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04', highlight: 'rgba(254, 240, 138, 0.7)', emoji: '🙏' },
-
-        // RED - Health, Sleep, Tracking
-        health: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626', highlight: 'rgba(254, 202, 202, 0.7)', emoji: '❤️' },
-        sleep: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626', highlight: 'rgba(254, 202, 202, 0.7)', emoji: '🌙' },
-        tracking: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626', highlight: 'rgba(254, 202, 202, 0.7)', emoji: '📊' },
-        wellness: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626', highlight: 'rgba(254, 202, 202, 0.7)', emoji: '❤️' },
-        symptom: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626', highlight: 'rgba(254, 202, 202, 0.7)', emoji: '🩺' },
-
-        // PURPLE - Shopping, Journal, Meals, Lists
-        shopping: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🛒' },
-        list: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🛒' },
-        grocery: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🛒' },
-        groceries: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🛒' },
-        journal: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '📔' },
-        meals: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🍽️' },
-        meal: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🍽️' },
-        recipe: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed', highlight: 'rgba(221, 214, 254, 0.7)', emoji: '🍽️' },
-
-        // PINK - Social, Family, Memories, Quotes, Messages
-        social: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '👥' },
-        family: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '👨‍👩‍👧' },
-        memories: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '📸' },
-        memory: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '📸' },
-        quotes: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '💬' },
-        quote: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '💬' },
-        message: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777', highlight: 'rgba(251, 207, 232, 0.7)', emoji: '💬' },
-
-        // LIGHT PURPLE - Reminders
-        reminder: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea', highlight: 'rgba(233, 213, 255, 0.7)', emoji: '🔔' },
-        reminders: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea', highlight: 'rgba(233, 213, 255, 0.7)', emoji: '🔔' },
-
-        // GRAY - Generic notes
-        note: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569', highlight: 'rgba(226, 232, 240, 0.7)', emoji: '📝' },
-        notes: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569', highlight: 'rgba(226, 232, 240, 0.7)', emoji: '📝' },
+      // Pastel colors for demo item types
+      const demoPastelColors: Record<string, { bg: string; accent: string; text: string }> = {
+        task: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
+        tasks: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
+        work: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
+        event: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
+        events: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
+        calendar: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
+        errands: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c' },
+        errand: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c' },
+        shopping: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
+        grocery: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
+        groceries: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
+        list: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
+        finance: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2' },
+        ideas: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
+        idea: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
+        health: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626' },
+        social: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777' },
+        reminder: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea' },
+        reminders: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea' },
+        note: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569' },
+        notes: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569' },
       };
 
-      // Map icon names to emojis (API returns SF Symbol names)
-      const iconNameToEmoji: Record<string, string> = {
-        'checkmark_circle': '✓',
-        'checkmark.circle': '✓',
-        'checkmark': '✓',
-        'calendar': '📅',
-        'calendar.circle': '📅',
-        'bell': '🔔',
-        'bell.circle': '🔔',
-        'lightbulb': '💡',
-        'lightbulb.fill': '💡',
-        'cart': '🛒',
-        'cart.fill': '🛒',
-        'bag': '🛒',
-        'bag.fill': '🛒',
-        'list.bullet': '📋',
-        'list': '📋',
-        'heart': '❤️',
-        'heart.fill': '❤️',
-        'person': '👥',
-        'person.fill': '👥',
-        'dollarsign': '💰',
-        'dollarsign.circle': '💰',
-        'doc': '📝',
-        'doc.text': '📝',
-        'note': '📝',
-        'note.text': '📝',
-        'briefcase': '💼',
-        'briefcase.fill': '💼',
-      };
+      // Calculate per-card opacity based on highlight completion
+      const cardOpacities: number[] = [];
+      let latestCardFullyVisibleTime = 0; // resultsElapsed when the last card reaches opacity 1
 
-      // Helper to get emoji from icon field or type
-      const getItemEmoji = (item: { icon?: string; type?: string }) => {
-        // First try to map the icon name
-        if (item.icon) {
-          const mapped = iconNameToEmoji[item.icon.toLowerCase()];
-          if (mapped) return mapped;
-          // If icon is already an emoji (single char or emoji), use it
-          if (item.icon.length <= 2 || /\p{Emoji}/u.test(item.icon)) {
-            return item.icon;
+      demoItems.forEach((item) => {
+        const itemCategory = (item.type || 'task').toLowerCase();
+        // Find matching highlight state
+        const highlightState = demoHighlightStates.find(hs => hs.category === itemCategory);
+
+        if (highlightState && highlightState.progress >= 1) {
+          // Find the original highlight to calculate completion time
+          const matchingHighlight = demoHighlights.find(h =>
+            (h.category?.toLowerCase() || 'task') === itemCategory
+          );
+          if (matchingHighlight) {
+            const triggerTime = matchingHighlight.end / demoTypingSpeed + 0.3;
+            const segLen = matchingHighlight.end - matchingHighlight.start;
+            const highlightDuration = segLen / 80;
+            const completionTime = triggerTime + highlightDuration;
+            const timeSinceComplete = resultsElapsed - completionTime;
+            const fadeIn = 0.3;
+            const opacity = Math.min(1, Math.max(0, timeSinceComplete / fadeIn));
+            cardOpacities.push(opacity);
+            if (opacity >= 1) {
+              const fullyVisibleAt = completionTime + fadeIn;
+              latestCardFullyVisibleTime = Math.max(latestCardFullyVisibleTime, fullyVisibleAt);
+            }
+          } else {
+            cardOpacities.push(1);
           }
-        }
-        // Fall back to type-based emoji
-        const itemType = item.type?.toLowerCase() || 'note';
-        return demoPastelColors[itemType]?.emoji || '📝';
-      };
-
-      // Cards appear when their corresponding highlight completes
-      // Track when each card should appear based on its category's highlight completion
-
-      // Draw cards (max 3)
-      const maxCards = Math.min(3, demoItems.length);
-      for (let i = 0; i < maxCards; i++) {
-        const item = demoItems[i];
-        const itemType = item.type?.toLowerCase() || 'note';
-
-        // Find the highlight state for this item's category
-        const itemHighlightState = demoHighlightStates.find(hs => hs.category === itemType);
-
-        // Card appears shortly after its highlight completes (or after a base delay if no highlight)
-        let cardProgress = 0;
-        if (itemHighlightState) {
-          // Card fades in as highlight completes (starts at 80% highlight progress)
-          const highlightThreshold = 0.8;
-          if (itemHighlightState.progress > highlightThreshold) {
-            // When progress goes from 0.8 to 1.0, cardProgress goes from 0 to 1
-            cardProgress = Math.min(1, (itemHighlightState.progress - highlightThreshold) / (1 - highlightThreshold));
+        } else if (!highlightState && demoTypingComplete) {
+          // No matching highlight — fade in after typing finishes
+          const typingDoneTime = demoTranscript.length / demoTypingSpeed;
+          const timeSinceTyping = resultsElapsed - typingDoneTime;
+          const fadeIn = 0.3;
+          const opacity = Math.min(1, Math.max(0, timeSinceTyping / fadeIn));
+          cardOpacities.push(opacity);
+          if (opacity >= 1) {
+            latestCardFullyVisibleTime = Math.max(latestCardFullyVisibleTime, typingDoneTime + fadeIn);
           }
         } else {
-          // Fallback: appear after typing is mostly done
-          const fallbackDelay = (demoTranscript.length / demoTypingSpeed) * 0.8 + i * 0.3;
-          if (resultsElapsed > fallbackDelay) {
-            cardProgress = Math.min(1, (resultsElapsed - fallbackDelay) / 0.3);
-          }
+          cardOpacities.push(0);
         }
+      });
 
-        if (cardProgress <= 0) continue;
+      const allCardsFullyVisible = demoItems.length > 0 &&
+        cardOpacities.length === demoItems.length &&
+        cardOpacities.every(o => o >= 1);
 
-        ctx.globalAlpha = cardProgress;
-        const thisCardY = cardStartY + i * (cardH + cardGap);
+      // Time since ALL cards became fully visible
+      const timeSinceAllCardsVisible = allCardsFullyVisible
+        ? resultsElapsed - latestCardFullyVisibleTime
+        : -1;
 
-        // Get colors for this item type (itemType already defined above)
-        const colors = demoPastelColors[itemType] || demoPastelColors.note;
+      // Phase timing
+      const cardShowDuration = 3.0;
+      const cardFadeOutDuration = 0.5;
+      const ctaFadeInDelay = 0.2;
+      const ctaFadeInDuration = 0.5;
 
-        // Card background
-        ctx.fillStyle = colors.bg;
-        roundRect(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius);
-        ctx.fill();
+      const shouldFadeOutCards = timeSinceAllCardsVisible > cardShowDuration;
+      const cardsFadeOutProgress = shouldFadeOutCards
+        ? Math.min(1, (timeSinceAllCardsVisible - cardShowDuration) / cardFadeOutDuration)
+        : 0;
+      const ctaPhaseElapsed = shouldFadeOutCards
+        ? timeSinceAllCardsVisible - cardShowDuration - cardFadeOutDuration - ctaFadeInDelay
+        : -1;
+      const ctaOpacity = ctaPhaseElapsed > 0
+        ? Math.min(1, ctaPhaseElapsed / ctaFadeInDuration)
+        : 0;
 
-        // Left accent bar
-        const barWidth = 4;
-        const barPadding = cardH * 0.2;
-        ctx.fillStyle = colors.accent;
-        roundRect(ctx, cardStartX, thisCardY + barPadding, barWidth, cardH - barPadding * 2, 2);
-        ctx.fill();
+      // === DRAW ACTION CARDS (Phase 1) ===
+      if (cardsFadeOutProgress < 1) {
+        const cardsGlobalAlpha = 1 - cardsFadeOutProgress;
 
-        // Icon - use helper to map icon names to emojis
-        const iconX = cardStartX + 30;
-        const iconY = thisCardY + cardH / 2;
-        ctx.fillStyle = colors.text;
-        ctx.font = `${height * 0.035}px -apple-system`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        const itemEmoji = getItemEmoji(item);
-        ctx.fillText(itemEmoji, iconX, iconY);
-
-        // Content text
-        const contentTextX = iconX + 28;
-
-        // Type label
-        ctx.fillStyle = colors.text;
-        ctx.font = `600 ${height * 0.020}px -apple-system`;
+        // "Action Cards" header
+        ctx.globalAlpha = cardsGlobalAlpha;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = `600 ${height * 0.022}px -apple-system, sans-serif`;
         ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        const typeLabel = item.type ? item.type.charAt(0).toUpperCase() + item.type.slice(1) : 'Note';
-        ctx.fillText(typeLabel, contentTextX, thisCardY + height * 0.018);
-
-        // Content (truncate if too long)
-        ctx.fillStyle = '#374151';
-        ctx.font = `500 ${height * 0.024}px -apple-system`;
-        let content = item.content || item.rawText || '';
-        const maxContentWidth = cardW - 80;
-        while (ctx.measureText(content).width > maxContentWidth && content.length > 0) {
-          content = content.slice(0, -1);
-        }
-        if (content !== (item.content || item.rawText)) content += '...';
-        ctx.fillText(content, contentTextX, thisCardY + height * 0.052);
-
-        // Action buttons
-        const btnSize = height * 0.024;
-        const btnX = cardStartX + cardW - btnSize * 1.2;
-        const checkBtnY = thisCardY + cardH * 0.32;
-        const xBtnY = thisCardY + cardH * 0.68;
-
-        ctx.fillStyle = colors.accent;
-        ctx.font = `600 ${btnSize}px -apple-system`;
-        ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('✓', btnX, checkBtnY);
+        ctx.fillText('Action Cards', panelMargin, cardsPanelY - height * 0.02);
 
-        ctx.fillStyle = '#cbd5e1';
-        ctx.font = `500 ${btnSize * 0.9}px -apple-system`;
-        ctx.fillText('✕', btnX, xBtnY);
+        // Panel shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+        roundRect(ctx, panelMargin + 1, cardsPanelY + 8, cardsPanelW, cardsPanelH, panelRadius);
+        ctx.fill();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        roundRect(ctx, panelMargin + 1, cardsPanelY + 4, cardsPanelW, cardsPanelH, panelRadius);
+        ctx.fill();
+
+        // Panel background
+        ctx.fillStyle = '#ffffff';
+        roundRect(ctx, panelMargin, cardsPanelY, cardsPanelW, cardsPanelH, panelRadius);
+        ctx.fill();
+
+        // Draw each card
+        demoItems.forEach((item, i) => {
+          const cardOpacity = (cardOpacities[i] || 0) * cardsGlobalAlpha;
+          if (cardOpacity <= 0) return;
+
+          ctx.globalAlpha = cardOpacity;
+          const thisCardY = cardStartY + i * (cardH + cardGap);
+          const itemCategory = (item.type || 'task').toLowerCase();
+          const colors = demoPastelColors[itemCategory] || { bg: '#f8fafc', accent: '#94a3b8', text: '#64748b' };
+
+          // Card background
+          ctx.fillStyle = colors.bg;
+          roundRect(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius);
+          ctx.fill();
+
+          // Left accent bar
+          const barWidth = 4;
+          const barPadding = cardH * 0.2;
+          ctx.fillStyle = colors.accent;
+          roundRect(ctx, cardStartX, thisCardY + barPadding, barWidth, cardH - barPadding * 2, 2);
+          ctx.fill();
+
+          // Vector icon (same style as hero demo)
+          const iconX = cardStartX + 30;
+          const iconY = thisCardY + cardH / 2;
+          const iconSize = height * 0.04;
+          drawCardIcon(ctx, itemCategory, iconX, iconY, iconSize, colors.text);
+
+          // Content text
+          const contentTextX = iconX + iconSize + 12;
+
+          // Type label
+          ctx.fillStyle = colors.text;
+          ctx.font = `600 ${height * 0.020}px -apple-system`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'top';
+          const typeLabel = (item.type || 'Task').charAt(0).toUpperCase() + (item.type || 'Task').slice(1);
+          ctx.fillText(typeLabel, contentTextX, thisCardY + height * 0.018);
+
+          // Content
+          ctx.fillStyle = '#374151';
+          ctx.font = `500 ${height * 0.024}px -apple-system`;
+          ctx.fillText(item.content, contentTextX, thisCardY + height * 0.052);
+
+          // Checkmark and X buttons
+          const btnSize = height * 0.024;
+          const btnX = cardStartX + cardW - btnSize * 1.2;
+          const checkBtnY = thisCardY + cardH * 0.32;
+          const xBtnY = thisCardY + cardH * 0.68;
+
+          ctx.fillStyle = colors.accent;
+          ctx.font = `600 ${btnSize}px -apple-system`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('✓', btnX, checkBtnY);
+
+          ctx.fillStyle = '#cbd5e1';
+          ctx.font = `500 ${btnSize * 0.9}px -apple-system`;
+          ctx.fillText('✕', btnX, xBtnY);
+        });
+
+        ctx.globalAlpha = 1;
       }
 
-      ctx.globalAlpha = 1;
+      // === DRAW CHAT CTA TEXT (Phase 2) ===
+      if (ctaOpacity > 0) {
+        ctx.globalAlpha = ctaOpacity;
+
+        // CTA panel (smaller, just text)
+        const ctaPanelY = height * 0.55;
+        const ctaPanelW = width - panelMargin * 2;
+        const ctaPanelH = height * 0.13;
+
+        // Panel shadow + background
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+        roundRect(ctx, panelMargin + 1, ctaPanelY + 4, ctaPanelW, ctaPanelH, panelRadius);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        roundRect(ctx, panelMargin, ctaPanelY, ctaPanelW, ctaPanelH, panelRadius);
+        ctx.fill();
+
+        // CTA text
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = `600 ${height * 0.026}px -apple-system, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText('Try your personalized', width / 2, ctaPanelY + height * 0.025);
+        ctx.fillText('ChatGPT', width / 2, ctaPanelY + height * 0.06);
+
+        ctx.globalAlpha = 1;
+      }
 
       // === BOTTOM NAV BAR ===
-      const navBarY = height * 0.88;
-      const navBarH = height * 0.12;
+      drawBottomNav('stream');
 
-      ctx.fillStyle = '#fafafa';
-      ctx.fillRect(0, navBarY, width, navBarH);
+      // === ARROW ON TOP OF EVERYTHING (Phase 2 — drawn after nav so it overlays) ===
+      if (ctaOpacity > 0) {
+        ctx.globalAlpha = ctaOpacity;
 
-      ctx.strokeStyle = '#e5e7eb';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(0, navBarY);
-      ctx.lineTo(width, navBarY);
-      ctx.stroke();
+        // Arrow from below CTA panel down to magic icon in bottom nav
+        // Magic icon = first of 3 tabs, center X = width/6, Y = height*0.94
+        const arrowStartX = width * 0.38;
+        const arrowStartY = height * 0.70;
+        const arrowEndX = width / 6;
+        const arrowEndY = height * 0.92;
 
-      // Nav icons (same as default)
-      const navW = width / 3;
-      const navIconSize = height * 0.028;
-      const navIconY = navBarY + navBarH * 0.5;
-      ctx.strokeStyle = '#1a1a1a';
-      ctx.fillStyle = '#1a1a1a';
-      ctx.lineWidth = 2;
+        // Control point bowing LEFT
+        const cpX = arrowStartX - width * 0.22;
+        const cpY = (arrowStartY + arrowEndY) / 2 + height * 0.02;
 
-      // Mic icon
-      const micX = navW * 0.5;
-      ctx.beginPath();
-      ctx.arc(micX, navIconY - navIconSize * 0.3, navIconSize * 0.35, Math.PI, 0);
-      ctx.lineTo(micX + navIconSize * 0.35, navIconY + navIconSize * 0.2);
-      ctx.arc(micX, navIconY + navIconSize * 0.2, navIconSize * 0.35, 0, Math.PI);
-      ctx.closePath();
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(micX, navIconY + navIconSize * 0.55);
-      ctx.lineTo(micX, navIconY + navIconSize * 0.8);
-      ctx.moveTo(micX - navIconSize * 0.25, navIconY + navIconSize * 0.8);
-      ctx.lineTo(micX + navIconSize * 0.25, navIconY + navIconSize * 0.8);
-      ctx.stroke();
+        ctx.strokeStyle = '#9ca3af';
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(arrowStartX, arrowStartY);
+        ctx.quadraticCurveTo(cpX, cpY, arrowEndX, arrowEndY);
+        ctx.stroke();
 
-      // Sparkle icon
-      const sparkX = navW * 1.5;
-      ctx.beginPath();
-      ctx.moveTo(sparkX, navIconY - navIconSize * 0.6);
-      ctx.lineTo(sparkX + navIconSize * 0.15, navIconY - navIconSize * 0.15);
-      ctx.lineTo(sparkX + navIconSize * 0.5, navIconY);
-      ctx.lineTo(sparkX + navIconSize * 0.15, navIconY + navIconSize * 0.15);
-      ctx.lineTo(sparkX, navIconY + navIconSize * 0.6);
-      ctx.lineTo(sparkX - navIconSize * 0.15, navIconY + navIconSize * 0.15);
-      ctx.lineTo(sparkX - navIconSize * 0.5, navIconY);
-      ctx.lineTo(sparkX - navIconSize * 0.15, navIconY - navIconSize * 0.15);
-      ctx.closePath();
-      ctx.fill();
+        // Arrowhead
+        const angle = Math.atan2(arrowEndY - cpY, arrowEndX - cpX);
+        const headLen = height * 0.022;
+        ctx.fillStyle = '#9ca3af';
+        ctx.beginPath();
+        ctx.moveTo(arrowEndX, arrowEndY);
+        ctx.lineTo(arrowEndX - headLen * Math.cos(angle - 0.4), arrowEndY - headLen * Math.sin(angle - 0.4));
+        ctx.lineTo(arrowEndX - headLen * Math.cos(angle + 0.4), arrowEndY - headLen * Math.sin(angle + 0.4));
+        ctx.closePath();
+        ctx.fill();
 
-      // Grid icon
-      const gridX = navW * 2.5;
-      const dotR = navIconSize * 0.12;
-      const dotSpacing = navIconSize * 0.4;
-      for (let row = -1; row <= 1; row++) {
-        for (let col = -1; col <= 1; col++) {
-          ctx.beginPath();
-          ctx.arc(gridX + col * dotSpacing, navIconY + row * dotSpacing, dotR, 0, Math.PI * 2);
-          ctx.fill();
-        }
+        // Small sparkle hint near arrow tip
+        ctx.fillStyle = '#9ca3af';
+        ctx.font = `${height * 0.022}px -apple-system`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('✦', arrowEndX + height * 0.025, arrowEndY - height * 0.018);
+
+        ctx.globalAlpha = 1;
       }
 
       return;
@@ -4147,10 +4445,34 @@ function SceneContent() {
       ctx.textAlign = 'center';
       ctx.fillText(`${displayMinutes}:${displaySeconds.toString().padStart(2, '0')}`, width / 2, height * 0.75);
 
-      // Status text
-      ctx.fillStyle = '#888888';
-      ctx.font = `500 ${width * 0.055}px -apple-system`;
-      ctx.fillText(isProcessing ? 'Processing...' : 'Recording...', width / 2, height * 0.88);
+      if (isProcessing) {
+        // Status text during processing
+        ctx.fillStyle = '#888888';
+        ctx.font = `500 ${width * 0.055}px -apple-system`;
+        ctx.fillText('Processing...', width / 2, height * 0.88);
+      } else if (isWatchRecording) {
+        // Stop button on watch during real recording
+        const stopBtnY = height * 0.82;
+        const stopBtnR = width * 0.08;
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(width / 2, stopBtnY, stopBtnR, 0, Math.PI * 2);
+        ctx.fill();
+        // White square icon inside
+        const sq = stopBtnR * 0.7;
+        ctx.fillStyle = '#ffffff';
+        roundRect(ctx, width / 2 - sq / 2, stopBtnY - sq / 2, sq, sq, 2);
+        ctx.fill();
+        // Label below
+        ctx.fillStyle = '#888888';
+        ctx.font = `500 ${width * 0.045}px -apple-system`;
+        ctx.fillText('Tap to stop', width / 2, height * 0.93);
+      } else {
+        // Hero showcase status text
+        ctx.fillStyle = '#888888';
+        ctx.font = `500 ${width * 0.055}px -apple-system`;
+        ctx.fillText('Recording...', width / 2, height * 0.88);
+      }
 
       return;
     }
@@ -4197,71 +4519,49 @@ function SceneContent() {
 
     // === WATCH FACE MODE (when not recording) ===
 
-    // Top center: Small time display
-    ctx.fillStyle = '#888888';
-    ctx.font = `500 ${width * 0.055}px -apple-system`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillText(timeStr, width / 2, height * 0.08);
-
-    // Large time display in center - BOLD
-    ctx.fillStyle = '#ffffff';
-    ctx.font = `600 ${width * 0.36}px -apple-system`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(timeStr, width / 2, height * 0.40);
-
-    // Complications - FULL COLOR
-
-    // Top-left: Temperature complication
-    ctx.fillStyle = accentColor;
-    ctx.font = `bold ${width * 0.07}px -apple-system`;
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'top';
-    ctx.fillText('72°', width * 0.08, height * 0.10);
-    ctx.fillStyle = '#888888';
-    ctx.font = `${width * 0.04}px -apple-system`;
-    ctx.fillText('57 75', width * 0.08, height * 0.18);
-
-    // Top-right: Altitude/Compass
-    ctx.textAlign = 'right';
-    ctx.fillStyle = '#888888';
-    ctx.font = `${width * 0.04}px -apple-system`;
-    ctx.fillText('N', width * 0.92, height * 0.08);
-    ctx.fillStyle = accentColor;
-    ctx.font = `bold ${width * 0.07}px -apple-system`;
-    ctx.fillText('95', width * 0.92, height * 0.14);
-    ctx.fillStyle = '#888888';
-    ctx.font = `${width * 0.04}px -apple-system`;
-    ctx.fillText('FT', width * 0.92, height * 0.22);
-
-    // Bottom-center: Secondary time zone (or recording timer when recording)
-    ctx.textAlign = 'center';
-    if (isWatchRecording) {
-      // Show recording elapsed time
-      const displayTime = demoState.elapsed;
-      const mins = Math.floor(displayTime / 60);
-      const secs = displayTime % 60;
-      ctx.fillStyle = '#ef4444';
-      ctx.font = `bold ${width * 0.07}px -apple-system`;
-      ctx.fillText(`${mins}:${secs.toString().padStart(2, '0')}`, width * 0.5, height * 0.68);
-    } else {
-      const altHours = (hours + 7) % 24;
-      ctx.fillStyle = accentColor;
-      ctx.font = `${width * 0.055}px -apple-system`;
-      ctx.fillText(`${altHours}:${minutes.toString().padStart(2, '0')}`, width * 0.5, height * 0.68);
+    // Draw watch face background image (complications, tick marks, etc.)
+    if (watchFaceBgRef.current) {
+      const img = watchFaceBgRef.current;
+      // Cover the canvas, centered
+      const imgAspect = img.width / img.height;
+      const canvasAspect = width / height;
+      let drawW: number, drawH: number, drawX: number, drawY: number;
+      if (imgAspect > canvasAspect) {
+        drawH = height;
+        drawW = height * imgAspect;
+        drawX = (width - drawW) / 2;
+        drawY = 0;
+      } else {
+        drawW = width;
+        drawH = width / imgAspect;
+        drawX = 0;
+        drawY = (height - drawH) / 2;
+      }
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
     }
 
-    // Bottom-right: Heart rate
-    ctx.fillStyle = '#888888';
-    ctx.font = `${width * 0.07}px -apple-system`;
-    ctx.textAlign = 'right';
-    ctx.fillText('75', width * 0.92, height * 0.70);
+    // Dark overlay to dim the background and complications (but NOT the VOIS icon)
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+    ctx.fillRect(0, 0, width, height);
+
+    // Large time display — tall and condensed (stretched vertically, narrower horizontally)
+    // Very transparent so it looks like a subtle overlay
+    const displayTime = `${hours}:${minutes.toString().padStart(2, '0')}`;
+    const fontSize = width * 0.48;
+    ctx.save();
+    ctx.translate(width / 2, height * 0.52);
+    ctx.scale(0.75, 1.35); // narrow + tall = condensed look
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+    ctx.font = `700 ${fontSize}px -apple-system`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(displayTime, 0, 0);
+    ctx.restore();
 
     // === VOIS COMPLICATION (Bottom-left) - Changes based on state ===
-    const voisX = width * 0.18;
-    const voisY = height * 0.70;
-    const logoSize = width * 0.22;
+    const voisX = width * 0.28;
+    const voisY = height * 0.88;
+    const logoSize = width * 0.18;
 
     // === IMMEDIATELY TRANSFER TO PHONE when watch finishes processing ===
     // As soon as results are ready, transfer to phone for animated display
@@ -4279,8 +4579,8 @@ function SceneContent() {
       if (resultsAge > WATCH_RESULTS_DURATION) {
         // Draw white VOIS logo (back to idle)
         drawVoisLogo(ctx, voisX, voisY, logoSize, '#ffffff');
-        ctx.fillStyle = '#888888';
-        ctx.font = `600 ${width * 0.045}px -apple-system`;
+        ctx.fillStyle = '#ffffff';
+        ctx.font = `600 ${width * 0.04}px -apple-system`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
         ctx.fillText('VOIS', voisX, voisY + logoSize * 0.4);
@@ -4317,28 +4617,26 @@ function SceneContent() {
       return;
     }
 
-    // === IDLE STATE: Show white VOIS logo ===
+    // === IDLE STATE: Show bright VOIS logo (lit up, stands out) ===
     const hoverScale = isHovered ? 1.1 : 1;
     const pulseScale = 1 + Math.sin(now / 500) * 0.03;
     const finalSize = logoSize * hoverScale * pulseScale;
 
-    // Subtle glow on hover
-    if (isHovered) {
-      const glowGradient = ctx.createRadialGradient(voisX, voisY, 0, voisX, voisY, finalSize * 0.8);
-      glowGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-      glowGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      ctx.fillStyle = glowGradient;
-      ctx.beginPath();
-      ctx.arc(voisX, voisY, finalSize * 0.8, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    // Always show a glow behind the logo so it "lights up"
+    const glowGradient = ctx.createRadialGradient(voisX, voisY, 0, voisX, voisY, finalSize * 1.2);
+    glowGradient.addColorStop(0, isHovered ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.25)');
+    glowGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = glowGradient;
+    ctx.beginPath();
+    ctx.arc(voisX, voisY, finalSize * 1.2, 0, Math.PI * 2);
+    ctx.fill();
 
-    // Draw white VOIS logo
+    // Draw bright white VOIS logo
     drawVoisLogo(ctx, voisX, voisY, finalSize, '#ffffff');
 
     // "VOIS" label
-    ctx.fillStyle = isHovered ? '#ffffff' : '#888888';
-    ctx.font = `600 ${width * 0.045}px -apple-system`;
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `600 ${width * 0.04}px -apple-system`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText('VOIS', voisX, voisY + finalSize * 0.4);

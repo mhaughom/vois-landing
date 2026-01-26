@@ -8,6 +8,7 @@ import {
   setChatInputFocused,
   setOnChatSendMessage,
   setOnChatInputClick,
+  setOnChatMessageSent,
   getPhoneScreenState,
 } from './DeviceScene';
 
@@ -17,9 +18,11 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://api.vois.app';
 interface ChatDemoProps {
   // Optional callback when chat state changes
   onStateChange?: () => void;
+  // Callback when a chat message is actually sent
+  onMessageSent?: () => void;
 }
 
-export const ChatDemo: React.FC<ChatDemoProps> = ({ onStateChange }) => {
+export const ChatDemo: React.FC<ChatDemoProps> = ({ onStateChange, onMessageSent }) => {
   // Send a chat message to the API
   const sendMessage = useCallback(async (message: string) => {
     const chatState = getChatState();
@@ -28,6 +31,9 @@ export const ChatDemo: React.FC<ChatDemoProps> = ({ onStateChange }) => {
     if (chatState.isLimitReached || chatState.isLoading) {
       return;
     }
+
+    // Notify that a chat message was sent
+    onMessageSent?.();
 
     // Add user message to state
     addChatMessage({ role: 'user', content: message });

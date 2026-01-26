@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { DeviceScene, setCurrentSection, SectionId, setVideoHoverState, setVideoPlayState, setOnChatOpen } from './components/DeviceScene';
+import { DeviceScene, setCurrentSection, SectionId, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent } from './components/DeviceScene';
 import { FlowVisualization } from './components/FlowVisualization';
 import NarrativeTransition from './components/NarrativeTransition';
 import { HeroDiscoveryDock, HeroDiscoveryContent, DiscoveryMode } from './components/HeroDiscoveryDock';
@@ -181,27 +181,37 @@ const App = () => {
 
   // Demo state for step instructions
   const [demoStage, setDemoStage] = useState<DemoStage>('idle');
-  const [demoControls, setDemoControls] = useState<{ stopRecording: () => void; reset: () => void } | null>(null);
+  const [demoControls, setDemoControls] = useState<{ stopRecording: () => void; reset: () => void; startNew: () => void } | null>(null);
   const [hasCompletedDemo, setHasCompletedDemo] = useState(false);
   const [chatOpened, setChatOpened] = useState(false);
+  const [chatMessageSent, setChatMessageSent] = useState(false);
 
   // Track when user completes demo (sees results) and reset chat state on new recording
   useEffect(() => {
     if (demoStage === 'results') {
       setHasCompletedDemo(true);
     }
-    // Reset chatOpened when a new recording starts so steps show again
+    // Reset chat states when a new recording starts so steps show again
     if (demoStage === 'recording') {
       setChatOpened(false);
+      setChatMessageSent(false);
     }
   }, [demoStage]);
 
-  // Set up callback to hide steps when chat is opened
+  // Set up callback when chat is opened (sparkle icon tapped)
   useEffect(() => {
     setOnChatOpen(() => {
       setChatOpened(true);
     });
     return () => setOnChatOpen(null);
+  }, []);
+
+  // Set up callback when a chat message is sent
+  useEffect(() => {
+    setOnChatMessageSent(() => {
+      setChatMessageSent(true);
+    });
+    return () => setOnChatMessageSent(null);
   }, []);
   // Staged hero animation state
   const [heroStage, setHeroStage] = useState<'headline' | 'subheadline' | 'tags' | 'devices' | 'buttons' | 'complete'>('headline');
@@ -285,6 +295,13 @@ const App = () => {
   const narrativeRef = useRef<HTMLDivElement>(null);
   const captureRef = useRef<HTMLElement>(null);
   const flowRef = useRef<HTMLElement>(null);
+
+  // Parallax for video-transition text: text scrolls at ~70% speed
+  const { scrollYProgress: videoSectionProgress } = useScroll({
+    target: videoTransitionRef,
+    offset: ["start end", "end start"],
+  });
+  const textParallaxY = useTransform(videoSectionProgress, [0, 1], [60, -60]);
 
   // Handle scroll to section from query param (e.g., coming from login page)
   useEffect(() => {
@@ -420,7 +437,7 @@ const App = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen font-sans bg-background scroll-smooth snap-y snap-proximity">
+    <div className="relative w-full min-h-screen font-sans bg-background scroll-smooth">
       <Navbar />
 
       {/* Video Modal */}
@@ -483,7 +500,7 @@ const App = () => {
       </AnimatePresence>
 
       {/* Chat Demo - handles API calls for phone chat interface */}
-      <ChatDemo />
+      <ChatDemo onMessageSent={() => setChatMessageSent(true)} />
 
       {/* 3D Video Player Close Button */}
       <AnimatePresence>
@@ -626,64 +643,82 @@ const App = () => {
                       </span>
                     </button>
 
-                    {/* Get Early Access button - shown after demo completion */}
-                    {hasCompletedDemo && demoStage === 'idle' && (
-                      <motion.button
+                    {/* Get Early Access button - always visible after first demo completion */}
+                    {hasCompletedDemo && (
+                      <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => scrollToSection('pricing')}
-                        className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
-                        style={{
-                          background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,235,255,0.85) 25%, rgba(235,245,255,0.85) 50%, rgba(255,245,235,0.85) 75%, rgba(255,255,255,0.85) 100%)',
-                        }}
+                        className="flex flex-col items-center gap-2"
                       >
-                        {/* Animated gradient overlay - more visible on hover */}
-                        <motion.div
-                          className="absolute inset-0 opacity-50 group-hover:opacity-80 transition-opacity duration-300"
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => scrollToSection('pricing')}
+                          className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
                           style={{
-                            background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.25), rgba(129,140,248,0.25), rgba(251,191,36,0.15), transparent)',
-                            backgroundSize: '200% 100%',
+                            background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,235,255,0.85) 25%, rgba(235,245,255,0.85) 50%, rgba(255,245,235,0.85) 75%, rgba(255,255,255,0.85) 100%)',
                           }}
-                          animate={{
-                            backgroundPosition: ['0% 0%', '200% 0%'],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: 'linear',
-                          }}
-                        />
-                        {/* Second layer that moves on hover */}
-                        <motion.div
-                          className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-300"
-                          style={{
-                            background: 'linear-gradient(270deg, transparent, rgba(251,191,36,0.2), rgba(167,139,250,0.2), rgba(129,140,248,0.2), transparent)',
-                            backgroundSize: '200% 100%',
-                          }}
-                          animate={{
-                            backgroundPosition: ['200% 0%', '0% 0%'],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: 'linear',
-                          }}
-                        />
-                        {/* Sparkle icon circle - matches Watch Video play button size */}
-                        <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
-                          <span className="text-violet-600">✦</span>
-                        </span>
-                        <span className="relative z-10 font-semibold text-slate-900">Get Early Access</span>
-                        <span className="relative z-10 px-2.5 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-700 group-hover:bg-violet-500/25 transition-colors">
-                          71 left
-                        </span>
-                      </motion.button>
+                        >
+                          {/* Animated gradient overlay - more visible on hover */}
+                          <motion.div
+                            className="absolute inset-0 opacity-50 group-hover:opacity-80 transition-opacity duration-300"
+                            style={{
+                              background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.25), rgba(129,140,248,0.25), rgba(251,191,36,0.15), transparent)',
+                              backgroundSize: '200% 100%',
+                            }}
+                            animate={{
+                              backgroundPosition: ['0% 0%', '200% 0%'],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: 'linear',
+                            }}
+                          />
+                          {/* Second layer that moves on hover */}
+                          <motion.div
+                            className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-300"
+                            style={{
+                              background: 'linear-gradient(270deg, transparent, rgba(251,191,36,0.2), rgba(167,139,250,0.2), rgba(129,140,248,0.2), transparent)',
+                              backgroundSize: '200% 100%',
+                            }}
+                            animate={{
+                              backgroundPosition: ['200% 0%', '0% 0%'],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: 'linear',
+                            }}
+                          />
+                          {/* Sparkle icon circle - matches Watch Video play button size */}
+                          <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
+                            <span className="text-violet-600">✦</span>
+                          </span>
+                          <span className="relative z-10 font-semibold text-slate-900">Get Early Access</span>
+                          <span className="relative z-10 px-2.5 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-700 group-hover:bg-violet-500/25 transition-colors">
+                            71 left
+                          </span>
+                        </motion.button>
+
+                        {/* Retry button - only when idle or results (not during recording/processing) */}
+                        {(demoStage === 'idle' || demoStage === 'results') && (
+                          <button
+                            onClick={() => {
+                              setChatOpened(false);
+                              setChatMessageSent(false);
+                              demoControls?.startNew();
+                            }}
+                            className="text-slate-400 hover:text-slate-600 text-sm transition-colors"
+                          >
+                            Try again
+                          </button>
+                        )}
+                      </motion.div>
                     )}
 
-                    {/* Try Now Demo - always rendered for recording functionality, hidden after completion when idle */}
-                    <div className={hasCompletedDemo && demoStage === 'idle' ? 'hidden' : ''}>
+                    {/* Try Now Demo - always rendered for recording functionality, hidden after completion when not actively recording */}
+                    <div className={hasCompletedDemo && (demoStage === 'idle' || demoStage === 'results') ? 'hidden' : ''}>
                       <TryNowDemo
                         hasCompletedDemo={hasCompletedDemo}
                         onStageChange={(stage, controls) => {
@@ -694,14 +729,14 @@ const App = () => {
                     </div>
                   </div>
 
-                  {/* Demo Steps - Below both buttons, hide when chat is opened */}
-                  {!chatOpened && (
-                    <DemoSteps
-                      stage={demoStage}
-                      onStopRecording={demoControls?.stopRecording}
-                      onReset={demoControls?.reset}
-                    />
-                  )}
+                  {/* Demo Steps - Below both buttons, fade out after chat message sent */}
+                  <DemoSteps
+                    stage={demoStage}
+                    onStopRecording={demoControls?.stopRecording}
+                    onReset={demoControls?.reset}
+                    chatOpened={chatOpened}
+                    chatMessageSent={chatMessageSent}
+                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -732,15 +767,16 @@ const App = () => {
         <section
           ref={videoTransitionRef}
           id="video-transition"
-          className="relative min-h-screen flex items-center snap-center overflow-hidden bg-white z-10"
+          className="relative min-h-screen flex items-center bg-white z-10"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
         >
-          {/* Right: Typography - Raw, no boxes */}
+          {/* Right: Typography - Parallax: scrolls slightly slower than video */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
+            style={{ y: textParallaxY }}
             className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-20 z-10 pt-24 lg:pt-0"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-slate-900 mb-6 sm:mb-8 lg:mb-12 leading-[1.1] tracking-tight">
@@ -786,13 +822,13 @@ const App = () => {
               <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
               <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
             </video>
-            {/* Gradient overlay - responsive fade */}
+            {/* Gradient overlay - fade to white on right, top, and bottom */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background: `
                   linear-gradient(to right, transparent 0%, transparent 40%, rgba(255,255,255,0.5) 50%, white 60%, white 100%),
-                  linear-gradient(to bottom, white 0%, transparent 8%, transparent 100%)
+                  linear-gradient(to bottom, white 0%, transparent 5%, transparent 90%, white 100%)
                 `
               }}
             />
@@ -870,9 +906,8 @@ const App = () => {
         {/* CAPTURE SECTION - Detection now handled by NarrativeTransition via scroll progress */}
         <section ref={captureRef} id="capture" className="h-0" />
 
-        {/* FLOW VISUALIZATION - Data flow animation, integrated with capture section */}
-        {/* Shows simple fallback when user prefers reduced motion */}
-        <section ref={flowRef} id="flow" className="relative min-h-screen -mt-[85vh]">
+        {/* FLOW VISUALIZATION - DEACTIVATED (kept for future use) */}
+        {/* <section ref={flowRef} id="flow" className="relative min-h-screen -mt-[85vh]">
           {prefersReducedMotion ? (
             <div className="w-full h-screen bg-white flex items-center justify-center">
               <div className="text-center">
@@ -883,11 +918,11 @@ const App = () => {
           ) : (
             <FlowVisualization />
           )}
-        </section>
+        </section> */}
 
-        {/* DEMO (Text Content) - LEFT side for watch on right */}
-        <section id="demo" className="py-24 px-6 md:px-16">
-            <motion.div 
+        {/* DEMO - DEACTIVATED (kept for future use) */}
+        {/* <section id="demo" className="py-24 px-6 md:px-16">
+            <motion.div
                initial={{ opacity: 0, scale: 0.95 }}
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
@@ -905,10 +940,10 @@ const App = () => {
                   <p className="text-slate-900 font-medium text-sm">{COPY.demo.caption}</p>
                </div>
             </motion.div>
-        </section>
+        </section> */}
 
-        {/* ADAPT - LEFT side for watch on right */}
-        <section id="adapt" className="py-24 px-6 md:px-16">
+        {/* ADAPT - DEACTIVATED (kept for future use) */}
+        {/* <section id="adapt" className="py-24 px-6 md:px-16">
            <motion.div
              initial={{ opacity: 0, x: -30 }}
              whileInView={{ opacity: 1, x: 0 }}
@@ -922,12 +957,12 @@ const App = () => {
              </p>
              <div className="grid gap-3 max-w-sm">
                 {[
-                  { label: 'Headache Tracker', color: 'bg-life-pink-light', text: 'text-life-pink-dark' }, 
-                  { label: 'Meditation Streaks', color: 'bg-life-cyan-light', text: 'text-life-cyan-dark' }, 
+                  { label: 'Headache Tracker', color: 'bg-life-pink-light', text: 'text-life-pink-dark' },
+                  { label: 'Meditation Streaks', color: 'bg-life-cyan-light', text: 'text-life-cyan-dark' },
                   { label: 'Dream Journal', color: 'bg-life-purple-light', text: 'text-life-purple-dark' }
                 ].map((item, i) => (
-                  <motion.div 
-                    key={i} 
+                  <motion.div
+                    key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -942,18 +977,18 @@ const App = () => {
                 ))}
              </div>
            </motion.div>
-        </section>
+        </section> */}
 
         {/* PRIVACY - LEFT side for watch on right */}
-        <section id="privacy" className="py-24 px-6 md:px-16">
+        <section id="privacy" className="pt-8 pb-24 px-6 md:px-16 -mt-[85vh] relative z-10">
            <motion.div
              initial={{ opacity: 0, scale: 0.9 }}
              whileInView={{ opacity: 1, scale: 1 }}
              viewport={{ once: true }}
              transition={{ duration: 0.6 }}
-             className="max-w-xl mr-auto ml-6 lg:ml-16 bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-100"
+             className="max-w-xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-100"
            >
-              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 mb-6">
+              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 mb-6 mx-auto">
                 <Fingerprint size={24} strokeWidth={1.5} />
               </div>
               <h2 className="text-2xl md:text-3xl font-serif text-slate-900 mb-4">{COPY.privacy.title}</h2>
@@ -961,7 +996,7 @@ const App = () => {
                 {COPY.privacy.body}
               </p>
               
-              <div className="mt-8 flex items-center gap-3 text-sm font-medium text-slate-900">
+              <div className="mt-8 flex items-center justify-center gap-3 text-sm font-medium text-slate-900">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200">
                       <Lock size={14} /> Local First
                   </div>

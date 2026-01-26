@@ -5,9 +5,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
-  /* Buttery smooth scroll snapping */
-  scroll-padding: 0;
 }
 
 /* Smooth scroll snap animation */
@@ -28,7 +25,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    scroll-snap-type: none;
+
   }
 
   /* Disable all CSS animations and transitions */

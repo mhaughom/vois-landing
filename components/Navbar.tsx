@@ -67,34 +67,33 @@ export const Navbar = () => {
           Log In
         </Link>
 
-        {/* Get Early Access Button - Colorful animated gradient */}
+        {/* Get Early Access Button - Soft pastel gradient */}
         <motion.button
           onClick={handleGetEarlyAccess}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 overflow-hidden border-0"
+          className="relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all duration-300 overflow-hidden border border-violet-200"
           style={{
-            background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 25%, #60a5fa 50%, #34d399 75%, #fbbf24 100%)',
-            backgroundSize: '200% 200%',
+            background: 'linear-gradient(135deg, #ddd6fe 0%, #c7d2fe 50%, #bfdbfe 100%)',
           }}
         >
-          {/* Animated gradient shift */}
+          {/* Subtle animated shimmer */}
           <motion.div
-            className="absolute inset-0 rounded-full"
+            className="absolute inset-0 rounded-full opacity-40"
             style={{
-              background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 25%, #60a5fa 50%, #34d399 75%, #fbbf24 100%)',
-              backgroundSize: '200% 200%',
+              background: 'linear-gradient(90deg, transparent, rgba(196,181,253,0.3), rgba(165,180,252,0.3), transparent)',
+              backgroundSize: '200% 100%',
             }}
             animate={{
-              backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+              backgroundPosition: ['0% 0%', '200% 0%'],
             }}
             transition={{
-              duration: 5,
+              duration: 4,
               repeat: Infinity,
               ease: 'linear',
             }}
           />
-          <span className="relative z-10 text-white font-semibold">Get Early Access</span>
+          <span className="relative z-10 text-slate-700 font-semibold">Get Early Access</span>
         </motion.button>
       </div>
     </motion.nav>

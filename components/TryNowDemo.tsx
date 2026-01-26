@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, Square, AlertCircle, CheckCircle } from 'lucide-react';
+import { Mic, AlertCircle, CheckCircle } from 'lucide-react';
 import {
   setDemoRecording,
   setDemoProcessing,
@@ -15,6 +15,7 @@ import {
   setDemoActiveDevice,
   setOnPhoneRecordClick,
   setOnWatchRecordClick,
+  setOnStopRecordClick,
 } from './DeviceScene';
 
 // API URL from environment
@@ -67,7 +68,7 @@ interface ApiResponse {
 interface TryNowDemoProps {
   onStartRecording?: () => void;
   onStopRecording?: () => void;
-  onStageChange?: (stage: DemoStage, controls: { stopRecording: () => void; reset: () => void }) => void;
+  onStageChange?: (stage: DemoStage, controls: { stopRecording: () => void; reset: () => void; startNew: () => void }) => void;
   hasCompletedDemo?: boolean;
 }
 
@@ -88,8 +89,11 @@ export const DemoSteps: React.FC<{
   stage: DemoStage;
   onStopRecording?: () => void;
   onReset?: () => void;
-}> = ({ stage, onStopRecording, onReset }) => {
+  chatOpened?: boolean;
+  chatMessageSent?: boolean;
+}> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageSent }) => {
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
+  const [dismissing, setDismissing] = useState(false);
 
   // Cycle through suggestions during recording
   useEffect(() => {
@@ -105,12 +109,27 @@ export const DemoSteps: React.FC<{
     return () => clearInterval(interval);
   }, [stage]);
 
+  // Start dismissal animation when a chat message is sent
+  useEffect(() => {
+    if (chatMessageSent) {
+      setDismissing(true);
+    }
+  }, [chatMessageSent]);
+
+  // Reset dismissing state when a new recording starts
+  useEffect(() => {
+    if (stage === 'recording' || stage === 'waiting') {
+      setDismissing(false);
+    }
+  }, [stage]);
+
   if (stage === 'idle' || stage === 'error') return null;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={dismissing ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+      transition={dismissing ? { duration: 0.6, ease: 'easeOut' } : undefined}
       className="flex flex-col items-start gap-4 mt-8"
     >
       {/* Step 1 - Always visible once waiting starts */}
@@ -189,7 +208,7 @@ export const DemoSteps: React.FC<{
         </motion.div>
       )}
 
-      {/* Step 4 - Now you can try chat - Visible only after results */}
+      {/* Step 4 - Try chat - Visible after results */}
       {stage === 'results' && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -197,29 +216,37 @@ export const DemoSteps: React.FC<{
           transition={{ delay: 0.2 }}
           className="flex flex-col gap-1"
         >
-          <span className="font-serif text-xl md:text-2xl text-slate-900">
-            <span className="text-slate-400 mr-2">4.</span>
-            Try your personal ChatGPT
-          </span>
-          <span className="text-slate-400 text-sm ml-7">
-            Tap the ✦ icon at the bottom left of the phone
-          </span>
+          <div className="flex items-center gap-3">
+            <span className={`font-serif text-xl md:text-2xl ${chatOpened ? 'text-slate-400' : 'text-slate-900'}`}>
+              <span className="text-slate-400 mr-2">4.</span>
+              Try your personal ChatGPT
+            </span>
+            {chatOpened && <CheckCircle size={20} className="text-green-500" />}
+          </div>
+          {!chatOpened && (
+            <span className="text-slate-400 text-sm ml-7">
+              Tap the ✦ icon at the bottom left of the phone
+            </span>
+          )}
         </motion.div>
       )}
 
-      {/* Stop button during recording */}
-      {stage === 'recording' && onStopRecording && (
-        <motion.button
+      {/* Step 5 - Ask about your notes - Visible after chat is opened */}
+      {stage === 'results' && chatOpened && (
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          onClick={onStopRecording}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-all mt-2"
+          transition={{ delay: 0.2 }}
+          className="flex flex-col gap-1"
         >
-          <Square size={12} className="fill-current" />
-          <span>Stop Recording</span>
-        </motion.button>
+          <span className="font-serif text-xl md:text-2xl text-slate-900">
+            <span className="text-slate-400 mr-2">5.</span>
+            Ask anything about your notes
+          </span>
+          <span className="text-slate-400 text-sm ml-7">
+            Try a suggested question or type your own
+          </span>
+        </motion.div>
       )}
 
       {/* Cancel button when waiting */}
@@ -245,6 +272,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   // Store control functions in refs so they can be passed to parent
   const stopRecordingRef = useRef<() => void>(() => {});
   const resetRef = useRef<() => void>(() => {});
+  const startNewRef = useRef<() => void>(() => {});
 
   // Wrapper to set stage and notify parent
   const setStage = (newStage: DemoStage) => {
@@ -256,6 +284,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     onStageChange?.(stage, {
       stopRecording: () => stopRecordingRef.current(),
       reset: () => resetRef.current(),
+      startNew: () => startNewRef.current(),
     });
   }, [stage, onStageChange]);
 
@@ -301,6 +330,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       cleanup();
       setOnPhoneRecordClick(null);
       setOnWatchRecordClick(null);
+      setOnStopRecordClick(null);
     };
   }, [cleanup]);
 
@@ -317,6 +347,14 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       setOnWatchRecordClick(() => {
         startRecordingRef.current();
       });
+      setOnStopRecordClick(null);
+    } else if (stage === 'recording') {
+      // During recording - stop button on device triggers stop
+      setOnPhoneRecordClick(null);
+      setOnWatchRecordClick(null);
+      setOnStopRecordClick(() => {
+        stopRecordingRef.current();
+      });
     } else if (hasCompletedDemo && stage === 'idle') {
       // After demo completion - only watch can start recording (quick capture mode)
       setOnPhoneRecordClick(null);
@@ -325,9 +363,11 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
         setDemoActiveDevice('watch');
         startRecordingRef.current();
       });
+      setOnStopRecordClick(null);
     } else {
       setOnPhoneRecordClick(null);
       setOnWatchRecordClick(null);
+      setOnStopRecordClick(null);
     }
   }, [stage, hasCompletedDemo]);
 
@@ -335,6 +375,18 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   const enterWaitingMode = () => {
     setStage('waiting');
     setDemoWaitingToStart(true);
+  };
+
+  // Keep startNew ref updated
+  startNewRef.current = () => {
+    cleanup();
+    setElapsedTime(0);
+    setResults(null);
+    setErrorMessage('');
+    setDemoError(null);
+    setDemoTip('');
+    setDemoActiveDevice(null);
+    enterWaitingMode();
   };
 
   // Rotate tips during processing and sync with device scene
@@ -540,6 +592,27 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       }
 
       const data: ApiResponse = await response.json();
+
+      // Check if the API returned any action items
+      if (!data.items || data.items.length === 0) {
+        // No items extracted - show retry message and auto-restart
+        setDemoProcessing(false);
+        setDemoAudioLevels(new Array(24).fill(0.1));
+        setDemoTip('');
+        setDemoError('no_items');
+        setStage('error');
+        setErrorMessage('No action items found');
+
+        // Auto-restart recording after a brief delay
+        setTimeout(() => {
+          setDemoError(null);
+          setErrorMessage('');
+          // Go directly to waiting mode so record buttons appear on devices
+          setStage('waiting');
+          setDemoWaitingToStart(true);
+        }, 3000);
+        return;
+      }
 
       setResults(data);
       setDemoResults({
