@@ -6,6 +6,8 @@ import * as THREE from 'three';
 // Configure Draco decoder for compressed GLB models
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
 
+let captureVisible = false;
+
 // Capture device scene for the capture section
 // Shows phone on left with VOISe note UI, watch on right with animated waveform
 
@@ -270,7 +272,9 @@ function CaptureSceneContent() {
 
   // Subtle floating animation
   const timeRef = useRef(0);
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
+    if (!captureVisible) return;
+    state.invalidate();
     timeRef.current += delta;
     const time = timeRef.current;
 
@@ -301,23 +305,39 @@ function CaptureSceneContent() {
 }
 
 export const CaptureDeviceScene: React.FC = () => {
-  return (
-    <Canvas
-      camera={{ position: [0, 0, 2.2], fov: 40 }}
-      gl={{ antialias: true, alpha: true }}
-      style={{ background: 'transparent', width: '100%', height: '100%' }}
-    >
-      <ambientLight intensity={2} />
-      <directionalLight position={[5, 5, 5]} intensity={2} />
-      <directionalLight position={[-5, 5, 5]} intensity={1.5} />
-      <directionalLight position={[0, 0, 5]} intensity={1.5} />
+  const containerRef = useRef<HTMLDivElement>(null);
 
-      <Suspense fallback={null}>
-        <ResponsiveCamera />
-        <CaptureSceneContent />
-        <Environment preset="studio" />
-      </Suspense>
-    </Canvas>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        captureVisible = entry.isIntersecting;
+      },
+      { rootMargin: '100px' }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
+      <Canvas
+        frameloop="demand"
+        camera={{ position: [0, 0, 2.2], fov: 40 }}
+        gl={{ antialias: true, alpha: true }}
+        style={{ background: 'transparent', width: '100%', height: '100%' }}
+      >
+        <ambientLight intensity={2} />
+        <directionalLight position={[5, 5, 5]} intensity={2} />
+        <directionalLight position={[-5, 5, 5]} intensity={1.5} />
+        <directionalLight position={[0, 0, 5]} intensity={1.5} />
+
+        <Suspense fallback={null}>
+          <ResponsiveCamera />
+          <CaptureSceneContent />
+          <Environment preset="studio" />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 };
 

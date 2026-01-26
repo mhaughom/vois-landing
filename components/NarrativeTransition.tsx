@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
-import { setCurrentSection, setNarrativeScrollProgress } from './DeviceScene';
+import { setCurrentSection, setNarrativeScrollProgress } from './deviceState';
 import { CaptureDeviceScene } from './CaptureDeviceScene';
 import { CaptureInterface } from './CaptureInterface';
 
@@ -401,7 +401,7 @@ const NarrativeTransition: React.FC = () => {
                 >
                   {videosActive && (
                     <video
-                      src="/videos/Situations.mov"
+                      src="/videos/Situations.mp4"
                       autoPlay
                       loop
                       muted

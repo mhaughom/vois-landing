@@ -25,6 +25,17 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, '.'),
       }
-    }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+            'framer-motion': ['framer-motion'],
+            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          },
+        },
+      },
+    },
   };
 });

@@ -327,7 +327,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ activeSection }) => {
       </div>
 
       {/* Navigation Bar (Overlay) */}
-      <div className="absolute bottom-6 left-6 right-6 h-16 bg-white/90 backdrop-blur-xl rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] flex justify-around items-center px-2 z-50 border border-white/50">
+      <div className="absolute bottom-6 left-6 right-6 h-16 bg-white rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] flex justify-around items-center px-2 z-50 border border-white/50">
           <motion.div 
             whileTap={{ scale: 0.9 }}
             className={`p-3 rounded-full ${isChat ? 'text-black' : 'text-slate-400'}`}

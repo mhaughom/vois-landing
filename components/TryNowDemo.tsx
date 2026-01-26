@@ -16,7 +16,7 @@ import {
   setOnPhoneRecordClick,
   setOnWatchRecordClick,
   setOnStopRecordClick,
-} from './DeviceScene';
+} from './deviceState';
 
 // API URL from environment
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.vois.app';

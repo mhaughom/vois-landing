@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { DeviceScene, setCurrentSection, SectionId, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent } from './components/DeviceScene';
-import { FlowVisualization } from './components/FlowVisualization';
-import NarrativeTransition from './components/NarrativeTransition';
-import OrganizeSection from './components/OrganizeSection';
+import { setCurrentSection, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent } from './components/deviceState';
+import type { SectionId } from './components/deviceState';
+import { DeviceScene } from './components/DeviceScene';
+// FlowVisualization deactivated — removed import to avoid bundling Three.js code
+// import { FlowVisualization } from './components/FlowVisualization';
+const NarrativeTransition = React.lazy(() => import('./components/NarrativeTransition'));
+const OrganizeSection = React.lazy(() => import('./components/OrganizeSection'));
 import { HeroDiscoveryDock, HeroDiscoveryContent, DiscoveryMode } from './components/HeroDiscoveryDock';
 import { TryNowDemo, DemoSteps, DemoStage } from './components/TryNowDemo';
 import { ChatDemo } from './components/ChatDemo';
@@ -85,14 +88,17 @@ const ColorWaveTags: React.FC<{ tags: string[]; visible: boolean }> = ({ tags, v
   const toCSS = (c: typeof gray) => `rgb(${c.r},${c.g},${c.b})`;
 
   // Direct DOM manipulation — no React re-renders, just style mutation
+  // Pauses the rAF loop entirely when the element is scrolled out of viewport
   useEffect(() => {
     if (!visible || !spanRef.current) return;
 
-    let animationId: number;
+    let running = false;
+    let animationId = 0;
     const startTime = Date.now();
     const el = spanRef.current;
 
     const tick = () => {
+      if (!running) return;
       const elapsed = Date.now() - startTime;
       const progress = (elapsed % 12000) / 12000;
       const waveCenter = progress;
@@ -146,8 +152,36 @@ const ColorWaveTags: React.FC<{ tags: string[]; visible: boolean }> = ({ tags, v
       animationId = requestAnimationFrame(tick);
     };
 
-    animationId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animationId);
+    const startLoop = () => {
+      if (!running) {
+        running = true;
+        animationId = requestAnimationFrame(tick);
+      }
+    };
+    const stopLoop = () => {
+      running = false;
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = 0;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { rootMargin: '50px' }
+    );
+    observer.observe(el);
+
+    return () => {
+      stopLoop();
+      observer.disconnect();
+    };
   }, [visible]);
 
   if (!visible) return null;
@@ -482,7 +516,7 @@ const App = () => {
               {/* Placeholder Image - Replace with actual video later */}
               <div className="relative w-full h-full">
                 <img 
-                  src="/Photos/freepik__a-candid-cinematic-photograph-of-a-businesswoman-w__47549.png"
+                  src="/Photos/businesswoman-placeholder.webp"
                   alt="Video Placeholder"
                   className="w-full h-full object-cover"
                 />
@@ -815,6 +849,7 @@ const App = () => {
               loop
               muted
               playsInline
+              preload="none"
               className="absolute top-0 bottom-0 h-full object-cover"
               style={{
                 width: '100%',
@@ -823,7 +858,6 @@ const App = () => {
               }}
             >
               <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
-              <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
             </video>
             {/* Gradient overlay - fade to white on right, top, and bottom */}
             <div
@@ -850,13 +884,13 @@ const App = () => {
               loop
               muted
               playsInline
+              preload="none"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 objectPosition: '30% center',
               }}
             >
               <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
-              <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
             </video>
             {/* Stronger gradient for tablet to ensure text readability */}
             <div
@@ -883,13 +917,13 @@ const App = () => {
               loop
               muted
               playsInline
+              preload="none"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 objectPosition: 'center 30%',
               }}
             >
               <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
-              <source src="/videos/messy-man-loop.mov" type="video/quicktime" />
             </video>
             {/* Top fade for mobile */}
             <div
@@ -902,15 +936,19 @@ const App = () => {
         </section>
 
         {/* NARRATIVE TRANSITION - Palate cleanser between Problem and Solution */}
-        <div ref={narrativeRef}>
-          <NarrativeTransition />
-        </div>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <div ref={narrativeRef}>
+            <NarrativeTransition />
+          </div>
+        </Suspense>
 
         {/* CAPTURE SECTION - Detection now handled by NarrativeTransition via scroll progress */}
         <section ref={captureRef} id="capture" className="h-0" />
 
         {/* ORGANIZE SECTION - MacBook opens as you scroll */}
-        <OrganizeSection />
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <OrganizeSection />
+        </Suspense>
 
         {/* FLOW VISUALIZATION - DEACTIVATED (kept for future use) */}
         {/* <section ref={flowRef} id="flow" className="relative min-h-screen -mt-[85vh]">

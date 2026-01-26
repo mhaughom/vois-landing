@@ -38,7 +38,7 @@ export const Navbar = () => {
       <Link to="/" className="pointer-events-auto">
         <motion.div 
           whileHover={{ scale: 1.02 }}
-          className="flex items-center gap-3 bg-white/80 backdrop-blur-xl px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+          className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-sm"
         >
           <img 
             src="/Logo/vois-logo.svg" 

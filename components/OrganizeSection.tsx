@@ -13,6 +13,7 @@ const scrollState = {
   smoothLidProgress: 0,
   mouseX: 0,
   mouseY: 0,
+  isVisible: false,
 };
 
 function easeInOutCubic(t: number): number {
@@ -181,7 +182,7 @@ function MacBookDevice() {
 
     // MacBook screen texture — flipY=true to fix upside-down image
     const loader = new THREE.TextureLoader();
-    loader.load('/Photos/Screenshot 2026-01-19 at 06.08.42.png', (texture) => {
+    loader.load('/Photos/macbook-screen.webp', (texture) => {
       texture.colorSpace = THREE.SRGBColorSpace;
       texture.flipY = true;
       scene.traverse((child: any) => {
@@ -202,6 +203,8 @@ function MacBookDevice() {
   }, [scene]);
 
   useFrame((state) => {
+    if (!scrollState.isVisible) return;
+    state.invalidate();
     const time = state.clock.elapsedTime;
 
     scrollState.smoothLidProgress += (scrollState.lidProgress - scrollState.smoothLidProgress) * 0.12;
@@ -330,6 +333,8 @@ function PhoneDevice() {
   }, [scene]);
 
   useFrame((state) => {
+    if (!scrollState.isVisible) return;
+    state.invalidate();
     const time = state.clock.elapsedTime;
 
     // Read smoothed scroll progress (already updated by MacBook's useFrame)
@@ -377,6 +382,7 @@ function PhoneDevice() {
 function OrganizeCanvas() {
   return (
     <Canvas
+      frameloop="demand"
       camera={{ position: [0, 0.5, 3.2], fov: 40 }}
       gl={{
         antialias: true,
@@ -413,9 +419,9 @@ const OrganizeSection: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        scrollState.isVisible = entry.isIntersecting;
         if (entry.isIntersecting) {
           setIsActive(true);
-          observer.disconnect();
         }
       },
       { rootMargin: '200px' }

@@ -6,435 +6,54 @@ import * as THREE from 'three';
 // Configure Draco decoder for compressed GLB models
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
 
-// Section identifiers for precise timing
-export type SectionId = 'hero' | 'video-transition' | 'narrative' | 'capture' | 'flow' | 'other';
-
-// Demo state for Try Now feature
-export type DemoDevice = 'phone' | 'watch' | null;
-
-export interface DemoState {
-  isWaitingToStart: boolean;  // "Try Now" clicked, waiting for user to tap device
-  activeDevice: DemoDevice;   // Which device is currently recording
-  isRecording: boolean;
-  isProcessing: boolean;
-  audioLevels: number[];  // Array of 24 normalized audio levels (0-1)
-  countdown: number;      // Deprecated - use elapsed instead
-  elapsed: number;        // Seconds elapsed (0 up to 30)
-  transcript: string;
-  highlights: Array<{ text: string; start: number; end: number; category: string; color: string }>;
-  items: Array<{ type: string; rawText: string; content: string; icon: string }>;
-  error: string | null;
-  tip: string;            // Current "Did you know" tip during processing
-}
-
-// Phone screen navigation state
-// lockscreen = iOS lock screen with wallpaper, time, date
-// stream = main view with transcription cards
-// magic = AI chat interface
-// apps = list of all apps
-// voicenote = recording/viewing a single voice note
-// app-* = individual app views
-export type PhoneScreen = 'lockscreen' | 'stream' | 'magic' | 'apps' | 'voicenote' | 'app-tasks' | 'app-ideas' | 'app-calendar' | 'app-lists' | 'app-messages' | 'app-people' | 'app-research' | 'app-journal' | 'app-meeting-notes' | 'app-shopping' | 'app-wisdom' | 'app-insights' | 'app-summit' | 'app-sleep' | 'app-todo';
-
-// Global state (updated via window listeners and section observers)
-const globalState = {
-  scrollProgress: 0,
-  mouseX: 0,
-  mouseY: 0,
-  smoothMouseX: 0,  // Smoothly interpolated mouse position for hover effect
-  smoothMouseY: 0,
-  // Drag state for click-and-drag rotation
-  isDragging: false,
-  draggedDevice: null as 'phone' | 'watch' | 'video' | null,  // Which device is being dragged
-  dragStartX: 0,
-  dragStartY: 0,
-  dragDeltaX: 0,
-  dragDeltaY: 0,
-  smoothDragX: 0,  // Smoothly interpolated drag values
-  smoothDragY: 0,
-  phoneSmoothDragX: 0,  // Per-device smooth drag values
-  phoneSmoothDragY: 0,
-  watchSmoothDragX: 0,
-  watchSmoothDragY: 0,
-  videoSmoothDragX: 0,  // Video drag values
-  videoSmoothDragY: 0,
-  animationStartTime: Date.now(),
-  currentSection: 'hero' as SectionId,
-  narrativeScrollProgress: 0,  // Scroll progress within NarrativeTransition (0-1)
-  // Phone screen interactive state
-  phoneScreenState: {
-    currentScreen: 'voicenote' as PhoneScreen,  // Start on voicenote (animated transcription)
-    hoveredButton: null as string | null,
-    lastClickTime: 0,
-    selectedCard: null as { time: string; duration: string; title: string; transcript: string; items: { type: string; content: string; icon: string }[] } | null,
-    // Current visible stream cards (for click handler to access)
-    streamCards: [] as { time: string; duration: string; title: string; transcript: string; items: { type: string; content: string; icon: string }[] }[],
-  },
-  // Watch hover state
-  watchHoveredRecord: false,
-  // Video player state for 3D video hover/click behavior
-  videoPlayerState: {
-    isHovering: false,
-    isPlaying: false,
-    isAnimatingIn: false,
-    isAnimatingOut: false,
-    entryStartTime: 0,
-    exitStartTime: 0,
-  },
-  // Demo state for Try Now feature
-  demoState: {
-    isWaitingToStart: false,
-    activeDevice: null,
-    isRecording: false,
-    isProcessing: false,
-    audioLevels: new Array(24).fill(0.1),
-    countdown: 30,
-    elapsed: 0,
-    transcript: '',
-    highlights: [],
-    items: [],
-    error: null,
-    tip: '',
-  } as DemoState,
-  // Track when demo results arrived for animation timing
-  demoResultsStartTime: null as number | null,
-  // Chat state for Magic screen
-  chatState: {
-    messages: [] as { role: 'user' | 'assistant'; content: string; citations?: { date: string; preview: string }[] }[],
-    isLoading: false,
-    error: null as string | null,
-    messageCount: 0,
-    isLimitReached: false,
-    inputText: '',
-    isInputFocused: false,
-  },
-  // Hero showcase mode - watch shows as recording initially until user interacts
-  heroShowcaseActive: true,
-};
-
-// Function to update current section from outside (called by App.tsx)
-export const setCurrentSection = (section: SectionId) => {
-  // End hero showcase when user scrolls away from hero
-  if (section !== 'hero' && globalState.heroShowcaseActive) {
-    globalState.heroShowcaseActive = false;
-  }
-  globalState.currentSection = section;
-};
-
-// Callback for when chat/magic screen is opened
-let onChatOpenCallback: (() => void) | null = null;
-export const setOnChatOpen = (callback: (() => void) | null) => {
-  onChatOpenCallback = callback;
-};
-
-// Callback for when a chat message is actually sent
-let onChatMessageSentCallback: (() => void) | null = null;
-export const setOnChatMessageSent = (callback: (() => void) | null) => {
-  onChatMessageSentCallback = callback;
-};
-
-// Phone screen navigation functions
-export const setPhoneScreen = (screen: PhoneScreen) => {
-  globalState.phoneScreenState.currentScreen = screen;
-  globalState.phoneScreenState.lastClickTime = Date.now();
-  // End hero showcase when user interacts with phone (navigates away from voicenote)
-  if (screen !== 'voicenote' && globalState.heroShowcaseActive) {
-    globalState.heroShowcaseActive = false;
-  }
-  // Clear selected card when going to stream (back button)
-  if (screen === 'stream') {
-    globalState.phoneScreenState.selectedCard = null;
-  }
-  // Notify when chat/magic screen is opened
-  if (screen === 'magic' && onChatOpenCallback) {
-    onChatOpenCallback();
-  }
-};
-
-export const setPhoneHoveredButton = (button: string | null) => {
-  globalState.phoneScreenState.hoveredButton = button;
-};
-
-export const setSelectedCard = (card: { time: string; duration: string; title: string; transcript: string; items: { type: string; content: string; icon: string }[] } | null) => {
-  globalState.phoneScreenState.selectedCard = card;
-};
-
-export const getPhoneScreenState = () => globalState.phoneScreenState;
-
-// Function to update narrative scroll progress (called by NarrativeTransition)
-export const setNarrativeScrollProgress = (progress: number) => {
-  globalState.narrativeScrollProgress = progress;
-};
-
-// Video player state setters (called from App.tsx hover/click handlers)
-export const setVideoHoverState = (isHovering: boolean) => {
-  const state = globalState.videoPlayerState;
-  if (isHovering && !state.isHovering && !state.isPlaying) {
-    state.isHovering = true;
-    state.isAnimatingIn = true;
-    state.isAnimatingOut = false;
-    state.entryStartTime = Date.now();
-  } else if (!isHovering && !state.isPlaying) {
-    state.isHovering = false;
-    state.isAnimatingOut = true;
-    state.isAnimatingIn = false;
-    state.exitStartTime = Date.now();
-  }
-};
-
-export const setVideoPlayState = (isPlaying: boolean) => {
-  const state = globalState.videoPlayerState;
-  state.isPlaying = isPlaying;
-  if (isPlaying) {
-    // Don't cancel isAnimatingIn - let the fly-in animation complete
-    state.isAnimatingOut = false;
-  } else {
-    // When stopping playback, trigger exit animation
-    state.isHovering = false;
-    state.isAnimatingIn = false;
-    state.isAnimatingOut = true;
-    state.exitStartTime = Date.now();
-  }
-};
-
-// Hero showcase mode - watch shows recording animation initially
-export const endHeroShowcase = () => {
-  globalState.heroShowcaseActive = false;
-};
-
-export const isHeroShowcaseActive = () => {
-  return globalState.heroShowcaseActive && globalState.currentSection === 'hero';
-};
-
-// Demo state setters for Try Now feature
-export const setDemoWaitingToStart = (waiting: boolean) => {
-  globalState.demoState.isWaitingToStart = waiting;
-  if (waiting) {
-    // End hero showcase when user clicks "Try Now"
-    globalState.heroShowcaseActive = false;
-    // Switch phone to lockscreen so user can choose which device to record with
-    globalState.phoneScreenState.currentScreen = 'lockscreen';
-    // Reset other states when entering waiting mode
-    globalState.demoState.activeDevice = null;
-    globalState.demoState.isRecording = false;
-    globalState.demoState.isProcessing = false;
-    globalState.demoState.error = null;
-    globalState.demoState.transcript = '';
-    globalState.demoState.highlights = [];
-    globalState.demoState.items = [];
-  }
-};
-
-export const setDemoActiveDevice = (device: DemoDevice) => {
-  globalState.demoState.activeDevice = device;
-};
-
-export const setDemoRecording = (isRecording: boolean) => {
-  globalState.demoState.isRecording = isRecording;
-  if (isRecording) {
-    globalState.demoState.isWaitingToStart = false; // No longer waiting
-    globalState.demoState.countdown = 30;
-    globalState.demoState.elapsed = 0;
-    globalState.demoState.error = null;
-    globalState.demoState.transcript = '';
-    globalState.demoState.highlights = [];
-    globalState.demoState.items = [];
-    globalState.demoState.tip = '';
-    // Reset results animation timer
-    globalState.demoResultsStartTime = null;
-  }
-};
-
-export const setDemoProcessing = (isProcessing: boolean) => {
-  globalState.demoState.isProcessing = isProcessing;
-};
-
-export const setDemoAudioLevels = (levels: number[]) => {
-  globalState.demoState.audioLevels = levels;
-};
-
-export const setDemoCountdown = (countdown: number) => {
-  globalState.demoState.countdown = countdown;
-};
-
-export const setDemoElapsed = (elapsed: number) => {
-  globalState.demoState.elapsed = elapsed;
-};
-
-export const setDemoTip = (tip: string) => {
-  globalState.demoState.tip = tip;
-};
-
-// Map icon name strings (SF Symbols / Material Icons) to emoji characters
-const iconNameToEmoji: Record<string, string> = {
-  // Calendar / Events
-  'calendar': '📅', 'calendar.fill': '📅', 'event': '📅',
-  // Tasks / Checkmarks
-  'checkmark': '✅', 'checkmark.circle': '✅', 'checkmark_circle': '✅',
-  'check': '✅', 'check_circle': '✅', 'done': '✅',
-  'checkmark.circle.fill': '✅', 'check.circle': '✅',
-  // Shopping
-  'cart': '🛒', 'cart.fill': '🛒', 'shopping_cart': '🛒', 'shopping': '🛒',
-  // Lists
-  'list': '📋', 'list.bullet': '📋', 'clipboard': '📋', 'assignment': '📋',
-  // Ideas
-  'lightbulb': '💡', 'lightbulb.fill': '💡', 'bulb': '💡', 'idea': '💡',
-  // Health
-  'heart': '❤️', 'heart.fill': '❤️', 'health': '❤️',
-  // Reminders
-  'bell': '🔔', 'bell.fill': '🔔', 'alarm': '⏰', 'reminder': '🔔',
-  // Notes
-  'note': '📝', 'note.text': '📝', 'pencil': '✏️', 'edit': '✏️',
-  // Social
-  'person': '👤', 'person.fill': '👤', 'person.2': '👥', 'people': '👥',
-  // Messages
-  'bubble': '💬', 'bubble.left': '💬', 'message': '💬', 'chat': '💬',
-  // Finance
-  'dollarsign': '💰', 'dollarsign.circle': '💰', 'money': '💰',
-  'creditcard': '💳', 'payment': '💳',
-  // Work
-  'briefcase': '💼', 'briefcase.fill': '💼', 'work': '💼',
-  // Star
-  'star': '⭐', 'star.fill': '⭐', 'favorite': '⭐',
-  // Book
-  'book': '📚', 'book.fill': '📚', 'reading': '📚',
-  // Home
-  'house': '🏠', 'house.fill': '🏠', 'home': '🏠',
-  // Travel
-  'airplane': '✈️', 'car.fill': '🚗',
-  // Food
-  'fork.knife': '🍽️', 'food': '🍽️', 'meal': '🍽️',
-  // Exercise
-  'dumbbell': '🏋️', 'figure.run': '🏃', 'fitness': '🏋️',
-  // Gift
-  'gift': '🎁', 'gift.fill': '🎁',
-  // Music
-  'music.note': '🎵', 'music': '🎵',
-  // Clock
-  'clock': '🕐', 'clock.fill': '🕐', 'time': '🕐',
-  // Tag
-  'tag': '🏷️', 'tag.fill': '🏷️',
-};
-
-// Fallback emoji based on item type/category
-const typeFallbackEmoji: Record<string, string> = {
-  'task': '✅', 'event': '📅', 'shopping': '🛒', 'reminder': '🔔',
-  'idea': '💡', 'note': '📝', 'health': '❤️', 'social': '👥',
-  'finance': '💰', 'work': '💼', 'list': '📋', 'grocery': '🛒',
-  'groceries': '🛒', 'errands': '📋', 'errand': '📋',
-};
-
-// Check if a string is an icon name (ASCII only) rather than an emoji
-const isIconName = (str: string): boolean => /^[a-zA-Z0-9._\-]+$/.test(str);
-
-// Resolve an icon string to an emoji character
-const resolveIcon = (icon: string, itemType?: string): string => {
-  if (!icon) return typeFallbackEmoji[itemType?.toLowerCase() || ''] || '📋';
-  // If already an emoji (contains non-ASCII), return as-is
-  if (!isIconName(icon)) return icon;
-  // Look up in icon name mapping
-  const key = icon.toLowerCase().replace(/_/g, '.').replace(/-/g, '.');
-  const mapped = iconNameToEmoji[key] || iconNameToEmoji[icon.toLowerCase()];
-  if (mapped) return mapped;
-  // Fall back to type-based emoji
-  return typeFallbackEmoji[itemType?.toLowerCase() || ''] || '📋';
-};
-
-export const setDemoResults = (results: {
-  transcript: string;
-  highlights: DemoState['highlights'];
-  items: DemoState['items'];
-}) => {
-  // Fix 1: Map icon name strings to emoji characters
-  const mappedItems = results.items.map(item => ({
-    ...item,
-    icon: resolveIcon(item.icon, item.type),
-  }));
-
-  // Fix 2: Build wider highlights from items' rawText when API highlights are too narrow
-  const transcript = results.transcript;
-  const lowerTranscript = transcript.toLowerCase();
-  const rawTextHighlights: DemoState['highlights'] = [];
-
-  for (const item of results.items) {
-    const rawText = item.rawText?.trim();
-    if (!rawText) continue;
-    const idx = lowerTranscript.indexOf(rawText.toLowerCase());
-    if (idx === -1) continue;
-    rawTextHighlights.push({
-      text: transcript.substring(idx, idx + rawText.length),
-      start: idx,
-      end: idx + rawText.length,
-      category: item.type?.toLowerCase() || 'task',
-      color: '',
-    });
-  }
-
-  // Use rawText-based highlights if available (they cover full phrases);
-  // otherwise fall back to API-provided highlights
-  const finalHighlights = rawTextHighlights.length > 0 ? rawTextHighlights : results.highlights;
-
-  globalState.demoState.transcript = transcript;
-  globalState.demoState.highlights = finalHighlights;
-  globalState.demoState.items = mappedItems;
-  // Reset animation timer when new results arrive
-  globalState.demoResultsStartTime = Date.now();
-};
-
-export const setDemoError = (error: string | null) => {
-  globalState.demoState.error = error;
-};
-
-export const getDemoState = () => globalState.demoState;
-
-// Chat state setters for Magic screen
-export const getChatState = () => globalState.chatState;
-
-export const addChatMessage = (message: { role: 'user' | 'assistant'; content: string; citations?: { date: string; preview: string }[] }) => {
-  globalState.chatState.messages.push(message);
-  if (message.role === 'user') {
-    globalState.chatState.messageCount++;
-  }
-  // Check if limit reached (5 user messages)
-  if (globalState.chatState.messageCount >= 5) {
-    globalState.chatState.isLimitReached = true;
-  }
-};
-
-export const setChatLoading = (isLoading: boolean) => {
-  globalState.chatState.isLoading = isLoading;
-};
-
-export const setChatError = (error: string | null) => {
-  globalState.chatState.error = error;
-};
-
-export const setChatInput = (text: string) => {
-  globalState.chatState.inputText = text;
-};
-
-export const setChatInputFocused = (focused: boolean) => {
-  globalState.chatState.isInputFocused = focused;
-};
-
-export const resetChat = () => {
-  globalState.chatState.messages = [];
-  globalState.chatState.isLoading = false;
-  globalState.chatState.error = null;
-  globalState.chatState.messageCount = 0;
-  globalState.chatState.isLimitReached = false;
-  globalState.chatState.inputText = '';
-  globalState.chatState.isInputFocused = false;
-};
-
-// Suggested prompts for the chat
-export const CHAT_SUGGESTED_PROMPTS = [
-  "What did I say about the project?",
-  "Why have I been tired lately?",
-  "What should I get Sam for their birthday?",
-  "Do I have any open tasks?",
-  "When did I last mention Sarah?",
-];
+// State, types, and setter functions are in deviceState.ts (no Three.js dependency)
+// so other components can import them without pulling in the 3D renderer.
+import {
+  globalState,
+  callbacks,
+  setPhoneScreen,
+  setPhoneHoveredButton,
+  setSelectedCard,
+  setDemoActiveDevice,
+  setChatInput,
+  resetChat,
+  CHAT_SUGGESTED_PROMPTS,
+} from './deviceState';
+import type { PhoneScreen } from './deviceState';
+export type { SectionId, DemoState, DemoDevice, PhoneScreen } from './deviceState';
+export {
+  setCurrentSection,
+  setOnChatOpen,
+  setOnChatMessageSent,
+  setNarrativeScrollProgress,
+  setVideoHoverState,
+  setVideoPlayState,
+  setOnPhoneRecordClick,
+  setOnWatchRecordClick,
+  setOnStopRecordClick,
+  setOnChatSendMessage,
+  setOnChatInputClick,
+  setDemoWaitingToStart,
+  setDemoActiveDevice,
+  setDemoRecording,
+  setDemoProcessing,
+  setDemoAudioLevels,
+  setDemoCountdown,
+  setDemoElapsed,
+  setDemoTip,
+  setDemoResults,
+  setDemoError,
+  getDemoState,
+  getChatState,
+  addChatMessage,
+  setChatLoading,
+  setChatError,
+  setChatInput,
+  setChatInputFocused,
+  getPhoneScreenState,
+  endHeroShowcase,
+  isHeroShowcaseActive,
+} from './deviceState';
 
 // Transcript segments with categories for highlighting
 interface TranscriptSegment {
@@ -743,36 +362,6 @@ const phoneClickableRegions: ClickableRegion[] = [
   { id: 'stop-recording', screen: 'stream', label: 'Stop', uv: { minX: 0.25, maxX: 0.75, minY: 0.75, maxY: 0.92 } },
 ];
 
-// Callback for when the record button is clicked on phone
-let onPhoneRecordClick: (() => void) | null = null;
-export const setOnPhoneRecordClick = (callback: (() => void) | null) => {
-  onPhoneRecordClick = callback;
-};
-
-// Callback for when the record button is clicked on watch
-let onWatchRecordClick: (() => void) | null = null;
-export const setOnWatchRecordClick = (callback: (() => void) | null) => {
-  onWatchRecordClick = callback;
-};
-
-// Callback for stopping recording (click stop on phone or watch)
-let onStopRecordClick: (() => void) | null = null;
-export const setOnStopRecordClick = (callback: (() => void) | null) => {
-  onStopRecordClick = callback;
-};
-
-// Callback for chat message sending
-let onChatSendMessage: ((message: string) => void) | null = null;
-export const setOnChatSendMessage = (callback: ((message: string) => void) | null) => {
-  onChatSendMessage = callback;
-};
-
-// Callback for chat input click (to open input modal)
-let onChatInputClick: (() => void) | null = null;
-export const setOnChatInputClick = (callback: (() => void) | null) => {
-  onChatInputClick = callback;
-};
-
 // Module-level refs for device groups (used by drag detection)
 let phoneGroupRef: THREE.Group | null = null;
 let watchGroupRef: THREE.Group | null = null;
@@ -864,13 +453,13 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
           if (hitButton) {
             // Handle record button specially
             if (hitButton.id === 'record-phone') {
-              if (onPhoneRecordClick) {
+              if (callbacks.onPhoneRecordClick) {
                 setDemoActiveDevice('phone');
-                onPhoneRecordClick();
+                callbacks.onPhoneRecordClick();
               }
             } else if (hitButton.id === 'stop-recording') {
-              if (onStopRecordClick) {
-                onStopRecordClick();
+              if (callbacks.onStopRecordClick) {
+                callbacks.onStopRecordClick();
               }
             } else if (hitButton.id.startsWith('stream-card-')) {
               // Extract card index and set selected card
@@ -884,32 +473,32 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
               // Handle chat prompt click - send the prompt
               const promptIndex = parseInt(hitButton.id.replace('chat-prompt-', ''));
               const prompt = CHAT_SUGGESTED_PROMPTS[promptIndex];
-              if (prompt && onChatSendMessage) {
-                onChatSendMessage(prompt);
+              if (prompt && callbacks.onChatSendMessage) {
+                callbacks.onChatSendMessage(prompt);
               }
             } else if (hitButton.id === 'chat-input') {
               // Focus chat input for typing
-              if (onChatInputClick) {
-                onChatInputClick();
+              if (callbacks.onChatInputClick) {
+                callbacks.onChatInputClick();
               }
             } else if (hitButton.id === 'chat-send') {
               // Send current input text, or focus input if empty
               const inputText = globalState.chatState.inputText.trim();
-              if (inputText && onChatSendMessage) {
-                onChatSendMessage(inputText);
+              if (inputText && callbacks.onChatSendMessage) {
+                callbacks.onChatSendMessage(inputText);
                 setChatInput('');
-              } else if (onChatInputClick) {
+              } else if (callbacks.onChatInputClick) {
                 // Focus input if no text yet
-                onChatInputClick();
+                callbacks.onChatInputClick();
               }
             } else if (hitButton.id === 'chat-reset') {
               // Reset chat
               resetChat();
             } else if (hitButton.id === 'lockscreen-vois') {
               // Start recording on phone from lockscreen
-              if (onPhoneRecordClick) {
+              if (callbacks.onPhoneRecordClick) {
                 setDemoActiveDevice('phone');
-                onPhoneRecordClick();
+                callbacks.onPhoneRecordClick();
               }
             } else if (hitButton.id === 'back') {
               // Back button: navigate to apps if on an app detail screen, otherwise stream
@@ -1019,13 +608,13 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       const intersects = raycasterRef.current.intersectObject(mesh, false);
 
       if (intersects.length > 0) {
-        if (isRecordingOnWatch && onStopRecordClick) {
+        if (isRecordingOnWatch && callbacks.onStopRecordClick) {
           // Stop recording when watch is clicked during recording
-          onStopRecordClick();
-        } else if (watchIsIdle && onWatchRecordClick) {
+          callbacks.onStopRecordClick();
+        } else if (watchIsIdle && callbacks.onWatchRecordClick) {
           // Start recording on watch
           setDemoActiveDevice('watch');
-          onWatchRecordClick();
+          callbacks.onWatchRecordClick();
         }
       }
     };
@@ -1182,12 +771,12 @@ function VideoPlane3D() {
   // Create video element and texture on mount
   React.useEffect(() => {
     const video = document.createElement('video');
-    video.src = '/videos/Situations.mov';
+    video.src = '/videos/Situations.mp4';
     video.crossOrigin = 'anonymous';
     video.loop = true;
     video.playsInline = true;
     video.muted = true; // No sound in this video
-    video.preload = 'auto';
+    video.preload = 'metadata';
     videoRef.current = video;
 
     const texture = new THREE.VideoTexture(video);
@@ -1262,6 +851,7 @@ function VideoPlane3D() {
 
     mesh.visible = isVisible;
     if (!isVisible) return;
+    state.invalidate();
 
     // Update ambient time for entry/exit animations only
     ambientTimeRef.current += delta;
@@ -5179,6 +4769,12 @@ function SceneContent() {
     // Only show devices in hero section
     const isHeroSection = currentSection === 'hero';
 
+    // Skip rendering when hero is off-screen and no active animations
+    if (!isHeroSection && entranceProgressRef.current >= 1 &&
+        !globalState.videoPlayerState.isHovering && !globalState.videoPlayerState.isPlaying &&
+        !globalState.videoPlayerState.isAnimatingIn && !globalState.videoPlayerState.isAnimatingOut) return;
+    state.invalidate();
+
     // Update timer for screen animation
     if (clockTime - lastTimeRef.current > 1) {
       timerRef.current += 1;
@@ -5468,6 +5064,7 @@ export const DeviceScene: React.FC = () => {
 
   return (
     <Canvas
+      frameloop="demand"
       camera={{ position: [0, 0, 1.8], fov: 40 }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: 'transparent', width: '100%', height: '100%', pointerEvents: 'none' }}
