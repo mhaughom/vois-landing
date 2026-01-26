@@ -4825,7 +4825,7 @@ function SceneContent() {
     const ambientRotY = Math.cos(time * 0.7) * 0.02 * ambientScale;
 
     // Smooth mouse interpolation for hover effect
-    const mouseLerpSpeed = 0.04; // Slower = more smoothing on hover
+    const mouseLerpSpeed = 0.04;
     globalState.smoothMouseX += (mouseX - globalState.smoothMouseX) * mouseLerpSpeed;
     globalState.smoothMouseY += (mouseY - globalState.smoothMouseY) * mouseLerpSpeed;
 
