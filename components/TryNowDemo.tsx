@@ -18,6 +18,8 @@ import {
   setOnStopRecordClick,
 } from './deviceState';
 
+import { Analytics } from '../lib/analytics';
+
 // API URL from environment
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.vois.app';
 
@@ -373,6 +375,8 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
   // Enter waiting mode - show record buttons on devices
   const enterWaitingMode = () => {
+    const device = getDemoState().activeDevice;
+    Analytics.demoStarted(device === 'watch' ? 'watch' : 'phone');
     setStage('waiting');
     setDemoWaitingToStart(true);
   };
@@ -480,6 +484,8 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
       // Start recording
       mediaRecorderRef.current.start(100); // Collect data every 100ms
+      const device = getDemoState().activeDevice;
+      Analytics.demoRecordingStarted(device === 'watch' ? 'watch' : 'phone');
       setStage('recording');
       setElapsedTime(0);
       setDemoWaitingToStart(false); // Clear waiting state
@@ -529,6 +535,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       animationFrameRef.current = null;
     }
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+      Analytics.demoRecordingCompleted(elapsedTime);
       mediaRecorderRef.current.stop();
     }
     if (streamRef.current) {
@@ -538,13 +545,14 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
     setDemoRecording(false);
     onStopRecording?.();
-  }, [onStopRecording]);
+  }, [onStopRecording, elapsedTime]);
 
   // Keep stopRecording ref updated
   stopRecordingRef.current = stopRecording;
 
   // Process the recording
   const processRecording = async () => {
+    Analytics.demoProcessingStarted();
     setStage('processing');
     setDemoProcessing(true);
     setDemoAudioLevels(new Array(24).fill(0.3)); // Subtle processing animation
@@ -620,6 +628,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
         highlights: data.highlights,
         items: data.items,
       });
+      Analytics.demoResultsViewed(data.items.length, data.items.map((i: any) => i.type));
       setStage('results');
     } catch (err: any) {
       console.error('[VOIS Demo] Processing error:', err);

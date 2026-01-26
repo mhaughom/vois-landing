@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Analytics } from '../lib/analytics';
 
 // Helper function to scroll to a section
 export const scrollToSection = (sectionId: string) => {
@@ -18,6 +19,7 @@ export const Navbar = () => {
   const location = useLocation();
 
   const handleGetEarlyAccess = () => {
+    Analytics.checkoutModalOpened('nav');
     if (location.pathname !== '/') {
       // Navigate to home first, then scroll
       navigate('/?scroll=pricing');

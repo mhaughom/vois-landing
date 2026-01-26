@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Check, ExternalLink } from 'lucide-react';
+import { Analytics } from '../lib/analytics';
 
 const Success = () => {
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    Analytics.pageView('success');
+    Analytics.checkoutCompleted();
+
+    const email = searchParams.get('email');
+    if (email) {
+      Analytics.identifyUser(email, { plan: 'founders_edition' });
+    }
+  }, [searchParams]);
+
   return (
     <div
       className="fixed inset-0 min-h-screen flex items-center justify-center px-6 py-12"

@@ -1,8 +1,25 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import posthog from 'posthog-js';
 import Work from './pages/Work';
 import './index.css';
+
+// Initialize PostHog analytics
+const posthogKey = import.meta.env.VITE_POSTHOG_KEY;
+if (posthogKey) {
+  posthog.init(posthogKey, {
+    api_host: import.meta.env.VITE_POSTHOG_HOST || 'https://eu.i.posthog.com',
+    autocapture: true,
+    capture_pageview: true,
+    capture_pageleave: true,
+    persistence: 'localStorage',
+    session_recording: {
+      maskAllInputs: true,
+      maskTextSelector: '[data-mask]',
+    },
+  });
+}
 
 // Lazy-load heavy pages so navigating to /work isn't blocked by Three.js teardown
 const App = React.lazy(() => import('./App'));

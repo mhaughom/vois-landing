@@ -12,6 +12,8 @@ import {
   getPhoneScreenState,
 } from './deviceState';
 
+import { Analytics } from '../lib/analytics';
+
 // API URL from environment
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.vois.app';
 
@@ -34,6 +36,7 @@ export const ChatDemo: React.FC<ChatDemoProps> = ({ onStateChange, onMessageSent
 
     // Notify that a chat message was sent
     onMessageSent?.();
+    Analytics.chatMessageSent(chatState.messages.length === 0);
 
     // Add user message to state
     addChatMessage({ role: 'user', content: message });
@@ -64,6 +67,7 @@ export const ChatDemo: React.FC<ChatDemoProps> = ({ onStateChange, onMessageSent
       });
 
       if (response.status === 429) {
+        Analytics.chatLimitReached();
         setChatError("You've asked a lot of questions! Sign up to continue.");
         setChatLoading(false);
         return;

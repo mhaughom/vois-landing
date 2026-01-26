@@ -16,6 +16,7 @@ import { ChatDemo } from './components/ChatDemo';
 import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play } from 'lucide-react';
 import { CheckoutModal } from './components/CheckoutModal';
 import { useFounderSpots } from './hooks/useFounderSpots';
+import { Analytics } from './lib/analytics';
 
 const faqData = [
   {
@@ -240,8 +241,26 @@ const App = () => {
   useEffect(() => {
     setOnChatOpen(() => {
       setChatOpened(true);
+      Analytics.chatOpened();
     });
     return () => setOnChatOpen(null);
+  }, []);
+
+  // Track when pricing section scrolls into view
+  useEffect(() => {
+    const pricingEl = document.getElementById('pricing');
+    if (!pricingEl) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          Analytics.scrolledToPricing();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(pricingEl);
+    return () => observer.disconnect();
   }, []);
 
   // Set up callback when a chat message is sent
@@ -652,6 +671,7 @@ const App = () => {
                           setShowVideoClose(false);
                         } else {
                           // Start video - also reset demo state
+                          Analytics.videoWatched();
                           demoControls?.reset();
                           setVideoHoverState(true);
                           setVideoPlayState(true);
@@ -698,7 +718,7 @@ const App = () => {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => setShowCheckoutModal(true)}
+                          onClick={() => { Analytics.checkoutModalOpened('hero'); setShowCheckoutModal(true); }}
                           className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
                           style={{
                             background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,235,255,0.85) 25%, rgba(235,245,255,0.85) 50%, rgba(255,245,235,0.85) 75%, rgba(255,255,255,0.85) 100%)',
@@ -803,7 +823,10 @@ const App = () => {
           {/* Discovery Dock - Positioned at bottom left, scrolls with hero */}
           <HeroDiscoveryDock 
             activeMode={discoveryMode} 
-            onModeChange={setDiscoveryMode}
+            onModeChange={(mode) => {
+              if (mode) Analytics.tabClicked(mode);
+              setDiscoveryMode(mode);
+            }}
           />
 
         </section>
@@ -1157,7 +1180,10 @@ const App = () => {
                   className="border-b border-slate-200 last:border-b-0"
                 >
                   <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    onClick={() => {
+                      if (openFaq !== index) Analytics.faqExpanded(faq.question);
+                      setOpenFaq(openFaq === index ? null : index);
+                    }}
                     className="w-full py-6 flex items-center justify-between text-left group"
                   >
                     <span className="text-lg font-medium text-slate-900 group-hover:text-slate-600 transition-colors pr-4">
@@ -1253,7 +1279,7 @@ const App = () => {
                 
                 {/* CTA Button - Opens Checkout Modal */}
                 <button
-                  onClick={() => setShowCheckoutModal(true)}
+                  onClick={() => { Analytics.checkoutModalOpened('pricing'); setShowCheckoutModal(true); }}
                   className="block w-full bg-white text-slate-950 py-4 rounded-full text-lg font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg text-center"
                 >
                   {isSoldOut ? 'Join Waitlist' : 'Get Early Access'}
