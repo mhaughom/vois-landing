@@ -51,13 +51,13 @@ export const Navbar = () => {
       
       {/* Right Side Navigation */}
       <div className="pointer-events-auto flex items-center gap-3">
-        {/* Vois for Work Link */}
-        <Link 
-          to="/work"
+        {/* Vois for Work Link — full page nav to avoid Three.js teardown blocking */}
+        <a
+          href="/work"
           className="hidden sm:block text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-4 py-2"
         >
           Vois for Work
-        </Link>
+        </a>
 
         {/* Login Link */}
         <Link

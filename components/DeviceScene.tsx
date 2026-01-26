@@ -34,7 +34,7 @@ export interface DemoState {
 // apps = list of all apps
 // voicenote = recording/viewing a single voice note
 // app-* = individual app views
-export type PhoneScreen = 'lockscreen' | 'stream' | 'magic' | 'apps' | 'voicenote' | 'app-tasks' | 'app-ideas' | 'app-calendar' | 'app-lists';
+export type PhoneScreen = 'lockscreen' | 'stream' | 'magic' | 'apps' | 'voicenote' | 'app-tasks' | 'app-ideas' | 'app-calendar' | 'app-lists' | 'app-messages' | 'app-people' | 'app-research' | 'app-journal' | 'app-meeting-notes' | 'app-shopping' | 'app-wisdom' | 'app-insights' | 'app-summit' | 'app-sleep' | 'app-todo';
 
 // Global state (updated via window listeners and section observers)
 const globalState = {
@@ -705,11 +705,25 @@ const phoneClickableRegions: ClickableRegion[] = [
   { id: 'stream-card-2', screen: 'voicenote', label: 'Card 2', uv: { minX: 0.05, maxX: 0.95, minY: 0.43, maxY: 0.57 } },
   { id: 'stream-card-3', screen: 'voicenote', label: 'Card 3', uv: { minX: 0.05, maxX: 0.95, minY: 0.59, maxY: 0.73 } },
   { id: 'stream-card-4', screen: 'voicenote', label: 'Card 4', uv: { minX: 0.05, maxX: 0.95, minY: 0.74, maxY: 0.87 } },
-  // Apps grid clicks (4 apps in 2x2 grid)
-  { id: 'app-tasks', screen: 'app-tasks', label: 'Tasks', uv: { minX: 0.05, maxX: 0.48, minY: 0.15, maxY: 0.40 } },
-  { id: 'app-ideas', screen: 'app-ideas', label: 'Ideas', uv: { minX: 0.52, maxX: 0.95, minY: 0.15, maxY: 0.40 } },
-  { id: 'app-calendar', screen: 'app-calendar', label: 'Calendar', uv: { minX: 0.05, maxX: 0.48, minY: 0.42, maxY: 0.67 } },
-  { id: 'app-lists', screen: 'app-lists', label: 'Lists', uv: { minX: 0.52, maxX: 0.95, minY: 0.42, maxY: 0.67 } },
+  // Apps grid clicks (3-column grid, 4 rows spread across screen)
+  // Small icons distributed edge-to-edge. Cols: 0.04-0.25, 0.38-0.61, 0.73-0.96
+  // Rows spread from 0.13 to 0.85 with equal spacing
+  // Row 1: y 0.12-0.26
+  { id: 'app-calendar', screen: 'app-calendar', label: 'Calendar', uv: { minX: 0.02, maxX: 0.28, minY: 0.12, maxY: 0.26 } },
+  { id: 'app-todo', screen: 'app-todo', label: 'To Do List', uv: { minX: 0.30, maxX: 0.68, minY: 0.12, maxY: 0.26 } },
+  { id: 'app-messages', screen: 'app-messages', label: 'Messages', uv: { minX: 0.70, maxX: 0.98, minY: 0.12, maxY: 0.26 } },
+  // Row 2: y 0.30-0.46
+  { id: 'app-people', screen: 'app-people', label: 'People Dir.', uv: { minX: 0.02, maxX: 0.28, minY: 0.28, maxY: 0.46 } },
+  { id: 'app-research', screen: 'app-research', label: 'Research', uv: { minX: 0.30, maxX: 0.68, minY: 0.28, maxY: 0.46 } },
+  { id: 'app-journal', screen: 'app-journal', label: 'Journal', uv: { minX: 0.70, maxX: 0.98, minY: 0.28, maxY: 0.46 } },
+  // Row 3: y 0.50-0.66
+  { id: 'app-meeting-notes', screen: 'app-meeting-notes', label: 'Meeting Notes', uv: { minX: 0.02, maxX: 0.28, minY: 0.48, maxY: 0.66 } },
+  { id: 'app-shopping', screen: 'app-shopping', label: 'Shopping', uv: { minX: 0.30, maxX: 0.68, minY: 0.48, maxY: 0.66 } },
+  { id: 'app-wisdom', screen: 'app-wisdom', label: 'Wisdom Jou.', uv: { minX: 0.70, maxX: 0.98, minY: 0.48, maxY: 0.66 } },
+  // Row 4: y 0.70-0.86
+  { id: 'app-insights', screen: 'app-insights', label: 'AI Insights', uv: { minX: 0.02, maxX: 0.28, minY: 0.68, maxY: 0.86 } },
+  { id: 'app-summit', screen: 'app-summit', label: 'Summit Log', uv: { minX: 0.30, maxX: 0.68, minY: 0.68, maxY: 0.86 } },
+  { id: 'app-sleep', screen: 'app-sleep', label: 'Sleep', uv: { minX: 0.70, maxX: 0.98, minY: 0.68, maxY: 0.86 } },
   // Chat suggested prompts (5 prompts, each 0.065 height + 0.015 gap, starting at 0.36)
   // contentStartY=0.12, promptStartY=0.12+0.24=0.36, each prompt stride=0.08
   { id: 'chat-prompt-0', screen: 'magic', label: 'Prompt 1', uv: { minX: 0.05, maxX: 0.95, minY: 0.36, maxY: 0.425 } },
@@ -896,6 +910,13 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
               if (onPhoneRecordClick) {
                 setDemoActiveDevice('phone');
                 onPhoneRecordClick();
+              }
+            } else if (hitButton.id === 'back') {
+              // Back button: navigate to apps if on an app detail screen, otherwise stream
+              if (currentScreen.startsWith('app-')) {
+                setPhoneScreen('apps');
+              } else {
+                setPhoneScreen(hitButton.screen);
               }
             } else {
               setPhoneScreen(hitButton.screen);
@@ -1286,10 +1307,10 @@ function VideoPlane3D() {
     }
 
     // Video drag influence - position and rotation
-    const videoDragPosX = globalState.videoSmoothDragX * 0.33;
-    const videoDragPosY = -globalState.videoSmoothDragY * 0.33;
-    const videoDragRotX = globalState.videoSmoothDragY * 0.4;
-    const videoDragRotY = globalState.videoSmoothDragX * 0.6;
+    const videoDragPosX = globalState.videoSmoothDragX * 0.55;
+    const videoDragPosY = -globalState.videoSmoothDragY * 0.55;
+    const videoDragRotX = globalState.videoSmoothDragY * 0.65;
+    const videoDragRotY = globalState.videoSmoothDragX * 0.9;
 
     // Entry animation (with delay to let devices exit first)
     // When playing, animate directly to the larger size/position
@@ -1442,6 +1463,7 @@ function SceneContent() {
   const phoneScreenMeshRef = useRef<THREE.Mesh | null>(null);
   const watchScreenMeshRef = useRef<THREE.Mesh | null>(null);
   const lockscreenWallpaperRef = useRef<HTMLImageElement | null>(null);
+  const appScreenImagesRef = useRef<Record<string, HTMLImageElement>>({});
 
   // Load lockscreen wallpaper
   useEffect(() => {
@@ -1450,6 +1472,24 @@ function SceneContent() {
     img.onload = () => {
       lockscreenWallpaperRef.current = img;
     };
+  }, []);
+
+  // Load app detail screen images
+  useEffect(() => {
+    const appImages: Record<string, string> = {
+      tasks: '/Photos/Tasks.png',
+      todo: '/Photos/Tasks.png',
+      shopping: '/Photos/Shopping.png',
+      messages: '/Photos/ Messages.png',
+    };
+    Object.entries(appImages).forEach(([key, src]) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        appScreenImagesRef.current[key] = img;
+      };
+    });
+    return () => { appScreenImagesRef.current = {}; };
   }, []);
   
   
@@ -1644,6 +1684,112 @@ function SceneContent() {
         ctx.moveTo(x + s * 0.25, y + s * 0.25);
         ctx.lineTo(x + s * 0.7, y + s * 0.7);
         ctx.stroke();
+      } else if (type === 'journal') {
+        // Open book icon
+        ctx.beginPath();
+        // Left page
+        ctx.moveTo(x, y - s * 0.7);
+        ctx.quadraticCurveTo(x - s * 0.9, y - s * 0.6, x - s * 0.8, y + s * 0.5);
+        ctx.lineTo(x, y + s * 0.4);
+        // Right page
+        ctx.moveTo(x, y - s * 0.7);
+        ctx.quadraticCurveTo(x + s * 0.9, y - s * 0.6, x + s * 0.8, y + s * 0.5);
+        ctx.lineTo(x, y + s * 0.4);
+        // Spine
+        ctx.moveTo(x, y - s * 0.7);
+        ctx.lineTo(x, y + s * 0.4);
+        ctx.stroke();
+      } else if (type === 'meeting-notes') {
+        // Document with lines icon
+        const dw = s * 0.7;
+        const dh = s * 0.9;
+        ctx.strokeRect(x - dw, y - dh, dw * 2, dh * 2);
+        // Fold corner
+        ctx.beginPath();
+        ctx.moveTo(x + dw - s * 0.35, y - dh);
+        ctx.lineTo(x + dw, y - dh + s * 0.35);
+        ctx.stroke();
+        // Text lines
+        for (let li = 0; li < 3; li++) {
+          const ly = y - dh + s * 0.6 + li * s * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(x - dw + s * 0.25, ly);
+          ctx.lineTo(x + dw - s * 0.25 - (li === 2 ? s * 0.3 : 0), ly);
+          ctx.stroke();
+        }
+      } else if (type === 'shopping') {
+        // Shopping cart icon
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.8, y - s * 0.6);
+        ctx.lineTo(x - s * 0.5, y - s * 0.6);
+        ctx.lineTo(x - s * 0.2, y + s * 0.3);
+        ctx.lineTo(x + s * 0.6, y + s * 0.3);
+        ctx.lineTo(x + s * 0.8, y - s * 0.3);
+        ctx.lineTo(x - s * 0.35, y - s * 0.3);
+        ctx.stroke();
+        // Wheels
+        ctx.beginPath();
+        ctx.arc(x - s * 0.05, y + s * 0.6, s * 0.15, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x + s * 0.45, y + s * 0.6, s * 0.15, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (type === 'wisdom' || type === 'insights') {
+        // Lightbulb icon
+        ctx.beginPath();
+        ctx.arc(x, y - s * 0.2, s * 0.5, Math.PI * 0.8, Math.PI * 0.2, true);
+        ctx.quadraticCurveTo(x + s * 0.35, y + s * 0.3, x + s * 0.2, y + s * 0.5);
+        ctx.lineTo(x - s * 0.2, y + s * 0.5);
+        ctx.quadraticCurveTo(x - s * 0.35, y + s * 0.3, x - s * 0.5, y - s * 0.2 + s * 0.5 * Math.sin(Math.PI * 0.8));
+        ctx.stroke();
+        // Filament lines at base
+        ctx.beginPath();
+        ctx.moveTo(x - s * 0.15, y + s * 0.65);
+        ctx.lineTo(x + s * 0.15, y + s * 0.65);
+        ctx.moveTo(x - s * 0.12, y + s * 0.78);
+        ctx.lineTo(x + s * 0.12, y + s * 0.78);
+        ctx.stroke();
+      } else if (type === 'summit') {
+        // Triangle / mountain icon
+        ctx.beginPath();
+        ctx.moveTo(x, y - s * 0.7);
+        ctx.lineTo(x + s * 0.75, y + s * 0.6);
+        ctx.lineTo(x - s * 0.75, y + s * 0.6);
+        ctx.closePath();
+        ctx.stroke();
+      } else if (type === 'sleep') {
+        // Crescent moon icon
+        ctx.beginPath();
+        ctx.arc(x, y, s * 0.65, 0, Math.PI * 2);
+        ctx.fill();
+        // Cut out a circle to make crescent
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x + s * 0.35, y - s * 0.25, s * 0.55, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else if (type === 'todo') {
+        // Checklist icon (checkbox + lines)
+        const lineSpacing = s * 0.55;
+        for (let li = 0; li < 3; li++) {
+          const ly = y - s * 0.6 + li * lineSpacing;
+          // Small checkbox
+          ctx.strokeRect(x - s * 0.7, ly - s * 0.15, s * 0.3, s * 0.3);
+          if (li === 0) {
+            // Checkmark in first box
+            ctx.beginPath();
+            ctx.moveTo(x - s * 0.62, ly);
+            ctx.lineTo(x - s * 0.52, ly + s * 0.1);
+            ctx.lineTo(x - s * 0.42, ly - s * 0.08);
+            ctx.stroke();
+          }
+          // Line next to checkbox
+          ctx.beginPath();
+          ctx.moveTo(x - s * 0.25, ly);
+          ctx.lineTo(x + s * 0.7, ly);
+          ctx.stroke();
+        }
       }
     };
 
@@ -1689,13 +1835,79 @@ function SceneContent() {
       });
     };
 
-    // Helper to draw status bar
+    // Helper to draw status bar (real time + signal/wifi/battery)
     const drawStatusBar = () => {
+      const now = new Date();
+      const hrs = now.getHours();
+      const mins = now.getMinutes();
+      const timeStr = `${hrs}:${mins.toString().padStart(2, '0')}`;
+
+      // Time — left side, slightly right and down, slightly bigger
       ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.026}px -apple-system, sans-serif`;
+      ctx.font = `600 ${height * 0.029}px -apple-system, sans-serif`;
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
-      ctx.fillText('9:41', padding, height * 0.032);
+      ctx.fillText(timeStr, padding + width * 0.02, height * 0.036);
+
+      // Right-side indicators: signal, wifi, battery
+      const indicatorY = height * 0.036;
+      const iconColor = '#1a1a1a';
+      let rightX = width - padding - width * 0.02;
+
+      // Battery indicator (rightmost)
+      const battW = width * 0.06;
+      const battH = height * 0.018;
+      const battX = rightX - battW;
+      const battY = indicatorY - battH / 2;
+      // Battery outline
+      ctx.strokeStyle = iconColor;
+      ctx.lineWidth = 1.2;
+      roundRect(ctx, battX, battY, battW, battH, 2);
+      ctx.stroke();
+      // Battery nub
+      ctx.fillStyle = iconColor;
+      ctx.fillRect(battX + battW + 1, indicatorY - battH * 0.25, 2, battH * 0.5);
+      // Battery fill (~80%)
+      ctx.fillStyle = iconColor;
+      roundRect(ctx, battX + 1.5, battY + 1.5, (battW - 3) * 0.8, battH - 3, 1);
+      ctx.fill();
+
+      rightX = battX - width * 0.03;
+
+      // Wi-Fi icon (3 arcs)
+      const wifiX = rightX;
+      const wifiBaseY = indicatorY + height * 0.006;
+      ctx.strokeStyle = iconColor;
+      ctx.lineWidth = 1.2;
+      ctx.lineCap = 'round';
+      for (let i = 0; i < 3; i++) {
+        const r = (i + 1) * height * 0.008;
+        ctx.beginPath();
+        ctx.arc(wifiX, wifiBaseY, r, -Math.PI * 0.75, -Math.PI * 0.25);
+        ctx.stroke();
+      }
+      // Wi-Fi dot
+      ctx.fillStyle = iconColor;
+      ctx.beginPath();
+      ctx.arc(wifiX, wifiBaseY, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      rightX = wifiX - width * 0.05;
+
+      // Signal bars (4 bars)
+      const barCount = 4;
+      const barWidth = width * 0.007;
+      const barGap = width * 0.005;
+      const maxBarH = height * 0.02;
+      const signalStartX = rightX - (barCount * (barWidth + barGap)) / 2;
+      for (let i = 0; i < barCount; i++) {
+        const bh = maxBarH * ((i + 1) / barCount);
+        const bx = signalStartX + i * (barWidth + barGap);
+        const by = indicatorY + maxBarH / 2 - bh;
+        ctx.fillStyle = iconColor;
+        roundRect(ctx, bx, by, barWidth, bh, 1);
+        ctx.fill();
+      }
     };
 
     // Helper to draw back button
@@ -1728,6 +1940,61 @@ function SceneContent() {
         { icon: '🛒', text: 'Groceries: milk, eggs, bread', color: '#7c3aed' },
         { icon: '📋', text: 'Packing list for trip', color: '#7c3aed' },
         { icon: '📋', text: 'Books to read', color: '#7c3aed' },
+      ],
+      messages: [
+        { icon: '💬', text: 'Hey, are we still on for lunch?', color: '#c2410c' },
+        { icon: '💬', text: 'Project update from team', color: '#c2410c' },
+        { icon: '💬', text: 'Reminder: call back Sarah', color: '#c2410c' },
+      ],
+      people: [
+        { icon: '👤', text: 'Sarah — Product Manager', color: '#d97706' },
+        { icon: '👤', text: 'James — Engineering Lead', color: '#d97706' },
+        { icon: '👤', text: 'Emily — Design Director', color: '#d97706' },
+      ],
+      research: [
+        { icon: '🔍', text: 'Market analysis Q3 2026', color: '#16a34a' },
+        { icon: '🔍', text: 'Competitor feature comparison', color: '#16a34a' },
+        { icon: '🔍', text: 'User interview insights', color: '#16a34a' },
+      ],
+      journal: [
+        { icon: '📖', text: 'Morning reflection — gratitude', color: '#7c3aed' },
+        { icon: '📖', text: 'Weekly review notes', color: '#7c3aed' },
+        { icon: '📖', text: 'Creative writing prompt', color: '#7c3aed' },
+      ],
+      'meeting-notes': [
+        { icon: '📝', text: 'Sprint planning — Jan 20', color: '#db2777' },
+        { icon: '📝', text: 'Client call recap', color: '#db2777' },
+        { icon: '📝', text: '1:1 with manager', color: '#db2777' },
+      ],
+      shopping: [
+        { icon: '🛒', text: 'Groceries: milk, eggs, bread', color: '#0891b2' },
+        { icon: '🛒', text: 'New running shoes', color: '#0891b2' },
+        { icon: '🛒', text: 'Birthday gift for Mom', color: '#0891b2' },
+      ],
+      wisdom: [
+        { icon: '💡', text: 'The obstacle is the way', color: '#1d4ed8' },
+        { icon: '💡', text: 'Focus on process, not outcome', color: '#1d4ed8' },
+        { icon: '💡', text: 'Rest is productive', color: '#1d4ed8' },
+      ],
+      insights: [
+        { icon: '🤖', text: 'You are most productive at 10am', color: '#4f46e5' },
+        { icon: '🤖', text: 'Pattern: stress peaks on Mondays', color: '#4f46e5' },
+        { icon: '🤖', text: 'Suggestion: block deep work time', color: '#4f46e5' },
+      ],
+      summit: [
+        { icon: '🏔', text: 'Completed 30-day meditation', color: '#1d4ed8' },
+        { icon: '🏔', text: 'Read 12 books this quarter', color: '#1d4ed8' },
+        { icon: '🏔', text: 'Zero inbox for 2 weeks', color: '#1d4ed8' },
+      ],
+      sleep: [
+        { icon: '🌙', text: 'Average: 7.5h this week', color: '#4d7c0f' },
+        { icon: '🌙', text: 'Best night: Tuesday 8.2h', color: '#4d7c0f' },
+        { icon: '🌙', text: 'Wind-down routine logged', color: '#4d7c0f' },
+      ],
+      todo: [
+        { icon: '✓', text: 'Finish quarterly review', color: '#16a34a' },
+        { icon: '○', text: 'Book dentist appointment', color: '#9ca3af' },
+        { icon: '○', text: 'Order new office supplies', color: '#9ca3af' },
       ],
     };
 
@@ -2542,66 +2809,79 @@ function SceneContent() {
       return;
     }
 
-    // === APPS SCREEN (grid of apps) ===
+    // === APPS SCREEN (3-column grid of apps, iOS-style) ===
     if (phoneScreen === 'apps' && !isDemoMode && !demoState.isWaitingToStart) {
       drawStatusBar();
 
-      // Apps header
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `700 ${height * 0.045}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.fillText('Apps', width / 2, height * 0.085);
+      // VOISAPPS header (left-aligned, gray, uppercase)
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = `700 ${height * 0.03}px -apple-system`;
+      ctx.textAlign = 'left';
+      ctx.fillText('VOISAPPS', panelMargin, height * 0.085);
 
-      // App grid (2x2)
-      const gridStartY = height * 0.15;
-      const appSize = width * 0.4;
-      const appGap = width * 0.06;
+      // Thin separator line
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(panelMargin, height * 0.10);
+      ctx.lineTo(width - panelMargin, height * 0.10);
+      ctx.stroke();
+
+      // 3-column grid (small icons, spread across width, moderate vertical spacing)
+      const cols = 3;
+      const gridStartY = height * 0.13;
+      const gridEndY = height * 0.78;
+      const iconBoxSize = width * 0.185;
+      const gridLeftPad = width * 0.07;
+      const totalGridW = width - gridLeftPad * 2;
+      const colGap = (totalGridW - iconBoxSize * cols) / (cols - 1);
+      const labelHeight = height * 0.022;
+      const cellHeight = iconBoxSize + labelHeight;
+      const rows = 4;
+      const rowGap = (gridEndY - gridStartY - cellHeight * rows) / (rows - 1);
+      const iconRadius = iconBoxSize * 0.22;
+
       const apps = [
-        { id: 'tasks', icon: '✓', label: 'Tasks', color: '#16a34a', count: appData.tasks.length },
-        { id: 'ideas', icon: '💡', label: 'Ideas', color: '#ca8a04', count: appData.ideas.length },
-        { id: 'calendar', icon: '📅', label: 'Calendar', color: '#2563eb', count: appData.calendar.length },
-        { id: 'lists', icon: '📋', label: 'Lists', color: '#7c3aed', count: appData.lists.length },
+        // Row 1 — Calendar & To Do List first
+        { id: 'calendar', iconType: 'calendar', label: 'Calendar', bg: '#dbeafe', iconColor: '#2563eb' },
+        { id: 'todo', iconType: 'todo', label: 'To Do List', bg: '#dcfce7', iconColor: '#16a34a' },
+        { id: 'messages', iconType: 'messages', label: 'Messages', bg: '#f5e0d8', iconColor: '#c2410c' },
+        // Row 2
+        { id: 'people', iconType: 'people', label: 'People Dir...', bg: '#fef3c7', iconColor: '#d97706' },
+        { id: 'research', iconType: 'research', label: 'Research', bg: '#dcfce7', iconColor: '#16a34a' },
+        { id: 'journal', iconType: 'journal', label: 'Journal', bg: '#e8dff5', iconColor: '#7c3aed' },
+        // Row 3
+        { id: 'meeting-notes', iconType: 'meeting-notes', label: 'Meeting Not...', bg: '#fce7f3', iconColor: '#db2777' },
+        { id: 'shopping', iconType: 'shopping', label: 'Shopping', bg: '#dbeafe', iconColor: '#0891b2' },
+        { id: 'wisdom', iconType: 'wisdom', label: 'Wisdom Jou...', bg: '#ddd6fe', iconColor: '#1d4ed8' },
+        // Row 4
+        { id: 'insights', iconType: 'insights', label: 'AI Insights J...', bg: '#ddd6fe', iconColor: '#4f46e5' },
+        { id: 'summit', iconType: 'summit', label: 'Summit Log', bg: '#ddd6fe', iconColor: '#1d4ed8' },
+        { id: 'sleep', iconType: 'sleep', label: 'Sleep', bg: '#dcfce7', iconColor: '#4d7c0f' },
       ];
 
       apps.forEach((app, i) => {
-        const col = i % 2;
-        const row = Math.floor(i / 2);
-        const x = panelMargin + col * (appSize + appGap);
-        const y = gridStartY + row * (appSize + appGap);
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const bx = gridLeftPad + col * (iconBoxSize + colGap);
+        const by = gridStartY + row * (cellHeight + rowGap);
         const isHovered = hoveredButton === `app-${app.id}`;
 
-        // App card shadow
-        ctx.fillStyle = 'rgba(0,0,0,0.05)';
-        roundRect(ctx, x, y + 3, appSize, appSize, panelRadius);
+        // Rounded square background (pastel)
+        ctx.fillStyle = isHovered ? '#f1f5f9' : app.bg;
+        roundRect(ctx, bx, by, iconBoxSize, iconBoxSize, iconRadius);
         ctx.fill();
 
-        // App card
-        ctx.fillStyle = isHovered ? '#f8fafc' : '#ffffff';
-        roundRect(ctx, x, y, appSize, appSize, panelRadius);
-        ctx.fill();
+        // Draw canvas icon centered in the square
+        const iconDrawSize = iconBoxSize * 0.45;
+        drawIcon(app.iconType, bx + iconBoxSize / 2, by + iconBoxSize / 2, iconDrawSize, app.iconColor);
 
-        // Icon background
-        ctx.fillStyle = app.color + '20';
-        ctx.beginPath();
-        ctx.arc(x + appSize / 2, y + appSize * 0.35, appSize * 0.2, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Icon
-        ctx.fillStyle = app.color;
-        ctx.font = `${height * 0.045}px -apple-system`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(app.icon, x + appSize / 2, y + appSize * 0.35);
-
-        // Label
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = `600 ${height * 0.024}px -apple-system`;
-        ctx.fillText(app.label, x + appSize / 2, y + appSize * 0.7);
-
-        // Count badge
+        // Label below icon
         ctx.fillStyle = '#64748b';
-        ctx.font = `400 ${height * 0.018}px -apple-system`;
-        ctx.fillText(`${app.count} items`, x + appSize / 2, y + appSize * 0.85);
+        ctx.font = `500 ${height * 0.015}px -apple-system`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText(app.label, bx + iconBoxSize / 2, by + iconBoxSize + height * 0.003);
       });
 
       drawBottomNav('apps');
@@ -2810,6 +3090,17 @@ function SceneContent() {
         ideas: 'Ideas',
         calendar: 'Calendar',
         lists: 'Lists',
+        messages: 'Messages',
+        people: 'People Directory',
+        research: 'Research',
+        journal: 'Journal',
+        'meeting-notes': 'Meeting Notes',
+        shopping: 'Shopping',
+        wisdom: 'Wisdom Journal',
+        insights: 'AI Insights',
+        summit: 'Summit Log',
+        sleep: 'Sleep',
+        todo: 'To Do List',
       };
 
       drawStatusBar();
@@ -2821,46 +3112,70 @@ function SceneContent() {
       ctx.textAlign = 'center';
       ctx.fillText(screenTitles[appType] || appType, width / 2, height * 0.085);
 
-      // Content area
-      const contentY = height * 0.14;
-      const items = appData[appType] || [];
-      const itemH = height * 0.1;
-      const itemGap = height * 0.015;
+      // Check if we have a screenshot image for this app
+      const appImage = appScreenImagesRef.current[appType];
+      if (appImage) {
+        // Draw the image filling the content area between header and nav bar
+        const imgY = height * 0.11;
+        const imgH = height * 0.77; // up to nav bar
+        const imgW = width;
 
-      items.slice(0, 6).forEach((item, i) => {
-        const itemY = contentY + i * (itemH + itemGap);
+        // Scale image to fill width, crop vertically if needed
+        const imgAspect = appImage.width / appImage.height;
+        const targetAspect = imgW / imgH;
 
-        // Card shadow
-        ctx.fillStyle = 'rgba(0,0,0,0.04)';
-        roundRect(ctx, panelMargin, itemY + 2, width - panelMargin * 2, itemH, panelRadius);
-        ctx.fill();
-
-        // Card background
-        ctx.fillStyle = '#ffffff';
-        roundRect(ctx, panelMargin, itemY, width - panelMargin * 2, itemH, panelRadius);
-        ctx.fill();
-
-        // Icon
-        ctx.fillStyle = item.color;
-        ctx.font = `${height * 0.032}px -apple-system`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(item.icon, panelMargin + panelPadding + 15, itemY + itemH / 2);
-
-        // Text
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = `500 ${height * 0.024}px -apple-system`;
-        ctx.textAlign = 'left';
-        const maxTextWidth = width - panelMargin * 2 - panelPadding * 2 - 50;
-        let text = item.text;
-        if (ctx.measureText(text).width > maxTextWidth) {
-          while (ctx.measureText(text + '...').width > maxTextWidth && text.length > 0) {
-            text = text.slice(0, -1);
-          }
-          text += '...';
+        if (imgAspect > targetAspect) {
+          // Image wider than target: fit height, crop sides
+          const drawW = imgH * imgAspect;
+          const drawX = (imgW - drawW) / 2;
+          ctx.drawImage(appImage, drawX, imgY, drawW, imgH);
+        } else {
+          // Image taller than target: fit width, crop bottom
+          const drawH = imgW / imgAspect;
+          ctx.drawImage(appImage, 0, imgY, imgW, drawH);
         }
-        ctx.fillText(text, panelMargin + panelPadding + 40, itemY + itemH / 2);
-      });
+      } else {
+        // Fallback: list-based content
+        const contentY = height * 0.14;
+        const items = appData[appType] || [];
+        const itemH = height * 0.1;
+        const itemGap = height * 0.015;
+
+        items.slice(0, 6).forEach((item, i) => {
+          const itemY = contentY + i * (itemH + itemGap);
+
+          // Card shadow
+          ctx.fillStyle = 'rgba(0,0,0,0.04)';
+          roundRect(ctx, panelMargin, itemY + 2, width - panelMargin * 2, itemH, panelRadius);
+          ctx.fill();
+
+          // Card background
+          ctx.fillStyle = '#ffffff';
+          roundRect(ctx, panelMargin, itemY, width - panelMargin * 2, itemH, panelRadius);
+          ctx.fill();
+
+          // Icon
+          ctx.fillStyle = item.color;
+          ctx.font = `${height * 0.032}px -apple-system`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(item.icon, panelMargin + panelPadding + 15, itemY + itemH / 2);
+
+          // Text
+          ctx.fillStyle = '#1a1a1a';
+          ctx.font = `500 ${height * 0.024}px -apple-system`;
+          ctx.textAlign = 'left';
+          const maxTextWidth = width - panelMargin * 2 - panelPadding * 2 - 50;
+          let text = item.text;
+          if (ctx.measureText(text).width > maxTextWidth) {
+            while (ctx.measureText(text + '...').width > maxTextWidth && text.length > 0) {
+              text = text.slice(0, -1);
+            }
+            text += '...';
+          }
+          ctx.fillText(text, panelMargin + panelPadding + 40, itemY + itemH / 2);
+        });
+      }
 
       drawBottomNav('apps');
       return;
@@ -4952,11 +5267,11 @@ function SceneContent() {
       globalState.dragDeltaY *= 0.95;
     }
 
-    // Phone drag influence - about 1/3 of mouse distance for translation
-    const phoneDragPosX = globalState.phoneSmoothDragX * 0.33 * entranceProgress;
-    const phoneDragPosY = -globalState.phoneSmoothDragY * 0.33 * entranceProgress;
-    const phoneDragRotX = globalState.phoneSmoothDragY * 0.4 * entranceProgress;
-    const phoneDragRotY = globalState.phoneSmoothDragX * 0.6 * entranceProgress;
+    // Phone drag influence - about half of mouse distance for translation
+    const phoneDragPosX = globalState.phoneSmoothDragX * 0.55 * entranceProgress;
+    const phoneDragPosY = -globalState.phoneSmoothDragY * 0.55 * entranceProgress;
+    const phoneDragRotX = globalState.phoneSmoothDragY * 0.65 * entranceProgress;
+    const phoneDragRotY = globalState.phoneSmoothDragX * 0.9 * entranceProgress;
 
     // === VIDEO PLAYER EXIT/RETURN ANIMATION ===
     const VIDEO_EXIT_DURATION = 0.8;  // Devices exit duration (smooth, matches entrance)
@@ -5033,12 +5348,12 @@ function SceneContent() {
       const wMouseX = (globalState.smoothMouseX - 0.5) * 0.4 * watchEntranceProgress;
       const wMouseY = globalState.smoothMouseY * 0.4 * watchEntranceProgress;
 
-      // Watch-specific drag influence - about 1/3 of mouse distance for translation
+      // Watch-specific drag influence - about half of mouse distance for translation
       const watchDragScale = watchEntranceProgress;
-      const watchDragPosX = globalState.watchSmoothDragX * 0.33 * watchDragScale;
-      const watchDragPosY = -globalState.watchSmoothDragY * 0.33 * watchDragScale;
-      const watchDragRotX = globalState.watchSmoothDragY * 0.4 * watchDragScale;
-      const watchDragRotY = globalState.watchSmoothDragX * 0.6 * watchDragScale;
+      const watchDragPosX = globalState.watchSmoothDragX * 0.55 * watchDragScale;
+      const watchDragPosY = -globalState.watchSmoothDragY * 0.55 * watchDragScale;
+      const watchDragRotX = globalState.watchSmoothDragY * 0.65 * watchDragScale;
+      const watchDragRotY = globalState.watchSmoothDragX * 0.9 * watchDragScale;
 
       watchRef.current.position.x = watchStartPos.x - wMouseX * 0.08 + watchAmbientX + watchEntranceX + watchExitX + watchDragPosX;
       watchRef.current.position.y = watchStartPos.y - wMouseY * 0.08 + watchAmbientY + watchDragPosY;

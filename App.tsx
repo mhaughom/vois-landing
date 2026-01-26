@@ -6,6 +6,7 @@ import { Navbar, scrollToSection } from './components/Navbar';
 import { DeviceScene, setCurrentSection, SectionId, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent } from './components/DeviceScene';
 import { FlowVisualization } from './components/FlowVisualization';
 import NarrativeTransition from './components/NarrativeTransition';
+import OrganizeSection from './components/OrganizeSection';
 import { HeroDiscoveryDock, HeroDiscoveryContent, DiscoveryMode } from './components/HeroDiscoveryDock';
 import { TryNowDemo, DemoSteps, DemoStage } from './components/TryNowDemo';
 import { ChatDemo } from './components/ChatDemo';
@@ -185,6 +186,8 @@ const App = () => {
   const [hasCompletedDemo, setHasCompletedDemo] = useState(false);
   const [chatOpened, setChatOpened] = useState(false);
   const [chatMessageSent, setChatMessageSent] = useState(false);
+  const [retrieveVideoPlaying, setRetrieveVideoPlaying] = useState(false);
+  const retrieveVideoRef = useRef<HTMLVideoElement>(null);
 
   // Track when user completes demo (sees results) and reset chat state on new recording
   useEffect(() => {
@@ -906,6 +909,9 @@ const App = () => {
         {/* CAPTURE SECTION - Detection now handled by NarrativeTransition via scroll progress */}
         <section ref={captureRef} id="capture" className="h-0" />
 
+        {/* ORGANIZE SECTION - MacBook opens as you scroll */}
+        <OrganizeSection />
+
         {/* FLOW VISUALIZATION - DEACTIVATED (kept for future use) */}
         {/* <section ref={flowRef} id="flow" className="relative min-h-screen -mt-[85vh]">
           {prefersReducedMotion ? (
@@ -980,7 +986,81 @@ const App = () => {
         </section> */}
 
         {/* PRIVACY - LEFT side for watch on right */}
-        <section id="privacy" className="pt-8 pb-24 px-6 md:px-16 -mt-[85vh] relative z-10">
+        {/* RETRIEVE SECTION - "Retrieve at the speed of sound" with click-to-play video */}
+        <section id="retrieve" className="py-24 px-6 md:px-16 relative z-10 bg-white">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center w-[90%] max-w-[1200px] mx-auto"
+            style={{ gap: 'clamp(1.5rem, 3vw, 3rem)' }}
+          >
+            <h2
+              className="font-serif text-slate-900 text-center"
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+                fontWeight: 400,
+                lineHeight: 1.1,
+                marginBottom: '0.5rem',
+              }}
+            >
+              Retrieve at the speed of sound.
+            </h2>
+
+            {/* Video with click-to-play (has sound) */}
+            <div
+              className="relative w-full cursor-pointer"
+              style={{
+                maxWidth: '700px',
+                borderRadius: 'clamp(12px, 2vw, 24px)',
+                overflow: 'hidden',
+                boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
+              }}
+              onClick={() => {
+                if (retrieveVideoRef.current) {
+                  if (retrieveVideoPlaying) {
+                    retrieveVideoRef.current.pause();
+                    setRetrieveVideoPlaying(false);
+                  } else {
+                    retrieveVideoRef.current.play();
+                    setRetrieveVideoPlaying(true);
+                  }
+                }
+              }}
+            >
+              <div className="aspect-video bg-slate-100 relative">
+                <video
+                  ref={retrieveVideoRef}
+                  playsInline
+                  className="w-full h-full object-cover"
+                  onEnded={() => setRetrieveVideoPlaying(false)}
+                >
+                  <source src="/videos/retrieve-placeholder.mp4" type="video/mp4" />
+                </video>
+
+                {/* Play button overlay - fades out when playing */}
+                <AnimatePresence>
+                  {!retrieveVideoPlaying && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 flex items-center justify-center bg-black/20"
+                    >
+                      <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform">
+                        <Play size={32} className="text-slate-900 fill-current ml-1" />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        <section id="privacy" className="pt-8 pb-24 px-6 md:px-16 relative z-10">
            <motion.div
              initial={{ opacity: 0, scale: 0.9 }}
              whileInView={{ opacity: 1, scale: 1 }}
@@ -1157,7 +1237,7 @@ const App = () => {
                     alt="Vois" 
                     className="h-8 w-8"
                   />
-                  <span className="font-serif font-medium text-slate-900 text-lg">Vois</span>
+                  <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
                 </div>
                 <p className="text-slate-500 text-sm">Clear your mind.</p>
               </div>

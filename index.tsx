@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
-import Login from './pages/Login';
-import Legal from './pages/Legal';
 import Work from './pages/Work';
 import './index.css';
+
+// Lazy-load heavy pages so navigating to /work isn't blocked by Three.js teardown
+const App = React.lazy(() => import('./App'));
+const Login = React.lazy(() => import('./pages/Login'));
+const Legal = React.lazy(() => import('./pages/Legal'));
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -16,12 +18,14 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/legal" element={<Legal />} />
-        <Route path="/work" element={<Work />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen bg-white" />}>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/work" element={<Work />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   </React.StrictMode>
 );

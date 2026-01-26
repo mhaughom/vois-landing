@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { Play, ArrowRight, ArrowLeft } from 'lucide-react';
 
 const workVideos = [
@@ -63,28 +62,33 @@ const Work: React.FC = () => {
         transition={{ duration: 0.8, ease: "circOut" }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12"
       >
-        {/* Back to Home */}
-        <Link to="/">
-          <motion.div 
+        {/* Back to Home — full page nav to avoid Three.js re-init blocking */}
+        <a href="/">
+          <motion.div
             whileHover={{ scale: 1.02 }}
             className="flex items-center gap-3 bg-white/80 backdrop-blur-xl px-4 py-2 rounded-full border border-slate-100 shadow-sm"
           >
             <ArrowLeft size={16} className="text-slate-600" />
             <span className="font-medium text-sm text-slate-600">Back</span>
           </motion.div>
-        </Link>
+        </a>
         
         {/* Logo */}
         <div className="absolute left-1/2 -translate-x-1/2">
-          <Link to="/" className="flex items-center gap-2">
-            <img 
-              src="/Logo/vois-logo.svg" 
-              alt="Vois" 
-              className="h-8 w-8"
-            />
-            <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
-            <span className="text-slate-400 text-sm font-medium ml-1">for Work</span>
-          </Link>
+          <a href="/">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 bg-white/80 backdrop-blur-xl px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+            >
+              <img
+                src="/Logo/vois-logo.svg"
+                alt="Vois"
+                className="h-8 w-8"
+              />
+              <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+              <span className="text-slate-400 text-sm font-medium">for Work</span>
+            </motion.div>
+          </a>
         </div>
 
         <div className="w-20" /> {/* Spacer for centering */}
@@ -221,9 +225,9 @@ const Work: React.FC = () => {
           <p className="text-slate-400 text-sm">
             &copy; {new Date().getFullYear()} Vois AI
           </p>
-          <Link to="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+          <a href="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
             Back to Home
-          </Link>
+          </a>
         </div>
       </footer>
     </div>
