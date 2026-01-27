@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { setCurrentSection, setNarrativeScrollProgress } from './deviceState';
 import { CaptureDeviceScene } from './CaptureDeviceScene';
-import { CaptureInterface } from './CaptureInterface';
 
 const NarrativeTransition: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -3,6 +3,7 @@ import { useScroll, useMotionValueEvent } from 'framer-motion';
 import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import * as THREE from 'three';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Draco decoder needed for macbook_pro.glb (keyboard) and iphone model
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
@@ -409,6 +410,7 @@ function OrganizeCanvas() {
 const OrganizeSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
+  const isMobile = useIsMobile();
 
   // Track section as it scrolls through the viewport (enter → leave)
   const { scrollYProgress } = useScroll({
@@ -457,12 +459,12 @@ const OrganizeSection: React.FC = () => {
     <div
       ref={containerRef}
       style={{
-        height: '100vh',
+        height: isMobile ? '60vh' : '100vh',
         position: 'relative',
         zIndex: 1,
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        marginTop: '-60vh',
+        marginTop: isMobile ? '-30vh' : '-60vh',
         overflow: 'hidden',
         backgroundColor: '#ffffff',
       }}
@@ -479,23 +481,51 @@ const OrganizeSection: React.FC = () => {
           lineHeight: 1.1,
           fontWeight: 400,
           textAlign: 'center',
-          padding: '22vh 2rem 0',
+          padding: isMobile ? '10vh 2rem 0' : '22vh 2rem 0',
           margin: 0,
         }}
       >
         Organize at the speed of AI.
       </h2>
 
-      {/* 3D Canvas */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 10,
-        }}
-      >
-        {isActive && <OrganizeCanvas />}
-      </div>
+      {/* Mobile fallback text (no 3D) */}
+      {isMobile && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '3rem 2rem',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '1.125rem',
+              color: '#64748b',
+              textAlign: 'center',
+              maxWidth: '400px',
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            Your voice notes become structured tasks, events, and ideas — organized by AI in real time.
+          </p>
+        </div>
+      )}
+
+      {/* 3D Canvas — desktop only */}
+      {!isMobile && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 10,
+          }}
+        >
+          {isActive && <OrganizeCanvas />}
+        </div>
+      )}
     </div>
   );
 };

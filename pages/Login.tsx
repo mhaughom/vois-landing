@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { Analytics } from '../lib/analytics';
 
 const STRIPE_LINK = "#";
 
@@ -16,23 +17,26 @@ export const Login = () => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
+    Analytics.loginAttempted();
 
     // Placeholder for Supabase/Firebase auth
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // Placeholder validation - replace with actual auth
       if (!email || !password) {
         throw new Error('Please fill in all fields');
       }
-      
+
       // For demo purposes, show error for any login attempt
       // Replace this with actual auth logic
       throw new Error('Invalid credentials. Please try again.');
-      
+
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
+      const errorMsg = err instanceof Error ? err.message : 'Something went wrong';
+      Analytics.loginFailed(errorMsg);
+      setError(errorMsg);
     } finally {
       setIsLoading(false);
     }
@@ -159,7 +163,7 @@ export const Login = () => {
 
             {/* Forgot Password */}
             <div className="text-center">
-              <button type="button" className="text-sm text-slate-400 hover:text-slate-600 transition-colors">
+              <button type="button" onClick={() => Analytics.forgotPasswordClicked()} className="text-sm text-slate-400 hover:text-slate-600 transition-colors">
                 Forgot password?
               </button>
             </div>

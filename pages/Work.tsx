@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Analytics } from '../lib/analytics';
 
 const workVideos = [
   {
@@ -45,9 +46,14 @@ const Work: React.FC = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    Analytics.workPageViewed();
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
+      Analytics.workBetaSubmitted();
       setSubmitted(true);
       // Here you would typically send the email to your backend
     }
@@ -61,6 +67,7 @@ const Work: React.FC = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "circOut" }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12"
+        style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
       >
         {/* Back to Home — full page nav to avoid Three.js re-init blocking */}
         <a href="/">
@@ -122,9 +129,10 @@ const Work: React.FC = () => {
               className="group relative"
             >
               {/* Video Placeholder */}
-              <div 
+              <div
                 className="aspect-video rounded-2xl overflow-hidden relative cursor-pointer"
                 style={{ backgroundColor: video.color + '15' }}
+                onClick={() => Analytics.workVideoClicked(video.title)}
               >
                 {/* Placeholder gradient */}
                 <div 

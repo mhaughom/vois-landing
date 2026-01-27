@@ -88,8 +88,8 @@ export const Analytics = {
     posthog.capture('tab_clicked', { tab });
   },
 
-  faqExpanded: (question: string) => {
-    posthog.capture('faq_expanded', { question });
+  faqExpanded: (question: string, questionIndex: number) => {
+    posthog.capture('faq_expanded', { question, question_index: questionIndex });
   },
 
   scrolledToPricing: () => {
@@ -103,6 +103,105 @@ export const Analytics = {
   // Errors
   errorOccurred: (error: string, context: string) => {
     posthog.capture('error_occurred', { error, context });
+  },
+
+  // Scroll depth
+  sectionViewed: (section: string) => {
+    posthog.capture('section_viewed', { section });
+  },
+
+  // Demo drop-offs
+  demoCancelled: (stage: string) => {
+    posthog.capture('demo_cancelled', { cancelled_at_stage: stage });
+  },
+
+  demoMicrophoneDenied: () => {
+    posthog.capture('demo_microphone_denied');
+  },
+
+  demoError: (errorType: string, message: string) => {
+    posthog.capture('demo_error', { error_type: errorType, message });
+  },
+
+  demoRetryStarted: () => {
+    posthog.capture('demo_retry_started');
+  },
+
+  // Video engagement
+  videoPlayed: (videoId: string) => {
+    posthog.capture('video_played', { video_id: videoId });
+  },
+
+  videoPaused: (videoId: string, percentWatched: number) => {
+    posthog.capture('video_paused', { video_id: videoId, percent_watched: percentWatched });
+  },
+
+  videoProgress: (videoId: string, percent: number) => {
+    posthog.capture('video_progress', { video_id: videoId, percent });
+  },
+
+  videoCompleted: (videoId: string) => {
+    posthog.capture('video_completed', { video_id: videoId });
+  },
+
+  // Time to action
+  timeToAction: (action: string, seconds: number) => {
+    posthog.capture('time_to_action', { action, seconds });
+  },
+
+  // Chat
+  chatSuggestedQuestionClicked: (question: string) => {
+    posthog.capture('chat_suggested_question_clicked', { question });
+  },
+
+  // Founder spots
+  founderSpotsViewed: (remaining: number) => {
+    posthog.capture('founder_spots_viewed', { remaining });
+  },
+
+  // Login
+  loginAttempted: () => {
+    posthog.capture('login_attempted');
+  },
+
+  loginFailed: (error: string) => {
+    posthog.capture('login_failed', { error });
+  },
+
+  loginSucceeded: () => {
+    posthog.capture('login_succeeded');
+  },
+
+  forgotPasswordClicked: () => {
+    posthog.capture('forgot_password_clicked');
+  },
+
+  // Session properties
+  setSessionProperties: (properties: Record<string, unknown>) => {
+    posthog.register(properties);
+  },
+
+  // Performance
+  performanceMetric: (metric: string, valueMs: number) => {
+    posthog.capture('performance_metric', { metric, value_ms: valueMs });
+  },
+
+  // Work page
+  workPageViewed: () => {
+    posthog.capture('work_page_viewed');
+  },
+
+  workVideoClicked: (videoTitle: string) => {
+    posthog.capture('work_video_clicked', { video_title: videoTitle });
+  },
+
+  workBetaSubmitted: () => {
+    posthog.capture('work_beta_submitted');
+  },
+
+  // Checkout timing
+  checkoutStepViewed: (step: number) => {
+    posthog.capture('checkout_step_viewed', { step });
   },
 
   // User identification (after purchase)

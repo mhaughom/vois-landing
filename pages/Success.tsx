@@ -74,6 +74,7 @@ const Success = () => {
               href="https://apps.apple.com"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => Analytics.externalLinkClicked('app_store')}
               className="flex items-center justify-center gap-2 w-full bg-black text-white py-4 rounded-full text-base font-medium hover:bg-slate-900 transition-colors"
             >
               Download on App Store
@@ -83,6 +84,7 @@ const Success = () => {
               href="https://discord.gg"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => Analytics.externalLinkClicked('discord')}
               className="flex items-center justify-center gap-2 w-full bg-white text-slate-900 py-4 rounded-full text-base font-medium border border-slate-200 hover:bg-slate-50 transition-colors"
             >
               Join Discord Community

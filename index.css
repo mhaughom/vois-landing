@@ -5,7 +5,18 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  background-color: #F8F9FA;
 }
+
+/* On mobile the hero is touch-driven, not scroll-driven.
+   Disable all CSS snap so downstream sections don't pull the scroll. */
+@media (max-width: 639px) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
 
 /* Smooth scroll snap animation */
 @supports (scroll-behavior: smooth) {
@@ -53,8 +64,15 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: #F8F9FA;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure min height fills the full viewport including safe areas */
+html, body, #root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 /* Utility class for hiding scrollbars */

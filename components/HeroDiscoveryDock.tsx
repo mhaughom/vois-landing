@@ -160,7 +160,7 @@ const HowContent: React.FC = () => {
 
 // UNIFIED COLOR SCHEME - each category has its own distinct color
 // Blue=Calendar, Green=Tasks, Orange=Errands, Teal=Finance, Yellow=Ideas, Red=Health, Purple=Shopping, Pink=Social
-const allWhyBenefits = [
+export const allWhyBenefits = [
   // TEAL - Finance
   { icon: Wallet, label: 'Finance', desc: 'tracked', bg: 'bg-[#ecfeff]', iconBg: 'bg-[#22d3ee]/30', color: 'text-[#0891b2]' },
   // RED - Health
@@ -331,11 +331,18 @@ const DockPill: React.FC<{
   isActive: boolean;
   onHoverStart: () => void;
   onHoverEnd: () => void;
-}> = ({ label, isActive, onHoverStart, onHoverEnd }) => {
+  onToggle: () => void;
+}> = ({ label, isActive, onHoverStart, onHoverEnd, onToggle }) => {
   return (
     <motion.button
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
+      onClick={() => {
+        // Only toggle on touch devices — hover handles desktop
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+          onToggle();
+        }
+      }}
       className={`
         px-3 py-1.5 rounded-full border text-[11px] font-medium uppercase tracking-wide
         transition-colors duration-200 whitespace-nowrap cursor-pointer
@@ -355,7 +362,7 @@ const DockPill: React.FC<{
 export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode, onModeChange }) => {
   return (
     <motion.div 
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-40 pointer-events-auto"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-3 z-40 pointer-events-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
@@ -368,6 +375,7 @@ export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode
           isActive={activeMode === 'when'}
           onHoverStart={() => onModeChange('when')}
           onHoverEnd={() => onModeChange(null)}
+          onToggle={() => onModeChange(activeMode === 'when' ? null : 'when')}
         />
         <span className="text-slate-300 text-xs">·</span>
         <DockPill
@@ -376,6 +384,7 @@ export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode
           isActive={activeMode === 'how'}
           onHoverStart={() => onModeChange('how')}
           onHoverEnd={() => onModeChange(null)}
+          onToggle={() => onModeChange(activeMode === 'how' ? null : 'how')}
         />
         <span className="text-slate-300 text-xs">·</span>
         <DockPill
@@ -384,6 +393,7 @@ export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode
           isActive={activeMode === 'why'}
           onHoverStart={() => onModeChange('why')}
           onHoverEnd={() => onModeChange(null)}
+          onToggle={() => onModeChange(activeMode === 'why' ? null : 'why')}
         />
       </div>
       

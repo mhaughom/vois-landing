@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vois Frame Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    p { color: #94a3b8; margin-bottom: 1.5rem; }
+    .controls { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    button {
+      padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+    }
+    button:hover { transform: scale(1.02); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .btn-primary { background: #6366f1; color: white; }
+    .btn-secondary { background: #334155; color: #e2e8f0; }
+    .btn-success { background: #22c55e; color: white; }
+    #status { padding: 1rem; background: #1e293b; border-radius: 0.5rem; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; max-height: 200px; overflow-y: auto; margin-bottom: 1.5rem; }
+    .preview-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .preview-box { text-align: center; }
+    .preview-box canvas { border: 1px solid #334155; border-radius: 0.5rem; background: transparent; }
+    .preview-box label { display: block; margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8; }
+    .progress { height: 4px; background: #1e293b; border-radius: 2px; margin-bottom: 1rem; overflow: hidden; }
+    .progress-bar { height: 100%; background: #6366f1; transition: width 0.1s; width: 0%; }
+    .settings { display: flex; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: flex-end; }
+    .setting { display: flex; flex-direction: column; gap: 0.25rem; }
+    .setting label { font-size: 0.8rem; color: #94a3b8; }
+    .setting input, .setting select {
+      padding: 0.5rem; background: #1e293b; border: 1px solid #334155;
+      border-radius: 0.375rem; color: #e2e8f0; font-size: 0.9rem;
+    }
+    .setting input[type="file"] { font-size: 0.8rem; }
+    .upload-preview { width: 60px; height: 60px; border: 1px dashed #475569; border-radius: 0.375rem; overflow: hidden; margin-top: 0.25rem; }
+    .upload-preview img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <h1>Vois Scroll Frame Generator</h1>
+  <p>Renders 60 frames of each device rotating toward the viewer. Upload a screen image to bake your app UI into the phone.</p>
+
+  <div class="settings">
+    <div class="setting">
+      <label>Frame count</label>
+      <input type="number" id="frameCount" value="60" min="10" max="120" />
+    </div>
+    <div class="setting">
+      <label>Canvas size</label>
+      <select id="canvasSize">
+        <option value="512">512px</option>
+        <option value="768" selected>768px</option>
+        <option value="1024">1024px</option>
+      </select>
+    </div>
+    <div class="setting">
+      <label>Format</label>
+      <select id="format">
+        <option value="webp" selected>WebP</option>
+        <option value="png">PNG</option>
+      </select>
+    </div>
+    <div class="setting">
+      <label>Phone Y rotation range (deg)</label>
+      <input type="text" id="phoneRotRange" value="-30, 0" />
+    </div>
+    <div class="setting">
+      <label>Watch Y rotation range (deg)</label>
+      <input type="text" id="watchRotRange" value="25, 0" />
+    </div>
+    <div class="setting">
+      <label>Phone screen image (optional)</label>
+      <input type="file" id="phoneScreenUpload" accept="image/*" />
+      <div class="upload-preview" id="phoneScreenPreview"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn-primary" id="btnGenPhone" disabled>Generate Phone Frames</button>
+    <button class="btn-primary" id="btnGenWatch" disabled>Generate Watch Frames</button>
+    <button class="btn-success" id="btnDownload" disabled>Download All (ZIP)</button>
+  </div>
+
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+  <div id="status">Loading Three.js and models...</div>
+
+  <div class="preview-row">
+    <div class="preview-box">
+      <canvas id="phonePreview" width="384" height="384"></canvas>
+      <label>Phone preview</label>
+    </div>
+    <div class="preview-box">
+      <canvas id="watchPreview" width="384" height="384"></canvas>
+      <label>Watch preview</label>
+    </div>
+  </div>
+
+  <!-- Three.js from CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+  <!-- JSZip for download -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+    const log = (msg) => {
+      const el = document.getElementById('status');
+      el.textContent += msg + '\n';
+      el.scrollTop = el.scrollHeight;
+    };
+
+    const setProgress = (pct) => {
+      document.getElementById('progressBar').style.width = pct + '%';
+    };
+
+    // Storage for generated frames
+    const phoneBlobs = [];
+    const watchBlobs = [];
+
+    // Phone screen image (data URL)
+    let phoneScreenDataUrl = null;
+
+    // Handle screen image upload
+    document.getElementById('phoneScreenUpload').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        phoneScreenDataUrl = ev.target.result;
+        const preview = document.getElementById('phoneScreenPreview');
+        preview.innerHTML = `<img src="${phoneScreenDataUrl}" />`;
+        log('Phone screen image loaded: ' + file.name);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // ── Load models ─────────────────────────────────────────────────────
+    const dracoLoader = new DRACOLoader();
+    // Use local GLTF-specific Draco decoder (more reliable than CDN)
+    dracoLoader.setDecoderPath('/draco/gltf/');
+
+    const loader = new GLTFLoader();
+    loader.setDRACOLoader(dracoLoader);
+
+    const loadModel = (url) => new Promise((resolve, reject) => {
+      loader.load(
+        url,
+        (gltf) => resolve(gltf),
+        (progress) => {
+          if (progress.total) {
+            log(`  ... ${Math.round((progress.loaded / progress.total) * 100)}%`);
+          }
+        },
+        (err) => {
+          log('  Load error detail: ' + (err?.message || err?.type || JSON.stringify(err)));
+          reject(err);
+        }
+      );
+    });
+
+    let phoneModel, watchModel;
+
+    try {
+      log('Loading iPhone model...');
+      const phoneGLTF = await loadModel('/3d_models/iphone_16_pro_max.glb');
+      phoneModel = phoneGLTF.scene.clone(true);
+      log('iPhone loaded.');
+
+      log('Loading Apple Watch model...');
+      const watchGLTF = await loadModel('/3d_models/Apple%20Watch%208%20Ultra.glb');
+      watchModel = watchGLTF.scene.clone(true);
+      log('Apple Watch loaded.');
+
+      log('Ready! Click a button to generate frames.');
+      document.getElementById('btnGenPhone').disabled = false;
+      document.getElementById('btnGenWatch').disabled = false;
+    } catch (err) {
+      log('ERROR loading models: ' + err.message);
+    }
+
+    // ── Scene setup ─────────────────────────────────────────────────────
+    function createScene() {
+      const scene = new THREE.Scene();
+
+      // Lighting — matches DeviceScene.tsx
+      const ambient = new THREE.AmbientLight(0xffffff, 2);
+      scene.add(ambient);
+
+      const dir1 = new THREE.DirectionalLight(0xffffff, 2);
+      dir1.position.set(5, 5, 5);
+      scene.add(dir1);
+
+      const dir2 = new THREE.DirectionalLight(0xffffff, 1.5);
+      dir2.position.set(-5, 5, 5);
+      scene.add(dir2);
+
+      const dir3 = new THREE.DirectionalLight(0xffffff, 1.5);
+      dir3.position.set(0, 0, 5);
+      scene.add(dir3);
+
+      return scene;
+    }
+
+    function createRenderer(size) {
+      const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
+        preserveDrawingBuffer: true,
+      });
+      renderer.setSize(size, size);
+      renderer.setPixelRatio(1);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.0;
+      return renderer;
+    }
+
+    function createCamera(zDistance = 2.0) {
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.01, 100);
+      camera.position.set(0, 0, zDistance);
+      camera.lookAt(0, 0, 0);
+      return camera;
+    }
+
+    // ── Center and scale a model to fit ─────────────────────────────────
+    function fitModel(model, targetSize = 1.2) {
+      const box = new THREE.Box3().setFromObject(model);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = targetSize / maxDim;
+
+      model.position.sub(center);
+      model.scale.setScalar(scale);
+
+      const group = new THREE.Group();
+      group.add(model);
+      return group;
+    }
+
+    // ── Apply screen texture to phone model ─────────────────────────────
+    async function applyPhoneScreenTexture(model, imageDataUrl) {
+      if (!imageDataUrl) return;
+
+      // Load the image as a Three.js texture
+      const img = new Image();
+      await new Promise((resolve) => {
+        img.onload = resolve;
+        img.src = imageDataUrl;
+      });
+
+      const texture = new THREE.Texture(img);
+      texture.needsUpdate = true;
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.flipY = false;
+
+      let found = false;
+      model.traverse((child) => {
+        if (!child.isMesh) return;
+        const isScreen = child.name === 'Cube014_screen001_0' ||
+                         (child.material && child.material.name === 'screen001');
+        if (!isScreen) return;
+        found = true;
+
+        // Clone geometry to fix UVs without affecting original
+        const geo = child.geometry.clone();
+        child.geometry = geo;
+
+        // Create linear UVs from vertex positions (matches DeviceScene.tsx approach)
+        const pos = geo.attributes.position;
+        const box = new THREE.Box3().setFromBufferAttribute(pos);
+        const bSize = box.getSize(new THREE.Vector3());
+        const bMin = box.min;
+
+        const uvs = new Float32Array(pos.count * 2);
+        for (let i = 0; i < pos.count; i++) {
+          uvs[i * 2] = (pos.getX(i) - bMin.x) / bSize.x;
+          uvs[i * 2 + 1] = (pos.getY(i) - bMin.y) / bSize.y;
+        }
+        geo.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+
+        child.material = new THREE.MeshBasicMaterial({
+          map: texture,
+          toneMapped: false,
+          side: THREE.DoubleSide,
+        });
+      });
+
+      log(found ? '  Screen texture applied to phone.' : '  WARNING: Screen mesh not found!');
+    }
+
+    // ── Find screen mesh corners ────────────────────────────────────────
+    // Returns the 4 corner vertices of the screen in local mesh space.
+    // Auto-detects which axis is the thin (normal) direction and uses
+    // the other two axes as the screen plane.
+    // Supports both phone and watch screen meshes.
+    function findScreenCorners(model) {
+      let result = null;
+      model.traverse((child) => {
+        if (!child.isMesh) return;
+        // Phone screen: Cube014_screen001_0 / material screen001
+        const isPhoneScreen = child.name === 'Cube014_screen001_0' ||
+          (child.material && child.material.name === 'screen001');
+        // Watch screen: Cube004_4 / material Material.004
+        const isWatchScreen = child.name === 'Cube004_4' || child.name === 'Cube.004_4' ||
+          child.name.includes('004_4') ||
+          (child.material && (child.material.name === 'Material.004' || child.material.name === 'vois_watch_screen'));
+        if (!isPhoneScreen && !isWatchScreen) return;
+
+        const geo = child.geometry;
+        const pos = geo.attributes.position;
+        const box = new THREE.Box3().setFromBufferAttribute(pos);
+        const size = new THREE.Vector3();
+        box.getSize(size);
+
+        let corners;
+        if (size.y <= size.x && size.y <= size.z) {
+          // Y is thin — screen plane is X-Z
+          const y = (box.min.y + box.max.y) / 2;
+          corners = [
+            new THREE.Vector3(box.min.x, y, box.max.z), // top-left
+            new THREE.Vector3(box.max.x, y, box.max.z), // top-right
+            new THREE.Vector3(box.max.x, y, box.min.z), // bottom-right
+            new THREE.Vector3(box.min.x, y, box.min.z), // bottom-left
+          ];
+        } else if (size.x <= size.y && size.x <= size.z) {
+          // X is thin — screen plane is Y-Z
+          const x = (box.min.x + box.max.x) / 2;
+          corners = [
+            new THREE.Vector3(x, box.max.y, box.max.z), // top-left
+            new THREE.Vector3(x, box.min.y, box.max.z), // top-right
+            new THREE.Vector3(x, box.min.y, box.min.z), // bottom-right
+            new THREE.Vector3(x, box.max.y, box.min.z), // bottom-left
+          ];
+        } else {
+          // Z is thin — screen plane is X-Y (original assumption)
+          const z = (box.min.z + box.max.z) / 2;
+          corners = [
+            new THREE.Vector3(box.min.x, box.max.y, z), // top-left
+            new THREE.Vector3(box.max.x, box.max.y, z), // top-right
+            new THREE.Vector3(box.max.x, box.min.y, z), // bottom-right
+            new THREE.Vector3(box.min.x, box.min.y, z), // bottom-left
+          ];
+        }
+
+        result = { mesh: child, corners };
+      });
+      return result;
+    }
+
+    // Project 3D corners to normalized 2D coordinates (0-1)
+    function projectCorners(screenData, camera) {
+      if (!screenData) return null;
+      return screenData.corners.map(localPt => {
+        const pt = localPt.clone();
+        // Local → world (includes group rotation, fitModel centering/scaling)
+        pt.applyMatrix4(screenData.mesh.matrixWorld);
+        // World → NDC (-1 to 1)
+        pt.project(camera);
+        // NDC → normalized (0-1), flip Y for screen space
+        return {
+          x: (pt.x + 1) / 2,
+          y: (1 - pt.y) / 2,
+        };
+      });
+    }
+
+    // ── Generate frames ─────────────────────────────────────────────────
+    // Returns screen corner tracking data (array of per-frame corners)
+    async function generateFrames(model, rotStartDeg, rotEndDeg, baseRotY, previewCanvasId, storage, options = {}) {
+      const { cameraZ = 2.0, targetSize = 1.2, screenImageUrl = null, trackScreen = false } = options;
+      const count = parseInt(document.getElementById('frameCount').value);
+      const size = parseInt(document.getElementById('canvasSize').value);
+      const format = document.getElementById('format').value;
+      const mimeType = format === 'webp' ? 'image/webp' : 'image/png';
+      const quality = format === 'webp' ? 0.85 : undefined;
+
+      const scene = createScene();
+      const camera = createCamera(cameraZ);
+      const renderer = createRenderer(size);
+
+      const cloned = model.clone(true);
+
+      // Apply screen texture if provided
+      if (screenImageUrl) {
+        await applyPhoneScreenTexture(cloned, screenImageUrl);
+      }
+
+      // Find screen corners before fitting (so we can track them)
+      let screenData = null;
+      if (trackScreen) {
+        screenData = findScreenCorners(cloned);
+        if (screenData) {
+          log('  Screen mesh found: ' + screenData.mesh.name);
+        } else {
+          log('  WARNING: Screen mesh not found — tracking disabled.');
+        }
+      }
+
+      const group = fitModel(cloned, targetSize);
+      group.rotation.y = baseRotY;
+      scene.add(group);
+
+      const preview = document.getElementById(previewCanvasId);
+      const previewCtx = preview.getContext('2d');
+
+      storage.length = 0;
+      const cornerData = []; // Per-frame screen corners
+
+      const rotStart = (rotStartDeg * Math.PI) / 180;
+      const rotEnd = (rotEndDeg * Math.PI) / 180;
+
+      for (let i = 0; i < count; i++) {
+        const t = i / (count - 1);
+        const angle = rotStart + (rotEnd - rotStart) * t;
+        group.rotation.y = baseRotY + angle;
+
+        renderer.render(scene, camera);
+
+        // Project screen corners for this frame (matrices updated by render)
+        if (screenData) {
+          const corners = projectCorners(screenData, camera);
+          cornerData.push(corners);
+        }
+
+        // Preview periodically
+        if (i % Math.max(1, Math.floor(count / 6)) === 0 || i === count - 1) {
+          previewCtx.clearRect(0, 0, preview.width, preview.height);
+          previewCtx.drawImage(renderer.domElement, 0, 0, preview.width, preview.height);
+        }
+
+        const blob = await new Promise((resolve) => {
+          renderer.domElement.toBlob((b) => resolve(b), mimeType, quality);
+        });
+        storage.push(blob);
+
+        setProgress(((i + 1) / count) * 100);
+        log(`  Frame ${String(i).padStart(3, '0')} rendered`);
+
+        if (i % 5 === 0) await new Promise((r) => setTimeout(r, 0));
+      }
+
+      scene.remove(group);
+      renderer.dispose();
+      log(`Done! ${count} frames generated.`);
+
+      return cornerData;
+    }
+
+    // Storage for screen corner tracking data
+    let phoneCornerData = [];
+    let watchCornerData = [];
+
+    // ── Button handlers ─────────────────────────────────────────────────
+    document.getElementById('btnGenPhone').addEventListener('click', async () => {
+      const btn = document.getElementById('btnGenPhone');
+      btn.disabled = true;
+
+      const [startDeg, endDeg] = document.getElementById('phoneRotRange').value.split(',').map(Number);
+      log(`\nGenerating phone frames with screen tracking (${startDeg}° to ${endDeg}°)...`);
+
+      phoneCornerData = await generateFrames(phoneModel, startDeg, endDeg, Math.PI / 2, 'phonePreview', phoneBlobs, {
+        cameraZ: 2.0,
+        targetSize: 1.2,
+        screenImageUrl: phoneScreenDataUrl,
+        trackScreen: true,
+      });
+
+      if (phoneCornerData.length > 0) {
+        log(`Screen tracking: ${phoneCornerData.length} frames tracked.`);
+      }
+
+      btn.disabled = false;
+      updateDownloadBtn();
+    });
+
+    document.getElementById('btnGenWatch').addEventListener('click', async () => {
+      const btn = document.getElementById('btnGenWatch');
+      btn.disabled = true;
+
+      const [startDeg, endDeg] = document.getElementById('watchRotRange').value.split(',').map(Number);
+      log(`\nGenerating watch frames with screen tracking (${startDeg}° to ${endDeg}°)...`);
+
+      // Watch uses further camera (2.8) and smaller target (0.9) to fit full band
+      watchCornerData = await generateFrames(watchModel, startDeg, endDeg, 0, 'watchPreview', watchBlobs, {
+        cameraZ: 2.8,
+        targetSize: 0.9,
+        trackScreen: true,
+      });
+
+      if (watchCornerData.length > 0) {
+        log(`Screen tracking: ${watchCornerData.length} frames tracked.`);
+      }
+
+      btn.disabled = false;
+      updateDownloadBtn();
+    });
+
+    function updateDownloadBtn() {
+      document.getElementById('btnDownload').disabled = !(phoneBlobs.length > 0 || watchBlobs.length > 0);
+    }
+
+    document.getElementById('btnDownload').addEventListener('click', async () => {
+      const btn = document.getElementById('btnDownload');
+      btn.disabled = true;
+      log('\nPacking ZIP...');
+
+      const format = document.getElementById('format').value;
+      const ext = format === 'webp' ? 'webp' : 'png';
+      const zip = new JSZip();
+
+      if (phoneBlobs.length > 0) {
+        const folder = zip.folder('phone');
+        phoneBlobs.forEach((blob, i) => {
+          folder.file(`frame_${String(i).padStart(3, '0')}.${ext}`, blob);
+        });
+        // Include screen corner tracking data
+        if (phoneCornerData.length > 0) {
+          folder.file('screen-corners.json', JSON.stringify(phoneCornerData));
+          log('Included screen-corners.json in phone folder.');
+        }
+      }
+
+      if (watchBlobs.length > 0) {
+        const folder = zip.folder('watch');
+        watchBlobs.forEach((blob, i) => {
+          folder.file(`frame_${String(i).padStart(3, '0')}.${ext}`, blob);
+        });
+        // Include screen corner tracking data
+        if (watchCornerData.length > 0) {
+          folder.file('screen-corners.json', JSON.stringify(watchCornerData));
+          log('Included screen-corners.json in watch folder.');
+        }
+      }
+
+      const content = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(content);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'vois-scroll-frames.zip';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      log('Download started!');
+      btn.disabled = false;
+    });
+  </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, AlertCircle, CheckCircle, RefreshCw } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 import {
   setDemoRecording,
   setDemoProcessing,
@@ -94,6 +95,7 @@ export const DemoSteps: React.FC<{
   chatOpened?: boolean;
   chatMessageSent?: boolean;
 }> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageSent }) => {
+  const isMobile = useIsMobile();
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
   const [dismissing, setDismissing] = useState(false);
 
@@ -132,7 +134,7 @@ export const DemoSteps: React.FC<{
       initial={{ opacity: 0, y: 10 }}
       animate={dismissing ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
       transition={dismissing ? { duration: 0.6, ease: 'easeOut' } : undefined}
-      className="flex flex-col items-start gap-4 mt-8"
+      className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 mt-6 sm:mt-8 w-full"
     >
       {/* Step 1 - Always visible once waiting starts */}
       <motion.div
@@ -140,11 +142,11 @@ export const DemoSteps: React.FC<{
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center gap-3"
       >
-        <span className={`font-serif text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
+        <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
           <span className="text-slate-400 mr-2">1.</span>
-          Tap record on your phone or watch
+          {isMobile ? 'Starting microphone...' : 'Tap record on your phone or watch'}
         </span>
-        {stage !== 'waiting' && <CheckCircle size={20} className="text-green-500" />}
+        {stage !== 'waiting' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
       </motion.div>
 
       {/* Step 2 - Visible from recording onwards */}
@@ -152,19 +154,19 @@ export const DemoSteps: React.FC<{
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-2 items-center sm:items-start"
         >
-          <div className="flex items-center gap-3">
-            <span className={`font-serif text-xl md:text-2xl ${stage === 'recording' ? 'text-slate-900' : 'text-slate-400'}`}>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'recording' ? 'text-slate-900' : 'text-slate-400'}`}>
               <span className="text-slate-400 mr-2">2.</span>
               Talk about your thoughts
             </span>
-            {stage !== 'recording' && <CheckCircle size={20} className="text-green-500" />}
+            {stage !== 'recording' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
             {stage === 'recording' && (
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
-                className="w-3 h-3 rounded-full bg-red-500 ml-1"
+                className="w-3 h-3 rounded-full bg-red-500 ml-1 flex-shrink-0"
               />
             )}
           </div>
@@ -178,7 +180,7 @@ export const DemoSteps: React.FC<{
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.3 }}
-                className="text-slate-400 text-base md:text-lg ml-8 italic"
+                className="text-slate-400 text-sm sm:text-base md:text-lg sm:ml-8 italic max-w-[280px] sm:max-w-none"
               >
                 Try mentioning {RECORDING_SUGGESTIONS[currentSuggestion]}...
               </motion.p>
@@ -192,21 +194,21 @@ export const DemoSteps: React.FC<{
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3"
+          className="flex items-center gap-2 sm:gap-3"
         >
-          <span className={`font-serif text-xl md:text-2xl ${stage === 'processing' ? 'text-slate-900' : 'text-slate-400'}`}>
+          <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'processing' ? 'text-slate-900' : 'text-slate-400'}`}>
             <span className="text-slate-400 mr-2">3.</span>
-            Watch the AI organize your thoughts
+            Watch AI organize your thoughts
           </span>
           {stage === 'processing' && (
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
             >
-              <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full" />
+              <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full flex-shrink-0" />
             </motion.div>
           )}
-          {stage === 'results' && <CheckCircle size={20} className="text-green-500" />}
+          {stage === 'results' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
         </motion.div>
       )}
 
@@ -216,17 +218,17 @@ export const DemoSteps: React.FC<{
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col gap-1"
+          className="flex flex-col gap-1 items-center sm:items-start"
         >
-          <div className="flex items-center gap-3">
-            <span className={`font-serif text-xl md:text-2xl ${chatOpened ? 'text-slate-400' : 'text-slate-900'}`}>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className={`font-serif text-lg sm:text-xl md:text-2xl ${chatOpened ? 'text-slate-400' : 'text-slate-900'}`}>
               <span className="text-slate-400 mr-2">4.</span>
               Try your personal ChatGPT
             </span>
-            {chatOpened && <CheckCircle size={20} className="text-green-500" />}
+            {chatOpened && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
           </div>
           {!chatOpened && (
-            <span className="text-slate-400 text-sm ml-7">
+            <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
               Tap the ✦ icon at the bottom left of the phone
             </span>
           )}
@@ -239,13 +241,13 @@ export const DemoSteps: React.FC<{
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col gap-1"
+          className="flex flex-col gap-1 items-center sm:items-start"
         >
-          <span className="font-serif text-xl md:text-2xl text-slate-900">
+          <span className="font-serif text-lg sm:text-xl md:text-2xl text-slate-900">
             <span className="text-slate-400 mr-2">5.</span>
             Ask anything about your notes
           </span>
-          <span className="text-slate-400 text-sm ml-7">
+          <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
             Try a suggested question or type your own
           </span>
         </motion.div>
@@ -265,6 +267,7 @@ export const DemoSteps: React.FC<{
 };
 
 export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStopRecording, onStageChange, hasCompletedDemo }) => {
+  const isMobile = useIsMobile();
   const [stage, setStageInternal] = useState<DemoStage>('idle');
   const [elapsedTime, setElapsedTime] = useState(0);
   const [currentTip, setCurrentTip] = useState(0);
@@ -377,12 +380,19 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   const enterWaitingMode = () => {
     const device = getDemoState().activeDevice;
     Analytics.demoStarted(device === 'watch' ? 'watch' : 'phone');
-    setStage('waiting');
-    setDemoWaitingToStart(true);
+    if (isMobile) {
+      // On mobile, no 3D devices to tap — start recording directly
+      setDemoActiveDevice('phone');
+      startRecordingRef.current();
+    } else {
+      setStage('waiting');
+      setDemoWaitingToStart(true);
+    }
   };
 
   // Keep startNew ref updated
   startNewRef.current = () => {
+    Analytics.demoRetryStarted();
     cleanup();
     setElapsedTime(0);
     setResults(null);
@@ -513,8 +523,10 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       console.error('Microphone access error:', err);
       if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
         setErrorMessage('Please allow microphone access to try VOIS');
+        Analytics.demoMicrophoneDenied();
       } else {
         setErrorMessage('Could not access microphone. Please try again.');
+        Analytics.demoError('microphone_access', err.message || 'Unknown error');
       }
       setStage('error');
       setDemoError('microphone_denied');
@@ -565,6 +577,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
       // Check if we have any audio data
       if (audioBlob.size < 1000) {
+        Analytics.demoError('recording_too_short', 'Audio blob too small');
         throw new Error('Recording too short');
       }
 
@@ -604,6 +617,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       // Check if the API returned any action items
       if (!data.items || data.items.length === 0) {
         // No items extracted - show retry message and auto-restart
+        Analytics.demoError('no_items', 'No action items found in recording');
         setDemoProcessing(false);
         setDemoAudioLevels(new Array(24).fill(0.1));
         setDemoTip('');
@@ -633,6 +647,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     } catch (err: any) {
       console.error('[VOIS Demo] Processing error:', err);
       console.error('[VOIS Demo] Error details:', err.message);
+      Analytics.demoError('api_error', err.message || 'Unknown processing error');
       setErrorMessage(`API Error: ${err.message || 'Something went wrong. Please try again.'}`);
       setStage('error');
       setDemoError('api_error');
@@ -645,6 +660,9 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
   // Reset to try again
   const reset = () => {
+    if (stage !== 'idle' && stage !== 'results' && stage !== 'error') {
+      Analytics.demoCancelled(stage);
+    }
     cleanup();
     setStage('idle');
     setElapsedTime(0);

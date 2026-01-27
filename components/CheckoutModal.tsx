@@ -31,7 +31,7 @@ const stepTransition = {
   initial: { opacity: 0, x: 30 },
   animate: { opacity: 1, x: 0 },
   exit: { opacity: 0, x: -30 },
-  transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] as number[] },
+  transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] },
 };
 
 interface CheckoutModalProps {
@@ -50,6 +50,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, r
 
   const isSoldOut = remaining === 0;
   const didSubmitRef = useRef(false);
+
+  // Track checkout step views
+  useEffect(() => {
+    if (isOpen) {
+      Analytics.checkoutStepViewed(step);
+    }
+  }, [isOpen, step]);
 
   // Reset all state when modal closes; track abandonment
   useEffect(() => {

@@ -55,116 +55,16 @@ export {
   isHeroShowcaseActive,
 } from './deviceState';
 
-// Transcript segments with categories for highlighting
-interface TranscriptSegment {
-  text: string;
-  category?: string;
-  highlightColor?: string;
-}
-
-// UNIFIED COLOR SCHEME - each category has its own distinct color
-// Highlights are extra light/pastel for subtle text highlighting
-const allCategoryConfigs: Record<string, { color: string; bg: string; highlight: string; label: string }> = {
-  // Blue - Calendar, Events
-  events: { color: '#2563eb', bg: '#dbeafe', highlight: 'rgba(191, 219, 254, 0.5)', label: 'Event' },
-  // Green - Tasks, Work
-  work: { color: '#16a34a', bg: '#dcfce7', highlight: 'rgba(187, 247, 208, 0.5)', label: 'Task' },
-  // Orange - Errands
-  errands: { color: '#ea580c', bg: '#fff7ed', highlight: 'rgba(254, 215, 170, 0.5)', label: 'Errand' },
-  // Teal - Finance
-  finance: { color: '#0891b2', bg: '#ecfeff', highlight: 'rgba(165, 243, 252, 0.5)', label: 'Task' },
-  // Yellow - Ideas
-  ideas: { color: '#ca8a04', bg: '#fefce8', highlight: 'rgba(254, 240, 138, 0.5)', label: 'Idea' },
-  // Red - Health
-  health: { color: '#dc2626', bg: '#fef2f2', highlight: 'rgba(254, 202, 202, 0.5)', label: 'Health Log' },
-  // Purple - Shopping
-  shopping: { color: '#7c3aed', bg: '#f5f3ff', highlight: 'rgba(221, 214, 254, 0.5)', label: 'Shopping' },
-  // Pink - Social, Messages
-  social: { color: '#db2777', bg: '#fdf2f8', highlight: 'rgba(251, 207, 232, 0.5)', label: 'Reminder' },
-  messages: { color: '#db2777', bg: '#fdf2f8', highlight: 'rgba(251, 207, 232, 0.5)', label: 'Message' },
-};
-
-// Scenario definitions with extracted items
-interface ExtractedItem {
-  category: string;
-  icon: string;
-  label: string;
-  content: string;
-}
-
-interface Scenario {
-  title: string;
-  subtitle: string;
-  segments: TranscriptSegment[];
-  categories: string[];
-  extractedItems: ExtractedItem[];
-}
-
-const scenarios: Scenario[] = [
-  // Scenario 1: Commuter Chaos
-  {
-    title: "Commuter Thoughts",
-    subtitle: "On the way to work",
-    segments: [
-      { text: "Send the " },
-      { text: "Q3 budget report to Sarah by Friday. ", category: 'work', highlightColor: allCategoryConfigs.work.highlight },
-      { text: "Oh, and I need to " },
-      { text: "pick up dry cleaning before they close at 5. ", category: 'errands', highlightColor: allCategoryConfigs.errands.highlight },
-      { text: "Also, " },
-      { text: "great idea for the blog: 'Why multitasking is a lie.' ", category: 'ideas', highlightColor: allCategoryConfigs.ideas.highlight },
-    ],
-    categories: ['work', 'errands', 'ideas'],
-    extractedItems: [
-      { category: 'work', icon: '💼', label: 'Task', content: 'Send Q3 budget report to Sarah' },
-      { category: 'errands', icon: '📋', label: 'Errand', content: 'Pick up dry cleaning by 5pm' },
-      { category: 'ideas', icon: '💡', label: 'Idea', content: 'Blog: Why multitasking is a lie' },
-    ]
-  },
-  // Scenario 2: 3 AM Brain Dump
-  {
-    title: "Late Night Thoughts",
-    subtitle: "Brain dump before sleep",
-    segments: [
-      { text: "Feeling a " },
-      { text: "sharp headache behind my left eye, probably too much caffeine today. ", category: 'health', highlightColor: allCategoryConfigs.health.highlight },
-      { text: "Also, " },
-      { text: "cancel the Netflix subscription, I never use it. ", category: 'finance', highlightColor: allCategoryConfigs.finance.highlight },
-      { text: "Remind me to " },
-      { text: "call Mom tomorrow, it's been a while.", category: 'social', highlightColor: allCategoryConfigs.social.highlight },
-    ],
-    categories: ['health', 'finance', 'social'],
-    extractedItems: [
-      { category: 'health', icon: '❤️', label: 'Health Log', content: 'Headache - too much caffeine' },
-      { category: 'finance', icon: '💰', label: 'Task', content: 'Cancel Netflix subscription' },
-      { category: 'social', icon: '👥', label: 'Reminder', content: 'Call Mom tomorrow' },
-    ]
-  },
-  // Scenario 3: Birthday Party Planning
-  {
-    title: "Son's Birthday Party",
-    subtitle: "Planning Checklist",
-    segments: [
-      { text: "First " },
-      { text: "of January we're going to have a birthday party for our son. ", category: 'events', highlightColor: allCategoryConfigs.events.highlight },
-      { text: "We will invite friends. Maybe " },
-      { text: "you can write a message to them as an invite. ", category: 'messages', highlightColor: allCategoryConfigs.messages.highlight },
-      { text: "We're having chicken salad. Can you make a " },
-      { text: "shopping list for that? ", category: 'shopping', highlightColor: allCategoryConfigs.shopping.highlight },
-      { text: "Also need a birthday gift." }
-    ],
-    categories: ['events', 'messages', 'shopping'],
-    extractedItems: [
-      { category: 'events', icon: '📅', label: 'Event', content: 'Birthday party - January 1st' },
-      { category: 'messages', icon: '💬', label: 'Draft', content: 'Party invitation for friends' },
-      { category: 'shopping', icon: '🛒', label: 'List', content: 'Chicken salad ingredients' },
-    ]
-  }
-];
-
-// Animation timing constants
-const RECORDING_START_TIME = 1.0; // Start recording after 1 second (no waiting for tap)
-const SINGLE_SCENARIO_DURATION = 18.0; // Each scenario takes 18 seconds
-const TOTAL_ANIMATION_DURATION = SINGLE_SCENARIO_DURATION * scenarios.length; // Total loop duration
+import {
+  type TranscriptSegment,
+  type ExtractedItem,
+  type Scenario,
+  allCategoryConfigs,
+  scenarios,
+  RECORDING_START_TIME,
+  SINGLE_SCENARIO_DURATION,
+  TOTAL_ANIMATION_DURATION,
+} from '../lib/scenarios';
 
 // Helper to get current scenario and elapsed time within that scenario
 const getScenarioState = () => {

@@ -10,6 +10,7 @@ import {
   setOnChatInputClick,
   setOnChatMessageSent,
   getPhoneScreenState,
+  CHAT_SUGGESTED_PROMPTS,
 } from './deviceState';
 
 import { Analytics } from '../lib/analytics';
@@ -37,6 +38,11 @@ export const ChatDemo: React.FC<ChatDemoProps> = ({ onStateChange, onMessageSent
     // Notify that a chat message was sent
     onMessageSent?.();
     Analytics.chatMessageSent(chatState.messages.length === 0);
+
+    // Track if this was a suggested question
+    if (CHAT_SUGGESTED_PROMPTS.includes(message)) {
+      Analytics.chatSuggestedQuestionClicked(message);
+    }
 
     // Add user message to state
     addChatMessage({ role: 'user', content: message });

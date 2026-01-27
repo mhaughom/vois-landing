@@ -13,9 +13,13 @@ const OrganizeSection = React.lazy(() => import('./components/OrganizeSection'))
 import { HeroDiscoveryDock, HeroDiscoveryContent, DiscoveryMode } from './components/HeroDiscoveryDock';
 import { TryNowDemo, DemoSteps, DemoStage } from './components/TryNowDemo';
 import { ChatDemo } from './components/ChatDemo';
+import { PhoneMockup } from './components/PhoneMockup';
+import { AppleWatchMockup } from './components/AppleWatchMockup';
+import { MobileScrollHero, BG_VARIANTS } from './components/MobileScrollHero';
 import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play } from 'lucide-react';
 import { CheckoutModal } from './components/CheckoutModal';
 import { useFounderSpots } from './hooks/useFounderSpots';
+import { useIsMobile } from './hooks/useIsMobile';
 import { Analytics } from './lib/analytics';
 
 const faqData = [
@@ -215,6 +219,11 @@ const App = () => {
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   const { remaining, isSoldOut } = useFounderSpots();
   const prefersReducedMotion = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
+  const [bgVariant, setBgVariant] = useState(0);
+  const [bgIntensity, setBgIntensity] = useState(1);
+  const pageLoadTime = useRef(performance.now());
+  const videoMilestonesRef = useRef(new Set<number>());
 
   // Demo state for step instructions
   const [demoStage, setDemoStage] = useState<DemoStage>('idle');
@@ -230,12 +239,29 @@ const App = () => {
     if (demoStage === 'results') {
       setHasCompletedDemo(true);
     }
+    if (demoStage === 'waiting') {
+      const elapsed = (performance.now() - pageLoadTime.current) / 1000;
+      Analytics.timeToAction('demo_start', Math.round(elapsed));
+    }
     // Reset chat states when a new recording starts so steps show again
     if (demoStage === 'recording') {
       setChatOpened(false);
       setChatMessageSent(false);
     }
   }, [demoStage]);
+
+  // Set session properties on mount
+  useEffect(() => {
+    const width = window.innerWidth;
+    const deviceType = width < 768 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop';
+    const isReturningVisitor = localStorage.getItem('vois_visited') === 'true';
+    localStorage.setItem('vois_visited', 'true');
+    Analytics.setSessionProperties({
+      device_type: deviceType,
+      referrer: document.referrer || 'direct',
+      is_returning_visitor: isReturningVisitor,
+    });
+  }, []);
 
   // Set up callback when chat is opened (sparkle icon tapped)
   useEffect(() => {
@@ -246,22 +272,35 @@ const App = () => {
     return () => setOnChatOpen(null);
   }, []);
 
-  // Track when pricing section scrolls into view
+  // Track scroll depth — fire once per section
   useEffect(() => {
-    const pricingEl = document.getElementById('pricing');
-    if (!pricingEl) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          Analytics.scrolledToPricing();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(pricingEl);
-    return () => observer.disconnect();
-  }, []);
+    const sections = ['hero', 'video-transition', 'retrieve', 'privacy', 'faq', 'pricing'];
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((sectionId) => {
+      const el = document.getElementById(sectionId);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            Analytics.sectionViewed(sectionId);
+            if (sectionId === 'pricing') {
+              Analytics.scrolledToPricing();
+              if (remaining !== null) {
+                Analytics.founderSpotsViewed(remaining);
+              }
+            }
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [remaining]);
 
   // Set up callback when a chat message is sent
   useEffect(() => {
@@ -336,6 +375,7 @@ const App = () => {
   // handler (not deferred to rAF) so it runs in the same frame as the browser's
   // scroll paint, eliminating the one-frame jitter.
   useEffect(() => {
+    if (isMobile) return; // No canvas on mobile
     const handleScroll = () => {
       if (canvasContainerRef.current) {
         canvasContainerRef.current.style.transform = `translateY(-${window.scrollY}px)`;
@@ -344,7 +384,7 @@ const App = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
 
   // Refs for section tracking
   const heroRef = useRef<HTMLElement>(null);
@@ -495,7 +535,12 @@ const App = () => {
 
   return (
     <div className="relative w-full min-h-screen font-sans bg-background scroll-smooth">
-      <Navbar />
+      <Navbar
+        onCycleBg={() => setBgVariant((v) => (v + 1) % BG_VARIANTS.length)}
+        bgVariant={bgVariant}
+        bgIntensity={bgIntensity}
+        onBgIntensityChange={setBgIntensity}
+      />
 
       {/* Video Modal */}
       <AnimatePresence>
@@ -588,14 +633,47 @@ const App = () => {
       <main className="w-full max-w-7xl mx-auto relative z-20">
         
         {/* HERO */}
-        <section ref={heroRef} id="hero" className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 pt-32 pb-24 gap-8 lg:gap-16 relative">
+        {isMobile ? (
+          <MobileScrollHero
+            heroRef={heroRef as React.RefObject<HTMLDivElement | null>}
+            onWatchVideo={() => {
+              Analytics.videoWatched();
+              setShowVideoModal(true);
+            }}
+            onTryNow={() => {}}
+            onGetAccess={() => {
+              Analytics.checkoutModalOpened('hero');
+              const elapsed = (performance.now() - pageLoadTime.current) / 1000;
+              Analytics.timeToAction('checkout_open', Math.round(elapsed));
+              setShowCheckoutModal(true);
+            }}
+            demoStage={demoStage}
+            demoControls={demoControls}
+            hasCompletedDemo={hasCompletedDemo}
+            chatOpened={chatOpened}
+            chatMessageSent={chatMessageSent}
+            remaining={remaining}
+            bgVariant={bgVariant}
+            bgIntensity={bgIntensity}
+            tryNowElement={
+              <TryNowDemo
+                hasCompletedDemo={hasCompletedDemo}
+                onStageChange={(stage, controls) => {
+                  setDemoStage(stage);
+                  setDemoControls(controls);
+                }}
+              />
+            }
+          />
+        ) : (
+        <section ref={heroRef} id="hero" className="min-h-screen flex flex-col lg:flex-row items-center sm:justify-center px-4 sm:px-6 md:px-16 pt-24 sm:pt-32 pb-12 sm:pb-24 gap-4 sm:gap-6 lg:gap-16 relative">
           
           {/* Right: 3D Devices - Fixed but scrolls with page via transform */}
           {/* Disabled when user prefers reduced motion for better performance */}
           {/* Only show after devicesReady to allow staged loading */}
           {/* Memoized to prevent re-renders from affecting 3D canvas */}
           {useMemo(() => (
-            !prefersReducedMotion && devicesReady ? (
+            !prefersReducedMotion && !isMobile && devicesReady ? (
               <div
                 ref={canvasContainerRef}
                 className="fixed inset-0 z-30 pointer-events-none"
@@ -604,15 +682,15 @@ const App = () => {
                 <DeviceScene />
               </div>
             ) : null
-          ), [prefersReducedMotion, devicesReady])}
+          ), [prefersReducedMotion, isMobile, devicesReady])}
 
 
           {/* Left: Text Content - with z-index to sit above 3D */}
           {/* Shifts left when video is playing to give more room */}
           <motion.div
-            className="flex-1 max-w-xl relative z-10"
+            className={`lg:flex-1 max-w-xl relative z-10 ${isMobile ? 'text-center flex flex-col items-center' : ''}`}
             animate={{
-              x: showVideoClose ? -60 : 0,
+              x: showVideoClose && !isMobile ? -60 : 0,
             }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
@@ -625,7 +703,7 @@ const App = () => {
                 marginBottom: discoveryMode ? '1rem' : '1.5rem'
               }}
               transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-              className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] tracking-tight"
             >
               {COPY.hero.headline}
             </motion.h1>
@@ -641,7 +719,7 @@ const App = () => {
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {/* Subheadline - types out */}
-                  <p className="text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-0 min-h-[2.5em]">
+                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-0 min-h-[2em] sm:min-h-[2.5em]">
                     {typedSubheadline}
                     {heroStage === 'subheadline' && (
                       <motion.span
@@ -652,12 +730,14 @@ const App = () => {
                     )}
                   </p>
 
-                  {/* Tags - with colorful wind wave effect */}
-                  <ColorWaveTags tags={heroTags} visible={visibleTags >= heroTags.length} />
+                  {/* Tags - with colorful wind wave effect (hidden on mobile — overflows) */}
+                  <div className="hidden sm:block">
+                    <ColorWaveTags tags={heroTags} visible={visibleTags >= heroTags.length} />
+                  </div>
 
                   {/* Buttons - CSS transition to avoid React re-render flicker */}
                   <div
-                    className="flex items-start gap-4 flex-wrap transition-opacity duration-700 ease-out"
+                    className="flex items-start justify-center sm:justify-start gap-4 flex-wrap transition-opacity duration-700 ease-out"
                     style={{
                       opacity: heroStage === 'buttons' || heroStage === 'complete' ? 1 : 0
                     }}
@@ -665,13 +745,21 @@ const App = () => {
                     {/* Watch Video - LEFT */}
                     <button
                       onClick={() => {
+                        if (isMobile) {
+                          // On mobile, show the video modal instead of 3D player
+                          Analytics.videoWatched();
+                          setShowVideoModal(true);
+                          return;
+                        }
                         if (showVideoClose) {
                           // End video
+                          Analytics.videoPaused('hero_3d', 0);
                           setVideoPlayState(false);
                           setShowVideoClose(false);
                         } else {
                           // Start video - also reset demo state
                           Analytics.videoWatched();
+                          Analytics.videoPlayed('hero_3d');
                           demoControls?.reset();
                           setVideoHoverState(true);
                           setVideoPlayState(true);
@@ -718,7 +806,12 @@ const App = () => {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => { Analytics.checkoutModalOpened('hero'); setShowCheckoutModal(true); }}
+                          onClick={() => {
+                            Analytics.checkoutModalOpened('hero');
+                            const elapsed = (performance.now() - pageLoadTime.current) / 1000;
+                            Analytics.timeToAction('checkout_open', Math.round(elapsed));
+                            setShowCheckoutModal(true);
+                          }}
                           className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
                           style={{
                             background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,235,255,0.85) 25%, rgba(235,245,255,0.85) 50%, rgba(255,245,235,0.85) 75%, rgba(255,255,255,0.85) 100%)',
@@ -817,12 +910,26 @@ const App = () => {
             </AnimatePresence>
           </motion.div>
 
+          {/* Mobile: Static device mockups as hero visual */}
+          {isMobile && (
+            <div className="relative flex items-end justify-center w-full flex-1" style={{ minHeight: '320px' }}>
+              {/* Phone mockup — scaled down */}
+              <div className="relative" style={{ transform: 'scale(0.45)', transformOrigin: 'bottom center', marginBottom: '-140px' }}>
+                <PhoneMockup activeSection="hero" />
+              </div>
+              {/* Watch mockup — overlapping bottom-right of phone */}
+              <div className="absolute" style={{ right: '8%', bottom: '0', transform: 'scale(0.5)', transformOrigin: 'bottom right' }}>
+                <AppleWatchMockup />
+              </div>
+            </div>
+          )}
+
           {/* Spacer to push content down if needed, but 3D is now fixed */}
-          <div className="flex-1 h-[600px] hidden lg:block" /> 
+          <div className="flex-1 h-[600px] hidden lg:block" />
 
           {/* Discovery Dock - Positioned at bottom left, scrolls with hero */}
-          <HeroDiscoveryDock 
-            activeMode={discoveryMode} 
+          <HeroDiscoveryDock
+            activeMode={discoveryMode}
             onModeChange={(mode) => {
               if (mode) Analytics.tabClicked(mode);
               setDiscoveryMode(mode);
@@ -830,13 +937,14 @@ const App = () => {
           />
 
         </section>
+        )}
 
         {/* THE UNIVERSAL LIE - Cinematic, borderless, Apple-style */}
         <section
           ref={videoTransitionRef}
           id="video-transition"
           className="relative min-h-screen flex items-center bg-white z-10"
-          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', scrollSnapAlign: 'start' }}
         >
           {/* Right: Typography - Parallax: scrolls slightly slower than video */}
           <motion.div
@@ -935,7 +1043,7 @@ const App = () => {
             />
           </motion.div>
 
-          {/* Mobile: Video at bottom with top fade */}
+          {/* Mobile: Static poster at bottom (saves bandwidth vs auto-playing video) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -943,19 +1051,13 @@ const App = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="md:hidden absolute bottom-0 left-0 right-0 h-[45vh] overflow-hidden"
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
+            <img
+              src="/videos/messy-man-poster.jpg"
+              alt=""
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
-              style={{
-                objectPosition: 'center 30%',
-              }}
-            >
-              <source src="/videos/messy-man-loop-optimized.mp4" type="video/mp4" />
-            </video>
+              style={{ objectPosition: 'center 30%' }}
+            />
             {/* Top fade for mobile */}
             <div
               className="absolute inset-0 pointer-events-none"
@@ -1089,9 +1191,14 @@ const App = () => {
               onClick={() => {
                 if (retrieveVideoRef.current) {
                   if (retrieveVideoPlaying) {
-                    retrieveVideoRef.current.pause();
+                    const vid = retrieveVideoRef.current;
+                    const pct = vid.duration ? Math.round((vid.currentTime / vid.duration) * 100) : 0;
+                    Analytics.videoPaused('retrieve', pct);
+                    vid.pause();
                     setRetrieveVideoPlaying(false);
                   } else {
+                    Analytics.videoPlayed('retrieve');
+                    videoMilestonesRef.current.clear();
                     retrieveVideoRef.current.play();
                     setRetrieveVideoPlaying(true);
                   }
@@ -1103,7 +1210,21 @@ const App = () => {
                   ref={retrieveVideoRef}
                   playsInline
                   className="w-full h-full object-cover"
-                  onEnded={() => setRetrieveVideoPlaying(false)}
+                  onTimeUpdate={() => {
+                    const vid = retrieveVideoRef.current;
+                    if (!vid || !vid.duration) return;
+                    const pct = Math.round((vid.currentTime / vid.duration) * 100);
+                    for (const milestone of [25, 50, 75, 100]) {
+                      if (pct >= milestone && !videoMilestonesRef.current.has(milestone)) {
+                        videoMilestonesRef.current.add(milestone);
+                        Analytics.videoProgress('retrieve', milestone);
+                      }
+                    }
+                  }}
+                  onEnded={() => {
+                    Analytics.videoCompleted('retrieve');
+                    setRetrieveVideoPlaying(false);
+                  }}
                 >
                   <source src="/videos/retrieve-placeholder.mp4" type="video/mp4" />
                 </video>
@@ -1181,7 +1302,7 @@ const App = () => {
                 >
                   <button
                     onClick={() => {
-                      if (openFaq !== index) Analytics.faqExpanded(faq.question);
+                      if (openFaq !== index) Analytics.faqExpanded(faq.question, index);
                       setOpenFaq(openFaq === index ? null : index);
                     }}
                     className="w-full py-6 flex items-center justify-between text-left group"
@@ -1317,12 +1438,12 @@ const App = () => {
                 <h4 className="text-slate-900 font-medium text-sm mb-4">Product</h4>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/login" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <Link to="/login" onClick={() => Analytics.externalLinkClicked('login')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Login
                     </Link>
                   </li>
                   <li>
-                    <a href="#" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <a href="#" onClick={() => Analytics.externalLinkClicked('download_ios')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Download iOS
                     </a>
                   </li>
@@ -1334,17 +1455,17 @@ const App = () => {
                 <h4 className="text-slate-900 font-medium text-sm mb-4">Legal</h4>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/legal#privacy" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <Link to="/legal#privacy" onClick={() => Analytics.externalLinkClicked('privacy_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Privacy Policy
                     </Link>
                   </li>
                   <li>
-                    <Link to="/legal#terms" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <Link to="/legal#terms" onClick={() => Analytics.externalLinkClicked('terms_of_service')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Terms of Service
                     </Link>
                   </li>
                   <li>
-                    <Link to="/legal#refund" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <Link to="/legal#refund" onClick={() => Analytics.externalLinkClicked('refund_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Refund Policy
                     </Link>
                   </li>
@@ -1356,13 +1477,13 @@ const App = () => {
                 <h4 className="text-slate-900 font-medium text-sm mb-4">Social</h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" className="text-slate-500 text-sm hover:text-slate-900 transition-colors flex items-center gap-2">
+                    <a href="#" onClick={() => Analytics.externalLinkClicked('twitter')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors flex items-center gap-2">
                       <X size={14} />
                       Twitter
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <a href="#" onClick={() => Analytics.externalLinkClicked('tiktok')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       TikTok
                     </a>
                   </li>
