@@ -57,18 +57,37 @@ const MobileCategoryRow: React.FC<{
 };
 
 // ─── Frame preloader ──────────────────────────────────────────────────────────
-function preloadFrames(basePath: string, count: number): Promise<HTMLImageElement[]> {
-  return Promise.all(
-    Array.from({ length: count }, (_, i) => {
-      const src = `${basePath}/frame_${String(i).padStart(3, '0')}.webp`;
-      return new Promise<HTMLImageElement>((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(img);
-        img.src = src;
-      });
-    })
-  );
+function preloadFrame(basePath: string, index: number): Promise<HTMLImageElement> {
+  const src = `${basePath}/frame_${String(index).padStart(3, '0')}.webp`;
+  return new Promise<HTMLImageElement>((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(img);
+    img.src = src;
+  });
+}
+
+function preloadFramesLazy(
+  basePath: string,
+  count: number,
+  startIndex: number,
+  onFrame: (index: number, img: HTMLImageElement) => void,
+): void {
+  let i = startIndex;
+  const loadNext = () => {
+    if (i >= count) return;
+    const idx = i++;
+    preloadFrame(basePath, idx).then((img) => {
+      onFrame(idx, img);
+      // Use requestIdleCallback if available, otherwise setTimeout
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(loadNext);
+      } else {
+        setTimeout(loadNext, 0);
+      }
+    });
+  };
+  loadNext();
 }
 
 // ─── Background gradient variants for A/B testing ────────────────────────────
@@ -249,7 +268,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }
 
       const step = delta / (window.innerHeight * 0.55);
-      progressRef.current = Math.min(1, Math.max(0, progressRef.current + step));
+      const maxP = maxProgressRef.current;
+      progressRef.current = Math.min(maxP, Math.max(0, progressRef.current + step));
       progress.set(progressRef.current);
     };
 
@@ -261,7 +281,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }
 
       const p = progressRef.current;
-      if (p > 0.85) {
+      const maxP = maxProgressRef.current;
+      if (maxP >= 1 && p > 0.85) {
         animate(progress, 1, { type: 'tween', duration: 0.15 });
         progressRef.current = 1;
         animationDoneRef.current = true;
@@ -281,9 +302,10 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         setHeroComplete(false);
       }
       const step = e.deltaY / (window.innerHeight * 0.55);
-      progressRef.current = Math.min(1, Math.max(0, progressRef.current + step));
+      const maxP = maxProgressRef.current;
+      progressRef.current = Math.min(maxP, Math.max(0, progressRef.current + step));
       progress.set(progressRef.current);
-      if (progressRef.current >= 1) {
+      if (progressRef.current >= maxP && maxP >= 1) {
         animationDoneRef.current = true;
         setHeroComplete(true);
       }
@@ -302,17 +324,80 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     };
   }, [gatePassed, progress]);
 
-  // ── Preload frames ─────────────────────────────────────────────────────────
+  // ── Scroll-driven animation after gate passes ─────────────────────────────
+  // Uses the same delta-based approach as the pre-gate touch handler for
+  // consistent smoothness. Scroll position maps directly to progress.
   useEffect(() => {
+    if (!gatePassed) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    let lastScrollY = window.scrollY;
+    const vh = window.innerHeight;
+
+    // Set initial value
+    const initialP = Math.min(1, Math.max(0, lastScrollY / vh));
+    progressRef.current = initialP;
+    progress.set(initialP);
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const delta = scrollY - lastScrollY;
+      lastScrollY = scrollY;
+
+      // Same delta-based step as the touch handler
+      const step = delta / (vh * 0.55);
+      progressRef.current = Math.min(1, Math.max(0, progressRef.current + step));
+      progress.set(progressRef.current);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [gatePassed, progress]);
+
+  // ── Preload frames ─────────────────────────────────────────────────────────
+  // Load frame 0 for both devices first so they appear immediately,
+  // then load the remaining frames lazily in the background.
+  const phoneFramesRef = useRef<HTMLImageElement[]>(new Array(PHONE_FRAME_COUNT));
+  const watchFramesRef = useRef<HTMLImageElement[]>(new Array(WATCH_FRAME_COUNT));
+  const phoneLoadedRef = useRef(0);
+  const watchLoadedRef = useRef(0);
+  const maxProgressRef = useRef(0);
+
+  useEffect(() => {
+    // Load first frames immediately
     Promise.all([
-      preloadFrames(PHONE_FRAMES_PATH, PHONE_FRAME_COUNT),
-      preloadFrames(WATCH_FRAMES_PATH, WATCH_FRAME_COUNT),
-    ]).then(([phone, watch]) => {
-      setPhoneFrames(phone);
-      setWatchFrames(watch);
+      preloadFrame(PHONE_FRAMES_PATH, 0),
+      preloadFrame(WATCH_FRAMES_PATH, 0),
+    ]).then(([phone0, watch0]) => {
+      phoneFramesRef.current[0] = phone0;
+      watchFramesRef.current[0] = watch0;
+      phoneLoadedRef.current = 1;
+      watchLoadedRef.current = 1;
+      maxProgressRef.current = 0; // Only frame 0 loaded → can't scroll yet
+      setPhoneFrames([...phoneFramesRef.current]);
+      setWatchFrames([...watchFramesRef.current]);
       setFramesLoaded(true);
-      drawToCanvas(phoneCanvasRef.current, phone[0]);
-      drawToCanvas(watchCanvasRef.current, watch[0]);
+      drawToCanvas(phoneCanvasRef.current, phone0);
+      drawToCanvas(watchCanvasRef.current, watch0);
+
+      const updateMaxProgress = () => {
+        const maxFrame = Math.min(phoneLoadedRef.current, watchLoadedRef.current) - 1;
+        maxProgressRef.current = maxFrame / (Math.max(PHONE_FRAME_COUNT, WATCH_FRAME_COUNT) - 1);
+      };
+
+      // Load remaining frames in the background (no re-renders needed —
+      // onProgressChange reads from the refs directly)
+      preloadFramesLazy(PHONE_FRAMES_PATH, PHONE_FRAME_COUNT, 1, (idx, img) => {
+        phoneFramesRef.current[idx] = img;
+        phoneLoadedRef.current = idx + 1;
+        updateMaxProgress();
+      });
+      preloadFramesLazy(WATCH_FRAMES_PATH, WATCH_FRAME_COUNT, 1, (idx, img) => {
+        watchFramesRef.current[idx] = img;
+        watchLoadedRef.current = idx + 1;
+        updateMaxProgress();
+      });
     }).catch(console.error);
   }, []);
 
@@ -349,11 +434,11 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
     if (phoneIdx !== currentPhoneFrame.current) {
       currentPhoneFrame.current = phoneIdx;
-      drawToCanvas(phoneCanvasRef.current, phoneFrames[phoneIdx]);
+      drawToCanvas(phoneCanvasRef.current, phoneFramesRef.current[phoneIdx]);
     }
     if (watchIdx !== currentWatchFrame.current) {
       currentWatchFrame.current = watchIdx;
-      drawToCanvas(watchCanvasRef.current, watchFrames[watchIdx]);
+      drawToCanvas(watchCanvasRef.current, watchFramesRef.current[watchIdx]);
     }
     if (phoneOverlayRef.current && phoneOverlayReady) {
       phoneOverlayRef.current.style.transform = getPhoneTransform(phoneIdx);
@@ -363,7 +448,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       watchOverlayRef.current.style.transform = getWatchTransform(watchIdx);
       watchOverlayRef.current.style.opacity = '1';
     }
-  }, [framesLoaded, phoneFrames, watchFrames, drawToCanvas, phoneOverlayReady, getPhoneTransform, watchOverlayReady, getWatchTransform]);
+  }, [framesLoaded, drawToCanvas, phoneOverlayReady, getPhoneTransform, watchOverlayReady, getWatchTransform]);
 
   useMotionValueEvent(progress, 'change', onProgressChange);
 
@@ -410,13 +495,17 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         }
       }}
       id="hero"
-      style={{ height: '100dvh' }}
+      style={{
+        height: gatePassed ? '200dvh' : '100dvh',
+        ...(gatePassed ? { pointerEvents: 'none' as const } : {}),
+      }}
       className="relative"
     >
       <div
         className="flex flex-col items-center overflow-hidden"
         style={{
-          height: '100%',
+          height: '100dvh',
+          ...(gatePassed ? { position: 'sticky' as const, top: 0 } : {}),
           paddingTop: 'env(safe-area-inset-top)',
           paddingBottom: 'env(safe-area-inset-bottom)',
           background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
@@ -475,7 +564,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         </motion.div>
 
         {/* ── Device frames area ──────────────────────────────────────── */}
-        <div className="relative flex-1 w-full flex items-center justify-center">
+        <div className="relative flex-1 w-full flex items-center justify-center pointer-events-none">
 
           {/* Category badge carousel (behind devices) */}
           <motion.div
@@ -639,6 +728,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           style={{
             opacity: isDemoActive ? 1 : buttonOpacity,
             y: isDemoActive ? 0 : buttonY,
+            pointerEvents: 'auto',
           }}
         >
           {hasCompletedDemo && (demoStage === 'idle' || demoStage === 'results') ? (
@@ -680,6 +770,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                   }, 150);
                 }}
                 disabled={skipped}
+                style={{ touchAction: 'manipulation' }}
                 className={`text-white pl-3 pr-6 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2.5 shadow-lg shadow-black/10 border border-slate-800 transition-all ${skipped ? 'bg-slate-600' : 'bg-slate-900'}`}
               >
                 <span className="flex items-center justify-center w-7 h-7 bg-white rounded-full">

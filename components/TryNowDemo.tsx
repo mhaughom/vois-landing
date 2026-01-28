@@ -886,6 +886,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                   onClick={enterWaitingMode}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  style={{ touchAction: 'manipulation' }}
                   className="bg-slate-100 text-slate-900 pl-3 pr-6 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2.5 shadow-lg shadow-black/5 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all"
                 >
                   <span className="flex items-center justify-center w-7 h-7 bg-slate-900 rounded-full">
