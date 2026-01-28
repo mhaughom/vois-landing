@@ -91,6 +91,7 @@ export const globalState = {
     isInputFocused: false,
   },
   heroShowcaseActive: true,
+  cardVerifications: {} as Record<number, 'verified' | 'declined'>,
 };
 
 // Callback holders — shared between setter functions and DeviceScene's click handlers
@@ -102,6 +103,7 @@ export const callbacks = {
   onStopRecordClick: null as (() => void) | null,
   onChatSendMessage: null as ((message: string) => void) | null,
   onChatInputClick: null as (() => void) | null,
+  onCardVerified: null as ((cardIndex: number, action: 'verified' | 'declined') => void) | null,
 };
 
 // --- Setter / Getter functions ---
@@ -216,6 +218,7 @@ export const setDemoRecording = (isRecording: boolean) => {
     globalState.demoState.items = [];
     globalState.demoState.tip = '';
     globalState.demoResultsStartTime = null;
+    globalState.cardVerifications = {};
   }
 };
 
@@ -397,4 +400,29 @@ export const setOnChatSendMessage = (callback: ((message: string) => void) | nul
 
 export const setOnChatInputClick = (callback: (() => void) | null) => {
   callbacks.onChatInputClick = callback;
+};
+
+// --- Card verification ---
+
+export const setOnCardVerified = (callback: ((cardIndex: number, action: 'verified' | 'declined') => void) | null) => {
+  callbacks.onCardVerified = callback;
+};
+
+export const setCardVerification = (cardIndex: number, action: 'verified' | 'declined') => {
+  globalState.cardVerifications[cardIndex] = action;
+  if (callbacks.onCardVerified) {
+    callbacks.onCardVerified(cardIndex, action);
+  }
+};
+
+export const getCardVerifications = () => globalState.cardVerifications;
+
+export const resetCardVerifications = () => {
+  globalState.cardVerifications = {};
+};
+
+export const areAllCardsVerified = (): boolean => {
+  const items = globalState.demoState.items;
+  if (items.length === 0) return false;
+  return items.every((_, i) => i in globalState.cardVerifications);
 };

@@ -34,16 +34,6 @@ export const DEMO_TIPS = [
   "VOIS can spot patterns: 'Why have I been getting headaches?'",
 ];
 
-// Category colors for extracted items
-const categoryColors: Record<string, { bg: string; border: string; text: string }> = {
-  task: { bg: 'bg-green-50', border: 'border-green-400', text: 'text-green-700' },
-  event: { bg: 'bg-blue-50', border: 'border-blue-400', text: 'text-blue-700' },
-  reminder: { bg: 'bg-purple-50', border: 'border-purple-400', text: 'text-purple-700' },
-  idea: { bg: 'bg-yellow-50', border: 'border-yellow-400', text: 'text-yellow-700' },
-  note: { bg: 'bg-slate-50', border: 'border-slate-400', text: 'text-slate-700' },
-  default: { bg: 'bg-slate-50', border: 'border-slate-300', text: 'text-slate-600' },
-};
-
 export type DemoStage = 'idle' | 'waiting' | 'recording' | 'processing' | 'results' | 'error';
 
 interface ExtractedItem {
@@ -93,11 +83,12 @@ export const DemoSteps: React.FC<{
   onStopRecording?: () => void;
   onReset?: () => void;
   chatOpened?: boolean;
-  chatMessageSent?: boolean;
-}> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageSent }) => {
+  chatMessageCount?: number;
+  allCardsVerified?: boolean;
+}> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageCount = 0, allCardsVerified = false }) => {
   const isMobile = useIsMobile();
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
-  const [dismissing, setDismissing] = useState(false);
+  const [demoPhase, setDemoPhase] = useState<'steps' | 'question' | 'chat'>('steps');
 
   // Cycle through suggestions during recording
   useEffect(() => {
@@ -113,145 +104,276 @@ export const DemoSteps: React.FC<{
     return () => clearInterval(interval);
   }, [stage]);
 
-  // Start dismissal animation when a chat message is sent
-  useEffect(() => {
-    if (chatMessageSent) {
-      setDismissing(true);
-    }
-  }, [chatMessageSent]);
-
-  // Reset dismissing state when a new recording starts
+  // Reset states when a new recording starts
   useEffect(() => {
     if (stage === 'recording' || stage === 'waiting') {
-      setDismissing(false);
+      setDemoPhase('steps');
     }
   }, [stage]);
 
   if (stage === 'idle' || stage === 'error') return null;
 
+  // Derived state for Phase 3 sub-steps
+  const hasSentTwoMessages = chatMessageCount >= 2;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
-      animate={dismissing ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
-      transition={dismissing ? { duration: 0.6, ease: 'easeOut' } : undefined}
+      animate={{ opacity: 1, y: 0 }}
       className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 mt-6 sm:mt-8 w-full"
     >
-      {/* Step 1 - Always visible once waiting starts */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-3"
-      >
-        <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
-          <span className="text-slate-400 mr-2">1.</span>
-          {isMobile ? 'Starting microphone...' : 'Tap record on your phone or watch'}
-        </span>
-        {stage !== 'waiting' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
-      </motion.div>
-
-      {/* Step 2 - Visible from recording onwards */}
-      {(stage === 'recording' || stage === 'processing' || stage === 'results') && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-2 items-center sm:items-start"
-        >
-          <div className="flex items-center gap-2 sm:gap-3">
-            <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'recording' ? 'text-slate-900' : 'text-slate-400'}`}>
-              <span className="text-slate-400 mr-2">2.</span>
-              Talk about your thoughts
-            </span>
-            {stage !== 'recording' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
-            {stage === 'recording' && (
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-                className="w-3 h-3 rounded-full bg-red-500 ml-1 flex-shrink-0"
-              />
-            )}
-          </div>
-
-          {/* Cycling suggestions - only during recording */}
-          {stage === 'recording' && (
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={currentSuggestion}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.3 }}
-                className="text-slate-400 text-sm sm:text-base md:text-lg sm:ml-8 italic max-w-[280px] sm:max-w-none"
-              >
-                Try mentioning {RECORDING_SUGGESTIONS[currentSuggestion]}...
-              </motion.p>
-            </AnimatePresence>
-          )}
-        </motion.div>
-      )}
-
-      {/* Step 3 - Visible from processing onwards */}
-      {(stage === 'processing' || stage === 'results') && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 sm:gap-3"
-        >
-          <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'processing' ? 'text-slate-900' : 'text-slate-400'}`}>
-            <span className="text-slate-400 mr-2">3.</span>
-            Watch AI organize your thoughts
-          </span>
-          {stage === 'processing' && (
+      <AnimatePresence mode="wait">
+        {/* Phase 1: Recording steps 1-3 + "Cool, show me more" */}
+        {demoPhase === 'steps' && (
+          <motion.div
+            key="initial-steps"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 w-full"
+          >
+            {/* Step 1 - Always visible once waiting starts */}
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-3"
             >
-              <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full flex-shrink-0" />
+              <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
+                <span className="text-slate-400 mr-2">1.</span>
+                {isMobile ? 'Starting microphone...' : 'Tap record on the phone or watch'}
+              </span>
+              {stage !== 'waiting' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
             </motion.div>
-          )}
-          {stage === 'results' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
-        </motion.div>
-      )}
 
-      {/* Step 4 - Try chat - Visible after results */}
-      {stage === 'results' && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col gap-1 items-center sm:items-start"
-        >
-          <div className="flex items-center gap-2 sm:gap-3">
-            <span className={`font-serif text-lg sm:text-xl md:text-2xl ${chatOpened ? 'text-slate-400' : 'text-slate-900'}`}>
-              <span className="text-slate-400 mr-2">4.</span>
-              Try your personal ChatGPT
-            </span>
-            {chatOpened && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
-          </div>
-          {!chatOpened && (
-            <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
-              Tap the ✦ icon at the bottom left of the phone
-            </span>
-          )}
-        </motion.div>
-      )}
+            {/* Step 2 - Visible from recording onwards */}
+            {(stage === 'recording' || stage === 'processing' || stage === 'results') && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex flex-col gap-2 items-center sm:items-start"
+              >
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'recording' ? 'text-slate-900' : 'text-slate-400'}`}>
+                    <span className="text-slate-400 mr-2">2.</span>
+                    Talk about your thoughts
+                  </span>
+                  {stage !== 'recording' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+                  {stage === 'recording' && (
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                      className="w-3 h-3 rounded-full bg-red-500 ml-1 flex-shrink-0"
+                    />
+                  )}
+                </div>
 
-      {/* Step 5 - Ask about your notes - Visible after chat is opened */}
-      {stage === 'results' && chatOpened && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col gap-1 items-center sm:items-start"
-        >
-          <span className="font-serif text-lg sm:text-xl md:text-2xl text-slate-900">
-            <span className="text-slate-400 mr-2">5.</span>
-            Ask anything about your notes
-          </span>
-          <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
-            Try a suggested question or type your own
-          </span>
-        </motion.div>
-      )}
+                {/* Cycling suggestions - only during recording */}
+                {stage === 'recording' && (
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={currentSuggestion}
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-slate-400 text-sm sm:text-base md:text-lg sm:ml-8 italic max-w-[280px] sm:max-w-none"
+                    >
+                      Try mentioning {RECORDING_SUGGESTIONS[currentSuggestion]}...
+                    </motion.p>
+                  </AnimatePresence>
+                )}
+              </motion.div>
+            )}
+
+            {/* Step 3 - Visible from processing onwards */}
+            {(stage === 'processing' || stage === 'results') && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 sm:gap-3"
+              >
+                <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'processing' ? 'text-slate-900' : 'text-slate-400'}`}>
+                  <span className="text-slate-400 mr-2">3.</span>
+                  Watch AI organize your thoughts
+                </span>
+                {stage === 'processing' && (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  >
+                    <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full flex-shrink-0" />
+                  </motion.div>
+                )}
+                {stage === 'results' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+              </motion.div>
+            )}
+
+            {/* "Cool, show me more" button - visible after results */}
+            {stage === 'results' && (
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                onClick={() => setDemoPhase('question')}
+                className="mt-2 px-8 py-3 rounded-full text-base font-medium bg-slate-900 text-white shadow-lg shadow-black/10 hover:bg-slate-800 active:scale-95 transition-all duration-200"
+              >
+                Cool, show me more
+              </motion.button>
+            )}
+          </motion.div>
+        )}
+
+        {/* Phase 2: Question — "Want to try the AI?" with Yes / No */}
+        {demoPhase === 'question' && (
+          <motion.div
+            key="question-phase"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className="flex flex-col items-center sm:items-start gap-5 w-full"
+          >
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-slate-900 leading-snug">
+              Want to try the AI that can retrieve anything you have said to it?
+            </p>
+            <div className="flex items-center gap-3">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setDemoPhase('chat')}
+                className="px-8 py-3 rounded-full text-base font-medium bg-slate-900 text-white shadow-lg shadow-black/10 hover:bg-slate-800 transition-all duration-200"
+              >
+                Yes
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onReset?.()}
+                className="px-8 py-3 rounded-full text-base font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-200"
+              >
+                No
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Phase 3: Chat steps — multi-step progression */}
+        {demoPhase === 'chat' && (
+          <motion.div
+            key="chat-step"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 w-full"
+          >
+            {/* Step 1: Tap bottom left of the phone */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col gap-1 items-center sm:items-start"
+            >
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className={`font-serif text-lg sm:text-xl md:text-2xl ${chatOpened ? 'text-slate-400' : 'text-slate-900'}`}>
+                  <span className="text-slate-400 mr-2">1.</span>
+                  Tap the bottom left of the phone
+                </span>
+                {chatOpened && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+              </div>
+              {!chatOpened && (
+                <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
+                  Open the ✦ icon to try your personal ChatGPT
+                </span>
+              )}
+            </motion.div>
+
+            {/* Step 2: Ask anything about your notes — visible after chat opened */}
+            {chatOpened && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="flex flex-col gap-2 items-center sm:items-start"
+              >
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${hasSentTwoMessages ? 'text-slate-400' : 'text-slate-900'}`}>
+                    <span className="text-slate-400 mr-2">2.</span>
+                    Ask anything about your notes
+                  </span>
+                  {hasSentTwoMessages && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+                </div>
+                {!hasSentTwoMessages && (
+                  <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
+                    Try the suggested prompts or type your own
+                  </span>
+                )}
+
+                {/* Info note — always visible once chat opened */}
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed mt-1 sm:ml-7">
+                  For your information, this is a test user. But you get the point.
+                </p>
+              </motion.div>
+            )}
+
+            {/* Step 3: Verify or decline action cards — visible after 2 messages */}
+            {hasSentTwoMessages && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="flex flex-col gap-1 items-center sm:items-start"
+              >
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${allCardsVerified ? 'text-slate-400' : 'text-slate-900'}`}>
+                    <span className="text-slate-400 mr-2">3.</span>
+                    Verify or decline the action cards
+                  </span>
+                  {allCardsVerified && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+                </div>
+                {!allCardsVerified && (
+                  <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
+                    Tap ✓ or ✕ on each card on the phone
+                  </span>
+                )}
+              </motion.div>
+            )}
+
+            {/* "Do you want to see more?" — visible after all cards verified */}
+            {allCardsVerified && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-col gap-3 items-center sm:items-start mt-2"
+              >
+                <p className="font-serif text-xl sm:text-2xl md:text-3xl text-slate-900 leading-snug">
+                  Do you want to see more?
+                </p>
+                <div className="flex items-center gap-3">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => {
+                      onReset?.();
+                      document.getElementById('video-transition')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="px-8 py-3 rounded-full text-base font-medium bg-slate-900 text-white shadow-lg shadow-black/10 hover:bg-slate-800 transition-all duration-200"
+                  >
+                    Yes
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => onReset?.()}
+                    className="px-8 py-3 rounded-full text-base font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-200"
+                  >
+                    No
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Cancel button when waiting */}
       {stage === 'waiting' && onReset && (
@@ -454,13 +576,21 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   const startRecording = async () => {
     try {
       // Request microphone access
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          sampleRate: 44100,
-        },
-      });
+      // Note: avoid specifying sampleRate — iOS Safari doesn't support it
+      // and will throw an OverconstrainedError.
+      let stream: MediaStream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+          },
+        });
+      } catch (constraintErr) {
+        // Fallback: some devices reject even echoCancellation/noiseSuppression
+        console.warn('getUserMedia failed with constraints, retrying with audio:true', constraintErr);
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      }
 
       streamRef.current = stream;
 
@@ -522,11 +652,30 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     } catch (err: any) {
       console.error('Microphone access error:', err);
       if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-        setErrorMessage('Please allow microphone access to try VOIS');
+        // Check if permission is permanently blocked
+        let permanentlyBlocked = false;
+        try {
+          const status = await navigator.permissions.query({ name: 'microphone' as PermissionName });
+          permanentlyBlocked = status.state === 'denied';
+        } catch {
+          // Permissions API not supported (e.g. Safari) — assume blocked after denial
+          permanentlyBlocked = true;
+        }
+        if (permanentlyBlocked) {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+          setErrorMessage(
+            isIOS
+              ? 'Mic blocked. Reload the page to allow access.'
+              : 'Mic blocked. Tap the lock icon in the address bar to allow.'
+          );
+        } else {
+          setErrorMessage('Please allow microphone access to try VOIS');
+        }
         Analytics.demoMicrophoneDenied();
       } else {
+        console.error('Microphone error type:', err.name, err.message);
         setErrorMessage('Could not access microphone. Please try again.');
-        Analytics.demoError('microphone_access', err.message || 'Unknown error');
+        Analytics.demoError('microphone_access', `${err.name}: ${err.message}` || 'Unknown error');
       }
       setStage('error');
       setDemoError('microphone_denied');
@@ -737,14 +886,13 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                   onClick={enterWaitingMode}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="bg-slate-100 text-slate-900 pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-black/5 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all"
+                  className="bg-slate-100 text-slate-900 pl-3 pr-6 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2.5 shadow-lg shadow-black/5 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all"
                 >
-                  <span className="flex items-center justify-center w-9 h-9 bg-slate-900 rounded-full">
-                    <Mic size={14} className="text-white" />
+                  <span className="flex items-center justify-center w-7 h-7 bg-slate-900 rounded-full">
+                    <Mic size={12} className="text-white" />
                   </span>
-                  <span className="font-medium">Try Now</span>
+                  <span className="font-medium">Try Demo</span>
                 </motion.button>
-                <span className="text-slate-400 text-xs mt-1.5">Speak for 30 seconds</span>
               </>
             )}
           </motion.div>
@@ -759,13 +907,19 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
             exit={{ opacity: 0 }}
             className="flex items-center gap-3"
           >
-            <div className="bg-red-50 text-red-700 px-6 py-3 rounded-full text-sm font-medium flex items-center gap-2 border border-red-200">
-              <AlertCircle size={16} />
-              <span className="max-w-[200px] truncate">{errorMessage}</span>
+            <div className="bg-red-50 text-red-700 px-6 py-3 rounded-2xl text-sm font-medium flex items-center gap-2 border border-red-200">
+              <AlertCircle size={16} className="flex-shrink-0" />
+              <span>{errorMessage}</span>
             </div>
 
             <motion.button
-              onClick={reset}
+              onClick={() => {
+                setErrorMessage('');
+                setStage('idle');
+                setDemoError(null);
+                // Re-attempt recording directly
+                setTimeout(() => enterWaitingMode(), 50);
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-slate-100 hover:bg-slate-200 text-slate-700 p-3 rounded-full transition-colors"

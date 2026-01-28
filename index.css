@@ -5,17 +5,12 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
   background-color: #F8F9FA;
+  overflow-x: clip;
 }
 
-/* On mobile the hero is touch-driven, not scroll-driven.
-   Disable all CSS snap so downstream sections don't pull the scroll. */
-@media (max-width: 639px) {
-  html {
-    scroll-snap-type: none;
-  }
-}
+/* Hero animation is scroll-driven on all screen sizes.
+   No CSS scroll-snap — the page scrolls as one continuous document. */
 
 
 /* Smooth scroll snap animation */
@@ -65,6 +60,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #F8F9FA;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

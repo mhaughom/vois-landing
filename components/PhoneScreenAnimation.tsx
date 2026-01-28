@@ -7,6 +7,7 @@ import {
   TYPING_SPEED,
   HIGHLIGHT_SPEED,
 } from '../lib/scenarios';
+import { globalState } from './deviceState';
 
 // ─── Props ───────────────────────────────────────────────────────────────────
 interface PhoneScreenAnimationProps {
@@ -14,31 +15,14 @@ interface PhoneScreenAnimationProps {
   className?: string;
 }
 
-// ─── Highlight colors (70% opacity — matches DeviceScene canvas exactly) ─────
-const highlightColors: Record<string, string> = {
-  work:     'rgba(187, 247, 208, 0.7)',
-  errands:  'rgba(254, 215, 170, 0.7)',
-  ideas:    'rgba(254, 240, 138, 0.7)',
-  health:   'rgba(254, 202, 202, 0.7)',
-  finance:  'rgba(165, 243, 252, 0.7)',
-  social:   'rgba(251, 207, 232, 0.7)',
-  events:   'rgba(191, 219, 254, 0.7)',
-  messages: 'rgba(251, 207, 232, 0.7)',
-  shopping: 'rgba(221, 214, 254, 0.7)',
-};
+// ─── Colors — unified from lib/categoryColors ───────────────────────────────
+import {
+  CATEGORY_CARD_COLORS as cardColors,
+  CATEGORY_HIGHLIGHT_COLORS as highlightColors,
+  DEFAULT_CARD_COLOR,
+} from '../lib/categoryColors';
 
-// ─── Card pastel colors (matches DeviceScene canvas exactly) ─────────────────
-const cardColors: Record<string, { bg: string; accent: string; text: string }> = {
-  work:     { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
-  errands:  { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c' },
-  ideas:    { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
-  health:   { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626' },
-  finance:  { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2' },
-  social:   { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777' },
-  events:   { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
-  messages: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777' },
-  shopping: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
-};
+const DEMO_BAR_COUNT = 24;
 
 // ─── Component ───────────────────────────────────────────────────────────────
 export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
@@ -61,6 +45,16 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
   // Segment span refs per scenario
   const segmentSpansRef = useRef<HTMLSpanElement[][]>([]);
   const currentScenarioRef = useRef(-1);
+
+  // ── Demo mode refs ──────────────────────────────────────────────────────
+  const demoOverlayRef = useRef<HTMLDivElement>(null);
+  const demoDotRef = useRef<HTMLDivElement>(null);
+  const demoTimerRef = useRef<HTMLSpanElement>(null);
+  const demoStatusRef = useRef<HTMLSpanElement>(null);
+  const demoBarsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const demoModeRef = useRef<'scenario' | 'recording' | 'processing' | 'results'>('scenario');
+  const demoResultsBuiltRef = useRef(false);
+  const demoResultsRevealStart = useRef<number | null>(null);
 
   // ── Build transcript spans for a scenario ──────────────────────────────
   const buildTranscript = useCallback((scenarioIndex: number) => {
@@ -169,6 +163,147 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
     });
   }, []);
 
+  // ── Build demo results transcript (from real API data) ─────────────────
+  const buildDemoTranscript = useCallback(() => {
+    const el = transcriptRef.current;
+    if (!el) return;
+
+    const { transcript, highlights } = globalState.demoState;
+    el.innerHTML = '';
+    const spans: HTMLSpanElement[] = [];
+
+    if (!highlights || highlights.length === 0) {
+      // No highlights — just show plain transcript
+      const span = document.createElement('span');
+      span.textContent = transcript;
+      span.style.visibility = 'visible';
+      span.style.opacity = '1';
+      spans.push(span);
+      el.appendChild(span);
+    } else {
+      // Build segments from highlights
+      const sorted = [...highlights].sort((a, b) => a.start - b.start);
+      let cursor = 0;
+
+      sorted.forEach((hl) => {
+        // Text before highlight
+        if (hl.start > cursor) {
+          const before = document.createElement('span');
+          before.textContent = transcript.substring(cursor, hl.start);
+          before.style.visibility = 'visible';
+          before.style.opacity = '0';
+          spans.push(before);
+          el.appendChild(before);
+        }
+        // Highlighted text
+        const hlSpan = document.createElement('span');
+        hlSpan.textContent = hl.text || transcript.substring(hl.start, hl.end);
+        hlSpan.style.visibility = 'visible';
+        hlSpan.style.opacity = '0';
+        hlSpan.style.borderRadius = '4px';
+        hlSpan.style.padding = '2px 0';
+        const color = highlightColors[hl.category] || 'rgba(187,247,208,0.7)';
+        hlSpan.style.background = color;
+        spans.push(hlSpan);
+        el.appendChild(hlSpan);
+        cursor = hl.end;
+      });
+
+      // Remaining text after last highlight
+      if (cursor < transcript.length) {
+        const after = document.createElement('span');
+        after.textContent = transcript.substring(cursor);
+        after.style.visibility = 'visible';
+        after.style.opacity = '0';
+        spans.push(after);
+        el.appendChild(after);
+      }
+    }
+
+    // Store spans for animation
+    segmentSpansRef.current[999] = spans;
+    demoResultsRevealStart.current = Date.now();
+  }, []);
+
+  // ── Build demo results cards (from real API data) ──────────────────────
+  const buildDemoCards = useCallback(() => {
+    const container = cardsContainerRef.current;
+    if (!container) return;
+
+    const { items } = globalState.demoState;
+    container.innerHTML = '';
+    cardRefs.current = [];
+
+    items.forEach((item) => {
+      const category = item.type?.toLowerCase() || 'task';
+      const colors = cardColors[category] || cardColors.task;
+
+      const card = document.createElement('div');
+      card.style.cssText = `
+        display: flex; align-items: center;
+        border-radius: 24px; background: ${colors.bg};
+        opacity: 0; transform: translateY(6px);
+        will-change: opacity, transform;
+        padding: 0; overflow: hidden;
+        height: 9.5%;
+        min-height: 48px;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      `;
+
+      // Left accent bar
+      const bar = document.createElement('div');
+      bar.style.cssText = `
+        width: 4px; align-self: stretch; flex-shrink: 0;
+        display: flex; flex-direction: column;
+      `;
+      const barTop = document.createElement('div');
+      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      const barMid = document.createElement('div');
+      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
+      const barBot = document.createElement('div');
+      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      bar.appendChild(barTop);
+      bar.appendChild(barMid);
+      bar.appendChild(barBot);
+      card.appendChild(bar);
+
+      // Icon
+      const icon = document.createElement('span');
+      icon.textContent = item.icon || '📋';
+      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 10px;';
+      card.appendChild(icon);
+
+      // Text wrapper
+      const textWrap = document.createElement('div');
+      textWrap.style.cssText = 'flex: 1; min-width: 0; margin-left: 8px;';
+      const label = document.createElement('div');
+      label.textContent = (item.type || 'Task').charAt(0).toUpperCase() + (item.type || 'task').slice(1);
+      label.style.cssText = `font-size: 11px; font-weight: 600; color: ${colors.text}; letter-spacing: 0.02em;`;
+      const content = document.createElement('div');
+      content.textContent = item.content;
+      content.style.cssText = 'font-size: 13px; font-weight: 500; color: #374151; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;';
+      textWrap.appendChild(label);
+      textWrap.appendChild(content);
+      card.appendChild(textWrap);
+
+      // Action buttons
+      const btns = document.createElement('div');
+      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 10px; flex-shrink: 0;';
+      const check = document.createElement('span');
+      check.textContent = '\u2713';
+      check.style.cssText = `font-size: 14px; font-weight: 600; color: ${colors.accent}; line-height: 1;`;
+      const dismiss = document.createElement('span');
+      dismiss.textContent = '\u2715';
+      dismiss.style.cssText = 'font-size: 13px; font-weight: 500; color: #cbd5e1; line-height: 1;';
+      btns.appendChild(check);
+      btns.appendChild(dismiss);
+      card.appendChild(btns);
+
+      container.appendChild(card);
+      cardRefs.current.push(card);
+    });
+  }, []);
+
   // ── Main animation tick — rAF, direct DOM mutations only ───────────────
   const tick = useCallback(() => {
     // Update clock
@@ -177,6 +312,187 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       const h = now.getHours();
       const m = String(now.getMinutes()).padStart(2, '0');
       clockRef.current.textContent = `${h}:${m}`;
+    }
+
+    // ── Check demo state ─────────────────────────────────────────────────
+    const demoState = globalState.demoState;
+    const isDemoRecording = demoState.isRecording;
+    const isDemoProcessing = demoState.isProcessing;
+    const hasDemoResults = demoState.transcript.length > 0 && demoState.items.length > 0 && !isDemoRecording && !isDemoProcessing;
+
+    let currentMode: 'scenario' | 'recording' | 'processing' | 'results';
+    if (isDemoRecording) currentMode = 'recording';
+    else if (isDemoProcessing) currentMode = 'processing';
+    else if (hasDemoResults) currentMode = 'results';
+    else currentMode = 'scenario';
+
+    // ── Mode transitions ─────────────────────────────────────────────────
+    if (currentMode !== demoModeRef.current) {
+      const prevMode = demoModeRef.current;
+      demoModeRef.current = currentMode;
+
+      if (currentMode === 'results' && !demoResultsBuiltRef.current) {
+        demoResultsBuiltRef.current = true;
+        buildDemoTranscript();
+        buildDemoCards();
+      }
+
+      if (currentMode === 'recording') {
+        // Reset results state for fresh recording (handles retry)
+        demoResultsBuiltRef.current = false;
+        demoResultsRevealStart.current = null;
+      }
+
+      if (currentMode === 'scenario') {
+        demoResultsBuiltRef.current = false;
+        demoResultsRevealStart.current = null;
+        // Force scenario rebuild on return
+        currentScenarioRef.current = -1;
+      }
+    }
+
+    // ── Demo recording / processing overlay ──────────────────────────────
+    if (currentMode === 'recording' || currentMode === 'processing') {
+      // Show demo overlay, hide logo and scenario content
+      if (demoOverlayRef.current) {
+        demoOverlayRef.current.style.opacity = '1';
+        demoOverlayRef.current.style.pointerEvents = 'auto';
+      }
+      if (logoRef.current) {
+        logoRef.current.style.opacity = '0';
+        logoRef.current.style.pointerEvents = 'none';
+      }
+
+      if (currentMode === 'recording') {
+        // Update waveform bars with real audio levels
+        const levels = demoState.audioLevels;
+        for (let i = 0; i < DEMO_BAR_COUNT; i++) {
+          const bar = demoBarsRef.current[i];
+          if (!bar) continue;
+          const level = levels[i] || 0.1;
+          const h = 8 + level * 50;
+          bar.style.height = `${h}px`;
+          bar.style.opacity = String(0.5 + level * 0.5);
+        }
+
+        // Update timer
+        if (demoTimerRef.current) {
+          const secs = demoState.elapsed;
+          const mins = Math.floor(secs / 60);
+          const displaySecs = secs % 60;
+          demoTimerRef.current.textContent = `${mins}:${String(displaySecs).padStart(2, '0')}`;
+          demoTimerRef.current.style.fontSize = '48px';
+        }
+
+        // Pulse recording dot
+        if (demoDotRef.current) {
+          const pulse = 0.6 + Math.sin(Date.now() / 300) * 0.4;
+          demoDotRef.current.style.opacity = String(pulse);
+        }
+
+        // Update status text
+        if (demoStatusRef.current) {
+          demoStatusRef.current.textContent = 'Recording...';
+          demoStatusRef.current.style.color = '#ef4444';
+        }
+      } else {
+        // Processing mode
+        // Subtle pulsing bars
+        for (let i = 0; i < DEMO_BAR_COUNT; i++) {
+          const bar = demoBarsRef.current[i];
+          if (!bar) continue;
+          const t = Date.now() * 0.001;
+          const level = 0.2 + Math.sin(t * 2 + i * 0.3) * 0.1;
+          bar.style.height = `${8 + level * 30}px`;
+          bar.style.opacity = '0.4';
+        }
+
+        // Update timer to show processing state
+        if (demoTimerRef.current) {
+          const dots = '.'.repeat(1 + Math.floor((Date.now() / 500) % 3));
+          demoTimerRef.current.textContent = `Processing${dots}`;
+          demoTimerRef.current.style.fontSize = '18px';
+        }
+
+        // Hide recording dot
+        if (demoDotRef.current) {
+          demoDotRef.current.style.opacity = '0';
+        }
+
+        // Show tip
+        if (demoStatusRef.current) {
+          demoStatusRef.current.textContent = demoState.tip || 'Analyzing your voice note...';
+          demoStatusRef.current.style.color = '#94a3b8';
+        }
+      }
+
+      return; // Skip normal scenario animation
+    }
+
+    // ── Demo results mode ────────────────────────────────────────────────
+    if (currentMode === 'results') {
+      // Hide demo overlay
+      if (demoOverlayRef.current) {
+        demoOverlayRef.current.style.opacity = '0';
+        demoOverlayRef.current.style.pointerEvents = 'none';
+      }
+      if (logoRef.current) {
+        logoRef.current.style.opacity = '0';
+        logoRef.current.style.pointerEvents = 'none';
+      }
+
+      // Animate transcript reveal (typewriter effect)
+      const revealStart = demoResultsRevealStart.current;
+      const spans = segmentSpansRef.current[999];
+      if (spans && revealStart) {
+        const elapsed = (Date.now() - revealStart) / 1000;
+        const totalText = globalState.demoState.transcript;
+        const revealedChars = Math.min(Math.floor(elapsed * 60), totalText.length); // 60 chars/sec
+
+        let charCount = 0;
+        spans.forEach((span) => {
+          const text = span.textContent || '';
+          const segLen = text.length;
+          const segStart = charCount;
+          const segEnd = charCount + segLen;
+
+          if (revealedChars >= segEnd) {
+            span.style.opacity = '1';
+          } else if (revealedChars > segStart) {
+            span.style.opacity = '1';
+          } else {
+            span.style.opacity = '0';
+          }
+
+          charCount += segLen;
+        });
+      }
+
+      // Animate card reveal (staggered fade-in after transcript is mostly revealed)
+      if (revealStart) {
+        const elapsed = (Date.now() - revealStart) / 1000;
+        const transcriptDuration = (globalState.demoState.transcript.length / 60) + 0.3;
+        cardRefs.current.forEach((card, i) => {
+          if (!card) return;
+          const cardDelay = transcriptDuration + i * 0.2;
+          if (elapsed > cardDelay) {
+            const cardElapsed = elapsed - cardDelay;
+            const opacity = Math.min(1, cardElapsed / 0.3);
+            card.style.opacity = String(opacity);
+            card.style.transform = opacity >= 1 ? 'translateY(0)' : `translateY(${6 * (1 - opacity)}px)`;
+          }
+        });
+      }
+
+      if (cardsHeaderRef.current) cardsHeaderRef.current.style.opacity = '1';
+      return;
+    }
+
+    // ── Normal scenario mode ─────────────────────────────────────────────
+    // Hide demo overlay
+    if (demoOverlayRef.current) {
+      demoOverlayRef.current.style.opacity = '0';
+      demoOverlayRef.current.style.pointerEvents = 'none';
     }
 
     const state = getScenarioState(startTimeRef.current);
@@ -324,7 +640,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       // Reset opacity after scenario change
       spans.forEach(s => { if (s.style.opacity !== '1') s.style.opacity = '1'; });
     }
-  }, [buildTranscript, buildCards]);
+  }, [buildTranscript, buildCards, buildDemoTranscript, buildDemoCards]);
 
   // ── Animation loop with IntersectionObserver ───────────────────────────
   useEffect(() => {
@@ -468,6 +784,96 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         </span>
         <span style={{ fontSize: 18, color: '#94a3b8', marginTop: 4 }}>
           Listening...
+        </span>
+      </div>
+
+      {/* ── Demo Recording / Processing overlay ────────────────────────── */}
+      <div
+        ref={demoOverlayRef}
+        style={{
+          position: 'absolute', inset: 0, zIndex: 25,
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          background: '#f8f9fa',
+          transition: 'opacity 0.3s ease',
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        {/* VOIS Logo */}
+        <div style={{
+          width: 56, height: 56, borderRadius: 16,
+          background: '#1a1a1a',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          marginBottom: 16,
+        }}>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="6" width="3" height="12" rx="1.5" fill="white" />
+            <rect x="10.5" y="3" width="3" height="18" rx="1.5" fill="white" />
+            <rect x="17" y="8" width="3" height="8" rx="1.5" fill="white" />
+          </svg>
+        </div>
+
+        {/* Recording dot + label */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+          <div
+            ref={demoDotRef}
+            style={{
+              width: 10, height: 10, borderRadius: '50%',
+              background: '#ef4444',
+            }}
+          />
+          <span style={{ fontSize: 16, fontWeight: 600, color: '#ef4444', letterSpacing: '0.02em' }}>
+            Recording
+          </span>
+        </div>
+
+        {/* Timer */}
+        <span
+          ref={demoTimerRef}
+          style={{
+            fontSize: 48, fontWeight: 700,
+            color: '#1a1a1a', fontFamily: 'monospace',
+            letterSpacing: '0.05em',
+            marginBottom: 20,
+          }}
+        >
+          0:00
+        </span>
+
+        {/* Waveform bars */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          gap: 3, height: 60, width: '80%',
+          marginBottom: 16,
+        }}>
+          {Array.from({ length: DEMO_BAR_COUNT }, (_, i) => (
+            <div
+              key={i}
+              ref={el => { demoBarsRef.current[i] = el; }}
+              style={{
+                width: 4, minWidth: 3,
+                borderRadius: 2,
+                background: '#ef4444',
+                height: 8,
+                transition: 'height 80ms ease-out',
+                willChange: 'height',
+                flexShrink: 0,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Status / tip text */}
+        <span
+          ref={demoStatusRef}
+          style={{
+            fontSize: 14, color: '#94a3b8',
+            fontWeight: 500, textAlign: 'center',
+            maxWidth: '80%',
+          }}
+        >
+          Recording...
         </span>
       </div>
 

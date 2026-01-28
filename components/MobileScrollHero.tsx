@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useTransform, useMotionValueEvent, useSpring, useMotionValue, animate } from 'framer-motion';
 import { DemoSteps, DemoStage } from './TryNowDemo';
+import { ArrowDown } from 'lucide-react';
 import { PhoneScreenAnimation } from './PhoneScreenAnimation';
 import { WatchRecordingAnimation } from './WatchRecordingAnimation';
 import { useScreenOverlay } from '../hooks/useScreenOverlay';
@@ -98,11 +99,14 @@ interface MobileScrollHeroProps {
   demoControls: { stopRecording: () => void; reset: () => void; startNew: () => void } | null;
   hasCompletedDemo: boolean;
   chatOpened: boolean;
-  chatMessageSent: boolean;
+  chatMessageCount: number;
+  allCardsVerified: boolean;
   remaining: number | null;
   tryNowElement: React.ReactNode;
   bgVariant?: number;
   bgIntensity?: number;
+  onSkipDemo?: () => void;
+  gatePassed?: boolean;
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -115,11 +119,14 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   demoControls,
   hasCompletedDemo,
   chatOpened,
-  chatMessageSent,
+  chatMessageCount,
+  allCardsVerified,
   remaining,
   tryNowElement,
   bgVariant = 0,
   bgIntensity = 1,
+  onSkipDemo,
+  gatePassed = false,
 }) => {
   const containerRef = useRef<HTMLElement>(null);
   const phoneCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -171,16 +178,18 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   const headlineY = useSpring(headlineYRaw, springConfig);
 
   const phoneScaleRaw = useTransform(progress, [0, 1], [1, 1.5]);
-  const phoneYRaw = useTransform(progress, [0, 1], [0, -40]);
+  const phoneYRaw = useTransform(progress, [0, 1], [0, -90]);
   const phoneXRaw = useTransform(progress, [0, 1], [20, 30]);
   const watchScaleRaw = useTransform(progress, [0, 1], [1, 1.45]);
   const watchXRaw = useTransform(progress, [0, 1], [20, -60]);
+  const watchYRaw = useTransform(progress, [0, 1], [0, -24]);
 
   const phoneScale = useSpring(phoneScaleRaw, springConfig);
   const phoneY = useSpring(phoneYRaw, springConfig);
   const phoneX = useSpring(phoneXRaw, springConfig);
   const watchScale = useSpring(watchScaleRaw, springConfig);
   const watchX = useSpring(watchXRaw, springConfig);
+  const watchY = useSpring(watchYRaw, springConfig);
 
   const carouselYRaw = useTransform(progress, [0, 0.727], [0, -300]);
   const carouselYSmooth = useSpring(carouselYRaw, springConfig);
@@ -189,39 +198,73 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   const bottomRowItems = allWhyBenefits.slice(10, 20);
 
   const buttonOpacity = useTransform(progress, [0, 0.55, 0.80], [0, 0, 1]);
-  const buttonYRaw = useTransform(progress, [0.55, 1.0], [120, 0]);
+  const buttonYRaw = useTransform(progress, [0.55, 1.0], [120, -30]);
   const buttonY = useSpring(buttonYRaw, springConfig);
 
   const isDemoActive = demoStage !== 'idle';
+  const [skipped, setSkipped] = useState(false);
 
   // ── Touch / wheel event handling ───────────────────────────────────────────
   // Swipe up on the hero drives the animation from 0→1.
-  // When complete, the hero stops capturing input and normal page scroll resumes.
+  // After animation completes, touches are still captured (hard stop) until
+  // the gate passes (user clicks Skip Demo or completes the demo).
+  const animationDoneRef = useRef(false);
+
   useEffect(() => {
     const el = containerRef.current;
-    if (!el || heroComplete) return;
+    if (!el || gatePassed) return;
 
     let lastY = 0;
+    let touchOnInteractive = false;
+
+    const isInteractive = (target: EventTarget | null): boolean => {
+      let node = target as HTMLElement | null;
+      while (node && node !== el) {
+        if (node.tagName === 'BUTTON' || node.tagName === 'A' || node.tagName === 'INPUT' || node.closest?.('button, a')) return true;
+        node = node.parentElement;
+      }
+      return false;
+    };
 
     const onTouchStart = (e: TouchEvent) => {
       lastY = e.touches[0].clientY;
+      touchOnInteractive = isInteractive(e.target);
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
+      // Don't hijack touches on buttons/links — let them behave normally
+      if (touchOnInteractive) return;
+
+      e.preventDefault(); // Block native scroll until gate passes
       const y = e.touches[0].clientY;
       const delta = lastY - y; // positive = swipe up
       lastY = y;
+
+      // After animation done: allow swiping back up (negative delta) but block further down
+      if (animationDoneRef.current && delta >= 0) return;
+      // If swiping back up from done state, unlock animation
+      if (animationDoneRef.current && delta < 0) {
+        animationDoneRef.current = false;
+        setHeroComplete(false);
+      }
+
       const step = delta / (window.innerHeight * 0.55);
       progressRef.current = Math.min(1, Math.max(0, progressRef.current + step));
       progress.set(progressRef.current);
     };
 
     const onTouchEnd = () => {
+      // Don't snap animation when the user was tapping a button
+      if (touchOnInteractive) {
+        touchOnInteractive = false;
+        return;
+      }
+
       const p = progressRef.current;
       if (p > 0.85) {
         animate(progress, 1, { type: 'tween', duration: 0.15 });
         progressRef.current = 1;
+        animationDoneRef.current = true;
         setHeroComplete(true);
       } else if (p < 0.1) {
         animate(progress, 0, { type: 'tween', duration: 0.15 });
@@ -232,10 +275,18 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     // Wheel for desktop testing
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
+      if (animationDoneRef.current && e.deltaY >= 0) return;
+      if (animationDoneRef.current && e.deltaY < 0) {
+        animationDoneRef.current = false;
+        setHeroComplete(false);
+      }
       const step = e.deltaY / (window.innerHeight * 0.55);
       progressRef.current = Math.min(1, Math.max(0, progressRef.current + step));
       progress.set(progressRef.current);
-      if (progressRef.current >= 1) setHeroComplete(true);
+      if (progressRef.current >= 1) {
+        animationDoneRef.current = true;
+        setHeroComplete(true);
+      }
     };
 
     el.addEventListener('touchstart', onTouchStart, { passive: true });
@@ -249,7 +300,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       el.removeEventListener('touchend', onTouchEnd);
       el.removeEventListener('wheel', onWheel);
     };
-  }, [heroComplete, progress]);
+  }, [gatePassed, progress]);
 
   // ── Preload frames ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -518,6 +569,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
               style={{
                 scale: watchScale,
                 x: watchX,
+                y: watchY,
                 willChange: 'transform',
                 transformOrigin: '0% 100%',
               }}
@@ -575,7 +627,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
               onStopRecording={demoControls?.stopRecording}
               onReset={demoControls?.reset}
               chatOpened={chatOpened}
-              chatMessageSent={chatMessageSent}
+              chatMessageCount={chatMessageCount}
+              allCardsVerified={allCardsVerified}
             />
           </div>
         )}
@@ -617,6 +670,23 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           ) : (
             <div className="flex items-center gap-3">
               {tryNowElement}
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                onClick={() => {
+                  setSkipped(true);
+                  onSkipDemo?.();
+                  setTimeout(() => {
+                    document.getElementById('video-transition')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 150);
+                }}
+                disabled={skipped}
+                className={`text-white pl-3 pr-6 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2.5 shadow-lg shadow-black/10 border border-slate-800 transition-all ${skipped ? 'bg-slate-600' : 'bg-slate-900'}`}
+              >
+                <span className="flex items-center justify-center w-7 h-7 bg-white rounded-full">
+                  <ArrowDown size={12} className="text-slate-900" />
+                </span>
+                <span className="font-medium">{skipped ? 'Skipped' : 'Skip Demo'}</span>
+              </motion.button>
             </div>
           )}
         </motion.div>

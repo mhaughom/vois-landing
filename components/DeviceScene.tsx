@@ -17,6 +17,7 @@ import {
   setDemoActiveDevice,
   setChatInput,
   resetChat,
+  setCardVerification,
   CHAT_SUGGESTED_PROMPTS,
 } from './deviceState';
 import type { PhoneScreen } from './deviceState';
@@ -53,6 +54,11 @@ export {
   getPhoneScreenState,
   endHeroShowcase,
   isHeroShowcaseActive,
+  setOnCardVerified,
+  setCardVerification,
+  getCardVerifications,
+  resetCardVerifications,
+  areAllCardsVerified,
 } from './deviceState';
 
 import {
@@ -65,6 +71,12 @@ import {
   SINGLE_SCENARIO_DURATION,
   TOTAL_ANIMATION_DURATION,
 } from '../lib/scenarios';
+import {
+  CATEGORY_CARD_COLORS,
+  CATEGORY_HIGHLIGHT_COLORS,
+  DEFAULT_CARD_COLOR,
+  DEFAULT_HIGHLIGHT,
+} from '../lib/categoryColors';
 
 // Helper to get current scenario and elapsed time within that scenario
 const getScenarioState = () => {
@@ -309,6 +321,55 @@ const getHitButton = (uvX: number, uvY: number, currentScreen: PhoneScreen): Cli
       return region;
     }
   }
+
+  // Dynamic card verify/decline button detection (demo results on stream screen)
+  const demoItems = demoState.items;
+  const hasDemoResults = demoItems.length > 0 && !demoState.isRecording && !demoState.isProcessing && demoState.transcript.length > 0;
+  if (hasDemoResults && currentScreen === 'stream') {
+    // Card layout constants matching the draw code (canvas 512x1024)
+    const W = 512, H = 1024;
+    const panelMargin = W * 0.045;
+    const panelPadding = W * 0.045;
+    const cardsPanelY = H * 0.52;
+    const cardInnerPadding = panelPadding * 0.8;
+    const cardStartY = cardsPanelY + cardInnerPadding;
+    const cardH = H * 0.095;
+    const cardGap = H * 0.012;
+    const cardsPanelW = W - panelMargin * 2;
+    const cardW = cardsPanelW - cardInnerPadding * 2;
+    const cardStartX = panelMargin + cardInnerPadding;
+    const btnSize = H * 0.024;
+    const btnX = cardStartX + cardW - btnSize * 1.2;
+
+    for (let i = 0; i < demoItems.length; i++) {
+      // Skip already verified/declined cards
+      if (i in globalState.cardVerifications) continue;
+
+      const thisCardY = cardStartY + i * (cardH + cardGap);
+      const checkBtnY = thisCardY + cardH * 0.32;
+      const xBtnY = thisCardY + cardH * 0.68;
+
+      // Convert to UV (0-1)
+      const btnXuv = btnX / W;
+      const hitHalfW = 0.06; // generous tap target
+      const hitHalfH = 0.025;
+
+      // Check verify button
+      const checkUvY = checkBtnY / H;
+      if (uvX >= btnXuv - hitHalfW && uvX <= btnXuv + hitHalfW &&
+          uvY >= checkUvY - hitHalfH && uvY <= checkUvY + hitHalfH) {
+        return { id: `card-verify-${i}`, screen: 'stream' as PhoneScreen, label: `Verify Card ${i}`, uv: { minX: 0, maxX: 1, minY: 0, maxY: 1 } };
+      }
+
+      // Check decline button
+      const xUvY = xBtnY / H;
+      if (uvX >= btnXuv - hitHalfW && uvX <= btnXuv + hitHalfW &&
+          uvY >= xUvY - hitHalfH && uvY <= xUvY + hitHalfH) {
+        return { id: `card-decline-${i}`, screen: 'stream' as PhoneScreen, label: `Decline Card ${i}`, uv: { minX: 0, maxX: 1, minY: 0, maxY: 1 } };
+      }
+    }
+  }
+
   return null;
 };
 
@@ -400,6 +461,12 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
                 setDemoActiveDevice('phone');
                 callbacks.onPhoneRecordClick();
               }
+            } else if (hitButton.id.startsWith('card-verify-')) {
+              const cardIdx = parseInt(hitButton.id.replace('card-verify-', ''));
+              setCardVerification(cardIdx, 'verified');
+            } else if (hitButton.id.startsWith('card-decline-')) {
+              const cardIdx = parseInt(hitButton.id.replace('card-decline-', ''));
+              setCardVerification(cardIdx, 'declined');
             } else if (hitButton.id === 'back') {
               // Back button: navigate to apps if on an app detail screen, otherwise stream
               if (currentScreen.startsWith('app-')) {
@@ -1596,12 +1663,22 @@ function SceneContent() {
         // Only allow hover when waiting to start (not when watch is recording)
         const isVoisHovered = demoState.isWaitingToStart && hoveredButton === 'lockscreen-vois';
 
-        // Simple hover scale (immediate, responsive) - only when waiting
-        const hoverScale = isVoisHovered ? 1.12 : 1;
-        const finalSize = voisLogoSize * hoverScale;
+        // Subtle pulse animation when waiting
+        const lockPulse = demoState.isWaitingToStart ? 1 + Math.sin(now / 600) * 0.04 : 1;
 
-        // Simple background circle (brighter on hover)
-        ctx.fillStyle = isVoisHovered ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.12)';
+        // Simple hover scale (immediate, responsive) - only when waiting
+        const hoverScale = isVoisHovered ? 1.15 : 1;
+        const finalSize = voisLogoSize * hoverScale * lockPulse;
+
+        // Background circle - red glow on hover, subtle white normally
+        if (isVoisHovered) {
+          // Red glow behind on hover
+          ctx.fillStyle = 'rgba(239, 68, 68, 0.35)';
+          ctx.beginPath();
+          ctx.arc(width / 2, voisLogoY, finalSize * 0.9, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.fillStyle = isVoisHovered ? 'rgba(239, 68, 68, 0.7)' : 'rgba(255, 255, 255, 0.12)';
         ctx.beginPath();
         ctx.arc(width / 2, voisLogoY, finalSize * 0.7, 0, Math.PI * 2);
         ctx.fill();
@@ -2406,14 +2483,8 @@ function SceneContent() {
       roundRect(ctx, panelMargin, transPanelY, transPanelW, transPanelH, panelRadius);
       ctx.fill();
 
-      // Category colors for highlighting
-      const categoryHighlights: Record<string, string> = {
-        task: 'rgba(187, 247, 208, 0.7)',
-        event: 'rgba(191, 219, 254, 0.7)',
-        idea: 'rgba(254, 240, 138, 0.7)',
-        reminder: 'rgba(233, 213, 255, 0.7)',
-        note: 'rgba(226, 232, 240, 0.7)',
-      };
+      // Category colors for highlighting — unified from lib/categoryColors
+      const categoryHighlights = CATEGORY_HIGHLIGHT_COLORS;
 
       // Build highlights from items
       const cardItems = selectedCard.items || [];
@@ -2489,14 +2560,8 @@ function SceneContent() {
       roundRect(ctx, panelMargin, cardsPanelY, cardsPanelW, cardsPanelH, panelRadius);
       ctx.fill();
 
-      // Card colors
-      const cardColors: Record<string, { bg: string; accent: string; text: string }> = {
-        task: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
-        event: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
-        idea: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
-        reminder: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea' },
-        note: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569' },
-      };
+      // Card colors — unified from lib/categoryColors
+      const cardColors = CATEGORY_CARD_COLORS;
 
       const cardInnerPadding = panelPadding * 0.8;
       const cardStartY = cardsPanelY + cardInnerPadding;
@@ -3259,70 +3324,8 @@ function SceneContent() {
         let highlightColor: string | undefined;
         let category: string | undefined;
 
-        // Category to highlight color mapping - FULL list matching demoPastelColors
-        const categoryHighlightColors: Record<string, string> = {
-          // GREEN - Tasks, Work, Projects
-          task: 'rgba(187, 247, 208, 0.7)',
-          tasks: 'rgba(187, 247, 208, 0.7)',
-          work: 'rgba(187, 247, 208, 0.7)',
-          projects: 'rgba(187, 247, 208, 0.7)',
-          project: 'rgba(187, 247, 208, 0.7)',
-          'meeting notes': 'rgba(187, 247, 208, 0.7)',
-          meeting: 'rgba(187, 247, 208, 0.7)',
-          // BLUE - Calendar, Events
-          event: 'rgba(191, 219, 254, 0.7)',
-          events: 'rgba(191, 219, 254, 0.7)',
-          calendar: 'rgba(191, 219, 254, 0.7)',
-          appointment: 'rgba(191, 219, 254, 0.7)',
-          // ORANGE - Errands, Goals, Habits
-          errands: 'rgba(254, 215, 170, 0.7)',
-          errand: 'rgba(254, 215, 170, 0.7)',
-          goals: 'rgba(254, 215, 170, 0.7)',
-          goal: 'rgba(254, 215, 170, 0.7)',
-          habits: 'rgba(254, 215, 170, 0.7)',
-          habit: 'rgba(254, 215, 170, 0.7)',
-          // TEAL - Finance
-          finance: 'rgba(165, 243, 252, 0.7)',
-          money: 'rgba(165, 243, 252, 0.7)',
-          budget: 'rgba(165, 243, 252, 0.7)',
-          expense: 'rgba(165, 243, 252, 0.7)',
-          // YELLOW - Ideas, Dreams, Research
-          idea: 'rgba(254, 240, 138, 0.7)',
-          ideas: 'rgba(254, 240, 138, 0.7)',
-          dreams: 'rgba(254, 240, 138, 0.7)',
-          dream: 'rgba(254, 240, 138, 0.7)',
-          research: 'rgba(254, 240, 138, 0.7)',
-          gratitude: 'rgba(254, 240, 138, 0.7)',
-          // RED - Health, Sleep, Tracking
-          health: 'rgba(254, 202, 202, 0.7)',
-          sleep: 'rgba(254, 202, 202, 0.7)',
-          tracking: 'rgba(254, 202, 202, 0.7)',
-          wellness: 'rgba(254, 202, 202, 0.7)',
-          symptom: 'rgba(254, 202, 202, 0.7)',
-          // PURPLE - Shopping, Journal, Meals
-          shopping: 'rgba(221, 214, 254, 0.7)',
-          list: 'rgba(221, 214, 254, 0.7)',
-          grocery: 'rgba(221, 214, 254, 0.7)',
-          groceries: 'rgba(221, 214, 254, 0.7)',
-          journal: 'rgba(221, 214, 254, 0.7)',
-          meals: 'rgba(221, 214, 254, 0.7)',
-          meal: 'rgba(221, 214, 254, 0.7)',
-          recipe: 'rgba(221, 214, 254, 0.7)',
-          // PINK - Social, Family, Memories
-          social: 'rgba(251, 207, 232, 0.7)',
-          family: 'rgba(251, 207, 232, 0.7)',
-          memories: 'rgba(251, 207, 232, 0.7)',
-          memory: 'rgba(251, 207, 232, 0.7)',
-          quotes: 'rgba(251, 207, 232, 0.7)',
-          quote: 'rgba(251, 207, 232, 0.7)',
-          message: 'rgba(251, 207, 232, 0.7)',
-          // LIGHT PURPLE - Reminders
-          reminder: 'rgba(233, 213, 255, 0.7)',
-          reminders: 'rgba(233, 213, 255, 0.7)',
-          // GRAY - Notes
-          note: 'rgba(226, 232, 240, 0.7)',
-          notes: 'rgba(226, 232, 240, 0.7)',
-        };
+        // Category to highlight color mapping — unified from lib/categoryColors
+        const categoryHighlightColors = CATEGORY_HIGHLIGHT_COLORS;
 
         for (const h of demoHighlights) {
           // Check if word overlaps with highlight range
@@ -3331,7 +3334,7 @@ function SceneContent() {
             // Use category-based color, fall back to allCategoryConfigs, then default
             highlightColor = categoryHighlightColors[category]
               || allCategoryConfigs[category]?.highlight
-              || 'rgba(187, 247, 208, 0.7)'; // default green
+              || DEFAULT_HIGHLIGHT;
             break;
           }
         }
@@ -3449,34 +3452,11 @@ function SceneContent() {
       const cardStartX = panelMargin + cardInnerPadding;
       const cardRadius = 20;
 
-      // Pastel colors for demo item types
-      const demoPastelColors: Record<string, { bg: string; accent: string; text: string }> = {
-        task: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
-        tasks: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
-        work: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
-        event: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
-        events: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
-        calendar: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
-        errands: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c' },
-        errand: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c' },
-        shopping: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
-        grocery: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
-        groceries: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
-        list: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
-        finance: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2' },
-        ideas: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
-        idea: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
-        health: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626' },
-        social: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777' },
-        reminder: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea' },
-        reminders: { bg: '#f3e8ff', accent: '#c084fc', text: '#9333ea' },
-        note: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569' },
-        notes: { bg: '#f1f5f9', accent: '#94a3b8', text: '#475569' },
-      };
+      // Pastel colors for demo item types — unified from lib/categoryColors
+      const demoPastelColors = CATEGORY_CARD_COLORS;
 
       // Calculate per-card opacity based on highlight completion
       const cardOpacities: number[] = [];
-      let latestCardFullyVisibleTime = 0; // resultsElapsed when the last card reaches opacity 1
 
       demoItems.forEach((item) => {
         const itemCategory = (item.type || 'task').toLowerCase();
@@ -3497,10 +3477,6 @@ function SceneContent() {
             const fadeIn = 0.3;
             const opacity = Math.min(1, Math.max(0, timeSinceComplete / fadeIn));
             cardOpacities.push(opacity);
-            if (opacity >= 1) {
-              const fullyVisibleAt = completionTime + fadeIn;
-              latestCardFullyVisibleTime = Math.max(latestCardFullyVisibleTime, fullyVisibleAt);
-            }
           } else {
             cardOpacities.push(1);
           }
@@ -3511,43 +3487,14 @@ function SceneContent() {
           const fadeIn = 0.3;
           const opacity = Math.min(1, Math.max(0, timeSinceTyping / fadeIn));
           cardOpacities.push(opacity);
-          if (opacity >= 1) {
-            latestCardFullyVisibleTime = Math.max(latestCardFullyVisibleTime, typingDoneTime + fadeIn);
-          }
         } else {
           cardOpacities.push(0);
         }
       });
 
-      const allCardsFullyVisible = demoItems.length > 0 &&
-        cardOpacities.length === demoItems.length &&
-        cardOpacities.every(o => o >= 1);
-
-      // Time since ALL cards became fully visible
-      const timeSinceAllCardsVisible = allCardsFullyVisible
-        ? resultsElapsed - latestCardFullyVisibleTime
-        : -1;
-
-      // Phase timing
-      const cardShowDuration = 3.0;
-      const cardFadeOutDuration = 0.5;
-      const ctaFadeInDelay = 0.2;
-      const ctaFadeInDuration = 0.5;
-
-      const shouldFadeOutCards = timeSinceAllCardsVisible > cardShowDuration;
-      const cardsFadeOutProgress = shouldFadeOutCards
-        ? Math.min(1, (timeSinceAllCardsVisible - cardShowDuration) / cardFadeOutDuration)
-        : 0;
-      const ctaPhaseElapsed = shouldFadeOutCards
-        ? timeSinceAllCardsVisible - cardShowDuration - cardFadeOutDuration - ctaFadeInDelay
-        : -1;
-      const ctaOpacity = ctaPhaseElapsed > 0
-        ? Math.min(1, ctaPhaseElapsed / ctaFadeInDuration)
-        : 0;
-
-      // === DRAW ACTION CARDS (Phase 1) ===
-      if (cardsFadeOutProgress < 1) {
-        const cardsGlobalAlpha = 1 - cardsFadeOutProgress;
+      // === DRAW ACTION CARDS (cards stay visible permanently) ===
+      {
+        const cardsGlobalAlpha = 1;
 
         // "Action Cards" header
         ctx.globalAlpha = cardsGlobalAlpha;
@@ -3571,143 +3518,110 @@ function SceneContent() {
         ctx.fill();
 
         // Draw each card
+        const verifications = globalState.cardVerifications;
         demoItems.forEach((item, i) => {
           const cardOpacity = (cardOpacities[i] || 0) * cardsGlobalAlpha;
           if (cardOpacity <= 0) return;
 
-          ctx.globalAlpha = cardOpacity;
+          const verification = verifications[i];
+          // Declined cards fade to 40% opacity
+          ctx.globalAlpha = cardOpacity * (verification === 'declined' ? 0.4 : 1);
           const thisCardY = cardStartY + i * (cardH + cardGap);
           const itemCategory = (item.type || 'task').toLowerCase();
-          const colors = demoPastelColors[itemCategory] || { bg: '#f8fafc', accent: '#94a3b8', text: '#64748b' };
+          const colors = demoPastelColors[itemCategory] || DEFAULT_CARD_COLOR;
 
-          // Card background
-          ctx.fillStyle = colors.bg;
+          // Card background — green tint for verified
+          ctx.fillStyle = verification === 'verified' ? '#dcfce7' : colors.bg;
           roundRect(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius);
           ctx.fill();
 
-          // Left accent bar
-          const barWidth = 4;
-          const barPadding = cardH * 0.2;
-          ctx.fillStyle = colors.accent;
-          roundRect(ctx, cardStartX, thisCardY + barPadding, barWidth, cardH - barPadding * 2, 2);
-          ctx.fill();
+          // Verified: green left border
+          if (verification === 'verified') {
+            ctx.fillStyle = '#22c55e';
+            roundRect(ctx, cardStartX, thisCardY + cardH * 0.2, 4, cardH - cardH * 0.4, 2);
+            ctx.fill();
+          } else {
+            // Left accent bar
+            const barWidth = 4;
+            const barPadding = cardH * 0.2;
+            ctx.fillStyle = colors.accent;
+            roundRect(ctx, cardStartX, thisCardY + barPadding, barWidth, cardH - barPadding * 2, 2);
+            ctx.fill();
+          }
 
           // Vector icon (same style as hero demo)
           const iconX = cardStartX + 30;
           const iconY = thisCardY + cardH / 2;
           const iconSize = height * 0.04;
-          drawCardIcon(ctx, itemCategory, iconX, iconY, iconSize, colors.text);
+          drawCardIcon(ctx, itemCategory, iconX, iconY, iconSize, verification === 'declined' ? '#94a3b8' : colors.text);
 
           // Content text
           const contentTextX = iconX + iconSize + 12;
 
           // Type label
-          ctx.fillStyle = colors.text;
+          ctx.fillStyle = verification === 'declined' ? '#94a3b8' : colors.text;
           ctx.font = `600 ${height * 0.020}px -apple-system`;
           ctx.textAlign = 'left';
           ctx.textBaseline = 'top';
           const typeLabel = (item.type || 'Task').charAt(0).toUpperCase() + (item.type || 'Task').slice(1);
           ctx.fillText(typeLabel, contentTextX, thisCardY + height * 0.018);
 
-          // Content
-          ctx.fillStyle = '#374151';
+          // Content — strikethrough for declined
+          ctx.fillStyle = verification === 'declined' ? '#94a3b8' : '#374151';
           ctx.font = `500 ${height * 0.024}px -apple-system`;
           ctx.fillText(item.content, contentTextX, thisCardY + height * 0.052);
+          if (verification === 'declined') {
+            // Draw strikethrough line
+            const textWidth = ctx.measureText(item.content).width;
+            const lineY = thisCardY + height * 0.052 + height * 0.012;
+            ctx.strokeStyle = '#94a3b8';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(contentTextX, lineY);
+            ctx.lineTo(contentTextX + textWidth, lineY);
+            ctx.stroke();
+          }
 
-          // Checkmark and X buttons
+          // Action buttons — show status icon if verified/declined, otherwise show check/X
           const btnSize = height * 0.024;
           const btnX = cardStartX + cardW - btnSize * 1.2;
-          const checkBtnY = thisCardY + cardH * 0.32;
-          const xBtnY = thisCardY + cardH * 0.68;
 
-          ctx.fillStyle = colors.accent;
-          ctx.font = `600 ${btnSize}px -apple-system`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText('✓', btnX, checkBtnY);
+          if (verification === 'verified') {
+            // Show green checkmark
+            ctx.fillStyle = '#22c55e';
+            ctx.font = `700 ${btnSize * 1.1}px -apple-system`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✓', btnX, thisCardY + cardH / 2);
+          } else if (verification === 'declined') {
+            // Show red X
+            ctx.fillStyle = '#ef4444';
+            ctx.font = `600 ${btnSize}px -apple-system`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✕', btnX, thisCardY + cardH / 2);
+          } else {
+            // Unverified — show both buttons
+            const checkBtnY = thisCardY + cardH * 0.32;
+            const xBtnY = thisCardY + cardH * 0.68;
 
-          ctx.fillStyle = '#cbd5e1';
-          ctx.font = `500 ${btnSize * 0.9}px -apple-system`;
-          ctx.fillText('✕', btnX, xBtnY);
+            ctx.fillStyle = colors.accent;
+            ctx.font = `600 ${btnSize}px -apple-system`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✓', btnX, checkBtnY);
+
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = `500 ${btnSize * 0.9}px -apple-system`;
+            ctx.fillText('✕', btnX, xBtnY);
+          }
         });
-
-        ctx.globalAlpha = 1;
-      }
-
-      // === DRAW CHAT CTA TEXT (Phase 2) ===
-      if (ctaOpacity > 0) {
-        ctx.globalAlpha = ctaOpacity;
-
-        // CTA panel (smaller, just text)
-        const ctaPanelY = height * 0.55;
-        const ctaPanelW = width - panelMargin * 2;
-        const ctaPanelH = height * 0.13;
-
-        // Panel shadow + background
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
-        roundRect(ctx, panelMargin + 1, ctaPanelY + 4, ctaPanelW, ctaPanelH, panelRadius);
-        ctx.fill();
-        ctx.fillStyle = '#ffffff';
-        roundRect(ctx, panelMargin, ctaPanelY, ctaPanelW, ctaPanelH, panelRadius);
-        ctx.fill();
-
-        // CTA text
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = `600 ${height * 0.026}px -apple-system, sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'top';
-        ctx.fillText('Try your personalized', width / 2, ctaPanelY + height * 0.025);
-        ctx.fillText('ChatGPT', width / 2, ctaPanelY + height * 0.06);
 
         ctx.globalAlpha = 1;
       }
 
       // === BOTTOM NAV BAR ===
       drawBottomNav('stream');
-
-      // === ARROW ON TOP OF EVERYTHING (Phase 2 — drawn after nav so it overlays) ===
-      if (ctaOpacity > 0) {
-        ctx.globalAlpha = ctaOpacity;
-
-        // Arrow from below CTA panel down to magic icon in bottom nav
-        // Magic icon = first of 3 tabs, center X = width/6, Y = height*0.94
-        const arrowStartX = width * 0.38;
-        const arrowStartY = height * 0.70;
-        const arrowEndX = width / 6;
-        const arrowEndY = height * 0.92;
-
-        // Control point bowing LEFT
-        const cpX = arrowStartX - width * 0.22;
-        const cpY = (arrowStartY + arrowEndY) / 2 + height * 0.02;
-
-        ctx.strokeStyle = '#9ca3af';
-        ctx.lineWidth = 2;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(arrowStartX, arrowStartY);
-        ctx.quadraticCurveTo(cpX, cpY, arrowEndX, arrowEndY);
-        ctx.stroke();
-
-        // Arrowhead
-        const angle = Math.atan2(arrowEndY - cpY, arrowEndX - cpX);
-        const headLen = height * 0.022;
-        ctx.fillStyle = '#9ca3af';
-        ctx.beginPath();
-        ctx.moveTo(arrowEndX, arrowEndY);
-        ctx.lineTo(arrowEndX - headLen * Math.cos(angle - 0.4), arrowEndY - headLen * Math.sin(angle - 0.4));
-        ctx.lineTo(arrowEndX - headLen * Math.cos(angle + 0.4), arrowEndY - headLen * Math.sin(angle + 0.4));
-        ctx.closePath();
-        ctx.fill();
-
-        // Small sparkle hint near arrow tip
-        ctx.fillStyle = '#9ca3af';
-        ctx.font = `${height * 0.022}px -apple-system`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('✦', arrowEndX + height * 0.025, arrowEndY - height * 0.018);
-
-        ctx.globalAlpha = 1;
-      }
 
       return;
     }
@@ -4094,7 +4008,7 @@ function SceneContent() {
       const thisCardY = cardStartY + i * (cardH + cardGap);
 
       // Get pastel colors for this category
-      const colors = pastelColors[item.category] || { bg: '#f8fafc', accent: '#94a3b8', text: '#64748b' };
+      const colors = pastelColors[item.category] || DEFAULT_CARD_COLOR;
 
       // Card background (pastel)
       ctx.fillStyle = colors.bg;
@@ -4299,11 +4213,23 @@ function SceneContent() {
       const voisCenterY = height * 0.48;
       const voisSize = width * 0.25;
       const isWatchHovered = isHovered;
-      const watchHoverScale = isWatchHovered ? 1.12 : 1;
-      const finalVoisSize = voisSize * watchHoverScale;
 
-      // Glow circle background (brighter on hover)
-      ctx.fillStyle = isWatchHovered ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.12)';
+      // Subtle pulse animation when waiting
+      const watchPulse = 1 + Math.sin(now / 600) * 0.04;
+
+      const watchHoverScale = isWatchHovered ? 1.15 : 1;
+      const finalVoisSize = voisSize * watchHoverScale * watchPulse;
+
+      // Red glow behind on hover
+      if (isWatchHovered) {
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.35)';
+        ctx.beginPath();
+        ctx.arc(width / 2, voisCenterY, finalVoisSize * 0.9, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Glow circle background - red on hover, subtle white normally
+      ctx.fillStyle = isWatchHovered ? 'rgba(239, 68, 68, 0.7)' : 'rgba(255, 255, 255, 0.12)';
       ctx.beginPath();
       ctx.arc(width / 2, voisCenterY, finalVoisSize * 0.7, 0, Math.PI * 2);
       ctx.fill();

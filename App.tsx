@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { setCurrentSection, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent } from './components/deviceState';
+import { setCurrentSection, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent, setOnCardVerified, areAllCardsVerified, resetCardVerifications } from './components/deviceState';
 import type { SectionId } from './components/deviceState';
 import { DeviceScene } from './components/DeviceScene';
 // FlowVisualization deactivated — removed import to avoid bundling Three.js code
@@ -230,7 +230,9 @@ const App = () => {
   const [demoControls, setDemoControls] = useState<{ stopRecording: () => void; reset: () => void; startNew: () => void } | null>(null);
   const [hasCompletedDemo, setHasCompletedDemo] = useState(false);
   const [chatOpened, setChatOpened] = useState(false);
-  const [chatMessageSent, setChatMessageSent] = useState(false);
+  const [chatMessageCount, setChatMessageCount] = useState(0);
+  const [allCardsVerified, setAllCardsVerified] = useState(false);
+  const [demoGatePassed, setDemoGatePassed] = useState(false);
   const [retrieveVideoPlaying, setRetrieveVideoPlaying] = useState(false);
   const retrieveVideoRef = useRef<HTMLVideoElement>(null);
 
@@ -238,6 +240,7 @@ const App = () => {
   useEffect(() => {
     if (demoStage === 'results') {
       setHasCompletedDemo(true);
+      setDemoGatePassed(true);
     }
     if (demoStage === 'waiting') {
       const elapsed = (performance.now() - pageLoadTime.current) / 1000;
@@ -246,7 +249,9 @@ const App = () => {
     // Reset chat states when a new recording starts so steps show again
     if (demoStage === 'recording') {
       setChatOpened(false);
-      setChatMessageSent(false);
+      setChatMessageCount(0);
+      setAllCardsVerified(false);
+      resetCardVerifications();
     }
   }, [demoStage]);
 
@@ -305,10 +310,23 @@ const App = () => {
   // Set up callback when a chat message is sent
   useEffect(() => {
     setOnChatMessageSent(() => {
-      setChatMessageSent(true);
+      setChatMessageCount(prev => prev + 1);
     });
     return () => setOnChatMessageSent(null);
   }, []);
+
+  // Set up callback when a card is verified/declined
+  useEffect(() => {
+    setOnCardVerified(() => {
+      if (areAllCardsVerified()) {
+        setAllCardsVerified(true);
+      }
+    });
+    return () => setOnCardVerified(null);
+  }, []);
+  // Demo is active when user has started the try-now flow (not idle/error)
+  const isDemoActive = demoStage !== 'idle' && demoStage !== 'error';
+
   // Staged hero animation state
   const [heroStage, setHeroStage] = useState<'headline' | 'subheadline' | 'tags' | 'devices' | 'buttons' | 'complete'>('headline');
   const [typedSubheadline, setTypedSubheadline] = useState('');
@@ -534,7 +552,19 @@ const App = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen font-sans bg-background scroll-smooth">
+    <div
+      className="relative w-full min-h-screen font-sans bg-background scroll-smooth"
+      style={isMobile && !demoGatePassed ? { height: '100dvh', overflow: 'hidden' } : undefined}
+    >
+      {/* Top white gradient overlay — blends with Safari Liquid Glass toolbar */}
+      <div
+        className="fixed top-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: 'calc(env(safe-area-inset-top, 0px) + 120px)',
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
+          zIndex: 40,
+        }}
+      />
       <Navbar
         onCycleBg={() => setBgVariant((v) => (v + 1) % BG_VARIANTS.length)}
         bgVariant={bgVariant}
@@ -609,7 +639,7 @@ const App = () => {
       />
 
       {/* Chat Demo - handles API calls for phone chat interface */}
-      <ChatDemo onMessageSent={() => setChatMessageSent(true)} />
+      <ChatDemo onMessageSent={() => setChatMessageCount(prev => prev + 1)} />
 
       {/* 3D Video Player Close Button */}
       <AnimatePresence>
@@ -651,10 +681,13 @@ const App = () => {
             demoControls={demoControls}
             hasCompletedDemo={hasCompletedDemo}
             chatOpened={chatOpened}
-            chatMessageSent={chatMessageSent}
+            chatMessageCount={chatMessageCount}
+            allCardsVerified={allCardsVerified}
             remaining={remaining}
             bgVariant={bgVariant}
             bgIntensity={bgIntensity}
+            onSkipDemo={() => setDemoGatePassed(true)}
+            gatePassed={demoGatePassed}
             tryNowElement={
               <TryNowDemo
                 hasCompletedDemo={hasCompletedDemo}
@@ -694,6 +727,18 @@ const App = () => {
             }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
+            {/* Collapsing wrapper - hides hero text/buttons when demo is active, lets DemoSteps float up */}
+            <div
+              className={`grid ${isDemoActive ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'}`}
+              style={{
+                pointerEvents: isDemoActive ? 'none' : undefined,
+                opacity: isDemoActive ? 0 : 1,
+                transition: isDemoActive
+                  ? 'grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s, opacity 0.4s ease-out'
+                  : 'grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out 0.2s',
+              }}
+            >
+            <div className="overflow-hidden min-h-0">
             {/* Headline - always visible, centered initially then moves up */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -864,7 +909,9 @@ const App = () => {
                           <button
                             onClick={() => {
                               setChatOpened(false);
-                              setChatMessageSent(false);
+                              setChatMessageCount(0);
+                              setAllCardsVerified(false);
+                              resetCardVerifications();
                               demoControls?.startNew();
                             }}
                             className="text-slate-400 hover:text-slate-600 text-sm transition-colors"
@@ -887,14 +934,6 @@ const App = () => {
                     </div>
                   </div>
 
-                  {/* Demo Steps - Below both buttons, fade out after chat message sent */}
-                  <DemoSteps
-                    stage={demoStage}
-                    onStopRecording={demoControls?.stopRecording}
-                    onReset={demoControls?.reset}
-                    chatOpened={chatOpened}
-                    chatMessageSent={chatMessageSent}
-                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -908,6 +947,18 @@ const App = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+            </div>
+            </div>
+
+            {/* Demo Steps - Outside collapsing wrapper so it lifts up to headline position */}
+            <DemoSteps
+              stage={demoStage}
+              onStopRecording={demoControls?.stopRecording}
+              onReset={demoControls?.reset}
+              chatOpened={chatOpened}
+              chatMessageCount={chatMessageCount}
+              allCardsVerified={allCardsVerified}
+            />
           </motion.div>
 
           {/* Mobile: Static device mockups as hero visual */}
@@ -939,12 +990,15 @@ const App = () => {
         </section>
         )}
 
+        {/* Gate: on mobile, rest of site hidden until demo completed or skipped */}
+        <div style={isMobile && !demoGatePassed ? { display: 'none' } : undefined}>
+
         {/* THE UNIVERSAL LIE - Cinematic, borderless, Apple-style */}
         <section
           ref={videoTransitionRef}
           id="video-transition"
           className="relative min-h-screen flex items-center bg-white z-10"
-          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', scrollSnapAlign: 'start' }}
+          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
         >
           {/* Right: Typography - Parallax: scrolls slightly slower than video */}
           <motion.div
@@ -1416,7 +1470,7 @@ const App = () => {
         </section>
         
         {/* SECTION 7: FOOTER */}
-        <footer className="py-16 px-6 md:px-16 border-t border-slate-100">
+        <footer className="py-16 px-6 md:px-16 border-t border-slate-100" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))' }}>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               
@@ -1500,6 +1554,7 @@ const App = () => {
           </div>
         </footer>
 
+        </div>
       </main>
     </div>
   );
