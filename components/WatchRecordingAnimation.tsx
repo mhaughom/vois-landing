@@ -3,6 +3,7 @@ import {
   getScenarioState,
   RECORDING_START_TIME,
 } from '../lib/scenarios';
+import { globalState } from './deviceState';
 
 // ─── Props ───────────────────────────────────────────────────────────────────
 interface WatchRecordingAnimationProps {
@@ -23,9 +24,31 @@ export const WatchRecordingAnimation: React.FC<WatchRecordingAnimationProps> = (
   const barsRef = useRef<(HTMLDivElement | null)[]>([]);
   const timerRef = useRef<HTMLSpanElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const waitingOverlayRef = useRef<HTMLDivElement>(null);
+  const waitingRecordBtnRef = useRef<HTMLDivElement>(null);
 
   const tick = useCallback(() => {
     const now = Date.now();
+
+    // ── Check demo waiting state ────────────────────────────────────────
+    const isDemoWaiting = globalState.demoState.isWaitingToStart;
+    if (isDemoWaiting) {
+      if (waitingOverlayRef.current) {
+        waitingOverlayRef.current.style.opacity = '1';
+        waitingOverlayRef.current.style.pointerEvents = 'auto';
+      }
+      if (waitingRecordBtnRef.current) {
+        const pulse = 0.9 + Math.sin(now / 800) * 0.1;
+        waitingRecordBtnRef.current.style.transform = `scale(${pulse})`;
+      }
+      return;
+    }
+    // Hide waiting overlay
+    if (waitingOverlayRef.current) {
+      waitingOverlayRef.current.style.opacity = '0';
+      waitingOverlayRef.current.style.pointerEvents = 'none';
+    }
+
     const state = getScenarioState(startTimeRef.current);
     const elapsed = state.elapsed;
     const recordingElapsed = Math.max(0, elapsed - RECORDING_START_TIME);
@@ -112,6 +135,45 @@ export const WatchRecordingAnimation: React.FC<WatchRecordingAnimationProps> = (
         overflow: 'hidden',
       }}
     >
+      {/* Waiting to record overlay */}
+      <div
+        ref={waitingOverlayRef}
+        style={{
+          position: 'absolute', inset: 0, zIndex: 10,
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          background: 'radial-gradient(circle at 50% 50%, #1a1a2e, #000000)',
+          transition: 'opacity 0.3s ease',
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          ref={waitingRecordBtnRef}
+          style={{
+            width: '38%', aspectRatio: '1',
+            borderRadius: '50%',
+            background: '#ef4444',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            marginBottom: '6%',
+            boxShadow: '0 4px 20px rgba(239, 68, 68, 0.4)',
+            transition: 'transform 0.15s ease',
+          }}
+        >
+          <div style={{
+            width: '40%', height: '40%',
+            borderRadius: '50%',
+            background: 'white',
+          }} />
+        </div>
+        <span style={{
+          color: '#ffffff', fontWeight: 600,
+          fontSize: '70%',
+        }}>
+          Tap to Record
+        </span>
+      </div>
+
       {/* Recording dot */}
       <div
         ref={dotRef}

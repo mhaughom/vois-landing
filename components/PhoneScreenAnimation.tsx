@@ -52,7 +52,9 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
   const demoTimerRef = useRef<HTMLSpanElement>(null);
   const demoStatusRef = useRef<HTMLSpanElement>(null);
   const demoBarsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const demoModeRef = useRef<'scenario' | 'recording' | 'processing' | 'results'>('scenario');
+  const demoModeRef = useRef<'scenario' | 'waiting' | 'recording' | 'processing' | 'results'>('scenario');
+  const waitingOverlayRef = useRef<HTMLDivElement>(null);
+  const waitingRecordBtnRef = useRef<HTMLDivElement>(null);
   const demoResultsBuiltRef = useRef(false);
   const demoResultsRevealStart = useRef<number | null>(null);
 
@@ -318,12 +320,14 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
     const demoState = globalState.demoState;
     const isDemoRecording = demoState.isRecording;
     const isDemoProcessing = demoState.isProcessing;
+    const isDemoWaiting = demoState.isWaitingToStart;
     const hasDemoResults = demoState.transcript.length > 0 && demoState.items.length > 0 && !isDemoRecording && !isDemoProcessing;
 
-    let currentMode: 'scenario' | 'recording' | 'processing' | 'results';
+    let currentMode: 'scenario' | 'waiting' | 'recording' | 'processing' | 'results';
     if (isDemoRecording) currentMode = 'recording';
     else if (isDemoProcessing) currentMode = 'processing';
     else if (hasDemoResults) currentMode = 'results';
+    else if (isDemoWaiting) currentMode = 'waiting';
     else currentMode = 'scenario';
 
     // ── Mode transitions ─────────────────────────────────────────────────
@@ -349,6 +353,34 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         // Force scenario rebuild on return
         currentScenarioRef.current = -1;
       }
+    }
+
+    // ── Demo waiting overlay ─────────────────────────────────────────────
+    if (currentMode === 'waiting') {
+      if (waitingOverlayRef.current) {
+        waitingOverlayRef.current.style.opacity = '1';
+        waitingOverlayRef.current.style.pointerEvents = 'auto';
+      }
+      if (demoOverlayRef.current) {
+        demoOverlayRef.current.style.opacity = '0';
+        demoOverlayRef.current.style.pointerEvents = 'none';
+      }
+      if (logoRef.current) {
+        logoRef.current.style.opacity = '0';
+        logoRef.current.style.pointerEvents = 'none';
+      }
+      // Pulse the record button
+      if (waitingRecordBtnRef.current) {
+        const pulse = 0.9 + Math.sin(Date.now() / 800) * 0.1;
+        waitingRecordBtnRef.current.style.transform = `scale(${pulse})`;
+      }
+      return;
+    }
+
+    // Hide waiting overlay for all non-waiting modes
+    if (waitingOverlayRef.current) {
+      waitingOverlayRef.current.style.opacity = '0';
+      waitingOverlayRef.current.style.pointerEvents = 'none';
     }
 
     // ── Demo recording / processing overlay ──────────────────────────────
@@ -874,6 +906,45 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
           }}
         >
           Recording...
+        </span>
+      </div>
+
+      {/* ── Waiting to record overlay ─────────────────────────────────── */}
+      <div
+        ref={waitingOverlayRef}
+        style={{
+          position: 'absolute', inset: 0, zIndex: 22,
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          background: '#f8f9fa',
+          transition: 'opacity 0.3s ease',
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          ref={waitingRecordBtnRef}
+          style={{
+            width: 80, height: 80, borderRadius: '50%',
+            background: '#ef4444',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            marginBottom: 16,
+            boxShadow: '0 4px 20px rgba(239, 68, 68, 0.35)',
+            transition: 'transform 0.15s ease',
+          }}
+        >
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+            <rect x="9" y="1" width="6" height="12" rx="3" fill="white" />
+            <path d="M5 10a7 7 0 0 0 14 0" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+          </svg>
+        </div>
+        <span style={{ fontSize: 18, fontWeight: 600, color: '#1a1a1a', marginBottom: 4 }}>
+          Tap to Record
+        </span>
+        <span style={{ fontSize: 13, color: '#94a3b8' }}>
+          Share your thoughts
         </span>
       </div>
 

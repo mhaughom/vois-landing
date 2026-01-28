@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useTransform, useMotionValueEvent, useSpring, useMotionValue, animate } from 'framer-motion';
 import { DemoSteps, DemoStage } from './TryNowDemo';
+import { callbacks as deviceCallbacks, setDemoActiveDevice } from './deviceState';
 import { ArrowDown } from 'lucide-react';
 import { PhoneScreenAnimation } from './PhoneScreenAnimation';
 import { WatchRecordingAnimation } from './WatchRecordingAnimation';
@@ -15,11 +16,11 @@ const WATCH_FRAMES_PATH = '/frames/watch';
 
 // ─── Category badge carousel components ──────────────────────────────────────
 const MobileCategoryBadge: React.FC<{ item: (typeof allWhyBenefits)[0] }> = ({ item }) => (
-  <div className={`flex items-center gap-2 p-2 pr-3 rounded-lg ${item.bg} border border-white/40 flex-shrink-0`}>
-    <div className={`w-7 h-7 rounded-md ${item.iconBg} flex items-center justify-center flex-shrink-0`}>
-      <item.icon size={14} className={item.color} strokeWidth={1.5} />
+  <div className={`flex items-center gap-2.5 p-2.5 pr-4 rounded-xl ${item.bg} border border-white/40 flex-shrink-0`}>
+    <div className={`w-9 h-9 rounded-lg ${item.iconBg} flex items-center justify-center flex-shrink-0`}>
+      <item.icon size={18} className={item.color} strokeWidth={1.5} />
     </div>
-    <p className={`text-xs font-medium ${item.color} leading-tight whitespace-nowrap`}>{item.label}</p>
+    <p className={`text-sm font-medium ${item.color} leading-tight whitespace-nowrap`}>{item.label}</p>
   </div>
 );
 
@@ -38,11 +39,11 @@ const MobileCategoryRow: React.FC<{
       }}
     >
       <motion.div
-        className="flex gap-2"
+        className="flex gap-2.5"
         animate={{
           x: direction === 'left'
-            ? [0, -50 * items.length * 3.5]
-            : [-50 * items.length * 3.5, 0],
+            ? [0, -60 * items.length * 3.5]
+            : [-60 * items.length * 3.5, 0],
         }}
         transition={{
           x: { repeat: Infinity, repeatType: 'loop', duration, ease: 'linear' },
@@ -197,11 +198,11 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   const headlineY = useSpring(headlineYRaw, springConfig);
 
   const phoneScaleRaw = useTransform(progress, [0, 1], [1, 1.5]);
-  const phoneYRaw = useTransform(progress, [0, 1], [0, -90]);
+  const phoneYRaw = useTransform(progress, [0, 1], [-20, -90]);
   const phoneXRaw = useTransform(progress, [0, 1], [20, 30]);
   const watchScaleRaw = useTransform(progress, [0, 1], [1, 1.45]);
   const watchXRaw = useTransform(progress, [0, 1], [20, -60]);
-  const watchYRaw = useTransform(progress, [0, 1], [0, -24]);
+  const watchYRaw = useTransform(progress, [0, 1], [-20, -24]);
 
   const phoneScale = useSpring(phoneScaleRaw, springConfig);
   const phoneY = useSpring(phoneYRaw, springConfig);
@@ -222,6 +223,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
   const isDemoActive = demoStage !== 'idle';
   const [skipped, setSkipped] = useState(false);
+  // Only switch to scroll-driven mode when gate passed AND demo is not running
+  const scrollDriven = gatePassed && !isDemoActive;
 
   // ── Touch / wheel event handling ───────────────────────────────────────────
   // Swipe up on the hero drives the animation from 0→1.
@@ -231,7 +234,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el || gatePassed) return;
+    if (!el || scrollDriven) return;
 
     let lastY = 0;
     let touchOnInteractive = false;
@@ -322,38 +325,38 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       el.removeEventListener('touchend', onTouchEnd);
       el.removeEventListener('wheel', onWheel);
     };
-  }, [gatePassed, progress]);
+  }, [scrollDriven, progress]);
 
   // ── Scroll-driven animation after gate passes ─────────────────────────────
-  // Uses the same delta-based approach as the pre-gate touch handler for
-  // consistent smoothness. Scroll position maps directly to progress.
+  // Maps scroll position directly to animation progress:
+  //   scrollY 0        → progress 0  (devices at initial position)
+  //   scrollY = 1×vh   → progress 1  (devices fully scaled/positioned)
+  // The hero is 200dvh with sticky inner content, so the first vh of
+  // scroll drives the animation while the second vh scrolls content into view.
   useEffect(() => {
-    if (!gatePassed) return;
+    if (!scrollDriven) return;
     const el = containerRef.current;
     if (!el) return;
 
-    let lastScrollY = window.scrollY;
     const vh = window.innerHeight;
 
-    // Set initial value
-    const initialP = Math.min(1, Math.max(0, lastScrollY / vh));
-    progressRef.current = initialP;
-    progress.set(initialP);
+    // Sync scroll position to match current animation progress from the
+    // touch-driven phase. The sticky inner content prevents any visual jump.
+    if (progressRef.current > 0 && window.scrollY === 0) {
+      window.scrollTo({ top: progressRef.current * vh });
+    }
 
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const delta = scrollY - lastScrollY;
-      lastScrollY = scrollY;
-
-      // Same delta-based step as the touch handler
-      const step = delta / (vh * 0.55);
-      progressRef.current = Math.min(1, Math.max(0, progressRef.current + step));
-      progress.set(progressRef.current);
+      const p = Math.min(1, Math.max(0, window.scrollY / vh));
+      progressRef.current = p;
+      progress.set(p);
     };
+
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [gatePassed, progress]);
+  }, [scrollDriven, progress]);
 
   // ── Preload frames ─────────────────────────────────────────────────────────
   // Load frame 0 for both devices first so they appear immediately,
@@ -448,6 +451,10 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       watchOverlayRef.current.style.transform = getWatchTransform(watchIdx);
       watchOverlayRef.current.style.opacity = '1';
     }
+    // Scroll the background gradient with progress
+    if (containerRef.current) {
+      containerRef.current.style.backgroundPositionY = `${clamped * 100}%`;
+    }
   }, [framesLoaded, drawToCanvas, phoneOverlayReady, getPhoneTransform, watchOverlayReady, getWatchTransform]);
 
   useMotionValueEvent(progress, 'change', onProgressChange);
@@ -496,8 +503,11 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }}
       id="hero"
       style={{
-        height: gatePassed ? '200dvh' : '100dvh',
-        ...(gatePassed ? { pointerEvents: 'none' as const } : {}),
+        height: scrollDriven ? '200dvh' : '100dvh',
+        background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
+        backgroundSize: '100% 300%',
+        backgroundPosition: '0% 0%',
+        ...(scrollDriven ? { pointerEvents: 'none' as const } : {}),
       }}
       className="relative"
     >
@@ -505,10 +515,9 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         className="flex flex-col items-center overflow-hidden"
         style={{
           height: '100dvh',
-          ...(gatePassed ? { position: 'sticky' as const, top: 0 } : {}),
+          ...(scrollDriven ? { position: 'sticky' as const, top: 0 } : {}),
           paddingTop: 'env(safe-area-inset-top)',
           paddingBottom: 'env(safe-area-inset-bottom)',
-          background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
         }}
       >
 
@@ -536,7 +545,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         {/* ── Headlines ──────────────────────────────────────────────── */}
         <motion.div
           className="text-center px-6 flex-shrink-0 z-10"
-          style={{ opacity: isDemoActive ? 0 : headlineOpacity, y: headlineY }}
+          style={{ opacity: headlineOpacity, y: headlineY }}
         >
           <h1 className="text-3xl font-serif font-medium text-slate-900 leading-tight tracking-tight mb-2">
             <motion.span
@@ -571,7 +580,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
             initial={{ opacity: 0, y: 60 }}
             animate={framesLoaded ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.55 }}
-            className="absolute -bottom-24 left-0 right-0 pointer-events-none"
+            className="absolute -bottom-12 left-0 right-0 pointer-events-none"
             style={{ zIndex: 5 }}
           >
             <motion.div
@@ -582,7 +591,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                 WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 25%, black 100%)',
               }}
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2.5">
                 <MobileCategoryRow items={topRowItems} direction="right" duration={45} />
                 <MobileCategoryRow items={bottomRowItems} direction="left" duration={45} />
               </div>
@@ -643,6 +652,21 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                   </div>
                 </div>
               )}
+              {demoStage === 'waiting' && (
+                <div
+                  onClick={() => {
+                    setDemoActiveDevice('phone');
+                    deviceCallbacks.onPhoneRecordClick?.();
+                  }}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    pointerEvents: 'auto',
+                    cursor: 'pointer',
+                    zIndex: 20,
+                  }}
+                />
+              )}
             </motion.div>
           </motion.div>
 
@@ -702,6 +726,21 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                       <WatchRecordingAnimation startTime={animStartTime} />
                     </div>
                   </div>
+                )}
+                {demoStage === 'waiting' && (
+                  <div
+                    onClick={() => {
+                      setDemoActiveDevice('watch');
+                      deviceCallbacks.onWatchRecordClick?.();
+                    }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      pointerEvents: 'auto',
+                      cursor: 'pointer',
+                      zIndex: 20,
+                    }}
+                  />
                 )}
               </div>
             </motion.div>
@@ -766,8 +805,13 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                   setSkipped(true);
                   onSkipDemo?.();
                   setTimeout(() => {
-                    document.getElementById('video-transition')?.scrollIntoView({ behavior: 'smooth' });
-                  }, 150);
+                    // Gently nudge down from current position
+                    const currentY = progressRef.current * window.innerHeight;
+                    window.scrollTo({
+                      top: currentY + window.innerHeight * 0.35,
+                      behavior: 'smooth',
+                    });
+                  }, 200);
                 }}
                 disabled={skipped}
                 style={{ touchAction: 'manipulation' }}

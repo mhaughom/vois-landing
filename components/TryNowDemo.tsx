@@ -132,21 +132,23 @@ export const DemoSteps: React.FC<{
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 w-full"
           >
-            {/* Step 1 - Always visible once waiting starts */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3"
-            >
-              <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
-                <span className="text-slate-400 mr-2">1.</span>
-                {isMobile ? 'Starting microphone...' : 'Tap record on the phone or watch'}
-              </span>
-              {stage !== 'waiting' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
-            </motion.div>
+            {/* Step 1 - Mobile: only during waiting. Desktop: always visible */}
+            {(!isMobile || stage === 'waiting') && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-3"
+              >
+                <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
+                  <span className="text-slate-400 mr-2">1.</span>
+                  Tap record on the phone or watch
+                </span>
+                {stage !== 'waiting' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+              </motion.div>
+            )}
 
-            {/* Step 2 - Visible from recording onwards */}
-            {(stage === 'recording' || stage === 'processing' || stage === 'results') && (
+            {/* Step 2 - Mobile: only during recording. Desktop: recording onwards */}
+            {(isMobile ? stage === 'recording' : (stage === 'recording' || stage === 'processing' || stage === 'results')) && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -389,7 +391,6 @@ export const DemoSteps: React.FC<{
 };
 
 export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStopRecording, onStageChange, hasCompletedDemo }) => {
-  const isMobile = useIsMobile();
   const [stage, setStageInternal] = useState<DemoStage>('idle');
   const [elapsedTime, setElapsedTime] = useState(0);
   const [currentTip, setCurrentTip] = useState(0);
@@ -469,9 +470,11 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     if (stage === 'waiting') {
       // During initial demo - both phone and watch can start recording
       setOnPhoneRecordClick(() => {
+        setDemoActiveDevice('phone');
         startRecordingRef.current();
       });
       setOnWatchRecordClick(() => {
+        setDemoActiveDevice('watch');
         startRecordingRef.current();
       });
       setOnStopRecordClick(null);
@@ -502,14 +505,8 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   const enterWaitingMode = () => {
     const device = getDemoState().activeDevice;
     Analytics.demoStarted(device === 'watch' ? 'watch' : 'phone');
-    if (isMobile) {
-      // On mobile, no 3D devices to tap — start recording directly
-      setDemoActiveDevice('phone');
-      startRecordingRef.current();
-    } else {
-      setStage('waiting');
-      setDemoWaitingToStart(true);
-    }
+    setStage('waiting');
+    setDemoWaitingToStart(true);
   };
 
   // Keep startNew ref updated
