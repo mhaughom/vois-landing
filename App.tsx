@@ -553,7 +553,7 @@ const App = () => {
 
   return (
     <div
-      className="relative w-full min-h-screen font-sans bg-background scroll-smooth"
+      className="relative w-full min-h-screen font-sans scroll-smooth"
       style={isMobile && !demoGatePassed ? { height: '100dvh', overflow: 'hidden' } : undefined}
     >
       {/* Top white gradient overlay — blends with Safari Liquid Glass toolbar */}
@@ -721,7 +721,7 @@ const App = () => {
           {/* Left: Text Content - with z-index to sit above 3D */}
           {/* Shifts left when video is playing to give more room */}
           <motion.div
-            className={`lg:flex-1 max-w-xl relative z-10 ${isMobile ? 'text-center flex flex-col items-center' : ''}`}
+            className={`lg:flex-1 max-w-xl relative z-10 overflow-visible ${isMobile ? 'text-center flex flex-col items-center' : ''}`}
             animate={{
               x: showVideoClose && !isMobile ? -60 : 0,
             }}
@@ -733,22 +733,22 @@ const App = () => {
               style={{
                 pointerEvents: isDemoActive ? 'none' : undefined,
                 opacity: isDemoActive ? 0 : 1,
+                overflow: 'visible',
                 transition: isDemoActive
                   ? 'grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s, opacity 0.4s ease-out'
                   : 'grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out 0.2s',
               }}
             >
-            <div className="overflow-hidden min-h-0">
-            {/* Headline - always visible, centered initially then moves up */}
+            <div className="min-h-0 overflow-visible">
+            {/* Headline - smoothly moves up when discovery mode is active */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
-                y: discoveryMode ? -30 : 0,
-                marginBottom: discoveryMode ? '1rem' : '1.5rem'
+                y: discoveryMode ? -20 : 0
               }}
-              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] tracking-tight"
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] tracking-tight mb-6"
             >
               {COPY.hero.headline}
             </motion.h1>
@@ -781,8 +781,9 @@ const App = () => {
                   </div>
 
                   {/* Buttons - CSS transition to avoid React re-render flicker */}
+                  {/* Padding added for shadow room */}
                   <div
-                    className="flex items-start justify-center sm:justify-start gap-4 flex-wrap transition-opacity duration-700 ease-out"
+                    className="flex items-start justify-center sm:justify-start gap-4 flex-wrap transition-opacity duration-700 ease-out py-2 -my-2"
                     style={{
                       opacity: heroStage === 'buttons' || heroStage === 'complete' ? 1 : 0
                     }}
@@ -811,14 +812,18 @@ const App = () => {
                           setShowVideoClose(true);
                         }
                       }}
-                      className={`watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-black/20 overflow-hidden active:scale-95 transition-all duration-300 ${
+                      className={`watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 active:scale-95 transition-all duration-300 ${
                         showVideoClose
                           ? 'bg-white text-slate-900'
                           : 'bg-slate-900 text-white'
                       }`}
+                      style={{ filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }}
                     >
-                      {/* Circular white fill expanding from play button on hover */}
-                      <span className={`watch-video-fill absolute bg-white rounded-full pointer-events-none ${showVideoClose ? 'opacity-0' : ''}`} />
+                      {/* Inner container for overflow clipping (keeps shadow visible on outer button) */}
+                      <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+                        {/* Circular white fill expanding from play button on hover */}
+                        <span className={`watch-video-fill absolute bg-white rounded-full ${showVideoClose ? 'opacity-0' : ''}`} />
+                      </span>
                       {/* Play button circle - inverts on hover */}
                       <span className={`relative z-10 flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-200 ${
                         showVideoClose
@@ -938,10 +943,10 @@ const App = () => {
               ) : (
                 <motion.div
                   key="discovery-content"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <HeroDiscoveryContent activeMode={discoveryMode} />
                 </motion.div>
@@ -987,6 +992,21 @@ const App = () => {
             }}
           />
 
+          {/* Bottom fade to white - smooth transition to next section */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '-1px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '100vw',
+              height: '120px',
+              background: 'linear-gradient(to bottom, transparent 0%, white 100%)',
+              pointerEvents: 'none',
+              zIndex: 40,
+            }}
+          />
+
         </section>
         )}
 
@@ -997,8 +1017,13 @@ const App = () => {
         <section
           ref={videoTransitionRef}
           id="video-transition"
-          className="relative min-h-screen flex items-center bg-white z-10"
-          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+          className="relative min-h-screen flex items-center z-10"
+          style={{
+            width: '100vw',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginTop: '-1px',
+            backgroundColor: 'white',
+          }}
         >
           {/* Right: Typography - Parallax: scrolls slightly slower than video */}
           <motion.div
@@ -1212,7 +1237,7 @@ const App = () => {
 
         {/* PRIVACY - LEFT side for watch on right */}
         {/* RETRIEVE SECTION - "Retrieve at the speed of sound" with click-to-play video */}
-        <section id="retrieve" className="py-24 px-6 md:px-16 relative z-10 bg-white">
+        <section id="retrieve" className="py-24 px-6 md:px-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

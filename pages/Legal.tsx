@@ -16,19 +16,24 @@ const sections: { id: LegalSection; title: string; icon: React.ReactNode }[] = [
 // Last updated date
 const LAST_UPDATED = 'January 5, 2026';
 
-export const Legal = () => {
+interface LegalProps {
+  defaultSection?: LegalSection;
+}
+
+export const Legal = ({ defaultSection }: LegalProps) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState<LegalSection>('terms');
+  const [activeSection, setActiveSection] = useState<LegalSection>(defaultSection || 'terms');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Handle hash navigation
+  // Handle hash navigation (only if no defaultSection prop)
   useEffect(() => {
+    if (defaultSection) return; // Skip hash handling if defaultSection is provided
     const hash = location.hash.replace('#', '') as LegalSection;
     if (hash && sections.find(s => s.id === hash)) {
       setActiveSection(hash);
     }
-  }, [location.hash]);
+  }, [location.hash, defaultSection]);
 
   const handleSectionChange = (section: LegalSection) => {
     setActiveSection(section);

@@ -27,6 +27,10 @@ const Login = React.lazy(() => import('./pages/Login'));
 const Legal = React.lazy(() => import('./pages/Legal'));
 const Success = React.lazy(() => import('./pages/Success'));
 
+// Wrapper components for direct Privacy/Terms routes
+const PrivacyPage = () => <Legal defaultSection="privacy" />;
+const TermsPage = () => <Legal defaultSection="terms" />;
+
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error("Could not find root element to mount to");
@@ -41,6 +45,8 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
           <Route path="/legal" element={<Legal />} />
+          <Route path="/Privacy" element={<PrivacyPage />} />
+          <Route path="/Terms" element={<TermsPage />} />
           <Route path="/work" element={<Work />} />
           <Route path="/success" element={<Success />} />
         </Routes>

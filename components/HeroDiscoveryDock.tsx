@@ -360,8 +360,35 @@ const DockPill: React.FC<{
 
 // Main Dock Component - scrolls with page, centered at bottom of hero
 export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode, onModeChange }) => {
+  const resetTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Debounced reset - gives time to move between pills without flickering
+  const handleHoverEnd = React.useCallback(() => {
+    resetTimeoutRef.current = setTimeout(() => {
+      onModeChange(null);
+    }, 150); // Small delay to allow moving between pills
+  }, [onModeChange]);
+
+  // Cancel pending reset when hovering a new pill
+  const handleHoverStart = React.useCallback((mode: DiscoveryMode) => {
+    if (resetTimeoutRef.current) {
+      clearTimeout(resetTimeoutRef.current);
+      resetTimeoutRef.current = null;
+    }
+    onModeChange(mode);
+  }, [onModeChange]);
+
+  // Cleanup on unmount
+  React.useEffect(() => {
+    return () => {
+      if (resetTimeoutRef.current) {
+        clearTimeout(resetTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <motion.div 
+    <motion.div
       className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-3 z-40 pointer-events-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -373,8 +400,8 @@ export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode
           label="When"
           mode="when"
           isActive={activeMode === 'when'}
-          onHoverStart={() => onModeChange('when')}
-          onHoverEnd={() => onModeChange(null)}
+          onHoverStart={() => handleHoverStart('when')}
+          onHoverEnd={handleHoverEnd}
           onToggle={() => onModeChange(activeMode === 'when' ? null : 'when')}
         />
         <span className="text-slate-300 text-xs">·</span>
@@ -382,8 +409,8 @@ export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode
           label="How"
           mode="how"
           isActive={activeMode === 'how'}
-          onHoverStart={() => onModeChange('how')}
-          onHoverEnd={() => onModeChange(null)}
+          onHoverStart={() => handleHoverStart('how')}
+          onHoverEnd={handleHoverEnd}
           onToggle={() => onModeChange(activeMode === 'how' ? null : 'how')}
         />
         <span className="text-slate-300 text-xs">·</span>
@@ -391,8 +418,8 @@ export const HeroDiscoveryDock: React.FC<HeroDiscoveryDockProps> = ({ activeMode
           label="Why"
           mode="why"
           isActive={activeMode === 'why'}
-          onHoverStart={() => onModeChange('why')}
-          onHoverEnd={() => onModeChange(null)}
+          onHoverStart={() => handleHoverStart('why')}
+          onHoverEnd={handleHoverEnd}
           onToggle={() => onModeChange(activeMode === 'why' ? null : 'why')}
         />
       </div>

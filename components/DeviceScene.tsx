@@ -4904,7 +4904,7 @@ export const DeviceScene: React.FC = () => {
       <Suspense fallback={null}>
         <ResponsiveCamera />
         <SceneContent />
-        <Environment preset="studio" />
+        <Environment preset="studio" background={false} />
       </Suspense>
     </Canvas>
   );

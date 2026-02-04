@@ -5,8 +5,44 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #F8F9FA;
   overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Gradient background - blue/teal top, white middle, orange corner (subtle) */
+  /* Repeating gradient so colors appear as you scroll down */
+  background:
+    linear-gradient(160deg,
+      rgba(160,210,245,0.28) 0%,
+      rgba(150,220,220,0.24) 8%,
+      rgba(245,245,250,0.08) 20%,
+      rgba(250,248,245,0.06) 30%,
+      rgba(255,200,150,0.22) 42%,
+      rgba(255,175,120,0.25) 50%,
+      rgba(250,248,245,0.06) 60%,
+      rgba(245,245,250,0.08) 70%,
+      rgba(150,220,220,0.24) 82%,
+      rgba(160,210,245,0.28) 90%,
+      rgba(255,200,150,0.22) 100%),
+    #F8F9FA;
+  background-size: 100% 300vh;
+  background-attachment: scroll;
+}
+
+/* Fine film grain overlay - neutral grain on top of colored background */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* Hero animation is scroll-driven on all screen sizes.
@@ -56,14 +92,7 @@ html {
   }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #F8F9FA;
-  overflow-x: clip;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Body base styles merged into body block above */
 
 /* Ensure min height fills the full viewport including safe areas */
 html, body, #root {
@@ -187,6 +216,24 @@ html, body, #root {
 }
 
 .watch-video-btn:hover .watch-video-fill {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Try Demo Button - Circular expansion animation from mic button */
+.try-demo-btn .try-demo-fill {
+  width: 400px;
+  height: 400px;
+  /* Position so the circle's center aligns with the mic button center */
+  /* Mic button is at left: 16px (pl-4) and is 36px wide, so center is at 34px */
+  /* Circle is 400px wide, so left edge should be at 34px - 200px = -166px */
+  left: -166px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+.try-demo-btn:hover .try-demo-fill {
   transform: translateY(-50%) scale(1);
 }
 

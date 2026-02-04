@@ -96,7 +96,7 @@ export const BG_VARIANTS = [
   'linear-gradient(160deg, rgba(180,225,220,0.7) 0%, rgba(200,220,240,0.55) 20%, rgba(230,210,240,0.5) 40%, rgba(245,200,220,0.45) 60%, rgba(250,210,190,0.4) 80%, rgba(245,235,225,0.3) 100%)',
   'linear-gradient(160deg, rgba(248,210,195,0.6) 0%, rgba(245,195,210,0.55) 20%, rgba(225,205,235,0.5) 40%, rgba(200,215,240,0.45) 60%, rgba(190,230,225,0.4) 80%, rgba(230,240,235,0.3) 100%)',
   'linear-gradient(150deg, rgba(210,200,240,0.65) 0%, rgba(235,195,215,0.55) 20%, rgba(245,200,190,0.5) 40%, rgba(245,225,180,0.45) 60%, rgba(210,230,210,0.4) 80%, rgba(230,235,225,0.3) 100%)',
-  'linear-gradient(160deg, rgba(190,215,245,0.6) 0%, rgba(180,225,225,0.55) 20%, rgba(210,205,235,0.5) 40%, rgba(240,210,215,0.45) 60%, rgba(248,230,210,0.35) 80%, rgba(245,240,230,0.25) 100%)',
+  'linear-gradient(160deg, rgba(160,210,245,0.28) 0%, rgba(150,220,220,0.24) 18%, rgba(245,245,250,0.12) 40%, rgba(250,248,245,0.10) 60%, rgba(255,200,150,0.22) 82%, rgba(255,175,120,0.25) 100%)',
   'linear-gradient(155deg, rgba(240,200,210,0.6) 0%, rgba(225,200,225,0.55) 20%, rgba(200,200,240,0.5) 40%, rgba(190,220,235,0.45) 60%, rgba(190,235,220,0.4) 80%, rgba(220,240,230,0.3) 100%)',
   'linear-gradient(160deg, rgba(250,215,190,0.6) 0%, rgba(245,195,195,0.55) 20%, rgba(230,195,225,0.5) 40%, rgba(200,195,240,0.45) 60%, rgba(195,215,245,0.4) 80%, rgba(220,235,245,0.3) 100%)',
   'linear-gradient(165deg, rgba(185,230,220,0.65) 0%, rgba(190,215,240,0.55) 20%, rgba(205,195,235,0.5) 40%, rgba(230,195,220,0.45) 60%, rgba(245,205,200,0.4) 80%, rgba(248,220,200,0.3) 100%)',
@@ -520,6 +520,16 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
       >
+
+        {/* Fine film grain overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 1,
+            opacity: 0.12,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
 
         {/* White gradient overlays — polished edge fade */}
         <div
