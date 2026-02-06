@@ -26,6 +26,7 @@ const App = React.lazy(() => import('./App'));
 const Login = React.lazy(() => import('./pages/Login'));
 const Legal = React.lazy(() => import('./pages/Legal'));
 const Success = React.lazy(() => import('./pages/Success'));
+const Support = React.lazy(() => import('./pages/Support'));
 
 // Wrapper components for direct Privacy/Terms routes
 const PrivacyPage = () => <Legal defaultSection="privacy" />;
@@ -48,6 +49,7 @@ root.render(
           <Route path="/Privacy" element={<PrivacyPage />} />
           <Route path="/Terms" element={<TermsPage />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/success" element={<Success />} />
         </Routes>
       </Suspense>

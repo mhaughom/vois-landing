@@ -14,7 +14,7 @@ const sections: { id: LegalSection; title: string; icon: React.ReactNode }[] = [
 ];
 
 // Last updated date
-const LAST_UPDATED = 'January 5, 2026';
+const LAST_UPDATED = 'February 4, 2026';
 
 interface LegalProps {
   defaultSection?: LegalSection;
@@ -204,10 +204,10 @@ export const Legal = ({ defaultSection }: LegalProps) => {
             <div className="md:text-right">
               <h4 className="font-semibold text-slate-900 mb-3">Company Information</h4>
               <div className="text-sm text-slate-600 space-y-1">
-                <p>Vois is operated by <strong>[Your Name/Company AS]</strong></p>
-                <p>Organization Number (Org.nr): <strong>[XXXXXXXXX]</strong></p>
-                <p>Address: <strong>Volda, Norway</strong></p>
-                <p>Contact: <a href="mailto:support@vois.app" className="text-slate-900 hover:underline">support@vois.app</a></p>
+                <p>Vois is operated by <strong>VOIS AI AS</strong></p>
+                <p>Organization Number (Org.nr): <strong>936 920 594</strong></p>
+                <p>Address: <strong>Alsvåg, Norway</strong></p>
+                <p>Contact: <a href="mailto:hello@tryvois.com" className="text-slate-900 hover:underline">hello@tryvois.com</a></p>
               </div>
             </div>
           </div>
@@ -265,58 +265,46 @@ const ImportantBox = ({ children, variant = 'info' }: { children: React.ReactNod
 
 const TermsOfService = () => (
   <>
-    <SectionHeader 
-      title="Terms of Service" 
+    <SectionHeader
+      title="Terms of Service"
       subtitle="Please read these terms carefully before using Vois."
     />
 
     <SubSection title="1. Acceptance of Terms">
       <p>
-        By accessing or using Vois ("the Service"), you agree to be bound by these Terms of Service 
+        By accessing or using Vois ("the Service"), you agree to be bound by these Terms of Service
         ("Terms"). If you do not agree to these Terms, please do not use the Service.
       </p>
       <p>
-        Vois is operated by [Your Name/Company AS], a company registered in Norway. These Terms 
-        constitute a legally binding agreement between you and [Your Name/Company AS].
+        Vois is operated by VOIS AI AS (Org.nr. 936 920 594), a company registered in Norway. These Terms
+        constitute a legally binding agreement between you and VOIS AI AS.
       </p>
     </SubSection>
 
-    <SubSection title="2. Definition of 'Lifetime Access'">
-      <ImportantBox>
-        <p className="font-semibold mb-2">Important Clarification:</p>
-        <p>
-          <strong>"Lifetime Access"</strong> refers to the lifespan of the Vois product, not the 
-          lifespan of the user. Lifetime Access grants you perpetual access to Vois Pro features 
-          for as long as the Vois service continues to operate.
-        </p>
-      </ImportantBox>
-      <p className="mt-4">
-        In the event that Vois is discontinued or substantially changed:
+    <SubSection title="2. Description of Service">
+      <p>
+        Vois is an AI-powered voice notes app that helps you capture, transcribe, and organize your thoughts.
+        The Service includes:
       </p>
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>We will provide at least <strong>30 days' advance notice</strong> to all Lifetime members via email.</li>
-        <li>Where possible, we will offer data export tools to preserve your content.</li>
-        <li>We reserve the right to transition to a successor service and migrate your Lifetime status.</li>
+      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+        <li>Voice recording and AI transcription</li>
+        <li>Automatic extraction of tasks, events, and ideas</li>
+        <li>AI-powered chat to interact with your notes</li>
+        <li>Calendar and reminder integration</li>
       </ul>
     </SubSection>
 
-    <SubSection title="3. Fair Use Policy (API Protection)">
+    <SubSection title="3. Subscriptions">
       <p>
-        To ensure the stability and availability of our AI-powered features for all users, 
-        Lifetime and Pro accounts are subject to a Fair Use Policy:
+        Vois offers subscription plans through the Apple App Store. By subscribing, you agree to:
       </p>
-      <ImportantBox variant="warning">
-        <p className="font-semibold mb-2">Usage Limits:</p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Soft limit of <strong>500 AI Processing Credits per month</strong> (approximately 5 hours of audio transcription and processing).</li>
-          <li>Credits reset on the 1st of each calendar month.</li>
-          <li>Unused credits do not roll over to subsequent months.</li>
-        </ul>
-      </ImportantBox>
+      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+        <li>Payment will be charged to your Apple ID at confirmation of purchase</li>
+        <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period</li>
+        <li>You can manage and cancel subscriptions in your App Store account settings</li>
+      </ul>
       <p className="mt-4">
-        We reserve the right to temporarily throttle or suspend accounts that exhibit excessive usage 
-        patterns that suggest automated bot activity, API abuse, or commercial resale of our services. 
-        Affected users will be notified and given the opportunity to appeal.
+        See our <a href="/legal#refund" className="text-blue-600 hover:underline">Refund Policy</a> for information about refunds.
       </p>
     </SubSection>
 
@@ -324,64 +312,76 @@ const TermsOfService = () => (
       <ImportantBox variant="warning">
         <p className="font-semibold mb-2">Public Beta Notice:</p>
         <p>
-          You expressly acknowledge that Vois is currently in <strong>Public Beta</strong>. The software 
-          is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> without warranty of 
-          any kind, either express or implied, including but not limited to the implied warranties of 
-          merchantability, fitness for a particular purpose, or non-infringement.
+          Vois is currently in <strong>Public Beta</strong>. The software is provided <strong>"AS IS"</strong> and
+          <strong> "AS AVAILABLE"</strong> without warranty of any kind.
         </p>
       </ImportantBox>
       <p className="mt-4">
         During the Beta period:
       </p>
       <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Features may change, be modified, or be removed without prior notice.</li>
-        <li>You may experience bugs, errors, or service interruptions.</li>
-        <li>We appreciate your patience and feedback as we improve the service.</li>
+        <li>Features may change, be modified, or be removed without prior notice</li>
+        <li>You may experience bugs, errors, or service interruptions</li>
+        <li>We appreciate your patience and feedback as we improve the service</li>
       </ul>
     </SubSection>
 
     <SubSection title="5. User Responsibilities">
       <p>You agree to:</p>
       <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Use the Service only for lawful purposes and in accordance with these Terms.</li>
-        <li>Not attempt to reverse engineer, decompile, or disassemble any part of the Service.</li>
-        <li>Not use the Service to process content that violates applicable laws or third-party rights.</li>
-        <li>Maintain the confidentiality of your account credentials.</li>
+        <li>Use the Service only for lawful purposes</li>
+        <li>Not attempt to reverse engineer or exploit the Service</li>
+        <li>Not use the Service to process illegal or harmful content</li>
+        <li>Keep your account credentials secure</li>
       </ul>
     </SubSection>
 
-    <SubSection title="6. Intellectual Property">
+    <SubSection title="6. Your Content">
       <p>
-        All intellectual property rights in Vois, including but not limited to software, design, 
-        logos, and content, are owned by [Your Name/Company AS] or our licensors.
+        <strong>Your content remains yours.</strong> You retain all rights to the voice recordings,
+        transcripts, and notes you create using Vois. We do not claim ownership over your personal content.
       </p>
-      <p>
-        <strong>Your content remains yours.</strong> You retain all rights to the voice recordings, 
-        transcripts, and notes you create using Vois. We claim no ownership over your personal content.
-      </p>
-    </SubSection>
-
-    <SubSection title="7. Limitation of Liability">
-      <p>
-        To the maximum extent permitted by Norwegian law and applicable EU/EEA regulations, 
-        [Your Name/Company AS] shall not be liable for any indirect, incidental, special, 
-        consequential, or punitive damages, including loss of profits, data, or use.
+      <p className="mt-4">
+        By using Vois, you grant us a limited license to process your content solely to provide
+        the Service (transcription, AI analysis, storage, and sync).
       </p>
     </SubSection>
 
-    <SubSection title="8. Governing Law">
+    <SubSection title="7. AI-Generated Content">
       <p>
-        These Terms shall be governed by and construed in accordance with the laws of Norway, 
-        without regard to its conflict of law provisions. Any disputes shall be subject to the 
+        Vois uses AI to transcribe and analyze your recordings. You acknowledge that:
+      </p>
+      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+        <li>AI-generated transcriptions may contain errors</li>
+        <li>You are responsible for reviewing AI-generated content</li>
+        <li>AI features are provided without guarantees of accuracy</li>
+      </ul>
+    </SubSection>
+
+    <SubSection title="8. Limitation of Liability">
+      <p>
+        To the maximum extent permitted by Norwegian law, VOIS AI AS shall not be liable for any
+        indirect, incidental, special, or consequential damages, including loss of data or profits.
+      </p>
+    </SubSection>
+
+    <SubSection title="9. Governing Law">
+      <p>
+        These Terms are governed by the laws of Norway. Any disputes shall be subject to the
         exclusive jurisdiction of the courts of Norway.
       </p>
     </SubSection>
 
-    <SubSection title="9. Changes to Terms">
+    <SubSection title="10. Changes to Terms">
       <p>
-        We reserve the right to modify these Terms at any time. We will notify users of any 
-        material changes via email or in-app notification. Continued use of the Service after 
-        such modifications constitutes acceptance of the updated Terms.
+        We may modify these Terms at any time. We will notify you of material changes via the app
+        or email. Continued use after changes constitutes acceptance.
+      </p>
+    </SubSection>
+
+    <SubSection title="11. Contact">
+      <p>
+        Questions? Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
       </p>
     </SubSection>
   </>
@@ -393,112 +393,38 @@ const TermsOfService = () => (
 
 const RefundPolicy = () => (
   <>
-    <SectionHeader 
-      title="Refund Policy & Right of Withdrawal" 
-      subtitle="Your rights as a consumer under Norwegian and EU/EEA law."
+    <SectionHeader
+      title="Refund Policy"
+      subtitle="How refunds work for Vois subscriptions."
     />
 
-    <SubSection title="1. Our Commitment">
+    <SubSection title="App Store Purchases">
       <p>
-        At Vois, we want you to be completely satisfied with your purchase. We offer different 
-        refund policies depending on where you made your purchase.
+        All Vois subscriptions are processed through the Apple App Store. We cannot process
+        refunds directly for App Store purchases.
       </p>
-    </SubSection>
-
-    <SubSection title="2. Website Purchases (Stripe)">
-      <p className="font-semibold text-slate-900 mb-2">
-        Founder's Edition & Direct Web Purchases:
-      </p>
-      
-      <ImportantBox>
-        <p className="font-semibold mb-2">🛡️ 30-Day Money-Back Guarantee</p>
-        <p>
-          We offer a <strong>full 30-day money-back guarantee</strong> for all Founder's Edition 
-          purchases made directly through our website via Stripe. If you're not satisfied with 
-          Vois for any reason, simply contact us within 30 days of purchase for a full refund.
-        </p>
-      </ImportantBox>
 
       <div className="mt-6">
-        <h4 className="font-semibold text-slate-900 mb-2">How to Request a Refund:</h4>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li>Email <a href="mailto:support@vois.app" className="text-blue-600 hover:underline">support@vois.app</a> with subject line "Refund Request"</li>
-          <li>Include your order confirmation number or email used for purchase</li>
-          <li>We will process your refund within 5-7 business days</li>
-          <li>Refunds will be credited to the original payment method</li>
-        </ol>
-      </div>
-    </SubSection>
-
-    <SubSection title="3. EU/EEA Right of Withdrawal (Angrerettloven)">
-      <ImportantBox variant="warning">
-        <p className="font-semibold mb-2">⚖️ Important Legal Notice for EU/EEA Consumers:</p>
-        <p className="mb-3">
-          Under the EU Consumer Rights Directive (and Norwegian Consumer Purchase Act / Angrerettloven), 
-          consumers generally have a <strong>14-day right of withdrawal</strong> for distance purchases.
-        </p>
-        <p className="mb-3">
-          However, by purchasing the Vois Founder's Edition (digital content) and gaining 
-          <strong> immediate access</strong> to the service, you <strong>expressly acknowledge and consent</strong> 
-          to the following:
-        </p>
-        <ul className="list-disc list-inside space-y-1 mb-3">
-          <li>The digital content will be made available to you immediately upon purchase.</li>
-          <li>You understand that you will lose your statutory 14-day right of withdrawal once performance begins.</li>
-          <li>You expressly consent to this arrangement.</li>
-        </ul>
-        <p>
-          <strong>Our 30-Day Money-Back Guarantee replaces and exceeds the standard 14-day withdrawal right</strong>, 
-          giving you more time to evaluate Vois risk-free.
-        </p>
-      </ImportantBox>
-    </SubSection>
-
-    <SubSection title="4. App Store Purchases (Apple)">
-      <ImportantBox>
-        <p className="font-semibold mb-2">📱 Apple App Store Purchases:</p>
-        <p>
-          <strong>Vois cannot process refunds</strong> for any purchases made through the Apple App Store 
-          (including subscriptions and in-app purchases). These transactions are processed and managed 
-          exclusively by Apple Inc.
-        </p>
-      </ImportantBox>
-
-      <div className="mt-4">
-        <h4 className="font-semibold text-slate-900 mb-2">To request a refund for App Store purchases:</h4>
+        <h4 className="font-semibold text-slate-900 mb-3">To request a refund:</h4>
         <ol className="list-decimal list-inside space-y-2 ml-4">
           <li>
-            Visit Apple's <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Report a Problem</a> page
+            Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">reportaproblem.apple.com</a>
           </li>
           <li>Sign in with your Apple ID</li>
-          <li>Find the Vois purchase in your purchase history</li>
-          <li>Select "Request a refund" and follow Apple's instructions</li>
+          <li>Find your Vois purchase</li>
+          <li>Select "Request a refund"</li>
         </ol>
-        <p className="mt-4 text-sm text-slate-600">
-          All App Store refund decisions are made solely by Apple according to their 
-          <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline ml-1">Terms and Conditions</a>.
-        </p>
       </div>
-    </SubSection>
 
-    <SubSection title="5. Non-Refundable Situations">
-      <p>Refunds may not be granted in the following circumstances:</p>
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Requests made after the 30-day guarantee period has expired</li>
-        <li>Abuse of the refund policy (e.g., repeated purchases and refunds)</li>
-        <li>Account suspension due to Terms of Service violations</li>
-        <li>Purchases made through third-party resellers or unauthorized channels</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="6. Contact Us">
-      <p>
-        For any questions regarding refunds or your consumer rights, please contact us at:
+      <p className="mt-6 text-slate-600">
+        All refund decisions are made by Apple according to their terms.
       </p>
-      <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Email:</strong> <a href="mailto:support@vois.app" className="text-blue-600 hover:underline">support@vois.app</a></p>
-        <p><strong>Response Time:</strong> Within 48 business hours</p>
-      </div>
+    </SubSection>
+
+    <SubSection title="Questions?">
+      <p>
+        Contact us at <a href="mailto:support@tryvois.com" className="text-blue-600 hover:underline">support@tryvois.com</a>
+      </p>
     </SubSection>
   </>
 );
@@ -516,12 +442,12 @@ const PrivacyPolicy = () => (
 
     <SubSection title="1. Data Controller">
       <div className="p-4 bg-slate-50 rounded-xl">
-        <p><strong>Company:</strong> [Your Name/Company AS]</p>
-        <p><strong>Location:</strong> Volda, Norway (EEA)</p>
-        <p><strong>Contact:</strong> <a href="mailto:privacy@vois.app" className="text-blue-600 hover:underline">privacy@vois.app</a></p>
+        <p><strong>Company:</strong> VOIS AI AS</p>
+        <p><strong>Location:</strong> Alsvåg, Norway (EEA)</p>
+        <p><strong>Contact:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
       </div>
       <p className="mt-4">
-        [Your Name/Company AS] is the data controller responsible for your personal data 
+        VOIS AI AS is the data controller responsible for your personal data 
         collected through the Vois application and website.
       </p>
     </SubSection>
@@ -539,6 +465,7 @@ const PrivacyPolicy = () => (
         <li>App usage analytics (anonymized)</li>
         <li>Feature interaction data</li>
         <li>Error logs and crash reports</li>
+        <li>Device identifiers (anonymous device ID for non-logged-in users)</li>
       </ul>
 
       <h4 className="font-semibold text-slate-900 mb-2">Content Data:</h4>
@@ -597,7 +524,12 @@ const PrivacyPolicy = () => (
           <tbody>
             <tr>
               <td className="p-3 border border-slate-200"><strong>OpenAI</strong></td>
-              <td className="p-3 border border-slate-200">AI Intelligence (Transcription, Summarization)</td>
+              <td className="p-3 border border-slate-200">AI Intelligence (Summarization, Chat)</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Deepgram</strong></td>
+              <td className="p-3 border border-slate-200">Voice Transcription</td>
               <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
             </tr>
             <tr>
@@ -607,7 +539,17 @@ const PrivacyPolicy = () => (
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Stripe</strong></td>
-              <td className="p-3 border border-slate-200">Payment Processing</td>
+              <td className="p-3 border border-slate-200">Payment Processing (Web)</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>RevenueCat</strong></td>
+              <td className="p-3 border border-slate-200">Subscription Management</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Apple</strong></td>
+              <td className="p-3 border border-slate-200">App Store Payments & Sign in with Apple</td>
               <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
             </tr>
             <tr>
@@ -641,7 +583,7 @@ const PrivacyPolicy = () => (
         <li><strong>Withdraw Consent:</strong> Withdraw consent at any time</li>
       </ul>
       <p className="mt-4">
-        To exercise these rights, contact us at <a href="mailto:privacy@vois.app" className="text-blue-600 hover:underline">privacy@vois.app</a>. 
+        To exercise these rights, contact us at <a href="mailto:privacy@tryvois.com" className="text-blue-600 hover:underline">privacy@tryvois.com</a>. 
         We will respond within 30 days.
       </p>
     </SubSection>
@@ -667,7 +609,7 @@ const PrivacyPolicy = () => (
     <SubSection title="10. Contact & Complaints">
       <p>For privacy-related inquiries:</p>
       <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Privacy Contact:</strong> <a href="mailto:privacy@vois.app" className="text-blue-600 hover:underline">privacy@vois.app</a></p>
+        <p><strong>Privacy Contact:</strong> <a href="mailto:privacy@tryvois.com" className="text-blue-600 hover:underline">privacy@tryvois.com</a></p>
       </div>
       <p className="mt-4">
         If you believe your rights have been violated, you have the right to lodge a complaint with:
@@ -718,10 +660,10 @@ const EULA = () => (
       <p>You acknowledge that:</p>
       <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
         <li>
-          This EULA is concluded between you and [Your Name/Company AS] only, and not with Apple Inc.
+          This EULA is concluded between you and VOIS AI AS only, and not with Apple Inc.
         </li>
         <li>
-          [Your Name/Company AS], not Apple, is solely responsible for the Licensed Application 
+          VOIS AI AS, not Apple, is solely responsible for the Licensed Application 
           (Vois) and its content.
         </li>
         <li>
@@ -747,7 +689,7 @@ const EULA = () => (
     <SubSection title="3. Intellectual Property">
       <p>
         In the event of any third-party claim that Vois or your possession and use of Vois 
-        infringes that third party's intellectual property rights, [Your Name/Company AS], 
+        infringes that third party's intellectual property rights, VOIS AI AS, 
         not Apple, will be solely responsible for the investigation, defense, settlement, 
         and discharge of any such intellectual property infringement claim.
       </p>
@@ -769,9 +711,9 @@ const EULA = () => (
         For any questions or concerns regarding the iOS application or this EULA, please contact:
       </p>
       <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Developer:</strong> [Your Name/Company AS]</p>
-        <p><strong>Email:</strong> <a href="mailto:support@vois.app" className="text-blue-600 hover:underline">support@vois.app</a></p>
-        <p><strong>Address:</strong> Volda, Norway</p>
+        <p><strong>Developer:</strong> VOIS AI AS</p>
+        <p><strong>Email:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
+        <p><strong>Address:</strong> Alsvåg, Norway</p>
       </div>
     </SubSection>
   </>

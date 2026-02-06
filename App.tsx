@@ -197,7 +197,7 @@ const ColorWaveTags: React.FC<{ tags: string[]; visible: boolean }> = ({ tags, v
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-wrap mb-8 min-h-[2rem] items-center -mt-6"
+      className="flex flex-wrap mb-8 min-h-[2rem] items-center -mt-4"
     >
       <span
         ref={spanRef}
@@ -764,7 +764,7 @@ const App = () => {
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {/* Subheadline - types out */}
-                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-0 min-h-[2em] sm:min-h-[2.5em]">
+                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-4 lg:mb-0 min-h-[2em] sm:min-h-[2.5em]">
                     {typedSubheadline}
                     {heroStage === 'subheadline' && (
                       <motion.span
@@ -775,8 +775,8 @@ const App = () => {
                     )}
                   </p>
 
-                  {/* Tags - with colorful wind wave effect (hidden on mobile — overflows) */}
-                  <div className="hidden sm:block">
+                  {/* Tags - with colorful wind wave effect (hidden on smaller screens to prevent overlap) */}
+                  <div className="hidden lg:block">
                     <ColorWaveTags tags={heroTags} visible={visibleTags >= heroTags.length} />
                   </div>
 
@@ -1522,8 +1522,18 @@ const App = () => {
                     </Link>
                   </li>
                   <li>
-                    <a href="#" onClick={() => Analytics.externalLinkClicked('download_ios')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Download iOS
+                    <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('download_ios')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Download for iPhone
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('download_watch')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Download for Watch
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('download_mac')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Download for Mac
                     </a>
                   </li>
                 </ul>
@@ -1534,12 +1544,12 @@ const App = () => {
                 <h4 className="text-slate-900 font-medium text-sm mb-4">Legal</h4>
                 <ul className="space-y-3">
                   <li>
-                    <Link to="/legal#privacy" onClick={() => Analytics.externalLinkClicked('privacy_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <Link to="/Privacy" onClick={() => Analytics.externalLinkClicked('privacy_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Privacy Policy
                     </Link>
                   </li>
                   <li>
-                    <Link to="/legal#terms" onClick={() => Analytics.externalLinkClicked('terms_of_service')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <Link to="/Terms" onClick={() => Analytics.externalLinkClicked('terms_of_service')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Terms of Service
                     </Link>
                   </li>
@@ -1556,14 +1566,23 @@ const App = () => {
                 <h4 className="text-slate-900 font-medium text-sm mb-4">Social</h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" onClick={() => Analytics.externalLinkClicked('twitter')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors flex items-center gap-2">
-                      <X size={14} />
-                      Twitter
+                    <a href="https://x.com/voisaiapp" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('twitter')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      X / Twitter
                     </a>
                   </li>
                   <li>
-                    <a href="#" onClick={() => Analytics.externalLinkClicked('tiktok')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                    <a href="https://www.instagram.com/usevois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('instagram')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.tiktok.com/@getvois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('tiktok')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       TikTok
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.facebook.com/tryvois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('facebook')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Facebook
                     </a>
                   </li>
                 </ul>
