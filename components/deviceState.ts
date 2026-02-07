@@ -34,7 +34,7 @@ export const globalState = {
   smoothMouseX: 0,
   smoothMouseY: 0,
   isDragging: false,
-  draggedDevice: null as 'phone' | 'watch' | 'video' | null,
+  draggedDevice: null as 'phone' | 'watch' | null,
   dragStartX: 0,
   dragStartY: 0,
   dragDeltaX: 0,
@@ -58,14 +58,6 @@ export const globalState = {
     streamCards: [] as { time: string; duration: string; title: string; transcript: string; items: { type: string; content: string; icon: string }[] }[],
   },
   watchHoveredRecord: false,
-  videoPlayerState: {
-    isHovering: false,
-    isPlaying: false,
-    isAnimatingIn: false,
-    isAnimatingOut: false,
-    entryStartTime: 0,
-    exitStartTime: 0,
-  },
   demoState: {
     isWaitingToStart: false,
     activeDevice: null,
@@ -92,6 +84,14 @@ export const globalState = {
   },
   heroShowcaseActive: true,
   cardVerifications: {} as Record<number, 'verified' | 'declined'>,
+  // Touch ripple animations
+  phoneTouchRipple: null as { x: number; y: number; startTime: number } | null,
+  watchTouchRipple: null as { x: number; y: number; startTime: number } | null,
+  // Hover glow positions (UV coordinates, null when not hovering)
+  phoneHoverUV: null as { x: number; y: number } | null,
+  watchHoverUV: null as { x: number; y: number } | null,
+  // Watch UV mapping (repeat/offset from texture setup, for raw→canvas conversion)
+  watchUVMapping: null as { repeatX: number; repeatY: number; offsetX: number; offsetY: number } | null,
 };
 
 // Callback holders — shared between setter functions and DeviceScene's click handlers
@@ -149,34 +149,6 @@ export const getPhoneScreenState = () => globalState.phoneScreenState;
 
 export const setNarrativeScrollProgress = (progress: number) => {
   globalState.narrativeScrollProgress = progress;
-};
-
-export const setVideoHoverState = (isHovering: boolean) => {
-  const state = globalState.videoPlayerState;
-  if (isHovering && !state.isHovering && !state.isPlaying) {
-    state.isHovering = true;
-    state.isAnimatingIn = true;
-    state.isAnimatingOut = false;
-    state.entryStartTime = Date.now();
-  } else if (!isHovering && !state.isPlaying) {
-    state.isHovering = false;
-    state.isAnimatingOut = true;
-    state.isAnimatingIn = false;
-    state.exitStartTime = Date.now();
-  }
-};
-
-export const setVideoPlayState = (isPlaying: boolean) => {
-  const state = globalState.videoPlayerState;
-  state.isPlaying = isPlaying;
-  if (isPlaying) {
-    state.isAnimatingOut = false;
-  } else {
-    state.isHovering = false;
-    state.isAnimatingIn = false;
-    state.isAnimatingOut = true;
-    state.exitStartTime = Date.now();
-  }
 };
 
 export const endHeroShowcase = () => {

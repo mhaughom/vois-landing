@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { setCurrentSection, setVideoHoverState, setVideoPlayState, setOnChatOpen, setOnChatMessageSent, setOnCardVerified, areAllCardsVerified, resetCardVerifications } from './components/deviceState';
+import { setCurrentSection, setOnChatOpen, setOnChatMessageSent, setOnCardVerified, areAllCardsVerified, resetCardVerifications } from './components/deviceState';
 import type { SectionId } from './components/deviceState';
 import { DeviceScene } from './components/DeviceScene';
 // FlowVisualization deactivated — removed import to avoid bundling Three.js code
@@ -16,7 +16,7 @@ import { ChatDemo } from './components/ChatDemo';
 import { PhoneMockup } from './components/PhoneMockup';
 import { AppleWatchMockup } from './components/AppleWatchMockup';
 import { MobileScrollHero, BG_VARIANTS } from './components/MobileScrollHero';
-import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { CheckoutModal } from './components/CheckoutModal';
 import { useFounderSpots } from './hooks/useFounderSpots';
 import { useIsMobile } from './hooks/useIsMobile';
@@ -215,7 +215,10 @@ const App = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [discoveryMode, setDiscoveryMode] = useState<DiscoveryMode>(null);
   const [showVideoModal, setShowVideoModal] = useState(false);
-  const [showVideoClose, setShowVideoClose] = useState(false); // Track if 3D video is playing
+  const [showVideoClose, setShowVideoClose] = useState(false); // Track if flat video is playing
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const [heroVideoPlaying, setHeroVideoPlaying] = useState(true);
+  const [heroVideoMuted, setHeroVideoMuted] = useState(false);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   const { remaining, isSoldOut } = useFounderSpots();
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -254,6 +257,24 @@ const App = () => {
       resetCardVerifications();
     }
   }, [demoStage]);
+
+  // When hero video appears, try to play with sound; fall back to muted if browser blocks it
+  useEffect(() => {
+    if (!showVideoClose) return;
+    const v = heroVideoRef.current;
+    if (!v) return;
+    v.muted = false;
+    setHeroVideoMuted(false);
+    const playPromise = v.play();
+    if (playPromise) {
+      playPromise.catch(() => {
+        // Browser blocked unmuted autoplay — fall back to muted
+        v.muted = true;
+        setHeroVideoMuted(true);
+        v.play();
+      });
+    }
+  }, [showVideoClose]);
 
   // Set session properties on mount
   useEffect(() => {
@@ -641,24 +662,7 @@ const App = () => {
       {/* Chat Demo - handles API calls for phone chat interface */}
       <ChatDemo onMessageSent={() => setChatMessageCount(prev => prev + 1)} />
 
-      {/* 3D Video Player Close Button */}
-      <AnimatePresence>
-        {showVideoClose && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => {
-              setVideoPlayState(false);
-              setShowVideoClose(false);
-            }}
-            className="fixed top-24 right-6 z-50 w-12 h-12 bg-black/60 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors shadow-lg"
-          >
-            <X size={24} />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {/* Video close button moved inside flat video container */}
 
       <main className="w-full max-w-7xl mx-auto relative z-20">
         
@@ -719,14 +723,100 @@ const App = () => {
 
 
           {/* Left: Text Content - with z-index to sit above 3D */}
-          {/* Shifts left when video is playing to give more room */}
           <motion.div
-            className={`lg:flex-1 max-w-xl relative z-10 overflow-visible ${isMobile ? 'text-center flex flex-col items-center' : ''}`}
-            animate={{
-              x: showVideoClose && !isMobile ? -60 : 0,
-            }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className={`lg:flex-1 relative z-10 overflow-visible ${showVideoClose ? 'max-w-2xl' : 'max-w-xl'} ${isMobile ? 'text-center flex flex-col items-center' : ''}`}
           >
+            <AnimatePresence mode="wait">
+              {showVideoClose ? (
+                /* Flat HTML video player — replaces hero text when video is playing */
+                <motion.div
+                  key="hero-video"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  className="relative w-full"
+                >
+                  <div className="hero-video-container relative rounded-2xl overflow-hidden shadow-2xl" style={{ boxShadow: '0 25px 60px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.1)' }}>
+                    <video
+                      ref={heroVideoRef}
+                      autoPlay
+                      playsInline
+                      className="w-full aspect-video bg-black"
+                      onPlay={() => setHeroVideoPlaying(true)}
+                      onPause={() => setHeroVideoPlaying(false)}
+                      onEnded={() => {
+                        setShowVideoClose(false);
+                      }}
+                    >
+                      <source src="/videos/Situations.mp4" type="video/mp4" />
+                    </video>
+                    {/* Minimal custom controls overlay — only visible on hover */}
+                    <div className="hero-video-controls absolute bottom-0 left-0 right-0 flex items-center gap-3 px-4 py-3 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300">
+                      <button
+                        onClick={() => {
+                          const v = heroVideoRef.current;
+                          if (!v) return;
+                          v.paused ? v.play() : v.pause();
+                        }}
+                        className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white transition-colors"
+                      >
+                        {heroVideoPlaying ? <Pause size={16} className="fill-current" /> : <Play size={16} className="fill-current" />}
+                      </button>
+                      <div className="flex-1 h-1 rounded-full bg-white/20 overflow-hidden cursor-pointer"
+                        onClick={(e) => {
+                          const v = heroVideoRef.current;
+                          if (!v || !v.duration) return;
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          const pct = (e.clientX - rect.left) / rect.width;
+                          v.currentTime = pct * v.duration;
+                        }}
+                      >
+                        <div className="h-full bg-white/80 rounded-full" style={{ width: '0%' }} ref={(el) => {
+                          if (!el) return;
+                          const update = () => {
+                            const v = heroVideoRef.current;
+                            if (v && v.duration) el.style.width = `${(v.currentTime / v.duration) * 100}%`;
+                            requestAnimationFrame(update);
+                          };
+                          requestAnimationFrame(update);
+                        }} />
+                      </div>
+                    </div>
+                    {/* Mute + Close buttons — always visible */}
+                    <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
+                      <button
+                        onClick={() => {
+                          const v = heroVideoRef.current;
+                          if (!v) return;
+                          v.muted = !v.muted;
+                          setHeroVideoMuted(v.muted);
+                        }}
+                        className="w-9 h-9 bg-black/40 hover:bg-black/60 rounded-full flex items-center justify-center text-white/80 hover:text-white transition-all"
+                      >
+                        {heroVideoMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                      </button>
+                      <button
+                        onClick={() => {
+                          if (heroVideoRef.current) heroVideoRef.current.pause();
+                          setShowVideoClose(false);
+                        }}
+                        className="w-9 h-9 bg-black/40 hover:bg-black/60 rounded-full flex items-center justify-center text-white/80 hover:text-white transition-all"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                /* Hero text content — headline, subheadline, tags, buttons */
+                <motion.div
+                  key="hero-text"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                >
             {/* Collapsing wrapper - hides hero text/buttons when demo is active, lets DemoSteps float up */}
             <div
               className={`grid ${isDemoActive ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'}`}
@@ -792,56 +882,34 @@ const App = () => {
                     <button
                       onClick={() => {
                         if (isMobile) {
-                          // On mobile, show the video modal instead of 3D player
                           Analytics.videoWatched();
                           setShowVideoModal(true);
                           return;
                         }
                         if (showVideoClose) {
-                          // End video
-                          Analytics.videoPaused('hero_3d', 0);
-                          setVideoPlayState(false);
+                          Analytics.videoPaused('hero_flat', 0);
                           setShowVideoClose(false);
                         } else {
-                          // Start video - also reset demo state
                           Analytics.videoWatched();
-                          Analytics.videoPlayed('hero_3d');
+                          Analytics.videoPlayed('hero_flat');
                           demoControls?.reset();
-                          setVideoHoverState(true);
-                          setVideoPlayState(true);
                           setShowVideoClose(true);
                         }
                       }}
-                      className={`watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 active:scale-95 transition-all duration-300 ${
-                        showVideoClose
-                          ? 'bg-white text-slate-900'
-                          : 'bg-slate-900 text-white'
-                      }`}
-                      style={{ filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }}
+                      className="watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 active:scale-95 transition-all duration-300 bg-slate-900 text-white border border-slate-800 hover:border-slate-200"
+                      style={{ filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))' }}
                     >
                       {/* Inner container for overflow clipping (keeps shadow visible on outer button) */}
                       <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
                         {/* Circular white fill expanding from play button on hover */}
-                        <span className={`watch-video-fill absolute bg-white rounded-full ${showVideoClose ? 'opacity-0' : ''}`} />
+                        <span className="watch-video-fill absolute bg-white rounded-full" />
                       </span>
                       {/* Play button circle - inverts on hover */}
-                      <span className={`relative z-10 flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-200 ${
-                        showVideoClose
-                          ? 'bg-slate-900'
-                          : 'bg-slate-900 group-hover:bg-white'
-                      }`}>
-                        <Play size={14} className={`ml-0.5 transition-colors duration-200 ${
-                          showVideoClose
-                            ? 'fill-white text-white'
-                            : 'fill-white text-white group-hover:fill-slate-900 group-hover:text-slate-900'
-                        }`} />
+                      <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-200 bg-white group-hover:bg-slate-900">
+                        <Play size={14} className="ml-0.5 transition-colors duration-200 fill-slate-900 text-slate-900 group-hover:fill-white group-hover:text-white" />
                       </span>
                       {/* Text changes color on hover */}
-                      <span className={`relative z-10 transition-colors duration-500 delay-100 ${
-                        showVideoClose
-                          ? 'text-slate-900'
-                          : 'group-hover:text-slate-900'
-                      }`}>
+                      <span className="relative z-10 transition-colors duration-500 delay-100 group-hover:text-slate-900">
                         {showVideoClose ? 'End Video' : 'Watch Video'}
                       </span>
                     </button>
@@ -964,6 +1032,9 @@ const App = () => {
               chatMessageCount={chatMessageCount}
               allCardsVerified={allCardsVerified}
             />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* Mobile: Static device mockups as hero visual */}
@@ -1497,7 +1568,7 @@ const App = () => {
         {/* SECTION 7: FOOTER */}
         <footer className="py-16 px-6 md:px-16 border-t border-slate-100" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))' }}>
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
               
               {/* Col 1: Logo & Tagline */}
               <div className="col-span-2 md:col-span-1">
@@ -1539,7 +1610,24 @@ const App = () => {
                 </ul>
               </div>
               
-              {/* Col 3: Legal */}
+              {/* Col 3: Support */}
+              <div>
+                <h4 className="text-slate-900 font-medium text-sm mb-4">Support</h4>
+                <ul className="space-y-3">
+                  <li>
+                    <Link to="/support" onClick={() => Analytics.externalLinkClicked('support')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Help & FAQ
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="mailto:hello@tryvois.com" onClick={() => Analytics.externalLinkClicked('contact_email')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Contact Us
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Col 4: Legal */}
               <div>
                 <h4 className="text-slate-900 font-medium text-sm mb-4">Legal</h4>
                 <ul className="space-y-3">

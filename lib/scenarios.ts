@@ -104,7 +104,7 @@ export const scenarios: Scenario[] = [
 
 // ── Timing constants ─────────────────────────────────────────────────────────
 
-export const RECORDING_START_TIME = 1.0;
+export const RECORDING_START_TIME = 3.5;
 export const SINGLE_SCENARIO_DURATION = 18.0;
 export const TOTAL_ANIMATION_DURATION = SINGLE_SCENARIO_DURATION * scenarios.length;
 

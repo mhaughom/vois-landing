@@ -27,8 +27,6 @@ export {
   setOnChatOpen,
   setOnChatMessageSent,
   setNarrativeScrollProgress,
-  setVideoHoverState,
-  setVideoPlayState,
   setOnPhoneRecordClick,
   setOnWatchRecordClick,
   setOnStopRecordClick,
@@ -70,6 +68,7 @@ import {
   RECORDING_START_TIME,
   SINGLE_SCENARIO_DURATION,
   TOTAL_ANIMATION_DURATION,
+  TYPING_SPEED,
 } from '../lib/scenarios';
 import {
   CATEGORY_CARD_COLORS,
@@ -220,13 +219,13 @@ interface ClickableRegion {
 
 // Navigation buttons and clickable regions
 // UV coordinates match canvas Y (no flip needed)
-// Nav bar is at canvas y = 0.88 to 1.0
+// Floating pill nav: 60% width centered (x 0.20–0.80), y ~0.895–0.945
 // Stream cards start at y=0.27, each card is height 0.145, gap 0.012
 const phoneClickableRegions: ClickableRegion[] = [
-  // Bottom navigation bar (3 buttons: magic, stream, apps)
-  { id: 'nav-magic', screen: 'magic', label: 'Magic', uv: { minX: 0.0, maxX: 0.33, minY: 0.88, maxY: 1.0 } },
-  { id: 'nav-stream', screen: 'stream', label: 'Stream', uv: { minX: 0.33, maxX: 0.67, minY: 0.88, maxY: 1.0 } },
-  { id: 'nav-apps', screen: 'apps', label: 'Apps', uv: { minX: 0.67, maxX: 1.0, minY: 0.88, maxY: 1.0 } },
+  // Bottom floating pill navigation (3 buttons: magic, stream, apps)
+  { id: 'nav-magic', screen: 'magic', label: 'Magic', uv: { minX: 0.20, maxX: 0.40, minY: 0.89, maxY: 0.95 } },
+  { id: 'nav-stream', screen: 'stream', label: 'Stream', uv: { minX: 0.40, maxX: 0.60, minY: 0.89, maxY: 0.95 } },
+  { id: 'nav-apps', screen: 'apps', label: 'Apps', uv: { minX: 0.60, maxX: 0.80, minY: 0.89, maxY: 0.95 } },
   // Back button (top-left corner, canvas y = 0.06 to 0.11)
   { id: 'back', screen: 'stream', label: 'Back', uv: { minX: 0.02, maxX: 0.35, minY: 0.04, maxY: 0.12 } },
   // Big record button (center of screen, only shown in waiting-to-start mode)
@@ -236,36 +235,27 @@ const phoneClickableRegions: ClickableRegion[] = [
   { id: 'stream-card-2', screen: 'voicenote', label: 'Card 2', uv: { minX: 0.05, maxX: 0.95, minY: 0.43, maxY: 0.57 } },
   { id: 'stream-card-3', screen: 'voicenote', label: 'Card 3', uv: { minX: 0.05, maxX: 0.95, minY: 0.59, maxY: 0.73 } },
   { id: 'stream-card-4', screen: 'voicenote', label: 'Card 4', uv: { minX: 0.05, maxX: 0.95, minY: 0.74, maxY: 0.87 } },
-  // Apps grid clicks (3-column grid, 4 rows spread across screen)
-  // Small icons distributed edge-to-edge. Cols: 0.04-0.25, 0.38-0.61, 0.73-0.96
-  // Rows spread from 0.13 to 0.85 with equal spacing
-  // Row 1: y 0.12-0.26
-  { id: 'app-calendar', screen: 'app-calendar', label: 'Calendar', uv: { minX: 0.02, maxX: 0.28, minY: 0.12, maxY: 0.26 } },
-  { id: 'app-todo', screen: 'app-todo', label: 'To Do List', uv: { minX: 0.30, maxX: 0.68, minY: 0.12, maxY: 0.26 } },
-  { id: 'app-messages', screen: 'app-messages', label: 'Messages', uv: { minX: 0.70, maxX: 0.98, minY: 0.12, maxY: 0.26 } },
-  // Row 2: y 0.30-0.46
-  { id: 'app-people', screen: 'app-people', label: 'People Dir.', uv: { minX: 0.02, maxX: 0.28, minY: 0.28, maxY: 0.46 } },
-  { id: 'app-research', screen: 'app-research', label: 'Research', uv: { minX: 0.30, maxX: 0.68, minY: 0.28, maxY: 0.46 } },
-  { id: 'app-journal', screen: 'app-journal', label: 'Journal', uv: { minX: 0.70, maxX: 0.98, minY: 0.28, maxY: 0.46 } },
-  // Row 3: y 0.50-0.66
-  { id: 'app-meeting-notes', screen: 'app-meeting-notes', label: 'Meeting Notes', uv: { minX: 0.02, maxX: 0.28, minY: 0.48, maxY: 0.66 } },
-  { id: 'app-shopping', screen: 'app-shopping', label: 'Shopping', uv: { minX: 0.30, maxX: 0.68, minY: 0.48, maxY: 0.66 } },
-  { id: 'app-wisdom', screen: 'app-wisdom', label: 'Wisdom Jou.', uv: { minX: 0.70, maxX: 0.98, minY: 0.48, maxY: 0.66 } },
-  // Row 4: y 0.70-0.86
-  { id: 'app-insights', screen: 'app-insights', label: 'AI Insights', uv: { minX: 0.02, maxX: 0.28, minY: 0.68, maxY: 0.86 } },
-  { id: 'app-summit', screen: 'app-summit', label: 'Summit Log', uv: { minX: 0.30, maxX: 0.68, minY: 0.68, maxY: 0.86 } },
-  { id: 'app-sleep', screen: 'app-sleep', label: 'Sleep', uv: { minX: 0.70, maxX: 0.98, minY: 0.68, maxY: 0.86 } },
-  // Chat suggested prompts (5 prompts, each 0.065 height + 0.015 gap, starting at 0.36)
-  // contentStartY=0.12, promptStartY=0.12+0.24=0.36, each prompt stride=0.08
-  { id: 'chat-prompt-0', screen: 'magic', label: 'Prompt 1', uv: { minX: 0.05, maxX: 0.95, minY: 0.36, maxY: 0.425 } },
-  { id: 'chat-prompt-1', screen: 'magic', label: 'Prompt 2', uv: { minX: 0.05, maxX: 0.95, minY: 0.44, maxY: 0.505 } },
-  { id: 'chat-prompt-2', screen: 'magic', label: 'Prompt 3', uv: { minX: 0.05, maxX: 0.95, minY: 0.52, maxY: 0.585 } },
-  { id: 'chat-prompt-3', screen: 'magic', label: 'Prompt 4', uv: { minX: 0.05, maxX: 0.95, minY: 0.60, maxY: 0.665 } },
-  { id: 'chat-prompt-4', screen: 'magic', label: 'Prompt 5', uv: { minX: 0.05, maxX: 0.95, minY: 0.68, maxY: 0.745 } },
-  // Chat input field
-  { id: 'chat-input', screen: 'magic', label: 'Input', uv: { minX: 0.05, maxX: 0.80, minY: 0.78, maxY: 0.85 } },
+  // Apps grid clicks (4-column, 2 rows below greeting card)
+  // Row 1: y ~0.44-0.62
+  { id: 'app-calendar', screen: 'app-calendar', label: 'Calendar', uv: { minX: 0.03, maxX: 0.23, minY: 0.44, maxY: 0.62 } },
+  { id: 'app-todo', screen: 'app-todo', label: 'To Do List', uv: { minX: 0.24, maxX: 0.47, minY: 0.44, maxY: 0.62 } },
+  { id: 'app-messages', screen: 'app-messages', label: 'Messages', uv: { minX: 0.48, maxX: 0.71, minY: 0.44, maxY: 0.62 } },
+  { id: 'app-people', screen: 'app-people', label: 'People Dir.', uv: { minX: 0.72, maxX: 0.97, minY: 0.44, maxY: 0.62 } },
+  // Row 2: y ~0.64-0.82
+  { id: 'app-journal', screen: 'app-journal', label: 'Journal', uv: { minX: 0.03, maxX: 0.23, minY: 0.64, maxY: 0.82 } },
+  { id: 'app-shopping', screen: 'app-shopping', label: 'Shopping', uv: { minX: 0.24, maxX: 0.47, minY: 0.64, maxY: 0.82 } },
+  { id: 'app-meeting-notes', screen: 'app-meeting-notes', label: 'Period Tracker', uv: { minX: 0.48, maxX: 0.71, minY: 0.64, maxY: 0.82 } },
+  // Chat suggested prompts (5 prompts, each 0.065 height + 0.015 gap, starting at 0.16)
+  // contentStartY=0.12, promptStartY=0.12+0.04=0.16, each prompt stride=0.08
+  { id: 'chat-prompt-0', screen: 'magic', label: 'Prompt 1', uv: { minX: 0.05, maxX: 0.95, minY: 0.16, maxY: 0.225 } },
+  { id: 'chat-prompt-1', screen: 'magic', label: 'Prompt 2', uv: { minX: 0.05, maxX: 0.95, minY: 0.24, maxY: 0.305 } },
+  { id: 'chat-prompt-2', screen: 'magic', label: 'Prompt 3', uv: { minX: 0.05, maxX: 0.95, minY: 0.32, maxY: 0.385 } },
+  { id: 'chat-prompt-3', screen: 'magic', label: 'Prompt 4', uv: { minX: 0.05, maxX: 0.95, minY: 0.40, maxY: 0.465 } },
+  { id: 'chat-prompt-4', screen: 'magic', label: 'Prompt 5', uv: { minX: 0.05, maxX: 0.95, minY: 0.48, maxY: 0.545 } },
+  // Chat input field (floating, slightly inset)
+  { id: 'chat-input', screen: 'magic', label: 'Input', uv: { minX: 0.06, maxX: 0.80, minY: 0.82, maxY: 0.89 } },
   // Chat send button
-  { id: 'chat-send', screen: 'magic', label: 'Send', uv: { minX: 0.82, maxX: 0.95, minY: 0.78, maxY: 0.85 } },
+  { id: 'chat-send', screen: 'magic', label: 'Send', uv: { minX: 0.82, maxX: 0.95, minY: 0.82, maxY: 0.89 } },
   // Chat reset button (when limit reached)
   { id: 'chat-reset', screen: 'magic', label: 'Reset', uv: { minX: 0.32, maxX: 0.68, minY: 0.21, maxY: 0.25 } },
   // Lockscreen VOIS button (record on phone)
@@ -277,7 +267,6 @@ const phoneClickableRegions: ClickableRegion[] = [
 // Module-level refs for device groups (used by drag detection)
 let phoneGroupRef: THREE.Group | null = null;
 let watchGroupRef: THREE.Group | null = null;
-let videoMeshRef: THREE.Mesh | null = null;
 
 // Check if UV coordinates hit a button
 const getHitButton = (uvX: number, uvY: number, currentScreen: PhoneScreen): ClickableRegion | null => {
@@ -387,9 +376,6 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
       // Only handle clicks in hero section
       if (globalState.currentSection !== 'hero') return;
 
-      // Don't handle clicks when video is playing
-      if (globalState.videoPlayerState.isPlaying) return;
-
       const mesh = phoneScreenMeshRef.current;
       if (!mesh) return;
 
@@ -407,6 +393,9 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
       if (intersects.length > 0) {
         const hit = intersects[0];
         if (hit.uv) {
+          // Trigger touch ripple at tap location
+          globalState.phoneTouchRipple = { x: hit.uv.x, y: hit.uv.y, startTime: Date.now() };
+
           const currentScreen = globalState.phoneScreenState.currentScreen;
           // UV coordinates already match canvas orientation (y=0 at top)
           const hitButton = getHitButton(hit.uv.x, hit.uv.y, currentScreen);
@@ -497,11 +486,6 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
         return;
       }
 
-      if (globalState.videoPlayerState.isPlaying) {
-        setPhoneHoveredButton(null);
-        return;
-      }
-
       const mesh = phoneScreenMeshRef.current;
       if (!mesh) {
         setPhoneHoveredButton(null);
@@ -519,12 +503,14 @@ function PhoneScreenInteraction({ phoneScreenMeshRef }: { phoneScreenMeshRef: Re
       if (intersects.length > 0) {
         const hit = intersects[0];
         if (hit.uv) {
+          globalState.phoneHoverUV = { x: hit.uv.x, y: hit.uv.y };
           const currentScreen = globalState.phoneScreenState.currentScreen;
           // UV coordinates already match canvas orientation (y=0 at top)
           const hitButton = getHitButton(hit.uv.x, hit.uv.y, currentScreen);
           setPhoneHoveredButton(hitButton?.id || null);
         }
       } else {
+        globalState.phoneHoverUV = null;
         setPhoneHoveredButton(null);
       }
     };
@@ -550,9 +536,6 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       // Only handle clicks in hero section
       if (globalState.currentSection !== 'hero') return;
 
-      // Don't handle clicks when video is playing
-      if (globalState.videoPlayerState.isPlaying) return;
-
       const demoState = globalState.demoState;
       const isRecordingOnWatch = demoState.isRecording && demoState.activeDevice === 'watch';
       const watchIsIdle = !demoState.isRecording && !demoState.isProcessing;
@@ -575,6 +558,21 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       const intersects = raycasterRef.current.intersectObject(mesh, false);
 
       if (intersects.length > 0) {
+        // Trigger touch ripple — convert raw mesh UV to canvas coordinates
+        const watchHit = intersects[0];
+        let rippleX = 0.5, rippleY = 0.5;
+        if (watchHit.uv) {
+          const m = globalState.watchUVMapping;
+          if (m) {
+            rippleX = watchHit.uv.x * m.repeatX + m.offsetX;
+            rippleY = watchHit.uv.y * m.repeatY + m.offsetY;
+          } else {
+            rippleX = watchHit.uv.x;
+            rippleY = watchHit.uv.y;
+          }
+        }
+        globalState.watchTouchRipple = { x: rippleX, y: rippleY, startTime: Date.now() };
+
         if (isRecordingOnWatch && callbacks.onStopRecordClick) {
           // Stop recording when watch is clicked during recording
           callbacks.onStopRecordClick();
@@ -607,10 +605,6 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
         globalState.watchHoveredRecord = false;
         return;
       }
-      if (globalState.videoPlayerState.isPlaying) {
-        globalState.watchHoveredRecord = false;
-        return;
-      }
 
       const mesh = watchScreenMeshRef.current;
       if (!mesh) {
@@ -625,7 +619,29 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       raycasterRef.current.setFromCamera(pointerRef.current, camera);
       const intersects = raycasterRef.current.intersectObject(mesh, false);
 
-      globalState.watchHoveredRecord = intersects.length > 0;
+      if (intersects.length > 0) {
+        const watchHit = intersects[0];
+        let hoverX = 0.5, hoverY = 0.5;
+        if (watchHit.uv) {
+          const m = globalState.watchUVMapping;
+          if (m) {
+            hoverX = watchHit.uv.x * m.repeatX + m.offsetX;
+            hoverY = watchHit.uv.y * m.repeatY + m.offsetY;
+          } else {
+            hoverX = watchHit.uv.x;
+            hoverY = watchHit.uv.y;
+          }
+        }
+        globalState.watchHoverUV = { x: hoverX, y: hoverY };
+
+        // Only flag icon hover when near the VOIS icon (UV ~0.24, 0.83, radius ~0.12)
+        const dx = hoverX - 0.24;
+        const dy = hoverY - 0.83;
+        globalState.watchHoveredRecord = (dx * dx + dy * dy) < 0.12 * 0.12;
+      } else {
+        globalState.watchHoverUV = null;
+        globalState.watchHoveredRecord = false;
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -660,33 +676,23 @@ function DeviceDragDetection() {
       raycasterRef.current.setFromCamera(pointerRef.current, camera);
 
       // Check intersections with phone, watch, and video
-      let hitDevice: 'phone' | 'watch' | 'video' | null = null;
+      let hitDevice: 'phone' | 'watch' | null = null;
       let closestDistance = Infinity;
 
-      // When video is playing, only check video for dragging
-      if (globalState.videoPlayerState.isPlaying) {
-        if (videoMeshRef && videoMeshRef.visible) {
-          const videoIntersects = raycasterRef.current.intersectObject(videoMeshRef, false);
-          if (videoIntersects.length > 0) {
-            hitDevice = 'video';
-          }
+      // Check phone and watch for dragging
+      if (phoneGroupRef) {
+        const phoneIntersects = raycasterRef.current.intersectObject(phoneGroupRef, true);
+        if (phoneIntersects.length > 0 && phoneIntersects[0].distance < closestDistance) {
+          closestDistance = phoneIntersects[0].distance;
+          hitDevice = 'phone';
         }
-      } else {
-        // Normal mode - check phone and watch
-        if (phoneGroupRef) {
-          const phoneIntersects = raycasterRef.current.intersectObject(phoneGroupRef, true);
-          if (phoneIntersects.length > 0 && phoneIntersects[0].distance < closestDistance) {
-            closestDistance = phoneIntersects[0].distance;
-            hitDevice = 'phone';
-          }
-        }
+      }
 
-        if (watchGroupRef) {
-          const watchIntersects = raycasterRef.current.intersectObject(watchGroupRef, true);
-          if (watchIntersects.length > 0 && watchIntersects[0].distance < closestDistance) {
-            closestDistance = watchIntersects[0].distance;
-            hitDevice = 'watch';
-          }
+      if (watchGroupRef) {
+        const watchIntersects = raycasterRef.current.intersectObject(watchGroupRef, true);
+        if (watchIntersects.length > 0 && watchIntersects[0].distance < closestDistance) {
+          closestDistance = watchIntersects[0].distance;
+          hitDevice = 'watch';
         }
       }
 
@@ -721,256 +727,6 @@ function DeviceDragDetection() {
 
   return null;
 }
-
-// 3D Video Plane component for hover video player
-function VideoPlane3D() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const ambientTimeRef = useRef(0);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [videoTexture, setVideoTexture] = useState<THREE.VideoTexture | null>(null);
-  const { size } = useThree();
-
-  // Animation constants
-  const VIDEO_ENTRY_DELAY = 0.5; // Wait for devices to exit first
-  const VIDEO_ENTRY_DURATION = 1.0; // Smooth entry matching device entrance timing
-  const VIDEO_EXIT_DURATION = 0.8; // Match the entry timing for smooth exit
-
-  // Create video element and texture on mount
-  React.useEffect(() => {
-    const video = document.createElement('video');
-    video.src = '/videos/Situations.mp4';
-    video.crossOrigin = 'anonymous';
-    video.loop = true;
-    video.playsInline = true;
-    video.muted = true; // No sound in this video
-    video.preload = 'metadata';
-    videoRef.current = video;
-
-    const texture = new THREE.VideoTexture(video);
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-    texture.format = THREE.RGBAFormat;
-    texture.colorSpace = THREE.SRGBColorSpace;
-    setVideoTexture(texture);
-
-    return () => {
-      video.pause();
-      video.src = '';
-      texture.dispose();
-    };
-  }, []);
-
-  // Control video playback based on state
-  React.useEffect(() => {
-    const checkPlayState = () => {
-      const video = videoRef.current;
-      if (!video) return;
-
-      const state = globalState.videoPlayerState;
-      if (state.isPlaying && video.paused) {
-        video.currentTime = 0;
-        video.play().catch(() => {
-          // Autoplay failed, ignore
-        });
-      } else if (!state.isPlaying && !video.paused) {
-        video.pause();
-        video.currentTime = 0;
-      }
-    };
-
-    const interval = setInterval(checkPlayState, 100);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Responsive sizing based on viewport
-  const isMobile = size.width < 640;
-  const isTablet = size.width < 1024;
-
-  // Create rounded geometry - responsive size (16:9 aspect ratio)
-  const geoSize = isMobile ? { w: 0.64, h: 0.36 } : isTablet ? { w: 0.8, h: 0.45 } : { w: 1.0, h: 0.5625 };
-  const geometry = React.useMemo(
-    () => createRoundedPlaneGeometry(geoSize.w, geoSize.h, 0.03),
-    [geoSize.w, geoSize.h]
-  );
-
-  // Responsive position
-  const endPos = React.useMemo(() => {
-    if (isMobile) return { x: 0.2, y: 0.0, z: 0.1 };
-    if (isTablet) return { x: 0.35, y: 0.02, z: 0.12 };
-    return { x: 0.5, y: 0.05, z: 0.15 };
-  }, [isMobile, isTablet]);
-
-  // Set module-level ref for drag detection
-  React.useEffect(() => {
-    videoMeshRef = meshRef.current;
-    return () => {
-      videoMeshRef = null;
-    };
-  }, []);
-
-  useFrame((state, delta) => {
-    const mesh = meshRef.current;
-    if (!mesh) return;
-
-    const videoState = globalState.videoPlayerState;
-    const videoActive = videoState.isHovering || videoState.isPlaying || videoState.isAnimatingIn;
-    const isVisible = videoActive || videoState.isAnimatingOut;
-
-    mesh.visible = isVisible;
-    if (!isVisible) return;
-    state.invalidate();
-
-    // Update ambient time for entry/exit animations only
-    ambientTimeRef.current += delta;
-    const time = ambientTimeRef.current;
-
-    // Get mouse position for parallax (same as devices use)
-    const mouseX = globalState.mouseX;
-    const mouseY = globalState.mouseY;
-
-    // Final position - responsive
-    const endX = endPos.x;
-    const endY = endPos.y;
-    const endZ = endPos.z;
-
-    // Mouse parallax - position offset (like phone/watch)
-    const mX = (mouseX - 0.5) * 0.35;
-    const mY = mouseY * 0.35;
-
-    // Mouse parallax rotation (similar to phone/watch)
-    const mouseRotX = -mY * 0.4;
-    const mouseRotY = mX * 0.4;
-
-    // Ambient "breathing" animation - only used during entry/exit, NOT stable state
-    const ambientY = Math.sin(time * 0.7) * 0.012;
-    const ambientX = Math.cos(time * 0.5) * 0.006;
-    const ambientRotX = Math.sin(time * 0.4) * 0.015;
-    const ambientRotY = Math.cos(time * 0.6) * 0.015;
-
-    // Base rotation - negative to twist INWARD (left edge closer to viewer)
-    const baseRotY = -0.12;
-
-    // Drag support - smooth interpolation
-    const dragLerpSpeed = 0.1;
-    const dragReturnSpeed = 0.02;
-    const isVideoDragging = globalState.isDragging && globalState.draggedDevice === 'video';
-
-    if (isVideoDragging) {
-      globalState.videoSmoothDragX += (globalState.dragDeltaX - globalState.videoSmoothDragX) * dragLerpSpeed;
-      globalState.videoSmoothDragY += (globalState.dragDeltaY - globalState.videoSmoothDragY) * dragLerpSpeed;
-    } else {
-      globalState.videoSmoothDragX += (0 - globalState.videoSmoothDragX) * dragReturnSpeed;
-      globalState.videoSmoothDragY += (0 - globalState.videoSmoothDragY) * dragReturnSpeed;
-    }
-
-    // Video drag influence - position and rotation
-    const videoDragPosX = globalState.videoSmoothDragX * 0.55;
-    const videoDragPosY = -globalState.videoSmoothDragY * 0.55;
-    const videoDragRotX = globalState.videoSmoothDragY * 0.65;
-    const videoDragRotY = globalState.videoSmoothDragX * 0.9;
-
-    // Entry animation (with delay to let devices exit first)
-    // When playing, animate directly to the larger size/position
-    const targetScale = videoState.isPlaying ? 1.12 : 1;
-    const targetOffsetX = videoState.isPlaying ? -0.08 : 0;
-
-    if (videoState.isAnimatingIn) {
-      const totalElapsed = (Date.now() - videoState.entryStartTime) / 1000;
-
-      // Wait for delay before starting animation
-      if (totalElapsed < VIDEO_ENTRY_DELAY) {
-        // Keep positioned off-screen to the right during delay
-        mesh.position.x = 2.5;
-        mesh.position.y = endY;
-        mesh.position.z = endZ;
-        mesh.rotation.y = -Math.PI / 3; // Starting rotation
-        mesh.scale.setScalar(0.7);
-        return;
-      }
-
-      const elapsed = totalElapsed - VIDEO_ENTRY_DELAY;
-      const progress = Math.min(1, elapsed / VIDEO_ENTRY_DURATION);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-
-      // Fly in from right with rotation - target position includes playing offset
-      const startX = 2.5;
-      const finalX = endX + targetOffsetX;
-      mesh.position.x = startX + (finalX - startX) * eased + ambientX * eased - mX * 0.06 * eased;
-      mesh.position.y = endY + ambientY * eased - mY * 0.06 * eased;
-      mesh.position.z = endZ;
-
-      // Rotate from steep angle to slight inward angle, plus mouse/ambient influence fading in
-      const startRotY = -Math.PI / 3;
-      mesh.rotation.x = (mouseRotX + ambientRotX) * eased;
-      mesh.rotation.y = startRotY + (baseRotY - startRotY) * eased + (mouseRotY + ambientRotY) * eased;
-
-      // Scale up to target scale (larger when playing)
-      const scale = 0.7 + (targetScale - 0.7) * eased;
-      mesh.scale.setScalar(scale);
-
-      if (progress >= 1) {
-        globalState.videoPlayerState.isAnimatingIn = false;
-      }
-    }
-    // Exit animation (no rotation, straight slide out)
-    // Start from playing position/scale since video was playing when exit triggered
-    else if (videoState.isAnimatingOut) {
-      const elapsed = (Date.now() - videoState.exitStartTime) / 1000;
-      const progress = Math.min(1, elapsed / VIDEO_EXIT_DURATION);
-      // Use ease-in-out for smoother exit
-      const eased = progress < 0.5
-        ? 2 * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-      // Mirror the entry animation - fly out to the right with rotation
-      // Start from playing position (endX - 0.08) and scale (1.12)
-      const playingStartX = endX - 0.08;
-      const playingStartScale = 1.12;
-      const exitX = 2.5;
-      const exitRotY = -Math.PI / 3; // Same steep angle as entry start
-
-      mesh.position.x = playingStartX + (exitX - playingStartX) * eased;
-      mesh.position.y = endY + ambientY * (1 - eased);
-      mesh.position.z = endZ;
-      mesh.rotation.x = (mouseRotX + ambientRotX) * (1 - eased);
-      mesh.rotation.y = baseRotY + (exitRotY - baseRotY) * eased + (mouseRotY + ambientRotY) * (1 - eased);
-
-      // Scale down from playing scale to entry start scale
-      const scale = playingStartScale - (playingStartScale - 0.7) * eased;
-      mesh.scale.setScalar(scale);
-
-      if (progress >= 1) {
-        globalState.videoPlayerState.isAnimatingOut = false;
-      }
-    }
-    // Stable visible state - mouse tracking and drag support, NO ambient breathing
-    // Uses targetScale and targetOffsetX defined above (larger when playing)
-    else if (videoActive) {
-      mesh.position.x = endX + targetOffsetX - mX * 0.06 + videoDragPosX;
-      mesh.position.y = endY - mY * 0.06 + videoDragPosY;
-      mesh.position.z = endZ;
-      mesh.rotation.x = mouseRotX + videoDragRotX;
-      mesh.rotation.y = baseRotY + mouseRotY + videoDragRotY;
-      mesh.scale.setScalar(targetScale);
-    }
-  });
-
-  // Update material when texture is ready
-  const materialRef = useRef<THREE.MeshBasicMaterial>(null);
-  React.useEffect(() => {
-    if (materialRef.current && videoTexture) {
-      materialRef.current.map = videoTexture;
-      materialRef.current.needsUpdate = true;
-    }
-  }, [videoTexture]);
-
-  return (
-    <mesh ref={meshRef} geometry={geometry} visible={false}>
-      <meshBasicMaterial ref={materialRef} color="#ffffff" toneMapped={false} />
-    </mesh>
-  );
-}
-
 function SceneContent() {
   const phoneRef = useRef<THREE.Group>(null);
   const watchRef = useRef<THREE.Group>(null);
@@ -1352,19 +1108,27 @@ function SceneContent() {
 
     // Helper to draw the bottom navigation bar (3 buttons: magic, stream, apps)
     const drawBottomNav = (activeTab: PhoneScreen) => {
-      const navBarY = height * 0.88;
-      const navBarH = height * 0.12;
+      // Floating pill nav bar
+      const pillW = width * 0.60;
+      const pillH = height * 0.055;
+      const pillX = (width - pillW) / 2;
+      const pillY = height * 0.92 - pillH / 2;
+      const pillR = pillH / 2; // full pill radius
 
-      // Nav bar background
-      ctx.fillStyle = '#fafafa';
-      ctx.fillRect(0, navBarY, width, navBarH);
+      // Drop shadow
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.10)';
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 4;
+      ctx.fillStyle = 'rgba(255,255,255,0.92)';
+      roundRect(ctx, pillX, pillY, pillW, pillH, pillR);
+      ctx.fill();
+      ctx.restore();
 
-      // Top border
-      ctx.strokeStyle = '#e5e7eb';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(0, navBarY);
-      ctx.lineTo(width, navBarY);
+      // Subtle border
+      ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+      ctx.lineWidth = 0.5;
+      roundRect(ctx, pillX, pillY, pillW, pillH, pillR);
       ctx.stroke();
 
       // Navigation buttons (3 tabs) - Magic (sparkles), Stream (mic), Apps (grid)
@@ -1374,12 +1138,11 @@ function SceneContent() {
         { id: 'apps', label: 'Apps', iconType: 'apps' },
       ];
 
-      const tabWidth = width / tabs.length;
-      const iconY = navBarY + navBarH * 0.5; // Center icon vertically (no labels)
+      const tabWidth = pillW / tabs.length;
+      const iconY = pillY + pillH / 2;
 
       tabs.forEach((tab, i) => {
-        const tabX = tabWidth * i + tabWidth / 2;
-        // Check if this tab is active (for app screens, apps tab is active; for voicenote, stream is active)
+        const tabX = pillX + tabWidth * i + tabWidth / 2;
         let isActive = activeTab === tab.id;
         if (tab.id === 'apps' && activeTab.startsWith('app-')) isActive = true;
         if (tab.id === 'stream' && activeTab === 'voicenote') isActive = true;
@@ -1387,8 +1150,7 @@ function SceneContent() {
 
         const color = isActive ? '#1a1a1a' : (isHovered ? '#64748b' : '#9ca3af');
 
-        // Draw icon only (no labels)
-        drawIcon(tab.iconType, tabX, iconY, height * 0.04, color);
+        drawIcon(tab.iconType, tabX, iconY, height * 0.035, color);
       });
     };
 
@@ -1406,39 +1168,38 @@ function SceneContent() {
       ctx.textBaseline = 'middle';
       ctx.fillText(timeStr, padding + width * 0.02, height * 0.036);
 
-      // Right-side indicators: signal, wifi, battery
+      // Right-side indicators: signal, wifi, battery (smaller, well-spaced)
       const indicatorY = height * 0.036;
       const iconColor = '#1a1a1a';
-      let rightX = width - padding - width * 0.02;
+      let rightX = width - padding - width * 0.03;
 
-      // Battery indicator (rightmost)
-      const battW = width * 0.06;
-      const battH = height * 0.018;
+      // Battery indicator (rightmost) — compact
+      const battW = width * 0.048;
+      const battH = height * 0.014;
       const battX = rightX - battW;
       const battY = indicatorY - battH / 2;
-      // Battery outline
       ctx.strokeStyle = iconColor;
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1;
       roundRect(ctx, battX, battY, battW, battH, 2);
       ctx.stroke();
       // Battery nub
       ctx.fillStyle = iconColor;
-      ctx.fillRect(battX + battW + 1, indicatorY - battH * 0.25, 2, battH * 0.5);
+      ctx.fillRect(battX + battW + 1, indicatorY - battH * 0.3, 1.5, battH * 0.6);
       // Battery fill (~80%)
       ctx.fillStyle = iconColor;
       roundRect(ctx, battX + 1.5, battY + 1.5, (battW - 3) * 0.8, battH - 3, 1);
       ctx.fill();
 
-      rightX = battX - width * 0.03;
+      rightX = battX - width * 0.04;
 
-      // Wi-Fi icon (3 arcs)
+      // Wi-Fi icon (3 arcs) — smaller
       const wifiX = rightX;
-      const wifiBaseY = indicatorY + height * 0.006;
+      const wifiBaseY = indicatorY + height * 0.004;
       ctx.strokeStyle = iconColor;
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1;
       ctx.lineCap = 'round';
       for (let i = 0; i < 3; i++) {
-        const r = (i + 1) * height * 0.008;
+        const r = (i + 1) * height * 0.006;
         ctx.beginPath();
         ctx.arc(wifiX, wifiBaseY, r, -Math.PI * 0.75, -Math.PI * 0.25);
         ctx.stroke();
@@ -1446,16 +1207,16 @@ function SceneContent() {
       // Wi-Fi dot
       ctx.fillStyle = iconColor;
       ctx.beginPath();
-      ctx.arc(wifiX, wifiBaseY, 1.2, 0, Math.PI * 2);
+      ctx.arc(wifiX, wifiBaseY, 1, 0, Math.PI * 2);
       ctx.fill();
 
-      rightX = wifiX - width * 0.05;
+      rightX = wifiX - width * 0.055;
 
-      // Signal bars (4 bars)
+      // Signal bars (4 bars) — smaller
       const barCount = 4;
-      const barWidth = width * 0.007;
-      const barGap = width * 0.005;
-      const maxBarH = height * 0.02;
+      const barWidth = width * 0.006;
+      const barGap = width * 0.004;
+      const maxBarH = height * 0.015;
       const signalStartX = rightX - (barCount * (barWidth + barGap)) / 2;
       for (let i = 0; i < barCount; i++) {
         const bh = maxBarH * ((i + 1) / barCount);
@@ -1753,57 +1514,13 @@ function SceneContent() {
     if (phoneScreen === 'stream' && !isDemoMode && !demoState.isWaitingToStart) {
       drawStatusBar();
 
-      // Header row: Map button | "Stream" title | Bell + Search icons
-      const headerY = height * 0.07;
-
-      // Map button (left) - simple pill with icon
-      ctx.fillStyle = '#f1f5f9';
-      roundRect(ctx, panelMargin, headerY - height * 0.018, width * 0.17, height * 0.036, 12);
-      ctx.fill();
-      // Map icon (simple)
-      ctx.strokeStyle = '#64748b';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      const mapX = panelMargin + width * 0.045;
-      ctx.moveTo(mapX - 4, headerY - 4);
-      ctx.lineTo(mapX, headerY + 4);
-      ctx.lineTo(mapX + 4, headerY - 4);
-      ctx.stroke();
-      ctx.fillStyle = '#64748b';
-      ctx.font = `500 ${height * 0.018}px -apple-system`;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('Map', panelMargin + width * 0.065, headerY);
-
-      // Stream title (center)
+      // Stream title (centered, below dynamic island)
+      const headerY = height * 0.085;
       ctx.fillStyle = '#1a1a1a';
       ctx.font = `700 ${height * 0.038}px -apple-system`;
       ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
       ctx.fillText('Stream', width / 2, headerY);
-
-      // Bell icon (right) - simple line drawing
-      const bellX = width - panelMargin - width * 0.11;
-      ctx.strokeStyle = '#1a1a1a';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.arc(bellX, headerY - 2, 5, Math.PI * 1.1, Math.PI * 1.9);
-      ctx.lineTo(bellX + 5, headerY + 4);
-      ctx.lineTo(bellX - 5, headerY + 4);
-      ctx.closePath();
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(bellX, headerY + 6, 2, 0, Math.PI);
-      ctx.stroke();
-
-      // Search icon (right)
-      const searchX = width - panelMargin - width * 0.04;
-      ctx.beginPath();
-      ctx.arc(searchX - 2, headerY - 2, 5, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(searchX + 2, headerY + 2);
-      ctx.lineTo(searchX + 6, headerY + 6);
-      ctx.stroke();
 
       // Category inboxes row (horizontal scrollable look)
       const inboxRowY = height * 0.135;
@@ -2090,13 +1807,13 @@ function SceneContent() {
 
       // Header
       ctx.fillStyle = '#1a1a1a';
-      ctx.font = `700 ${height * 0.04}px -apple-system`;
+      ctx.font = `700 ${height * 0.035}px -apple-system`;
       ctx.textAlign = 'center';
-      ctx.fillText('Ask VOIS anything', width / 2, height * 0.085);
+      ctx.fillText('Chat with your voice memos', width / 2, height * 0.085);
 
       // Content area dimensions
       const contentStartY = height * 0.12;
-      const inputAreaY = height * 0.78;
+      const inputAreaY = height * 0.82;
       const contentEndY = inputAreaY - height * 0.02;
       const msgPadding = width * 0.03;
       const msgRadius = 12;
@@ -2124,26 +1841,8 @@ function SceneContent() {
 
       // === EMPTY STATE (no messages yet) ===
       if (messages.length === 0 && !isLoading) {
-        // Intro text
-        ctx.fillStyle = '#64748b';
-        ctx.font = `400 ${height * 0.02}px -apple-system`;
-        ctx.textAlign = 'center';
-        const introLines = [
-          "This is Alex's VOIS — 3 months of",
-          "captured thoughts. Ask anything about",
-          "their tasks, health, meetings, ideas,",
-          "or the people in their life."
-        ];
-        introLines.forEach((line, i) => {
-          ctx.fillText(line, width / 2, contentStartY + height * 0.06 + i * height * 0.028);
-        });
-
-        // Suggested prompts
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = `600 ${height * 0.018}px -apple-system`;
-        ctx.fillText('Try asking:', width / 2, contentStartY + height * 0.2);
-
-        const promptStartY = contentStartY + height * 0.24;
+        // Suggested prompts (no intro text — directly below header)
+        const promptStartY = contentStartY + height * 0.04;
         const promptHeight = height * 0.065;
         const promptGap = height * 0.015;
 
@@ -2307,25 +2006,29 @@ function SceneContent() {
         }
       }
 
-      // Input field at bottom (disabled when loading or limit reached)
+      // Floating input field (above nav pill, with shadow)
       const inputH = height * 0.07;
       const inputDisabled = isLoading || isLimitReached;
       const isInputHovered = hoveredButton === 'chat-input';
       const isInputFocused = chatState.isInputFocused;
-      const inputW = width - panelMargin * 2 - height * 0.08;
+      const inputMargin = panelMargin + width * 0.01;
+      const inputW = width - inputMargin * 2 - height * 0.08;
 
-      // Input background
-      ctx.fillStyle = inputDisabled ? '#e2e8f0' : (isInputFocused ? '#ffffff' : (isInputHovered ? '#e2e8f0' : '#f1f5f9'));
-      roundRect(ctx, panelMargin, inputAreaY, inputW, inputH, 20);
+      // Drop shadow for floating effect
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.08)';
+      ctx.shadowBlur = 20;
+      ctx.shadowOffsetY = 4;
+      ctx.fillStyle = inputDisabled ? '#e2e8f0' : (isInputFocused ? '#ffffff' : (isInputHovered ? '#f8fafc' : '#ffffff'));
+      roundRect(ctx, inputMargin, inputAreaY, inputW, inputH, 22);
       ctx.fill();
+      ctx.restore();
 
-      // Focus ring when focused
-      if (isInputFocused && !inputDisabled) {
-        ctx.strokeStyle = '#3b82f6';
-        ctx.lineWidth = 2;
-        roundRect(ctx, panelMargin, inputAreaY, inputW, inputH, 20);
-        ctx.stroke();
-      }
+      // Subtle border
+      ctx.strokeStyle = isInputFocused && !inputDisabled ? '#3b82f6' : 'rgba(0,0,0,0.06)';
+      ctx.lineWidth = isInputFocused && !inputDisabled ? 2 : 0.5;
+      roundRect(ctx, inputMargin, inputAreaY, inputW, inputH, 22);
+      ctx.stroke();
 
       // Input placeholder or text
       const hasText = chatState.inputText.length > 0;
@@ -2333,14 +2036,14 @@ function SceneContent() {
       ctx.font = `400 ${height * 0.02}px -apple-system`;
       ctx.textAlign = 'left';
       const displayText = hasText ? chatState.inputText : (inputDisabled ? 'Chat disabled' : 'Ask anything...');
-      ctx.fillText(displayText, panelMargin + panelPadding, inputAreaY + inputH / 2 + height * 0.006);
+      ctx.fillText(displayText, inputMargin + panelPadding, inputAreaY + inputH / 2 + height * 0.006);
 
       // Blinking cursor when focused
       if (isInputFocused && !inputDisabled) {
         const cursorBlink = Math.floor(Date.now() / 500) % 2 === 0;
         if (cursorBlink) {
           const textWidth = ctx.measureText(chatState.inputText).width;
-          const cursorX = panelMargin + panelPadding + textWidth + 2;
+          const cursorX = inputMargin + panelPadding + textWidth + 2;
           ctx.fillStyle = '#1a1a1a';
           ctx.fillRect(cursorX, inputAreaY + inputH * 0.25, 2, inputH * 0.5);
         }
@@ -2348,7 +2051,7 @@ function SceneContent() {
 
       // Send button
       const sendBtnSize = height * 0.06;
-      const sendBtnX = width - panelMargin - sendBtnSize;
+      const sendBtnX = width - inputMargin - sendBtnSize;
       const sendBtnY = inputAreaY + (inputH - sendBtnSize) / 2;
       const isSendHovered = hoveredButton === 'chat-send';
 
@@ -2376,55 +2079,107 @@ function SceneContent() {
       return;
     }
 
-    // === APPS SCREEN (3-column grid of apps, iOS-style) ===
+    // === APPS SCREEN (greeting card + 4-column grid, iOS-style) ===
     if (phoneScreen === 'apps' && !isDemoMode && !demoState.isWaitingToStart) {
       drawStatusBar();
 
-      // VOISAPPS header (left-aligned, gray, uppercase)
-      ctx.fillStyle = '#9ca3af';
-      ctx.font = `700 ${height * 0.03}px -apple-system`;
-      ctx.textAlign = 'left';
-      ctx.fillText('VOISAPPS', panelMargin, height * 0.085);
+      // "Apps" header (centered, bold)
+      ctx.fillStyle = '#1a1a1a';
+      ctx.font = `700 ${height * 0.035}px -apple-system`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Apps', width / 2, height * 0.085);
 
-      // Thin separator line
-      ctx.strokeStyle = '#e5e7eb';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(panelMargin, height * 0.10);
-      ctx.lineTo(width - panelMargin, height * 0.10);
+      // ── Greeting card ──
+      const cardX = panelMargin;
+      const cardY = height * 0.115;
+      const cardW = width - panelMargin * 2;
+      const cardH = height * 0.30;
+      const cardR = 18;
+
+      // Card shadow
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.08)';
+      ctx.shadowBlur = 22;
+      ctx.shadowOffsetY = 6;
+      ctx.fillStyle = '#ffffff';
+      roundRect(ctx, cardX, cardY, cardW, cardH, cardR);
+      ctx.fill();
+      ctx.restore();
+
+      // Card border
+      ctx.strokeStyle = 'rgba(0,0,0,0.04)';
+      ctx.lineWidth = 0.5;
+      roundRect(ctx, cardX, cardY, cardW, cardH, cardR);
       ctx.stroke();
 
-      // 3-column grid (small icons, spread across width, moderate vertical spacing)
-      const cols = 3;
-      const gridStartY = height * 0.13;
-      const gridEndY = height * 0.78;
-      const iconBoxSize = width * 0.185;
-      const gridLeftPad = width * 0.07;
+      // Greeting text
+      const cardPad = width * 0.05;
+      const greetHour = new Date().getHours();
+      const greetWord = greetHour < 12 ? 'morning' : greetHour < 17 ? 'afternoon' : 'evening';
+      ctx.fillStyle = '#1a1a1a';
+      ctx.font = `700 ${height * 0.028}px -apple-system`;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(`Good ${greetWord}, Alex`, cardX + cardPad, cardY + cardPad);
+
+      // Date
+      const dateStr = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = `400 ${height * 0.017}px -apple-system`;
+      ctx.fillText(dateStr, cardX + cardPad, cardY + cardPad + height * 0.035);
+
+      // Sparkle emoji
+      ctx.fillStyle = '#6366f1';
+      ctx.font = `400 ${height * 0.02}px -apple-system`;
+      ctx.fillText('✨', cardX + cardPad, cardY + cardPad + height * 0.065);
+
+      // AI summary text (wrapped)
+      ctx.fillStyle = '#64748b';
+      ctx.font = `400 ${height * 0.017}px -apple-system`;
+      const summaryLines = [
+        "Great job staying on top of your tasks",
+        "this week! Consider using this time to",
+        "review your goals and plan ahead for",
+        "the upcoming week."
+      ];
+      summaryLines.forEach((line, i) => {
+        ctx.fillText(line, cardX + cardPad, cardY + cardPad + height * 0.09 + i * height * 0.024);
+      });
+
+      // Pagination dots (3 dots)
+      const dotY = cardY + cardH - height * 0.02;
+      const dotR = 3;
+      const dotGap = 10;
+      for (let d = 0; d < 3; d++) {
+        ctx.fillStyle = d === 0 ? '#1a1a1a' : '#d1d5db';
+        ctx.beginPath();
+        ctx.arc(width / 2 + (d - 1) * dotGap, dotY, dotR, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // ── App grid (4 columns, 2 rows) ──
+      const cols = 4;
+      const gridStartY = cardY + cardH + height * 0.025;
+      const iconBoxSize = width * 0.16;
+      const gridLeftPad = width * 0.05;
       const totalGridW = width - gridLeftPad * 2;
       const colGap = (totalGridW - iconBoxSize * cols) / (cols - 1);
-      const labelHeight = height * 0.022;
+      const labelHeight = height * 0.025;
       const cellHeight = iconBoxSize + labelHeight;
-      const rows = 4;
-      const rowGap = (gridEndY - gridStartY - cellHeight * rows) / (rows - 1);
-      const iconRadius = iconBoxSize * 0.22;
+      const rowGap = height * 0.015;
+      const iconRadius = iconBoxSize * 0.26;
 
       const apps = [
-        // Row 1 — Calendar & To Do List first
+        // Row 1
         { id: 'calendar', iconType: 'calendar', label: 'Calendar', bg: '#dbeafe', iconColor: '#2563eb' },
-        { id: 'todo', iconType: 'todo', label: 'To Do List', bg: '#dcfce7', iconColor: '#16a34a' },
-        { id: 'messages', iconType: 'messages', label: 'Messages', bg: '#f5e0d8', iconColor: '#c2410c' },
+        { id: 'todo', iconType: 'todo', label: 'To-do List', bg: '#dcfce7', iconColor: '#16a34a' },
+        { id: 'messages', iconType: 'messages', label: 'Messages', bg: '#e0e7ff', iconColor: '#3b82f6' },
+        { id: 'people', iconType: 'people', label: 'People Dir...', bg: '#e0f2fe', iconColor: '#0891b2' },
         // Row 2
-        { id: 'people', iconType: 'people', label: 'People Dir...', bg: '#fef3c7', iconColor: '#d97706' },
-        { id: 'research', iconType: 'research', label: 'Research', bg: '#dcfce7', iconColor: '#16a34a' },
-        { id: 'journal', iconType: 'journal', label: 'Journal', bg: '#e8dff5', iconColor: '#7c3aed' },
-        // Row 3
-        { id: 'meeting-notes', iconType: 'meeting-notes', label: 'Meeting Not...', bg: '#fce7f3', iconColor: '#db2777' },
-        { id: 'shopping', iconType: 'shopping', label: 'Shopping', bg: '#dbeafe', iconColor: '#0891b2' },
-        { id: 'wisdom', iconType: 'wisdom', label: 'Wisdom Jou...', bg: '#ddd6fe', iconColor: '#1d4ed8' },
-        // Row 4
-        { id: 'insights', iconType: 'insights', label: 'AI Insights J...', bg: '#ddd6fe', iconColor: '#4f46e5' },
-        { id: 'summit', iconType: 'summit', label: 'Summit Log', bg: '#ddd6fe', iconColor: '#1d4ed8' },
-        { id: 'sleep', iconType: 'sleep', label: 'Sleep', bg: '#dcfce7', iconColor: '#4d7c0f' },
+        { id: 'journal', iconType: 'journal', label: 'Journal', bg: '#fef3c7', iconColor: '#d97706' },
+        { id: 'shopping', iconType: 'shopping', label: 'Shopping', bg: '#ffedd5', iconColor: '#ea580c' },
+        { id: 'meeting-notes', iconType: 'meeting-notes', label: 'Period Trac...', bg: '#fce7f3', iconColor: '#db2777' },
       ];
 
       apps.forEach((app, i) => {
@@ -2440,20 +2195,110 @@ function SceneContent() {
         ctx.fill();
 
         // Draw canvas icon centered in the square
-        const iconDrawSize = iconBoxSize * 0.45;
+        const iconDrawSize = iconBoxSize * 0.42;
         drawIcon(app.iconType, bx + iconBoxSize / 2, by + iconBoxSize / 2, iconDrawSize, app.iconColor);
 
         // Label below icon
         ctx.fillStyle = '#64748b';
-        ctx.font = `500 ${height * 0.015}px -apple-system`;
+        ctx.font = `500 ${height * 0.013}px -apple-system`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
-        ctx.fillText(app.label, bx + iconBoxSize / 2, by + iconBoxSize + height * 0.003);
+        ctx.fillText(app.label, bx + iconBoxSize / 2, by + iconBoxSize + height * 0.004);
       });
 
       drawBottomNav('apps');
       return;
     }
+
+    // Helper to draw a liquid-glass event/calendar card
+    // Helper to draw small pill-shaped tags on event cards
+    const drawEventTags = (ctx: CanvasRenderingContext2D, x: number, y: number, content: string, h: number, isDimmed?: boolean) => {
+      // Parse a date string from content (e.g. "January 1st", "Saturday 7pm")
+      const dateMatch = content.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?/i)
+        || content.match(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/i);
+      const timeMatch = content.match(/(\d{1,2}(?::\d{2})?\s*(?:am|pm|AM|PM))/i);
+
+      const dateStr = dateMatch ? dateMatch[0] : null;
+      const timeStr = timeMatch ? timeMatch[1] : null;
+
+      const tags: string[] = [];
+      if (dateStr) tags.push(dateStr);
+      tags.push(timeStr ? timeStr : 'Full day');
+
+      const tagFont = `500 ${h * 0.12}px -apple-system`;
+      const tagH = h * 0.19;
+      const tagR = tagH / 2;
+      const tagGap = 6;
+      let tagX = x;
+
+      ctx.font = tagFont;
+      for (const tag of tags) {
+        const tw = ctx.measureText(tag).width;
+        const tagW = tw + tagH * 0.9;
+
+        // Pill background
+        ctx.fillStyle = isDimmed ? 'rgba(148, 163, 184, 0.15)' : 'rgba(96, 165, 250, 0.12)';
+        roundRect(ctx, tagX, y, tagW, tagH, tagR);
+        ctx.fill();
+
+        // Pill text
+        ctx.fillStyle = isDimmed ? '#94a3b8' : '#3b82f6';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(tag, tagX + tagH * 0.45, y + tagH / 2);
+
+        tagX += tagW + tagGap;
+      }
+    };
+
+    // Helper to draw a glass-style card background (Apple liquid glass feel)
+    const drawGlassCardBg = (
+      ctx: CanvasRenderingContext2D,
+      x: number, y: number, w: number, h: number, r: number,
+      colors: { bg: string; accent: string; text: string }
+    ) => {
+      ctx.save();
+
+      // Soft shadow
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.09)';
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 6;
+
+      // Glass gradient background — tinted with the category color
+      const bg = ctx.createLinearGradient(x, y, x + w * 0.3, y + h);
+      bg.addColorStop(0, colors.bg);
+      bg.addColorStop(1, 'rgba(255, 255, 255, 0.85)');
+      ctx.fillStyle = bg;
+      roundRect(ctx, x, y, w, h, r);
+      ctx.fill();
+
+      // Clear shadow for remaining draws
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+
+      // Thin white glass border
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)';
+      ctx.lineWidth = 1;
+      roundRect(ctx, x + 0.5, y + 0.5, w - 1, h - 1, r);
+      ctx.stroke();
+
+      // Glossy specular highlight across top portion
+      ctx.save();
+      roundRect(ctx, x, y, w, h, r);
+      ctx.clip();
+      const gloss = ctx.createLinearGradient(x, y, x, y + h * 0.5);
+      gloss.addColorStop(0, 'rgba(255, 255, 255, 0.40)');
+      gloss.addColorStop(0.5, 'rgba(255, 255, 255, 0.08)');
+      gloss.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = gloss;
+      ctx.fillRect(x, y, w, h * 0.5);
+      ctx.restore();
+
+      ctx.restore();
+    };
 
     // === VOICENOTE DETAIL SCREEN (nice two-panel view with highlights) ===
     const selectedCard = globalState.phoneScreenState.selectedCard;
@@ -2577,11 +2422,8 @@ function SceneContent() {
         const thisCardY = cardStartY + i * (cardH + cardGap);
         const itemType = item.type?.toLowerCase() || 'note';
         const colors = cardColors[itemType] || cardColors.note;
-
-        // Card background
-        ctx.fillStyle = colors.bg;
-        roundRect(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius);
-        ctx.fill();
+        // Glass card background
+        drawGlassCardBg(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius, colors);
 
         // Left accent bar
         ctx.fillStyle = colors.accent;
@@ -2614,7 +2456,13 @@ function SceneContent() {
           content = content.slice(0, -1);
         }
         if (content !== item.content) content += '...';
-        ctx.fillText(content, iconX + 28, thisCardY + height * 0.052);
+        const isEventType = itemType === 'event' || itemType === 'events' || itemType === 'calendar' || itemType === 'appointment';
+        ctx.fillText(content, iconX + 28, thisCardY + (isEventType ? height * 0.035 : height * 0.052));
+
+        // Event tags (date + full day)
+        if (isEventType) {
+          drawEventTags(ctx, iconX + 28, thisCardY + height * 0.062, item.content || '', cardH);
+        }
 
         // Check button
         ctx.fillStyle = colors.accent;
@@ -3529,11 +3377,11 @@ function SceneContent() {
           const thisCardY = cardStartY + i * (cardH + cardGap);
           const itemCategory = (item.type || 'task').toLowerCase();
           const colors = demoPastelColors[itemCategory] || DEFAULT_CARD_COLOR;
-
-          // Card background — green tint for verified
-          ctx.fillStyle = verification === 'verified' ? '#dcfce7' : colors.bg;
-          roundRect(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius);
-          ctx.fill();
+          // Glass card background — green tint for verified
+          const cardBgColors = verification === 'verified'
+            ? { bg: '#dcfce7', accent: '#22c55e', text: '#16a34a' }
+            : colors;
+          drawGlassCardBg(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius, cardBgColors);
 
           // Verified: green left border
           if (verification === 'verified') {
@@ -3567,13 +3415,21 @@ function SceneContent() {
           ctx.fillText(typeLabel, contentTextX, thisCardY + height * 0.018);
 
           // Content — strikethrough for declined
+          const isEventItem = itemCategory === 'event' || itemCategory === 'events' || itemCategory === 'calendar' || itemCategory === 'appointment';
           ctx.fillStyle = verification === 'declined' ? '#94a3b8' : '#374151';
           ctx.font = `500 ${height * 0.024}px -apple-system`;
-          ctx.fillText(item.content, contentTextX, thisCardY + height * 0.052);
+          const contentYPos = isEventItem ? thisCardY + height * 0.035 : thisCardY + height * 0.052;
+          ctx.fillText(item.content, contentTextX, contentYPos);
+
+          // Event tags
+          if (isEventItem) {
+            drawEventTags(ctx, contentTextX, thisCardY + height * 0.062, item.content || '', cardH, verification === 'declined');
+          }
+
           if (verification === 'declined') {
             // Draw strikethrough line
             const textWidth = ctx.measureText(item.content).width;
-            const lineY = thisCardY + height * 0.052 + height * 0.012;
+            const lineY = contentYPos + height * 0.012;
             ctx.strokeStyle = '#94a3b8';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
@@ -3626,8 +3482,16 @@ function SceneContent() {
       return;
     }
 
-    // === LOGO SCREEN (before recording starts) ===
+    // === LOGO SCREEN (before recording starts, with fade in/out) ===
     if (elapsed < RECORDING_START_TIME) {
+      let logoAlpha = 1;
+      if (elapsed < 0.5) {
+        logoAlpha = elapsed / 0.5;
+      } else if (elapsed > RECORDING_START_TIME - 0.5) {
+        logoAlpha = (RECORDING_START_TIME - elapsed) / 0.5;
+      }
+      ctx.globalAlpha = Math.max(0, Math.min(1, logoAlpha));
+
       const logoSize = width * 0.5;
       drawVoisLogo(ctx, width / 2, height * 0.4, logoSize, '#1a1a1a');
 
@@ -3641,6 +3505,7 @@ function SceneContent() {
       ctx.font = `400 ${height * 0.022}px -apple-system`;
       ctx.fillText('Starting...', width / 2, height * 0.68);
 
+      ctx.globalAlpha = 1;
       return;
     }
 
@@ -4009,11 +3874,8 @@ function SceneContent() {
 
       // Get pastel colors for this category
       const colors = pastelColors[item.category] || DEFAULT_CARD_COLOR;
-
-      // Card background (pastel)
-      ctx.fillStyle = colors.bg;
-      roundRect(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius);
-      ctx.fill();
+      // Glass card background
+      drawGlassCardBg(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius, colors);
 
       // Left color accent bar - on the edge, shorter with padding top/bottom
       const barWidth = 4;
@@ -4039,9 +3901,15 @@ function SceneContent() {
       ctx.fillText(item.label, contentTextX, thisCardY + height * 0.018);
 
       // Content
+      const isHeroEvent = item.category === 'events' || item.category === 'event' || item.category === 'calendar' || item.category === 'appointment';
       ctx.fillStyle = '#374151';
       ctx.font = `500 ${height * 0.024}px -apple-system`;
-      ctx.fillText(item.content, contentTextX, thisCardY + height * 0.052);
+      ctx.fillText(item.content, contentTextX, thisCardY + (isHeroEvent ? height * 0.035 : height * 0.052));
+
+      // Event tags
+      if (isHeroEvent) {
+        drawEventTags(ctx, contentTextX, thisCardY + height * 0.062, item.content, cardH);
+      }
 
       // Action buttons - stacked vertically on the right
       const btnSize = height * 0.024;
@@ -4103,10 +3971,229 @@ function SceneContent() {
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    // === FULLSCREEN RECORDING MODE (Hero showcase or real recording) ===
-    if (isHeroShowcase || isWatchRecording || isWatchProcessing) {
+    // === HERO SHOWCASE MODE (synced with phone voicenotes, 3 phases) ===
+    if (isHeroShowcase) {
+      const scElapsed = scenarioState.elapsed;
+      const typingDuration = scenarioState.fullTranscript.length / TYPING_SPEED;
+      const typingEndTime = RECORDING_START_TIME + typingDuration;
+
+      // ── Phase 1: Sent-to-iPhone → Tap-to-record → Tap animation (0 to RECORDING_START_TIME) ──
+      if (scElapsed < RECORDING_START_TIME) {
+        const voisCenterY = height * 0.45;
+        const voisSize = width * 0.25;
+        const tapStart = RECORDING_START_TIME - 0.7;
+
+        // Overlapping cross-fade prevents blink:
+        //   Tap to record fades in  0.6 → 1.0s  (drawn first = underneath)
+        //   Sent to iPhone fades out 0.8 → 1.2s  (drawn second = on top, reveals tap)
+        const tapFadeInStart = 0.6;
+        const tapFadeInEnd = 1.0;
+        const sentFadeOutStart = 0.8;
+        const sentFadeOutEnd = 1.2;
+
+        // --- "Tap to record" layer (drawn first = underneath) ---
+        const tapToRecordAlpha = scElapsed < tapFadeInStart
+          ? 0
+          : scElapsed < tapFadeInEnd
+            ? (scElapsed - tapFadeInStart) / (tapFadeInEnd - tapFadeInStart)
+            : scElapsed > RECORDING_START_TIME - 0.4 ? Math.max(0, (RECORDING_START_TIME - scElapsed) / 0.4) : 1;
+
+        if (tapToRecordAlpha > 0) {
+          ctx.globalAlpha = Math.max(0, Math.min(1, tapToRecordAlpha));
+
+          // Own dark background so the layer is opaque
+          const tapBg = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width * 0.7);
+          tapBg.addColorStop(0, '#1a1a2e');
+          tapBg.addColorStop(1, '#000000');
+          ctx.fillStyle = tapBg;
+          ctx.fillRect(0, 0, width, height);
+
+          const isTapping = scElapsed > tapStart;
+
+          if (isTapping) {
+            const tapProgress = (scElapsed - tapStart) / 0.7;
+            const glowAlpha = tapProgress * 0.45;
+            ctx.fillStyle = `rgba(239, 68, 68, ${glowAlpha})`;
+            ctx.beginPath();
+            ctx.arc(width / 2, voisCenterY, voisSize * 0.9, 0, Math.PI * 2);
+            ctx.fill();
+
+            const pressScale = tapProgress < 0.35 ? 1 - tapProgress * 0.14 : 0.951 + (tapProgress - 0.35) * 0.075;
+            ctx.save();
+            ctx.translate(width / 2, voisCenterY);
+            ctx.scale(pressScale, pressScale);
+            ctx.translate(-width / 2, -voisCenterY);
+          }
+
+          ctx.fillStyle = isTapping ? 'rgba(239, 68, 68, 0.65)' : 'rgba(255, 255, 255, 0.12)';
+          ctx.beginPath();
+          ctx.arc(width / 2, voisCenterY, voisSize * 0.7, 0, Math.PI * 2);
+          ctx.fill();
+
+          drawVoisLogo(ctx, width / 2, voisCenterY, voisSize, 'rgba(255, 255, 255, 0.9)');
+
+          if (isTapping) ctx.restore();
+
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+          ctx.font = `500 ${width * 0.06}px -apple-system`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          ctx.fillText('Tap to record', width / 2, voisCenterY + voisSize * 0.85);
+
+          ctx.globalAlpha = 1;
+        }
+
+        // --- "Sent to iPhone" layer (drawn second = on top, fades out to reveal tap) ---
+        const sentAlpha = scElapsed < sentFadeOutStart
+          ? Math.min(1, scElapsed / 0.3)
+          : scElapsed < sentFadeOutEnd
+            ? Math.max(0, 1 - (scElapsed - sentFadeOutStart) / (sentFadeOutEnd - sentFadeOutStart))
+            : 0;
+
+        if (sentAlpha > 0) {
+          ctx.globalAlpha = Math.max(0, Math.min(1, sentAlpha));
+
+          // Own dark background so the layer is opaque
+          const sentBg = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width * 0.7);
+          sentBg.addColorStop(0, '#1a1a2e');
+          sentBg.addColorStop(1, '#000000');
+          ctx.fillStyle = sentBg;
+          ctx.fillRect(0, 0, width, height);
+
+          const checkY = voisCenterY - width * 0.02;
+          const checkR = width * 0.14;
+          ctx.fillStyle = 'rgba(34, 197, 94, 0.2)';
+          ctx.beginPath();
+          ctx.arc(width / 2, checkY, checkR, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.strokeStyle = '#22c55e';
+          ctx.lineWidth = width * 0.02;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.beginPath();
+          ctx.moveTo(width / 2 - checkR * 0.35, checkY + checkR * 0.05);
+          ctx.lineTo(width / 2 - checkR * 0.05, checkY + checkR * 0.35);
+          ctx.lineTo(width / 2 + checkR * 0.4, checkY - checkR * 0.25);
+          ctx.stroke();
+
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+          ctx.font = `600 ${width * 0.07}px -apple-system`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          ctx.fillText('Sent to iPhone', width / 2, checkY + checkR + width * 0.06);
+
+          ctx.globalAlpha = 1;
+        }
+
+        return;
+      }
+
+      // ── Phase 2: Recording (RECORDING_START_TIME to typingEndTime) ──
+      if (scElapsed < typingEndTime) {
+        const recordingElapsed = scElapsed - RECORDING_START_TIME;
+        const recordingSecs = Math.floor(recordingElapsed);
+
+        // VOIS text at top
+        ctx.fillStyle = '#ffffff';
+        ctx.font = `bold ${width * 0.12}px -apple-system`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('VOIS', width / 2, height * 0.18);
+
+        // Pulsing recording dot
+        const dotPulse = 0.7 + Math.sin(now / 300) * 0.3;
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(width * 0.18, height * 0.18, 6 * dotPulse, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Waveform bars
+        const waveY = height * 0.48;
+        const waveH = height * 0.18;
+        const waveStartX = width * 0.1;
+        const waveEndX = width * 0.9;
+        const bars = 24;
+        const barWidth = (waveEndX - waveStartX) / bars;
+
+        const audioLevels = Array.from({ length: 24 }, (_, i) => {
+          const t = now * 0.002 + i * 0.3;
+          return 0.3 + Math.sin(t) * 0.25 + Math.sin(t * 1.7) * 0.2 + Math.random() * 0.15;
+        });
+
+        for (let i = 0; i < bars; i++) {
+          const baseLevel = audioLevels[i] || 0.1;
+          const animOffset = now * 0.003 + i * 0.2;
+          const jitter = Math.sin(animOffset) * 0.1;
+          const level = Math.min(1, Math.max(0.1, baseLevel + jitter));
+          const dynamicH = waveH * (0.15 + level * 0.85);
+          const intensity = 0.5 + level * 0.5;
+          ctx.fillStyle = `rgba(239, 68, 68, ${intensity})`;
+          const barX = waveStartX + i * barWidth;
+          const barW = barWidth * 0.6;
+          roundRect(ctx, barX, waveY - dynamicH / 2, barW, dynamicH, 3);
+          ctx.fill();
+        }
+
+        // Timer (counts from 0, synced to actual recording duration)
+        const displayMinutes = Math.floor(recordingSecs / 60);
+        const displaySeconds = recordingSecs % 60;
+        ctx.fillStyle = '#ef4444';
+        ctx.font = `bold ${width * 0.16}px monospace`;
+        ctx.textAlign = 'center';
+        ctx.fillText(`${displayMinutes}:${displaySeconds.toString().padStart(2, '0')}`, width / 2, height * 0.75);
+
+        // Status text
+        ctx.fillStyle = '#888888';
+        ctx.font = `500 ${width * 0.055}px -apple-system`;
+        ctx.fillText('Recording...', width / 2, height * 0.88);
+
+        return;
+      }
+
+      // ── Phase 3: Post-typing — "Sent to iPhone" ──
+      {
+        const timeSinceEnd = scElapsed - typingEndTime;
+        // Fade in over 0.4s
+        const fadeIn = Math.min(1, timeSinceEnd / 0.4);
+        ctx.globalAlpha = fadeIn;
+
+        // Checkmark circle
+        const checkY = height * 0.42;
+        const checkR = width * 0.14;
+        ctx.fillStyle = 'rgba(34, 197, 94, 0.2)';
+        ctx.beginPath();
+        ctx.arc(width / 2, checkY, checkR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Checkmark icon
+        ctx.strokeStyle = '#22c55e';
+        ctx.lineWidth = width * 0.02;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(width / 2 - checkR * 0.35, checkY + checkR * 0.05);
+        ctx.lineTo(width / 2 - checkR * 0.05, checkY + checkR * 0.35);
+        ctx.lineTo(width / 2 + checkR * 0.4, checkY - checkR * 0.25);
+        ctx.stroke();
+
+        // "Sent to iPhone" text
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.font = `600 ${width * 0.07}px -apple-system`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText('Sent to iPhone', width / 2, checkY + checkR + width * 0.06);
+
+        ctx.globalAlpha = 1;
+      }
+
+      return;
+    }
+
+    // === FULLSCREEN RECORDING MODE (real recording) ===
+    if (isWatchRecording || isWatchProcessing) {
       const isProcessing = isWatchProcessing;
-      const elapsed = isHeroShowcase ? scenarioElapsed : demoState.elapsed;
+      const elapsed = demoState.elapsed;
 
       // VOIS text at top
       ctx.fillStyle = '#ffffff';
@@ -4130,13 +4217,7 @@ function SceneContent() {
       const bars = 24;
       const barWidth = (waveEndX - waveStartX) / bars;
 
-      // Use real audio levels if recording, simulated if hero showcase
-      const audioLevels = isHeroShowcase ?
-        Array.from({ length: 24 }, (_, i) => {
-          const t = now * 0.002 + i * 0.3;
-          return 0.3 + Math.sin(t) * 0.25 + Math.sin(t * 1.7) * 0.2 + Math.random() * 0.15;
-        }) :
-        demoState.audioLevels;
+      const audioLevels = demoState.audioLevels;
 
       for (let i = 0; i < bars; i++) {
         const baseLevel = audioLevels[i] || 0.1;
@@ -4165,7 +4246,6 @@ function SceneContent() {
       ctx.fillText(`${displayMinutes}:${displaySeconds.toString().padStart(2, '0')}`, width / 2, height * 0.75);
 
       if (isProcessing) {
-        // Status text during processing
         ctx.fillStyle = '#888888';
         ctx.font = `500 ${width * 0.055}px -apple-system`;
         ctx.fillText('Processing...', width / 2, height * 0.88);
@@ -4177,20 +4257,13 @@ function SceneContent() {
         ctx.beginPath();
         ctx.arc(width / 2, stopBtnY, stopBtnR, 0, Math.PI * 2);
         ctx.fill();
-        // White square icon inside
         const sq = stopBtnR * 0.7;
         ctx.fillStyle = '#ffffff';
         roundRect(ctx, width / 2 - sq / 2, stopBtnY - sq / 2, sq, sq, 2);
         ctx.fill();
-        // Label below
         ctx.fillStyle = '#888888';
         ctx.font = `500 ${width * 0.045}px -apple-system`;
         ctx.fillText('Tap to stop', width / 2, height * 0.93);
-      } else {
-        // Hero showcase status text
-        ctx.fillStyle = '#888888';
-        ctx.font = `500 ${width * 0.055}px -apple-system`;
-        ctx.fillText('Recording...', width / 2, height * 0.88);
       }
 
       return;
@@ -4271,8 +4344,8 @@ function SceneContent() {
       ctx.drawImage(img, drawX, drawY, drawW, drawH);
     }
 
-    // Dark overlay to dim the background and complications (but NOT the VOIS icon)
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+    // Subtle overlay to slightly dim the background (show more of the watch face)
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
     ctx.fillRect(0, 0, width, height);
 
     // Large time display — tall and condensed (stretched vertically, narrower horizontally)
@@ -4290,8 +4363,8 @@ function SceneContent() {
     ctx.restore();
 
     // === VOIS COMPLICATION (Bottom-left) - Changes based on state ===
-    const voisX = width * 0.28;
-    const voisY = height * 0.88;
+    const voisX = width * 0.24;
+    const voisY = height * 0.83;
     const logoSize = width * 0.18;
 
     // === IMMEDIATELY TRANSFER TO PHONE when watch finishes processing ===
@@ -4348,25 +4421,50 @@ function SceneContent() {
       return;
     }
 
-    // === IDLE STATE: Show bright VOIS logo (lit up, stands out) ===
-    const hoverScale = isHovered ? 1.1 : 1;
-    const pulseScale = 1 + Math.sin(now / 500) * 0.03;
-    const finalSize = logoSize * hoverScale * pulseScale;
+    // === IDLE STATE: VOIS logo with subtle pulse, red glow on hover ===
+    const idlePulse = 0.97 + Math.sin(now / 800) * 0.03; // gentle breathing
+    const hoverPulse = isHovered ? (0.92 + Math.sin(now / 250) * 0.08) : 1; // faster, stronger red pulse
+    const hoverScale = isHovered ? 1.12 : 1;
+    const finalSize = logoSize * hoverScale * idlePulse;
 
-    // Always show a glow behind the logo so it "lights up"
-    const glowGradient = ctx.createRadialGradient(voisX, voisY, 0, voisX, voisY, finalSize * 1.2);
-    glowGradient.addColorStop(0, isHovered ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.25)');
-    glowGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    // Outer glow — white idle, red on hover (pulsing intensity)
+    if (isHovered) {
+      const redGlowAlpha = 0.2 + Math.sin(now / 250) * 0.15; // pulsing 0.05–0.35
+      const outerGlow = ctx.createRadialGradient(voisX, voisY, 0, voisX, voisY, finalSize * 1.6);
+      outerGlow.addColorStop(0, `rgba(239, 68, 68, ${redGlowAlpha})`);
+      outerGlow.addColorStop(0.6, `rgba(239, 68, 68, ${redGlowAlpha * 0.3})`);
+      outerGlow.addColorStop(1, 'rgba(239, 68, 68, 0)');
+      ctx.fillStyle = outerGlow;
+      ctx.beginPath();
+      ctx.arc(voisX, voisY, finalSize * 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Inner glow circle
+    const innerAlpha = isHovered ? (0.45 + Math.sin(now / 250) * 0.15) : 0.2;
+    const glowColor = isHovered ? `rgba(239, 68, 68, ${innerAlpha})` : `rgba(255, 255, 255, ${innerAlpha})`;
+    const glowGradient = ctx.createRadialGradient(voisX, voisY, 0, voisX, voisY, finalSize * 1.0);
+    glowGradient.addColorStop(0, glowColor);
+    glowGradient.addColorStop(1, isHovered ? 'rgba(239, 68, 68, 0)' : 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glowGradient;
     ctx.beginPath();
-    ctx.arc(voisX, voisY, finalSize * 1.2, 0, Math.PI * 2);
+    ctx.arc(voisX, voisY, finalSize * 1.0, 0, Math.PI * 2);
     ctx.fill();
 
-    // Draw bright white VOIS logo
-    drawVoisLogo(ctx, voisX, voisY, finalSize, '#ffffff');
+    // Draw VOIS logo — white normally, brighter on hover
+    const logoColor = isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.9)';
+    drawVoisLogo(ctx, voisX, voisY, finalSize, logoColor);
+
+    // REC dot (pulsing) — small red dot next to logo
+    const dotAlpha = isHovered ? hoverPulse : (0.5 + Math.sin(now / 1000) * 0.3);
+    const dotRadius = isHovered ? width * 0.018 : width * 0.012;
+    ctx.fillStyle = `rgba(239, 68, 68, ${dotAlpha})`;
+    ctx.beginPath();
+    ctx.arc(voisX + finalSize * 0.45, voisY - finalSize * 0.35, dotRadius, 0, Math.PI * 2);
+    ctx.fill();
 
     // "VOIS" label
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = isHovered ? '#ef4444' : 'rgba(255, 255, 255, 0.8)';
     ctx.font = `600 ${width * 0.04}px -apple-system`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
@@ -4515,6 +4613,14 @@ function SceneContent() {
 
         watchTextureRef.current = texture;
 
+        // Store UV mapping for raw→canvas coordinate conversion in hover/click
+        globalState.watchUVMapping = {
+          repeatX: texture.repeat.x,
+          repeatY: texture.repeat.y,
+          offsetX: texture.offset.x,
+          offsetY: texture.offset.y,
+        };
+
         // Replace only the screen material in the array, or the whole material if single
         const newScreenMaterial = new THREE.MeshBasicMaterial({
           map: texture,
@@ -4596,9 +4702,7 @@ function SceneContent() {
     const isHeroSection = currentSection === 'hero';
 
     // Skip rendering when hero is off-screen and no active animations
-    if (!isHeroSection && entranceProgressRef.current >= 1 &&
-        !globalState.videoPlayerState.isHovering && !globalState.videoPlayerState.isPlaying &&
-        !globalState.videoPlayerState.isAnimatingIn && !globalState.videoPlayerState.isAnimatingOut) return;
+    if (!isHeroSection && entranceProgressRef.current >= 1) return;
     state.invalidate();
 
     // Update timer for screen animation
@@ -4607,10 +4711,12 @@ function SceneContent() {
       lastTimeRef.current = clockTime;
     }
 
-    // === TEXTURE UPDATES (throttled) - always show hero screen ===
+    // === TEXTURE UPDATES (throttled, but forced during ripple/hover animations) ===
+    const hasActiveEffect = globalState.phoneTouchRipple !== null || globalState.watchTouchRipple !== null
+      || globalState.phoneHoverUV !== null || globalState.watchHoverUV !== null;
     const timeElapsed = now - lastTextureUpdateRef.current > TEXTURE_UPDATE_INTERVAL;
 
-    if (timeElapsed) {
+    if (timeElapsed || hasActiveEffect) {
       lastTextureUpdateRef.current = now;
 
       // Update phone screen (always hero screen)
@@ -4618,6 +4724,54 @@ function SceneContent() {
         const ctx = phoneCanvasRef.current.getContext('2d');
         if (ctx) {
           drawPhoneScreen(ctx, phoneCanvasRef.current.width, phoneCanvasRef.current.height, true, timerRef.current);
+
+          // Draw hover glow on phone (small, dark tint — visible on light background)
+          const phoneHover = globalState.phoneHoverUV;
+          if (phoneHover) {
+            const w = phoneCanvasRef.current.width;
+            const h = phoneCanvasRef.current.height;
+            const cx = phoneHover.x * w;
+            const cy = phoneHover.y * h;
+            const radius = Math.max(w, h) * 0.04;
+
+            const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+            grad.addColorStop(0, 'rgba(0, 0, 0, 0.08)');
+            grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.03)');
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // Draw touch ripple overlay on phone (expanding, dark tint)
+          const phoneRipple = globalState.phoneTouchRipple;
+          if (phoneRipple) {
+            const rippleAge = (now - phoneRipple.startTime) / 1000;
+            const rippleDuration = 0.5;
+            if (rippleAge < rippleDuration) {
+              const progress = rippleAge / rippleDuration;
+              const w = phoneCanvasRef.current.width;
+              const h = phoneCanvasRef.current.height;
+              const cx = phoneRipple.x * w;
+              const cy = phoneRipple.y * h;
+              const maxRadius = Math.max(w, h) * 0.18;
+              const radius = maxRadius * progress;
+              const alpha = 0.12 * (1 - progress);
+
+              const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+              grad.addColorStop(0, `rgba(0, 0, 0, ${alpha})`);
+              grad.addColorStop(0.5, `rgba(0, 0, 0, ${alpha * 0.5})`);
+              grad.addColorStop(1, `rgba(0, 0, 0, 0)`);
+              ctx.fillStyle = grad;
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              globalState.phoneTouchRipple = null;
+            }
+          }
+
           phoneTextureRef.current.needsUpdate = true;
         }
       }
@@ -4627,6 +4781,54 @@ function SceneContent() {
         const ctx = watchCanvasRef.current.getContext('2d');
         if (ctx) {
           drawWatchScreen(ctx, watchCanvasRef.current.width, watchCanvasRef.current.height, true, timerRef.current);
+
+          // Draw hover glow on watch (small, white)
+          const watchHover = globalState.watchHoverUV;
+          if (watchHover) {
+            const w = watchCanvasRef.current.width;
+            const h = watchCanvasRef.current.height;
+            const cx = watchHover.x * w;
+            const cy = watchHover.y * h;
+            const radius = Math.max(w, h) * 0.06;
+
+            const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+            grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.18)');
+            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // Draw touch ripple overlay on watch (expanding, white)
+          const watchRipple = globalState.watchTouchRipple;
+          if (watchRipple) {
+            const rippleAge = (now - watchRipple.startTime) / 1000;
+            const rippleDuration = 0.5;
+            if (rippleAge < rippleDuration) {
+              const progress = rippleAge / rippleDuration;
+              const w = watchCanvasRef.current.width;
+              const h = watchCanvasRef.current.height;
+              const cx = watchRipple.x * w;
+              const cy = watchRipple.y * h;
+              const maxRadius = Math.max(w, h) * 0.25;
+              const radius = maxRadius * progress;
+              const alpha = 0.35 * (1 - progress);
+
+              const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+              grad.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+              grad.addColorStop(0.5, `rgba(255, 255, 255, ${alpha * 0.5})`);
+              grad.addColorStop(1, `rgba(255, 255, 255, 0)`);
+              ctx.fillStyle = grad;
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              globalState.watchTouchRipple = null;
+            }
+          }
+
           watchTextureRef.current.needsUpdate = true;
         }
       }
@@ -4695,44 +4897,11 @@ function SceneContent() {
     const phoneDragRotX = globalState.phoneSmoothDragY * 0.65 * entranceProgress;
     const phoneDragRotY = globalState.phoneSmoothDragX * 0.9 * entranceProgress;
 
-    // === VIDEO PLAYER EXIT/RETURN ANIMATION ===
-    const VIDEO_EXIT_DURATION = 0.8;  // Devices exit duration (smooth, matches entrance)
-    const VIDEO_RETURN_DELAY = 0.5;   // Wait for video to exit before devices return
-    const VIDEO_RETURN_DURATION = 1.0; // Devices return duration (matches entrance)
-    const videoState = globalState.videoPlayerState;
-    const videoActive = videoState.isHovering || videoState.isPlaying || videoState.isAnimatingIn;
-
-    let videoExitProgress = 0;
-    if (videoActive && !videoState.isAnimatingOut) {
-      // Devices exiting (video is playing)
-      const elapsed = (Date.now() - videoState.entryStartTime) / 1000;
-      videoExitProgress = Math.min(1, elapsed / VIDEO_EXIT_DURATION);
-      videoExitProgress = 1 - Math.pow(1 - videoExitProgress, 3); // ease-out cubic
-    } else if (videoState.isAnimatingOut) {
-      // Devices returning (video is exiting)
-      const totalElapsed = (Date.now() - videoState.exitStartTime) / 1000;
-
-      if (totalElapsed < VIDEO_RETURN_DELAY) {
-        // Keep devices off-screen during delay while video exits
-        videoExitProgress = 1;
-      } else {
-        // Animate devices back in with smooth ease-out (like entrance)
-        const returnElapsed = totalElapsed - VIDEO_RETURN_DELAY;
-        const returnProgress = Math.min(1, returnElapsed / VIDEO_RETURN_DURATION);
-        const easedReturn = 1 - Math.pow(1 - returnProgress, 3); // ease-out cubic
-        videoExitProgress = 1 - easedReturn;
-
-        if (returnProgress >= 1) {
-          globalState.videoPlayerState.isAnimatingOut = false;
-        }
-      }
-    }
-
-    // Exit offsets for video player - devices slide out to the right (like entrance in reverse)
-    const phoneExitX = 1.5 * videoExitProgress;  // Exit right off screen
-    const phoneExitRotY = -Math.PI * 0.3 * videoExitProgress;  // Rotate as they exit
-    const watchExitX = 1.2 * videoExitProgress;  // Exit right off screen
-    const watchExitRotY = Math.PI * 0.25 * videoExitProgress;  // Rotate as they exit
+    // Video exit offsets removed — video now plays as flat HTML
+    const phoneExitX = 0;
+    const phoneExitRotY = 0;
+    const watchExitX = 0;
+    const watchExitRotY = 0;
 
     // -- PHONE --
     if (phoneRef.current) {
@@ -4809,8 +4978,7 @@ function SceneContent() {
         <primitive object={watch.scene} />
       </group>
 
-      {/* 3D Video Player - flies in on click */}
-      <VideoPlane3D />
+      {/* 3D Video Player removed — video now plays as flat HTML in hero */}
 
       {/* Phone screen click detection */}
       <PhoneScreenInteraction phoneScreenMeshRef={phoneScreenMeshRef} />

@@ -237,3 +237,8 @@ html, body, #root {
   transform: translateY(-50%) scale(1);
 }
 
+/* Hero video — bottom controls appear on hover */
+.hero-video-container:hover .hero-video-controls {
+  opacity: 1;
+}
+

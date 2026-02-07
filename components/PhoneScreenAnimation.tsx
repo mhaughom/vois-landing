@@ -103,7 +103,11 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       const card = document.createElement('div');
       card.style.cssText = `
         display: flex; align-items: center;
-        border-radius: 24px; background: ${colors.bg};
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.7);
         opacity: 0; transform: translateY(6px);
         will-change: opacity, transform;
         padding: 0; overflow: hidden;
@@ -111,27 +115,10 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         min-height: 48px;
       `;
 
-      // Left accent bar (4px, 20% top/bottom padding)
-      const bar = document.createElement('div');
-      bar.style.cssText = `
-        width: 4px; align-self: stretch; flex-shrink: 0;
-        display: flex; flex-direction: column;
-      `;
-      const barTop = document.createElement('div');
-      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      const barMid = document.createElement('div');
-      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
-      const barBot = document.createElement('div');
-      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      bar.appendChild(barTop);
-      bar.appendChild(barMid);
-      bar.appendChild(barBot);
-      card.appendChild(bar);
-
       // Icon
       const icon = document.createElement('span');
       icon.textContent = item.icon;
-      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 10px;';
+      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 12px;';
       card.appendChild(icon);
 
       // Text wrapper
@@ -147,9 +134,9 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       textWrap.appendChild(content);
       card.appendChild(textWrap);
 
-      // Action buttons (stacked vertically on right)
+      // Action buttons (stacked vertically)
       const btns = document.createElement('div');
-      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 10px; flex-shrink: 0;';
+      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 0; flex-shrink: 0;';
       const check = document.createElement('span');
       check.textContent = '\u2713';
       check.style.cssText = `font-size: 14px; font-weight: 600; color: ${colors.accent}; line-height: 1;`;
@@ -159,6 +146,24 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       btns.appendChild(check);
       btns.appendChild(dismiss);
       card.appendChild(btns);
+
+      // Right accent bar (4px, 20% top/bottom padding)
+      const bar = document.createElement('div');
+      bar.style.cssText = `
+        width: 4px; align-self: stretch; flex-shrink: 0;
+        display: flex; flex-direction: column;
+        margin-left: 8px;
+      `;
+      const barTop = document.createElement('div');
+      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      const barMid = document.createElement('div');
+      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
+      const barBot = document.createElement('div');
+      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      bar.appendChild(barTop);
+      bar.appendChild(barMid);
+      bar.appendChild(barBot);
+      card.appendChild(bar);
 
       container.appendChild(card);
       cardRefs.current.push(card);
@@ -243,7 +248,11 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       const card = document.createElement('div');
       card.style.cssText = `
         display: flex; align-items: center;
-        border-radius: 24px; background: ${colors.bg};
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.7);
         opacity: 0; transform: translateY(6px);
         will-change: opacity, transform;
         padding: 0; overflow: hidden;
@@ -252,27 +261,10 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         transition: opacity 0.4s ease, transform 0.4s ease;
       `;
 
-      // Left accent bar
-      const bar = document.createElement('div');
-      bar.style.cssText = `
-        width: 4px; align-self: stretch; flex-shrink: 0;
-        display: flex; flex-direction: column;
-      `;
-      const barTop = document.createElement('div');
-      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      const barMid = document.createElement('div');
-      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
-      const barBot = document.createElement('div');
-      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      bar.appendChild(barTop);
-      bar.appendChild(barMid);
-      bar.appendChild(barBot);
-      card.appendChild(bar);
-
       // Icon
       const icon = document.createElement('span');
       icon.textContent = item.icon || '📋';
-      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 10px;';
+      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 12px;';
       card.appendChild(icon);
 
       // Text wrapper
@@ -290,7 +282,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
       // Action buttons
       const btns = document.createElement('div');
-      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 10px; flex-shrink: 0;';
+      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 0; flex-shrink: 0;';
       const check = document.createElement('span');
       check.textContent = '\u2713';
       check.style.cssText = `font-size: 14px; font-weight: 600; color: ${colors.accent}; line-height: 1;`;
@@ -300,6 +292,24 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       btns.appendChild(check);
       btns.appendChild(dismiss);
       card.appendChild(btns);
+
+      // Right accent bar
+      const bar = document.createElement('div');
+      bar.style.cssText = `
+        width: 4px; align-self: stretch; flex-shrink: 0;
+        display: flex; flex-direction: column;
+        margin-left: 8px;
+      `;
+      const barTop = document.createElement('div');
+      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      const barMid = document.createElement('div');
+      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
+      const barBot = document.createElement('div');
+      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      bar.appendChild(barTop);
+      bar.appendChild(barMid);
+      bar.appendChild(barBot);
+      card.appendChild(bar);
 
       container.appendChild(card);
       cardRefs.current.push(card);
@@ -540,9 +550,20 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
     const spans = segmentSpansRef.current[scenarioIndex];
     if (!spans) return;
 
-    // ── Logo phase (first 1s) ──────────────────────────────────────────
+    // ── Logo phase (with fade in/out) ──────────────────────────────────
     if (logoRef.current) {
-      logoRef.current.style.opacity = elapsed < RECORDING_START_TIME ? '1' : '0';
+      let logoOpacity = 0;
+      if (elapsed < 0.5) {
+        // Fade in over first 0.5s
+        logoOpacity = elapsed / 0.5;
+      } else if (elapsed < RECORDING_START_TIME - 0.5) {
+        // Fully visible
+        logoOpacity = 1;
+      } else if (elapsed < RECORDING_START_TIME) {
+        // Fade out over last 0.5s
+        logoOpacity = (RECORDING_START_TIME - elapsed) / 0.5;
+      }
+      logoRef.current.style.opacity = String(logoOpacity);
       logoRef.current.style.pointerEvents = elapsed < RECORDING_START_TIME ? 'auto' : 'none';
     }
 
@@ -806,7 +827,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         VOIS NOTE
       </div>
 
-      {/* ── VOIS Logo overlay (first 1s of each scenario) ──────────────── */}
+      {/* ── VOIS Logo overlay (first 2s of each scenario) ──────────────── */}
       <div
         ref={logoRef}
         style={{
@@ -821,7 +842,6 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
             rgba(248,230,210,0.32) 80%,
             rgba(245,240,230,0.22) 100%),
             #F8F9FA`,
-          transition: 'opacity 0.3s ease',
         }}
       >
         <div style={{
@@ -995,7 +1015,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         padding: '5%',
         minHeight: '35%',
         position: 'relative',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.05), 0 8px 10px rgba(0,0,0,0.03)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 12px 28px rgba(0,0,0,0.04)',
       }}>
         <div
           ref={transcriptRef}
@@ -1025,13 +1045,13 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
           Action Cards
         </div>
 
-        {/* Cards panel (white card with layered shadow) */}
+        {/* Cards panel */}
         <div style={{
           background: '#ffffff',
           borderRadius: 28,
           padding: '3.5%',
           flex: 1,
-          boxShadow: '0 2px 4px rgba(0,0,0,0.04), 0 4px 6px rgba(0,0,0,0.05), 0 8px 10px rgba(0,0,0,0.03)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.05), 0 12px 28px rgba(0,0,0,0.04)',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -1043,30 +1063,37 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         </div>
       </div>
 
-      {/* ── Bottom navigation bar (matches desktop: fafafa bg, 1px border) */}
+      {/* ── Floating pill navigation bar ─────────────────────────────── */}
       <div style={{
-        marginTop: 'auto',
-        background: '#fafafa',
-        borderTop: '1px solid #e5e7eb',
+        position: 'absolute',
+        bottom: '3%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '60%',
+        background: 'rgba(255,255,255,0.92)',
+        borderRadius: 9999,
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        padding: '3% 0 4%',
+        padding: '2.5% 0',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.12)',
+        border: '0.5px solid rgba(0,0,0,0.06)',
+        zIndex: 10,
       }}>
         {/* Sparkles (Magic) — inactive */}
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="#9ca3af" stroke="none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#9ca3af" stroke="none">
           <path d="M12 2L13.5 7.5 19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5z" />
           <path d="M19 15l.75 2.25L22 18l-2.25.75L19 21l-.75-2.25L16 18l2.25-.75z" />
         </svg>
         {/* Mic (Stream) — ACTIVE (dark) */}
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round">
           <rect x="9" y="1" width="6" height="12" rx="3" />
           <path d="M5 10a7 7 0 0 0 14 0" />
           <line x1="12" y1="17" x2="12" y2="21" />
           <line x1="8" y1="21" x2="16" y2="21" />
         </svg>
         {/* Grid (Apps) — inactive */}
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
           <circle cx="6" cy="6" r="2" /><circle cx="12" cy="6" r="2" /><circle cx="18" cy="6" r="2" />
           <circle cx="6" cy="14" r="2" /><circle cx="12" cy="14" r="2" /><circle cx="18" cy="14" r="2" />
         </svg>
