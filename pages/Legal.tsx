@@ -423,7 +423,7 @@ const RefundPolicy = () => (
 
     <SubSection title="Questions?">
       <p>
-        Contact us at <a href="mailto:support@tryvois.com" className="text-blue-600 hover:underline">support@tryvois.com</a>
+        Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
       </p>
     </SubSection>
   </>
@@ -583,7 +583,7 @@ const PrivacyPolicy = () => (
         <li><strong>Withdraw Consent:</strong> Withdraw consent at any time</li>
       </ul>
       <p className="mt-4">
-        To exercise these rights, contact us at <a href="mailto:privacy@tryvois.com" className="text-blue-600 hover:underline">privacy@tryvois.com</a>. 
+        To exercise these rights, contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>. 
         We will respond within 30 days.
       </p>
     </SubSection>
@@ -609,7 +609,7 @@ const PrivacyPolicy = () => (
     <SubSection title="10. Contact & Complaints">
       <p>For privacy-related inquiries:</p>
       <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Privacy Contact:</strong> <a href="mailto:privacy@tryvois.com" className="text-blue-600 hover:underline">privacy@tryvois.com</a></p>
+        <p><strong>Privacy Contact:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
       </div>
       <p className="mt-4">
         If you believe your rights have been violated, you have the right to lodge a complaint with:
