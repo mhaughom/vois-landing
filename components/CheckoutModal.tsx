@@ -5,6 +5,7 @@ import {
   Heart, Wallet, Target, Users, ChevronLeft, Watch, Smartphone,
 } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
+import { PLANS } from '../lib/tiers';
 
 const CHECKOUT_API = import.meta.env.VITE_API_URL || 'https://voisbackend-production.up.railway.app';
 
@@ -27,6 +28,8 @@ const QUIZ_DEVICES = [
   { id: 'both',  label: 'Both',        desc: 'The full experience'   },
 ];
 
+// Plan details sourced from lib/tiers.ts
+
 const stepTransition = {
   initial: { opacity: 0, x: 30 },
   animate: { opacity: 1, x: 0 },
@@ -37,10 +40,10 @@ const stepTransition = {
 interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
-  remaining: number | null;
+  selectedPlan: string;
 }
 
-export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, remaining }) => {
+export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, selectedPlan }) => {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [selectedDevices, setSelectedDevices] = useState<Set<string>>(new Set());
@@ -48,7 +51,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, r
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const isSoldOut = remaining === 0;
+  const plan = PLANS[selectedPlan as keyof typeof PLANS] || PLANS.personal_monthly;
   const didSubmitRef = useRef(false);
 
   // Track checkout step views
@@ -109,17 +112,11 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, r
       const response = await fetch(`${CHECKOUT_API}/api/checkout/create-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, plan: selectedPlan }),
       });
 
       if (response.status === 429) {
         const msg = 'Too many attempts. Please wait a moment and try again.';
-        setError(msg);
-        Analytics.errorOccurred(msg, 'checkout');
-        return;
-      }
-      if (response.status === 410) {
-        const msg = "All Founder spots have been claimed. Join the waitlist instead.";
         setError(msg);
         Analytics.errorOccurred(msg, 'checkout');
         return;
@@ -360,31 +357,25 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, r
                       Back
                     </button>
 
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-5 uppercase tracking-wider">
+                    {/* Plan badge */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-400 text-xs font-semibold mb-5 uppercase tracking-wider">
                       <Sparkles size={12} />
-                      {isSoldOut ? 'Sold Out' : "Founder's Edition"}
+                      {plan.name}
                     </div>
 
                     {/* Title */}
                     <h2 className="text-2xl font-serif text-white mb-2">
-                      {isSoldOut ? 'All Spots Claimed.' : 'Claim Your Spot.'}
+                      Start Your Subscription
                     </h2>
-                    <p className="text-slate-400 text-sm mb-6">
-                      {isSoldOut
-                        ? 'Join the waitlist to be notified when more spots open.'
-                        : 'Enter your email to continue to checkout.'}
+                    <p className="text-slate-400 text-sm mb-2">
+                      Enter your email to continue to checkout.
                     </p>
 
-                    {/* Spots remaining */}
-                    {remaining !== null && !isSoldOut && (
-                      <div className="flex items-center gap-2 mb-6 text-sm">
-                        <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                        <span className="text-slate-400">
-                          Only <span className="text-white font-semibold">{remaining}</span> spots left
-                        </span>
-                      </div>
-                    )}
+                    {/* Price summary */}
+                    <div className="flex items-baseline gap-2 mb-6">
+                      <span className="text-3xl font-bold text-white">{plan.price}</span>
+                      <span className="text-slate-500 text-sm">{plan.interval}</span>
+                    </div>
 
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -397,7 +388,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, r
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="founder@company.com"
+                          placeholder="you@company.com"
                           className="w-full px-5 py-3.5 bg-slate-900/50 border border-slate-700 rounded-full text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all"
                           disabled={isLoading}
                         />
@@ -435,15 +426,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, r
                             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                             className="w-5 h-5 border-2 border-slate-300 border-t-slate-900 rounded-full"
                           />
-                        ) : isSoldOut ? (
-                          'Join Waitlist'
                         ) : (
                           'Continue to Pay'
                         )}
                       </motion.button>
 
                       <p className="text-center text-slate-500 text-xs mt-3">
-                        30-day money-back guarantee. Cancel anytime.
+                        Cancel anytime. 30-day money-back guarantee.
                       </p>
                     </form>
                   </motion.div>

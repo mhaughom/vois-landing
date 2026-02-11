@@ -870,11 +870,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                     ease: 'linear',
                   }}
                 />
-                <span className="relative z-10 font-semibold text-slate-900">Get Early Access</span>
-                {/* Scarcity badge */}
-                <span className="relative z-10 px-2 py-0.5 rounded-full text-xs font-semibold bg-slate-900/10 text-slate-700">
-                  100 left
-                </span>
+                <span className="relative z-10 font-semibold text-slate-900">View Plans</span>
               </motion.button>
             ) : (
               /* First time - Show "Try Now" */
@@ -887,10 +883,13 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                     touchAction: 'manipulation',
                     filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
                   }}
-                  className="try-demo-btn group relative bg-slate-100 text-slate-900 pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 border border-slate-200 hover:border-slate-900 transition-all overflow-hidden"
+                  className="try-demo-btn group relative bg-slate-100 text-slate-900 pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 border border-slate-200 hover:border-slate-900 transition-all"
                 >
-                  {/* Circular black fill expanding from mic button on hover */}
-                  <span className="try-demo-fill absolute bg-slate-900 rounded-full pointer-events-none" />
+                  {/* Inner container for overflow clipping (keeps shadow visible on outer button) */}
+                  <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+                    {/* Circular black fill expanding from mic button on hover */}
+                    <span className="try-demo-fill absolute bg-slate-900 rounded-full" />
+                  </span>
                   {/* Mic button circle - turns white on hover */}
                   <span className="relative z-10 flex items-center justify-center w-9 h-9 bg-slate-900 group-hover:bg-white rounded-full transition-colors duration-200">
                     <Mic size={14} className="text-white group-hover:text-slate-900 transition-colors duration-200" />

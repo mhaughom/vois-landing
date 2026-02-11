@@ -121,7 +121,7 @@ interface MobileScrollHeroProps {
   chatOpened: boolean;
   chatMessageCount: number;
   allCardsVerified: boolean;
-  remaining: number | null;
+  remaining?: number | null;
   tryNowElement: React.ReactNode;
   bgVariant?: number;
   bgIntensity?: number;
@@ -793,10 +793,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
                   <span className="text-violet-600">✦</span>
                 </span>
-                <span className="text-slate-900 font-semibold">Get Early Access</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-700">
-                  {remaining ?? '--'} left
-                </span>
+                <span className="text-slate-900 font-semibold">View Plans</span>
               </motion.button>
 
               <button

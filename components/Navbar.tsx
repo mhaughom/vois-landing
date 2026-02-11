@@ -79,15 +79,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
           Vois for Work
         </a>
 
-        {/* Login Link */}
-        <Link
-          to="/login"
+        {/* Login Link — goes to the web app */}
+        <a
+          href={`${import.meta.env.VITE_WEB_APP_URL || 'https://www.tryvois.com'}/login`}
           className="hidden sm:block text-sm font-medium text-white bg-black hover:bg-black/80 transition-colors px-6 py-2.5 rounded-full"
         >
           Log In
-        </Link>
+        </a>
 
-        {/* Get Early Access Button - Soft pastel gradient (hidden on mobile to prevent clipping) */}
+        {/* View Plans Button (hidden on mobile to prevent clipping) */}
         <motion.button
           onClick={handleGetEarlyAccess}
           whileHover={{ scale: 1.05 }}
@@ -113,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
               ease: 'linear',
             }}
           />
-          <span className="relative z-10 text-slate-700 font-semibold">Get Early Access</span>
+          <span className="relative z-10 text-slate-700 font-semibold">View Plans</span>
         </motion.button>
       </div>
 
@@ -134,13 +134,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
             >
               Vois for Work
             </a>
-            <Link
-              to="/login"
+            <a
+              href={`${import.meta.env.VITE_WEB_APP_URL || 'https://www.tryvois.com'}/login`}
               className="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors border-t border-slate-100"
               onClick={() => setMobileMenuOpen(false)}
             >
               Log In
-            </Link>
+            </a>
             {onCycleBg && (
               <div className="border-t border-slate-100">
                 <button

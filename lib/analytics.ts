@@ -71,8 +71,8 @@ export const Analytics = {
     posthog.capture('checkout_redirect_to_stripe');
   },
 
-  checkoutCompleted: (founderNumber?: number) => {
-    posthog.capture('checkout_completed', { founder_number: founderNumber });
+  checkoutCompleted: (plan?: string) => {
+    posthog.capture('checkout_completed', { plan });
   },
 
   checkoutAbandoned: (step: number) => {
@@ -154,9 +154,9 @@ export const Analytics = {
     posthog.capture('chat_suggested_question_clicked', { question });
   },
 
-  // Founder spots
-  founderSpotsViewed: (remaining: number) => {
-    posthog.capture('founder_spots_viewed', { remaining });
+  // Plan selection
+  planSelected: (plan: string) => {
+    posthog.capture('plan_selected', { plan });
   },
 
   // Login

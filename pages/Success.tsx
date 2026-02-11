@@ -12,8 +12,9 @@ const Success = () => {
     Analytics.checkoutCompleted();
 
     const email = searchParams.get('email');
+    const plan = searchParams.get('plan') || 'unknown';
     if (email) {
-      Analytics.identifyUser(email, { plan: 'founders_edition' });
+      Analytics.identifyUser(email, { plan });
     }
   }, [searchParams]);
 
@@ -45,10 +46,10 @@ const Success = () => {
 
           {/* Headline */}
           <h1 className="text-2xl md:text-3xl font-serif text-slate-900 text-center mb-2">
-            Welcome, Founder.
+            Welcome to VOIS.
           </h1>
           <p className="text-slate-400 text-center text-sm mb-8">
-            You're officially one of the first 100 VOIS members.
+            Your subscription is active. Let's get started.
           </p>
 
           {/* Next Steps */}

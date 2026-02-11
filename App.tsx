@@ -18,22 +18,22 @@ import { AppleWatchMockup } from './components/AppleWatchMockup';
 import { MobileScrollHero, BG_VARIANTS } from './components/MobileScrollHero';
 import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { CheckoutModal } from './components/CheckoutModal';
-import { useFounderSpots } from './hooks/useFounderSpots';
+import { FREE_FEATURES, PERSONAL_FEATURES, WORK_FEATURES } from './lib/tiers';
 import { useIsMobile } from './hooks/useIsMobile';
 import { Analytics } from './lib/analytics';
 
 const faqData = [
   {
-    question: 'What does "Lifetime Access" mean?',
-    answer: 'It means you pay once and never pay a monthly subscription again. You get "Pro" status for the lifetime of the product, including fair-use access to our latest AI models.'
+    question: "What's the difference between Personal and Work?",
+    answer: "Personal is for everyday life — capturing tasks, ideas, reminders, and notes. Work adds meeting transcription, action items, team collaboration tools, and priority support."
   },
   {
     question: "Is my voice data private?",
     answer: "Yes. We use a local-first architecture. Your recordings are processed securely, and we do not use your personal thoughts to train our public models. Your brain is yours."
   },
   {
-    question: "This is a Beta. Will it be buggy?",
-    answer: "To be honest: Yes, occasionally. We are building the engine while flying the plane. As a Founding Member, you get early access to features, but you might encounter glitches."
+    question: "Can I switch plans or cancel anytime?",
+    answer: "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time. If you cancel, you'll keep access until the end of your current billing period."
   },
   {
     question: "What if it doesn't work for me?",
@@ -220,7 +220,8 @@ const App = () => {
   const [heroVideoPlaying, setHeroVideoPlaying] = useState(true);
   const [heroVideoMuted, setHeroVideoMuted] = useState(false);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
-  const { remaining, isSoldOut } = useFounderSpots();
+  const [selectedPlan, setSelectedPlan] = useState<string>('personal_monthly');
+  const [annualBilling, setAnnualBilling] = useState(true);
   const prefersReducedMotion = usePrefersReducedMotion();
   const isMobile = useIsMobile();
   const [bgVariant, setBgVariant] = useState(0);
@@ -312,9 +313,6 @@ const App = () => {
             Analytics.sectionViewed(sectionId);
             if (sectionId === 'pricing') {
               Analytics.scrolledToPricing();
-              if (remaining !== null) {
-                Analytics.founderSpotsViewed(remaining);
-              }
             }
             observer.disconnect();
           }
@@ -326,7 +324,7 @@ const App = () => {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, [remaining]);
+  }, []);
 
   // Set up callback when a chat message is sent
   useEffect(() => {
@@ -656,7 +654,7 @@ const App = () => {
       <CheckoutModal
         isOpen={showCheckoutModal}
         onClose={() => setShowCheckoutModal(false)}
-        remaining={remaining}
+        selectedPlan={selectedPlan}
       />
 
       {/* Chat Demo - handles API calls for phone chat interface */}
@@ -687,7 +685,7 @@ const App = () => {
             chatOpened={chatOpened}
             chatMessageCount={chatMessageCount}
             allCardsVerified={allCardsVerified}
-            remaining={remaining}
+            remaining={null}
             bgVariant={bgVariant}
             bgIntensity={bgIntensity}
             onSkipDemo={() => setDemoGatePassed(true)}
@@ -873,7 +871,7 @@ const App = () => {
                   {/* Buttons - CSS transition to avoid React re-render flicker */}
                   {/* Padding added for shadow room */}
                   <div
-                    className="flex items-start justify-center sm:justify-start gap-4 flex-wrap transition-opacity duration-700 ease-out py-2 -my-2"
+                    className="flex items-start justify-center sm:justify-start gap-4 flex-wrap transition-opacity duration-700 ease-out py-6 -my-6"
                     style={{
                       opacity: heroStage === 'buttons' || heroStage === 'complete' ? 1 : 0
                     }}
@@ -914,7 +912,7 @@ const App = () => {
                       </span>
                     </button>
 
-                    {/* Get Early Access button - always visible after first demo completion */}
+                    {/* View Plans button - always visible after first demo completion */}
                     {hasCompletedDemo && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
@@ -928,7 +926,7 @@ const App = () => {
                             Analytics.checkoutModalOpened('hero');
                             const elapsed = (performance.now() - pageLoadTime.current) / 1000;
                             Analytics.timeToAction('checkout_open', Math.round(elapsed));
-                            setShowCheckoutModal(true);
+                            scrollToSection('pricing');
                           }}
                           className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
                           style={{
@@ -971,10 +969,7 @@ const App = () => {
                           <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
                             <span className="text-violet-600">✦</span>
                           </span>
-                          <span className="relative z-10 font-semibold text-slate-900">Get Early Access</span>
-                          <span className="relative z-10 px-2.5 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-700 group-hover:bg-violet-500/25 transition-colors">
-                            {remaining ?? '--'} left
-                          </span>
+                          <span className="relative z-10 font-semibold text-slate-900">View Plans</span>
                         </motion.button>
 
                         {/* Retry button - only when idle or results (not during recording/processing) */}
@@ -1490,77 +1485,172 @@ const App = () => {
           </div>
         </section>
 
-        {/* SECTION 6: THE FOUNDER'S DEAL */}
+        {/* SECTION 6: PRICING */}
         <section id="pricing" className="py-24 px-6 md:px-16">
           <motion.div
-            initial={{ opacity: 0, y: 60, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-lg mx-auto"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="max-w-5xl mx-auto"
           >
-            <div className="bg-slate-950 rounded-3xl p-8 md:p-10 shadow-2xl shadow-black/30 border border-slate-800 relative overflow-hidden">
-              {/* Subtle gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black opacity-50 pointer-events-none" />
-              
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-6 uppercase tracking-wider">
-                  <Sparkles size={12} />
-                  Limited Batch: Founder's Edition
+            {/* Section header */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif text-slate-900 mb-3">Choose Your Plan</h2>
+              <p className="text-slate-500 text-lg">Start free. Upgrade when you're ready.</p>
+              {/* Billing toggle */}
+              <div className="flex items-center justify-center gap-3 mt-6">
+                <span className={`text-sm font-medium ${!annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>Monthly</span>
+                <button
+                  onClick={() => setAnnualBilling(!annualBilling)}
+                  className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${annualBilling ? 'bg-slate-900' : 'bg-slate-300'}`}
+                >
+                  <motion.div
+                    className="absolute top-0.5 w-6 h-6 bg-white rounded-full shadow-sm"
+                    animate={{ left: annualBilling ? 22 : 2 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                  />
+                </button>
+                <span className={`text-sm font-medium ${annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>Annual</span>
+                {annualBilling && (
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full"
+                  >
+                    Save up to 40%
+                  </motion.span>
+                )}
+              </div>
+            </div>
+
+            {/* Pricing cards */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Free Plan */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-3xl p-8 shadow-xl shadow-black/5 border border-slate-200 relative flex flex-col"
+              >
+                <h3 className="text-lg font-semibold text-slate-900 mb-1">Free</h3>
+                <p className="text-slate-500 text-sm mb-5">Try it out, no card required</p>
+                <div className="flex items-baseline gap-2 mb-6">
+                  <span className="text-4xl font-bold text-slate-900 tracking-tight">$0</span>
+                  <span className="text-slate-400 text-sm">forever</span>
                 </div>
-                
-                {/* Headline */}
-                <h2 className="text-2xl md:text-3xl font-serif text-white mb-6 leading-tight">
-                  Stop Renting Your Software.
-                </h2>
-                
-                {/* Price */}
-                <div className="flex items-baseline gap-3 mb-8">
-                  <span className="text-5xl md:text-6xl font-bold text-white tracking-tight">$99</span>
-                  <span className="text-2xl text-slate-500 line-through">$199</span>
-                  <span className="text-sm text-slate-400 ml-2">one-time</span>
-                </div>
-                
-                {/* Features */}
-                <ul className="space-y-4 mb-8">
-                  {[
-                    "Lifetime Pro Access",
-                    "No Monthly Fees",
-                    "Private Discord Access",
-                    "Early Feature Drops"
-                  ].map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-300">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                        <Check size={12} className="text-emerald-400" />
+                <ul className="space-y-3 mb-8 flex-1">
+                  {FREE_FEATURES.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-slate-600 text-sm">
+                      <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-slate-400" />
                       </div>
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                
-                {/* Scarcity */}
-                <div className="flex items-center gap-2 mb-6 text-sm">
-                  <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                  <span className="text-slate-400">
-                    <span className="text-white font-semibold">{remaining ?? '--'}</span> / 100 Spots Remaining
-                  </span>
-                </div>
-                
-                {/* CTA Button - Opens Checkout Modal */}
-                <button
-                  onClick={() => { Analytics.checkoutModalOpened('pricing'); setShowCheckoutModal(true); }}
-                  className="block w-full bg-white text-slate-950 py-4 rounded-full text-lg font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg text-center"
+                <a
+                  href="https://apps.apple.com/app/vois"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => Analytics.externalLinkClicked('download_ios_pricing')}
+                  className="block w-full bg-slate-100 text-slate-900 py-3.5 rounded-full text-base font-semibold hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
-                  {isSoldOut ? 'Join Waitlist' : 'Get Early Access'}
+                  Download Free
+                </a>
+              </motion.div>
+
+              {/* Personal Plan */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-white rounded-3xl p-8 shadow-xl shadow-black/5 border-2 border-slate-900 relative flex flex-col"
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-lg font-semibold text-slate-900">Personal</h3>
+                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Popular</span>
+                </div>
+                <p className="text-slate-500 text-sm mb-5">For everyday life organization</p>
+                <div className="flex items-baseline gap-2 mb-6">
+                  <span className="text-4xl font-bold text-slate-900 tracking-tight">
+                    {annualBilling ? '$79.99' : '$14.99'}
+                  </span>
+                  <span className="text-slate-400 text-sm">/{annualBilling ? 'year' : 'month'}</span>
+                </div>
+                {annualBilling && (
+                  <p className="text-sm text-emerald-600 font-medium -mt-4 mb-6">
+                    $6.67/mo — save 56% vs monthly
+                  </p>
+                )}
+                <ul className="space-y-3 mb-8 flex-1">
+                  {PERSONAL_FEATURES.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-slate-600 text-sm">
+                      <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-emerald-500" />
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => { Analytics.checkoutModalOpened('pricing'); setSelectedPlan(annualBilling ? 'personal_annual' : 'personal_monthly'); setShowCheckoutModal(true); }}
+                  className="block w-full bg-slate-900 text-white py-3.5 rounded-full text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] active:scale-[0.98] text-center"
+                >
+                  Get Started
                 </button>
-                
-                {/* Guarantee */}
-                <p className="text-center text-slate-500 text-sm mt-4">
-                  30-day money-back guarantee.
+                <p className="text-center text-slate-500 text-xs mt-4">
+                  Cancel anytime. 30-day money-back guarantee.
                 </p>
-              </div>
+              </motion.div>
+
+              {/* Work Plan */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-slate-950 rounded-3xl p-8 shadow-2xl shadow-black/20 border border-slate-800 relative overflow-hidden flex flex-col"
+              >
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black opacity-50 pointer-events-none" />
+                <div className="relative z-10 flex flex-col flex-1">
+                  <h3 className="text-lg font-semibold text-white mb-1">Work</h3>
+                  <p className="text-slate-400 text-sm mb-5">For professionals & teams</p>
+                  <div className="flex items-baseline gap-2 mb-6">
+                    <span className="text-4xl font-bold text-white tracking-tight">
+                      {annualBilling ? '$249.99' : '$34.99'}
+                    </span>
+                    <span className="text-slate-500 text-sm">/{annualBilling ? 'year' : 'month'}</span>
+                  </div>
+                  {annualBilling && (
+                    <p className="text-sm text-emerald-400 font-medium -mt-4 mb-6">
+                      $20.83/mo — save 40% vs monthly
+                    </p>
+                  )}
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {WORK_FEATURES.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
+                        <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                          <Check size={12} className="text-emerald-400" />
+                        </div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    onClick={() => { Analytics.checkoutModalOpened('pricing'); setSelectedPlan(annualBilling ? 'work_annual' : 'work_monthly'); setShowCheckoutModal(true); }}
+                    className="block w-full bg-white text-slate-950 py-3.5 rounded-full text-base font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg text-center"
+                  >
+                    Get Started
+                  </button>
+                  <p className="text-center text-slate-500 text-xs mt-4">
+                    Cancel anytime. 30-day money-back guarantee.
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </section>
