@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const WEB_APP_URL = import.meta.env.VITE_WEB_APP_URL || 'https://www.tryvois.com';
+const WEB_APP_URL = import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com';
 
 /**
  * Login page — redirects to the web app's login.

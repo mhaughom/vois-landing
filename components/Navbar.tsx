@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
 
         {/* Login Link — goes to the web app */}
         <a
-          href={`${import.meta.env.VITE_WEB_APP_URL || 'https://www.tryvois.com'}/login`}
+          href={`${import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com'}/login`}
           className="hidden sm:block text-sm font-medium text-white bg-black hover:bg-black/80 transition-colors px-6 py-2.5 rounded-full"
         >
           Log In
@@ -135,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
               Vois for Work
             </a>
             <a
-              href={`${import.meta.env.VITE_WEB_APP_URL || 'https://www.tryvois.com'}/login`}
+              href={`${import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com'}/login`}
               className="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors border-t border-slate-100"
               onClick={() => setMobileMenuOpen(false)}
             >
