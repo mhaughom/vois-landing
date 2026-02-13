@@ -1,25 +1,13 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import posthog from 'posthog-js';
 import Work from './pages/Work';
 import './index.css';
+import { bootConsent } from './lib/consent';
 
-// Initialize PostHog analytics
-const posthogKey = import.meta.env.VITE_POSTHOG_KEY;
-if (posthogKey) {
-  posthog.init(posthogKey, {
-    api_host: import.meta.env.VITE_POSTHOG_HOST || 'https://eu.i.posthog.com',
-    autocapture: true,
-    capture_pageview: true,
-    capture_pageleave: true,
-    persistence: 'localStorage',
-    session_recording: {
-      maskAllInputs: true,
-      maskTextSelector: '[data-mask]',
-    },
-  });
-}
+// Boot consent: reads stored preference and starts PostHog only if user opted in.
+// If no consent is stored yet, PostHog stays off and the cookie banner will show.
+bootConsent();
 
 // Lazy-load heavy pages so navigating to /work isn't blocked by Three.js teardown
 const App = React.lazy(() => import('./App'));

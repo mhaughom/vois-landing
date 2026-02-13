@@ -18,6 +18,7 @@ import { AppleWatchMockup } from './components/AppleWatchMockup';
 import { MobileScrollHero, BG_VARIANTS } from './components/MobileScrollHero';
 import { ArrowRight, Check, Sparkles, Lock, Cloud, Zap, Fingerprint, ChevronDown, X, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { CheckoutModal } from './components/CheckoutModal';
+import { CookieConsent, CookieSettingsTrigger } from './components/CookieConsent';
 import { FREE_FEATURES, PERSONAL_FEATURES, WORK_FEATURES } from './lib/tiers';
 import { useIsMobile } from './hooks/useIsMobile';
 import { Analytics } from './lib/analytics';
@@ -656,6 +657,9 @@ const App = () => {
         onClose={() => setShowCheckoutModal(false)}
         selectedPlan={selectedPlan}
       />
+
+      {/* Cookie consent banner */}
+      <CookieConsent />
 
       {/* Chat Demo - handles API calls for phone chat interface */}
       <ChatDemo onMessageSent={() => setChatMessageCount(prev => prev + 1)} />
@@ -1735,6 +1739,9 @@ const App = () => {
                     <Link to="/legal#refund" onClick={() => Analytics.externalLinkClicked('refund_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Refund Policy
                     </Link>
+                  </li>
+                  <li>
+                    <CookieSettingsTrigger />
                   </li>
                 </ul>
               </div>

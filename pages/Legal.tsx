@@ -296,15 +296,71 @@ const TermsOfService = () => (
 
     <SubSection title="3. Subscriptions">
       <p>
-        Vois offers subscription plans through the Apple App Store. By subscribing, you agree to:
+        Vois offers the following auto-renewable subscription plans through the Apple App Store:
       </p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li>Payment will be charged to your Apple ID at confirmation of purchase</li>
-        <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period</li>
-        <li>You can manage and cancel subscriptions in your App Store account settings</li>
-      </ul>
+
+      <div className="mt-6 overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-slate-100">
+              <th className="text-left p-3 border border-slate-200 font-semibold">Subscription</th>
+              <th className="text-left p-3 border border-slate-200 font-semibold">Price</th>
+              <th className="text-left p-3 border border-slate-200 font-semibold">Duration</th>
+              <th className="text-left p-3 border border-slate-200 font-semibold">Free Trial</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Personal Monthly</strong></td>
+              <td className="p-3 border border-slate-200">$14.99</td>
+              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Personal Annual</strong></td>
+              <td className="p-3 border border-slate-200">$79.99 (~$6.67/month)</td>
+              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
+              <td className="p-3 border border-slate-200">1-week free trial</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Work Monthly</strong></td>
+              <td className="p-3 border border-slate-200">$34.99</td>
+              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Work Annual</strong></td>
+              <td className="p-3 border border-slate-200">$249.99 (~$20.83/month)</td>
+              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
+              <td className="p-3 border border-slate-200">1-week free trial</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p className="mt-4">
+        Vois also offers a <strong>Free</strong> tier with limited usage (5 voice recordings, 5 chat messages, 1 custom app, and up to 3 minutes per recording) at no cost.
+      </p>
+
+      <ImportantBox>
+        <p className="font-semibold mb-2">Auto-Renewal Terms</p>
+        <ul className="list-disc list-inside space-y-1 mt-2">
+          <li>Payment will be charged to your Apple ID at confirmation of purchase.</li>
+          <li>Free trial periods (where offered) begin at the time of purchase. If you do not cancel before the free trial ends, your subscription will automatically renew and you will be charged the subscription price.</li>
+          <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period.</li>
+          <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the rate of your selected plan.</li>
+          <li>You can manage and cancel subscriptions in your Apple ID Account Settings at any time.</li>
+        </ul>
+      </ImportantBox>
+
       <p className="mt-4">
         See our <a href="/legal#refund" className="text-blue-600 hover:underline">Refund Policy</a> for information about refunds.
+      </p>
+
+      <p className="mt-2">
+        For more details, see our{' '}
+        <a href="/legal#privacy" className="text-blue-600 hover:underline">Privacy Policy</a> and{' '}
+        <a href="/legal#eula" className="text-blue-600 hover:underline">EULA</a>.
       </p>
     </SubSection>
 
@@ -462,7 +518,7 @@ const PrivacyPolicy = () => (
 
       <h4 className="font-semibold text-slate-900 mb-2">Usage Data:</h4>
       <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
-        <li>App usage analytics (anonymized)</li>
+        <li>App usage analytics (anonymized, collected only with your consent via PostHog, EU-hosted)</li>
         <li>Feature interaction data</li>
         <li>Error logs and crash reports</li>
         <li>Device identifiers (anonymous device ID for non-logged-in users)</li>
@@ -557,21 +613,46 @@ const PrivacyPolicy = () => (
               <td className="p-3 border border-slate-200">Website Hosting</td>
               <td className="p-3 border border-slate-200">Global CDN</td>
             </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>PostHog</strong></td>
+              <td className="p-3 border border-slate-200">Website Analytics & Session Recording (consent-based)</td>
+              <td className="p-3 border border-slate-200">EU (Frankfurt)</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </SubSection>
 
-    <SubSection title="6. Legal Basis for Processing (GDPR Article 6)">
+    <SubSection title="6. Cookies & Website Tracking">
+      <p>Our website (<a href="https://vois.app" className="text-blue-600 hover:underline">vois.app</a>) uses the following technologies:</p>
+      
+      <h4 className="font-semibold text-slate-900 mb-2 mt-4">Strictly Necessary Storage</h4>
+      <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
+        <li>Your cookie consent preference (stored in localStorage)</li>
+        <li>Authentication tokens for logged-in users</li>
+      </ul>
+      <p className="mb-4">These do not require consent as they are essential for the website to function.</p>
+
+      <h4 className="font-semibold text-slate-900 mb-2">Analytics (Consent Required)</h4>
+      <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
+        <li><strong>PostHog</strong> — Used for website analytics and session recording. Data is hosted in the EU (Frankfurt). PostHog is only activated after you provide consent via our cookie banner.</li>
+        <li>Data collected includes: page views, clicks, scroll depth, anonymized session recordings (with all input fields masked), device type, and referral source.</li>
+        <li>No data is shared with advertisers or used for ad targeting.</li>
+      </ul>
+
+      <p>You can change your tracking preferences at any time via the <strong>Cookie Settings</strong> link in our website footer.</p>
+    </SubSection>
+
+    <SubSection title="7. Legal Basis for Processing (GDPR Article 6)">
       <ul className="list-disc list-inside space-y-2 ml-4">
         <li><strong>Contract Performance:</strong> Processing necessary to provide the Vois service you requested.</li>
-        <li><strong>Legitimate Interest:</strong> Analytics to improve our service (with appropriate safeguards).</li>
-        <li><strong>Consent:</strong> Marketing communications (you can withdraw consent at any time).</li>
+        <li><strong>Legitimate Interest:</strong> Service improvements and security monitoring (with appropriate safeguards).</li>
+        <li><strong>Consent:</strong> Website analytics via PostHog (you can manage your cookie preferences at any time via the Cookie Settings link in our footer) and marketing communications (you can withdraw consent at any time).</li>
         <li><strong>Legal Obligation:</strong> Tax records and compliance with applicable laws.</li>
       </ul>
     </SubSection>
 
-    <SubSection title="7. Your Rights (GDPR)">
+    <SubSection title="8. Your Rights (GDPR)">
       <p>Under the General Data Protection Regulation, you have the right to:</p>
       <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
         <li><strong>Access:</strong> Request a copy of your personal data</li>
@@ -588,7 +669,7 @@ const PrivacyPolicy = () => (
       </p>
     </SubSection>
 
-    <SubSection title="8. Data Retention">
+    <SubSection title="9. Data Retention">
       <ul className="list-disc list-inside space-y-2 ml-4">
         <li>Active accounts: Data retained for the duration of your account</li>
         <li>Deleted accounts: Data erased within 30 days of account deletion</li>
@@ -596,7 +677,7 @@ const PrivacyPolicy = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="9. Data Security">
+    <SubSection title="10. Data Security">
       <p>We implement appropriate technical and organizational measures to protect your data:</p>
       <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
         <li>TLS/SSL encryption for all data in transit</li>
@@ -606,7 +687,7 @@ const PrivacyPolicy = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="10. Contact & Complaints">
+    <SubSection title="11. Contact & Complaints">
       <p>For privacy-related inquiries:</p>
       <div className="mt-4 p-4 bg-slate-50 rounded-xl">
         <p><strong>Privacy Contact:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
@@ -706,7 +787,72 @@ const EULA = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="5. Contact Information">
+    <SubSection title="5. Subscription Plans">
+      <p>
+        Vois offers the following auto-renewable subscription plans, managed through the Apple App Store:
+      </p>
+
+      <div className="mt-6 overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-slate-100">
+              <th className="text-left p-3 border border-slate-200 font-semibold">Subscription</th>
+              <th className="text-left p-3 border border-slate-200 font-semibold">Price</th>
+              <th className="text-left p-3 border border-slate-200 font-semibold">Duration</th>
+              <th className="text-left p-3 border border-slate-200 font-semibold">Free Trial</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Personal Monthly</strong></td>
+              <td className="p-3 border border-slate-200">$14.99</td>
+              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Personal Annual</strong></td>
+              <td className="p-3 border border-slate-200">$79.99 (~$6.67/month)</td>
+              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
+              <td className="p-3 border border-slate-200">1-week free trial</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Work Monthly</strong></td>
+              <td className="p-3 border border-slate-200">$34.99</td>
+              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Work Annual</strong></td>
+              <td className="p-3 border border-slate-200">$249.99 (~$20.83/month)</td>
+              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
+              <td className="p-3 border border-slate-200">1-week free trial</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p className="mt-4">
+        A <strong>Free</strong> tier is also available at no cost, with limited usage (5 voice recordings, 5 chat messages, 1 custom app, up to 3 minutes per recording).
+      </p>
+
+      <ImportantBox>
+        <p className="font-semibold mb-2">Auto-Renewal & Cancellation</p>
+        <ul className="list-disc list-inside space-y-1 mt-2">
+          <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
+          <li>Free trial periods begin at the time of purchase. If not canceled before the trial ends, your subscription will auto-renew at the listed price.</li>
+          <li>Subscriptions auto-renew unless canceled at least 24 hours before the end of the current period.</li>
+          <li>You can manage and cancel subscriptions at any time in your Apple ID Account Settings.</li>
+        </ul>
+      </ImportantBox>
+
+      <p className="mt-4">
+        For full details, see our{' '}
+        <a href="/legal#terms" className="text-blue-600 hover:underline">Terms of Service</a> and{' '}
+        <a href="/legal#privacy" className="text-blue-600 hover:underline">Privacy Policy</a>.
+      </p>
+    </SubSection>
+
+    <SubSection title="6. Contact Information">
       <p>
         For any questions or concerns regarding the iOS application or this EULA, please contact:
       </p>
