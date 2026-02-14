@@ -38,12 +38,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
   };
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "circOut" }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 pointer-events-none"
-      style={{ paddingTop: 'calc(0.5rem + env(safe-area-inset-top, 0px))' }}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 pointer-events-none"
+      style={{ paddingTop: 'env(safe-area-inset-top, 1.5rem)' }}
     >
       {/* Logo */}
       <Link to="/" className="pointer-events-auto">
