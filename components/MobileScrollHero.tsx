@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useTransform, useMotionValueEvent, useSpring, useMotionValue, animate } from 'framer-motion';
 import { DemoSteps, DemoStage } from './TryNowDemo';
 import { callbacks as deviceCallbacks, setDemoActiveDevice } from './deviceState';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Play } from 'lucide-react';
 import { PhoneScreenAnimation } from './PhoneScreenAnimation';
 import { WatchRecordingAnimation } from './WatchRecordingAnimation';
 import { useScreenOverlay } from '../hooks/useScreenOverlay';
@@ -75,20 +75,30 @@ function preloadFramesLazy(
   onFrame: (index: number, img: HTMLImageElement) => void,
 ): void {
   let i = startIndex;
-  const loadNext = () => {
+  const BATCH_SIZE = 3; // Load 3 frames in parallel
+
+  const loadBatch = () => {
     if (i >= count) return;
-    const idx = i++;
-    preloadFrame(basePath, idx).then((img) => {
-      onFrame(idx, img);
-      // Use requestIdleCallback if available, otherwise setTimeout
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(loadNext);
-      } else {
-        setTimeout(loadNext, 0);
-      }
+
+    const batch: Promise<void>[] = [];
+    const batchStart = i;
+
+    for (let j = 0; j < BATCH_SIZE && i < count; j++, i++) {
+      const idx = i;
+      batch.push(
+        preloadFrame(basePath, idx).then((img) => {
+          onFrame(idx, img);
+        })
+      );
+    }
+
+    Promise.all(batch).then(() => {
+      // Small delay between batches to not overwhelm the browser
+      setTimeout(loadBatch, 100);
     });
   };
-  loadNext();
+
+  loadBatch();
 }
 
 // ─── Background gradient variants for A/B testing ────────────────────────────
@@ -158,6 +168,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   const [phoneFrames, setPhoneFrames] = useState<HTMLImageElement[]>([]);
   const [watchFrames, setWatchFrames] = useState<HTMLImageElement[]>([]);
   const [framesLoaded, setFramesLoaded] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const currentPhoneFrame = useRef(0);
   const currentWatchFrame = useRef(0);
 
@@ -347,7 +358,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     }
 
     const handleScroll = () => {
-      const p = Math.min(1, Math.max(0, window.scrollY / vh));
+      const maxP = maxProgressRef.current;
+      const p = Math.min(maxP, Math.max(0, window.scrollY / vh));
       progressRef.current = p;
       progress.set(p);
     };
@@ -369,10 +381,12 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
   useEffect(() => {
     // Load first frames immediately
+    console.log('🖼️ Starting to load frames...');
     Promise.all([
       preloadFrame(PHONE_FRAMES_PATH, 0),
       preloadFrame(WATCH_FRAMES_PATH, 0),
     ]).then(([phone0, watch0]) => {
+      console.log('✅ First frames loaded:', { phone0, watch0 });
       phoneFramesRef.current[0] = phone0;
       watchFramesRef.current[0] = watch0;
       phoneLoadedRef.current = 1;
@@ -387,6 +401,11 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       const updateMaxProgress = () => {
         const maxFrame = Math.min(phoneLoadedRef.current, watchLoadedRef.current) - 1;
         maxProgressRef.current = maxFrame / (Math.max(PHONE_FRAME_COUNT, WATCH_FRAME_COUNT) - 1);
+        const loadPct = Math.round(maxProgressRef.current * 100);
+        setLoadingProgress(loadPct);
+        if (maxFrame % 10 === 0) {
+          console.log(`📊 Frames loaded: phone=${phoneLoadedRef.current}/${PHONE_FRAME_COUNT}, watch=${watchLoadedRef.current}/${WATCH_FRAME_COUNT}, maxProgress=${maxProgressRef.current.toFixed(2)}`);
+        }
       };
 
       // Load remaining frames in the background (no re-renders needed —
@@ -401,7 +420,9 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         watchLoadedRef.current = idx + 1;
         updateMaxProgress();
       });
-    }).catch(console.error);
+    }).catch((err) => {
+      console.error('❌ Failed to load frames:', err);
+    });
   }, []);
 
   // ── Canvas drawing ─────────────────────────────────────────────────────────
@@ -434,6 +455,11 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       WATCH_FRAME_COUNT - 1,
       Math.round(clamped * (WATCH_FRAME_COUNT - 1)),
     );
+
+    // Log frame changes for debugging
+    if (phoneIdx !== currentPhoneFrame.current && phoneIdx % 5 === 0) {
+      console.log(`🎬 Progress: ${clamped.toFixed(2)}, Phone frame: ${phoneIdx}/${PHONE_FRAME_COUNT - 1}, Max loaded: ${Math.round(maxProgressRef.current * 100)}%`);
+    }
 
     if (phoneIdx !== currentPhoneFrame.current) {
       currentPhoneFrame.current = phoneIdx;
@@ -492,6 +518,16 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     return () => { clearTimeout(timeout); clearInterval(interval); };
   }, []);
 
+  // Log component mount for debugging
+  useEffect(() => {
+    console.log('📱 MobileScrollHero mounted', {
+      framesLoaded,
+      scrollDriven,
+      demoStage,
+      gatePassed
+    });
+  }, [framesLoaded, scrollDriven, demoStage, gatePassed]);
+
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <section
@@ -531,7 +567,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           }}
         />
 
-        {/* White gradient overlays — polished edge fade */}
+        {/* White gradient overlays at top and bottom */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
           style={{
@@ -543,9 +579,9 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
           style={{
-            height: 100,
-            background: 'linear-gradient(to top, rgba(255,255,255,0.45), transparent)',
-            zIndex: 30,
+            height: 150,
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,1) 100%)',
+            zIndex: 5,
           }}
         />
 
@@ -580,6 +616,29 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
             className="text-lg text-slate-500 leading-relaxed"
             style={{ minHeight: '1.6em' }}
           />
+
+          {/* Watch Video Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={framesLoaded ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 1.2 }}
+            onClick={onWatchVideo}
+            className="mt-4 group relative pl-2.5 pr-5 py-1.5 rounded-full text-sm font-medium flex items-center gap-2 mx-auto active:scale-95 transition-all duration-300 bg-slate-900 text-white border border-slate-800"
+            style={{
+              filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))',
+              pointerEvents: 'auto'
+            }}
+          >
+            <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+              <span className="watch-video-fill absolute bg-white rounded-full" />
+            </span>
+            <span className="relative z-10 flex items-center justify-center w-6 h-6 rounded-full transition-colors duration-200 bg-white group-hover:bg-slate-900">
+              <Play size={10} className="ml-0.5 transition-colors duration-200 fill-slate-900 text-slate-900 group-hover:fill-white group-hover:text-white" />
+            </span>
+            <span className="relative z-10 transition-colors duration-500 delay-100 group-hover:text-slate-900">
+              Watch Video
+            </span>
+          </motion.button>
         </motion.div>
 
         {/* ── Device frames area ──────────────────────────────────────── */}
@@ -674,6 +733,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                     pointerEvents: 'auto',
                     cursor: 'pointer',
                     zIndex: 20,
+                    borderRadius: 54,
                   }}
                 />
               )}
@@ -683,7 +743,11 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           {/* Watch */}
           <motion.div
             className="absolute z-20"
-            style={{ left: '-8%', bottom: '8%' }}
+            style={{
+              right: '50%',
+              bottom: '8%',
+              marginRight: '20px' // Position relative to center, offset to the left
+            }}
             initial={{ opacity: 0, x: -90 }}
             animate={framesLoaded ? { opacity: 1, x: 0 } : undefined}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.35 }}
@@ -749,6 +813,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                       pointerEvents: 'auto',
                       cursor: 'pointer',
                       zIndex: 20,
+                      borderRadius: 34,
                     }}
                   />
                 )}
@@ -773,11 +838,12 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
         {/* ── Buttons area ─────────────────────────────────────────────── */}
         <motion.div
-          className="flex-shrink-0 flex flex-col items-center gap-3 pb-6 pt-2 mt-4"
+          className="flex-shrink-0 flex flex-col items-center gap-3 pb-6 pt-2 mt-4 relative"
           style={{
             opacity: isDemoActive ? 1 : buttonOpacity,
             y: isDemoActive ? 0 : buttonY,
             pointerEvents: 'auto',
+            zIndex: 40,
           }}
         >
           {hasCompletedDemo && (demoStage === 'idle' || demoStage === 'results') ? (
@@ -807,25 +873,39 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
             <div className="flex items-center gap-3">
               {tryNowElement}
               <motion.button
-                whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: skipped ? 1 : 1.02 }}
+                whileTap={{ scale: skipped ? 1 : 0.98 }}
                 onClick={() => {
+                  if (skipped) return;
                   setSkipped(true);
-                  onSkipDemo?.();
-                  setTimeout(() => {
-                    // Gently nudge down from current position
-                    const currentY = progressRef.current * window.innerHeight;
+                  // Smooth slow scroll down to reveal content below
+                  // Always scroll down from current position, never up
+                  const currentScroll = window.scrollY;
+                  const targetScroll = Math.max(currentScroll + window.innerHeight * 0.6, window.innerHeight * 1.2);
+
+                  requestAnimationFrame(() => {
                     window.scrollTo({
-                      top: currentY + window.innerHeight * 0.35,
+                      top: targetScroll,
                       behavior: 'smooth',
                     });
-                  }, 200);
+                  });
+
+                  // Call onSkipDemo after scroll starts
+                  setTimeout(() => {
+                    onSkipDemo?.();
+                  }, 300);
                 }}
                 disabled={skipped}
-                style={{ touchAction: 'manipulation' }}
-                className={`text-white pl-3 pr-6 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2.5 shadow-lg shadow-black/10 border border-slate-800 transition-all ${skipped ? 'bg-slate-600' : 'bg-slate-900'}`}
+                style={{
+                  touchAction: 'manipulation',
+                  filter: skipped
+                    ? 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
+                    : 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))'
+                }}
+                className={`group text-white pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 border transition-all duration-300 ${skipped ? 'bg-slate-700/50 border-slate-600/50 opacity-60' : 'bg-slate-900 border-slate-800 hover:bg-slate-800 hover:border-slate-700'}`}
               >
-                <span className="flex items-center justify-center w-7 h-7 bg-white rounded-full">
-                  <ArrowDown size={12} className="text-slate-900" />
+                <span className="flex items-center justify-center w-9 h-9 bg-slate-900 rounded-full border border-slate-700">
+                  <ArrowDown size={14} className="text-white" />
                 </span>
                 <span className="font-medium">{skipped ? 'Skipped' : 'Skip Demo'}</span>
               </motion.button>

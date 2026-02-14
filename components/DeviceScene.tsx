@@ -558,28 +558,58 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
       const intersects = raycasterRef.current.intersectObject(mesh, false);
 
       if (intersects.length > 0) {
-        // Trigger touch ripple — convert raw mesh UV to canvas coordinates
         const watchHit = intersects[0];
-        let rippleX = 0.5, rippleY = 0.5;
+        let clickX = 0.5, clickY = 0.5;
         if (watchHit.uv) {
           const m = globalState.watchUVMapping;
           if (m) {
-            rippleX = watchHit.uv.x * m.repeatX + m.offsetX;
-            rippleY = watchHit.uv.y * m.repeatY + m.offsetY;
+            clickX = watchHit.uv.x * m.repeatX + m.offsetX;
+            clickY = watchHit.uv.y * m.repeatY + m.offsetY;
           } else {
-            rippleX = watchHit.uv.x;
-            rippleY = watchHit.uv.y;
+            clickX = watchHit.uv.x;
+            clickY = watchHit.uv.y;
           }
         }
-        globalState.watchTouchRipple = { x: rippleX, y: rippleY, startTime: Date.now() };
 
-        if (isRecordingOnWatch && callbacks.onStopRecordClick) {
-          // Stop recording when watch is clicked during recording
-          callbacks.onStopRecordClick();
-        } else if (watchIsIdle && callbacks.onWatchRecordClick) {
-          // Start recording on watch
-          setDemoActiveDevice('watch');
-          callbacks.onWatchRecordClick();
+        // Check if click is within the VOIS logo area
+        // - When waiting to start (Try Demo): centered at (0.5, 0.48)
+        // - When idle (default watch face): bottom-left complication at (0.24, 0.83)
+        // - When recording on watch: accept clicks anywhere (to stop)
+        let isWithinLogoArea = false;
+        if (isRecordingOnWatch) {
+          // When recording, accept clicks anywhere on the watch screen
+          isWithinLogoArea = true;
+        } else {
+          let targetX: number, targetY: number, radius: number;
+          if (demoState.isWaitingToStart) {
+            // "Try Demo" mode - logo is centered
+            targetX = 0.5;
+            targetY = 0.48;
+            radius = 0.15;
+          } else {
+            // Default watch face - logo is in bottom-left complication
+            targetX = 0.24;
+            targetY = 0.83;
+            radius = 0.12;
+          }
+
+          const dx = clickX - targetX;
+          const dy = clickY - targetY;
+          isWithinLogoArea = (dx * dx + dy * dy) < radius * radius;
+        }
+
+        if (isWithinLogoArea) {
+          // Trigger touch ripple at the click position
+          globalState.watchTouchRipple = { x: clickX, y: clickY, startTime: Date.now() };
+
+          if (isRecordingOnWatch && callbacks.onStopRecordClick) {
+            // Stop recording when watch is clicked during recording
+            callbacks.onStopRecordClick();
+          } else if (watchIsIdle && callbacks.onWatchRecordClick) {
+            // Start recording on watch
+            setDemoActiveDevice('watch');
+            callbacks.onWatchRecordClick();
+          }
         }
       }
     };
@@ -634,10 +664,25 @@ function WatchScreenInteraction({ watchScreenMeshRef }: { watchScreenMeshRef: Re
         }
         globalState.watchHoverUV = { x: hoverX, y: hoverY };
 
-        // Only flag icon hover when near the VOIS icon (UV ~0.24, 0.83, radius ~0.12)
-        const dx = hoverX - 0.24;
-        const dy = hoverY - 0.83;
-        globalState.watchHoveredRecord = (dx * dx + dy * dy) < 0.12 * 0.12;
+        // Check different positions based on watch state
+        // - When waiting to start (Try Demo): centered at (0.5, 0.48)
+        // - When idle (default watch face): bottom-left complication at (0.24, 0.83)
+        let targetX: number, targetY: number, radius: number;
+        if (globalState.demoState.isWaitingToStart) {
+          // "Try Demo" mode - logo is centered
+          targetX = 0.5;
+          targetY = 0.48;
+          radius = 0.15; // Larger radius for centered logo
+        } else {
+          // Default watch face - logo is in bottom-left complication
+          targetX = 0.24;
+          targetY = 0.83;
+          radius = 0.12;
+        }
+
+        const dx = hoverX - targetX;
+        const dy = hoverY - targetY;
+        globalState.watchHoveredRecord = (dx * dx + dy * dy) < radius * radius;
       } else {
         globalState.watchHoverUV = null;
         globalState.watchHoveredRecord = false;

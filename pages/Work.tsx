@@ -7,38 +7,50 @@ const workVideos = [
   {
     id: 1,
     title: 'Meeting Notes',
-    description: 'Record meeting → get action items',
+    description: 'Live transcription with action cards',
     color: '#6366f1', // indigo
+    available: true,
+    link: '/work/meeting-notes',
   },
   {
     id: 2,
-    title: 'Email by Voice',
-    description: '"Read my inbox" while driving',
-    color: '#0ea5e9', // sky
+    title: 'Projects',
+    description: 'AI tracks progress and identifies blockers',
+    color: '#f59e0b', // amber
+    available: true,
+    link: '/work/projects',
   },
   {
     id: 3,
-    title: 'Projects AI',
-    description: 'AI identifies risks and blockers',
-    color: '#f59e0b', // amber
+    title: 'Email by Voice',
+    description: '"Read my inbox" while driving',
+    color: '#0ea5e9', // sky
+    available: false,
+    link: '/work/email',
   },
   {
     id: 4,
-    title: 'Voice Reports',
-    description: 'Talk through a site inspection → PDF done',
+    title: 'Operations',
+    description: 'Critical path analysis for ongoing processes',
     color: '#10b981', // emerald
+    available: false,
+    link: '/work/operations',
   },
   {
     id: 5,
-    title: 'Live Guide',
-    description: 'AI sees your screen, helps you in Photoshop',
+    title: 'Org Chart & Agents',
+    description: 'Manage AI agents across your team',
     color: '#ec4899', // pink
+    available: false,
+    link: '/work/org-chart',
   },
   {
     id: 6,
-    title: 'Team Sync',
-    description: 'Share projects, assign tasks by voice',
+    title: 'Voice Reports',
+    description: 'Talk reports into existence',
     color: '#8b5cf6', // violet
+    available: false,
+    link: '/work/reports',
   },
 ];
 
@@ -121,27 +133,28 @@ const Work: React.FC = () => {
         {/* Video Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
           {workVideos.map((video, index) => (
-            <motion.div
+            <motion.a
               key={video.id}
+              href={video.link}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative"
+              className="group relative block"
+              onClick={() => Analytics.workVideoClicked(video.title)}
             >
               {/* Video Placeholder */}
               <div
                 className="aspect-video rounded-2xl overflow-hidden relative cursor-pointer"
                 style={{ backgroundColor: video.color + '15' }}
-                onClick={() => Analytics.workVideoClicked(video.title)}
               >
                 {/* Placeholder gradient */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-20"
-                  style={{ 
-                    background: `linear-gradient(135deg, ${video.color}40 0%, ${video.color}10 100%)` 
+                  style={{
+                    background: `linear-gradient(135deg, ${video.color}40 0%, ${video.color}10 100%)`
                   }}
                 />
-                
+
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
@@ -154,9 +167,13 @@ const Work: React.FC = () => {
                   </motion.div>
                 </div>
 
-                {/* Coming Soon Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-600">
-                  Coming Soon
+                {/* Status Badge */}
+                <div className={`absolute top-4 right-4 px-3 py-1 backdrop-blur-sm rounded-full text-xs font-medium ${
+                  video.available
+                    ? 'bg-emerald-500/90 text-white'
+                    : 'bg-white/90 text-slate-600'
+                }`}>
+                  {video.available ? 'Available Now' : 'Coming Soon'}
                 </div>
               </div>
 
@@ -169,7 +186,7 @@ const Work: React.FC = () => {
                   {video.description}
                 </p>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 

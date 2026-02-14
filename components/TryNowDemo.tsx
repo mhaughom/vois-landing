@@ -485,8 +485,8 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       setOnStopRecordClick(() => {
         stopRecordingRef.current();
       });
-    } else if (hasCompletedDemo && stage === 'idle') {
-      // After demo completion - only watch can start recording (quick capture mode)
+    } else if (stage === 'idle') {
+      // When idle (both before and after demo) - only watch can start recording (quick capture mode)
       setOnPhoneRecordClick(null);
       setOnWatchRecordClick(() => {
         // Set active device to watch and start recording

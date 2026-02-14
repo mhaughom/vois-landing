@@ -16,6 +16,14 @@ const Legal = React.lazy(() => import('./pages/Legal'));
 const Success = React.lazy(() => import('./pages/Success'));
 const Support = React.lazy(() => import('./pages/Support'));
 
+// Work feature pages
+const MeetingNotes = React.lazy(() => import('./pages/work/meeting-notes'));
+const Projects = React.lazy(() => import('./pages/work/projects'));
+const Email = React.lazy(() => import('./pages/work/email'));
+const Operations = React.lazy(() => import('./pages/work/operations'));
+const OrgChart = React.lazy(() => import('./pages/work/org-chart'));
+const Reports = React.lazy(() => import('./pages/work/reports'));
+
 // Wrapper components for direct Privacy/Terms routes
 const PrivacyPage = () => <Legal defaultSection="privacy" />;
 const TermsPage = () => <Legal defaultSection="terms" />;
@@ -37,6 +45,12 @@ root.render(
           <Route path="/Privacy" element={<PrivacyPage />} />
           <Route path="/Terms" element={<TermsPage />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work/meeting-notes" element={<MeetingNotes />} />
+          <Route path="/work/projects" element={<Projects />} />
+          <Route path="/work/email" element={<Email />} />
+          <Route path="/work/operations" element={<Operations />} />
+          <Route path="/work/org-chart" element={<OrgChart />} />
+          <Route path="/work/reports" element={<Reports />} />
           <Route path="/support" element={<Support />} />
           <Route path="/success" element={<Success />} />
         </Routes>

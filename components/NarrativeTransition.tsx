@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { setCurrentSection, setNarrativeScrollProgress } from './deviceState';
-import { CaptureDeviceScene } from './CaptureDeviceScene';
 
 const NarrativeTransition: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -173,7 +172,7 @@ const NarrativeTransition: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#ffffff',
+            backgroundColor: 'transparent',
           }}
         >
           {/* ═════════════════════════════════════════════════════════════════
@@ -187,6 +186,9 @@ const NarrativeTransition: React.FC = () => {
               zIndex: 1,
               overflow: 'hidden',
               y: videoTranslateY,
+              willChange: 'transform',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
             }}
           >
             {/* Full-screen video - lazy loaded */}
@@ -202,6 +204,9 @@ const NarrativeTransition: React.FC = () => {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
                 }}
               >
                 <source src="/videos/kling_20260107_Image_to_Video_Static_sho_2574_2.mp4" type="video/mp4" />
@@ -356,63 +361,51 @@ const NarrativeTransition: React.FC = () => {
                   lineHeight: 1.1,
                   fontWeight: 400,
                   marginBottom: '0.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 'clamp(0.75rem, 2vw, 1.5rem)',
                 }}
               >
+                <span
+                  style={{
+                    fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
+                    color: '#64748b',
+                    fontWeight: 400,
+                  }}
+                >
+                  1
+                </span>
                 Capture at the speed of thought.
               </h2>
 
-              {/* Container for video with 3D devices on sides */}
+              {/* Video container - no 3D devices for better performance */}
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
-                  maxWidth: '1000px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  maxWidth: '700px',
+                  aspectRatio: '16 / 9',
+                  borderRadius: 'clamp(12px, 2vw, 24px)',
+                  overflow: 'hidden',
+                  boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
+                  backgroundColor: '#f1f5f9',
                 }}
               >
-                {/* 3D Devices Scene - positioned behind/around video */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: '-20%',
-                    zIndex: 1,
-                    pointerEvents: 'none',
-                  }}
-                >
-                  {videosActive && <CaptureDeviceScene />}
-                </div>
-
-                {/* Video container - lazy loaded */}
-                <div
-                  style={{
-                    position: 'relative',
-                    zIndex: 2,
-                    width: '100%',
-                    maxWidth: '700px',
-                    aspectRatio: '16 / 9',
-                    borderRadius: 'clamp(12px, 2vw, 24px)',
-                    overflow: 'hidden',
-                    boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15)',
-                    backgroundColor: '#f1f5f9',
-                  }}
-                >
-                  {videosActive && (
-                    <video
-                      src="/videos/Situations.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                      }}
-                    />
-                  )}
-                </div>
+                {videosActive && (
+                  <video
+                    src="/videos/Situations.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
           </motion.div>

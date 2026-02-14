@@ -225,8 +225,8 @@ const App = () => {
   const [annualBilling, setAnnualBilling] = useState(true);
   const prefersReducedMotion = usePrefersReducedMotion();
   const isMobile = useIsMobile();
-  const [bgVariant, setBgVariant] = useState(0);
-  const [bgIntensity, setBgIntensity] = useState(1);
+  const [bgVariant, setBgVariant] = useState(3); // Variant 4 of 8
+  const [bgIntensity, setBgIntensity] = useState(0.5); // Reduced intensity
   const pageLoadTime = useRef(performance.now());
   const videoMilestonesRef = useRef(new Set<number>());
 
@@ -456,7 +456,6 @@ const App = () => {
     const sectionMap: { ref: React.RefObject<HTMLElement | HTMLDivElement | null>; id: SectionId }[] = [
       { ref: heroRef, id: 'hero' },
       { ref: videoTransitionRef, id: 'video-transition' },
-      { ref: narrativeRef, id: 'narrative' },
       { ref: captureRef, id: 'capture' },
       { ref: flowRef, id: 'flow' },
     ];
@@ -600,51 +599,52 @@ const App = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-8"
             onClick={() => setShowVideoModal(false)}
           >
-            {/* Backdrop */}
-            <motion.div 
+            {/* Backdrop - hidden on mobile when fullscreen */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black md:bg-black/80 md:backdrop-blur-sm"
             />
-            
+
             {/* Modal Content */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="relative w-full max-w-4xl aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-2xl"
+              className="relative w-full h-full md:h-auto md:max-w-4xl md:aspect-video bg-black md:rounded-2xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
+              {/* Close Button - hidden on mobile, shown on desktop */}
               <button
                 onClick={() => setShowVideoModal(false)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full items-center justify-center text-white transition-colors hidden md:flex"
               >
                 <X size={20} />
               </button>
-              
-              {/* Placeholder Image - Replace with actual video later */}
+
+              {/* Video Player */}
               <div className="relative w-full h-full">
-                <img 
-                  src="/Photos/businesswoman-placeholder.webp"
-                  alt="Video Placeholder"
-                  className="w-full h-full object-cover"
+                <video
+                  src="/videos/Situations.mp4"
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                  onLoadedMetadata={(e) => {
+                    // Request fullscreen on mobile
+                    if (isMobile && e.currentTarget.requestFullscreen) {
+                      e.currentTarget.requestFullscreen().catch(() => {
+                        // Fallback if fullscreen fails
+                      });
+                    }
+                  }}
+                  onEnded={() => setShowVideoModal(false)}
                 />
-                {/* Play overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                  <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-xl">
-                    <Play size={32} className="text-slate-900 fill-current ml-1" />
-                  </div>
-                </div>
-                {/* Coming Soon Badge */}
-                <div className="absolute bottom-4 left-4 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-full text-white text-sm font-medium">
-                  Video Coming Soon
-                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -856,7 +856,7 @@ const App = () => {
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {/* Subheadline - types out */}
-                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-normal mb-4 lg:mb-0 min-h-[2em] sm:min-h-[2.5em]">
+                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-light tracking-wide mb-4 lg:mb-0 min-h-[2em] sm:min-h-[2.5em]">
                     {typedSubheadline}
                     {heroStage === 'subheadline' && (
                       <motion.span
@@ -1102,7 +1102,7 @@ const App = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
             style={{ y: textParallaxY }}
-            className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-20 z-10 pt-24 lg:pt-0"
+            className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-start lg:justify-center px-6 sm:px-8 md:px-16 lg:px-20 z-10 pt-28 sm:pt-32 lg:pt-0"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-slate-900 mb-6 sm:mb-8 lg:mb-12 leading-[1.1] tracking-tight">
               Life doesn't wait for your notes app.
@@ -1198,39 +1198,48 @@ const App = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="md:hidden absolute bottom-0 left-0 right-0 h-[45vh] overflow-hidden"
+            className="md:hidden absolute bottom-0 left-0 right-0 h-[55vh] overflow-hidden"
           >
             <img
               src="/videos/messy-man-poster.jpg"
               alt=""
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ objectPosition: 'center 30%' }}
+              className="absolute w-full h-[110%] object-cover"
+              style={{
+                objectPosition: 'center 35%',
+                top: '-5%'
+              }}
             />
-            {/* Top fade for mobile */}
+            {/* Gradients for mobile - top fade from colored background, bottom fade to next section */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: 'linear-gradient(to bottom, white 0%, transparent 25%, transparent 100%)'
+                background: `
+                  linear-gradient(to bottom, white 0%, transparent 20%, transparent 75%, white 100%)
+                `
               }}
             />
           </motion.div>
         </section>
 
-        {/* NARRATIVE TRANSITION - Palate cleanser between Problem and Solution */}
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <div ref={narrativeRef}>
-            <NarrativeTransition />
-          </div>
-        </Suspense>
+        {/* UNIFIED GRADIENT BACKGROUND - Mostly white, colors only at the bottom */}
+        <div style={{
+          background: 'linear-gradient(180deg, #ffffff 0%, #ffffff 60%, #FAFCFF 70%, #FFE8F0 80%, #FFF4E8 90%, #F0E8FF 100%)',
+          width: '100vw',
+          marginLeft: 'calc(-50vw + 50%)',
+          position: 'relative',
+        }}>
+          {/* NARRATIVE TRANSITION - Capture at the speed of thought */}
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <div ref={narrativeRef}>
+              <NarrativeTransition />
+            </div>
+          </Suspense>
 
-        {/* CAPTURE SECTION - Detection now handled by NarrativeTransition via scroll progress */}
-        <section ref={captureRef} id="capture" className="h-0" />
-
-        {/* ORGANIZE SECTION - MacBook opens as you scroll */}
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <OrganizeSection />
-        </Suspense>
+          {/* STEP 2: ORGANIZE - 3D Models of Mac and iPhone */}
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <OrganizeSection />
+          </Suspense>
 
         {/* FLOW VISUALIZATION - DEACTIVATED (kept for future use) */}
         {/* <section ref={flowRef} id="flow" className="relative min-h-screen -mt-[85vh]">
@@ -1305,16 +1314,15 @@ const App = () => {
            </motion.div>
         </section> */}
 
-        {/* PRIVACY - LEFT side for watch on right */}
-        {/* RETRIEVE SECTION - "Retrieve at the speed of sound" with click-to-play video */}
-        <section id="retrieve" className="py-24 px-6 md:px-16 relative z-10">
+          {/* STEP 3: RETRIEVE */}
+          <section id="retrieve" className="py-16 md:py-24 px-6 md:px-16 relative">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center w-[90%] max-w-[1200px] mx-auto"
-            style={{ gap: 'clamp(1.5rem, 3vw, 3rem)' }}
+            className="flex flex-col items-center w-full max-w-[1200px] mx-auto relative z-10"
+            style={{ gap: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             <h2
               className="font-serif text-slate-900 text-center"
@@ -1323,10 +1331,27 @@ const App = () => {
                 fontWeight: 400,
                 lineHeight: 1.1,
                 marginBottom: '0.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'clamp(0.75rem, 2vw, 1.5rem)',
               }}
             >
+              <span
+                style={{
+                  fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
+                  color: '#64748b',
+                  fontWeight: 400,
+                }}
+              >
+                3
+              </span>
               Retrieve at the speed of sound.
             </h2>
+
+            <p className="text-slate-500 text-center text-base md:text-lg max-w-2xl mb-4">
+              Ask naturally and get instant answers. Your voice assistant finds exactly what you need from everything you've captured.
+            </p>
 
             {/* Video with click-to-play (has sound) */}
             <div
@@ -1397,36 +1422,98 @@ const App = () => {
               </div>
             </div>
           </motion.div>
-        </section>
+          </section>
 
-        <section id="privacy" className="pt-8 pb-24 px-6 md:px-16 relative z-10">
-           <motion.div
-             initial={{ opacity: 0, scale: 0.9 }}
-             whileInView={{ opacity: 1, scale: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.6 }}
-             className="max-w-xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-100"
-           >
-              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 mb-6 mx-auto">
-                <Fingerprint size={24} strokeWidth={1.5} />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-serif text-slate-900 mb-4">{COPY.privacy.title}</h2>
-              <p className="text-base text-slate-500 leading-relaxed max-w-lg">
-                {COPY.privacy.body}
-              </p>
-              
-              <div className="mt-8 flex items-center justify-center gap-3 text-sm font-medium text-slate-900">
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200">
-                      <Lock size={14} /> Local First
+          <section id="privacy" className="py-32 md:py-40 px-6 md:px-16 relative z-10">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12">
+              {/* Card 1: Your Mind, Your Control */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-white rounded-3xl p-10 md:p-14 shadow-xl text-center"
+              >
+                {/* Image */}
+                <div className="mb-8 md:mb-10">
+                  <img
+                    src="/images/privacy-illustration.svg"
+                    alt="Privacy and control"
+                    className="w-full max-w-xs mx-auto"
+                    onError={(e) => {
+                      // Fallback to icon if image doesn't exist
+                      e.currentTarget.style.display = 'none';
+                      const iconDiv = e.currentTarget.nextElementSibling as HTMLElement;
+                      if (iconDiv) iconDiv.style.display = 'flex';
+                    }}
+                  />
+                  <div className="w-20 h-20 bg-slate-100 rounded-full hidden items-center justify-center text-slate-900 mx-auto">
+                    <Fingerprint size={36} strokeWidth={1.5} />
                   </div>
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200">
-                      <Cloud size={14} /> Encrypted Sync
-                  </div>
-              </div>
-           </motion.div>
-        </section>
+                </div>
 
-        {/* SECTION 5: FAQ */}
+                <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6">{COPY.privacy.title}</h3>
+                <p className="text-lg text-slate-500 leading-relaxed mb-10">
+                  {COPY.privacy.body}
+                </p>
+
+                <div className="flex items-center justify-center gap-4 text-sm font-medium text-slate-900">
+                  <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
+                    <Lock size={16} /> Local First
+                  </div>
+                  <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
+                    <Cloud size={16} /> Encrypted Sync
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 2: Enterprise-Grade Security */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white rounded-3xl p-10 md:p-14 shadow-xl text-center"
+              >
+                {/* Image */}
+                <div className="mb-8 md:mb-10">
+                  <img
+                    src="/images/security-illustration.svg"
+                    alt="Enterprise security"
+                    className="w-full max-w-xs mx-auto"
+                    onError={(e) => {
+                      // Fallback to icon if image doesn't exist
+                      e.currentTarget.style.display = 'none';
+                      const iconDiv = e.currentTarget.nextElementSibling as HTMLElement;
+                      if (iconDiv) iconDiv.style.display = 'flex';
+                    }}
+                  />
+                  <div className="w-20 h-20 bg-slate-100 rounded-full hidden items-center justify-center text-slate-900 mx-auto">
+                    <Cloud size={36} strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6">Enterprise-Grade Security</h3>
+                <p className="text-lg text-slate-500 leading-relaxed mb-10">
+                  Your data is protected by the same infrastructure trusted by the world's largest companies. We use industry-leading services for reliability and security.
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium text-slate-900">
+                  <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
+                    AWS Servers
+                  </div>
+                  <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
+                    Supabase
+                  </div>
+                  <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
+                    SOC 2 Compliant
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* SECTION 5: FAQ */}
         <section id="faq" className="py-24 px-6 md:px-16">
           <div className="max-w-2xl mx-auto">
             <motion.h2 
@@ -1439,7 +1526,7 @@ const App = () => {
               Common Questions
             </motion.h2>
             
-            <div className="divide-y divide-slate-200">
+            <div className="divide-y divide-slate-200/60">
               {faqData.map((faq, index) => (
                 <motion.div
                   key={index}
@@ -1447,7 +1534,6 @@ const App = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="border-b border-slate-200 last:border-b-0"
                 >
                   <button
                     onClick={() => {
@@ -1536,7 +1622,7 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-3xl p-8 shadow-xl shadow-black/5 border border-slate-200 relative flex flex-col"
+                className="bg-white rounded-3xl p-8 shadow-xl relative flex flex-col"
               >
                 <h3 className="text-lg font-semibold text-slate-900 mb-1">Free</h3>
                 <p className="text-slate-500 text-sm mb-5">Try it out, no card required</p>
@@ -1571,24 +1657,19 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white rounded-3xl p-8 shadow-xl shadow-black/5 border-2 border-slate-900 relative flex flex-col"
+                className="bg-white rounded-3xl p-8 shadow-2xl relative flex flex-col ring-2 ring-slate-900/10"
               >
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-lg font-semibold text-slate-900">Personal</h3>
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Popular</span>
+                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Popular</span>
                 </div>
                 <p className="text-slate-500 text-sm mb-5">For everyday life organization</p>
                 <div className="flex items-baseline gap-2 mb-6">
                   <span className="text-4xl font-bold text-slate-900 tracking-tight">
-                    {annualBilling ? '$79.99' : '$14.99'}
+                    {annualBilling ? '$6.67' : '$14.99'}
                   </span>
-                  <span className="text-slate-400 text-sm">/{annualBilling ? 'year' : 'month'}</span>
+                  <span className="text-slate-400 text-sm">/month</span>
                 </div>
-                {annualBilling && (
-                  <p className="text-sm text-emerald-600 font-medium -mt-4 mb-6">
-                    $6.67/mo — save 56% vs monthly
-                  </p>
-                )}
                 <ul className="space-y-3 mb-8 flex-1">
                   {PERSONAL_FEATURES.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-600 text-sm">
@@ -1616,24 +1697,17 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-slate-950 rounded-3xl p-8 shadow-2xl shadow-black/20 border border-slate-800 relative overflow-hidden flex flex-col"
+                className="bg-slate-950 rounded-3xl p-8 shadow-2xl relative flex flex-col"
               >
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black opacity-50 pointer-events-none" />
-                <div className="relative z-10 flex flex-col flex-1">
+                <div className="flex flex-col flex-1">
                   <h3 className="text-lg font-semibold text-white mb-1">Work</h3>
                   <p className="text-slate-400 text-sm mb-5">For professionals & teams</p>
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="text-4xl font-bold text-white tracking-tight">
-                      {annualBilling ? '$249.99' : '$34.99'}
+                      {annualBilling ? '$20.83' : '$34.99'}
                     </span>
-                    <span className="text-slate-500 text-sm">/{annualBilling ? 'year' : 'month'}</span>
+                    <span className="text-slate-500 text-sm">/month</span>
                   </div>
-                  {annualBilling && (
-                    <p className="text-sm text-emerald-400 font-medium -mt-4 mb-6">
-                      $20.83/mo — save 40% vs monthly
-                    </p>
-                  )}
                   <ul className="space-y-3 mb-8 flex-1">
                     {WORK_FEATURES.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
@@ -1660,7 +1734,7 @@ const App = () => {
         </section>
         
         {/* SECTION 7: FOOTER */}
-        <footer className="py-16 px-6 md:px-16 border-t border-slate-100" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))' }}>
+        <footer className="py-16 px-6 md:px-16" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))' }}>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
               
@@ -1782,6 +1856,8 @@ const App = () => {
             </div>
           </div>
         </footer>
+        </div>
+        {/* END UNIFIED GRADIENT BACKGROUND - Extends from Capture to bottom of page */}
 
         </div>
       </main>

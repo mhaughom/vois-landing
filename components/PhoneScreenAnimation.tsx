@@ -115,10 +115,28 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         min-height: 48px;
       `;
 
+      // Left accent bar (4px, 20% top/bottom padding)
+      const bar = document.createElement('div');
+      bar.style.cssText = `
+        width: 4px; align-self: stretch; flex-shrink: 0;
+        display: flex; flex-direction: column;
+        margin-right: 8px;
+      `;
+      const barTop = document.createElement('div');
+      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      const barMid = document.createElement('div');
+      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
+      const barBot = document.createElement('div');
+      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      bar.appendChild(barTop);
+      bar.appendChild(barMid);
+      bar.appendChild(barBot);
+      card.appendChild(bar);
+
       // Icon
       const icon = document.createElement('span');
       icon.textContent = item.icon;
-      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 12px;';
+      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 0;';
       card.appendChild(icon);
 
       // Text wrapper
@@ -136,7 +154,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
       // Action buttons (stacked vertically)
       const btns = document.createElement('div');
-      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 0; flex-shrink: 0;';
+      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 8px; flex-shrink: 0;';
       const check = document.createElement('span');
       check.textContent = '\u2713';
       check.style.cssText = `font-size: 14px; font-weight: 600; color: ${colors.accent}; line-height: 1;`;
@@ -146,24 +164,6 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       btns.appendChild(check);
       btns.appendChild(dismiss);
       card.appendChild(btns);
-
-      // Right accent bar (4px, 20% top/bottom padding)
-      const bar = document.createElement('div');
-      bar.style.cssText = `
-        width: 4px; align-self: stretch; flex-shrink: 0;
-        display: flex; flex-direction: column;
-        margin-left: 8px;
-      `;
-      const barTop = document.createElement('div');
-      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      const barMid = document.createElement('div');
-      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
-      const barBot = document.createElement('div');
-      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      bar.appendChild(barTop);
-      bar.appendChild(barMid);
-      bar.appendChild(barBot);
-      card.appendChild(bar);
 
       container.appendChild(card);
       cardRefs.current.push(card);
@@ -261,10 +261,28 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         transition: opacity 0.4s ease, transform 0.4s ease;
       `;
 
+      // Left accent bar
+      const bar = document.createElement('div');
+      bar.style.cssText = `
+        width: 4px; align-self: stretch; flex-shrink: 0;
+        display: flex; flex-direction: column;
+        margin-right: 8px;
+      `;
+      const barTop = document.createElement('div');
+      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      const barMid = document.createElement('div');
+      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
+      const barBot = document.createElement('div');
+      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
+      bar.appendChild(barTop);
+      bar.appendChild(barMid);
+      bar.appendChild(barBot);
+      card.appendChild(bar);
+
       // Icon
       const icon = document.createElement('span');
       icon.textContent = item.icon || '📋';
-      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 12px;';
+      icon.style.cssText = 'font-size: 16px; flex-shrink: 0; margin-left: 0;';
       card.appendChild(icon);
 
       // Text wrapper
@@ -282,7 +300,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
       // Action buttons
       const btns = document.createElement('div');
-      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 0; flex-shrink: 0;';
+      btns.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 8px; flex-shrink: 0;';
       const check = document.createElement('span');
       check.textContent = '\u2713';
       check.style.cssText = `font-size: 14px; font-weight: 600; color: ${colors.accent}; line-height: 1;`;
@@ -292,24 +310,6 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       btns.appendChild(check);
       btns.appendChild(dismiss);
       card.appendChild(btns);
-
-      // Right accent bar
-      const bar = document.createElement('div');
-      bar.style.cssText = `
-        width: 4px; align-self: stretch; flex-shrink: 0;
-        display: flex; flex-direction: column;
-        margin-left: 8px;
-      `;
-      const barTop = document.createElement('div');
-      barTop.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      const barMid = document.createElement('div');
-      barMid.style.cssText = `flex: 1; background: ${colors.accent}; border-radius: 2px;`;
-      const barBot = document.createElement('div');
-      barBot.style.cssText = 'flex: 0 0 20%; background: transparent;';
-      bar.appendChild(barTop);
-      bar.appendChild(barMid);
-      bar.appendChild(barBot);
-      card.appendChild(bar);
 
       container.appendChild(card);
       cardRefs.current.push(card);
@@ -747,6 +747,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         overflow: 'hidden',
         position: 'relative',
+        borderRadius: 54,
       }}
     >
       {/* Fine film grain overlay */}
@@ -1030,7 +1031,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       </div>
 
       {/* ── Action Cards section ───────────────────────────────────────── */}
-      <div style={{ margin: '2% 4.5% 0', flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <div style={{ margin: '2% 4.5% 22%', flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
         {/* "Action Cards" header */}
         <div
           ref={cardsHeaderRef}

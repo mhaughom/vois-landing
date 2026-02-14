@@ -464,9 +464,9 @@ const OrganizeSection: React.FC = () => {
         zIndex: 1,
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        marginTop: isMobile ? '-30vh' : '-60vh',
+        marginTop: isMobile ? '-40vh' : '-80vh',
         overflow: 'hidden',
-        backgroundColor: '#ffffff',
+        backgroundColor: 'transparent',
       }}
     >
       {/* Headline — scrolls naturally with the section */}
@@ -483,8 +483,21 @@ const OrganizeSection: React.FC = () => {
           textAlign: 'center',
           padding: isMobile ? '10vh 2rem 0' : '22vh 2rem 0',
           margin: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 'clamp(0.75rem, 2vw, 1.5rem)',
         }}
       >
+        <span
+          style={{
+            fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
+            color: '#64748b',
+            fontWeight: 400,
+          }}
+        >
+          2
+        </span>
         Organize at the speed of AI.
       </h2>
 

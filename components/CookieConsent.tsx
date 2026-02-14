@@ -20,7 +20,7 @@ import { getConsent, setConsent, onConsentChange } from '../lib/consent';
 export const CookieConsent: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
 
   useEffect(() => {
     // Show banner only if consent hasn't been given yet

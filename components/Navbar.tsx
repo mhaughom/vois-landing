@@ -48,13 +48,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
     >
       {/* Logo */}
       <Link to="/" className="pointer-events-auto">
-        <motion.div 
+        <motion.div
           whileHover={{ scale: 1.02 }}
-          className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+          className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-lg"
         >
-          <img 
-            src="/Logo/vois-logo.svg" 
-            alt="Vois" 
+          <img
+            src="/Logo/vois-logo.svg"
+            alt="Vois"
             className="h-8 w-8"
           />
           <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
@@ -66,54 +66,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
         {/* Mobile menu toggle — visible only below sm */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="sm:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md border border-slate-100 shadow-sm"
+          className="sm:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md border border-slate-100 shadow-lg"
         >
-          {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          <Menu size={18} />
         </button>
 
         {/* Vois for Work Link — full page nav to avoid Three.js teardown blocking */}
         <a
           href="/work"
-          className="hidden sm:block text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-4 py-2"
+          className="hidden sm:block text-sm font-light tracking-wide text-blue-700 bg-blue-50/80 backdrop-blur-md hover:bg-blue-50/90 transition-all px-6 py-2.5 rounded-full shadow-lg border border-blue-100"
         >
           Vois for Work
         </a>
 
-        {/* Login Link — goes to the web app */}
-        <a
-          href={`${import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com'}/login`}
-          className="hidden sm:block text-sm font-medium text-white bg-black hover:bg-black/80 transition-colors px-6 py-2.5 rounded-full"
-        >
-          Log In
-        </a>
-
-        {/* View Plans Button (hidden on mobile to prevent clipping) */}
+        {/* Get Started Button - unified CTA for both plans and login */}
         <motion.button
           onClick={handleGetEarlyAccess}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="hidden sm:block relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all duration-300 overflow-hidden border border-violet-200"
-          style={{
-            background: 'linear-gradient(135deg, #ddd6fe 0%, #c7d2fe 50%, #bfdbfe 100%)',
-          }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="hidden sm:block relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 bg-slate-900/90 backdrop-blur-md hover:bg-slate-900 text-white border border-slate-700"
         >
-          {/* Subtle animated shimmer */}
-          <motion.div
-            className="absolute inset-0 rounded-full opacity-40"
-            style={{
-              background: 'linear-gradient(90deg, transparent, rgba(196,181,253,0.3), rgba(165,180,252,0.3), transparent)',
-              backgroundSize: '200% 100%',
-            }}
-            animate={{
-              backgroundPosition: ['0% 0%', '200% 0%'],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-          />
-          <span className="relative z-10 text-slate-700 font-semibold">View Plans</span>
+          Get Started
         </motion.button>
       </div>
 
@@ -121,52 +94,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2 }}
-            className="sm:hidden absolute top-full right-6 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-100 shadow-lg overflow-hidden pointer-events-auto"
+            className="sm:hidden absolute top-6 right-6 flex flex-col gap-2 pointer-events-auto"
+            style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
           >
-            <a
-              href="/work"
-              className="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Vois for Work
-            </a>
+            {/* Get Started pill with X button */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-8 h-8 flex items-center justify-center bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:bg-white transition-colors"
+              >
+                <X size={14} className="text-slate-600" />
+              </button>
+              <button
+                onClick={() => {
+                  handleGetEarlyAccess();
+                  setMobileMenuOpen(false);
+                }}
+                className="flex-1 px-5 py-3 text-sm font-medium text-slate-700 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:bg-white transition-colors text-left"
+              >
+                Get Started
+              </button>
+            </div>
+
+            {/* Log In pill */}
             <a
               href={`${import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com'}/login`}
-              className="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors border-t border-slate-100"
+              className="block px-5 py-3 text-sm font-medium text-slate-700 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:bg-white transition-colors text-left ml-10"
               onClick={() => setMobileMenuOpen(false)}
             >
               Log In
             </a>
-            {onCycleBg && (
-              <div className="border-t border-slate-100">
-                <button
-                  onClick={onCycleBg}
-                  className="block w-full text-left px-5 py-3 text-sm font-medium text-violet-600 hover:bg-violet-50 transition-colors"
-                >
-                  BG Variant: {(bgVariant ?? 0) + 1}/8
-                </button>
-                {onBgIntensityChange && (
-                  <div className="px-5 pb-3">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-slate-500">Intensity</span>
-                      <span className="text-xs font-mono text-violet-600">{Math.round((bgIntensity ?? 1) * 100)}%</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="200"
-                      value={Math.round((bgIntensity ?? 1) * 100)}
-                      onChange={(e) => onBgIntensityChange(Number(e.target.value) / 100)}
-                      className="w-full h-1.5 rounded-full appearance-none bg-slate-200 accent-violet-500"
-                    />
-                  </div>
-                )}
-              </div>
-            )}
           </motion.div>
         )}
       </AnimatePresence>

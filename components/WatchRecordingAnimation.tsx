@@ -223,6 +223,7 @@ export const WatchRecordingAnimation: React.FC<WatchRecordingAnimationProps> = (
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         position: 'relative',
         overflow: 'hidden',
+        borderRadius: 34,
       }}
     >
       {/* Fine film grain overlay */}

@@ -373,8 +373,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
 
                     {/* Price summary */}
                     <div className="flex items-baseline gap-2 mb-6">
-                      <span className="text-3xl font-bold text-white">{plan.price}</span>
-                      <span className="text-slate-500 text-sm">{plan.interval}</span>
+                      <span className="text-3xl font-bold text-white">
+                        {selectedPlan === 'personal_annual' ? '$6.67' :
+                         selectedPlan === 'work_annual' ? '$20.83' :
+                         plan.price}
+                      </span>
+                      <span className="text-slate-500 text-sm">/month</span>
                     </div>
 
                     {/* Form */}
