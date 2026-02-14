@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 
 // Helper function to scroll to a section
@@ -25,7 +25,6 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensity, onBgIntensityChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleGetEarlyAccess = () => {
     Analytics.checkoutModalOpened('nav');
@@ -63,13 +62,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
       
       {/* Right Side Navigation */}
       <div className="pointer-events-auto flex items-center gap-3">
-        {/* Mobile menu toggle — visible only below sm */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="sm:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md border border-slate-100 shadow-lg"
+        {/* Mobile Download Button — visible only below sm */}
+        <motion.a
+          href="https://apps.apple.com/app/vois"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="sm:hidden flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-lg hover:bg-white transition-colors"
         >
-          <Menu size={18} />
-        </button>
+          <Download size={18} className="text-slate-900" />
+          <span className="font-semibold text-sm tracking-tight text-slate-900">Download</span>
+        </motion.a>
 
         {/* Vois for Work Link — full page nav to avoid Three.js teardown blocking */}
         <a
@@ -90,47 +94,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
         </motion.button>
       </div>
 
-      {/* Mobile dropdown menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.2 }}
-            className="sm:hidden absolute top-6 right-6 flex flex-col gap-2 pointer-events-auto"
-            style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
-          >
-            {/* Get Started pill with X button */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-8 h-8 flex items-center justify-center bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:bg-white transition-colors"
-              >
-                <X size={14} className="text-slate-600" />
-              </button>
-              <button
-                onClick={() => {
-                  handleGetEarlyAccess();
-                  setMobileMenuOpen(false);
-                }}
-                className="flex-1 px-5 py-3 text-sm font-medium text-slate-700 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:bg-white transition-colors text-left"
-              >
-                Get Started
-              </button>
-            </div>
-
-            {/* Log In pill */}
-            <a
-              href={`${import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com'}/login`}
-              className="block px-5 py-3 text-sm font-medium text-slate-700 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:bg-white transition-colors text-left ml-10"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Log In
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   );
 };

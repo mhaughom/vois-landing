@@ -539,7 +539,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }}
       id="hero"
       style={{
-        height: scrollDriven ? '200dvh' : '100dvh',
+        height: scrollDriven ? '200dvh' : '105dvh',
         background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
         backgroundSize: '100% 300%',
         backgroundPosition: '0% 0%',
@@ -567,15 +567,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           }}
         />
 
-        {/* White gradient overlays at top and bottom */}
-        <div
-          className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: 120,
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.45), transparent)',
-            zIndex: 30,
-          }}
-        />
+        {/* Bottom gradient only - smooth transition to next section */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
           style={{

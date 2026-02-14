@@ -5,7 +5,16 @@ import { setCurrentSection, setNarrativeScrollProgress } from './deviceState';
 const NarrativeTransition: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [videosActive, setVideosActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lastProgressRef = useRef(0);
+
+  // Detect mobile viewport for responsive video loading
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -191,13 +200,14 @@ const NarrativeTransition: React.FC = () => {
               WebkitBackfaceVisibility: 'hidden',
             }}
           >
-            {/* Full-screen video - lazy loaded */}
+            {/* Full-screen video - lazy loaded with responsive sources */}
             {videosActive && (
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
+                poster="/videos/landscape-poster.jpg"
                 style={{
                   position: 'absolute',
                   inset: 0,
@@ -209,7 +219,11 @@ const NarrativeTransition: React.FC = () => {
                   WebkitBackfaceVisibility: 'hidden',
                 }}
               >
-                <source src="/videos/kling_20260107_Image_to_Video_Static_sho_2574_2.mp4" type="video/mp4" />
+                {isMobile ? (
+                  <source src="/videos/landscape-mobile.mp4" type="video/mp4" />
+                ) : (
+                  <source src="/videos/kling_20260107_Image_to_Video_Static_sho_2574_2.mp4" type="video/mp4" />
+                )}
               </video>
             )}
             
@@ -394,17 +408,23 @@ const NarrativeTransition: React.FC = () => {
               >
                 {videosActive && (
                   <video
-                    src="/videos/Situations.mp4"
                     autoPlay
                     loop
                     muted
                     playsInline
+                    poster="/videos/situations-poster.jpg"
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
                     }}
-                  />
+                  >
+                    {isMobile ? (
+                      <source src="/videos/Situations-mobile.mp4" type="video/mp4" />
+                    ) : (
+                      <source src="/videos/Situations.mp4" type="video/mp4" />
+                    )}
+                  </video>
                 )}
               </div>
             </motion.div>
