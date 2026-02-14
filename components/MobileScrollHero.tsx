@@ -75,7 +75,7 @@ function preloadFramesLazy(
   onFrame: (index: number, img: HTMLImageElement) => void,
 ): void {
   let i = startIndex;
-  const BATCH_SIZE = 3; // Load 3 frames in parallel
+  const BATCH_SIZE = 15; // Load 15 frames in parallel for faster initial loading
 
   const loadBatch = () => {
     if (i >= count) return;
@@ -93,8 +93,8 @@ function preloadFramesLazy(
     }
 
     Promise.all(batch).then(() => {
-      // Small delay between batches to not overwhelm the browser
-      setTimeout(loadBatch, 100);
+      // Minimal delay to allow browser to process
+      setTimeout(loadBatch, 20);
     });
   };
 
@@ -539,7 +539,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }}
       id="hero"
       style={{
-        height: scrollDriven ? '200dvh' : '105dvh',
+        height: scrollDriven ? '200dvh' : '150dvh',
         background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
         backgroundSize: '100% 300%',
         backgroundPosition: '0% 0%',
