@@ -182,6 +182,8 @@ const NarrativeTransition: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'transparent',
+            contain: 'layout style paint',
+            willChange: 'transform',
           }}
         >
           {/* ═════════════════════════════════════════════════════════════════
@@ -196,6 +198,7 @@ const NarrativeTransition: React.FC = () => {
               overflow: 'hidden',
               y: videoTranslateY,
               willChange: 'transform',
+              transform: 'translateZ(0)',
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
             }}
@@ -288,6 +291,7 @@ const NarrativeTransition: React.FC = () => {
                 maxWidth: '90vw',
                 lineHeight: 1.3,
                 pointerEvents: 'none',
+                willChange: 'opacity',
               }}
             >
               VOIS wants to help.
@@ -307,6 +311,8 @@ const NarrativeTransition: React.FC = () => {
               opacity: unifiedOverlayOpacity,
               zIndex: 15,
               pointerEvents: 'none',
+              willChange: 'opacity',
+              transform: 'translateZ(0)',
             }}
           />
 
@@ -324,6 +330,8 @@ const NarrativeTransition: React.FC = () => {
               zIndex: 30,
               pointerEvents: 'none',
               y: entryTranslateY,
+              willChange: 'transform',
+              transform: 'translateZ(0)',
             }}
           >
             {/* ─────────────────────────────────────────────────────────────────
@@ -342,6 +350,8 @@ const NarrativeTransition: React.FC = () => {
                 padding: '0 2rem',
                 maxWidth: '90vw',
                 lineHeight: 1.3,
+                willChange: 'transform, opacity, filter',
+                transform: 'translateZ(0)',
               }}
             >
               Your brain is for thinking, not for storage.
@@ -365,6 +375,8 @@ const NarrativeTransition: React.FC = () => {
                 maxWidth: '1200px',
                 width: '90%',
                 textAlign: 'center',
+                willChange: 'transform, opacity',
+                transform: 'translateZ(0)',
               }}
             >
               <h2
@@ -417,6 +429,8 @@ const NarrativeTransition: React.FC = () => {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
+                      transform: 'translateZ(0)',
+                      willChange: 'transform',
                     }}
                   >
                     {isMobile ? (

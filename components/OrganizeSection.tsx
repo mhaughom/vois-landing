@@ -211,9 +211,9 @@ function MacBookDevice() {
     scrollState.smoothLidProgress += (scrollState.lidProgress - scrollState.smoothLidProgress) * 0.12;
     const p = scrollState.smoothLidProgress;
 
-    // Lid animation — opens as section scrolls through viewport
+    // Lid animation — opens with a slight delay after phone rotation
     const lidFraction = piecewise(p, [
-      [0, 0], [0.1, 0.2], [0.3, 0.8], [0.45, 1.0], [1.0, 1.0],
+      [0, 0], [0.15, 0], [0.3, 0.4], [0.5, 0.85], [0.6, 1.0], [1.0, 1.0],
     ]);
     const lidEased = easeInOutCubic(lidFraction);
 
@@ -228,20 +228,21 @@ function MacBookDevice() {
 
     const drag = updateDrag();
 
-    smoothMouseX.current += (scrollState.mouseX - smoothMouseX.current) * 0.03;
-    smoothMouseY.current += (scrollState.mouseY - smoothMouseY.current) * 0.03;
-    const mX = smoothMouseX.current * 0.12;
-    const mY = smoothMouseY.current * 0.08;
+    // Independent mouse tracking with slower, heavier feel for MacBook
+    smoothMouseX.current += (scrollState.mouseX - smoothMouseX.current) * 0.025;
+    smoothMouseY.current += (scrollState.mouseY - smoothMouseY.current) * 0.025;
+    const mX = smoothMouseX.current * 0.15;
+    const mY = smoothMouseY.current * 0.10;
 
     const ambientY = Math.sin(time * 0.7) * 0.012;
     const ambientX = Math.cos(time * 0.5) * 0.006;
 
     groupRef.current.position.x = 0.3 + ambientX - mX + drag.posX;
-    groupRef.current.position.y = -0.6 + ambientY - mY + drag.posY;
+    groupRef.current.position.y = -0.85 + ambientY - mY + drag.posY;
     groupRef.current.position.z = 0;
 
-    groupRef.current.rotation.x = 0.3 + Math.sin(time * 0.4) * 0.015 - mY * 0.3 + drag.rotX;
-    groupRef.current.rotation.y = Math.cos(time * 0.6) * 0.015 + mX * 0.3 + drag.rotY;
+    groupRef.current.rotation.x = 0.3 + Math.sin(time * 0.4) * 0.015 - mY * 0.35 + drag.rotX;
+    groupRef.current.rotation.y = Math.cos(time * 0.6) * 0.015 + mX * 0.35 + drag.rotY;
     groupRef.current.rotation.z = 0;
   });
 
@@ -341,12 +342,12 @@ function PhoneDevice() {
     // Read smoothed scroll progress (already updated by MacBook's useFrame)
     const p = scrollState.smoothLidProgress;
 
-    // Phone Y rotation: starts showing back, rotates to show screen
+    // Phone Y rotation: rotates as section becomes visible
     const phoneRotY = piecewise(p, [
       [0, -Math.PI / 2],      // back facing camera
-      [0.05, -Math.PI / 2],   // still showing back during entry
-      [0.2, 0],               // sideways (halfway through turn)
-      [0.4, Math.PI / 2],     // screen fully facing camera
+      [0.1, -Math.PI / 2],    // still showing back during entry
+      [0.3, 0],               // sideways (halfway through turn)
+      [0.5, Math.PI / 2],     // screen fully facing camera
       [1.0, Math.PI / 2],     // stays facing
     ]);
 
@@ -354,26 +355,27 @@ function PhoneDevice() {
 
     const drag = updateDrag();
 
-    smoothMouseX.current += (scrollState.mouseX - smoothMouseX.current) * 0.05;
-    smoothMouseY.current += (scrollState.mouseY - smoothMouseY.current) * 0.05;
-    const mX = smoothMouseX.current * 0.08;
-    const mY = smoothMouseY.current * 0.06;
+    // Independent mouse tracking with faster, lighter feel for Phone
+    smoothMouseX.current += (scrollState.mouseX - smoothMouseX.current) * 0.07;
+    smoothMouseY.current += (scrollState.mouseY - smoothMouseY.current) * 0.07;
+    const mX = smoothMouseX.current * 0.12;
+    const mY = smoothMouseY.current * 0.09;
 
     const ambientY = Math.sin(time * 0.9 + 1.5) * 0.018;
     const ambientX = Math.cos(time * 0.65 + 2.0) * 0.01;
 
     groupRef.current.position.x = -0.65 + ambientX - mX + drag.posX;
-    groupRef.current.position.y = -0.05 + ambientY - mY + drag.posY;
+    groupRef.current.position.y = -0.3 + ambientY - mY + drag.posY;
     groupRef.current.position.z = 0.1;
 
-    groupRef.current.rotation.x = Math.sin(time * 0.55 + 1.0) * 0.02 - mY * 0.2 + drag.rotX;
-    groupRef.current.rotation.y = phoneRotY + 0.15 + Math.cos(time * 0.75 + 1.5) * 0.02 + mX * 0.2 + drag.rotY;
+    groupRef.current.rotation.x = Math.sin(time * 0.55 + 1.0) * 0.02 - mY * 0.25 + drag.rotX;
+    groupRef.current.rotation.y = phoneRotY + 0.15 + Math.cos(time * 0.75 + 1.5) * 0.02 + mX * 0.25 + drag.rotY;
     groupRef.current.rotation.z = 0;
   });
 
   return (
     <group ref={groupRef} onPointerDown={onPointerDown}>
-      <primitive object={scene} scale={0.45} />
+      <primitive object={scene} scale={0.55} />
     </group>
   );
 }
@@ -407,9 +409,18 @@ function OrganizeCanvas() {
   );
 }
 
+// View options for cycling through different screen states
+const SCREEN_VIEWS = [
+  { name: 'Calendar', id: 'calendar' },
+  { name: 'Tasks', id: 'tasks' },
+  { name: 'Journal', id: 'journal' },
+  { name: 'To-do List', id: 'todo' },
+];
+
 const OrganizeSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
+  const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isMobile = useIsMobile();
 
   // Track section as it scrolls through the viewport (enter → leave)
@@ -470,36 +481,56 @@ const OrganizeSection: React.FC = () => {
       }}
     >
       {/* Headline — scrolls naturally with the section */}
-      <h2
+      <div
         style={{
           position: 'relative',
           zIndex: 30,
           pointerEvents: 'none',
-          fontFamily: "'Instrument Serif', Georgia, serif",
-          fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-          color: '#0f172a',
-          lineHeight: 1.1,
-          fontWeight: 400,
           textAlign: 'center',
           padding: isMobile ? '10vh 2rem 0' : '22vh 2rem 0',
-          margin: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 'clamp(0.75rem, 2vw, 1.5rem)',
         }}
       >
-        <span
+        <h2
           style={{
-            fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
-            color: '#64748b',
+            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+            color: '#0f172a',
+            lineHeight: 1.1,
             fontWeight: 400,
+            margin: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'clamp(0.75rem, 2vw, 1.5rem)',
           }}
         >
-          2
-        </span>
-        Organize at the speed of AI.
-      </h2>
+          <span
+            style={{
+              fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
+              color: '#64748b',
+              fontWeight: 400,
+            }}
+          >
+            2
+          </span>
+          Organize at the speed of AI.
+        </h2>
+
+        {/* Current view label */}
+        {!isMobile && (
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '1.125rem',
+              color: '#64748b',
+              marginTop: '1.5rem',
+              fontWeight: 500,
+            }}
+          >
+            {SCREEN_VIEWS[currentViewIndex].name}
+          </p>
+        )}
+      </div>
 
       {/* Mobile fallback text (no 3D) */}
       {isMobile && (
@@ -538,6 +569,83 @@ const OrganizeSection: React.FC = () => {
         >
           {isActive && <OrganizeCanvas />}
         </div>
+      )}
+
+      {/* Navigation arrows — desktop only */}
+      {!isMobile && (
+        <>
+          {/* Left arrow */}
+          <button
+            onClick={() => setCurrentViewIndex((prev) => (prev - 1 + SCREEN_VIEWS.length) % SCREEN_VIEWS.length)}
+            style={{
+              position: 'absolute',
+              left: 'clamp(1rem, 5vw, 4rem)',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 40,
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(148, 163, 184, 0.2)',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              backdropFilter: 'blur(8px)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+              e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12 16L6 10L12 4" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+
+          {/* Right arrow */}
+          <button
+            onClick={() => setCurrentViewIndex((prev) => (prev + 1) % SCREEN_VIEWS.length)}
+            style={{
+              position: 'absolute',
+              right: 'clamp(1rem, 5vw, 4rem)',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 40,
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(148, 163, 184, 0.2)',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              backdropFilter: 'blur(8px)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+              e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M8 4L14 10L8 16" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </>
       )}
     </div>
   );

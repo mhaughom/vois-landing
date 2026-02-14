@@ -22,6 +22,8 @@ import { CookieConsent, CookieSettingsTrigger } from './components/CookieConsent
 import { FREE_FEATURES, PERSONAL_FEATURES, WORK_FEATURES } from './lib/tiers';
 import { useIsMobile } from './hooks/useIsMobile';
 import { Analytics } from './lib/analytics';
+import { ActionCards } from './components/ActionCards';
+import { WaitlistModal } from './components/WaitlistModal';
 
 const faqData = [
   {
@@ -191,7 +193,7 @@ const ColorWaveTags: React.FC<{ tags: string[]; visible: boolean }> = ({ tags, v
 
   if (!visible) return null;
 
-  const tagString = tags.join('  ·  ');
+  const tagString = tags.join('     ·     ');
 
   return (
     <motion.div
@@ -223,6 +225,8 @@ const App = () => {
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<string>('personal_monthly');
   const [annualBilling, setAnnualBilling] = useState(true);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [waitlistSource, setWaitlistSource] = useState('unknown');
   const prefersReducedMotion = usePrefersReducedMotion();
   const isMobile = useIsMobile();
   const [bgVariant, setBgVariant] = useState(3); // Variant 4 of 8
@@ -660,6 +664,17 @@ const App = () => {
         selectedPlan={selectedPlan}
       />
 
+      {/* Waitlist Modal */}
+      <WaitlistModal
+        isOpen={showWaitlistModal}
+        onClose={() => setShowWaitlistModal(false)}
+        source={waitlistSource}
+        prefillData={{
+          completedDemo: hasCompletedDemo,
+          watchedVideo: showVideoClose || retrieveVideoPlaying,
+        }}
+      />
+
       {/* Cookie consent banner */}
       <CookieConsent />
 
@@ -718,7 +733,11 @@ const App = () => {
               <div
                 ref={canvasContainerRef}
                 className="fixed inset-0 z-30 pointer-events-none"
-                style={{ willChange: 'transform' }}
+                style={{
+                  willChange: 'transform',
+                  transform: 'translateZ(0)',
+                  contain: 'layout style paint',
+                }}
               >
                 <DeviceScene />
               </div>
@@ -858,7 +877,7 @@ const App = () => {
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {/* Subheadline - types out */}
-                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-light tracking-wide mb-4 lg:mb-0 min-h-[2em] sm:min-h-[2.5em]">
+                  <p className="text-xl sm:text-2xl md:text-3xl text-slate-500 leading-relaxed font-light tracking-wide mb-4 lg:mb-0 min-h-[2em] sm:min-h-[2.5em] whitespace-nowrap">
                     {typedSubheadline}
                     {heroStage === 'subheadline' && (
                       <motion.span
@@ -900,8 +919,7 @@ const App = () => {
                           setShowVideoClose(true);
                         }
                       }}
-                      className="watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 active:scale-95 transition-all duration-300 bg-slate-900 text-white border border-slate-800 hover:border-slate-200"
-                      style={{ filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))' }}
+                      className="watch-video-btn group relative pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 active:scale-95 transition-all duration-300 bg-slate-900 text-white border border-slate-800 hover:border-slate-200 shadow-lg"
                     >
                       {/* Inner container for overflow clipping (keeps shadow visible on outer button) */}
                       <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
@@ -929,10 +947,11 @@ const App = () => {
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={() => {
-                            Analytics.checkoutModalOpened('hero');
+                            Analytics.waitlistModalOpened('hero_post_demo');
                             const elapsed = (performance.now() - pageLoadTime.current) / 1000;
-                            Analytics.timeToAction('checkout_open', Math.round(elapsed));
-                            scrollToSection('pricing');
+                            Analytics.timeToAction('waitlist_open', Math.round(elapsed));
+                            setWaitlistSource('hero_post_demo');
+                            setShowWaitlistModal(true);
                           }}
                           className="group relative pl-4 pr-6 py-1.5 rounded-full text-base font-medium flex items-center justify-center gap-3 shadow-lg shadow-violet-200/50 hover:shadow-violet-300/60 border border-violet-100/60 hover:border-violet-200/80 transition-all duration-300 overflow-hidden"
                           style={{
@@ -975,7 +994,7 @@ const App = () => {
                           <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
                             <span className="text-violet-600">✦</span>
                           </span>
-                          <span className="relative z-10 font-semibold text-slate-900">View Plans</span>
+                          <span className="relative z-10 font-semibold text-slate-900">Join Waitlist</span>
                         </motion.button>
 
                         {/* Retry button - only when idle or results (not during recording/processing) */}
@@ -1426,6 +1445,9 @@ const App = () => {
           </motion.div>
           </section>
 
+          {/* ACTION CARDS - Can I trust AI? */}
+          <ActionCards />
+
           <section id="privacy" className="py-32 md:py-40 px-6 md:px-16 relative z-10">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12">
               {/* Card 1: Your Mind, Your Control */}
@@ -1683,10 +1705,14 @@ const App = () => {
                   ))}
                 </ul>
                 <button
-                  onClick={() => { Analytics.checkoutModalOpened('pricing'); setSelectedPlan(annualBilling ? 'personal_annual' : 'personal_monthly'); setShowCheckoutModal(true); }}
+                  onClick={() => {
+                    Analytics.waitlistModalOpened('pricing_personal');
+                    setWaitlistSource('pricing_personal');
+                    setShowWaitlistModal(true);
+                  }}
                   className="block w-full bg-slate-900 text-white py-3.5 rounded-full text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
-                  Get Started
+                  Join Waitlist
                 </button>
                 <p className="text-center text-slate-500 text-xs mt-4">
                   Cancel anytime. 30-day money-back guarantee.
@@ -1721,10 +1747,14 @@ const App = () => {
                     ))}
                   </ul>
                   <button
-                    onClick={() => { Analytics.checkoutModalOpened('pricing'); setSelectedPlan(annualBilling ? 'work_annual' : 'work_monthly'); setShowCheckoutModal(true); }}
+                    onClick={() => {
+                      Analytics.waitlistModalOpened('pricing_work');
+                      setWaitlistSource('pricing_work');
+                      setShowWaitlistModal(true);
+                    }}
                     className="block w-full bg-white text-slate-950 py-3.5 rounded-full text-base font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg text-center"
                   >
-                    Get Started
+                    Join Waitlist
                   </button>
                   <p className="text-center text-slate-500 text-xs mt-4">
                     Cancel anytime. 30-day money-back guarantee.

@@ -29,6 +29,7 @@ export type PhoneScreen = 'lockscreen' | 'stream' | 'magic' | 'apps' | 'voicenot
 // Global state (updated via window listeners and section observers)
 export const globalState = {
   scrollProgress: 0,
+  isScrolling: false,
   mouseX: 0,
   mouseY: 0,
   smoothMouseX: 0,

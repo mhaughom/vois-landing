@@ -220,4 +220,29 @@ export const Analytics = {
     if (!isPostHogReady()) return;
     posthog.identify(email, properties);
   },
+
+  // Waitlist funnel
+  waitlistModalOpened: (source: string) => {
+    capture('waitlist_modal_opened', { source });
+  },
+
+  waitlistEmailEntered: (source: string) => {
+    capture('waitlist_email_entered', { source });
+  },
+
+  waitlistSignup: (email: string, data?: Record<string, unknown>) => {
+    if (!isPostHogReady()) return;
+    // Identify the user in PostHog
+    posthog.identify(email, {
+      email,
+      joined_waitlist: true,
+      waitlist_signup_date: new Date().toISOString(),
+      ...data,
+    });
+    capture('waitlist_signup', data);
+  },
+
+  waitlistSkippedQuestions: () => {
+    capture('waitlist_skipped_questions');
+  },
 };

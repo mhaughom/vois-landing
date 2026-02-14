@@ -4748,6 +4748,9 @@ function SceneContent() {
 
     // Skip rendering when hero is off-screen and no active animations
     if (!isHeroSection && entranceProgressRef.current >= 1) return;
+
+    // Always invalidate to keep scene responsive (Three.js with frameloop="demand" needs this)
+    const isScrolling = globalState.isScrolling;
     state.invalidate();
 
     // Update timer for screen animation
@@ -4759,9 +4762,11 @@ function SceneContent() {
     // === TEXTURE UPDATES (throttled, but forced during ripple/hover animations) ===
     const hasActiveEffect = globalState.phoneTouchRipple !== null || globalState.watchTouchRipple !== null
       || globalState.phoneHoverUV !== null || globalState.watchHoverUV !== null;
+
+    // Skip texture updates during scroll unless there's an active effect
     const timeElapsed = now - lastTextureUpdateRef.current > TEXTURE_UPDATE_INTERVAL;
 
-    if (timeElapsed || hasActiveEffect) {
+    if ((timeElapsed || hasActiveEffect) && !isScrolling) {
       lastTextureUpdateRef.current = now;
 
       // Update phone screen (always hero screen)
@@ -4890,8 +4895,9 @@ function SceneContent() {
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
     const entranceProgress = easeOutCubic(entranceProgressRef.current);
 
-    // Ambient floating movement
-    const ambientScale = entranceProgress;
+    // Ambient floating movement (reduced during scroll for better performance)
+    const scrollDampening = isScrolling ? 0.2 : 1.0;
+    const ambientScale = entranceProgress * scrollDampening;
     const ambientY = Math.sin(time * 0.8) * 0.015 * ambientScale;
     const ambientX = Math.cos(time * 0.6) * 0.008 * ambientScale;
     const ambientRotX = Math.sin(time * 0.5) * 0.02 * ambientScale;
@@ -5041,8 +5047,20 @@ export const DeviceScene: React.FC = () => {
   useEffect(() => {
     let scrollRAF: number | null = null;
     let mouseRAF: number | null = null;
+    let scrollTimeout: NodeJS.Timeout | null = null;
 
     const handleScroll = () => {
+      // Mark as scrolling
+      globalState.isScrolling = true;
+
+      // Clear previous timeout
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+
+      // Set timeout to mark scrolling as stopped after 150ms of no scroll events
+      scrollTimeout = setTimeout(() => {
+        globalState.isScrolling = false;
+      }, 150);
+
       // Skip if already scheduled
       if (scrollRAF) return;
       scrollRAF = requestAnimationFrame(() => {
@@ -5095,9 +5113,10 @@ export const DeviceScene: React.FC = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
-      // Cancel any pending RAF
+      // Cancel any pending RAF and timeouts
       if (scrollRAF) cancelAnimationFrame(scrollRAF);
       if (mouseRAF) cancelAnimationFrame(mouseRAF);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
     };
   }, []);
 
@@ -5106,7 +5125,14 @@ export const DeviceScene: React.FC = () => {
       frameloop="demand"
       camera={{ position: [0, 0, 1.8], fov: 40 }}
       gl={{ antialias: true, alpha: true }}
-      style={{ background: 'transparent', width: '100%', height: '100%', pointerEvents: 'none' }}
+      style={{
+        background: 'transparent',
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        willChange: 'transform',
+        transform: 'translateZ(0)',
+      }}
     >
       {/* Lighting for glossy materials */}
       <ambientLight intensity={2} />

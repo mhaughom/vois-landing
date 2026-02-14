@@ -42,8 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "circOut" }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 pointer-events-none"
-      style={{ paddingTop: 'env(safe-area-inset-top, 1.5rem)' }}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 pt-6 md:pt-8 pointer-events-none"
     >
       {/* Logo */}
       <Link to="/" className="pointer-events-auto">
@@ -76,19 +75,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
         </motion.a>
 
         {/* Vois for Work Link — full page nav to avoid Three.js teardown blocking */}
-        <a
+        <motion.a
           href="/work"
-          className="hidden sm:block text-sm font-light tracking-wide text-blue-700 bg-blue-50/80 backdrop-blur-md hover:bg-blue-50/90 transition-all px-6 py-2.5 rounded-full shadow-lg border border-blue-100"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="hidden sm:block text-sm font-light tracking-wide text-blue-700 bg-blue-50/80 backdrop-blur-md hover:bg-blue-50 transition-colors px-6 py-2.5 rounded-full shadow-lg shadow-blue-100/50 hover:shadow-xl hover:shadow-blue-100/60 border border-blue-100"
         >
           Vois for Work
-        </a>
+        </motion.a>
 
         {/* Get Started Button - unified CTA for both plans and login */}
         <motion.button
           onClick={handleGetEarlyAccess}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="hidden sm:block relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 bg-slate-900/90 backdrop-blur-md hover:bg-slate-900 text-white border border-slate-700"
+          className="hidden sm:block relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-black/30 transition-all duration-200 bg-slate-900/90 backdrop-blur-md hover:bg-slate-900 text-white border border-slate-700"
         >
           Get Started
         </motion.button>

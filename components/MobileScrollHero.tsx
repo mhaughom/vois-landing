@@ -9,10 +9,12 @@ import { useScreenOverlay } from '../hooks/useScreenOverlay';
 import { allWhyBenefits } from './HeroDiscoveryDock';
 
 // ─── Configuration ────────────────────────────────────────────────────────────
-const PHONE_FRAME_COUNT = 60;
-const WATCH_FRAME_COUNT = 60;
+// MOBILE OPTIMIZED: Load every 2nd frame from the 60-frame set for 2x faster loading
+const PHONE_FRAME_COUNT = 30;
+const WATCH_FRAME_COUNT = 30;
 const PHONE_FRAMES_PATH = '/frames/phone';
 const WATCH_FRAMES_PATH = '/frames/watch';
+const FRAME_SKIP = 2; // Load every 2nd frame (0, 2, 4, 6... instead of 0, 1, 2, 3...)
 
 // ─── Category badge carousel components ──────────────────────────────────────
 const MobileCategoryBadge: React.FC<{ item: (typeof allWhyBenefits)[0] }> = ({ item }) => (
@@ -58,8 +60,10 @@ const MobileCategoryRow: React.FC<{
 };
 
 // ─── Frame preloader ──────────────────────────────────────────────────────────
-function preloadFrame(basePath: string, index: number): Promise<HTMLImageElement> {
-  const src = `${basePath}/frame_${String(index).padStart(3, '0')}.webp`;
+function preloadFrame(basePath: string, index: number, skipFrames = 1): Promise<HTMLImageElement> {
+  // When skipFrames > 1, we multiply the index to skip frames (e.g., skipFrames=2 loads every other frame)
+  const actualIndex = index * skipFrames;
+  const src = `${basePath}/frame_${String(actualIndex).padStart(3, '0')}.webp`;
   return new Promise<HTMLImageElement>((resolve) => {
     const img = new Image();
     img.onload = () => resolve(img);
@@ -73,9 +77,10 @@ function preloadFramesLazy(
   count: number,
   startIndex: number,
   onFrame: (index: number, img: HTMLImageElement) => void,
+  skipFrames: number = 1,
 ): void {
   let i = startIndex;
-  const BATCH_SIZE = 15; // Load 15 frames in parallel for faster initial loading
+  const BATCH_SIZE = 5; // Reduced from 15 to 5 for better mobile performance
 
   const loadBatch = () => {
     if (i >= count) return;
@@ -86,15 +91,15 @@ function preloadFramesLazy(
     for (let j = 0; j < BATCH_SIZE && i < count; j++, i++) {
       const idx = i;
       batch.push(
-        preloadFrame(basePath, idx).then((img) => {
+        preloadFrame(basePath, idx, skipFrames).then((img) => {
           onFrame(idx, img);
         })
       );
     }
 
     Promise.all(batch).then(() => {
-      // Minimal delay to allow browser to process
-      setTimeout(loadBatch, 20);
+      // Increased delay from 20ms to 50ms to reduce CPU strain on mobile
+      setTimeout(loadBatch, 50);
     });
   };
 
@@ -382,10 +387,10 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
   useEffect(() => {
     // Load first frames immediately
-    console.log('🖼️ Starting to load frames...');
+    console.log('🖼️ Starting to load frames (every ' + FRAME_SKIP + 'th frame)...');
     Promise.all([
-      preloadFrame(PHONE_FRAMES_PATH, 0),
-      preloadFrame(WATCH_FRAMES_PATH, 0),
+      preloadFrame(PHONE_FRAMES_PATH, 0, FRAME_SKIP),
+      preloadFrame(WATCH_FRAMES_PATH, 0, FRAME_SKIP),
     ]).then(([phone0, watch0]) => {
       console.log('✅ First frames loaded:', { phone0, watch0 });
       phoneFramesRef.current[0] = phone0;
@@ -415,12 +420,12 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         phoneFramesRef.current[idx] = img;
         phoneLoadedRef.current = idx + 1;
         updateMaxProgress();
-      });
+      }, FRAME_SKIP);
       preloadFramesLazy(WATCH_FRAMES_PATH, WATCH_FRAME_COUNT, 1, (idx, img) => {
         watchFramesRef.current[idx] = img;
         watchLoadedRef.current = idx + 1;
         updateMaxProgress();
-      });
+      }, FRAME_SKIP);
     }).catch((err) => {
       console.error('❌ Failed to load frames:', err);
     });
@@ -540,7 +545,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }}
       id="hero"
       style={{
-        height: scrollDriven ? '200dvh' : '110dvh',
+        height: scrollDriven ? '200dvh' : '100dvh',
         background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
         backgroundSize: '100% 300%',
         backgroundPosition: '0% 0%',
@@ -554,16 +559,17 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           height: '100dvh',
           ...(scrollDriven ? { position: 'sticky' as const, top: 0 } : {}),
           overflow: 'visible',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}
       >
 
-        {/* Fine film grain overlay */}
+        {/* Fine film grain overlay - reduced for mobile performance */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 1,
-            opacity: 0.12,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            opacity: 0.06,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
         />
 
@@ -576,7 +582,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
             marginTop: 'calc(env(safe-area-inset-top, 0px) + 5.5rem)'
           }}
         >
-          <h1 className="text-3xl font-serif font-medium text-slate-900 leading-tight tracking-tight mb-2">
+          <h1 className="text-2xl sm:text-3xl font-serif font-medium text-slate-900 leading-tight tracking-tight mb-2">
             <motion.span
               className="block"
               initial={{ opacity: 0, y: 18 }}
@@ -596,8 +602,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           </h1>
           <p
             ref={subtitleRef}
-            className="text-lg text-slate-500 leading-relaxed"
-            style={{ minHeight: '1.6em' }}
+            className="text-base sm:text-lg text-slate-500 leading-relaxed"
+            style={{ minHeight: '1.4em' }}
           />
 
           {/* Watch Video Button */}
@@ -668,7 +674,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
               <canvas
                 ref={phoneCanvasRef}
                 style={{
-                  maxHeight: '58vh',
+                  maxHeight: '52vh',
                   width: 'auto',
                   imageRendering: 'auto',
                   display: 'block',
@@ -748,7 +754,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                 <canvas
                   ref={watchCanvasRef}
                   style={{
-                    maxHeight: '30vh',
+                    maxHeight: '26vh',
                     width: 'auto',
                     imageRendering: 'auto',
                     display: 'block',
@@ -821,12 +827,14 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
         {/* ── Buttons area ─────────────────────────────────────────────── */}
         <motion.div
-          className="flex-shrink-0 flex flex-col items-center gap-3 pb-6 pt-2 mt-4 relative"
+          className="flex-shrink-0 flex flex-col items-center gap-3 pt-2 relative"
           style={{
             opacity: isDemoActive ? 1 : buttonOpacity,
             y: isDemoActive ? 0 : buttonY,
             pointerEvents: 'auto',
             zIndex: 40,
+            paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
+            minHeight: 'calc(4rem + env(safe-area-inset-bottom, 0px))',
           }}
         >
           {hasCompletedDemo && (demoStage === 'idle' || demoStage === 'results') ? (
@@ -881,13 +889,14 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                 disabled={skipped}
                 style={{
                   touchAction: 'manipulation',
+                  minHeight: '44px',
                   filter: skipped
                     ? 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
                     : 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))'
                 }}
-                className={`group text-white pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 border transition-all duration-300 ${skipped ? 'bg-slate-700/50 border-slate-600/50 opacity-60' : 'bg-slate-900 border-slate-800 hover:bg-slate-800 hover:border-slate-700'}`}
+                className={`group text-white pl-3 pr-6 py-2.5 rounded-full text-sm sm:text-base font-medium flex items-center justify-center gap-2 sm:gap-3 border transition-all duration-300 ${skipped ? 'bg-slate-700/50 border-slate-600/50 opacity-60' : 'bg-slate-900 border-slate-800 hover:bg-slate-800 hover:border-slate-700'}`}
               >
-                <span className="flex items-center justify-center w-9 h-9 bg-slate-900 rounded-full border border-slate-700">
+                <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-slate-900 rounded-full border border-slate-700">
                   <ArrowDown size={14} className="text-white" />
                 </span>
                 <span className="font-medium">{skipped ? 'Skipped' : 'Skip Demo'}</span>

@@ -268,10 +268,25 @@ export const DemoSteps: React.FC<{
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 w-full"
           >
+            {/* Phase header */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col gap-1 items-center sm:items-start mb-1"
+            >
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-slate-900 font-medium">
+                Try the AI Assistant
+              </h3>
+              <p className="text-slate-400 text-sm sm:text-base">
+                Ask VOIS anything about what you just said
+              </p>
+            </motion.div>
+
             {/* Step 1: Tap bottom left of the phone */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
               className="flex flex-col gap-1 items-center sm:items-start"
             >
               <div className="flex items-center gap-2 sm:gap-3">
@@ -485,6 +500,21 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       setOnStopRecordClick(() => {
         stopRecordingRef.current();
       });
+    } else if (stage === 'results') {
+      // During results/chat phase - watch can start a new recording (resets demo)
+      setOnPhoneRecordClick(null);
+      setOnWatchRecordClick(() => {
+        // Reset and start new recording with watch
+        cleanup();
+        setElapsedTime(0);
+        setResults(null);
+        setErrorMessage('');
+        setDemoError(null);
+        setDemoTip('');
+        setDemoActiveDevice('watch');
+        setTimeout(() => startRecordingRef.current(), 50);
+      });
+      setOnStopRecordClick(null);
     } else if (stage === 'idle') {
       // When idle (both before and after demo) - only watch can start recording (quick capture mode)
       setOnPhoneRecordClick(null);
@@ -494,12 +524,27 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
         startRecordingRef.current();
       });
       setOnStopRecordClick(null);
+    } else if (stage === 'processing') {
+      // During processing - watch can cancel and start new recording
+      setOnPhoneRecordClick(null);
+      setOnWatchRecordClick(() => {
+        // Cancel processing and start new recording
+        cleanup();
+        setElapsedTime(0);
+        setResults(null);
+        setErrorMessage('');
+        setDemoError(null);
+        setDemoTip('');
+        setDemoActiveDevice('watch');
+        setTimeout(() => startRecordingRef.current(), 50);
+      });
+      setOnStopRecordClick(null);
     } else {
       setOnPhoneRecordClick(null);
       setOnWatchRecordClick(null);
       setOnStopRecordClick(null);
     }
-  }, [stage, hasCompletedDemo]);
+  }, [stage, hasCompletedDemo, cleanup]);
 
   // Enter waiting mode - show record buttons on devices
   const enterWaitingMode = () => {
@@ -881,9 +926,9 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                   whileTap={{ scale: 0.98 }}
                   style={{
                     touchAction: 'manipulation',
-                    filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
+                    minHeight: '44px', // Ensure proper tap target size on iOS
                   }}
-                  className="try-demo-btn group relative bg-slate-100 text-slate-900 pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 border border-slate-200 hover:border-slate-900 transition-all"
+                  className="try-demo-btn group relative bg-slate-100 text-slate-900 pl-3 pr-6 py-2.5 rounded-full text-sm sm:text-base font-medium flex items-center justify-center gap-2 sm:gap-3 border border-slate-200 hover:border-slate-900 transition-all shadow-lg"
                 >
                   {/* Inner container for overflow clipping (keeps shadow visible on outer button) */}
                   <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
@@ -891,7 +936,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                     <span className="try-demo-fill absolute bg-slate-900 rounded-full" />
                   </span>
                   {/* Mic button circle - turns white on hover */}
-                  <span className="relative z-10 flex items-center justify-center w-9 h-9 bg-slate-900 group-hover:bg-white rounded-full transition-colors duration-200">
+                  <span className="relative z-10 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-slate-900 group-hover:bg-white rounded-full transition-colors duration-200">
                     <Mic size={14} className="text-white group-hover:text-slate-900 transition-colors duration-200" />
                   </span>
                   {/* Text - turns white on hover */}
