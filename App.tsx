@@ -575,15 +575,17 @@ const App = () => {
       className="relative w-full min-h-screen font-sans scroll-smooth"
       style={isMobile && !demoGatePassed ? { height: '100dvh', overflow: 'hidden' } : undefined}
     >
-      {/* Top white gradient overlay — blends with Safari Liquid Glass toolbar */}
-      <div
-        className="fixed top-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: 'calc(env(safe-area-inset-top, 0px) + 120px)',
-          background: 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
-          zIndex: 40,
-        }}
-      />
+      {/* Top white gradient overlay — only on desktop for Safari Liquid Glass toolbar */}
+      {!isMobile && (
+        <div
+          className="fixed top-0 left-0 right-0 pointer-events-none"
+          style={{
+            height: 'calc(env(safe-area-inset-top, 0px) + 120px)',
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
+            zIndex: 40,
+          }}
+        />
+      )}
       <Navbar
         onCycleBg={() => setBgVariant((v) => (v + 1) % BG_VARIANTS.length)}
         bgVariant={bgVariant}

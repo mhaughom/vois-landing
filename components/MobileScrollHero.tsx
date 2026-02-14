@@ -370,6 +370,28 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrollDriven, progress]);
 
+  // ── Force Safari toolbar to hide on iOS ────────────────────────────────────
+  // Safari requires 30px+ of scroll to hide the bottom bar. We programmatically
+  // scroll down on mount to trigger it, then return to top.
+  useEffect(() => {
+    // Only on iOS Safari
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (!isIOS) return;
+
+    // Wait for page to be fully ready
+    const timer = setTimeout(() => {
+      // Scroll down 50px (more than Safari's 30px threshold) to trigger hide
+      window.scrollTo({ top: 50, behavior: 'auto' });
+
+      // After a brief moment, scroll back to top
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 50);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // ── Preload frames ─────────────────────────────────────────────────────────
   // Load frame 0 for both devices first so they appear immediately,
   // then load the remaining frames lazily in the background.
@@ -548,12 +570,13 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       className="relative"
     >
       <div
-        className="flex flex-col items-center overflow-hidden"
+        className="flex flex-col items-center"
         style={{
           height: '100dvh',
           ...(scrollDriven ? { position: 'sticky' as const, top: 0 } : {}),
           paddingTop: 'env(safe-area-inset-top)',
           paddingBottom: 'env(safe-area-inset-bottom)',
+          overflow: 'visible',
         }}
       >
 
@@ -577,13 +600,10 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
           }}
         />
 
-        {/* Top spacer for nav */}
-        <div className="h-24 flex-shrink-0" />
-
         {/* ── Headlines ──────────────────────────────────────────────── */}
         <motion.div
           className="text-center px-6 flex-shrink-0 z-10"
-          style={{ opacity: headlineOpacity, y: headlineY }}
+          style={{ opacity: headlineOpacity, y: headlineY, marginTop: '6rem' }}
         >
           <h1 className="text-3xl font-serif font-medium text-slate-900 leading-tight tracking-tight mb-2">
             <motion.span
