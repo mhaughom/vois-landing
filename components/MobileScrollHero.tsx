@@ -540,7 +540,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       }}
       id="hero"
       style={{
-        height: scrollDriven ? '200dvh' : '150dvh',
+        height: scrollDriven ? '200dvh' : '110dvh',
         background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
         backgroundSize: '100% 300%',
         backgroundPosition: '0% 0%',
@@ -564,16 +564,6 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
             zIndex: 1,
             opacity: 0.12,
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          }}
-        />
-
-        {/* Bottom gradient only - smooth transition to next section */}
-        <div
-          className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: 150,
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,1) 100%)',
-            zIndex: 5,
           }}
         />
 
