@@ -14,7 +14,7 @@ interface WaitlistModalProps {
   };
 }
 
-type Step = 'userType' | 'devices' | 'useCases' | 'referral' | 'email' | 'success';
+type Step = 'useCases' | 'userType' | 'devices' | 'referral' | 'email' | 'success';
 
 const USER_TYPES = [
   'Personal',
@@ -53,7 +53,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
   source = 'unknown',
   prefillData = {}
 }) => {
-  const [step, setStep] = useState<Step>('userType');
+  const [step, setStep] = useState<Step>('useCases');
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState('');
   const [referralSource, setReferralSource] = useState('');
@@ -64,7 +64,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
 
   // Reset state when modal closes
   const handleClose = () => {
-    setStep('userType');
+    setStep('useCases');
     setEmail('');
     setUserType('');
     setReferralSource('');
@@ -186,7 +186,62 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
 
           <div className="p-8">
             <AnimatePresence mode="wait">
-              {/* Step 1: User Type */}
+              {/* Step 1: Use Cases */}
+              {step === 'useCases' && (
+                <motion.div
+                  key="useCases"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
+                    What will you use VOIS for?
+                  </h2>
+                  <p className="text-slate-600 mb-6 text-sm">
+                    Select all that apply
+                  </p>
+
+                  <div className="space-y-3 mb-8">
+                    {USE_CASES.map(useCase => (
+                      <button
+                        key={useCase}
+                        type="button"
+                        onClick={() => toggleUseCase(useCase)}
+                        className={`w-full px-5 py-4 rounded-xl border-2 transition-all text-left flex items-center gap-3 ${
+                          useCases.includes(useCase)
+                            ? 'border-slate-900 bg-slate-50 text-slate-900'
+                            : 'border-slate-200 hover:border-slate-300 text-slate-700'
+                        }`}
+                      >
+                        <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
+                          useCases.includes(useCase)
+                            ? 'border-slate-900 bg-slate-900'
+                            : 'border-slate-300'
+                        }`}>
+                          {useCases.includes(useCase) && <Check size={16} className="text-white" />}
+                        </div>
+                        <span className="text-sm">{useCase}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setStep('userType')}
+                    disabled={useCases.length === 0}
+                    className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
+                  >
+                    Continue
+                    <ChevronRight size={20} />
+                  </button>
+
+                  <p className="text-xs text-slate-400 text-center mt-4">
+                    Step 1 of 5
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Step 2: User Type */}
               {step === 'userType' && (
                 <motion.div
                   key="userType"
@@ -229,12 +284,12 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 1 of 5
+                    Step 2 of 5
                   </p>
                 </motion.div>
               )}
 
-              {/* Step 2: Devices */}
+              {/* Step 3: Devices */}
               {step === 'devices' && (
                 <motion.div
                   key="devices"
@@ -275,7 +330,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </div>
 
                   <button
-                    onClick={() => setStep('useCases')}
+                    onClick={() => setStep('referral')}
                     disabled={devices.length === 0}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
@@ -284,67 +339,12 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 1 of 4
+                    Step 3 of 5
                   </p>
                 </motion.div>
               )}
 
-              {/* Step 2: Use Cases */}
-              {step === 'useCases' && (
-                <motion.div
-                  key="useCases"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    What will you use VOIS for?
-                  </h2>
-                  <p className="text-slate-600 mb-6 text-sm">
-                    Select all that apply
-                  </p>
-
-                  <div className="space-y-3 mb-8">
-                    {USE_CASES.map(useCase => (
-                      <button
-                        key={useCase}
-                        type="button"
-                        onClick={() => toggleUseCase(useCase)}
-                        className={`w-full px-5 py-4 rounded-xl border-2 transition-all text-left flex items-center gap-3 ${
-                          useCases.includes(useCase)
-                            ? 'border-slate-900 bg-slate-50 text-slate-900'
-                            : 'border-slate-200 hover:border-slate-300 text-slate-700'
-                        }`}
-                      >
-                        <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
-                          useCases.includes(useCase)
-                            ? 'border-slate-900 bg-slate-900'
-                            : 'border-slate-300'
-                        }`}>
-                          {useCases.includes(useCase) && <Check size={16} className="text-white" />}
-                        </div>
-                        <span className="text-sm">{useCase}</span>
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={() => setStep('referral')}
-                    disabled={useCases.length === 0}
-                    className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
-                  >
-                    Continue
-                    <ChevronRight size={20} />
-                  </button>
-
-                  <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 2 of 5
-                  </p>
-                </motion.div>
-              )}
-
-              {/* Step 3: Referral Source */}
+              {/* Step 4: Referral Source */}
               {step === 'referral' && (
                 <motion.div
                   key="referral"
@@ -383,7 +383,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 3 of 5
+                    Step 4 of 5
                   </p>
                 </motion.div>
               )}
