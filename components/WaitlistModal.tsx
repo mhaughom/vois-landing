@@ -14,7 +14,13 @@ interface WaitlistModalProps {
   };
 }
 
-type Step = 'email' | 'questions' | 'success';
+type Step = 'userType' | 'devices' | 'useCases' | 'referral' | 'email' | 'success';
+
+const USER_TYPES = [
+  'Personal',
+  'Work',
+  'Both'
+];
 
 const REFERRAL_SOURCES = [
   'Twitter/X',
@@ -38,8 +44,7 @@ const USE_CASES = [
 const DEVICES = [
   'iPhone',
   'Apple Watch',
-  'Mac',
-  'All of the above'
+  'Mac'
 ];
 
 export const WaitlistModal: React.FC<WaitlistModalProps> = ({
@@ -48,21 +53,23 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
   source = 'unknown',
   prefillData = {}
 }) => {
-  const [step, setStep] = useState<Step>('email');
+  const [step, setStep] = useState<Step>('userType');
   const [email, setEmail] = useState('');
+  const [userType, setUserType] = useState('');
   const [referralSource, setReferralSource] = useState('');
   const [useCases, setUseCases] = useState<string[]>([]);
-  const [preferredDevice, setPreferredDevice] = useState('');
+  const [devices, setDevices] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   // Reset state when modal closes
   const handleClose = () => {
-    setStep('email');
+    setStep('userType');
     setEmail('');
+    setUserType('');
     setReferralSource('');
     setUseCases([]);
-    setPreferredDevice('');
+    setDevices([]);
     setError('');
     onClose();
   };
@@ -72,7 +79,25 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  // Handle email submission (step 1)
+  // Toggle device selection
+  const toggleDevice = (device: string) => {
+    setDevices(prev =>
+      prev.includes(device)
+        ? prev.filter(d => d !== device)
+        : [...prev, device]
+    );
+  };
+
+  // Toggle use case selection
+  const toggleUseCase = (useCase: string) => {
+    setUseCases(prev =>
+      prev.includes(useCase)
+        ? prev.filter(uc => uc !== useCase)
+        : [...prev, useCase]
+    );
+  };
+
+  // Handle email submission (final step before success)
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -95,25 +120,19 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
       return;
     }
 
-    setIsSubmitting(false);
-    setStep('questions');
-  };
-
-  // Handle optional questions submission (step 2)
-  const handleQuestionsSubmit = async (skip = false) => {
-    setIsSubmitting(true);
-    setError('');
-
+    // Submit to waitlist
     const waitlistData: WaitlistEntry = {
       email,
-      referral_source: skip ? undefined : referralSource || undefined,
-      use_cases: skip ? undefined : (useCases.length > 0 ? useCases : undefined),
-      preferred_device: skip ? undefined : preferredDevice || undefined,
+      referral_source: referralSource || undefined,
+      use_cases: useCases.length > 0 ? useCases : undefined,
+      preferred_device: devices.length > 0 ? devices.join(', ') : undefined,
       completed_demo: prefillData.completedDemo,
       watched_video: prefillData.watchedVideo,
       metadata: {
         signup_source: source,
         timestamp: new Date().toISOString(),
+        user_type: userType,
+        devices: devices,
       }
     };
 
@@ -136,15 +155,6 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     }
 
     setIsSubmitting(false);
-  };
-
-  // Toggle use case selection
-  const toggleUseCase = (useCase: string) => {
-    setUseCases(prev =>
-      prev.includes(useCase)
-        ? prev.filter(uc => uc !== useCase)
-        : [...prev, useCase]
-    );
   };
 
   if (!isOpen) return null;
@@ -176,7 +186,209 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
 
           <div className="p-8">
             <AnimatePresence mode="wait">
-              {/* Step 1: Email */}
+              {/* Step 1: User Type */}
+              {step === 'userType' && (
+                <motion.div
+                  key="userType"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
+                    How will you use VOIS?
+                  </h2>
+                  <p className="text-slate-600 mb-6 text-sm">
+                    Choose one
+                  </p>
+
+                  <div className="space-y-3 mb-8">
+                    {USER_TYPES.map(type => (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => setUserType(type)}
+                        className={`w-full px-5 py-4 rounded-xl border-2 transition-all text-left ${
+                          userType === type
+                            ? 'border-slate-900 bg-slate-50 text-slate-900'
+                            : 'border-slate-200 hover:border-slate-300 text-slate-700'
+                        }`}
+                      >
+                        <span className="font-medium">{type}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setStep('devices')}
+                    disabled={!userType}
+                    className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg flex items-center justify-center gap-2"
+                  >
+                    Continue
+                    <ChevronRight size={20} />
+                  </button>
+
+                  <p className="text-xs text-slate-400 text-center mt-4">
+                    Step 1 of 5
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Step 2: Devices */}
+              {step === 'devices' && (
+                <motion.div
+                  key="devices"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
+                    Which devices will you use?
+                  </h2>
+                  <p className="text-slate-600 mb-6 text-sm">
+                    Select all that apply
+                  </p>
+
+                  <div className="space-y-3 mb-8">
+                    {DEVICES.map(device => (
+                      <button
+                        key={device}
+                        type="button"
+                        onClick={() => toggleDevice(device)}
+                        className={`w-full px-5 py-4 rounded-xl border-2 transition-all text-left flex items-center gap-3 ${
+                          devices.includes(device)
+                            ? 'border-slate-900 bg-slate-50 text-slate-900'
+                            : 'border-slate-200 hover:border-slate-300 text-slate-700'
+                        }`}
+                      >
+                        <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
+                          devices.includes(device)
+                            ? 'border-slate-900 bg-slate-900'
+                            : 'border-slate-300'
+                        }`}>
+                          {devices.includes(device) && <Check size={16} className="text-white" />}
+                        </div>
+                        <span className="font-medium">{device}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setStep('useCases')}
+                    disabled={devices.length === 0}
+                    className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
+                  >
+                    Continue
+                    <ChevronRight size={20} />
+                  </button>
+
+                  <p className="text-xs text-slate-400 text-center mt-4">
+                    Step 1 of 4
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Step 2: Use Cases */}
+              {step === 'useCases' && (
+                <motion.div
+                  key="useCases"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
+                    What will you use VOIS for?
+                  </h2>
+                  <p className="text-slate-600 mb-6 text-sm">
+                    Select all that apply
+                  </p>
+
+                  <div className="space-y-3 mb-8">
+                    {USE_CASES.map(useCase => (
+                      <button
+                        key={useCase}
+                        type="button"
+                        onClick={() => toggleUseCase(useCase)}
+                        className={`w-full px-5 py-4 rounded-xl border-2 transition-all text-left flex items-center gap-3 ${
+                          useCases.includes(useCase)
+                            ? 'border-slate-900 bg-slate-50 text-slate-900'
+                            : 'border-slate-200 hover:border-slate-300 text-slate-700'
+                        }`}
+                      >
+                        <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
+                          useCases.includes(useCase)
+                            ? 'border-slate-900 bg-slate-900'
+                            : 'border-slate-300'
+                        }`}>
+                          {useCases.includes(useCase) && <Check size={16} className="text-white" />}
+                        </div>
+                        <span className="text-sm">{useCase}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setStep('referral')}
+                    disabled={useCases.length === 0}
+                    className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
+                  >
+                    Continue
+                    <ChevronRight size={20} />
+                  </button>
+
+                  <p className="text-xs text-slate-400 text-center mt-4">
+                    Step 2 of 5
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Step 3: Referral Source */}
+              {step === 'referral' && (
+                <motion.div
+                  key="referral"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
+                    How did you hear about VOIS?
+                  </h2>
+                  <p className="text-slate-600 mb-6 text-sm">
+                    This helps us understand our community
+                  </p>
+
+                  <div className="mb-8">
+                    <select
+                      value={referralSource}
+                      onChange={(e) => setReferralSource(e.target.value)}
+                      className="w-full px-5 py-4 rounded-xl border-2 border-slate-200 focus:border-slate-900 focus:outline-none transition-all bg-white text-base"
+                    >
+                      <option value="">Select one...</option>
+                      {REFERRAL_SOURCES.map(source => (
+                        <option key={source} value={source}>{source}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <button
+                    onClick={() => setStep('email')}
+                    disabled={!referralSource}
+                    className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
+                  >
+                    Continue
+                    <ChevronRight size={20} />
+                  </button>
+
+                  <p className="text-xs text-slate-400 text-center mt-4">
+                    Step 3 of 5
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Step 4: Email */}
               {step === 'email' && (
                 <motion.div
                   key="email"
@@ -185,15 +397,15 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-white mx-auto">
+                  <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-slate-900 text-white mx-auto">
                     <Mail size={28} />
                   </div>
 
-                  <h2 className="text-3xl font-serif text-slate-900 text-center mb-3">
-                    Join the Waitlist
+                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
+                    What's your email?
                   </h2>
-                  <p className="text-slate-600 text-center mb-8">
-                    Be the first to experience VOIS when we launch. We'll send you early access.
+                  <p className="text-slate-600 mb-6 text-sm">
+                    We'll send you early access when we launch
                   </p>
 
                   <form onSubmit={handleEmailSubmit}>
@@ -203,7 +415,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email"
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-slate-200 focus:border-violet-500 focus:outline-none text-lg transition-all"
+                        className="w-full px-5 py-4 rounded-2xl border-2 border-slate-200 focus:border-slate-900 focus:outline-none text-lg transition-all"
                         autoFocus
                       />
                       {error && (
@@ -220,145 +432,26 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     <button
                       type="submit"
                       disabled={isSubmitting || !email}
-                      className="w-full bg-gradient-to-r from-violet-600 to-purple-600 text-white py-4 rounded-2xl font-semibold text-lg hover:from-violet-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-violet-500/30 flex items-center justify-center gap-2"
+                      className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? (
                         <>
                           <Loader2 size={20} className="animate-spin" />
-                          Checking...
+                          Joining...
                         </>
                       ) : (
-                        <>
-                          Continue
-                          <ChevronRight size={20} />
-                        </>
+                        'Join Waitlist'
                       )}
                     </button>
                   </form>
 
-                  <p className="text-xs text-slate-400 text-center mt-6">
-                    We respect your privacy. Unsubscribe anytime.
+                  <p className="text-xs text-slate-400 text-center mt-4">
+                    Step 4 of 5
                   </p>
                 </motion.div>
               )}
 
-              {/* Step 2: Optional Questions */}
-              {step === 'questions' && (
-                <motion.div
-                  key="questions"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    Quick questions
-                  </h2>
-                  <p className="text-slate-600 mb-6 text-sm">
-                    Optional — helps us prioritize features you care about
-                  </p>
-
-                  {/* Question 1: Referral Source */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      How did you hear about VOIS?
-                    </label>
-                    <select
-                      value={referralSource}
-                      onChange={(e) => setReferralSource(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-500 focus:outline-none transition-all bg-white"
-                    >
-                      <option value="">Select one...</option>
-                      {REFERRAL_SOURCES.map(source => (
-                        <option key={source} value={source}>{source}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Question 2: Use Cases */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-semibold text-slate-700 mb-3">
-                      What will you use VOIS for? (select all)
-                    </label>
-                    <div className="space-y-2">
-                      {USE_CASES.map(useCase => (
-                        <button
-                          key={useCase}
-                          type="button"
-                          onClick={() => toggleUseCase(useCase)}
-                          className={`w-full px-4 py-3 rounded-xl border-2 transition-all text-left flex items-center gap-3 ${
-                            useCases.includes(useCase)
-                              ? 'border-violet-500 bg-violet-50 text-violet-900'
-                              : 'border-slate-200 hover:border-slate-300 text-slate-700'
-                          }`}
-                        >
-                          <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all ${
-                            useCases.includes(useCase)
-                              ? 'border-violet-500 bg-violet-500'
-                              : 'border-slate-300'
-                          }`}>
-                            {useCases.includes(useCase) && <Check size={14} className="text-white" />}
-                          </div>
-                          <span className="text-sm">{useCase}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Question 3: Preferred Device */}
-                  <div className="mb-8">
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Which device will you use most?
-                    </label>
-                    <select
-                      value={preferredDevice}
-                      onChange={(e) => setPreferredDevice(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-500 focus:outline-none transition-all bg-white"
-                    >
-                      <option value="">Select one...</option>
-                      {DEVICES.map(device => (
-                        <option key={device} value={device}>{device}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {error && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mb-4 text-sm text-red-600 text-center"
-                    >
-                      {error}
-                    </motion.p>
-                  )}
-
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleQuestionsSubmit(true)}
-                      disabled={isSubmitting}
-                      className="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 disabled:opacity-50 transition-all"
-                    >
-                      Skip
-                    </button>
-                    <button
-                      onClick={() => handleQuestionsSubmit(false)}
-                      disabled={isSubmitting}
-                      className="flex-1 bg-gradient-to-r from-violet-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:from-violet-700 hover:to-purple-700 disabled:opacity-50 transition-all shadow-lg shadow-violet-500/30 flex items-center justify-center gap-2"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 size={18} className="animate-spin" />
-                          Joining...
-                        </>
-                      ) : (
-                        'Submit'
-                      )}
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Step 3: Success */}
+              {/* Step 5: Success */}
               {step === 'success' && (
                 <motion.div
                   key="success"
@@ -382,13 +475,13 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   <p className="text-slate-600 mb-2">
                     We'll send you an email at
                   </p>
-                  <p className="text-violet-600 font-semibold mb-8">
+                  <p className="text-slate-900 font-semibold mb-8">
                     {email}
                   </p>
 
-                  <div className="bg-violet-50 rounded-2xl p-6 mb-8 border border-violet-100">
+                  <div className="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-200">
                     <p className="text-sm text-slate-700 leading-relaxed">
-                      💜 <strong>What's next?</strong><br/>
+                      ✓ <strong>What's next?</strong><br/>
                       We're launching soon! You'll be among the first to get early access and exclusive updates.
                     </p>
                   </div>

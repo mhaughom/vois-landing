@@ -928,7 +928,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                     touchAction: 'manipulation',
                     minHeight: '44px', // Ensure proper tap target size on iOS
                   }}
-                  className="try-demo-btn group relative bg-slate-100 text-slate-900 pl-3 pr-6 py-2.5 rounded-full text-sm sm:text-base font-medium flex items-center justify-center gap-2 sm:gap-3 border border-slate-200 hover:border-slate-900 transition-all shadow-lg"
+                  className="try-demo-btn group relative bg-slate-100 text-slate-900 pl-4 pr-8 py-3 rounded-full text-base font-medium flex items-center justify-center gap-3 border border-slate-200 hover:border-slate-900 transition-all shadow-lg"
                 >
                   {/* Inner container for overflow clipping (keeps shadow visible on outer button) */}
                   <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
@@ -936,7 +936,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
                     <span className="try-demo-fill absolute bg-slate-900 rounded-full" />
                   </span>
                   {/* Mic button circle - turns white on hover */}
-                  <span className="relative z-10 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-slate-900 group-hover:bg-white rounded-full transition-colors duration-200">
+                  <span className="relative z-10 flex items-center justify-center w-9 h-9 bg-slate-900 group-hover:bg-white rounded-full transition-colors duration-200">
                     <Mic size={14} className="text-white group-hover:text-slate-900 transition-colors duration-200" />
                   </span>
                   {/* Text - turns white on hover */}

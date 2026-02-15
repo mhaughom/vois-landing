@@ -20,21 +20,16 @@ interface NavbarProps {
   bgVariant?: number;
   bgIntensity?: number;
   onBgIntensityChange?: (value: number) => void;
+  onOpenWaitlist?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensity, onBgIntensityChange }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensity, onBgIntensityChange, onOpenWaitlist }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleGetEarlyAccess = () => {
-    Analytics.checkoutModalOpened('nav');
-    if (location.pathname !== '/') {
-      // Navigate to home first, then scroll
-      navigate('/?scroll=pricing');
-    } else {
-      // Already on home, just scroll
-      scrollToSection('pricing');
-    }
+    Analytics.waitlistModalOpened('navbar');
+    onOpenWaitlist?.();
   };
 
   return (
@@ -84,14 +79,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
           Vois for Work
         </motion.a>
 
-        {/* Get Started Button - unified CTA for both plans and login */}
+        {/* Join Waitlist Button - unified CTA for both plans and login */}
         <motion.button
           onClick={handleGetEarlyAccess}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className="hidden sm:block relative px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-black/30 transition-all duration-200 bg-slate-900/90 backdrop-blur-md hover:bg-slate-900 text-white border border-slate-700"
         >
-          Get Started
+          Join Waitlist
         </motion.button>
       </div>
 

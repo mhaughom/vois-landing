@@ -595,6 +595,10 @@ const App = () => {
         bgVariant={bgVariant}
         bgIntensity={bgIntensity}
         onBgIntensityChange={setBgIntensity}
+        onOpenWaitlist={() => {
+          setWaitlistSource('navbar');
+          setShowWaitlistModal(true);
+        }}
       />
 
       {/* Video Modal */}
