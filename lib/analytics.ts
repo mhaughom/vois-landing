@@ -221,9 +221,47 @@ export const Analytics = {
     posthog.identify(email, properties);
   },
 
-  // Waitlist funnel
+  // Waitlist funnel - Comprehensive tracking
   waitlistModalOpened: (source: string) => {
     capture('waitlist_modal_opened', { source });
+  },
+
+  waitlistStepViewed: (step: string, stepNumber: number) => {
+    capture('waitlist_step_viewed', { step, step_number: stepNumber });
+  },
+
+  waitlistQuestionAnswered: (question: string, answer: string | string[], isMultiSelect: boolean) => {
+    capture('waitlist_question_answered', {
+      question,
+      answer,
+      answer_count: Array.isArray(answer) ? answer.length : 1,
+      is_multi_select: isMultiSelect
+    });
+  },
+
+  waitlistAnswerToggled: (question: string, answer: string, isSelected: boolean) => {
+    capture('waitlist_answer_toggled', {
+      question,
+      answer,
+      action: isSelected ? 'selected' : 'deselected'
+    });
+  },
+
+  waitlistStepCompleted: (step: string, stepNumber: number, timeSpentSeconds: number, answers?: Record<string, any>) => {
+    capture('waitlist_step_completed', {
+      step,
+      step_number: stepNumber,
+      time_spent_seconds: timeSpentSeconds,
+      ...answers
+    });
+  },
+
+  waitlistStepAbandoned: (step: string, stepNumber: number, timeSpentSeconds: number) => {
+    capture('waitlist_step_abandoned', {
+      step,
+      step_number: stepNumber,
+      time_spent_seconds: timeSpentSeconds
+    });
   },
 
   waitlistEmailEntered: (source: string) => {
@@ -244,5 +282,15 @@ export const Analytics = {
 
   waitlistSkippedQuestions: () => {
     capture('waitlist_skipped_questions');
+  },
+
+  waitlistFunnelDropoff: (step: string, stepNumber: number, totalTimeSeconds: number, completedSteps: string[]) => {
+    capture('waitlist_funnel_dropoff', {
+      dropped_at_step: step,
+      step_number: stepNumber,
+      total_time_seconds: totalTimeSeconds,
+      completed_steps: completedSteps,
+      completion_rate: `${stepNumber}/5`
+    });
   },
 };

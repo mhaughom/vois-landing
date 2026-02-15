@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Check, Loader2, ChevronRight } from 'lucide-react';
 import { waitlistService, type WaitlistEntry } from '../lib/supabase';
@@ -62,8 +62,54 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
+  // Tracking state
+  const stepStartTime = useRef<number>(Date.now());
+  const modalOpenTime = useRef<number>(Date.now());
+  const completedSteps = useRef<string[]>([]);
+
+  // Track when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      modalOpenTime.current = Date.now();
+      stepStartTime.current = Date.now();
+      completedSteps.current = [];
+    }
+  }, [isOpen]);
+
+  // Track when step changes
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const stepNumber = ['useCases', 'userType', 'devices', 'referral', 'email'].indexOf(step) + 1;
+
+    if (step !== 'success') {
+      Analytics.waitlistStepViewed(step, stepNumber);
+      stepStartTime.current = Date.now();
+    }
+  }, [step, isOpen]);
+
+  // Helper to get time spent on current step
+  const getStepTimeSpent = () => {
+    return Math.round((Date.now() - stepStartTime.current) / 1000);
+  };
+
+  // Helper to get total time in funnel
+  const getTotalTimeSpent = () => {
+    return Math.round((Date.now() - modalOpenTime.current) / 1000);
+  };
+
   // Reset state when modal closes
   const handleClose = () => {
+    // Track abandonment if not on success step
+    if (step !== 'success') {
+      const stepNumber = ['useCases', 'userType', 'devices', 'referral', 'email'].indexOf(step) + 1;
+      const timeSpent = getStepTimeSpent();
+      const totalTime = getTotalTimeSpent();
+
+      Analytics.waitlistStepAbandoned(step, stepNumber, timeSpent);
+      Analytics.waitlistFunnelDropoff(step, stepNumber, totalTime, completedSteps.current);
+    }
+
     setStep('useCases');
     setEmail('');
     setUserType('');
@@ -79,22 +125,47 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+  // Helper to navigate to next step with tracking
+  const navigateToStep = (fromStep: Step, toStep: Step, answers?: Record<string, any>) => {
+    const stepNumber = ['useCases', 'userType', 'devices', 'referral', 'email'].indexOf(fromStep) + 1;
+    const timeSpent = getStepTimeSpent();
+
+    // Track step completion
+    Analytics.waitlistStepCompleted(fromStep, stepNumber, timeSpent, answers);
+
+    // Mark as completed
+    completedSteps.current.push(fromStep);
+
+    // Move to next step
+    setStep(toStep);
+  };
+
   // Toggle device selection
   const toggleDevice = (device: string) => {
+    const willBeSelected = !devices.includes(device);
+
     setDevices(prev =>
       prev.includes(device)
         ? prev.filter(d => d !== device)
         : [...prev, device]
     );
+
+    // Track the toggle
+    Analytics.waitlistAnswerToggled('devices', device, willBeSelected);
   };
 
   // Toggle use case selection
   const toggleUseCase = (useCase: string) => {
+    const willBeSelected = !useCases.includes(useCase);
+
     setUseCases(prev =>
       prev.includes(useCase)
         ? prev.filter(uc => uc !== useCase)
         : [...prev, useCase]
     );
+
+    // Track the toggle
+    Analytics.waitlistAnswerToggled('use_cases', useCase, willBeSelected);
   };
 
   // Handle email submission (final step before success)
@@ -227,7 +298,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </div>
 
                   <button
-                    onClick={() => setStep('userType')}
+                    onClick={() => {
+                      Analytics.waitlistQuestionAnswered('use_cases', useCases, true);
+                      navigateToStep('useCases', 'userType', { use_cases: useCases });
+                    }}
                     disabled={useCases.length === 0}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
@@ -262,7 +336,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                       <button
                         key={type}
                         type="button"
-                        onClick={() => setUserType(type)}
+                        onClick={() => {
+                          setUserType(type);
+                          Analytics.waitlistQuestionAnswered('user_type', type, false);
+                        }}
                         className={`w-full px-5 py-4 rounded-xl border-2 transition-all text-left ${
                           userType === type
                             ? 'border-slate-900 bg-slate-50 text-slate-900'
@@ -275,7 +352,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </div>
 
                   <button
-                    onClick={() => setStep('devices')}
+                    onClick={() => navigateToStep('userType', 'devices', { user_type: userType })}
                     disabled={!userType}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg flex items-center justify-center gap-2"
                   >
@@ -330,7 +407,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </div>
 
                   <button
-                    onClick={() => setStep('referral')}
+                    onClick={() => {
+                      Analytics.waitlistQuestionAnswered('devices', devices, true);
+                      navigateToStep('devices', 'referral', { devices });
+                    }}
                     disabled={devices.length === 0}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
@@ -363,7 +443,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   <div className="mb-8">
                     <select
                       value={referralSource}
-                      onChange={(e) => setReferralSource(e.target.value)}
+                      onChange={(e) => {
+                        setReferralSource(e.target.value);
+                        Analytics.waitlistQuestionAnswered('referral_source', e.target.value, false);
+                      }}
                       className="w-full px-5 py-4 rounded-xl border-2 border-slate-200 focus:border-slate-900 focus:outline-none transition-all bg-white text-base"
                     >
                       <option value="">Select one...</option>
@@ -374,7 +457,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </div>
 
                   <button
-                    onClick={() => setStep('email')}
+                    onClick={() => navigateToStep('referral', 'email', { referral_source: referralSource })}
                     disabled={!referralSource}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
