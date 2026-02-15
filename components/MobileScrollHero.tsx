@@ -9,12 +9,11 @@ import { useScreenOverlay } from '../hooks/useScreenOverlay';
 import { allWhyBenefits } from './HeroDiscoveryDock';
 
 // ─── Configuration ────────────────────────────────────────────────────────────
-// MOBILE OPTIMIZED: Load every 2nd frame from the 60-frame set for 2x faster loading
-const PHONE_FRAME_COUNT = 30;
-const WATCH_FRAME_COUNT = 30;
-const PHONE_FRAMES_PATH = '/frames/phone';
-const WATCH_FRAMES_PATH = '/frames/watch';
-const FRAME_SKIP = 2; // Load every 2nd frame (0, 2, 4, 6... instead of 0, 1, 2, 3...)
+const PHONE_FRAME_COUNT = 60;
+const WATCH_FRAME_COUNT = 60;
+// Use mobile-optimized frames (256x256 instead of 512x512 = 50-60% smaller)
+const PHONE_FRAMES_PATH = '/frames/phone-mobile';
+const WATCH_FRAMES_PATH = '/frames/watch-mobile';
 
 // ─── Category badge carousel components ──────────────────────────────────────
 const MobileCategoryBadge: React.FC<{ item: (typeof allWhyBenefits)[0] }> = ({ item }) => (
@@ -60,10 +59,8 @@ const MobileCategoryRow: React.FC<{
 };
 
 // ─── Frame preloader ──────────────────────────────────────────────────────────
-function preloadFrame(basePath: string, index: number, skipFrames = 1): Promise<HTMLImageElement> {
-  // When skipFrames > 1, we multiply the index to skip frames (e.g., skipFrames=2 loads every other frame)
-  const actualIndex = index * skipFrames;
-  const src = `${basePath}/frame_${String(actualIndex).padStart(3, '0')}.webp`;
+function preloadFrame(basePath: string, index: number): Promise<HTMLImageElement> {
+  const src = `${basePath}/frame_${String(index).padStart(3, '0')}.webp`;
   return new Promise<HTMLImageElement>((resolve) => {
     const img = new Image();
     img.onload = () => resolve(img);
@@ -77,10 +74,9 @@ function preloadFramesLazy(
   count: number,
   startIndex: number,
   onFrame: (index: number, img: HTMLImageElement) => void,
-  skipFrames: number = 1,
 ): void {
   let i = startIndex;
-  const BATCH_SIZE = 5; // Reduced from 15 to 5 for better mobile performance
+  const BATCH_SIZE = 8; // Moderate batch size for mobile
 
   const loadBatch = () => {
     if (i >= count) return;
@@ -91,15 +87,15 @@ function preloadFramesLazy(
     for (let j = 0; j < BATCH_SIZE && i < count; j++, i++) {
       const idx = i;
       batch.push(
-        preloadFrame(basePath, idx, skipFrames).then((img) => {
+        preloadFrame(basePath, idx).then((img) => {
           onFrame(idx, img);
         })
       );
     }
 
     Promise.all(batch).then(() => {
-      // Increased delay from 20ms to 50ms to reduce CPU strain on mobile
-      setTimeout(loadBatch, 50);
+      // Small delay to allow browser to process
+      setTimeout(loadBatch, 30);
     });
   };
 
@@ -387,10 +383,10 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
   useEffect(() => {
     // Load first frames immediately
-    console.log('🖼️ Starting to load frames (every ' + FRAME_SKIP + 'th frame)...');
+    console.log('🖼️ Starting to load frames...');
     Promise.all([
-      preloadFrame(PHONE_FRAMES_PATH, 0, FRAME_SKIP),
-      preloadFrame(WATCH_FRAMES_PATH, 0, FRAME_SKIP),
+      preloadFrame(PHONE_FRAMES_PATH, 0),
+      preloadFrame(WATCH_FRAMES_PATH, 0),
     ]).then(([phone0, watch0]) => {
       console.log('✅ First frames loaded:', { phone0, watch0 });
       phoneFramesRef.current[0] = phone0;
@@ -420,12 +416,12 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         phoneFramesRef.current[idx] = img;
         phoneLoadedRef.current = idx + 1;
         updateMaxProgress();
-      }, FRAME_SKIP);
+      });
       preloadFramesLazy(WATCH_FRAMES_PATH, WATCH_FRAME_COUNT, 1, (idx, img) => {
         watchFramesRef.current[idx] = img;
         watchLoadedRef.current = idx + 1;
         updateMaxProgress();
-      }, FRAME_SKIP);
+      });
     }).catch((err) => {
       console.error('❌ Failed to load frames:', err);
     });
@@ -563,15 +559,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
         }}
       >
 
-        {/* Fine film grain overlay - reduced for mobile performance */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            zIndex: 1,
-            opacity: 0.06,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          }}
-        />
+        {/* Film grain removed for better mobile performance */}
 
         {/* ── Headlines ──────────────────────────────────────────────── */}
         <motion.div
