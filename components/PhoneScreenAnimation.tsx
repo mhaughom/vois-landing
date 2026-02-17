@@ -60,6 +60,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
   // Track streaming data changes to rebuild DOM
   const lastStreamingTranscriptRef = useRef('');
   const lastStreamingItemsCountRef = useRef(0);
+  const wasStreamingResultsRef = useRef(false);
 
   // ── Build transcript spans for a scenario ──────────────────────────────
   const buildTranscript = useCallback((scenarioIndex: number) => {
@@ -179,18 +180,12 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
     if (!el) return;
 
     const { transcript, highlights } = globalState.demoState;
-    console.log('[PhoneAnim] 🏗️  Building transcript:', {
-      transcriptLength: transcript.length,
-      highlightCount: highlights?.length || 0,
-      highlights: highlights
-    });
 
     el.innerHTML = '';
     const spans: HTMLSpanElement[] = [];
 
     if (!highlights || highlights.length === 0) {
       // No highlights — just show plain transcript
-      console.log('[PhoneAnim] 📝 No highlights, showing plain text');
       const span = document.createElement('span');
       span.textContent = transcript;
       span.style.visibility = 'visible';
@@ -198,7 +193,6 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       spans.push(span);
       el.appendChild(span);
     } else {
-      console.log('[PhoneAnim] 🎨 Building transcript with', highlights.length, 'highlights');
       // Build segments from highlights
       const sorted = [...highlights].sort((a, b) => a.start - b.start);
       let cursor = 0;
@@ -329,16 +323,13 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
   // ── Main animation tick — rAF, direct DOM mutations only ───────────────
   const tick = useCallback(() => {
-    // DEBUG: Log every tick to verify function is running
-    console.log('[PhoneAnim] ⏱️ TICK running');
-
     // Update clock - show countdown during recording, normal time otherwise
     if (clockRef.current) {
       const demoState = globalState.demoState;
 
-      if (demoState.isRecording && demoState.elapsedSeconds !== undefined) {
+      if (demoState.isRecording && demoState.elapsed !== undefined) {
         // Show countdown from 30 seconds
-        const remaining = Math.max(0, 30 - demoState.elapsedSeconds);
+        const remaining = Math.max(0, 30 - demoState.elapsed);
         clockRef.current.textContent = `${remaining}s`;
         clockRef.current.style.color = remaining <= 5 ? '#ef4444' : '#1a1a1a'; // Red when < 5 seconds
         clockRef.current.style.fontWeight = '700';
@@ -357,11 +348,6 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
     // ── Check demo state ─────────────────────────────────────────────────
     const demoState = globalState.demoState;
-    console.log('[PhoneAnim] 🔍 Demo state:', {
-      isStreaming: demoState.isStreaming,
-      isRecording: demoState.isRecording,
-      transcript: demoState.transcript?.substring(0, 50) || '(empty)'
-    });
     const isDemoRecording = demoState.isRecording;
     const isDemoProcessing = demoState.isProcessing;
     const isDemoWaiting = demoState.isWaitingToStart;
@@ -377,10 +363,8 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
     // CRITICAL: Check isStreaming flag FIRST to show results panel during streaming
     if (isStreamingMode) {
       currentMode = 'results'; // Show results panel during streaming mode
-      console.log('[PhoneAnim] ✅ STREAMING MODE - Setting currentMode to RESULTS');
     } else if (isDemoRecording) {
       currentMode = 'recording'; // Show recording overlay for batch mode
-      console.log('[PhoneAnim] ⚠️ RECORDING MODE - Setting currentMode to RECORDING');
     } else if (isDemoProcessing) {
       currentMode = 'processing';
     } else if (hasDemoResults) {
@@ -391,26 +375,6 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       currentMode = 'scenario';
     }
 
-    console.log('[PhoneAnim] 🎯 Current mode:', currentMode, {
-      isStreamingMode,
-      isDemoRecording,
-      isDemoProcessing,
-      hasTranscript,
-      transcript: demoState.transcript?.substring(0, 30) || '(empty)'
-    });
-
-    // DEBUG: Log mode determination when recording
-    if (isDemoRecording && Math.random() < 0.02) {
-      console.log('[PhoneAnim] 🎬 Mode determination:', {
-        currentMode,
-        isStreamingMode,
-        isDemoRecording,
-        hasTranscript,
-        transcript: demoState.transcript,
-        transcriptLength: demoState.transcript.length,
-      });
-    }
-
     // ── Mode transitions ─────────────────────────────────────────────────
     if (currentMode !== demoModeRef.current) {
       const prevMode = demoModeRef.current;
@@ -418,6 +382,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
       if (currentMode === 'results' && !demoResultsBuiltRef.current) {
         demoResultsBuiltRef.current = true;
+        if (isStreamingMode) wasStreamingResultsRef.current = true;
         buildDemoTranscript();
         buildDemoCards();
         // Initialize tracking for streaming mode
@@ -431,6 +396,7 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         demoResultsRevealStart.current = null;
         lastStreamingTranscriptRef.current = '';
         lastStreamingItemsCountRef.current = 0;
+        wasStreamingResultsRef.current = false;
       }
 
       if (currentMode === 'scenario') {
@@ -438,13 +404,14 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         demoResultsRevealStart.current = null;
         lastStreamingTranscriptRef.current = '';
         lastStreamingItemsCountRef.current = 0;
+        wasStreamingResultsRef.current = false;
         // Force scenario rebuild on return
         currentScenarioRef.current = -1;
       }
     }
 
     // ── Streaming mode: rebuild DOM when data changes ─────────────────────
-    if (currentMode === 'results' && isStreamingMode) {
+    if (currentMode === 'results' && (isStreamingMode || wasStreamingResultsRef.current)) {
       const transcriptChanged = demoState.transcript !== lastStreamingTranscriptRef.current;
       const itemsChanged = demoState.items.length !== lastStreamingItemsCountRef.current;
 
@@ -576,8 +543,8 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
       const spans = segmentSpansRef.current[999];
 
-      // In streaming mode, show everything immediately (no reveal animation)
-      if (isStreamingMode && spans) {
+      // In streaming mode (or just finished streaming), show everything immediately (no reveal animation)
+      if ((isStreamingMode || wasStreamingResultsRef.current) && spans) {
         spans.forEach((span) => {
           span.style.opacity = '1';
         });

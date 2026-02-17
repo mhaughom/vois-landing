@@ -69,7 +69,7 @@ interface ApiResponse {
 interface TryNowDemoProps {
   onStartRecording?: () => void;
   onStopRecording?: () => void;
-  onStageChange?: (stage: DemoStage, controls: { stopRecording: () => void; reset: () => void; startNew: () => void }) => void;
+  onStageChange?: (stage: DemoStage, controls: { stopRecording: () => void; reset: () => void; startNew: () => void }, isRecording?: boolean) => void;
   hasCompletedDemo?: boolean;
 }
 
@@ -192,8 +192,8 @@ export const DemoSteps: React.FC<{
               </motion.div>
             )}
 
-            {/* Step 2 - Mobile: only during recording. Desktop: recording onwards */}
-            {(isMobile ? stage === 'recording' : (stage === 'recording' || stage === 'processing' || stage === 'results')) && (
+            {/* Step 2 - Mobile: during recording or streaming results. Desktop: recording onwards */}
+            {(isMobile ? (stage === 'recording' || (stage === 'results' && isActuallyRecording)) : (stage === 'recording' || stage === 'processing' || stage === 'results')) && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -475,6 +475,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   const [currentTip, setCurrentTip] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
   const [results, setResults] = useState<ApiResponse | null>(null);
+  const [isRecordingForParent, setIsRecordingForParent] = useState(false);
 
   // Store control functions in refs so they can be passed to parent
   const stopRecordingRef = useRef<() => void>(() => {});
@@ -494,9 +495,9 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       stopRecording: () => stopRecordingRef.current(),
       reset: () => resetRef.current(),
       startNew: () => startNewRef.current(),
-    });
+    }, isRecordingForParent);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stage]); // Only depend on stage, not onStageChange to avoid infinite loops
+  }, [stage, isRecordingForParent]); // Depend on stage and recording state
 
   // Refs for batch recording (fallback mode)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -543,6 +544,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     setDemoStreaming(false);
     setDemoAudioLevels(new Array(24).fill(0.1));
     setDemoElapsed(0);
+    setIsRecordingForParent(false);
   }, []);
 
   // Initialize streaming manager
@@ -1092,6 +1094,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
         setDemoWaitingToStart(false);
         setDemoRecording(true); // Keep this true for recording state
         setDemoElapsed(0);
+        setIsRecordingForParent(true);
 
         // Keep audio levels animating to show recording is active
         setDemoAudioLevels(new Array(24).fill(0.3));
@@ -1201,6 +1204,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       setDemoRecording(true);
       setDemoElapsed(0);
       setDemoFirstCardReceived(false); // Reset step 2 completion
+      setIsRecordingForParent(true);
       onStartRecording?.();
 
       // Start audio visualization
@@ -1278,6 +1282,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
       setDemoRecording(false);
       setDemoStreaming(false);
+      setIsRecordingForParent(false);
 
       // Calculate streaming duration
       const durationSeconds = Math.floor((Date.now() - recordingStartTimeRef.current) / 1000);
@@ -1337,6 +1342,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     }
 
     setDemoRecording(false);
+    setIsRecordingForParent(false);
     onStopRecording?.();
   }, [onStopRecording, elapsedTime]);
 

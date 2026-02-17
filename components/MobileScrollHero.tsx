@@ -128,6 +128,7 @@ interface MobileScrollHeroProps {
   demoStage: DemoStage;
   demoControls: { stopRecording: () => void; reset: () => void; startNew: () => void } | null;
   hasCompletedDemo: boolean;
+  demoIsRecording?: boolean;
   chatOpened: boolean;
   chatMessageCount: number;
   allCardsVerified: boolean;
@@ -148,6 +149,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   demoStage,
   demoControls,
   hasCompletedDemo,
+  demoIsRecording,
   chatOpened,
   chatMessageCount,
   allCardsVerified,
@@ -235,8 +237,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
   const isDemoActive = demoStage !== 'idle';
   const [skipped, setSkipped] = useState(false);
-  // Always use scroll-driven mode so Safari address bar collapses naturally
-  const scrollDriven = true;
+  // Only switch to scroll-driven mode when gate passed AND demo is not running
+  const scrollDriven = gatePassed && !isDemoActive;
 
   // ── Touch / wheel event handling ───────────────────────────────────────────
   // Swipe up on the hero drives the animation from 0→1.
@@ -341,7 +343,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     };
   }, [scrollDriven, progress]);
 
-  // ── Scroll-driven animation ────────────────────────────────────────────────
+  // ── Scroll-driven animation after gate passes ─────────────────────────────
   // Maps scroll position directly to animation progress:
   //   scrollY 0        → progress 0  (devices at initial position)
   //   scrollY = 1×vh   → progress 1  (devices fully scaled/positioned)
@@ -354,23 +356,28 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
     const vh = window.innerHeight;
 
+    // If animation was already complete (user swiped through or clicked Skip),
+    // jump past the entire 200dvh hero so they land on the content below.
+    // The hero is no longer visible, so background/frame updates are invisible.
+    // Otherwise sync scroll to wherever the touch-driven phase left off.
+    if (progressRef.current >= 1) {
+      window.scrollTo(0, vh * 2);
+    } else if (progressRef.current > 0 && window.scrollY === 0) {
+      window.scrollTo({ top: progressRef.current * vh });
+    }
+
     const handleScroll = () => {
       const maxP = maxProgressRef.current;
       const p = Math.min(maxP, Math.max(0, window.scrollY / vh));
       progressRef.current = p;
       progress.set(p);
-
-      // Auto-pass the gate when hero animation completes via scroll
-      if (p >= 1 && !gatePassed && onSkipDemo) {
-        onSkipDemo();
-      }
     };
 
     handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrollDriven, progress, gatePassed, onSkipDemo]);
+  }, [scrollDriven, progress]);
 
 
   // ── Preload frames ─────────────────────────────────────────────────────────
@@ -826,7 +833,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
             minHeight: 'calc(4rem + env(safe-area-inset-bottom, 0px))',
           }}
         >
-          {hasCompletedDemo && (demoStage === 'idle' || demoStage === 'results') ? (
+          {hasCompletedDemo && (demoStage === 'idle' || (demoStage === 'results' && !demoIsRecording)) ? (
             <div className="flex flex-col items-center gap-3">
               <motion.button
                 whileTap={{ scale: 0.98 }}
@@ -859,11 +866,18 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                   if (skipped) return;
                   setSkipped(true);
 
-                  // Smooth-scroll past the hero (2 × vh). The scroll handler
-                  // will naturally drive the animation to progress 1 and
-                  // auto-trigger the gate pass via onSkipDemo().
-                  const vh = window.innerHeight;
-                  window.scrollTo({ top: vh * 2, behavior: 'smooth' });
+                  // Mark animation as complete so the scroll-driven
+                  // useEffect will position correctly after layout change.
+                  // Don't call progress.set(1) here — that would instantly
+                  // shift the background gradient. Let the scroll-driven
+                  // effect update progress naturally when scroll jumps.
+                  progressRef.current = 1;
+                  animationDoneRef.current = true;
+                  setHeroComplete(true);
+
+                  // Pass the gate immediately — the scroll-driven useEffect
+                  // handles scrolling after the layout updates
+                  onSkipDemo?.();
                 }}
                 disabled={skipped}
                 style={{

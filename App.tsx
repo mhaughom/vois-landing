@@ -239,6 +239,7 @@ const App = () => {
   const [demoStage, setDemoStage] = useState<DemoStage>('idle');
   const [demoControls, setDemoControls] = useState<{ stopRecording: () => void; reset: () => void; startNew: () => void } | null>(null);
   const [hasCompletedDemo, setHasCompletedDemo] = useState(false);
+  const [demoIsRecording, setDemoIsRecording] = useState(false);
   const [chatOpened, setChatOpened] = useState(false);
   const [chatMessageCount, setChatMessageCount] = useState(0);
   const [allCardsVerified, setAllCardsVerified] = useState(false);
@@ -248,7 +249,7 @@ const App = () => {
 
   // Track when user completes demo (sees results) and reset chat state on new recording
   useEffect(() => {
-    if (demoStage === 'results') {
+    if (demoStage === 'results' && !demoIsRecording) {
       setHasCompletedDemo(true);
       setDemoGatePassed(true);
     }
@@ -257,13 +258,14 @@ const App = () => {
       Analytics.timeToAction('demo_start', Math.round(elapsed));
     }
     // Reset chat states when a new recording starts so steps show again
-    if (demoStage === 'recording') {
+    // In streaming mode, stage is 'results' while recording, so also check demoIsRecording
+    if (demoStage === 'recording' || (demoStage === 'results' && demoIsRecording)) {
       setChatOpened(false);
       setChatMessageCount(0);
       setAllCardsVerified(false);
       resetCardVerifications();
     }
-  }, [demoStage]);
+  }, [demoStage, demoIsRecording]);
 
   // When hero video appears, try to play with sound; fall back to muted if browser blocks it
   useEffect(() => {
@@ -580,7 +582,7 @@ const App = () => {
   return (
     <div
       className="relative w-full min-h-screen font-sans scroll-smooth"
-      style={undefined}
+      style={isMobile && !demoGatePassed ? { height: '100dvh', overflow: 'hidden' } : undefined}
     >
       {/* Top white gradient overlay — only on desktop for Safari Liquid Glass toolbar */}
       {!isMobile && (
@@ -731,12 +733,14 @@ const App = () => {
             bgIntensity={bgIntensity}
             onSkipDemo={() => setDemoGatePassed(true)}
             gatePassed={demoGatePassed}
+            demoIsRecording={demoIsRecording}
             tryNowElement={
               <TryNowDemo
                 hasCompletedDemo={hasCompletedDemo}
-                onStageChange={(stage, controls) => {
+                onStageChange={(stage, controls, isRecording) => {
                   setDemoStage(stage);
                   setDemoControls(controls);
+                  if (isRecording !== undefined) setDemoIsRecording(isRecording);
                 }}
               />
             }
@@ -1039,9 +1043,10 @@ const App = () => {
                     <div className={hasCompletedDemo && (demoStage === 'idle' || demoStage === 'results') ? 'hidden' : ''}>
                       <TryNowDemo
                         hasCompletedDemo={hasCompletedDemo}
-                        onStageChange={(stage, controls) => {
+                        onStageChange={(stage, controls, isRecording) => {
                           setDemoStage(stage);
                           setDemoControls(controls);
+                          if (isRecording !== undefined) setDemoIsRecording(isRecording);
                         }}
                       />
                     </div>
@@ -1122,7 +1127,7 @@ const App = () => {
         )}
 
         {/* Gate: on mobile, rest of site hidden until demo completed or skipped */}
-        <div>
+        <div style={isMobile && !demoGatePassed ? { display: 'none' } : undefined}>
 
         {/* THE UNIVERSAL LIE - Cinematic, borderless, Apple-style */}
         <section
