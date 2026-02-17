@@ -14,7 +14,7 @@ const sections: { id: LegalSection; title: string; icon: React.ReactNode }[] = [
 ];
 
 // Last updated date
-const LAST_UPDATED = 'February 4, 2026';
+const LAST_UPDATED = 'February 17, 2026';
 
 interface LegalProps {
   defaultSection?: LegalSection;
@@ -314,25 +314,25 @@ const TermsOfService = () => (
               <td className="p-3 border border-slate-200"><strong>Personal Monthly</strong></td>
               <td className="p-3 border border-slate-200">$14.99</td>
               <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
+              <td className="p-3 border border-slate-200">No free trial</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Personal Annual</strong></td>
               <td className="p-3 border border-slate-200">$79.99 (~$6.67/month)</td>
               <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">1-week free trial</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Work Monthly</strong></td>
               <td className="p-3 border border-slate-200">$34.99</td>
               <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
+              <td className="p-3 border border-slate-200">No free trial</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Work Annual</strong></td>
               <td className="p-3 border border-slate-200">$249.99 (~$20.83/month)</td>
               <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">1-week free trial</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
             </tr>
           </tbody>
         </table>
@@ -345,8 +345,8 @@ const TermsOfService = () => (
       <ImportantBox>
         <p className="font-semibold mb-2">Auto-Renewal Terms</p>
         <ul className="list-disc list-inside space-y-1 mt-2">
-          <li>Payment will be charged to your Apple ID at confirmation of purchase.</li>
-          <li>Free trial periods (where offered) begin at the time of purchase. If you do not cancel before the free trial ends, your subscription will automatically renew and you will be charged the subscription price.</li>
+          <li>Payment will be charged to your Apple ID at confirmation of purchase (in-app purchases) or via Stripe (web purchases).</li>
+          <li>Free trial periods (available on annual plans only) begin at the time of purchase. If you do not cancel before the free trial ends, your subscription will automatically renew and you will be charged the subscription price.</li>
           <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period.</li>
           <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the rate of your selected plan.</li>
           <li>You can manage and cancel subscriptions in your Apple ID Account Settings at any time.</li>
@@ -513,7 +513,7 @@ const PrivacyPolicy = () => (
       <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
         <li>Email address (for account creation and communication)</li>
         <li>Name (optional, for personalization)</li>
-        <li>Payment information (processed by Stripe; we do not store card details)</li>
+        <li>Payment information (processed by Apple for in-app purchases and Stripe for web purchases; we do not store card details)</li>
       </ul>
 
       <h4 className="font-semibold text-slate-900 mb-2">Usage Data:</h4>
@@ -559,8 +559,8 @@ const PrivacyPolicy = () => (
           Vois employs a <strong>local-first architecture</strong>. This means:
         </p>
         <ul className="list-disc list-inside space-y-1 mt-2">
-          <li>Voice recordings are processed and then stored on your device or your personal cloud database.</li>
-          <li>We do <strong>not</strong> retain audio files on our servers after processing.</li>
+          <li>Voice recordings are processed and stored securely in your personal cloud database (Supabase).</li>
+          <li>Audio files are retained to enable playback and reprocessing. You can delete your recordings at any time from within the app.</li>
           <li>Your notes and transcripts sync securely to your account but remain encrypted.</li>
         </ul>
       </ImportantBox>
@@ -581,6 +581,11 @@ const PrivacyPolicy = () => (
             <tr>
               <td className="p-3 border border-slate-200"><strong>OpenAI</strong></td>
               <td className="p-3 border border-slate-200">AI Intelligence (Summarization, Chat)</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Anthropic</strong></td>
+              <td className="p-3 border border-slate-200">AI Intelligence (Chat, Analysis, Automation)</td>
               <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
             </tr>
             <tr>
@@ -807,25 +812,25 @@ const EULA = () => (
               <td className="p-3 border border-slate-200"><strong>Personal Monthly</strong></td>
               <td className="p-3 border border-slate-200">$14.99</td>
               <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
+              <td className="p-3 border border-slate-200">No free trial</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Personal Annual</strong></td>
               <td className="p-3 border border-slate-200">$79.99 (~$6.67/month)</td>
               <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">1-week free trial</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Work Monthly</strong></td>
               <td className="p-3 border border-slate-200">$34.99</td>
               <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
+              <td className="p-3 border border-slate-200">No free trial</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Work Annual</strong></td>
               <td className="p-3 border border-slate-200">$249.99 (~$20.83/month)</td>
               <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">1-week free trial</td>
+              <td className="p-3 border border-slate-200">3-day free trial</td>
             </tr>
           </tbody>
         </table>
