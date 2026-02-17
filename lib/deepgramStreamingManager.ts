@@ -39,6 +39,7 @@ export class DeepgramStreamingManager {
   private lastProcessedTranscript = ''; // Track what we've already extracted from
   private pendingConsolidation = false; // Track if we need to consolidate items
   private consolidationInterval: NodeJS.Timeout | null = null; // Recurring consolidation timer
+  private actualSampleRate = 16000; // Will be updated to AudioContext's actual rate
 
   constructor(deepgramKey: string, openaiKey: string) {
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
@@ -69,29 +70,44 @@ export class DeepgramStreamingManager {
       this.lastProcessedTranscript = '';
       console.log('[Streaming] 🧹 Cleared previous transcript and items');
 
-      // 1. Get microphone access
+      // 1. Get microphone access (with iOS fallback)
       console.log('[Streaming] 🔍 Requesting microphone access...');
-      this.mediaStream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          channelCount: 1,
-          sampleRate: 16000,        // Request 16kHz to match what we'll send to DeepGram
-          echoCancellation: true,   // Enable for better speech quality
-          noiseSuppression: true,   // Enable to filter background noise
-          autoGainControl: true,    // Enable to ensure audible levels
-        },
-      });
+      try {
+        this.mediaStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            channelCount: 1,
+            sampleRate: 16000,
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+          },
+        });
+      } catch (constraintErr) {
+        // iOS Safari rejects sampleRate constraint — retry without it
+        console.warn('[Streaming] getUserMedia failed with sampleRate constraint, retrying without it', constraintErr);
+        try {
+          this.mediaStream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+              echoCancellation: true,
+              noiseSuppression: true,
+            },
+          });
+        } catch (basicErr) {
+          // Last resort: simplest possible constraint
+          console.warn('[Streaming] getUserMedia failed again, trying audio:true', basicErr);
+          this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        }
+      }
 
       console.log('[Streaming] ✅ Microphone access granted');
       const trackSettings = this.mediaStream.getAudioTracks()[0].getSettings();
       console.log('[Streaming] 🎙️ Audio track settings:', trackSettings);
-      const micSampleRate = trackSettings.sampleRate || 48000;
-      console.log('[Streaming] 🎙️ Native sample rate:', micSampleRate);
 
-      // 2. Create AudioContext matching microphone sample rate
-      // Force to 16kHz for DeepGram compatibility
-      this.audioContext = new AudioContext({ sampleRate: 16000 });
-      console.log('[Streaming] 🎵 AudioContext created');
-      console.log('[Streaming] 🎵 AudioContext sample rate:', this.audioContext.sampleRate);
+      // 2. Create AudioContext — let the browser pick native sample rate
+      // iOS Safari ignores custom sampleRate; using native rate avoids resampling issues
+      this.audioContext = new AudioContext();
+      this.actualSampleRate = this.audioContext.sampleRate;
+      console.log('[Streaming] 🎵 AudioContext created at', this.actualSampleRate, 'Hz');
       console.log('[Streaming] 🎵 AudioContext state:', this.audioContext.state);
 
       // Resume if suspended (required for some browsers)
@@ -133,8 +149,8 @@ export class DeepgramStreamingManager {
   private async connectDeepGram(): Promise<void> {
     console.log('[Streaming] 🌐 Connecting to DeepGram...');
 
-    // Use 16kHz throughout the pipeline
-    const sampleRate = 16000;
+    // Use the actual AudioContext sample rate (may be 16kHz, 44.1kHz, or 48kHz)
+    const sampleRate = this.actualSampleRate;
 
     console.log('[Streaming] 📝 DeepGram config:', {
       model: 'nova-2',
