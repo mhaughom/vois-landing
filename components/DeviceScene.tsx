@@ -127,24 +127,24 @@ function useResponsiveDeviceLayout() {
       // Mobile: Stack vertically, center and scale down significantly
       return {
         phone: {
-          position: new THREE.Vector3(0.25, 0.05, 0),
-          scale: 0.38,
+          position: new THREE.Vector3(0.1, 0.05, 0),
+          scale: 0.76,
         },
         watch: {
-          position: new THREE.Vector3(-0.15, -0.45, 0.3),
-          scale: 0.12,
+          position: new THREE.Vector3(-0.3, -0.55, 0.3),
+          scale: 0.24,
         },
       };
     } else if (isTablet) {
       // Tablet: Slightly offset, medium scale
       return {
         phone: {
-          position: new THREE.Vector3(0.4, -0.02, -0.1),
-          scale: 0.45,
+          position: new THREE.Vector3(0.25, -0.02, -0.1),
+          scale: 0.90,
         },
         watch: {
-          position: new THREE.Vector3(0.05, -0.38, 0.35),
-          scale: 0.14,
+          position: new THREE.Vector3(-0.1, -0.48, 0.35),
+          scale: 0.28,
         },
       };
     } else if (isSmallDesktop) {
@@ -152,11 +152,11 @@ function useResponsiveDeviceLayout() {
       return {
         phone: {
           position: new THREE.Vector3(0.5, -0.03, -0.15),
-          scale: 0.5,
+          scale: 1.0,
         },
         watch: {
-          position: new THREE.Vector3(0.1, -0.36, 0.38),
-          scale: 0.15,
+          position: new THREE.Vector3(0.1, -0.45, 0.38),
+          scale: 0.30,
         },
       };
     } else {
@@ -164,11 +164,11 @@ function useResponsiveDeviceLayout() {
       return {
         phone: {
           position: new THREE.Vector3(0.6, -0.05, -0.2),
-          scale: 0.55,
+          scale: 1.1,
         },
         watch: {
-          position: new THREE.Vector3(0.15, -0.35, 0.4),
-          scale: 0.17,
+          position: new THREE.Vector3(0.15, -0.44, 0.4),
+          scale: 0.34,
         },
       };
     }
@@ -313,7 +313,7 @@ const getHitButton = (uvX: number, uvY: number, currentScreen: PhoneScreen): Cli
 
   // Dynamic card verify/decline button detection (demo results on stream screen)
   const demoItems = demoState.items;
-  const hasDemoResults = demoItems.length > 0 && !demoState.isRecording && !demoState.isProcessing && demoState.transcript.length > 0;
+  const hasDemoResults = demoItems.length > 0 && demoState.transcript.length > 0;
   if (hasDemoResults && currentScreen === 'stream') {
     // Card layout constants matching the draw code (canvas 512x1024)
     const W = 512, H = 1024;
@@ -896,12 +896,11 @@ function SceneContent() {
   }, [roundRect]);
 
   // Function to draw the phone transcription screen - with highlights and extracted items
-  const drawPhoneScreen = useCallback((ctx: CanvasRenderingContext2D, width: number, height: number, _isRecording: boolean, _timer: number) => {
+  const drawPhoneScreen = useCallback((ctx: CanvasRenderingContext2D, width: number, height: height, _isRecording: boolean, _timer: number) => {
     const now = Date.now();
     const demoState = globalState.demoState;
-    // Only enter demo mode on phone if PHONE is the active device (not watch)
-    const isPhoneActiveDemo = demoState.activeDevice === 'phone' && (demoState.isRecording || demoState.isProcessing);
-    const isDemoMode = isPhoneActiveDemo;
+    // isDemoMode not needed anymore - we always show results directly with streaming
+    const isDemoMode = false;
     const { scenario, elapsed, fullTranscript } = getScenarioState();
     const transcriptSegments = scenario.segments;
     const padding = width * 0.07;
@@ -1382,13 +1381,9 @@ function SceneContent() {
     const panelRadius = 20;
 
     // === LOCK SCREEN (iOS style with wallpaper, time, date) ===
-    // Skip lockscreen if phone is actively recording, processing, or has results (let those UIs show instead)
-    // Also skip if watch is processing (phone shows processing UI)
-    const isPhoneRecordingActive = demoState.isRecording && demoState.activeDevice === 'phone';
-    const isPhoneProcessingActive = demoState.isProcessing && demoState.activeDevice === 'phone';
-    const isWatchProcessingForPhone = demoState.isProcessing && demoState.activeDevice === 'watch';
-    const phoneHasDemoResults = demoState.activeDevice === 'phone' && demoState.transcript && demoState.transcript.length > 0 && !demoState.isRecording && !demoState.isProcessing;
-    if (phoneScreen === 'lockscreen' && !isPhoneRecordingActive && !isPhoneProcessingActive && !isWatchProcessingForPhone && !phoneHasDemoResults) {
+    // Skip lockscreen if demo has results to show (regardless of which device is recording)
+    const phoneHasDemoResults = demoState.transcript && demoState.transcript.length > 0;
+    if (phoneScreen === 'lockscreen' && !phoneHasDemoResults) {
       // Draw wallpaper background
       const wallpaper = lockscreenWallpaperRef.current;
       if (wallpaper) {
@@ -1637,7 +1632,7 @@ function SceneContent() {
         title: string;
         preview: string;
         transcript: string;
-        items: { type: string; content: string; icon: string }[];
+        items: { type: string; content: string; rawText?: string; icon: string }[];
         tags: { iconType: string; label: string; color: string }[];
       }
 
@@ -1649,10 +1644,10 @@ function SceneContent() {
           preview: 'Okay so today I need to call mom about...',
           transcript: 'Okay so today I need to call mom about her birthday dinner on Saturday. Also need to pick up groceries and finish the quarterly report before the meeting at 3pm.',
           items: [
-            { type: 'task', content: 'Call mom about birthday dinner', icon: '✓' },
-            { type: 'task', content: 'Pick up groceries', icon: '✓' },
-            { type: 'task', content: 'Finish quarterly report', icon: '✓' },
-            { type: 'event', content: 'Meeting at 3pm', icon: '📅' }
+            { type: 'task', content: 'Call mom about birthday dinner', rawText: 'call mom about her birthday dinner', icon: '✓' },
+            { type: 'task', content: 'Pick up groceries', rawText: 'pick up groceries', icon: '✓' },
+            { type: 'task', content: 'Finish quarterly report', rawText: 'finish the quarterly report', icon: '✓' },
+            { type: 'event', content: 'Meeting at 3pm', rawText: 'the meeting at 3pm', icon: '📅' }
           ],
           tags: [{ iconType: 'tasks', label: 'Tasks', color: '#22c55e' }, { iconType: 'calendar', label: 'Events', color: '#14b8a6' }]
         },
@@ -1663,8 +1658,8 @@ function SceneContent() {
           preview: 'I was thinking we could add a feature...',
           transcript: 'I was thinking we could add a feature where users can share their notes with family members. Like a shared grocery list that syncs automatically.',
           items: [
-            { type: 'idea', content: 'Family sharing feature for notes', icon: '💡' },
-            { type: 'idea', content: 'Shared grocery list with auto-sync', icon: '💡' }
+            { type: 'idea', content: 'Family sharing feature for notes', rawText: 'share their notes with family members', icon: '💡' },
+            { type: 'idea', content: 'Shared grocery list with auto-sync', rawText: 'a shared grocery list that syncs automatically', icon: '💡' }
           ],
           tags: [{ iconType: 'magic', label: 'Ideas', color: '#f59e0b' }]
         },
@@ -1675,9 +1670,9 @@ function SceneContent() {
           preview: 'So this weekend Sarah and I are going to...',
           transcript: 'So this weekend Sarah and I are going to that new Italian place on Saturday night. Need to make a reservation for 7pm. Sunday we have brunch with the Johnsons at 11.',
           items: [
-            { type: 'event', content: 'Dinner at Italian restaurant - Saturday 7pm', icon: '📅' },
-            { type: 'task', content: 'Make restaurant reservation', icon: '✓' },
-            { type: 'event', content: 'Brunch with Johnsons - Sunday 11am', icon: '📅' }
+            { type: 'event', content: 'Dinner at Italian restaurant - Saturday 7pm', rawText: 'going to that new Italian place on Saturday night', icon: '📅' },
+            { type: 'task', content: 'Make restaurant reservation', rawText: 'make a reservation for 7pm', icon: '✓' },
+            { type: 'event', content: 'Brunch with Johnsons - Sunday 11am', rawText: 'brunch with the Johnsons at 11', icon: '📅' }
           ],
           tags: [{ iconType: 'calendar', label: 'Events', color: '#14b8a6' }]
         },
@@ -1688,20 +1683,21 @@ function SceneContent() {
           preview: 'Remember to take vitamins every morning...',
           transcript: 'Remember to take vitamins every morning and drink more water throughout the day. Also need to schedule that dentist appointment I keep putting off.',
           items: [
-            { type: 'reminder', content: 'Take vitamins every morning', icon: '🔔' },
-            { type: 'reminder', content: 'Drink more water', icon: '🔔' },
-            { type: 'task', content: 'Schedule dentist appointment', icon: '✓' }
+            { type: 'reminder', content: 'Take vitamins every morning', rawText: 'take vitamins every morning', icon: '🔔' },
+            { type: 'reminder', content: 'Drink more water', rawText: 'drink more water throughout the day', icon: '🔔' },
+            { type: 'task', content: 'Schedule dentist appointment', rawText: 'schedule that dentist appointment', icon: '✓' }
           ],
           tags: [{ iconType: 'messages', label: 'Reminders', color: '#8b5cf6' }]
         },
       ];
 
       // If demo has results, add them as the first card
-      if (demoState.transcript && demoState.transcript.length > 0 && !demoState.isRecording && !demoState.isProcessing) {
+      if (demoState.transcript && demoState.transcript.length > 0) {
         const demoTags: { iconType: string; label: string; color: string }[] = [];
         const demoItems = (demoState.items || []).map(item => ({
           type: item.type,
           content: item.content,
+          rawText: item.rawText || item.content, // Preserve rawText for proper highlighting
           icon: item.icon || '•'
         }));
         if (demoItems.length > 0) {
@@ -2391,10 +2387,90 @@ function SceneContent() {
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
 
-      // Word wrap and highlight matching words
+      // Build phrase-based highlights (same algorithm as streaming demo)
+      const buildHighlights = () => {
+        const transcriptLower = transcript.toLowerCase();
+        const highlights: { start: number; end: number; color: string }[] = [];
+
+        for (const item of cardItems) {
+          const rawText = (item.rawText || item.content || '').toLowerCase();
+
+          // Try 1: Exact match
+          let idx = transcriptLower.indexOf(rawText);
+          if (idx !== -1) {
+            highlights.push({
+              start: idx,
+              end: idx + rawText.length,
+              color: categoryHighlights[item.type?.toLowerCase()] || categoryHighlights.note
+            });
+            continue;
+          }
+
+          // Try 2: Progressive partial match with extension
+          const coreWords = rawText.trim().split(/\s+/);
+          if (coreWords.length >= 3) {
+            let found = false;
+            for (let wordCount = coreWords.length; wordCount >= Math.min(4, coreWords.length); wordCount--) {
+              const searchPhrase = coreWords.slice(0, wordCount).join(' ');
+              const phraseIdx = transcriptLower.indexOf(searchPhrase);
+
+              if (phraseIdx !== -1) {
+                let endPos = phraseIdx + searchPhrase.length;
+
+                // Try to extend to include remaining words
+                if (wordCount < coreWords.length) {
+                  const remainingWords = coreWords.slice(wordCount);
+                  for (const word of remainingWords) {
+                    const extendSearch = transcriptLower.substring(endPos, endPos + 50);
+                    const wordPos = extendSearch.indexOf(word);
+                    if (wordPos !== -1 && wordPos < 10) {
+                      endPos = endPos + wordPos + word.length;
+                    } else {
+                      break;
+                    }
+                  }
+                }
+
+                highlights.push({
+                  start: phraseIdx,
+                  end: endPos,
+                  color: categoryHighlights[item.type?.toLowerCase()] || categoryHighlights.note
+                });
+                found = true;
+                break;
+              }
+            }
+            if (found) continue;
+          }
+
+          // Try 3: Minimum match (first 3-4 words)
+          if (coreWords.length >= 3) {
+            for (let wordCount = Math.min(4, coreWords.length); wordCount >= 3; wordCount--) {
+              const searchPhrase = coreWords.slice(0, wordCount).join(' ');
+              const phraseIdx = transcriptLower.indexOf(searchPhrase);
+
+              if (phraseIdx !== -1) {
+                highlights.push({
+                  start: phraseIdx,
+                  end: phraseIdx + searchPhrase.length,
+                  color: categoryHighlights[item.type?.toLowerCase()] || categoryHighlights.note
+                });
+                break;
+              }
+            }
+          }
+        }
+
+        return highlights;
+      };
+
+      const highlights = buildHighlights();
+
+      // Render transcript with word wrapping and highlights
       const words = transcript.split(' ');
       let curX = textX;
       let curY = textStartY;
+      let charPos = 0;
 
       for (const word of words) {
         const wordW = ctx.measureText(word + ' ').width;
@@ -2405,19 +2481,18 @@ function SceneContent() {
           if (curY > transPanelY + transPanelH - panelPadding) break;
         }
 
-        // Check if word matches any item content
-        let highlightColor: string | null = null;
-        for (const item of cardItems) {
-          const itemWords = (item.content || '').toLowerCase().split(' ');
-          if (itemWords.some(iw => word.toLowerCase().includes(iw) && iw.length > 3)) {
-            highlightColor = categoryHighlights[item.type?.toLowerCase()] || categoryHighlights.note;
-            break;
-          }
-        }
+        // Check if this word falls within any highlight range
+        const wordStart = charPos;
+        const wordEnd = charPos + word.length;
+        const matchingHighlight = highlights.find(h =>
+          (wordStart >= h.start && wordStart < h.end) ||
+          (wordEnd > h.start && wordEnd <= h.end) ||
+          (wordStart <= h.start && wordEnd >= h.end)
+        );
 
         // Draw highlight if matched
-        if (highlightColor) {
-          ctx.fillStyle = highlightColor;
+        if (matchingHighlight) {
+          ctx.fillStyle = matchingHighlight.color;
           roundRect(ctx, curX - 3, curY - 2, wordW + 2, textSize + 6, 4);
           ctx.fill();
         }
@@ -2426,6 +2501,7 @@ function SceneContent() {
         ctx.fillStyle = '#374151';
         ctx.fillText(word + ' ', curX, curY);
         curX += wordW;
+        charPos += word.length + 1; // +1 for space
       }
 
       // === ACTION CARDS PANEL ===
@@ -2696,12 +2772,32 @@ function SceneContent() {
         ctx.stroke();
       }
 
-      // Microphone icon (scales with button)
+      // VOIS logo icon (three vertical bars) - scales with button
       ctx.fillStyle = '#ffffff';
-      ctx.font = `${height * 0.1 * hoverScale}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('🎙️', width / 2, btnCenterY);
+      const logoSize = height * 0.08 * hoverScale;
+      const logoX = width / 2;
+      const logoY = btnCenterY;
+
+      // Draw three bars (like the VOIS logo)
+      ctx.save();
+      ctx.translate(logoX, logoY);
+
+      // Left bar (medium height)
+      ctx.beginPath();
+      ctx.roundRect(-logoSize * 0.5, -logoSize * 0.35, logoSize * 0.18, logoSize * 0.7, logoSize * 0.09);
+      ctx.fill();
+
+      // Center bar (tallest)
+      ctx.beginPath();
+      ctx.roundRect(-logoSize * 0.09, -logoSize * 0.5, logoSize * 0.18, logoSize, logoSize * 0.09);
+      ctx.fill();
+
+      // Right bar (shortest)
+      ctx.beginPath();
+      ctx.roundRect(logoSize * 0.32, -logoSize * 0.2, logoSize * 0.18, logoSize * 0.4, logoSize * 0.09);
+      ctx.fill();
+
+      ctx.restore();
 
       // "Record" label below button (brighter on hover)
       ctx.fillStyle = isHovered ? '#dc2626' : '#ef4444';
@@ -2712,209 +2808,6 @@ function SceneContent() {
       ctx.fillStyle = '#9ca3af';
       ctx.font = `400 ${height * 0.022}px -apple-system`;
       ctx.fillText('Speak for up to 30 seconds', width / 2, height * 0.82);
-
-      return;
-    }
-
-    // === DEMO RECORDING MODE (only show if this is the active device) ===
-    if (demoState.isRecording && demoState.activeDevice === 'phone') {
-      // Status bar
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.026}px -apple-system, sans-serif`;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('9:41', padding, height * 0.032);
-
-      // VOIS text
-      ctx.fillStyle = '#ffffff';
-      ctx.font = `bold ${width * 0.12}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.fillText('VOIS', width / 2, height * 0.18);
-
-      // === ANIMATED WAVEFORM (center of phone) ===
-      const waveY = height * 0.42;
-      const waveH = height * 0.12;
-      const waveStartX = width * 0.1;
-      const waveEndX = width * 0.9;
-      const bars = 24;
-      const barWidth = (waveEndX - waveStartX) / bars;
-      const audioLevels = demoState.audioLevels;
-
-      for (let i = 0; i < bars; i++) {
-        const baseLevel = audioLevels[i] || 0.1;
-        const animOffset = now * 0.003 + i * 0.2;
-        const jitter = Math.sin(animOffset) * 0.1;
-        const level = Math.min(1, Math.max(0.1, baseLevel + jitter));
-        const dynamicH = waveH * (0.15 + level * 0.85);
-
-        const intensity = 0.5 + level * 0.5;
-        ctx.fillStyle = `rgba(239, 68, 68, ${intensity})`; // Red
-
-        const barX = waveStartX + i * barWidth;
-        const barW = barWidth * 0.6;
-        roundRect(ctx, barX, waveY - dynamicH / 2, barW, dynamicH, 4);
-        ctx.fill();
-      }
-
-      // Recording indicator dot (pulsing)
-      const dotPulse = 0.7 + Math.sin(now / 300) * 0.3;
-      ctx.fillStyle = '#ef4444';
-      ctx.beginPath();
-      ctx.arc(width * 0.12, height * 0.18, 8 * dotPulse, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Timer display (counting UP)
-      const displayTime = demoState.elapsed;
-      const minutes = Math.floor(displayTime / 60);
-      const seconds = displayTime % 60;
-      ctx.fillStyle = '#ef4444';
-      ctx.font = `bold ${height * 0.08}px monospace`;
-      ctx.textAlign = 'center';
-      ctx.fillText(`${minutes}:${seconds.toString().padStart(2, '0')}`, width / 2, height * 0.62);
-
-      // Status text
-      ctx.fillStyle = '#666666';
-      ctx.font = `500 ${height * 0.028}px -apple-system`;
-      ctx.fillText('Recording...', width / 2, height * 0.72);
-
-      // Stop button (red rounded rect with white square icon)
-      const stopBtnY = height * 0.80;
-      const stopBtnW = width * 0.38;
-      const stopBtnH = height * 0.065;
-      const stopBtnX = (width - stopBtnW) / 2;
-
-      ctx.fillStyle = '#ef4444';
-      roundRect(ctx, stopBtnX, stopBtnY, stopBtnW, stopBtnH, stopBtnH / 2);
-      ctx.fill();
-
-      // White square icon
-      const sqSize = stopBtnH * 0.28;
-      ctx.fillStyle = '#ffffff';
-      roundRect(ctx, width / 2 - stopBtnW * 0.16 - sqSize / 2, stopBtnY + (stopBtnH - sqSize) / 2, sqSize, sqSize, 2);
-      ctx.fill();
-
-      // "Stop" label
-      ctx.fillStyle = '#ffffff';
-      ctx.font = `600 ${height * 0.026}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.fillText('Stop', width / 2 + stopBtnW * 0.06, stopBtnY + stopBtnH / 2 + height * 0.008);
-
-      return;
-    }
-
-    // === DEMO PROCESSING MODE (show on phone when either phone OR watch is processing) ===
-    const showPhoneProcessing = demoState.isProcessing && (demoState.activeDevice === 'phone' || demoState.activeDevice === 'watch');
-    if (showPhoneProcessing) {
-      // Status bar
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.026}px -apple-system, sans-serif`;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('9:41', padding, height * 0.032);
-
-      // VOIS NOTE header
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.028}px -apple-system, sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.fillText('VOIS NOTE', width / 2, height * 0.085);
-
-      const panelPadding = width * 0.045;
-      const panelMargin = width * 0.045;
-      const panelRadius = 24;
-
-      // === TOP PANEL - Processing status ===
-      const topPanelY = height * 0.115;
-      const topPanelH = height * 0.35;
-      const topPanelW = width - panelMargin * 2;
-
-      // Shadow
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      roundRect(ctx, panelMargin + 1, topPanelY + 4, topPanelW, topPanelH, panelRadius);
-      ctx.fill();
-
-      // Panel background
-      ctx.fillStyle = '#ffffff';
-      roundRect(ctx, panelMargin, topPanelY, topPanelW, topPanelH, panelRadius);
-      ctx.fill();
-
-      // Processing spinner (animated)
-      const spinnerX = width / 2;
-      const spinnerY = topPanelY + topPanelH * 0.35;
-      const spinnerRadius = height * 0.04;
-      const spinnerAngle = (now / 500) % (Math.PI * 2);
-
-      ctx.strokeStyle = '#3b82f6';
-      ctx.lineWidth = 4;
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      ctx.arc(spinnerX, spinnerY, spinnerRadius, spinnerAngle, spinnerAngle + Math.PI * 1.5);
-      ctx.stroke();
-
-      // "Processing your voice..." text
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.032}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.fillText('Processing your voice...', width / 2, topPanelY + topPanelH * 0.62);
-
-      // Elapsed time
-      const minutes = Math.floor(demoState.elapsed / 60);
-      const seconds = demoState.elapsed % 60;
-      ctx.fillStyle = '#666666';
-      ctx.font = `400 ${height * 0.024}px -apple-system`;
-      ctx.fillText(`${minutes}:${seconds.toString().padStart(2, '0')} recorded`, width / 2, topPanelY + topPanelH * 0.8);
-
-      // === BOTTOM PANEL - Did you know tip ===
-      const bottomPanelY = height * 0.52;
-      const bottomPanelH = height * 0.34;
-      const bottomPanelW = width - panelMargin * 2;
-
-      // Header
-      ctx.fillStyle = '#1a1a1a';
-      ctx.font = `600 ${height * 0.022}px -apple-system, sans-serif`;
-      ctx.textAlign = 'left';
-      ctx.fillText('Did you know?', panelMargin, bottomPanelY - height * 0.02);
-
-      // Shadow
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      roundRect(ctx, panelMargin + 1, bottomPanelY + 4, bottomPanelW, bottomPanelH, panelRadius);
-      ctx.fill();
-
-      // Panel background
-      ctx.fillStyle = '#ffffff';
-      roundRect(ctx, panelMargin, bottomPanelY, bottomPanelW, bottomPanelH, panelRadius);
-      ctx.fill();
-
-      // Tip icon
-      ctx.fillStyle = '#fbbf24';
-      ctx.font = `${height * 0.05}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.fillText('💡', width / 2, bottomPanelY + bottomPanelH * 0.3);
-
-      // Tip text (word wrap)
-      const tip = demoState.tip || 'VOIS remembers everything you capture';
-      ctx.fillStyle = '#374151';
-      ctx.font = `500 ${height * 0.026}px -apple-system`;
-      ctx.textAlign = 'center';
-
-      // Simple word wrap
-      const maxWidth = bottomPanelW - panelPadding * 2;
-      const words = tip.split(' ');
-      let line = '';
-      let lineY = bottomPanelY + bottomPanelH * 0.5;
-      const lineHeight = height * 0.038;
-
-      for (const word of words) {
-        const testLine = line + (line ? ' ' : '') + word;
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && line) {
-          ctx.fillText(line, width / 2, lineY);
-          line = word;
-          lineY += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, width / 2, lineY);
 
       return;
     }
@@ -3109,25 +3002,15 @@ function SceneContent() {
       return;
     }
 
-    // === DEMO RESULTS MODE - Show actual user transcript with highlights (only if phone was active device) ===
-    const hasDemoResults = demoState.activeDevice === 'phone' && demoState.transcript && demoState.transcript.length > 0 && !demoState.isRecording && !demoState.isProcessing;
+    // === DEMO RESULTS MODE - Show actual user transcript with highlights ===
+    // Show results on phone regardless of which device is recording (watch or phone)
+    const hasDemoResults = demoState.transcript && demoState.transcript.length > 0;
     if (hasDemoResults) {
       const demoTranscript = demoState.transcript;
       const demoHighlights = demoState.highlights || [];
       const demoItems = demoState.items || [];
 
-      // Animation timing for demo results (time since results arrived)
-      // Use a simple approach: track via a ref or use elapsed as proxy
-      const resultsStartTime = globalState.demoResultsStartTime || Date.now();
-      if (!globalState.demoResultsStartTime) {
-        globalState.demoResultsStartTime = Date.now();
-      }
-      const resultsElapsed = (Date.now() - resultsStartTime) / 1000;
-
-      // Typing animation
-      const demoTypingSpeed = 40; // chars per second
-      const demoRevealedChars = Math.min(Math.floor(resultsElapsed * demoTypingSpeed), demoTranscript.length);
-      const demoTypingComplete = demoRevealedChars >= demoTranscript.length;
+      // No animations - show everything immediately for streaming
 
       // === STATUS BAR ===
       ctx.fillStyle = '#1a1a1a';
@@ -3175,10 +3058,7 @@ function SceneContent() {
       const maxX = width - textPadding;
       const maxTextY = transPanelY + transPanelH - panelPadding - textSize;
 
-      // Get visible text
-      const visibleText = demoTranscript.substring(0, demoRevealedChars);
-
-      // Build word positions with highlight info
+      // Build word positions with highlight info (show full transcript)
       interface DemoWordInfo {
         word: string;
         x: number;
@@ -3189,7 +3069,7 @@ function SceneContent() {
       }
 
       const demoWordPositions: DemoWordInfo[] = [];
-      const words = visibleText.split(' ');
+      const words = demoTranscript.split(' ');
       let curX = textPadding;
       let curY = textY;
       let charIndex = 0;
@@ -3245,77 +3125,14 @@ function SceneContent() {
         charIndex += word.length + 1; // +1 for space
       }
 
-      // === REAL-TIME HIGHLIGHTING (like hero showcase) ===
-      // Highlights appear as soon as the cursor passes the highlighted segment
-      const highlightSpeed = 80; // chars per second for highlight animation
-
-      // Calculate highlight states based on current typing position
-      interface DemoHighlightState {
-        category: string;
-        progress: number;
-        startChar: number;
-        endChar: number;
-      }
-      const demoHighlightStates: DemoHighlightState[] = [];
-
-      for (const h of demoHighlights) {
-        // Trigger highlight when cursor passes the END of this highlight (0.5s delay for effect)
-        const triggerChar = h.end;
-        const triggerTime = triggerChar / demoTypingSpeed + 0.3; // Small delay after passing
-
-        if (resultsElapsed >= triggerTime) {
-          const timeSinceTrigger = resultsElapsed - triggerTime;
-          const segmentLength = h.end - h.start;
-          const highlightDuration = segmentLength / highlightSpeed;
-          const highlightProgress = Math.min(1, timeSinceTrigger / highlightDuration);
-
-          demoHighlightStates.push({
-            category: h.category?.toLowerCase() || 'task',
-            progress: highlightProgress,
-            startChar: h.start,
-            endChar: h.end
-          });
-        }
-      }
-
-      // Draw highlights with progressive animation
+      // === DRAW HIGHLIGHTS (immediately, no animation) ===
       for (const wp of demoWordPositions) {
-        if (wp.highlightColor && wp.category) {
-          // Find the highlight state for this word
-          const wordCharStart = demoWordPositions.slice(0, demoWordPositions.indexOf(wp))
-            .reduce((sum, w) => sum + w.word.length + 1, 0);
-
-          const highlightState = demoHighlightStates.find(hs =>
-            hs.category === wp.category &&
-            wordCharStart >= hs.startChar &&
-            wordCharStart < hs.endChar
-          );
-
-          if (highlightState && highlightState.progress > 0) {
-            // Calculate if this word should be highlighted based on progress
-            const wordsInHighlight = demoWordPositions.filter(w => {
-              const wStart = demoWordPositions.slice(0, demoWordPositions.indexOf(w))
-                .reduce((sum, x) => sum + x.word.length + 1, 0);
-              return w.category === highlightState.category &&
-                     wStart >= highlightState.startChar &&
-                     wStart < highlightState.endChar;
-            });
-            const wordIndexInHighlight = wordsInHighlight.indexOf(wp);
-            const wordsToHighlight = Math.floor(highlightState.progress * wordsInHighlight.length);
-
-            if (wordIndexInHighlight < wordsToHighlight) {
-              ctx.fillStyle = wp.highlightColor;
-              roundRect(ctx, wp.x - 3, wp.y - 2, wp.width + 2, textSize + 6, 4);
-              ctx.fill();
-            }
-          }
+        if (wp.highlightColor) {
+          ctx.fillStyle = wp.highlightColor;
+          roundRect(ctx, wp.x - 3, wp.y - 2, wp.width + 2, textSize + 6, 4);
+          ctx.fill();
         }
       }
-
-      // Track which categories have completed highlighting (for card timing)
-      const completedHighlightCategories = demoHighlightStates
-        .filter(hs => hs.progress >= 1)
-        .map(hs => hs.category);
 
       // Draw text
       ctx.font = `400 ${textSize}px -apple-system`;
@@ -3324,12 +3141,6 @@ function SceneContent() {
       for (const wp of demoWordPositions) {
         ctx.fillStyle = '#374151';
         ctx.fillText(wp.word + ' ', wp.x, wp.y);
-      }
-
-      // Typing cursor
-      if (!demoTypingComplete && Math.floor(now / 500) % 2 === 0) {
-        ctx.fillStyle = '#3b82f6';
-        ctx.fillRect(curX + 2, curY, 3, textSize);
       }
 
       // === ACTION CARDS + CHAT CTA (cards show first, then fade to CTA after 3s) ===
@@ -3347,43 +3158,6 @@ function SceneContent() {
 
       // Pastel colors for demo item types — unified from lib/categoryColors
       const demoPastelColors = CATEGORY_CARD_COLORS;
-
-      // Calculate per-card opacity based on highlight completion
-      const cardOpacities: number[] = [];
-
-      demoItems.forEach((item) => {
-        const itemCategory = (item.type || 'task').toLowerCase();
-        // Find matching highlight state
-        const highlightState = demoHighlightStates.find(hs => hs.category === itemCategory);
-
-        if (highlightState && highlightState.progress >= 1) {
-          // Find the original highlight to calculate completion time
-          const matchingHighlight = demoHighlights.find(h =>
-            (h.category?.toLowerCase() || 'task') === itemCategory
-          );
-          if (matchingHighlight) {
-            const triggerTime = matchingHighlight.end / demoTypingSpeed + 0.3;
-            const segLen = matchingHighlight.end - matchingHighlight.start;
-            const highlightDuration = segLen / 80;
-            const completionTime = triggerTime + highlightDuration;
-            const timeSinceComplete = resultsElapsed - completionTime;
-            const fadeIn = 0.3;
-            const opacity = Math.min(1, Math.max(0, timeSinceComplete / fadeIn));
-            cardOpacities.push(opacity);
-          } else {
-            cardOpacities.push(1);
-          }
-        } else if (!highlightState && demoTypingComplete) {
-          // No matching highlight — fade in after typing finishes
-          const typingDoneTime = demoTranscript.length / demoTypingSpeed;
-          const timeSinceTyping = resultsElapsed - typingDoneTime;
-          const fadeIn = 0.3;
-          const opacity = Math.min(1, Math.max(0, timeSinceTyping / fadeIn));
-          cardOpacities.push(opacity);
-        } else {
-          cardOpacities.push(0);
-        }
-      });
 
       // === DRAW ACTION CARDS (cards stay visible permanently) ===
       {
@@ -3410,15 +3184,12 @@ function SceneContent() {
         roundRect(ctx, panelMargin, cardsPanelY, cardsPanelW, cardsPanelH, panelRadius);
         ctx.fill();
 
-        // Draw each card
+        // Draw each card (full opacity, no fade-in animation)
         const verifications = globalState.cardVerifications;
         demoItems.forEach((item, i) => {
-          const cardOpacity = (cardOpacities[i] || 0) * cardsGlobalAlpha;
-          if (cardOpacity <= 0) return;
-
           const verification = verifications[i];
-          // Declined cards fade to 40% opacity
-          ctx.globalAlpha = cardOpacity * (verification === 'declined' ? 0.4 : 1);
+          // Declined cards fade to 40% opacity, others full opacity
+          ctx.globalAlpha = verification === 'declined' ? 0.4 : 1.0;
           const thisCardY = cardStartY + i * (cardH + cardGap);
           const itemCategory = (item.type || 'task').toLowerCase();
           const colors = demoPastelColors[itemCategory] || DEFAULT_CARD_COLOR;
@@ -3995,7 +3766,9 @@ function SceneContent() {
     // Determine watch state
     const isWatchRecording = demoState.activeDevice === 'watch' && demoState.isRecording;
     const isWatchProcessing = demoState.activeDevice === 'watch' && demoState.isProcessing;
-    const hasDemoResults = demoState.activeDevice === 'watch' && demoState.transcript && demoState.transcript.length > 0 && !demoState.isRecording && !demoState.isProcessing;
+    const hasDemoResults = demoState.activeDevice === 'watch' &&
+                          demoState.transcript &&
+                          demoState.transcript.length > 0;
     const isHovered = globalState.watchHoveredRecord;
     const accentColor = '#ff6b35'; // Orange accent like Apple Watch Ultra
 

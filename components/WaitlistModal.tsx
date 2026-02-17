@@ -191,12 +191,28 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
       return;
     }
 
-    // Submit to waitlist
+    // IMPORTANT: Identify user in PostHog BEFORE saving to Supabase
+    // This ensures we can correlate even if user has ad blockers
+    Analytics.waitlistSignup(email, {
+      source,
+      referral_source: referralSource,
+      use_cases: useCases,
+      preferred_device: devices.join(', '),
+      completed_demo: prefillData.completedDemo,
+      watched_video: prefillData.watchedVideo,
+      user_type: userType,
+    });
+
+    // Get PostHog distinct_id (will be null if PostHog is blocked)
+    const posthogDistinctId = Analytics.getDistinctId();
+
+    // Submit to waitlist with PostHog ID for correlation
     const waitlistData: WaitlistEntry = {
       email,
       referral_source: referralSource || undefined,
       use_cases: useCases.length > 0 ? useCases : undefined,
       preferred_device: devices.length > 0 ? devices.join(', ') : undefined,
+      posthog_distinct_id: posthogDistinctId || undefined,
       completed_demo: prefillData.completedDemo,
       watched_video: prefillData.watchedVideo,
       metadata: {
@@ -210,16 +226,6 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     const result = await waitlistService.addToWaitlist(waitlistData);
 
     if (result.success) {
-      // Track successful signup
-      Analytics.waitlistSignup(email, {
-        source,
-        referral_source: waitlistData.referral_source,
-        use_cases: waitlistData.use_cases,
-        preferred_device: waitlistData.preferred_device,
-        completed_demo: prefillData.completedDemo,
-        watched_video: prefillData.watchedVideo,
-      });
-
       setStep('success');
     } else {
       setError(result.error || 'Failed to join waitlist');
@@ -440,20 +446,24 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     This helps us understand our community
                   </p>
 
-                  <div className="mb-8">
-                    <select
-                      value={referralSource}
-                      onChange={(e) => {
-                        setReferralSource(e.target.value);
-                        Analytics.waitlistQuestionAnswered('referral_source', e.target.value, false);
-                      }}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-slate-200 focus:border-slate-900 focus:outline-none transition-all bg-white text-base"
-                    >
-                      <option value="">Select one...</option>
-                      {REFERRAL_SOURCES.map(source => (
-                        <option key={source} value={source}>{source}</option>
-                      ))}
-                    </select>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {REFERRAL_SOURCES.map(src => (
+                      <button
+                        key={src}
+                        type="button"
+                        onClick={() => {
+                          setReferralSource(src);
+                          Analytics.waitlistQuestionAnswered('referral_source', src, false);
+                        }}
+                        className={`px-4 py-2.5 rounded-full border-2 text-sm font-medium transition-all ${
+                          referralSource === src
+                            ? 'border-slate-900 bg-slate-900 text-white'
+                            : 'border-slate-200 hover:border-slate-300 text-slate-700 bg-white'
+                        }`}
+                      >
+                        {src}
+                      </button>
+                    ))}
                   </div>
 
                   <button

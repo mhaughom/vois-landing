@@ -328,25 +328,46 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({ activeSection }) => {
 
       {/* Navigation Bar (Overlay) */}
       <div className="absolute bottom-6 left-6 right-6 h-16 bg-white rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] flex justify-around items-center px-2 z-50 border border-white/50">
-          <motion.div 
+          <motion.div
             whileTap={{ scale: 0.9 }}
             className={`p-3 rounded-full ${isChat ? 'text-black' : 'text-slate-400'}`}
           >
               <Mic size={24} />
           </motion.div>
-          <motion.div 
+          <motion.div
             whileTap={{ scale: 0.9 }}
             className={`p-3 rounded-full ${isStream ? 'text-black' : 'text-slate-400'}`}
           >
               <Sparkles size={24} />
           </motion.div>
-          <motion.div 
+          <motion.div
             whileTap={{ scale: 0.9 }}
             className={`p-3 rounded-full ${isCategories ? 'text-black' : 'text-slate-400'}`}
           >
               <LayoutGrid size={24} />
           </motion.div>
       </div>
+
+      {/* Floating Record Button - visible only on stream */}
+      {isStream && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          className="absolute bottom-24 right-8 z-50 flex flex-col items-center gap-1 group"
+        >
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-16 h-16 rounded-full bg-slate-900 shadow-[0_8px_30px_-5px_rgba(0,0,0,0.3)] flex items-center justify-center transition-colors duration-200 hover:bg-red-500"
+          >
+            <Mic size={28} className="text-white" />
+          </motion.button>
+          <span className="text-[10px] font-medium text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Record
+          </span>
+        </motion.div>
+      )}
 
       {/* Home Indicator */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-900 rounded-full z-50 opacity-20"></div>

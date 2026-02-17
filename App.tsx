@@ -23,6 +23,7 @@ import { FREE_FEATURES, PERSONAL_FEATURES, WORK_FEATURES } from './lib/tiers';
 import { useIsMobile } from './hooks/useIsMobile';
 import { Analytics } from './lib/analytics';
 import { ActionCards } from './components/ActionCards';
+import { ContextualChat } from './components/ContextualChat';
 import { WaitlistModal } from './components/WaitlistModal';
 
 const faqData = [
@@ -599,6 +600,19 @@ const App = () => {
           setWaitlistSource('navbar');
           setShowWaitlistModal(true);
         }}
+        onResetDemo={() => {
+          // Reset demo when logo is clicked during active demo
+          if (demoControls) {
+            Analytics.demoCancelled(demoStage);
+            demoControls.reset();
+
+            // Scroll back to hero section (executive assistant that clears your mind)
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100); // Small delay to let state update
+          }
+        }}
+        isDemoActive={isDemoActive}
       />
 
       {/* Video Modal */}
@@ -1063,13 +1077,13 @@ const App = () => {
 
           {/* Mobile: Static device mockups as hero visual */}
           {isMobile && (
-            <div className="relative flex items-end justify-center w-full flex-1" style={{ minHeight: '320px' }}>
-              {/* Phone mockup — scaled down */}
-              <div className="relative" style={{ transform: 'scale(0.45)', transformOrigin: 'bottom center', marginBottom: '-140px' }}>
+            <div className="relative flex items-end justify-center w-full flex-1" style={{ minHeight: '620px' }}>
+              {/* Phone mockup — scaled up for visibility */}
+              <div className="relative" style={{ transform: 'scale(0.9)', transformOrigin: 'bottom center', marginBottom: '-280px' }}>
                 <PhoneMockup activeSection="hero" />
               </div>
               {/* Watch mockup — overlapping bottom-right of phone */}
-              <div className="absolute" style={{ right: '8%', bottom: '0', transform: 'scale(0.5)', transformOrigin: 'bottom right' }}>
+              <div className="absolute" style={{ right: '2%', bottom: '0', transform: 'scale(1.0)', transformOrigin: 'bottom right' }}>
                 <AppleWatchMockup />
               </div>
             </div>
@@ -1451,6 +1465,9 @@ const App = () => {
 
           {/* ACTION CARDS - Can I trust AI? */}
           <ActionCards />
+
+          {/* CONTEXTUAL CHAT - AI that knows your context */}
+          <ContextualChat />
 
           <section id="privacy" className="py-32 md:py-40 px-6 md:px-16 relative z-10">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12">

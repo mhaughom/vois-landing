@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Download } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 
 // Helper function to scroll to a section
@@ -21,9 +20,11 @@ interface NavbarProps {
   bgIntensity?: number;
   onBgIntensityChange?: (value: number) => void;
   onOpenWaitlist?: () => void;
+  onResetDemo?: () => void;
+  isDemoActive?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensity, onBgIntensityChange, onOpenWaitlist }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensity, onBgIntensityChange, onOpenWaitlist, onResetDemo, isDemoActive }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,34 +41,48 @@ export const Navbar: React.FC<NavbarProps> = ({ onCycleBg, bgVariant, bgIntensit
       className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 pt-6 md:pt-8 pointer-events-none"
     >
       {/* Logo */}
-      <Link to="/" className="pointer-events-auto">
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-lg"
-        >
-          <img
-            src="/Logo/vois-logo.svg"
-            alt="Vois"
-            className="h-8 w-8"
-          />
-          <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
-        </motion.div>
-      </Link>
+      {isDemoActive && onResetDemo ? (
+        <button onClick={onResetDemo} className="pointer-events-auto cursor-pointer">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-lg"
+          >
+            <img
+              src="/Logo/vois-logo.svg"
+              alt="Vois"
+              className="h-8 w-8"
+            />
+            <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+          </motion.div>
+        </button>
+      ) : (
+        <Link to="/" className="pointer-events-auto">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-lg"
+          >
+            <img
+              src="/Logo/vois-logo.svg"
+              alt="Vois"
+              className="h-8 w-8"
+            />
+            <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+          </motion.div>
+        </Link>
+      )}
       
       {/* Right Side Navigation */}
       <div className="pointer-events-auto flex items-center gap-3">
-        {/* Mobile Download Button — visible only below sm */}
-        <motion.a
-          href="https://apps.apple.com/app/vois"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Mobile Waitlist Button — visible only below sm */}
+        <motion.button
+          onClick={handleGetEarlyAccess}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="sm:hidden flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 shadow-lg hover:bg-white transition-colors"
+          className="sm:hidden flex items-center gap-3 bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-700 shadow-lg hover:bg-slate-900 transition-colors"
         >
-          <Download size={18} className="text-slate-900" />
-          <span className="font-semibold text-sm tracking-tight text-slate-900">Download</span>
-        </motion.a>
+          <span className="font-semibold text-sm tracking-tight text-white">Join Waitlist</span>
+        </motion.button>
 
         {/* Vois for Work Link — full page nav to avoid Three.js teardown blocking */}
         <motion.a

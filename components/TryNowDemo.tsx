@@ -5,6 +5,7 @@ import { useIsMobile } from '../hooks/useIsMobile';
 import {
   setDemoRecording,
   setDemoProcessing,
+  setDemoStreaming,
   setDemoAudioLevels,
   setDemoCountdown,
   setDemoResults,
@@ -14,15 +15,22 @@ import {
   getDemoState,
   setDemoWaitingToStart,
   setDemoActiveDevice,
+  setDemoFirstCardReceived,
   setOnPhoneRecordClick,
   setOnWatchRecordClick,
   setOnStopRecordClick,
 } from './deviceState';
 
 import { Analytics } from '../lib/analytics';
+import { DemoWebSocketManager, WSMessage } from '../lib/websocketManager';
+import { MockDemoWebSocket } from '../lib/mockWebSocket';
+import { DeepgramStreamingManager } from '../lib/deepgramStreamingManager';
 
 // API URL from environment
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.vois.app';
+
+// Feature flag for streaming (can be enabled via environment variable)
+const ENABLE_STREAMING = import.meta.env.VITE_ENABLE_STREAMING === 'true';
 
 // Did you know tips for processing state (exported for DeviceScene)
 export const DEMO_TIPS = [
@@ -90,9 +98,17 @@ export const DemoSteps: React.FC<{
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
   const [demoPhase, setDemoPhase] = useState<'steps' | 'question' | 'chat'>('steps');
 
-  // Cycle through suggestions during recording
+  // Check actual recording state from global state
+  const demoState = getDemoState();
+  const isActuallyRecording = demoState.isRecording;
+  const hasReceivedFirstCard = demoState.hasReceivedFirstCard;
+
+  // Cycle through suggestions during recording (including streaming mode)
   useEffect(() => {
-    if (stage !== 'recording') {
+    // Show suggestions during recording or during streaming mode before first card
+    const shouldShowSuggestions = (stage === 'recording' || (stage === 'results' && !hasReceivedFirstCard));
+
+    if (!shouldShowSuggestions) {
       setCurrentSuggestion(0);
       return;
     }
@@ -102,7 +118,7 @@ export const DemoSteps: React.FC<{
     }, 2500);
 
     return () => clearInterval(interval);
-  }, [stage]);
+  }, [stage, hasReceivedFirstCard]);
 
   // Reset states when a new recording starts
   useEffect(() => {
@@ -122,6 +138,35 @@ export const DemoSteps: React.FC<{
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col items-center sm:items-start gap-3 sm:gap-4 mt-6 sm:mt-8 w-full"
     >
+      {/* Recording indicator with countdown and stop button */}
+      {isActuallyRecording && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          className="flex items-center gap-3"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-200">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-2 h-2 rounded-full bg-red-500"
+            />
+            <span className="text-red-600 text-sm font-medium">
+              Recording... {demoState.elapsed}s / 30s
+            </span>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onStopRecording}
+            className="px-4 py-2 rounded-full text-sm font-medium bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200"
+          >
+            Stop
+          </motion.button>
+        </motion.div>
+      )}
+
       <AnimatePresence mode="wait">
         {/* Phase 1: Recording steps 1-3 + "Cool, show me more" */}
         {demoPhase === 'steps' && (
@@ -155,12 +200,12 @@ export const DemoSteps: React.FC<{
                 className="flex flex-col gap-2 items-center sm:items-start"
               >
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'recording' ? 'text-slate-900' : 'text-slate-400'}`}>
+                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${((stage === 'recording' || stage === 'results') && !hasReceivedFirstCard) ? 'text-slate-900' : 'text-slate-400'}`}>
                     <span className="text-slate-400 mr-2">2.</span>
                     Talk about your thoughts
                   </span>
-                  {stage !== 'recording' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
-                  {stage === 'recording' && (
+                  {hasReceivedFirstCard && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+                  {((stage === 'recording' || stage === 'results') && !hasReceivedFirstCard) && (
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 1, repeat: Infinity }}
@@ -169,8 +214,8 @@ export const DemoSteps: React.FC<{
                   )}
                 </div>
 
-                {/* Cycling suggestions - only during recording */}
-                {stage === 'recording' && (
+                {/* Cycling suggestions - only during recording and before first card */}
+                {((stage === 'recording' || stage === 'results') && !hasReceivedFirstCard) && (
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={currentSuggestion}
@@ -187,8 +232,8 @@ export const DemoSteps: React.FC<{
               </motion.div>
             )}
 
-            {/* Step 3 - Visible from processing onwards */}
-            {(stage === 'processing' || stage === 'results') && (
+            {/* Step 3 - Only visible after first card received OR during processing */}
+            {((stage === 'processing') || (stage === 'results' && hasReceivedFirstCard)) && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -206,21 +251,35 @@ export const DemoSteps: React.FC<{
                     <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full flex-shrink-0" />
                   </motion.div>
                 )}
-                {stage === 'results' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+                {stage === 'results' && hasReceivedFirstCard && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
               </motion.div>
             )}
 
-            {/* "Cool, show me more" button - visible after results */}
-            {stage === 'results' && (
-              <motion.button
+            {/* Action buttons - visible after results AND recording stopped */}
+            {stage === 'results' && !isActuallyRecording && hasReceivedFirstCard && (
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                onClick={() => setDemoPhase('question')}
-                className="mt-2 px-8 py-3 rounded-full text-base font-medium bg-slate-900 text-white shadow-lg shadow-black/10 hover:bg-slate-800 active:scale-95 transition-all duration-200"
+                className="mt-2 flex items-center gap-3"
               >
-                Cool, show me more
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setDemoPhase('question')}
+                  className="px-8 py-3 rounded-full text-base font-medium bg-slate-900 text-white shadow-lg shadow-black/10 hover:bg-slate-800 transition-all duration-200"
+                >
+                  Cool, show me more
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={onReset}
+                  className="px-8 py-3 rounded-full text-base font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-200"
+                >
+                  Try Again
+                </motion.button>
+              </motion.div>
             )}
           </motion.div>
         )}
@@ -395,8 +454,13 @@ export const DemoSteps: React.FC<{
       {/* Cancel button when waiting */}
       {stage === 'waiting' && onReset && (
         <button
-          onClick={onReset}
-          className="text-slate-400 hover:text-slate-600 text-sm"
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onReset();
+          }}
+          className="text-slate-400 hover:text-slate-600 text-sm transition-colors cursor-pointer"
         >
           Cancel
         </button>
@@ -424,14 +488,17 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
   // Notify parent of stage changes with controls
   useEffect(() => {
-    onStageChange?.(stage, {
+    if (!onStageChange) return;
+
+    onStageChange(stage, {
       stopRecording: () => stopRecordingRef.current(),
       reset: () => resetRef.current(),
       startNew: () => startNewRef.current(),
     });
-  }, [stage, onStageChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage]); // Only depend on stage, not onStageChange to avoid infinite loops
 
-  // Refs for recording
+  // Refs for batch recording (fallback mode)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
@@ -439,6 +506,16 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   const chunksRef = useRef<Blob[]>([]);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
+
+  // Refs for streaming mode
+  const wsManagerRef = useRef<DemoWebSocketManager | null>(null);
+  const deepgramManagerRef = useRef<DeepgramStreamingManager | null>(null);
+  const receivedCardsRef = useRef<ExtractedItem[]>([]);
+  const streamingModeRef = useRef<boolean>(false);
+  const recordingStartTimeRef = useRef<number>(0);
+  const accumulatedTranscriptRef = useRef<string>('');
+  const hasTransitionedToResultsRef = useRef<boolean>(false);
+  const lastInterimUpdateRef = useRef<number>(0);
 
   // Cleanup function
   const cleanup = useCallback(() => {
@@ -463,8 +540,342 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     }
     setDemoRecording(false);
     setDemoProcessing(false);
+    setDemoStreaming(false);
     setDemoAudioLevels(new Array(24).fill(0.1));
     setDemoElapsed(0);
+  }, []);
+
+  // Initialize streaming manager
+  useEffect(() => {
+    if (!ENABLE_STREAMING) {
+      console.log('[Demo] Streaming disabled - using batch mode');
+      return;
+    }
+
+    // Initialize DeepGram + OpenAI client-side streaming
+    const deepgramKey = import.meta.env.VITE_DEEPGRAM_API_KEY;
+    const openaiKey = import.meta.env.VITE_OPENAI_API_KEY;
+
+    console.log('[Demo] 🔑 DeepGram Key:', deepgramKey ? `${deepgramKey.substring(0, 10)}...${deepgramKey.substring(deepgramKey.length - 4)}` : 'MISSING');
+    console.log('[Demo] 🔑 OpenAI Key:', openaiKey ? `${openaiKey.substring(0, 15)}...${openaiKey.substring(openaiKey.length - 4)}` : 'MISSING');
+
+    if (!deepgramKey || !openaiKey) {
+      console.error('[Demo] Missing API keys - check .env file');
+      console.error('[Demo] Need: VITE_DEEPGRAM_API_KEY and VITE_OPENAI_API_KEY');
+      return;
+    }
+
+    deepgramManagerRef.current = new DeepgramStreamingManager(deepgramKey, openaiKey);
+
+    console.log('[Demo] ✅ Client-side streaming manager initialized');
+
+    // Register event handlers for DeepGram streaming
+    const handleInterimTranscript = (data: any) => {
+      try {
+        // Show interim transcripts to make it feel LIVE!
+        // But throttle updates to prevent watch blinking (max 10 updates/sec)
+        if (!data || !data.text) return;
+
+        const now = Date.now();
+        if (now - lastInterimUpdateRef.current < 100) {
+          // Skip this update if less than 100ms since last update
+          return;
+        }
+        lastInterimUpdateRef.current = now;
+
+        const currentState = getDemoState();
+
+        // Update with interim text (append to accumulated final transcript)
+        setDemoResults({
+          transcript: (accumulatedTranscriptRef.current + ' ' + data.text).trim(),
+          highlights: currentState.highlights || [],
+          items: receivedCardsRef.current,
+        });
+      } catch (err) {
+        console.error('[Demo] ❌ Error in handleInterimTranscript:', err);
+      }
+    };
+
+    const handleFinalTranscript = (data: any) => {
+      try {
+        console.log('[Demo] ✅ Final transcript:', data.text);
+
+        if (!data || !data.fullTranscript) {
+          console.warn('[Demo] ⚠️  Invalid transcript data:', data);
+          return;
+        }
+
+        // Accumulate final transcripts
+        accumulatedTranscriptRef.current = data.fullTranscript;
+
+        // Update with full accumulated transcript
+        setDemoResults({
+          transcript: accumulatedTranscriptRef.current,
+          highlights: [],
+          items: receivedCardsRef.current,
+        });
+
+        // Transition to results stage only once
+        if (!hasTransitionedToResultsRef.current) {
+          console.log('[Demo] 🎬 Transitioning to results stage (first final transcript)');
+          hasTransitionedToResultsRef.current = true;
+          setStage('results');
+          setDemoProcessing(false);
+        }
+      } catch (err) {
+        console.error('[Demo] ❌ Error in handleFinalTranscript:', err);
+      }
+    };
+
+    const handleActionCard = (data: any) => {
+      console.log('[Demo] 🎴 Action card received:', {
+        action: data.action,
+        type: data.card?.type,
+        rawText: data.card?.rawText,
+        content: data.card?.content,
+        index: data.index
+      });
+
+      try {
+        let shouldUpdateUI = false;
+
+        if (data.action === 'create' && data.card) {
+          const item: ExtractedItem = {
+            type: data.card.type,
+            rawText: data.card.rawText || data.card.description || data.card.content,
+            content: data.card.content,
+            icon: data.card.icon,
+          };
+
+          receivedCardsRef.current.push(item);
+          console.log('[Demo] ✅ Card created. Total cards:', receivedCardsRef.current.length);
+          console.log('[Demo] 📋 All cards:', receivedCardsRef.current.map(c => ({ type: c.type, rawText: c.rawText })));
+
+          // Mark step 2 as complete when first card arrives
+          if (receivedCardsRef.current.length === 1) {
+            setDemoFirstCardReceived(true);
+          }
+
+          shouldUpdateUI = true;
+          Analytics.streamingCardReceived(receivedCardsRef.current.length, item.type);
+        } else if (data.action === 'update' && data.card && data.index !== undefined) {
+          // Handle card update
+          const index = data.index;
+          if (index >= 0 && index < receivedCardsRef.current.length) {
+            const oldCard = receivedCardsRef.current[index];
+            console.log('[Demo] 🔄 Updating card at index', index);
+            console.log('[Demo] 📝 Old:', { type: oldCard.type, rawText: oldCard.rawText });
+            console.log('[Demo] 📝 New:', { type: data.card.type, rawText: data.card.rawText });
+
+            const updatedItem: ExtractedItem = {
+              type: data.card.type,
+              rawText: data.card.rawText || data.card.description || data.card.content,
+              content: data.card.content,
+              icon: data.card.icon,
+            };
+
+            receivedCardsRef.current[index] = updatedItem;
+            console.log('[Demo] 📋 All cards after update:', receivedCardsRef.current.map(c => ({ type: c.type, rawText: c.rawText })));
+            shouldUpdateUI = true;
+          }
+        } else {
+          console.warn('[Demo] ⚠️  Unknown action or missing data:', data);
+          return;
+        }
+
+        // Update UI for both create and update actions
+        if (shouldUpdateUI) {
+          // DON'T transition stages during streaming - we're already in 'results' stage
+          // Just update the content without changing stage or stopping audio levels
+
+          // Get current state
+          const currentState = getDemoState();
+          const currentTranscript = currentState.transcript || accumulatedTranscriptRef.current;
+
+          console.log('[Demo] 🔍 Updating highlights for', receivedCardsRef.current.length, 'cards');
+          console.log('[Demo] 📝 Current transcript:', currentTranscript);
+
+          const highlights = receivedCardsRef.current.map((card, cardIndex) => {
+            const rawText = card.rawText.toLowerCase();
+            const transcriptLower = currentTranscript.toLowerCase();
+
+            console.log(`[Demo] 🎯 Card ${cardIndex} (${card.type}):`, {
+              rawText: card.rawText,
+              searchText: rawText,
+              transcriptLength: currentTranscript.length
+            });
+
+            // Try 1: Exact match
+            let idx = transcriptLower.indexOf(rawText);
+            if (idx !== -1) {
+              console.log(`[Demo] ✅ Exact match for card ${cardIndex} at position ${idx}`);
+              return {
+                text: currentTranscript.substring(idx, idx + card.rawText.length),
+                start: idx,
+                end: idx + card.rawText.length,
+                category: card.type,
+                color: getColorForType(card.type),
+              };
+            }
+
+            console.log(`[Demo] ⚠️  No exact match for card ${cardIndex}, trying alternatives...`);
+
+            // Try 2: Match by splitting on key words (handle punctuation breaks)
+            // Extract the core words and search for them as a pattern
+            const coreWords = rawText.trim().split(/\s+/);
+            if (coreWords.length >= 3) {
+              // Try progressively shorter phrases from full length down to 4 words
+              for (let wordCount = coreWords.length; wordCount >= Math.min(4, coreWords.length); wordCount--) {
+                const searchPhrase = coreWords.slice(0, wordCount).join(' ');
+                const phraseIdx = transcriptLower.indexOf(searchPhrase);
+
+                if (phraseIdx !== -1) {
+                  // Find the end - try to capture as many words as possible
+                  let endPos = phraseIdx + searchPhrase.length;
+
+                  // If we didn't match all words, try to extend to include more context
+                  if (wordCount < coreWords.length) {
+                    const remainingWords = coreWords.slice(wordCount);
+                    for (const word of remainingWords) {
+                      const extendSearch = transcriptLower.substring(endPos, endPos + 50);
+                      const wordPos = extendSearch.indexOf(word);
+                      if (wordPos !== -1 && wordPos < 10) { // Word is nearby (within 10 chars)
+                        endPos = endPos + wordPos + word.length;
+                      } else {
+                        break; // Stop extending if word is far or not found
+                      }
+                    }
+                  }
+
+                  console.log(`[Demo] ⚠️  Partial match for card ${cardIndex}: "${searchPhrase}" at ${phraseIdx}, extended to ${endPos}`);
+                  return {
+                    text: currentTranscript.substring(phraseIdx, endPos),
+                    start: phraseIdx,
+                    end: endPos,
+                    category: card.type,
+                    color: getColorForType(card.type),
+                  };
+                }
+              }
+            }
+
+            // Try 3: Find any substantial match (first 3-4 words minimum)
+            if (coreWords.length >= 3) {
+              for (let wordCount = Math.min(4, coreWords.length); wordCount >= 3; wordCount--) {
+                const searchPhrase = coreWords.slice(0, wordCount).join(' ');
+                const phraseIdx = transcriptLower.indexOf(searchPhrase);
+
+                if (phraseIdx !== -1) {
+                  console.log(`[Demo] ⚠️  Minimum match (${wordCount} words) for card ${cardIndex}: "${searchPhrase}"`);
+                  return {
+                    text: currentTranscript.substring(phraseIdx, phraseIdx + searchPhrase.length),
+                    start: phraseIdx,
+                    end: phraseIdx + searchPhrase.length,
+                    category: card.type,
+                    color: getColorForType(card.type),
+                  };
+                }
+              }
+            }
+
+            console.log(`[Demo] ❌ No match found for card ${cardIndex} (tried exact, partial, and minimum matches)`);
+            return null;
+          }).filter(Boolean) as any[];
+
+          console.log('[Demo] 🎨 Created', highlights.length, 'highlights out of', receivedCardsRef.current.length, 'cards');
+          console.log('[Demo] 📍 Highlight positions:', highlights.map(h => ({ start: h.start, end: h.end, category: h.category })));
+
+          // Update state - cards appear/update in real-time with highlights!
+          setDemoResults({
+            transcript: currentTranscript,
+            highlights: highlights,
+            items: [...receivedCardsRef.current],
+          });
+        }
+      } catch (err) {
+        console.error('[Demo] ❌ Error in handleActionCard:', err);
+        // Don't crash - just log and continue recording
+      }
+    };
+
+    // Helper to get color for card type
+    const getColorForType = (type: string): string => {
+      const colors: Record<string, string> = {
+        task: '#10b981',
+        event: '#3b82f6',
+        reminder: '#f59e0b',
+        idea: '#8b5cf6',
+        shopping: '#ec4899',
+        note: '#6b7280',
+      };
+      return colors[type] || '#6b7280';
+    };
+
+    const handleError = (data: any) => {
+      console.error('[Demo] ❌ Streaming error:', data.message);
+      setErrorMessage(data.message || 'Streaming error');
+      setStage('error');
+      Analytics.streamingError('deepgram_error', data.message || 'Unknown error');
+    };
+
+    const handleItemsConsolidated = (data: any) => {
+      try {
+        console.log('[Demo] 🔄 Items consolidated:', data.items);
+
+        if (!data || !data.items) return;
+
+        // Update the received cards ref with consolidated items
+        receivedCardsRef.current = data.items;
+
+        // Refresh the UI with consolidated items
+        const currentState = getDemoState();
+        const currentTranscript = currentState.transcript || accumulatedTranscriptRef.current;
+
+        const highlights = receivedCardsRef.current.map(card => {
+          const rawText = card.rawText.toLowerCase();
+          const idx = currentTranscript.toLowerCase().indexOf(rawText);
+
+          if (idx !== -1) {
+            return {
+              text: currentTranscript.substring(idx, idx + card.rawText.length),
+              start: idx,
+              end: idx + card.rawText.length,
+              category: card.type,
+              color: getColorForType(card.type),
+            };
+          }
+          return null;
+        }).filter(Boolean) as any[];
+
+        setDemoResults({
+          transcript: currentTranscript,
+          highlights: highlights,
+          items: [...receivedCardsRef.current],
+        });
+
+        console.log('[Demo] ✅ UI updated with consolidated items');
+      } catch (err) {
+        console.error('[Demo] ❌ Error in handleItemsConsolidated:', err);
+      }
+    };
+
+    deepgramManagerRef.current.on('interim_transcript', handleInterimTranscript);
+    deepgramManagerRef.current.on('transcript', handleFinalTranscript);
+    deepgramManagerRef.current.on('action_card', handleActionCard);
+    deepgramManagerRef.current.on('items_consolidated', handleItemsConsolidated);
+    deepgramManagerRef.current.on('error', handleError);
+
+    // Cleanup on unmount
+    return () => {
+      if (deepgramManagerRef.current) {
+        deepgramManagerRef.current.off('interim_transcript', handleInterimTranscript);
+        deepgramManagerRef.current.off('transcript', handleFinalTranscript);
+        deepgramManagerRef.current.off('action_card', handleActionCard);
+        deepgramManagerRef.current.off('items_consolidated', handleItemsConsolidated);
+        deepgramManagerRef.current.off('error', handleError);
+        deepgramManagerRef.current.disconnect();
+      }
+    };
   }, []);
 
   // Cleanup on unmount
@@ -501,20 +912,32 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
         stopRecordingRef.current();
       });
     } else if (stage === 'results') {
-      // During results/chat phase - watch can start a new recording (resets demo)
-      setOnPhoneRecordClick(null);
-      setOnWatchRecordClick(() => {
-        // Reset and start new recording with watch
-        cleanup();
-        setElapsedTime(0);
-        setResults(null);
-        setErrorMessage('');
-        setDemoError(null);
-        setDemoTip('');
-        setDemoActiveDevice('watch');
-        setTimeout(() => startRecordingRef.current(), 50);
-      });
-      setOnStopRecordClick(null);
+      // Check if we're still recording (streaming mode shows results while recording)
+      const isStillRecording = getDemoState().isRecording;
+
+      if (isStillRecording) {
+        // Streaming mode - still recording, show stop button
+        setOnPhoneRecordClick(null);
+        setOnWatchRecordClick(null);
+        setOnStopRecordClick(() => {
+          stopRecordingRef.current();
+        });
+      } else {
+        // Normal results phase - watch can start a new recording (resets demo)
+        setOnPhoneRecordClick(null);
+        setOnWatchRecordClick(() => {
+          // Reset and start new recording with watch
+          cleanup();
+          setElapsedTime(0);
+          setResults(null);
+          setErrorMessage('');
+          setDemoError(null);
+          setDemoTip('');
+          setDemoActiveDevice('watch');
+          setTimeout(() => startRecordingRef.current(), 50);
+        });
+        setOnStopRecordClick(null);
+      }
     } else if (stage === 'idle') {
       // When idle (both before and after demo) - only watch can start recording (quick capture mode)
       setOnPhoneRecordClick(null);
@@ -614,9 +1037,114 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     }
   }, []);
 
-  // Start recording
+  // Start recording - supports both streaming and batch modes
   const startRecording = async () => {
+    const device = getDemoState().activeDevice;
+
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('[Demo] 🎬 Starting demo recording');
+    console.log('[Demo] 📱 Device:', device);
+    console.log('[Demo] ⚙️  Streaming enabled:', ENABLE_STREAMING);
+    console.log('[Demo] 🌐 API URL:', API_URL);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+    // Attempt streaming mode first (if enabled)
+    if (ENABLE_STREAMING && deepgramManagerRef.current) {
+      try {
+        console.log('[Demo] 🚀 Attempting CLIENT-SIDE STREAMING mode...');
+
+        // Start recording and streaming (DeepGram + OpenAI)
+        await deepgramManagerRef.current.startRecording();
+
+        streamingModeRef.current = true;
+        receivedCardsRef.current = [];
+        accumulatedTranscriptRef.current = ''; // Reset transcript for new recording
+        recordingStartTimeRef.current = Date.now();
+        hasTransitionedToResultsRef.current = false; // Reset stage transition flag
+        setDemoFirstCardReceived(false); // Reset step 2 completion
+
+        // Clear previous demo results to start fresh
+        setDemoResults({
+          transcript: '',
+          highlights: [],
+          items: [],
+        });
+
+        Analytics.streamingStarted(device === 'watch' ? 'watch' : 'phone');
+
+        // Enable streaming mode - this tells PhoneScreenAnimation to show results while recording
+        console.log('[Demo] 🎛️  Setting streaming mode to TRUE');
+        setDemoStreaming(true);
+        console.log('[Demo] 🔍 Verify streaming state:', getDemoState().isStreaming);
+
+        // CRITICAL: Set results FIRST so transcript exists before we mark as recording
+        // This ensures PhoneScreenAnimation sees hasTranscript=true when checking isStreamingMode
+        setDemoResults({
+          transcript: '...',  // Placeholder to show we're listening
+          highlights: [],
+          items: [],
+        });
+
+        // Start with results stage so transcript shows immediately
+        // But keep recording flag true so timer/stop button work
+        setStage('results');
+        setElapsedTime(0);
+        setDemoWaitingToStart(false);
+        setDemoRecording(true); // Keep this true for recording state
+        setDemoElapsed(0);
+
+        // Keep audio levels animating to show recording is active
+        setDemoAudioLevels(new Array(24).fill(0.3));
+
+        onStartRecording?.();
+
+        // Start count-up timer (stops at 30 seconds)
+        console.log('[Demo] ⏱️  Starting 30-second timer');
+        timerIntervalRef.current = setInterval(() => {
+          setElapsedTime((prev) => {
+            const newTime = prev + 1;
+            setDemoElapsed(newTime);
+
+            if (newTime >= 30) {
+              console.log('[Demo] ⏱️  30 seconds reached, stopping recording');
+              stopRecording();
+            } else if (newTime % 5 === 0) {
+              // Only log every 5 seconds to reduce console spam
+              console.log(`[Demo] ⏱️  Timer: ${newTime}/30 seconds`);
+            }
+
+            return newTime;
+          });
+        }, 1000);
+
+        console.log('[Demo] ✅ Client-side streaming started successfully');
+        return;
+      } catch (err: any) {
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        console.warn('[Demo] ⚠️  Streaming FAILED, falling back to batch mode');
+        console.warn('[Demo] 📛 Error:', err.message);
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+        Analytics.streamingFallback(err.message || 'Connection failed');
+        streamingModeRef.current = false;
+
+        // Clean up failed streaming attempt
+        if (deepgramManagerRef.current) {
+          deepgramManagerRef.current.disconnect();
+        }
+
+        // Fall through to batch mode
+      }
+    }
+
+    // Batch mode (original implementation)
     try {
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('[Demo] 📦 Using BATCH mode');
+      console.log('[Demo] 📍 Endpoint:', `${API_URL}/api/demo/extract`);
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      streamingModeRef.current = false;
+
       // Request microphone access
       // Note: avoid specifying sampleRate — iOS Safari doesn't support it
       // and will throw an OverconstrainedError.
@@ -666,13 +1194,13 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
 
       // Start recording
       mediaRecorderRef.current.start(100); // Collect data every 100ms
-      const device = getDemoState().activeDevice;
       Analytics.demoRecordingStarted(device === 'watch' ? 'watch' : 'phone');
       setStage('recording');
       setElapsedTime(0);
       setDemoWaitingToStart(false); // Clear waiting state
       setDemoRecording(true);
       setDemoElapsed(0);
+      setDemoFirstCardReceived(false); // Reset step 2 completion
       onStartRecording?.();
 
       // Start audio visualization
@@ -727,18 +1255,80 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
   // Keep the ref updated with the latest startRecording function
   startRecordingRef.current = startRecording;
 
-  // Stop recording - also update ref for parent access
-  const stopRecording = useCallback(() => {
+  // Stop recording - supports both streaming and batch modes
+  const stopRecording = useCallback(async () => {
+    // Get stack trace to see who called stopRecording
+    const stack = new Error().stack;
+    console.log('[Demo] 🛑 stopRecording called at', elapsedTime, 'seconds');
+    console.log('[Demo] 📍 Called from:', stack);
+
     if (timerIntervalRef.current) {
       clearInterval(timerIntervalRef.current);
       timerIntervalRef.current = null;
+      console.log('[Demo] ⏱️  Timer cleared');
     }
+
+    Analytics.demoRecordingCompleted(elapsedTime);
+
+    // Streaming mode
+    if (streamingModeRef.current && deepgramManagerRef.current) {
+      console.log('[Demo] Stopping streaming mode...');
+
+      await deepgramManagerRef.current.stopRecording();
+
+      setDemoRecording(false);
+      setDemoStreaming(false);
+
+      // Calculate streaming duration
+      const durationSeconds = Math.floor((Date.now() - recordingStartTimeRef.current) / 1000);
+      const totalCards = receivedCardsRef.current.length;
+
+      Analytics.streamingCompleted(totalCards, durationSeconds);
+
+      // If cards already arrived, we're already in results state
+      // If no cards yet, show brief processing state
+      if (totalCards === 0) {
+        setStage('processing');
+        setDemoProcessing(true);
+        setDemoAudioLevels(new Array(24).fill(0.3));
+        setDemoTip(DEMO_TIPS[0]);
+
+        // Wait briefly for final cards to arrive
+        setTimeout(() => {
+          if (receivedCardsRef.current.length === 0) {
+            // Still no cards - show error
+            Analytics.demoError('no_items', 'No action items found in streaming');
+            setDemoProcessing(false);
+            setDemoAudioLevels(new Array(24).fill(0.1));
+            setDemoTip('');
+            setDemoError('no_items');
+            setStage('error');
+            setErrorMessage('No action items found');
+
+            // Auto-restart
+            setTimeout(() => {
+              setDemoError(null);
+              setErrorMessage('');
+              setStage('waiting');
+              setDemoWaitingToStart(true);
+            }, 3000);
+          }
+        }, 2000); // Wait 2 seconds for final cards
+      } else {
+        // Cards already visible - just log completion
+        Analytics.demoResultsViewed(totalCards, receivedCardsRef.current.map(i => i.type));
+      }
+
+      onStopRecording?.();
+      return;
+    }
+
+    // Batch mode (original implementation)
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
     }
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
-      Analytics.demoRecordingCompleted(elapsedTime);
       mediaRecorderRef.current.stop();
     }
     if (streamRef.current) {
@@ -855,14 +1445,31 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
       Analytics.demoCancelled(stage);
     }
     cleanup();
-    setStage('idle');
+
+    // Clear all demo state including phone/watch display
+    setStage('idle'); // Go back to end page, not waiting
     setElapsedTime(0);
     setResults(null);
     setErrorMessage('');
     setDemoError(null);
     setDemoTip('');
-    setDemoWaitingToStart(false);
+    setDemoWaitingToStart(false); // Not waiting, back to idle
     setDemoActiveDevice(null);
+    setDemoFirstCardReceived(false);
+
+    // Clear the demo results from phone/watch display
+    setDemoResults({
+      transcript: '',
+      highlights: [],
+      items: [],
+    });
+
+    // Reset streaming refs
+    if (deepgramManagerRef.current) {
+      receivedCardsRef.current = [];
+      accumulatedTranscriptRef.current = '';
+      hasTransitionedToResultsRef.current = false;
+    }
   };
 
   // Keep reset ref updated

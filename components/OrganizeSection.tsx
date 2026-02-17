@@ -1,9 +1,10 @@
 import React, { useRef, Suspense, useEffect, useState, useCallback } from 'react';
-import { useScroll, useMotionValueEvent } from 'framer-motion';
+import { useScroll, useMotionValueEvent, motion } from 'framer-motion';
 import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { OrganizeCarouselRenderer } from '../lib/organizeCarousel';
 
 // Draco decoder needed for macbook_pro.glb (keyboard) and iphone model
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
@@ -115,9 +116,11 @@ const _xAxis = new THREE.Vector3(1, 0, 0);
 
 // ─── MacBook (independent floating + lid animation + individual drag) ─────────
 
-function MacBookDevice() {
+function MacBookDevice({ currentViewIndex, views }: { currentViewIndex: number; views: typeof SCREEN_VIEWS }) {
   const macGltf = useGLTF('/3d_models/mac.glb');
   const kbGltf = useGLTF('/3d_models/macbook_pro.glb');
+  const carouselRef = useRef<OrganizeCarouselRenderer | null>(null);
+  const textureRef = useRef<THREE.CanvasTexture | null>(null);
 
   const [scene] = useState(() => {
     const s = macGltf.scene.clone(true);
@@ -181,17 +184,32 @@ function MacBookDevice() {
       }
     });
 
-    // MacBook screen texture — flipY=true to fix upside-down image
-    const loader = new THREE.TextureLoader();
-    loader.load('/Photos/macbook-screen.webp', (texture) => {
+    // Initialize carousel renderer
+    if (!carouselRef.current) {
+      console.log('[MacBook] Initializing carousel renderer');
+      const macViews = views.map(v => ({ name: v.name, imagePath: v.macImage }));
+      carouselRef.current = new OrganizeCarouselRenderer(3024, 1964, macViews);
+
+      // Create texture from carousel canvas
+      const canvas = carouselRef.current.getCanvas();
+      const texture = new THREE.CanvasTexture(canvas);
       texture.colorSpace = THREE.SRGBColorSpace;
       texture.flipY = true;
+      textureRef.current = texture;
+
+      // Apply texture to screen mesh
       scene.traverse((child: any) => {
         if (!child.isMesh) return;
         const mats = Array.isArray(child.material) ? child.material : [child.material];
         mats.forEach((mat: any, idx: number) => {
           if (mat?.name === 'matte') {
-            const screenMat = new THREE.MeshBasicMaterial({ map: texture, toneMapped: false });
+            console.log('[MacBook] Found screen mesh, applying carousel texture');
+
+            const screenMat = new THREE.MeshBasicMaterial({
+              map: texture,
+              toneMapped: false,
+            });
+
             if (Array.isArray(child.material)) {
               child.material[idx] = screenMat;
             } else {
@@ -200,13 +218,33 @@ function MacBookDevice() {
           }
         });
       });
-    });
-  }, [scene]);
+
+      // Set up texture update callback
+      carouselRef.current.setOnUpdate(() => {
+        if (textureRef.current) {
+          textureRef.current.needsUpdate = true;
+        }
+      });
+    }
+  }, [scene, views]);
+
+  // Trigger carousel transition when view changes
+  useEffect(() => {
+    if (carouselRef.current) {
+      console.log('[MacBook] Transitioning to view:', currentViewIndex);
+      carouselRef.current.goToView(currentViewIndex);
+    }
+  }, [currentViewIndex]);
 
   useFrame((state) => {
     if (!scrollState.isVisible) return;
     state.invalidate();
     const time = state.clock.elapsedTime;
+
+    // Tick carousel animation
+    if (carouselRef.current) {
+      carouselRef.current.tick();
+    }
 
     scrollState.smoothLidProgress += (scrollState.lidProgress - scrollState.smoothLidProgress) * 0.12;
     const p = scrollState.smoothLidProgress;
@@ -255,13 +293,15 @@ function MacBookDevice() {
 
 // ─── Phone (independent floating + scroll-driven rotation + individual drag) ──
 
-function PhoneDevice() {
+function PhoneDevice({ currentViewIndex, views }: { currentViewIndex: number; views: typeof SCREEN_VIEWS }) {
   const phoneGltf = useGLTF('/3d_models/iphone_16_pro_max.glb');
   const [scene] = useState(() => phoneGltf.scene.clone(true));
   const groupRef = useRef<THREE.Group>(null);
   const smoothMouseX = useRef(0);
   const smoothMouseY = useRef(0);
   const { onPointerDown, updateDrag } = useDrag();
+  const carouselRef = useRef<OrganizeCarouselRenderer | null>(null);
+  const textureRef = useRef<THREE.CanvasTexture | null>(null);
 
   useEffect(() => {
     scene.traverse((child: any) => {
@@ -279,65 +319,85 @@ function PhoneDevice() {
       }
     });
 
-    // Phone screen texture
-    // The model's built-in UVs are broken — recalculate from vertex positions
-    // (same approach used by the hero DeviceScene)
-    const loader = new THREE.TextureLoader();
-    loader.load(
-      '/Photos/IMG_3495%202.PNG',
-      (texture) => {
-        texture.colorSpace = THREE.SRGBColorSpace;
-        texture.flipY = false;
+    // Initialize carousel renderer
+    if (!carouselRef.current) {
+      console.log('[Phone] Initializing carousel renderer');
+      const phoneViews = views.map(v => ({ name: v.name, imagePath: v.phoneImage }));
+      carouselRef.current = new OrganizeCarouselRenderer(1320, 2868, phoneViews);
 
-        scene.traverse((child: any) => {
-          if (!child.isMesh) return;
-          // Match screen mesh — dots stripped from names by GLTFLoader
-          const nameMatch = child.name.toLowerCase().includes('screen');
-          const matMatch = child.material?.name === 'screen001' || child.material?.name === 'screen.001';
+      // Create texture from carousel canvas
+      const canvas = carouselRef.current.getCanvas();
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.flipY = false;
+      textureRef.current = texture;
 
-          if (nameMatch || matMatch) {
-            // Clone geometry and fix UVs from vertex positions
-            const geometry = child.geometry.clone();
-            child.geometry = geometry;
+      // Apply texture to screen mesh with UV mapping
+      scene.traverse((child: any) => {
+        if (!child.isMesh) return;
+        const nameMatch = child.name.toLowerCase().includes('screen');
+        const matMatch = child.material?.name === 'screen001' || child.material?.name === 'screen.001';
 
-            const pos = geometry.attributes.position.array;
-            let minY = Infinity, maxY = -Infinity, minZ = Infinity, maxZ = -Infinity;
-            for (let i = 0; i < pos.length; i += 3) {
-              minY = Math.min(minY, pos[i + 1]);
-              maxY = Math.max(maxY, pos[i + 1]);
-              minZ = Math.min(minZ, pos[i + 2]);
-              maxZ = Math.max(maxZ, pos[i + 2]);
-            }
+        if (nameMatch || matMatch) {
+          console.log('[Phone] Found screen mesh, applying carousel texture');
 
-            const vertCount = pos.length / 3;
-            const newUV = new Float32Array(vertCount * 2);
-            for (let i = 0; i < vertCount; i++) {
-              const y = pos[i * 3 + 1];
-              const z = pos[i * 3 + 2];
-              newUV[i * 2] = 1 - (y - minY) / (maxY - minY);       // U = 1-Y (flipped)
-              newUV[i * 2 + 1] = 1 - (z - minZ) / (maxZ - minZ);   // V = 1-Z (flipped)
-            }
-            geometry.setAttribute('uv', new THREE.BufferAttribute(newUV, 2));
+          // Fix UVs from vertex positions
+          const geometry = child.geometry.clone();
+          child.geometry = geometry;
 
-            child.material = new THREE.MeshBasicMaterial({
-              map: texture,
-              toneMapped: false,
-              side: THREE.DoubleSide,
-            });
+          const pos = geometry.attributes.position.array;
+          let minY = Infinity, maxY = -Infinity, minZ = Infinity, maxZ = -Infinity;
+          for (let i = 0; i < pos.length; i += 3) {
+            minY = Math.min(minY, pos[i + 1]);
+            maxY = Math.max(maxY, pos[i + 1]);
+            minZ = Math.min(minZ, pos[i + 2]);
+            maxZ = Math.max(maxZ, pos[i + 2]);
           }
-        });
-      },
-      undefined,
-      (err) => {
-        console.error('Phone screen texture failed to load:', err);
-      }
-    );
-  }, [scene]);
+
+          const vertCount = pos.length / 3;
+          const newUV = new Float32Array(vertCount * 2);
+          for (let i = 0; i < vertCount; i++) {
+            const y = pos[i * 3 + 1];
+            const z = pos[i * 3 + 2];
+            newUV[i * 2] = 1 - (y - minY) / (maxY - minY);
+            newUV[i * 2 + 1] = 1 - (z - minZ) / (maxZ - minZ);
+          }
+          geometry.setAttribute('uv', new THREE.BufferAttribute(newUV, 2));
+
+          child.material = new THREE.MeshBasicMaterial({
+            map: texture,
+            toneMapped: false,
+            side: THREE.DoubleSide,
+          });
+        }
+      });
+
+      // Set up texture update callback
+      carouselRef.current.setOnUpdate(() => {
+        if (textureRef.current) {
+          textureRef.current.needsUpdate = true;
+        }
+      });
+    }
+  }, [scene, views]);
+
+  // Trigger carousel transition when view changes
+  useEffect(() => {
+    if (carouselRef.current) {
+      console.log('[Phone] Transitioning to view:', currentViewIndex);
+      carouselRef.current.goToView(currentViewIndex);
+    }
+  }, [currentViewIndex]);
 
   useFrame((state) => {
     if (!scrollState.isVisible) return;
     state.invalidate();
     const time = state.clock.elapsedTime;
+
+    // Tick carousel animation
+    if (carouselRef.current) {
+      carouselRef.current.tick();
+    }
 
     // Read smoothed scroll progress (already updated by MacBook's useFrame)
     const p = scrollState.smoothLidProgress;
@@ -382,7 +442,24 @@ function PhoneDevice() {
 
 // ─── Canvas & Section ─────────────────────────────────────────────────────────
 
-function OrganizeCanvas() {
+function OrganizeCanvas({ currentViewIndex }: { currentViewIndex: number }) {
+  return (
+    <>
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[3, 5, 4]} intensity={0.8} />
+      <directionalLight position={[-3, 3, 2]} intensity={0.3} />
+
+      <Suspense fallback={null}>
+        <ResponsiveCamera />
+        <MacBookDevice currentViewIndex={currentViewIndex} views={SCREEN_VIEWS} />
+        <PhoneDevice currentViewIndex={currentViewIndex} views={SCREEN_VIEWS} />
+        <Environment preset="studio" environmentIntensity={0.5} />
+      </Suspense>
+    </>
+  );
+}
+
+function OrganizeCanvasWrapper({ currentViewIndex }: { currentViewIndex: number }) {
   return (
     <Canvas
       frameloop="demand"
@@ -395,32 +472,49 @@ function OrganizeCanvas() {
       }}
       style={{ background: 'transparent', width: '100%', height: '100%' }}
     >
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[3, 5, 4]} intensity={0.8} />
-      <directionalLight position={[-3, 3, 2]} intensity={0.3} />
-
-      <Suspense fallback={null}>
-        <ResponsiveCamera />
-        <MacBookDevice />
-        <PhoneDevice />
-        <Environment preset="studio" environmentIntensity={0.5} />
-      </Suspense>
+      <OrganizeCanvas currentViewIndex={currentViewIndex} />
     </Canvas>
   );
 }
 
 // View options for cycling through different screen states
 const SCREEN_VIEWS = [
-  { name: 'Calendar', id: 'calendar' },
-  { name: 'Tasks', id: 'tasks' },
-  { name: 'Journal', id: 'journal' },
-  { name: 'To-do List', id: 'todo' },
+  {
+    name: 'Calendar',
+    id: 'calendar',
+    phoneImage: '/Photos/IMG_3495%202.PNG', // Current calendar view
+    macImage: '/Photos/macbook-screen.webp', // Current tasks view
+    color: '#3b82f6', // blue
+  },
+  {
+    name: 'Tasks',
+    id: 'tasks',
+    phoneImage: '/Photos/phone-tasks.png', // Placeholder
+    macImage: '/Photos/mac-tasks.png', // Placeholder
+    color: '#10b981', // green
+  },
+  {
+    name: 'Journal',
+    id: 'journal',
+    phoneImage: '/Photos/phone-journal.png', // Placeholder
+    macImage: '/Photos/mac-journal.png', // Placeholder
+    color: '#f59e0b', // yellow/amber
+  },
+  {
+    name: 'To-do List',
+    id: 'todo',
+    phoneImage: '/Photos/phone-todo.png', // Placeholder
+    macImage: '/Photos/mac-todo.png', // Placeholder
+    color: '#a855f7', // purple
+  },
 ];
 
 const OrganizeSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
+  const [previousViewIndex, setPreviousViewIndex] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const isMobile = useIsMobile();
 
   // Track section as it scrolls through the viewport (enter → leave)
@@ -428,6 +522,32 @@ const OrganizeSection: React.FC = () => {
     target: containerRef,
     offset: ['start end', 'end start'],
   });
+
+  // Auto-scroll through views every 4 seconds
+  useEffect(() => {
+    if (!isAutoScrolling || isMobile) return;
+
+    const interval = setInterval(() => {
+      setCurrentViewIndex((prev) => {
+        const next = (prev + 1) % SCREEN_VIEWS.length;
+        console.log('[OrganizeSection] Auto-scrolling to view:', next, SCREEN_VIEWS[next].name);
+        return next;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isAutoScrolling, isMobile]);
+
+  // Track previous view index for direction detection
+  useEffect(() => {
+    console.log('[OrganizeSection] Current view changed:', currentViewIndex, SCREEN_VIEWS[currentViewIndex].name);
+    console.log('[OrganizeSection] Phone image:', SCREEN_VIEWS[currentViewIndex].phoneImage);
+    console.log('[OrganizeSection] Mac image:', SCREEN_VIEWS[currentViewIndex].macImage);
+
+    return () => {
+      setPreviousViewIndex(currentViewIndex);
+    };
+  }, [currentViewIndex]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -480,6 +600,58 @@ const OrganizeSection: React.FC = () => {
         backgroundColor: 'transparent',
       }}
     >
+      {/* Animated gradient blobs behind 3D models */}
+      {!isMobile && (
+        <>
+          {/* Outgoing blob */}
+          <motion.div
+            key={`blob-out-${previousViewIndex}`}
+            initial={{ opacity: 1 }}
+            animate={{
+              opacity: 0,
+              x: previousViewIndex < currentViewIndex ? -300 : 300,
+            }}
+            transition={{
+              duration: 1.2,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 5,
+              pointerEvents: 'none',
+              filter: 'blur(60px)',
+              background: `radial-gradient(ellipse 1600px 700px at 50% 60%, ${SCREEN_VIEWS[previousViewIndex].color}80, ${SCREEN_VIEWS[previousViewIndex].color}20 50%, transparent 75%)`,
+            }}
+          />
+
+          {/* Incoming blob */}
+          <motion.div
+            key={`blob-in-${currentViewIndex}`}
+            initial={{
+              opacity: 0,
+              x: previousViewIndex < currentViewIndex ? 300 : -300,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 1.2,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 5,
+              pointerEvents: 'none',
+              filter: 'blur(60px)',
+              background: `radial-gradient(ellipse 1600px 700px at 50% 60%, ${SCREEN_VIEWS[currentViewIndex].color}80, ${SCREEN_VIEWS[currentViewIndex].color}20 50%, transparent 75%)`,
+            }}
+          />
+        </>
+      )}
+
       {/* Headline — scrolls naturally with the section */}
       <div
         style={{
@@ -516,19 +688,101 @@ const OrganizeSection: React.FC = () => {
           Organize at the speed of AI.
         </h2>
 
-        {/* Current view label */}
+        {/* Current view label with navigation arrows */}
         {!isMobile && (
-          <p
+          <div
             style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '1.125rem',
-              color: '#64748b',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1rem',
               marginTop: '1.5rem',
-              fontWeight: 500,
+              pointerEvents: 'auto',
             }}
           >
-            {SCREEN_VIEWS[currentViewIndex].name}
-          </p>
+            {/* Left arrow */}
+            <button
+              onClick={() => {
+                setIsAutoScrolling(false);
+                setCurrentViewIndex((prev) => (prev - 1 + SCREEN_VIEWS.length) % SCREEN_VIEWS.length);
+              }}
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                border: '1px solid rgba(148, 163, 184, 0.2)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                backdropFilter: 'blur(8px)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                <path d="M12 16L6 10L12 4" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {/* View name */}
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '1.125rem',
+                color: '#64748b',
+                fontWeight: 500,
+                margin: 0,
+                minWidth: '120px',
+                textAlign: 'center',
+              }}
+            >
+              {SCREEN_VIEWS[currentViewIndex].name}
+            </p>
+
+            {/* Right arrow */}
+            <button
+              onClick={() => {
+                setIsAutoScrolling(false);
+                setCurrentViewIndex((prev) => (prev + 1) % SCREEN_VIEWS.length);
+              }}
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                border: '1px solid rgba(148, 163, 184, 0.2)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                backdropFilter: 'blur(8px)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                <path d="M8 4L14 10L8 16" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
         )}
       </div>
 
@@ -567,86 +821,10 @@ const OrganizeSection: React.FC = () => {
             zIndex: 10,
           }}
         >
-          {isActive && <OrganizeCanvas />}
+          {isActive && <OrganizeCanvasWrapper currentViewIndex={currentViewIndex} />}
         </div>
       )}
 
-      {/* Navigation arrows — desktop only */}
-      {!isMobile && (
-        <>
-          {/* Left arrow */}
-          <button
-            onClick={() => setCurrentViewIndex((prev) => (prev - 1 + SCREEN_VIEWS.length) % SCREEN_VIEWS.length)}
-            style={{
-              position: 'absolute',
-              left: 'clamp(1rem, 5vw, 4rem)',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 40,
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              border: '1px solid rgba(148, 163, 184, 0.2)',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              backdropFilter: 'blur(8px)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M12 16L6 10L12 4" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-
-          {/* Right arrow */}
-          <button
-            onClick={() => setCurrentViewIndex((prev) => (prev + 1) % SCREEN_VIEWS.length)}
-            style={{
-              position: 'absolute',
-              right: 'clamp(1rem, 5vw, 4rem)',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 40,
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              border: '1px solid rgba(148, 163, 184, 0.2)',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              backdropFilter: 'blur(8px)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M8 4L14 10L8 16" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </>
-      )}
     </div>
   );
 };

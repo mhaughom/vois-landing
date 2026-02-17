@@ -221,6 +221,12 @@ export const Analytics = {
     posthog.identify(email, properties);
   },
 
+  // Get PostHog distinct ID (for saving to database)
+  getDistinctId: (): string | null => {
+    if (!isPostHogReady()) return null;
+    return posthog.get_distinct_id();
+  },
+
   // Waitlist funnel - Comprehensive tracking
   waitlistModalOpened: (source: string) => {
     capture('waitlist_modal_opened', { source });
@@ -270,14 +276,18 @@ export const Analytics = {
 
   waitlistSignup: (email: string, data?: Record<string, unknown>) => {
     if (!isPostHogReady()) return;
-    // Identify the user in PostHog
+    // CRITICAL: Identify the user by email in PostHog
+    // This ensures we can always search by email in Persons view
     posthog.identify(email, {
       email,
       joined_waitlist: true,
       waitlist_signup_date: new Date().toISOString(),
       ...data,
     });
-    capture('waitlist_signup', data);
+    capture('waitlist_signup', {
+      email, // Include email in event properties too
+      ...data,
+    });
   },
 
   waitlistSkippedQuestions: () => {
@@ -292,5 +302,26 @@ export const Analytics = {
       completed_steps: completedSteps,
       completion_rate: `${stepNumber}/5`
     });
+  },
+
+  // Streaming demo events
+  streamingStarted: (device: 'phone' | 'watch') => {
+    capture('demo_streaming_started', { device });
+  },
+
+  streamingCardReceived: (cardIndex: number, category: string) => {
+    capture('demo_card_received', { card_index: cardIndex, category });
+  },
+
+  streamingCompleted: (totalCards: number, durationSeconds: number) => {
+    capture('demo_streaming_completed', { total_cards: totalCards, duration_seconds: durationSeconds });
+  },
+
+  streamingError: (errorType: string, message: string) => {
+    capture('demo_streaming_error', { error_type: errorType, message });
+  },
+
+  streamingFallback: (reason: string) => {
+    capture('demo_streaming_fallback', { reason });
   },
 };

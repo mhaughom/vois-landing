@@ -213,8 +213,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   const phoneYRaw = useTransform(progress, [0, 1], [-20, -90]);
   const phoneXRaw = useTransform(progress, [0, 1], [20, 30]);
   const watchScaleRaw = useTransform(progress, [0, 1], [1, 1.45]);
-  const watchXRaw = useTransform(progress, [0, 1], [20, -60]);
-  const watchYRaw = useTransform(progress, [0, 1], [-20, -24]);
+  const watchXRaw = useTransform(progress, [0, 1], [50, -60]);
+  const watchYRaw = useTransform(progress, [0, 1], [-70, -24]);
 
   const phoneScale = useSpring(phoneScaleRaw, springConfig);
   const phoneY = useSpring(phoneYRaw, springConfig);
@@ -543,7 +543,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       style={{
         height: scrollDriven ? '200dvh' : '100dvh',
         background: scaleGradientIntensity(BG_VARIANTS[bgVariant % BG_VARIANTS.length], bgIntensity),
-        backgroundSize: '100% 300%',
+        backgroundSize: '100% 300dvh',
         backgroundPosition: '0% 0%',
         ...(scrollDriven ? { pointerEvents: 'none' as const } : {}),
       }}
@@ -662,8 +662,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
               <canvas
                 ref={phoneCanvasRef}
                 style={{
-                  maxHeight: '52vh',
-                  width: 'auto',
+                  width: 'min(110vw, 62vh)',
+                  height: 'min(110vw, 62vh)',
                   imageRendering: 'auto',
                   display: 'block',
                 }}
@@ -742,8 +742,8 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                 <canvas
                   ref={watchCanvasRef}
                   style={{
-                    maxHeight: '26vh',
-                    width: 'auto',
+                    width: 'min(55vw, 31vh)',
+                    height: 'min(55vw, 31vh)',
                     imageRendering: 'auto',
                     display: 'block',
                   }}

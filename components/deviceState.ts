@@ -13,6 +13,7 @@ export interface DemoState {
   activeDevice: DemoDevice;
   isRecording: boolean;
   isProcessing: boolean;
+  isStreaming: boolean; // Live streaming mode - show results while recording
   audioLevels: number[];
   countdown: number;
   elapsed: number;
@@ -21,6 +22,7 @@ export interface DemoState {
   items: Array<{ type: string; rawText: string; content: string; icon: string }>;
   error: string | null;
   tip: string;
+  hasReceivedFirstCard: boolean; // Track if first action card has been received
 }
 
 // Phone screen navigation state
@@ -64,6 +66,7 @@ export const globalState = {
     activeDevice: null,
     isRecording: false,
     isProcessing: false,
+    isStreaming: false,
     audioLevels: new Array(24).fill(0.1),
     countdown: 30,
     elapsed: 0,
@@ -72,6 +75,7 @@ export const globalState = {
     items: [],
     error: null,
     tip: '',
+    hasReceivedFirstCard: false,
   } as DemoState,
   demoResultsStartTime: null as number | null,
   chatState: {
@@ -181,7 +185,8 @@ export const setDemoActiveDevice = (device: DemoDevice) => {
 
 export const setDemoRecording = (isRecording: boolean) => {
   globalState.demoState.isRecording = isRecording;
-  if (isRecording) {
+  if (isRecording && !globalState.demoState.isStreaming) {
+    // Only reset state for batch mode, NOT streaming mode
     globalState.demoState.isWaitingToStart = false;
     globalState.demoState.countdown = 30;
     globalState.demoState.elapsed = 0;
@@ -197,6 +202,12 @@ export const setDemoRecording = (isRecording: boolean) => {
 
 export const setDemoProcessing = (isProcessing: boolean) => {
   globalState.demoState.isProcessing = isProcessing;
+};
+
+export const setDemoStreaming = (isStreaming: boolean) => {
+  console.log(`[deviceState] 🎛️  setDemoStreaming called with: ${isStreaming}`);
+  globalState.demoState.isStreaming = isStreaming;
+  console.log(`[deviceState] ✅ isStreaming is now: ${globalState.demoState.isStreaming}`);
 };
 
 export const setDemoAudioLevels = (levels: number[]) => {
@@ -293,6 +304,15 @@ export const setDemoResults = (results: {
 
   const finalHighlights = rawTextHighlights.length > 0 ? rawTextHighlights : results.highlights;
 
+  console.log('[deviceState] 📝 setDemoResults called:', {
+    transcript,
+    transcriptLength: transcript.length,
+    highlightCount: finalHighlights.length,
+    itemCount: mappedItems.length,
+    isStreaming: globalState.demoState.isStreaming,
+    isRecording: globalState.demoState.isRecording,
+  });
+
   globalState.demoState.transcript = transcript;
   globalState.demoState.highlights = finalHighlights;
   globalState.demoState.items = mappedItems;
@@ -301,6 +321,10 @@ export const setDemoResults = (results: {
 
 export const setDemoError = (error: string | null) => {
   globalState.demoState.error = error;
+};
+
+export const setDemoFirstCardReceived = (received: boolean) => {
+  globalState.demoState.hasReceivedFirstCard = received;
 };
 
 export const getDemoState = () => globalState.demoState;
