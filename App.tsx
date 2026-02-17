@@ -24,6 +24,7 @@ import { useIsMobile } from './hooks/useIsMobile';
 import { Analytics } from './lib/analytics';
 import { ActionCards } from './components/ActionCards';
 import { ContextualChat } from './components/ContextualChat';
+import { LifeAreas } from './components/LifeAreas';
 import { WaitlistModal } from './components/WaitlistModal';
 
 const faqData = [
@@ -1477,6 +1478,9 @@ const App = () => {
 
           {/* CONTEXTUAL CHAT - AI that knows your context */}
           <ContextualChat />
+
+          {/* LIFE AREAS - Work and life organization */}
+          <LifeAreas />
 
           <section id="privacy" className="py-32 md:py-40 px-6 md:px-16 relative z-10">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12">

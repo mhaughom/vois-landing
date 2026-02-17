@@ -558,18 +558,12 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
     const deepgramKey = import.meta.env.VITE_DEEPGRAM_API_KEY;
     const openaiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
-    console.log('[Demo] 🔑 DeepGram Key:', deepgramKey ? `${deepgramKey.substring(0, 10)}...${deepgramKey.substring(deepgramKey.length - 4)}` : 'MISSING');
-    console.log('[Demo] 🔑 OpenAI Key:', openaiKey ? `${openaiKey.substring(0, 15)}...${openaiKey.substring(openaiKey.length - 4)}` : 'MISSING');
-
     if (!deepgramKey || !openaiKey) {
       console.error('[Demo] Missing API keys - check .env file');
-      console.error('[Demo] Need: VITE_DEEPGRAM_API_KEY and VITE_OPENAI_API_KEY');
       return;
     }
 
     deepgramManagerRef.current = new DeepgramStreamingManager(deepgramKey, openaiKey);
-
-    console.log('[Demo] ✅ Client-side streaming manager initialized');
 
     // Register event handlers for DeepGram streaming
     const handleInterimTranscript = (data: any) => {
