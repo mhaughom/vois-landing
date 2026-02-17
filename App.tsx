@@ -580,7 +580,7 @@ const App = () => {
   return (
     <div
       className="relative w-full min-h-screen font-sans scroll-smooth"
-      style={isMobile && !demoGatePassed ? { height: '100dvh', overflow: 'hidden' } : undefined}
+      style={undefined}
     >
       {/* Top white gradient overlay — only on desktop for Safari Liquid Glass toolbar */}
       {!isMobile && (
@@ -1122,7 +1122,7 @@ const App = () => {
         )}
 
         {/* Gate: on mobile, rest of site hidden until demo completed or skipped */}
-        <div style={isMobile && !demoGatePassed ? { display: 'none' } : undefined}>
+        <div>
 
         {/* THE UNIVERSAL LIE - Cinematic, borderless, Apple-style */}
         <section
