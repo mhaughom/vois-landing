@@ -423,26 +423,15 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       }
     }
 
-    // ── Demo waiting overlay ─────────────────────────────────────────────
+    // ── Demo waiting mode: continue showing scenario animation ───────────
+    // (On desktop, the phone shows its lock screen / scenario animation during waiting.
+    //  We mirror that by NOT showing the waiting overlay and falling through to scenario code.)
     if (currentMode === 'waiting') {
       if (waitingOverlayRef.current) {
-        waitingOverlayRef.current.style.opacity = '1';
-        waitingOverlayRef.current.style.pointerEvents = 'auto';
+        waitingOverlayRef.current.style.opacity = '0';
+        waitingOverlayRef.current.style.pointerEvents = 'none';
       }
-      if (demoOverlayRef.current) {
-        demoOverlayRef.current.style.opacity = '0';
-        demoOverlayRef.current.style.pointerEvents = 'none';
-      }
-      if (logoRef.current) {
-        logoRef.current.style.opacity = '0';
-        logoRef.current.style.pointerEvents = 'none';
-      }
-      // Pulse the record button
-      if (waitingRecordBtnRef.current) {
-        const pulse = 0.9 + Math.sin(Date.now() / 800) * 0.1;
-        waitingRecordBtnRef.current.style.transform = `scale(${pulse})`;
-      }
-      return;
+      // Fall through to scenario animation below (no early return)
     }
 
     // Hide waiting overlay for all non-waiting modes
