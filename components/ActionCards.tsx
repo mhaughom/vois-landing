@@ -248,7 +248,7 @@ export const ActionCards: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative rounded-[32px] p-7"
+            className="relative rounded-[32px] p-5 md:p-7"
             style={{
               background: 'linear-gradient(135deg, rgba(236, 252, 241, 0.98) 0%, rgba(209, 250, 223, 0.98) 40%, rgba(167, 243, 208, 0.98) 100%)',
               backdropFilter: 'blur(40px) saturate(180%)',
@@ -447,7 +447,7 @@ export const ActionCards: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative rounded-[32px] p-7"
+            className="relative rounded-[32px] p-5 md:p-7"
             style={{
               background: 'linear-gradient(135deg, rgba(236, 254, 255, 0.98) 0%, rgba(207, 250, 254, 0.98) 40%, rgba(165, 243, 252, 0.98) 100%)',
               backdropFilter: 'blur(40px) saturate(180%)',
@@ -612,7 +612,7 @@ export const ActionCards: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative rounded-[32px] p-7"
+            className="relative rounded-[32px] p-5 md:p-7"
             style={{
               background: 'linear-gradient(135deg, rgba(239, 246, 255, 0.98) 0%, rgba(224, 242, 254, 0.98) 40%, rgba(186, 230, 253, 0.98) 100%)',
               backdropFilter: 'blur(40px) saturate(180%)',
@@ -770,24 +770,24 @@ export const ActionCards: React.FC = () => {
               </div>
 
               {/* Action buttons */}
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <button
                   onClick={() => setEventAction('dismissed')}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/70 backdrop-blur-md text-red-600 font-semibold hover:bg-white hover:scale-105 active:scale-95 transition-all shadow-sm border border-white/40"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white/70 backdrop-blur-md text-red-600 font-semibold hover:bg-white hover:scale-105 active:scale-95 transition-all shadow-sm border border-white/40"
                 >
                   <X size={14} />
                   Dismiss
                 </button>
                 <button
                   onClick={toggleSchedule}
-                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-transparent text-blue-600 font-semibold hover:bg-blue-50 hover:scale-105 active:scale-95 transition-all border-2 border-blue-300"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-transparent text-blue-600 font-semibold hover:bg-blue-50 hover:scale-105 active:scale-95 transition-all border-2 border-blue-300"
                 >
                   <Calendar size={14} />
                   Schedule
                 </button>
                 <button
                   onClick={() => setEventAction('added')}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold hover:from-blue-600 hover:to-blue-700 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-blue-500/30"
+                  className="w-full sm:flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold hover:from-blue-600 hover:to-blue-700 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-blue-500/30"
                 >
                   <Plus size={14} />
                   Add to Calendar

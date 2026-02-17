@@ -193,7 +193,31 @@ export const ContextualChat: React.FC = () => {
     <section id="contextual-chat" className="py-24 md:py-32 px-6 md:px-16 relative z-10">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Chat Card Interface */}
+          {/* Left: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:pr-8"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
+              A ChatGPT that actually helps you.
+            </h2>
+            <div className="space-y-4 text-lg md:text-xl text-slate-600 leading-relaxed">
+              <p>
+                Tired of constantly explaining what project you're working on? This chat <em className="text-slate-900 font-medium">actually knows</em>.
+              </p>
+              <p>
+                It references your voice notes, suggests action cards, and helps plan your work week—without you having to repeat yourself.
+              </p>
+              <p className="text-slate-700 font-medium">
+                Choose Claude, Gemini, ChatGPT, or Grok. Or enable multi-chat to get all four perspectives on the same question—side by side.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right: Chat Card Interface */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -428,29 +452,6 @@ export const ContextualChat: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:pl-8"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
-              A ChatGPT that actually helps you.
-            </h2>
-            <div className="space-y-4 text-lg md:text-xl text-slate-600 leading-relaxed">
-              <p>
-                Tired of constantly explaining what project you're working on? This chat <em className="text-slate-900 font-medium">actually knows</em>.
-              </p>
-              <p>
-                It references your voice notes, suggests action cards, and helps plan your work week—without you having to repeat yourself.
-              </p>
-              <p className="text-slate-700 font-medium">
-                Choose Claude, Gemini, ChatGPT, or Grok. Or enable multi-chat to get all four perspectives on the same question—side by side.
-              </p>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

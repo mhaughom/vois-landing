@@ -9,11 +9,11 @@ import { useScreenOverlay } from '../hooks/useScreenOverlay';
 import { allWhyBenefits } from './HeroDiscoveryDock';
 
 // ─── Configuration ────────────────────────────────────────────────────────────
-const PHONE_FRAME_COUNT = 60;
-const WATCH_FRAME_COUNT = 60;
-// Use mobile-optimized frames (256x256 instead of 512x512 = 50-60% smaller)
-const PHONE_FRAMES_PATH = '/frames/phone-mobile';
-const WATCH_FRAMES_PATH = '/frames/watch-mobile';
+const PHONE_FRAME_COUNT = 30;
+const WATCH_FRAME_COUNT = 30;
+// 512×512 frames, 30 evenly-spaced samples across the full animation
+const PHONE_FRAMES_PATH = '/frames/phone-hq30';
+const WATCH_FRAMES_PATH = '/frames/watch-hq30';
 
 // ─── Category badge carousel components ──────────────────────────────────────
 const MobileCategoryBadge: React.FC<{ item: (typeof allWhyBenefits)[0] }> = ({ item }) => (
@@ -82,7 +82,6 @@ function preloadFramesLazy(
     if (i >= count) return;
 
     const batch: Promise<void>[] = [];
-    const batchStart = i;
 
     for (let j = 0; j < BATCH_SIZE && i < count; j++, i++) {
       const idx = i;
@@ -189,6 +188,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     canvasRef: phoneCanvasRef,
     overlayWidth: 320,
     overlayHeight: 650,
+    cornersPath: '/frames/phone-hq30/screen-corners.json',
   });
 
   const {
@@ -199,7 +199,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
     canvasRef: watchCanvasRef,
     overlayWidth: 200,
     overlayHeight: 220,
-    cornersPath: '/frames/watch/screen-corners.json',
+    cornersPath: '/frames/watch-hq30/screen-corners.json',
   });
 
   // ── Motion values (driven by progress, not scroll) ─────────────────────────
@@ -269,13 +269,15 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
       // Don't hijack touches on buttons/links — let them behave normally
       if (touchOnInteractive) return;
 
-      e.preventDefault(); // Block native scroll until gate passes
       const y = e.touches[0].clientY;
       const delta = lastY - y; // positive = swipe up
       lastY = y;
 
-      // After animation done: allow swiping back up (negative delta) but block further down
+      // After animation done + swiping down: release native scroll so Safari bar can minimize
       if (animationDoneRef.current && delta >= 0) return;
+
+      e.preventDefault(); // Block native scroll only while animation is in progress
+
       // If swiping back up from done state, unlock animation
       if (animationDoneRef.current && delta < 0) {
         animationDoneRef.current = false;
@@ -352,9 +354,12 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
     const vh = window.innerHeight;
 
-    // Sync scroll position to match current animation progress from the
-    // touch-driven phase. The sticky inner content prevents any visual jump.
-    if (progressRef.current > 0 && window.scrollY === 0) {
+    // If animation was already complete (user swiped through or clicked Skip),
+    // jump past the entire 200dvh hero so they land on the content below.
+    // Otherwise sync scroll to wherever the touch-driven phase left off.
+    if (progressRef.current >= 1) {
+      window.scrollTo({ top: vh * 2 });
+    } else if (progressRef.current > 0 && window.scrollY === 0) {
       window.scrollTo({ top: progressRef.current * vh });
     }
 

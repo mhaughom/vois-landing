@@ -1176,7 +1176,6 @@ const App = () => {
               loop
               muted
               playsInline
-              preload="none"
               className="absolute top-0 bottom-0 h-full object-cover"
               style={{
                 width: '100%',
@@ -1211,7 +1210,6 @@ const App = () => {
               loop
               muted
               playsInline
-              preload="none"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 objectPosition: '30% center',
