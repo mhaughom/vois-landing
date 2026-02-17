@@ -323,27 +323,15 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
 
   // ── Main animation tick — rAF, direct DOM mutations only ───────────────
   const tick = useCallback(() => {
-    // Update clock - show countdown during recording, normal time otherwise
+    // Always show normal time on the phone clock (mirrors desktop behavior)
     if (clockRef.current) {
-      const demoState = globalState.demoState;
-
-      if (demoState.isRecording && demoState.elapsed !== undefined) {
-        // Show countdown from 30 seconds
-        const remaining = Math.max(0, 30 - demoState.elapsed);
-        clockRef.current.textContent = `${remaining}s`;
-        clockRef.current.style.color = remaining <= 5 ? '#ef4444' : '#1a1a1a'; // Red when < 5 seconds
-        clockRef.current.style.fontWeight = '700';
-        clockRef.current.style.cursor = 'pointer';
-      } else {
-        // Normal time display
-        const now = new Date();
-        const h = now.getHours();
-        const m = String(now.getMinutes()).padStart(2, '0');
-        clockRef.current.textContent = `${h}:${m}`;
-        clockRef.current.style.color = '#1a1a1a';
-        clockRef.current.style.fontWeight = '600';
-        clockRef.current.style.cursor = 'default';
-      }
+      const now = new Date();
+      const h = now.getHours();
+      const m = String(now.getMinutes()).padStart(2, '0');
+      clockRef.current.textContent = `${h}:${m}`;
+      clockRef.current.style.color = '#1a1a1a';
+      clockRef.current.style.fontWeight = '600';
+      clockRef.current.style.cursor = 'default';
     }
 
     // ── Check demo state ─────────────────────────────────────────────────
@@ -352,19 +340,15 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
     const isDemoProcessing = demoState.isProcessing;
     const isDemoWaiting = demoState.isWaitingToStart;
 
-    // Check for streaming mode using the explicit isStreaming flag
-    const isStreamingMode = demoState.isStreaming && isDemoRecording;
     const hasTranscript = demoState.transcript.length > 0;
-    const hasDemoResults = (hasTranscript && demoState.items.length > 0 && !isDemoRecording && !isDemoProcessing) || isStreamingMode;
+    const hasDemoResults = isDemoRecording || (hasTranscript && demoState.items.length > 0 && !isDemoProcessing);
 
     let currentMode: 'scenario' | 'waiting' | 'recording' | 'processing' | 'results';
 
-    // Priority order: streaming mode > normal results > recording > processing > waiting > scenario
-    // CRITICAL: Check isStreaming flag FIRST to show results panel during streaming
-    if (isStreamingMode) {
-      currentMode = 'results'; // Show results panel during streaming mode
-    } else if (isDemoRecording) {
-      currentMode = 'recording'; // Show recording overlay for batch mode
+    // ANY recording (streaming or batch) → show 2-panel results view on phone
+    // This mirrors the desktop behavior where the phone always shows transcript + cards
+    if (isDemoRecording) {
+      currentMode = 'results';
     } else if (isDemoProcessing) {
       currentMode = 'processing';
     } else if (hasDemoResults) {
@@ -380,23 +364,22 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       const prevMode = demoModeRef.current;
       demoModeRef.current = currentMode;
 
-      if (currentMode === 'results' && !demoResultsBuiltRef.current) {
-        demoResultsBuiltRef.current = true;
-        if (isStreamingMode) wasStreamingResultsRef.current = true;
-        buildDemoTranscript();
-        buildDemoCards();
-        // Initialize tracking for streaming mode
-        lastStreamingTranscriptRef.current = demoState.transcript;
-        lastStreamingItemsCountRef.current = demoState.items.length;
-      }
-
-      if (currentMode === 'recording') {
-        // Reset results state for fresh recording (handles retry)
-        demoResultsBuiltRef.current = false;
-        demoResultsRevealStart.current = null;
-        lastStreamingTranscriptRef.current = '';
-        lastStreamingItemsCountRef.current = 0;
-        wasStreamingResultsRef.current = false;
+      if (currentMode === 'results') {
+        // Reset for fresh recording if coming from non-results mode
+        if (prevMode === 'waiting' || prevMode === 'scenario') {
+          demoResultsBuiltRef.current = false;
+          demoResultsRevealStart.current = null;
+          lastStreamingTranscriptRef.current = '';
+          lastStreamingItemsCountRef.current = 0;
+        }
+        if (!demoResultsBuiltRef.current) {
+          demoResultsBuiltRef.current = true;
+          wasStreamingResultsRef.current = true;
+          buildDemoTranscript();
+          buildDemoCards();
+          lastStreamingTranscriptRef.current = demoState.transcript;
+          lastStreamingItemsCountRef.current = demoState.items.length;
+        }
       }
 
       if (currentMode === 'scenario') {
@@ -410,8 +393,8 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       }
     }
 
-    // ── Streaming mode: rebuild DOM when data changes ─────────────────────
-    if (currentMode === 'results' && (isStreamingMode || wasStreamingResultsRef.current)) {
+    // ── Rebuild DOM when data changes (during recording or after) ──────────
+    if (currentMode === 'results' && (isDemoRecording || wasStreamingResultsRef.current)) {
       const transcriptChanged = demoState.transcript !== lastStreamingTranscriptRef.current;
       const itemsChanged = demoState.items.length !== lastStreamingItemsCountRef.current;
 
@@ -440,87 +423,9 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
       waitingOverlayRef.current.style.pointerEvents = 'none';
     }
 
-    // ── Demo recording / processing overlay ──────────────────────────────
-    if (currentMode === 'recording' || currentMode === 'processing') {
-      // Show demo overlay, hide logo and scenario content
-      if (demoOverlayRef.current) {
-        demoOverlayRef.current.style.opacity = '1';
-        demoOverlayRef.current.style.pointerEvents = 'auto';
-      }
-      if (logoRef.current) {
-        logoRef.current.style.opacity = '0';
-        logoRef.current.style.pointerEvents = 'none';
-      }
-
-      if (currentMode === 'recording') {
-        // Update waveform bars with real audio levels
-        const levels = demoState.audioLevels;
-        for (let i = 0; i < DEMO_BAR_COUNT; i++) {
-          const bar = demoBarsRef.current[i];
-          if (!bar) continue;
-          const level = levels[i] || 0.1;
-          const h = 8 + level * 50;
-          bar.style.height = `${h}px`;
-          bar.style.opacity = String(0.5 + level * 0.5);
-        }
-
-        // Update timer
-        if (demoTimerRef.current) {
-          const secs = demoState.elapsed;
-          const mins = Math.floor(secs / 60);
-          const displaySecs = secs % 60;
-          demoTimerRef.current.textContent = `${mins}:${String(displaySecs).padStart(2, '0')}`;
-          demoTimerRef.current.style.fontSize = '48px';
-        }
-
-        // Pulse recording dot
-        if (demoDotRef.current) {
-          const pulse = 0.6 + Math.sin(Date.now() / 300) * 0.4;
-          demoDotRef.current.style.opacity = String(pulse);
-        }
-
-        // Update status text
-        if (demoStatusRef.current) {
-          demoStatusRef.current.textContent = 'Recording...';
-          demoStatusRef.current.style.color = '#ef4444';
-        }
-      } else {
-        // Processing mode
-        // Subtle pulsing bars
-        for (let i = 0; i < DEMO_BAR_COUNT; i++) {
-          const bar = demoBarsRef.current[i];
-          if (!bar) continue;
-          const t = Date.now() * 0.001;
-          const level = 0.2 + Math.sin(t * 2 + i * 0.3) * 0.1;
-          bar.style.height = `${8 + level * 30}px`;
-          bar.style.opacity = '0.4';
-        }
-
-        // Update timer to show processing state
-        if (demoTimerRef.current) {
-          const dots = '.'.repeat(1 + Math.floor((Date.now() / 500) % 3));
-          demoTimerRef.current.textContent = `Processing${dots}`;
-          demoTimerRef.current.style.fontSize = '18px';
-        }
-
-        // Hide recording dot
-        if (demoDotRef.current) {
-          demoDotRef.current.style.opacity = '0';
-        }
-
-        // Show tip
-        if (demoStatusRef.current) {
-          demoStatusRef.current.textContent = demoState.tip || 'Analyzing your voice note...';
-          demoStatusRef.current.style.color = '#94a3b8';
-        }
-      }
-
-      return; // Skip normal scenario animation
-    }
-
-    // ── Demo results mode ────────────────────────────────────────────────
+    // ── Demo results mode (covers recording + post-recording) ───────────
     if (currentMode === 'results') {
-      // Hide demo overlay
+      // Hide all overlays — only show the 2-panel transcript + cards view
       if (demoOverlayRef.current) {
         demoOverlayRef.current.style.opacity = '0';
         demoOverlayRef.current.style.pointerEvents = 'none';
@@ -530,62 +435,19 @@ export const PhoneScreenAnimation: React.FC<PhoneScreenAnimationProps> = ({
         logoRef.current.style.pointerEvents = 'none';
       }
 
+      // Show all transcript spans and cards immediately (streaming = live updates)
       const spans = segmentSpansRef.current[999];
-
-      // In streaming mode (or just finished streaming), show everything immediately (no reveal animation)
-      if ((isStreamingMode || wasStreamingResultsRef.current) && spans) {
+      if (spans) {
         spans.forEach((span) => {
           span.style.opacity = '1';
         });
-        cardRefs.current.forEach((card) => {
-          if (card) {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }
-        });
-      } else {
-        // Normal results mode - animate reveal (typewriter effect)
-        const revealStart = demoResultsRevealStart.current;
-        if (spans && revealStart) {
-          const elapsed = (Date.now() - revealStart) / 1000;
-          const totalText = globalState.demoState.transcript;
-          const revealedChars = Math.min(Math.floor(elapsed * 60), totalText.length); // 60 chars/sec
-
-          let charCount = 0;
-          spans.forEach((span) => {
-            const text = span.textContent || '';
-            const segLen = text.length;
-            const segStart = charCount;
-            const segEnd = charCount + segLen;
-
-            if (revealedChars >= segEnd) {
-              span.style.opacity = '1';
-            } else if (revealedChars > segStart) {
-              span.style.opacity = '1';
-            } else {
-              span.style.opacity = '0';
-            }
-
-            charCount += segLen;
-          });
-        }
-
-        // Animate card reveal (staggered fade-in after transcript is mostly revealed)
-        if (revealStart) {
-          const elapsed = (Date.now() - revealStart) / 1000;
-          const transcriptDuration = (globalState.demoState.transcript.length / 60) + 0.3;
-          cardRefs.current.forEach((card, i) => {
-            if (!card) return;
-            const cardDelay = transcriptDuration + i * 0.2;
-            if (elapsed > cardDelay) {
-              const cardElapsed = elapsed - cardDelay;
-              const opacity = Math.min(1, cardElapsed / 0.3);
-              card.style.opacity = String(opacity);
-              card.style.transform = opacity >= 1 ? 'translateY(0)' : `translateY(${6 * (1 - opacity)}px)`;
-            }
-          });
-        }
       }
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
 
       if (cardsHeaderRef.current) cardsHeaderRef.current.style.opacity = '1';
       return;

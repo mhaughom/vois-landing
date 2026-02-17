@@ -192,8 +192,8 @@ export const DemoSteps: React.FC<{
               </motion.div>
             )}
 
-            {/* Step 2 - Mobile: during recording or streaming results. Desktop: recording onwards */}
-            {(isMobile ? (stage === 'recording' || (stage === 'results' && isActuallyRecording)) : (stage === 'recording' || stage === 'processing' || stage === 'results')) && (
+            {/* Steps 2 & 3 - Desktop only (mobile just shows recording indicator + Stop) */}
+            {!isMobile && (stage === 'recording' || stage === 'processing' || stage === 'results') && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
