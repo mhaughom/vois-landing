@@ -152,11 +152,11 @@ function useResponsiveDeviceLayout() {
       return {
         phone: {
           position: new THREE.Vector3(0.5, -0.03, -0.15),
-          scale: 1.0,
+          scale: 0.5,
         },
         watch: {
-          position: new THREE.Vector3(0.1, -0.45, 0.38),
-          scale: 0.30,
+          position: new THREE.Vector3(0.1, -0.36, 0.38),
+          scale: 0.15,
         },
       };
     } else {
@@ -164,11 +164,11 @@ function useResponsiveDeviceLayout() {
       return {
         phone: {
           position: new THREE.Vector3(0.6, -0.05, -0.2),
-          scale: 1.1,
+          scale: 0.55,
         },
         watch: {
-          position: new THREE.Vector3(0.15, -0.44, 0.4),
-          scale: 0.34,
+          position: new THREE.Vector3(0.15, -0.35, 0.4),
+          scale: 0.17,
         },
       };
     }

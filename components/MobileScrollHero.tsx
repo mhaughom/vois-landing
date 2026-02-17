@@ -356,9 +356,10 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
 
     // If animation was already complete (user swiped through or clicked Skip),
     // jump past the entire 200dvh hero so they land on the content below.
+    // The hero is no longer visible, so background/frame updates are invisible.
     // Otherwise sync scroll to wherever the touch-driven phase left off.
     if (progressRef.current >= 1) {
-      window.scrollTo({ top: vh * 2 });
+      window.scrollTo(0, vh * 2);
     } else if (progressRef.current > 0 && window.scrollY === 0) {
       window.scrollTo({ top: progressRef.current * vh });
     }
@@ -862,22 +863,19 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
                 onClick={() => {
                   if (skipped) return;
                   setSkipped(true);
-                  // Smooth slow scroll down to reveal content below
-                  // Always scroll down from current position, never up
-                  const currentScroll = window.scrollY;
-                  const targetScroll = Math.max(currentScroll + window.innerHeight * 0.6, window.innerHeight * 1.2);
 
-                  requestAnimationFrame(() => {
-                    window.scrollTo({
-                      top: targetScroll,
-                      behavior: 'smooth',
-                    });
-                  });
+                  // Mark animation as complete so the scroll-driven
+                  // useEffect will position correctly after layout change.
+                  // Don't call progress.set(1) here — that would instantly
+                  // shift the background gradient. Let the scroll-driven
+                  // effect update progress naturally when scroll jumps.
+                  progressRef.current = 1;
+                  animationDoneRef.current = true;
+                  setHeroComplete(true);
 
-                  // Call onSkipDemo after scroll starts
-                  setTimeout(() => {
-                    onSkipDemo?.();
-                  }, 300);
+                  // Pass the gate immediately — the scroll-driven useEffect
+                  // handles scrolling after the layout updates
+                  onSkipDemo?.();
                 }}
                 disabled={skipped}
                 style={{

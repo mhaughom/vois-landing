@@ -432,6 +432,8 @@ const App = () => {
   // Refs for section tracking
   const heroRef = useRef<HTMLElement>(null);
   const videoTransitionRef = useRef<HTMLElement>(null);
+  const messyManDesktopRef = useRef<HTMLVideoElement>(null);
+  const messyManTabletRef = useRef<HTMLVideoElement>(null);
   const narrativeRef = useRef<HTMLDivElement>(null);
   const captureRef = useRef<HTMLElement>(null);
   const flowRef = useRef<HTMLElement>(null);
@@ -1169,9 +1171,11 @@ const App = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+            onViewportEnter={() => messyManDesktopRef.current?.play().catch(() => {})}
             className="hidden lg:block absolute inset-0 overflow-hidden"
           >
             <video
+              ref={messyManDesktopRef}
               autoPlay
               loop
               muted
@@ -1203,9 +1207,11 @@ const App = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+            onViewportEnter={() => messyManTabletRef.current?.play().catch(() => {})}
             className="hidden md:block lg:hidden absolute inset-0 overflow-hidden"
           >
             <video
+              ref={messyManTabletRef}
               autoPlay
               loop
               muted

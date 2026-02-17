@@ -193,13 +193,13 @@ export const ContextualChat: React.FC = () => {
     <section id="contextual-chat" className="py-24 md:py-32 px-6 md:px-16 relative z-10">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Text Content */}
+          {/* Right: Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:pr-8"
+            className="lg:pl-8 lg:order-last"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
               A ChatGPT that actually helps you.
