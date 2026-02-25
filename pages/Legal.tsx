@@ -357,25 +357,7 @@ const TermsOfService = () => (
       </p>
     </SubSection>
 
-    <SubSection title="4. Beta Disclaimer">
-      <ImportantBox variant="warning">
-        <p className="font-semibold mb-2">Public Beta Notice:</p>
-        <p>
-          Vois is currently in <strong>Public Beta</strong>. The software is provided <strong>"AS IS"</strong> and
-          <strong> "AS AVAILABLE"</strong> without warranty of any kind.
-        </p>
-      </ImportantBox>
-      <p className="mt-4">
-        During the Beta period:
-      </p>
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Features may change, be modified, or be removed without prior notice</li>
-        <li>You may experience bugs, errors, or service interruptions</li>
-        <li>We appreciate your patience and feedback as we improve the service</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="5. User Responsibilities">
+    <SubSection title="4. User Responsibilities">
       <p>You agree to:</p>
       <ul className="list-disc list-inside space-y-2 ml-4">
         <li>Use the Service only for lawful purposes</li>
@@ -385,7 +367,7 @@ const TermsOfService = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="6. Your Content">
+    <SubSection title="5. Your Content">
       <p>
         <strong>Your content remains yours.</strong> You retain all rights to the voice recordings,
         transcripts, and notes you create using Vois. We do not claim ownership over your personal content.
@@ -396,7 +378,7 @@ const TermsOfService = () => (
       </p>
     </SubSection>
 
-    <SubSection title="7. AI-Generated Content">
+    <SubSection title="6. AI-Generated Content">
       <p>
         Vois uses AI to transcribe and analyze your recordings. You acknowledge that:
       </p>
@@ -407,28 +389,28 @@ const TermsOfService = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="8. Limitation of Liability">
+    <SubSection title="7. Limitation of Liability">
       <p>
         To the maximum extent permitted by Norwegian law, VOIS AI AS shall not be liable for any
         indirect, incidental, special, or consequential damages, including loss of data or profits.
       </p>
     </SubSection>
 
-    <SubSection title="9. Governing Law">
+    <SubSection title="8. Governing Law">
       <p>
         These Terms are governed by the laws of Norway. Any disputes shall be subject to the
         exclusive jurisdiction of the courts of Norway.
       </p>
     </SubSection>
 
-    <SubSection title="10. Changes to Terms">
+    <SubSection title="9. Changes to Terms">
       <p>
         We may modify these Terms at any time. We will notify you of material changes via the app
         or email. Continued use after changes constitutes acceptance.
       </p>
     </SubSection>
 
-    <SubSection title="11. Contact">
+    <SubSection title="10. Contact">
       <p>
         Questions? Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
       </p>
