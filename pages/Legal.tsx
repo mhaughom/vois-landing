@@ -534,7 +534,7 @@ const PrivacyPolicy = () => (
         <p>
           We do <strong>NOT</strong> use your private voice notes, transcripts, or any personal 
           content to train AI models. Your data remains your property. None of our third-party AI 
-          providers — Deepgram, OpenAI, Anthropic, Google, or xAI — use your data sent through 
+          providers — Deepgram, OpenAI, Anthropic, Google, xAI, or Perplexity — use your data sent through 
           VOIS for model training purposes.
         </p>
       </ImportantBox>
@@ -656,6 +656,20 @@ const PrivacyPolicy = () => (
             <a href="https://x.ai/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">xAI Privacy Policy</a>
           </p>
         </div>
+
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p className="font-semibold text-slate-900">Perplexity AI, Inc.</p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Data received:</strong> Research queries and related context from notes or tasks.
+          </p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Purpose:</strong> Web research and information retrieval when you use the
+            Research feature within the AI agent.
+          </p>
+          <p className="text-sm text-slate-500 mt-1">
+            <a href="https://www.perplexity.ai/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Perplexity Privacy Policy</a>
+          </p>
+        </div>
       </div>
 
       <h4 className="font-semibold text-slate-900 mb-2 mt-6">How we protect your data with these providers:</h4>
@@ -710,6 +724,11 @@ const PrivacyPolicy = () => (
             <tr>
               <td className="p-3 border border-slate-200"><strong>xAI</strong></td>
               <td className="p-3 border border-slate-200">AI Chat Assistant (Grok)</td>
+              <td className="p-3 border border-slate-200">USA</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Perplexity AI</strong></td>
+              <td className="p-3 border border-slate-200">AI Research & Information Retrieval</td>
               <td className="p-3 border border-slate-200">USA</td>
             </tr>
             <tr>
