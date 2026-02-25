@@ -14,7 +14,7 @@ const sections: { id: LegalSection; title: string; icon: React.ReactNode }[] = [
 ];
 
 // Last updated date
-const LAST_UPDATED = 'February 17, 2026';
+const LAST_UPDATED = 'February 25, 2026';
 
 interface LegalProps {
   defaultSection?: LegalSection;
@@ -49,21 +49,16 @@ export const Legal = ({ defaultSection }: LegalProps) => {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo & Back */}
-            <div className="flex items-center gap-4">
-              <Link 
-                to="/" 
-                className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors"
+            <div className="flex items-center gap-3">
+              <Link
+                to="/"
+                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors flex-shrink-0"
               >
-                <ArrowLeft size={18} />
-                <span className="text-sm font-medium hidden sm:inline">Back to Home</span>
+                <ArrowLeft size={16} />
               </Link>
-              <div className="h-6 w-px bg-slate-200 hidden sm:block" />
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 bg-black rounded-lg flex items-center justify-center">
-                  <span className="text-white font-serif italic text-sm">V</span>
-                </div>
-                <span className="font-semibold text-slate-900">Legal</span>
+              <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
+                <img src="/Logo/vois-logo.svg" alt="Vois" className="h-6 w-6" />
+                <span className="font-semibold text-sm text-slate-900">Legal</span>
               </div>
             </div>
 
@@ -190,10 +185,8 @@ export const Legal = ({ defaultSection }: LegalProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                  <span className="text-white font-serif italic">V</span>
-                </div>
-                <span className="font-serif text-lg text-slate-900">Vois</span>
+                <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
+                <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
               </div>
               <p className="text-slate-600 text-sm leading-relaxed max-w-md">
                 Vois is an AI-powered voice notes application that helps you capture, 
@@ -526,9 +519,12 @@ const PrivacyPolicy = () => (
 
       <h4 className="font-semibold text-slate-900 mb-2">Content Data:</h4>
       <ul className="list-disc list-inside space-y-1 ml-4">
-        <li>Voice recordings (processed for transcription)</li>
-        <li>Transcribed text and notes</li>
-        <li>AI-generated summaries and tasks</li>
+        <li>Voice recordings and audio files (processed for transcription)</li>
+        <li>Transcribed text, notes, and meeting transcripts</li>
+        <li>Chat messages sent to AI assistants</li>
+        <li>Calendar events and task content extracted from notes</li>
+        <li>Images uploaded for text extraction and analysis</li>
+        <li>AI-generated summaries, tasks, and email drafts</li>
       </ul>
     </SubSection>
 
@@ -537,18 +533,20 @@ const PrivacyPolicy = () => (
         <p className="font-semibold mb-2">🔒 Your Data is NOT Used for AI Training</p>
         <p>
           We do <strong>NOT</strong> use your private voice notes, transcripts, or any personal 
-          content to train our public AI models (Large Language Models / LLMs). Your data remains 
-          your property and is never shared with third parties for machine learning purposes.
+          content to train AI models. Your data remains your property. None of our third-party AI 
+          providers — Deepgram, OpenAI, Anthropic, Google, or xAI — use your data sent through 
+          VOIS for model training purposes.
         </p>
       </ImportantBox>
       <p className="mt-4">
-        When we process your voice recordings through AI, the content is:
+        When we process your data through third-party AI services, it is:
       </p>
       <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Sent securely to our AI provider for real-time transcription</li>
-        <li>Processed and immediately returned to you</li>
-        <li>Not retained by the AI provider for training purposes</li>
-        <li>Subject to our data processing agreements with sub-processors</li>
+        <li>Sent securely via encrypted API connections to the relevant provider</li>
+        <li>Processed and returned to you in real time</li>
+        <li>Not retained by any AI provider for training purposes</li>
+        <li>Subject to our data processing agreements with each sub-processor</li>
+        <li>Handled under each provider's commercial API terms, which prohibit training on customer data</li>
       </ul>
     </SubSection>
 
@@ -566,7 +564,118 @@ const PrivacyPolicy = () => (
       </ImportantBox>
     </SubSection>
 
-    <SubSection title="5. Sub-Processors">
+    <SubSection title="5. Third-Party AI Services">
+      <ImportantBox>
+        <p className="font-semibold mb-2">AI Data Sharing Disclosure</p>
+        <p>
+          VOIS uses third-party artificial intelligence services to provide core app functionality.
+          You are asked for <strong>explicit consent</strong> before any personal data is shared with
+          these services. Below is a detailed breakdown of what data each provider receives and why.
+        </p>
+      </ImportantBox>
+
+      <h4 className="font-semibold text-slate-900 mb-2 mt-6">Data we send to AI services:</h4>
+      <ul className="list-disc list-inside space-y-2 ml-4 mb-6">
+        <li>Voice recordings and audio files for transcription</li>
+        <li>Transcribed text for task extraction, calendar event creation, and summaries</li>
+        <li>Chat messages for AI assistant responses</li>
+        <li>Meeting audio and transcripts for live note generation</li>
+        <li>Images for text extraction and analysis</li>
+      </ul>
+
+      <h4 className="font-semibold text-slate-900 mb-3">Services that receive your data:</h4>
+
+      <div className="space-y-4">
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p className="font-semibold text-slate-900">Deepgram, Inc.</p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Data received:</strong> Voice recordings and audio data.
+          </p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Purpose:</strong> Real-time and recorded speech-to-text transcription, including
+            speaker identification during meetings.
+          </p>
+          <p className="text-sm text-slate-500 mt-1">
+            <a href="https://deepgram.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Deepgram Privacy Policy</a>
+          </p>
+        </div>
+
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p className="font-semibold text-slate-900">OpenAI, L.L.C.</p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Data received:</strong> Transcribed text, chat messages, images, meeting
+            transcripts, and task content.
+          </p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Purpose:</strong> Text analysis, task and event extraction, chat assistant
+            responses, meeting note generation, email drafting, and image analysis.
+          </p>
+          <p className="text-sm text-slate-500 mt-1">
+            <a href="https://openai.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenAI Privacy Policy</a>
+          </p>
+        </div>
+
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p className="font-semibold text-slate-900">Anthropic, PBC (Claude)</p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Data received:</strong> Chat messages and transcribed text.
+          </p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Purpose:</strong> AI chat assistant responses when Claude is selected as the
+            active model.
+          </p>
+          <p className="text-sm text-slate-500 mt-1">
+            <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Anthropic Privacy Policy</a>
+          </p>
+        </div>
+
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p className="font-semibold text-slate-900">Google LLC (Gemini)</p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Data received:</strong> Chat messages and transcribed text.
+          </p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Purpose:</strong> AI chat assistant responses when Gemini is selected as the
+            active model.
+          </p>
+          <p className="text-sm text-slate-500 mt-1">
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Google Privacy Policy</a>
+          </p>
+        </div>
+
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p className="font-semibold text-slate-900">xAI Corp. (Grok)</p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Data received:</strong> Chat messages and transcribed text.
+          </p>
+          <p className="text-sm text-slate-600 mt-1">
+            <strong>Purpose:</strong> AI chat assistant responses when Grok is selected as the
+            active model.
+          </p>
+          <p className="text-sm text-slate-500 mt-1">
+            <a href="https://x.ai/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">xAI Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+
+      <h4 className="font-semibold text-slate-900 mb-2 mt-6">How we protect your data with these providers:</h4>
+      <ul className="list-disc list-inside space-y-2 ml-4">
+        <li>All data is transmitted securely via encrypted API connections (TLS/SSL).</li>
+        <li>We use each provider's official commercial API, which means your data is processed under their commercial data processing terms and is <strong>not used to train their AI models</strong>.</li>
+        <li>Each provider listed above is contractually or by policy required to provide the <strong>same or equal protection</strong> of your personal data as described in this Privacy Policy.</li>
+      </ul>
+
+      <h4 className="font-semibold text-slate-900 mb-2 mt-6">Your choices:</h4>
+      <p>
+        You are asked for explicit consent before any data is shared with third-party AI services. 
+        You may <strong>revoke this consent at any time</strong> in the app's Settings under "AI Data Sharing." 
+        If you decline AI consent, features that rely on third-party AI processing (transcription, 
+        chat, meeting notes, task extraction) will be unavailable, but you may continue using other 
+        app features.
+      </p>
+    </SubSection>
+
+    <SubSection title="6. Sub-Processors & Infrastructure">
       <p>We use the following third-party services to operate Vois:</p>
       <div className="mt-4 overflow-x-auto">
         <table className="w-full border-collapse">
@@ -579,24 +688,44 @@ const PrivacyPolicy = () => (
           </thead>
           <tbody>
             <tr>
-              <td className="p-3 border border-slate-200"><strong>OpenAI</strong></td>
-              <td className="p-3 border border-slate-200">AI Intelligence (Summarization, Chat)</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Anthropic</strong></td>
-              <td className="p-3 border border-slate-200">AI Intelligence (Chat, Analysis, Automation)</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
               <td className="p-3 border border-slate-200"><strong>Deepgram</strong></td>
               <td className="p-3 border border-slate-200">Voice Transcription</td>
               <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
             </tr>
             <tr>
+              <td className="p-3 border border-slate-200"><strong>OpenAI</strong></td>
+              <td className="p-3 border border-slate-200">AI Intelligence (Text Analysis, Chat, Meeting Notes, Image Analysis)</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Anthropic</strong></td>
+              <td className="p-3 border border-slate-200">AI Chat Assistant (Claude)</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Google</strong></td>
+              <td className="p-3 border border-slate-200">AI Chat Assistant (Gemini)</td>
+              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>xAI</strong></td>
+              <td className="p-3 border border-slate-200">AI Chat Assistant (Grok)</td>
+              <td className="p-3 border border-slate-200">USA</td>
+            </tr>
+            <tr>
               <td className="p-3 border border-slate-200"><strong>Supabase</strong></td>
-              <td className="p-3 border border-slate-200">Database & Authentication</td>
+              <td className="p-3 border border-slate-200">Database, Authentication & File Storage</td>
               <td className="p-3 border border-slate-200">EU (Frankfurt)</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Railway</strong></td>
+              <td className="p-3 border border-slate-200">Backend Application Hosting</td>
+              <td className="p-3 border border-slate-200">USA</td>
+            </tr>
+            <tr>
+              <td className="p-3 border border-slate-200"><strong>Vercel</strong></td>
+              <td className="p-3 border border-slate-200">Web Application Hosting & CDN</td>
+              <td className="p-3 border border-slate-200">Global CDN</td>
             </tr>
             <tr>
               <td className="p-3 border border-slate-200"><strong>Stripe</strong></td>
@@ -614,11 +743,6 @@ const PrivacyPolicy = () => (
               <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
             </tr>
             <tr>
-              <td className="p-3 border border-slate-200"><strong>Vercel</strong></td>
-              <td className="p-3 border border-slate-200">Website Hosting</td>
-              <td className="p-3 border border-slate-200">Global CDN</td>
-            </tr>
-            <tr>
               <td className="p-3 border border-slate-200"><strong>PostHog</strong></td>
               <td className="p-3 border border-slate-200">Website Analytics & Session Recording (consent-based)</td>
               <td className="p-3 border border-slate-200">EU (Frankfurt)</td>
@@ -626,9 +750,13 @@ const PrivacyPolicy = () => (
           </tbody>
         </table>
       </div>
+      <p className="mt-4 text-sm text-slate-600">
+        All sub-processors and infrastructure providers listed above are contractually required to provide 
+        the same or equal protection of your personal data as described in this Privacy Policy.
+      </p>
     </SubSection>
 
-    <SubSection title="6. Cookies & Website Tracking">
+    <SubSection title="7. Cookies & Website Tracking">
       <p>Our website (<a href="https://vois.app" className="text-blue-600 hover:underline">vois.app</a>) uses the following technologies:</p>
       
       <h4 className="font-semibold text-slate-900 mb-2 mt-4">Strictly Necessary Storage</h4>
@@ -648,16 +776,16 @@ const PrivacyPolicy = () => (
       <p>You can change your tracking preferences at any time via the <strong>Cookie Settings</strong> link in our website footer.</p>
     </SubSection>
 
-    <SubSection title="7. Legal Basis for Processing (GDPR Article 6)">
+    <SubSection title="8. Legal Basis for Processing (GDPR Article 6)">
       <ul className="list-disc list-inside space-y-2 ml-4">
         <li><strong>Contract Performance:</strong> Processing necessary to provide the Vois service you requested.</li>
         <li><strong>Legitimate Interest:</strong> Service improvements and security monitoring (with appropriate safeguards).</li>
-        <li><strong>Consent:</strong> Website analytics via PostHog (you can manage your cookie preferences at any time via the Cookie Settings link in our footer) and marketing communications (you can withdraw consent at any time).</li>
+        <li><strong>Consent:</strong> Sharing data with third-party AI services (you can revoke AI consent at any time in Settings), website analytics via PostHog (you can manage your cookie preferences at any time via the Cookie Settings link in our footer), and marketing communications (you can withdraw consent at any time).</li>
         <li><strong>Legal Obligation:</strong> Tax records and compliance with applicable laws.</li>
       </ul>
     </SubSection>
 
-    <SubSection title="8. Your Rights (GDPR)">
+    <SubSection title="9. Your Rights (GDPR)">
       <p>Under the General Data Protection Regulation, you have the right to:</p>
       <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
         <li><strong>Access:</strong> Request a copy of your personal data</li>
@@ -674,7 +802,7 @@ const PrivacyPolicy = () => (
       </p>
     </SubSection>
 
-    <SubSection title="9. Data Retention">
+    <SubSection title="10. Data Retention">
       <ul className="list-disc list-inside space-y-2 ml-4">
         <li>Active accounts: Data retained for the duration of your account</li>
         <li>Deleted accounts: Data erased within 30 days of account deletion</li>
@@ -682,7 +810,7 @@ const PrivacyPolicy = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="10. Data Security">
+    <SubSection title="11. Data Security">
       <p>We implement appropriate technical and organizational measures to protect your data:</p>
       <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
         <li>TLS/SSL encryption for all data in transit</li>
@@ -692,7 +820,7 @@ const PrivacyPolicy = () => (
       </ul>
     </SubSection>
 
-    <SubSection title="11. Contact & Complaints">
+    <SubSection title="12. Contact & Complaints">
       <p>For privacy-related inquiries:</p>
       <div className="mt-4 p-4 bg-slate-50 rounded-xl">
         <p><strong>Privacy Contact:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
