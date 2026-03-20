@@ -9,6 +9,7 @@ export const ContextualChat: React.FC = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [inputText, setInputText] = useState<string>('');
   const [isMultiChat, setIsMultiChat] = useState<boolean>(false);
+  const [typingModel, setTypingModel] = useState<string | null>(null);
 
   const models = [
     { id: 'claude' as const, name: 'Claude', color: 'bg-amber-500' },
@@ -159,6 +160,7 @@ export const ContextualChat: React.FC = () => {
             await sleep(600);
           } else {
             // AI response
+            setTypingModel(message.model || null);
             setIsTyping(true);
             await sleep(800);
 
@@ -172,6 +174,7 @@ export const ContextualChat: React.FC = () => {
 
             setVisibleMessages(i + 1);
             setTypingText('');
+            setTypingModel(null);
             await sleep(conversation.multiChat ? 1000 : 1800);
           }
         }
@@ -204,9 +207,9 @@ export const ContextualChat: React.FC = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
               A ChatGPT that actually helps you.
             </h2>
-            <div className="space-y-4 text-lg md:text-xl text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-slate-600 leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)' }}>
               <p>
-                Tired of constantly explaining what project you're working on? This chat <em className="text-slate-900 font-medium">actually knows</em>.
+                Tired of constantly explaining what project you're working on? This chat <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>actually knows</span>.
               </p>
               <p>
                 It references your voice notes, suggests action cards, and helps plan your work week—without you having to repeat yourself.
@@ -223,11 +226,11 @@ export const ContextualChat: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative h-[600px] overflow-visible"
           >
             {/* Chat Card */}
             <div
-              className="relative rounded-3xl overflow-hidden"
+              className="absolute inset-x-0 top-0 rounded-3xl overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, rgba(249, 250, 251, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)',
                 backdropFilter: 'blur(40px) saturate(180%)',
@@ -273,7 +276,7 @@ export const ContextualChat: React.FC = () => {
               </div>
 
               {/* Messages */}
-              <div className="px-6 py-6 space-y-6 bg-white min-h-[400px] max-h-[500px] overflow-y-auto">
+              <div className="px-6 py-6 space-y-6 bg-white min-h-[400px] overflow-y-auto">
                   <AnimatePresence mode="sync">
                     {conversations.find(c =>
                       (c.multiChat === isMultiChat) &&
@@ -375,6 +378,14 @@ export const ContextualChat: React.FC = () => {
                         className="flex justify-start"
                       >
                         <div className="bg-white rounded-3xl rounded-tl-md px-4 py-3 border border-slate-100">
+                          {typingModel && (
+                            <div className="flex items-center gap-1.5 mb-2">
+                              <div className={`w-2 h-2 rounded-full ${models.find(m => m.id === typingModel)?.color}`} />
+                              <span className="text-xs font-semibold text-slate-600">
+                                {models.find(m => m.id === typingModel)?.name}
+                              </span>
+                            </div>
+                          )}
                           <div className="flex gap-1">
                             <motion.div
                               animate={{ opacity: [0.3, 1, 0.3] }}
@@ -405,6 +416,14 @@ export const ContextualChat: React.FC = () => {
                         className="flex justify-start"
                       >
                         <div className="bg-white rounded-3xl rounded-tl-md px-4 py-3 max-w-[85%] border border-slate-100">
+                          {typingModel && (
+                            <div className="flex items-center gap-1.5 mb-2">
+                              <div className={`w-2 h-2 rounded-full ${models.find(m => m.id === typingModel)?.color}`} />
+                              <span className="text-xs font-semibold text-slate-600">
+                                {models.find(m => m.id === typingModel)?.name}
+                              </span>
+                            </div>
+                          )}
                           <p className="text-sm text-slate-900 leading-relaxed">
                             {typingText}
                             <motion.span

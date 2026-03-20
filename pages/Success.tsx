@@ -38,9 +38,9 @@ const Success = () => {
           <Link to="/" className="flex justify-center mb-8">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="w-12 h-12 bg-black rounded-xl flex items-center justify-center cursor-pointer"
+              className="cursor-pointer"
             >
-              <span className="text-white font-serif italic font-medium text-xl pt-1">V</span>
+              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-12 w-12" />
             </motion.div>
           </Link>
 

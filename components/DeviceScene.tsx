@@ -70,21 +70,77 @@ import {
   TOTAL_ANIMATION_DURATION,
   TYPING_SPEED,
 } from '../lib/scenarios';
+import { getVideoScenario, getRevealedChars, getPreviousScenario, videoScenarios } from '../lib/videoSyncTimeline';
 import {
   CATEGORY_CARD_COLORS,
   CATEGORY_HIGHLIGHT_COLORS,
   DEFAULT_CARD_COLOR,
   DEFAULT_HIGHLIGHT,
+  getLabelCardColor,
 } from '../lib/categoryColors';
 
 // Helper to get current scenario and elapsed time within that scenario
 const getScenarioState = () => {
+  // ── Video sync mode: derive scenario state from Situations.mp4 currentTime ──
+  if (globalState.videoSync.isActive) {
+    const videoTime = globalState.videoSync.currentTime;
+    const vs = getVideoScenario(videoTime);
+
+    if (vs) {
+      const revealedChars = getRevealedChars(videoTime, vs);
+      const fullTranscript = vs.text;
+      // Map revealedChars to elapsed so existing typing/highlight logic works
+      const elapsed = RECORDING_START_TIME + revealedChars / TYPING_SPEED;
+
+      const categories = [...new Set(
+        vs.segments.filter(s => s.category).map(s => s.category!)
+      )];
+
+      const scenario: Scenario = {
+        title: vs.name,
+        subtitle: vs.device === 'watch' ? 'Watch' : 'Phone',
+        segments: vs.segments,
+        categories,
+        extractedItems: vs.items,
+      };
+      return { scenario, scenarioIndex: vs.id - 1, elapsed, fullTranscript };
+    }
+
+    // Between scenarios — find the most recent completed one and show it fully typed
+    let lastCompleted: typeof videoScenarios[0] | null = null;
+    for (let i = videoScenarios.length - 1; i >= 0; i--) {
+      if (videoScenarios[i].endTime <= videoTime) {
+        lastCompleted = videoScenarios[i];
+        break;
+      }
+    }
+    if (lastCompleted) {
+      const fullTranscript = lastCompleted.text;
+      const typingDuration = fullTranscript.length / TYPING_SPEED;
+      const categories = [...new Set(
+        lastCompleted.segments.filter(s => s.category).map(s => s.category!)
+      )];
+      const scenario: Scenario = {
+        title: lastCompleted.name,
+        subtitle: lastCompleted.device === 'watch' ? 'Watch' : 'Phone',
+        segments: lastCompleted.segments,
+        categories,
+        extractedItems: lastCompleted.items,
+      };
+      // Elapsed far past typing end → all text, highlights, and cards visible
+      return { scenario, scenarioIndex: lastCompleted.id - 1, elapsed: RECORDING_START_TIME + typingDuration + 2.0, fullTranscript };
+    }
+
+    // Before any scenario started — fall through to normal cycle
+  }
+
+  // ── Normal mode: cycle through demo scenarios ──
   const totalElapsed = (Date.now() - globalState.animationStartTime) / 1000;
   const loopedTime = totalElapsed % TOTAL_ANIMATION_DURATION;
   const scenarioIndex = Math.floor(loopedTime / SINGLE_SCENARIO_DURATION);
   const scenarioElapsed = loopedTime % SINGLE_SCENARIO_DURATION;
-  return { 
-    scenario: scenarios[scenarioIndex], 
+  return {
+    scenario: scenarios[scenarioIndex],
     scenarioIndex,
     elapsed: scenarioElapsed,
     fullTranscript: scenarios[scenarioIndex].segments.map(s => s.text).join('')
@@ -223,9 +279,9 @@ interface ClickableRegion {
 // Stream cards start at y=0.27, each card is height 0.145, gap 0.012
 const phoneClickableRegions: ClickableRegion[] = [
   // Bottom floating pill navigation (3 buttons: magic, stream, apps)
-  { id: 'nav-magic', screen: 'magic', label: 'Magic', uv: { minX: 0.20, maxX: 0.40, minY: 0.89, maxY: 0.95 } },
-  { id: 'nav-stream', screen: 'stream', label: 'Stream', uv: { minX: 0.40, maxX: 0.60, minY: 0.89, maxY: 0.95 } },
-  { id: 'nav-apps', screen: 'apps', label: 'Apps', uv: { minX: 0.60, maxX: 0.80, minY: 0.89, maxY: 0.95 } },
+  { id: 'nav-magic', screen: 'magic', label: 'Magic', uv: { minX: 0.20, maxX: 0.40, minY: 0.92, maxY: 0.98 } },
+  { id: 'nav-stream', screen: 'stream', label: 'Stream', uv: { minX: 0.40, maxX: 0.60, minY: 0.92, maxY: 0.98 } },
+  { id: 'nav-apps', screen: 'apps', label: 'Apps', uv: { minX: 0.60, maxX: 0.80, minY: 0.92, maxY: 0.98 } },
   // Back button (top-left corner, canvas y = 0.06 to 0.11)
   { id: 'back', screen: 'stream', label: 'Back', uv: { minX: 0.02, maxX: 0.35, minY: 0.04, maxY: 0.12 } },
   // Big record button (center of screen, only shown in waiting-to-start mode)
@@ -322,38 +378,38 @@ const getHitButton = (uvX: number, uvY: number, currentScreen: PhoneScreen): Cli
     const cardsPanelY = H * 0.52;
     const cardInnerPadding = panelPadding * 0.8;
     const cardStartY = cardsPanelY + cardInnerPadding;
-    const cardH = H * 0.095;
+    const cardH = H * 0.125;
     const cardGap = H * 0.012;
     const cardsPanelW = W - panelMargin * 2;
     const cardW = cardsPanelW - cardInnerPadding * 2;
     const cardStartX = panelMargin + cardInnerPadding;
-    const btnSize = H * 0.024;
-    const btnX = cardStartX + cardW - btnSize * 1.2;
 
     for (let i = 0; i < demoItems.length; i++) {
       // Skip already verified/declined cards
       if (i in globalState.cardVerifications) continue;
 
       const thisCardY = cardStartY + i * (cardH + cardGap);
-      const checkBtnY = thisCardY + cardH * 0.32;
-      const xBtnY = thisCardY + cardH * 0.68;
+      // Button zone = bottom 22% of card, split left (dismiss) / right (add/verify)
+      const btnZoneTop = thisCardY + cardH * 0.75;
+      const btnZoneBot = thisCardY + cardH;
+      const cardMidX = cardStartX + cardW / 2;
 
       // Convert to UV (0-1)
-      const btnXuv = btnX / W;
-      const hitHalfW = 0.06; // generous tap target
-      const hitHalfH = 0.025;
+      const btnZoneTopUv = btnZoneTop / H;
+      const btnZoneBotUv = btnZoneBot / H;
+      const cardStartXuv = cardStartX / W;
+      const cardMidXuv = cardMidX / W;
+      const cardEndXuv = (cardStartX + cardW) / W;
 
-      // Check verify button
-      const checkUvY = checkBtnY / H;
-      if (uvX >= btnXuv - hitHalfW && uvX <= btnXuv + hitHalfW &&
-          uvY >= checkUvY - hitHalfH && uvY <= checkUvY + hitHalfH) {
+      // Check "+ Add" button (right half → verify)
+      if (uvY >= btnZoneTopUv && uvY <= btnZoneBotUv &&
+          uvX >= cardMidXuv && uvX <= cardEndXuv) {
         return { id: `card-verify-${i}`, screen: 'stream' as PhoneScreen, label: `Verify Card ${i}`, uv: { minX: 0, maxX: 1, minY: 0, maxY: 1 } };
       }
 
-      // Check decline button
-      const xUvY = xBtnY / H;
-      if (uvX >= btnXuv - hitHalfW && uvX <= btnXuv + hitHalfW &&
-          uvY >= xUvY - hitHalfH && uvY <= xUvY + hitHalfH) {
+      // Check "× Dismiss" button (left half → decline)
+      if (uvY >= btnZoneTopUv && uvY <= btnZoneBotUv &&
+          uvX >= cardStartXuv && uvX < cardMidXuv) {
         return { id: `card-decline-${i}`, screen: 'stream' as PhoneScreen, label: `Decline Card ${i}`, uv: { minX: 0, maxX: 1, minY: 0, maxY: 1 } };
       }
     }
@@ -1156,7 +1212,7 @@ function SceneContent() {
       const pillW = width * 0.60;
       const pillH = height * 0.055;
       const pillX = (width - pillW) / 2;
-      const pillY = height * 0.92 - pillH / 2;
+      const pillY = height * 0.95 - pillH / 2;
       const pillR = pillH / 2; // full pill radius
 
       // Drop shadow
@@ -2341,6 +2397,241 @@ function SceneContent() {
       ctx.restore();
     };
 
+    // ── Rich metadata for action cards ─────────────────────────────────────────
+    const CARD_META: Record<string, { desc: string; date?: string; time?: string; est?: string }> = {
+      'Cancel 3pm with David':                  { desc: 'Cancel meeting and notify David.',       date: 'Today',        time: '3:00 PM',  est: '~5 min' },
+      'Client presentation → Thursday AM':      { desc: 'Reschedule to Thursday morning.',        date: 'Thu',          time: '9:00 AM',  est: '1 hr' },
+      'Call accountant re: tax return':          { desc: 'Call about tax return status.',          date: 'Due Fri',                        est: '~15 min' },
+      'Pitch went well — want Q3 numbers':      { desc: 'Save key takeaways from meeting.',       date: 'Today',                          est: '~5 min' },
+      'Send Q3 numbers by Thursday':            { desc: 'Compile and send Q3 financials.',        date: 'Due Thu',                        est: '~30 min' },
+      'Follow-up: revenue deck by Wednesday':   { desc: 'Send updated revenue deck to team.',     date: 'Due Wed',                        est: '~20 min' },
+      'Optimize for clarity, not productivity':  { desc: 'Insight from podcast episode.',          date: 'Today' },
+      'Position as platform, not tool':          { desc: 'Reframe product positioning strategy.', date: 'Today' },
+      'Pick up dry cleaning':                    { desc: 'Morning errand — before noon.',          date: 'Due Tomorrow',                   est: '~15 min' },
+      'Kids soccer at 3pm':                      { desc: "Don't forget the kids' game.",           date: 'Tomorrow',     time: '3:00 PM',  est: '1.5 hr' },
+      'Reply to landlord email':                 { desc: 'Outstanding since last week.',           date: 'Due Today',                      est: '~10 min' },
+      "Dinner Saturday — Henrik's parents":      { desc: 'Plan menu and prep ingredients.',        date: 'Sat',          time: '6:00 PM',  est: '~3 hr' },
+      'Lamb, rosemary, red wine':                { desc: 'Shopping list for Saturday dinner.',      date: 'Due Fri',                        est: '~30 min' },
+      'Jonas ready to lead':                     { desc: 'Note for team restructuring.',           date: 'Today' },
+      'Give Sarah feedback on presentations':    { desc: 'Honest, constructive feedback needed.',  date: 'Due this week',                  est: '~20 min' },
+      'Set up 1:1 this week':                    { desc: 'Schedule before end of week.',           date: 'This week',    time: 'TBD',      est: '30 min' },
+    };
+
+    // ── Work/Personal badge logic (matches MobileVideoCards) ─────────────────
+    const getCanvasWorkBadge = (category: string, content: string) => {
+      const cat = category.toLowerCase();
+      const workCats = ['work', 'messages', 'finance', 'ideas'];
+      if (workCats.includes(cat)) return { label: 'WORK', color: '#6366F1' };
+      if (['events', 'event', 'calendar', 'appointment'].includes(cat)) {
+        if (['Cancel 3pm with David', 'Client presentation → Thursday AM', 'Set up 1:1 this week'].includes(content)) {
+          return { label: 'WORK', color: '#6366F1' };
+        }
+      }
+      return { label: 'PERSONAL', color: '#10B981' };
+    };
+
+    // ── Unified styled card drawing (matches MobileVideoCards look) ──────────
+    const drawStyledCard = (
+      ctx: CanvasRenderingContext2D,
+      x: number, y: number, w: number, h: number, radius: number,
+      cardLabel: string,   // "Calendar", "Note", "Task", etc.
+      content: string,
+      icon: string,
+      category: string,    // for badge: "work", "events", "ideas", etc.
+      verification?: string // 'verified' | 'declined' | undefined
+    ) => {
+      const labelColors = getLabelCardColor(cardLabel);
+      const actualColors = verification === 'verified'
+        ? { bg: '#dcfce7', accent: '#22c55e', text: '#16a34a' }
+        : labelColors;
+
+      // Glass card background
+      drawGlassCardBg(ctx, x, y, w, h, radius, actualColors);
+
+      const pad = 16;
+      const meta = CARD_META[content];
+      const isDimmed = verification === 'declined';
+
+      // === Header row: LABEL + WORK/PERSONAL badge ===
+      const headerY = y + h * 0.09;
+
+      // Label text (uppercase, colored)
+      ctx.fillStyle = isDimmed ? '#94a3b8' : labelColors.text;
+      ctx.font = `700 ${height * 0.014}px -apple-system`;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(cardLabel.toUpperCase(), x + pad, headerY);
+
+      // Work/Personal badge (top-right pill)
+      const badge = getCanvasWorkBadge(category, content);
+      const badgeFont = `600 ${height * 0.011}px -apple-system`;
+      ctx.font = badgeFont;
+      const badgeTW = ctx.measureText(badge.label).width;
+      const dotR = 3;
+      const badgePadH = 7;
+      const badgeW = dotR * 2 + 4 + badgeTW + badgePadH * 2;
+      const badgeH = height * 0.017;
+      const badgeX = x + w - pad - badgeW;
+      const badgeY = headerY - badgeH / 2;
+
+      // Badge pill bg
+      ctx.fillStyle = isDimmed ? 'rgba(148,163,184,0.08)' : `${badge.color}12`;
+      roundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH / 2);
+      ctx.fill();
+      // Badge border
+      ctx.strokeStyle = isDimmed ? 'rgba(148,163,184,0.15)' : `${badge.color}25`;
+      ctx.lineWidth = 1;
+      roundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH / 2);
+      ctx.stroke();
+      // Badge dot
+      ctx.fillStyle = isDimmed ? '#94a3b8' : badge.color;
+      ctx.beginPath();
+      ctx.arc(badgeX + badgePadH + dotR, headerY, dotR, 0, Math.PI * 2);
+      ctx.fill();
+      // Badge text
+      ctx.fillStyle = isDimmed ? '#94a3b8' : badge.color;
+      ctx.font = badgeFont;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(badge.label, badgeX + badgePadH + dotR * 2 + 4, headerY);
+
+      // === Content row: emoji icon + title ===
+      const contentY = y + h * 0.28;
+      const contentX = x + pad;
+
+      // Icon emoji
+      ctx.font = `${height * 0.020}px -apple-system`;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(icon, contentX, contentY);
+      const iconW = ctx.measureText(icon).width + 4;
+
+      // Title text (bold)
+      ctx.fillStyle = isDimmed ? '#94a3b8' : '#1a1a1a';
+      ctx.font = `700 ${height * 0.018}px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif`;
+      let displayContent = content;
+      const maxContentW = w - pad * 2 - iconW;
+      while (ctx.measureText(displayContent).width > maxContentW && displayContent.length > 0) {
+        displayContent = displayContent.slice(0, -1);
+      }
+      if (displayContent !== content) displayContent += '…';
+      ctx.fillText(displayContent, contentX + iconW, contentY);
+
+      // Strikethrough for declined
+      if (isDimmed) {
+        const textW = ctx.measureText(displayContent).width;
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(contentX + iconW, contentY);
+        ctx.lineTo(contentX + iconW + textW, contentY);
+        ctx.stroke();
+      }
+
+      // === Description line ===
+      const descY = y + h * 0.44;
+      if (meta?.desc) {
+        ctx.fillStyle = isDimmed ? '#94a3b8' : '#666';
+        ctx.font = `400 ${height * 0.014}px -apple-system`;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        let desc = meta.desc;
+        const maxDescW = w - pad * 2 - iconW;
+        while (ctx.measureText(desc).width > maxDescW && desc.length > 0) {
+          desc = desc.slice(0, -1);
+        }
+        if (desc !== meta.desc) desc += '…';
+        ctx.fillText(desc, contentX + iconW, descY);
+      }
+
+      // === Meta pills (date, time, est duration) ===
+      const pillY = y + h * 0.59;
+      const pills: string[] = [];
+      if (meta?.date) pills.push('📅 ' + meta.date);
+      if (meta?.time) pills.push('🕐 ' + meta.time);
+      if (meta?.est) pills.push('⏱ ' + meta.est);
+
+      if (pills.length > 0) {
+        const pillFont = `500 ${height * 0.012}px -apple-system`;
+        const pillH = h * 0.12;
+        const pillR = pillH / 2;
+        const pillGap = 5;
+        let pillX = contentX + iconW;
+        ctx.font = pillFont;
+
+        for (const pill of pills) {
+          const tw = ctx.measureText(pill).width;
+          const pillW = tw + pillH * 0.8;
+
+          // Pill bg
+          ctx.fillStyle = isDimmed ? 'rgba(148,163,184,0.10)' : 'rgba(96,165,250,0.10)';
+          roundRect(ctx, pillX, pillY, pillW, pillH, pillR);
+          ctx.fill();
+
+          // Pill text
+          ctx.fillStyle = isDimmed ? '#94a3b8' : '#64748b';
+          ctx.font = pillFont;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(pill, pillX + pillH * 0.4, pillY + pillH / 2);
+
+          pillX += pillW + pillGap;
+        }
+      }
+
+      // === Action buttons / verification status ===
+      if (verification === 'verified') {
+        ctx.fillStyle = '#22c55e';
+        ctx.font = `700 ${height * 0.026}px -apple-system`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('✓', x + w - 22, y + h / 2);
+      } else if (verification === 'declined') {
+        ctx.fillStyle = '#ef4444';
+        ctx.font = `600 ${height * 0.022}px -apple-system`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('✕', x + w - 22, y + h / 2);
+      } else {
+        // "× Dismiss" and "+ Add" buttons at bottom
+        const btnY = y + h * 0.80;
+        const btnH = h * 0.14;
+        const btnR = btnH / 2;
+        const btnFont = `600 ${height * 0.012}px -apple-system`;
+        ctx.font = btnFont;
+
+        const addText = '+ Add';
+        const addTW = ctx.measureText(addText).width;
+        const addW = addTW + 16;
+        const addX = x + w - pad - addW;
+
+        const dismissText = '× Dismiss';
+        const dismissTW = ctx.measureText(dismissText).width;
+        const dismissW = dismissTW + 16;
+        const dismissX = addX - 6 - dismissW;
+
+        // Dismiss button (red outline style)
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.08)';
+        roundRect(ctx, dismissX, btnY, dismissW, btnH, btnR);
+        ctx.fill();
+        ctx.fillStyle = '#EF4444';
+        ctx.font = btnFont;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(dismissText, dismissX + dismissW / 2, btnY + btnH / 2);
+
+        // Add button (solid label color)
+        ctx.fillStyle = labelColors.text;
+        roundRect(ctx, addX, btnY, addW, btnH, btnR);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.font = btnFont;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(addText, addX + addW / 2, btnY + btnH / 2);
+      }
+    };
+
     // === VOICENOTE DETAIL SCREEN (nice two-panel view with highlights) ===
     const selectedCard = globalState.phoneScreenState.selectedCard;
     if (phoneScreen === 'voicenote' && selectedCard && !isDemoMode && !demoState.isWaitingToStart) {
@@ -2505,7 +2796,7 @@ function SceneContent() {
       }
 
       // === ACTION CARDS PANEL ===
-      const cardsPanelH = height * 0.34;
+      const cardsPanelH = height * 0.42;
       const cardsPanelY = height * 0.52;
       const cardsPanelW = width - panelMargin * 2;
 
@@ -2526,12 +2817,9 @@ function SceneContent() {
       roundRect(ctx, panelMargin, cardsPanelY, cardsPanelW, cardsPanelH, panelRadius);
       ctx.fill();
 
-      // Card colors — unified from lib/categoryColors
-      const cardColors = CATEGORY_CARD_COLORS;
-
       const cardInnerPadding = panelPadding * 0.8;
       const cardStartY = cardsPanelY + cardInnerPadding;
-      const cardH = height * 0.095;
+      const cardH = height * 0.125;
       const cardGap = height * 0.012;
       const cardW = cardsPanelW - cardInnerPadding * 2;
       const cardStartX = panelMargin + cardInnerPadding;
@@ -2542,55 +2830,9 @@ function SceneContent() {
         const item = cardItems[i];
         const thisCardY = cardStartY + i * (cardH + cardGap);
         const itemType = item.type?.toLowerCase() || 'note';
-        const colors = cardColors[itemType] || cardColors.note;
-        // Glass card background
-        drawGlassCardBg(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius, colors);
-
-        // Left accent bar
-        ctx.fillStyle = colors.accent;
-        roundRect(ctx, cardStartX, thisCardY + cardH * 0.2, 4, cardH * 0.6, 2);
-        ctx.fill();
-
-        // Icon
-        const iconX = cardStartX + 30;
-        const iconY = thisCardY + cardH / 2;
-        ctx.fillStyle = colors.text;
-        ctx.font = `${height * 0.035}px -apple-system`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(item.icon || '✓', iconX, iconY);
-
-        // Type label
-        ctx.fillStyle = colors.text;
-        ctx.font = `600 ${height * 0.020}px -apple-system`;
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        const typeLabel = itemType.charAt(0).toUpperCase() + itemType.slice(1);
-        ctx.fillText(typeLabel, iconX + 28, thisCardY + height * 0.018);
-
-        // Content (truncate if needed)
-        ctx.fillStyle = '#374151';
-        ctx.font = `500 ${height * 0.024}px -apple-system`;
-        let content = item.content || '';
-        const maxContentWidth = cardW - 80;
-        while (ctx.measureText(content).width > maxContentWidth && content.length > 0) {
-          content = content.slice(0, -1);
-        }
-        if (content !== item.content) content += '...';
-        const isEventType = itemType === 'event' || itemType === 'events' || itemType === 'calendar' || itemType === 'appointment';
-        ctx.fillText(content, iconX + 28, thisCardY + (isEventType ? height * 0.035 : height * 0.052));
-
-        // Event tags (date + full day)
-        if (isEventType) {
-          drawEventTags(ctx, iconX + 28, thisCardY + height * 0.062, item.content || '', cardH);
-        }
-
-        // Check button
-        ctx.fillStyle = colors.accent;
-        ctx.font = `600 ${height * 0.024}px -apple-system`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('✓', cardStartX + cardW - height * 0.03, thisCardY + cardH * 0.35);
+        const cardLabel = itemType.charAt(0).toUpperCase() + itemType.slice(1);
+        drawStyledCard(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius,
+          cardLabel, item.content || '', item.icon || '✓', itemType);
       }
 
       // No items message
@@ -3144,27 +3386,21 @@ function SceneContent() {
       }
 
       // === ACTION CARDS + CHAT CTA (cards show first, then fade to CTA after 3s) ===
-      const cardsPanelH = height * 0.34;
+      const cardsPanelH = height * 0.42;
       const cardsPanelY = height * 0.52;
       const cardsPanelW = width - panelMargin * 2;
 
       const cardInnerPadding = panelPadding * 0.8;
       const cardStartY = cardsPanelY + cardInnerPadding;
-      const cardH = height * 0.095;
+      const cardH = height * 0.125;
       const cardGap = height * 0.012;
       const cardW = cardsPanelW - cardInnerPadding * 2;
       const cardStartX = panelMargin + cardInnerPadding;
       const cardRadius = 20;
 
-      // Pastel colors for demo item types — unified from lib/categoryColors
-      const demoPastelColors = CATEGORY_CARD_COLORS;
-
       // === DRAW ACTION CARDS (cards stay visible permanently) ===
       {
-        const cardsGlobalAlpha = 1;
-
         // "Action Cards" header
-        ctx.globalAlpha = cardsGlobalAlpha;
         ctx.fillStyle = '#1a1a1a';
         ctx.font = `600 ${height * 0.022}px -apple-system, sans-serif`;
         ctx.textAlign = 'left';
@@ -3184,109 +3420,16 @@ function SceneContent() {
         roundRect(ctx, panelMargin, cardsPanelY, cardsPanelW, cardsPanelH, panelRadius);
         ctx.fill();
 
-        // Draw each card (full opacity, no fade-in animation)
+        // Draw each card using unified styled helper
         const verifications = globalState.cardVerifications;
         demoItems.forEach((item, i) => {
           const verification = verifications[i];
-          // Declined cards fade to 40% opacity, others full opacity
           ctx.globalAlpha = verification === 'declined' ? 0.4 : 1.0;
           const thisCardY = cardStartY + i * (cardH + cardGap);
-          const itemCategory = (item.type || 'task').toLowerCase();
-          const colors = demoPastelColors[itemCategory] || DEFAULT_CARD_COLOR;
-          // Glass card background — green tint for verified
-          const cardBgColors = verification === 'verified'
-            ? { bg: '#dcfce7', accent: '#22c55e', text: '#16a34a' }
-            : colors;
-          drawGlassCardBg(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius, cardBgColors);
-
-          // Verified: green left border
-          if (verification === 'verified') {
-            ctx.fillStyle = '#22c55e';
-            roundRect(ctx, cardStartX, thisCardY + cardH * 0.2, 4, cardH - cardH * 0.4, 2);
-            ctx.fill();
-          } else {
-            // Left accent bar
-            const barWidth = 4;
-            const barPadding = cardH * 0.2;
-            ctx.fillStyle = colors.accent;
-            roundRect(ctx, cardStartX, thisCardY + barPadding, barWidth, cardH - barPadding * 2, 2);
-            ctx.fill();
-          }
-
-          // Vector icon (same style as hero demo)
-          const iconX = cardStartX + 30;
-          const iconY = thisCardY + cardH / 2;
-          const iconSize = height * 0.04;
-          drawCardIcon(ctx, itemCategory, iconX, iconY, iconSize, verification === 'declined' ? '#94a3b8' : colors.text);
-
-          // Content text
-          const contentTextX = iconX + iconSize + 12;
-
-          // Type label
-          ctx.fillStyle = verification === 'declined' ? '#94a3b8' : colors.text;
-          ctx.font = `600 ${height * 0.020}px -apple-system`;
-          ctx.textAlign = 'left';
-          ctx.textBaseline = 'top';
-          const typeLabel = (item.type || 'Task').charAt(0).toUpperCase() + (item.type || 'Task').slice(1);
-          ctx.fillText(typeLabel, contentTextX, thisCardY + height * 0.018);
-
-          // Content — strikethrough for declined
-          const isEventItem = itemCategory === 'event' || itemCategory === 'events' || itemCategory === 'calendar' || itemCategory === 'appointment';
-          ctx.fillStyle = verification === 'declined' ? '#94a3b8' : '#374151';
-          ctx.font = `500 ${height * 0.024}px -apple-system`;
-          const contentYPos = isEventItem ? thisCardY + height * 0.035 : thisCardY + height * 0.052;
-          ctx.fillText(item.content, contentTextX, contentYPos);
-
-          // Event tags
-          if (isEventItem) {
-            drawEventTags(ctx, contentTextX, thisCardY + height * 0.062, item.content || '', cardH, verification === 'declined');
-          }
-
-          if (verification === 'declined') {
-            // Draw strikethrough line
-            const textWidth = ctx.measureText(item.content).width;
-            const lineY = contentYPos + height * 0.012;
-            ctx.strokeStyle = '#94a3b8';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(contentTextX, lineY);
-            ctx.lineTo(contentTextX + textWidth, lineY);
-            ctx.stroke();
-          }
-
-          // Action buttons — show status icon if verified/declined, otherwise show check/X
-          const btnSize = height * 0.024;
-          const btnX = cardStartX + cardW - btnSize * 1.2;
-
-          if (verification === 'verified') {
-            // Show green checkmark
-            ctx.fillStyle = '#22c55e';
-            ctx.font = `700 ${btnSize * 1.1}px -apple-system`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('✓', btnX, thisCardY + cardH / 2);
-          } else if (verification === 'declined') {
-            // Show red X
-            ctx.fillStyle = '#ef4444';
-            ctx.font = `600 ${btnSize}px -apple-system`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('✕', btnX, thisCardY + cardH / 2);
-          } else {
-            // Unverified — show both buttons
-            const checkBtnY = thisCardY + cardH * 0.32;
-            const xBtnY = thisCardY + cardH * 0.68;
-
-            ctx.fillStyle = colors.accent;
-            ctx.font = `600 ${btnSize}px -apple-system`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('✓', btnX, checkBtnY);
-
-            ctx.fillStyle = '#cbd5e1';
-            ctx.font = `500 ${btnSize * 0.9}px -apple-system`;
-            ctx.fillText('✕', btnX, xBtnY);
-          }
+          const itemType = (item.type || 'task').toLowerCase();
+          const cardLabel = itemType.charAt(0).toUpperCase() + itemType.slice(1);
+          drawStyledCard(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius,
+            cardLabel, item.content, item.icon || '✓', itemType, verification);
         });
 
         ctx.globalAlpha = 1;
@@ -3346,14 +3489,11 @@ function SceneContent() {
       charPos += seg.text.length;
     }
 
-    // Calculate highlight states with completion timing
+    // Calculate highlight states with completion timing — one entry per segmentPosition (indexed)
     interface HighlightState { category: string; progress: number; completionTime: number; timeSinceComplete: number; }
-    const highlightStates: HighlightState[] = [];
-
-    for (let i = 0; i < segmentPositions.length; i++) {
-      const seg = segmentPositions[i];
-      const nextSeg = segmentPositions[i + 1];
-      const triggerChar = nextSeg ? nextSeg.startChar : fullTranscript.length;
+    const highlightStates: HighlightState[] = segmentPositions.map(seg => {
+      // Highlight starts as soon as the segment's own text finishes typing
+      const triggerChar = seg.endChar;
       const triggerTime = triggerChar / typingSpeed;
 
       if (transcriptionElapsed >= triggerTime) {
@@ -3363,14 +3503,15 @@ function SceneContent() {
         const highlightChars = Math.min(Math.floor(timeSinceTrigger * highlightSpeed), segmentLength);
         const completionTime = triggerTime + highlightDuration;
         const timeSinceComplete = Math.max(0, transcriptionElapsed - completionTime);
-        highlightStates.push({
+        return {
           category: seg.category,
           progress: Math.min(1, highlightChars / segmentLength),
           completionTime,
           timeSinceComplete
-        });
+        };
       }
-    }
+      return { category: seg.category, progress: 0, completionTime: 0, timeSinceComplete: 0 };
+    });
 
     const completedHighlights = highlightStates.filter(h => h.progress >= 1).map(h => h.category);
 
@@ -3431,13 +3572,14 @@ function SceneContent() {
     const maxX = width - textPadding;
     const maxTextY = transPanelY + transPanelH - panelPadding - textSize; // Don't overflow panel
 
-    // Build word positions with segment info
+    // Build word positions with segment info — track segment index for accurate per-segment highlighting
     interface WordInfo {
       word: string;
       x: number;
       y: number;
       width: number;
       category?: string;
+      segPosIndex: number;       // index into segmentPositions/highlightStates (-1 if uncategorized)
       wordIndexInSegment: number;
       totalWordsInSegment: number;
     }
@@ -3447,18 +3589,28 @@ function SceneContent() {
     let curX = textPadding;
     let curY = textY;
 
-    // Pre-calculate words per segment
-    const segmentWordCounts = new Map<string, number>();
+    // Pre-calculate words per categorized segment (by segmentPositions index)
+    const segWordCounts: number[] = [];
+    let spIdx = 0;
     for (const seg of transcriptSegments) {
-      if (seg.category) {
-        segmentWordCounts.set(seg.category, seg.text.trim().split(/\s+/).length);
+      if (seg.category && spIdx < segmentPositions.length) {
+        segWordCounts.push(seg.text.trim().split(/\s+/).length);
+        spIdx++;
       }
     }
-    const segmentWordIndex = new Map<string, number>();
+    const segWordCounters: number[] = new Array(segmentPositions.length).fill(0);
 
     let textOverflow = false;
+    let segPosCounter = 0; // tracks which segmentPositions entry we're on
     for (const seg of transcriptSegments) {
       if (textOverflow) break;
+
+      // Find this segment's index in segmentPositions (only for categorized segments)
+      let thisSegPosIndex = -1;
+      if (seg.category && segPosCounter < segmentPositions.length) {
+        thisSegPosIndex = segPosCounter;
+        segPosCounter++;
+      }
 
       const segLen = seg.text.length;
       const visible = Math.min(Math.max(0, revealedChars - wordCharCount), segLen);
@@ -3487,8 +3639,8 @@ function SceneContent() {
           }
         }
 
-        const currentIdx = segmentWordIndex.get(seg.category || '') || 0;
-        if (seg.category) segmentWordIndex.set(seg.category, currentIdx + 1);
+        const wordIdx = thisSegPosIndex >= 0 ? segWordCounters[thisSegPosIndex] : 0;
+        if (thisSegPosIndex >= 0) segWordCounters[thisSegPosIndex]++;
 
         wordPositions.push({
           word,
@@ -3496,8 +3648,9 @@ function SceneContent() {
           y: curY,
           width: wordW,
           category: seg.category,
-          wordIndexInSegment: currentIdx,
-          totalWordsInSegment: segmentWordCounts.get(seg.category || '') || 1
+          segPosIndex: thisSegPosIndex,
+          wordIndexInSegment: wordIdx,
+          totalWordsInSegment: thisSegPosIndex >= 0 ? (segWordCounts[thisSegPosIndex] || 1) : 1
         });
         curX += wordW;
       }
@@ -3505,14 +3658,14 @@ function SceneContent() {
       wordCharCount += segLen;
     }
 
-    // Draw highlights
+    // Draw highlights — use segment index for accurate per-segment highlighting
     for (const wp of wordPositions) {
-      if (wp.category) {
-        const highlightState = highlightStates.find(h => h.category === wp.category);
-        if (highlightState) {
+      if (wp.segPosIndex >= 0) {
+        const highlightState = highlightStates[wp.segPosIndex];
+        if (highlightState && highlightState.progress > 0) {
           const wordsToHighlight = Math.floor(highlightState.progress * wp.totalWordsInSegment);
           if (wp.wordIndexInSegment < wordsToHighlight) {
-            const cfg = allCategoryConfigs[wp.category];
+            const cfg = allCategoryConfigs[wp.category!];
             ctx.fillStyle = cfg?.highlight || '#fef08a';
             roundRect(ctx, wp.x - 3, wp.y - 2, wp.width + 2, textSize + 6, 4);
             ctx.fill();
@@ -3537,7 +3690,7 @@ function SceneContent() {
     }
 
     // === EXTRACTED CARDS PANEL (fixed at bottom) ===
-    const cardsPanelH = height * 0.34;
+    const cardsPanelH = height * 0.42;
     const cardsPanelY = height * 0.52;
     const cardsPanelW = width - panelMargin * 2;
 
@@ -3567,183 +3720,68 @@ function SceneContent() {
     // Cards inside the panel - fixed positions
     const cardInnerPadding = panelPadding * 0.8;
     const cardStartY = cardsPanelY + cardInnerPadding;
-    const cardH = height * 0.095;
+    const cardH = height * 0.125;
     const cardGap = height * 0.012;
     const cardW = cardsPanelW - cardInnerPadding * 2;
     const cardStartX = panelMargin + cardInnerPadding;
-    const cardRadius = 20; // Nicely rounded corners
+    const cardRadius = 20;
 
-    // UNIFIED pastel colors for cards - each category distinct
-    const pastelColors: Record<string, { bg: string; accent: string; text: string }> = {
-      // Blue - Calendar, Events
-      events: { bg: '#dbeafe', accent: '#60a5fa', text: '#2563eb' },
-      // Green - Tasks, Work
-      work: { bg: '#dcfce7', accent: '#4ade80', text: '#16a34a' },
-      // Orange - Errands
-      errands: { bg: '#fff7ed', accent: '#fdba74', text: '#ea580c' },
-      // Teal - Finance
-      finance: { bg: '#ecfeff', accent: '#22d3ee', text: '#0891b2' },
-      // Yellow - Ideas
-      ideas: { bg: '#fefce8', accent: '#fde047', text: '#ca8a04' },
-      // Red - Health
-      health: { bg: '#fef2f2', accent: '#fca5a5', text: '#dc2626' },
-      // Purple - Shopping
-      shopping: { bg: '#f5f3ff', accent: '#c4b5fd', text: '#7c3aed' },
-      // Pink - Social, Messages
-      social: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777' },
-      messages: { bg: '#fdf2f8', accent: '#f9a8d4', text: '#db2777' },
+    // Map each item to its specific segment index (nth item of a category → nth segment of that category)
+    const mapItemsToSegments = (items: typeof scenario.extractedItems) => {
+      const catCounters: Record<string, number> = {};
+      return items.map(item => {
+        const nth = catCounters[item.category] || 0;
+        catCounters[item.category] = nth + 1;
+        let found = 0;
+        for (let j = 0; j < segmentPositions.length; j++) {
+          if (segmentPositions[j].category === item.category) {
+            if (found === nth) return j;
+            found++;
+          }
+        }
+        // More items than segments for this category — use last segment of this category
+        for (let j = segmentPositions.length - 1; j >= 0; j--) {
+          if (segmentPositions[j].category === item.category) return j;
+        }
+        return -1;
+      });
     };
+    const itemSegIndices = mapItemsToSegments(scenario.extractedItems);
 
-    // Simple icon drawing function
-    const drawSimpleIcon = (ctx: CanvasRenderingContext2D, type: string, x: number, y: number, size: number, color: string) => {
-      ctx.strokeStyle = color;
-      ctx.fillStyle = color;
-      ctx.lineWidth = 2;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
+    // Check if any current scenario card is visible (using per-segment matching)
+    const anyCurrentCardVisible = scenario.extractedItems.some((_item, i) => {
+      const segIdx = itemSegIndices[i];
+      return segIdx >= 0 && highlightStates[segIdx]?.progress >= 1;
+    });
 
-      const s = size * 0.4;
+    // Persist previous scenario's cards until the first card of this scenario appears
+    let itemsToDraw = scenario.extractedItems;
+    let usePrevCards = false;
 
-      if (type === 'work' || type === 'finance') {
-        // Briefcase / document icon
-        ctx.beginPath();
-        roundRect(ctx, x - s, y - s * 0.6, s * 2, s * 1.4, 3);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x - s * 0.4, y - s * 0.6);
-        ctx.lineTo(x - s * 0.4, y - s);
-        ctx.lineTo(x + s * 0.4, y - s);
-        ctx.lineTo(x + s * 0.4, y - s * 0.6);
-        ctx.stroke();
-      } else if (type === 'errands' || type === 'shopping') {
-        // Checklist icon
-        ctx.beginPath();
-        ctx.moveTo(x - s * 0.8, y - s * 0.5);
-        ctx.lineTo(x - s * 0.4, y);
-        ctx.lineTo(x + s * 0.8, y - s * 0.8);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x - s * 0.8, y + s * 0.5);
-        ctx.lineTo(x + s * 0.8, y + s * 0.5);
-        ctx.stroke();
-      } else if (type === 'ideas') {
-        // Lightbulb icon
-        ctx.beginPath();
-        ctx.arc(x, y - s * 0.3, s * 0.6, Math.PI * 0.8, Math.PI * 2.2);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x - s * 0.3, y + s * 0.3);
-        ctx.lineTo(x - s * 0.3, y + s * 0.6);
-        ctx.lineTo(x + s * 0.3, y + s * 0.6);
-        ctx.lineTo(x + s * 0.3, y + s * 0.3);
-        ctx.stroke();
-      } else if (type === 'health') {
-        // Heart icon
-        ctx.beginPath();
-        ctx.moveTo(x, y + s * 0.6);
-        ctx.bezierCurveTo(x - s * 1.2, y - s * 0.2, x - s * 0.6, y - s, x, y - s * 0.4);
-        ctx.bezierCurveTo(x + s * 0.6, y - s, x + s * 1.2, y - s * 0.2, x, y + s * 0.6);
-        ctx.stroke();
-      } else if (type === 'social' || type === 'messages') {
-        // Chat bubble icon
-        ctx.beginPath();
-        roundRect(ctx, x - s, y - s * 0.7, s * 2, s * 1.2, 4);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x - s * 0.3, y + s * 0.5);
-        ctx.lineTo(x - s * 0.5, y + s);
-        ctx.lineTo(x + s * 0.1, y + s * 0.5);
-        ctx.fill();
-      } else if (type === 'events') {
-        // Calendar icon
-        ctx.beginPath();
-        roundRect(ctx, x - s, y - s * 0.6, s * 2, s * 1.4, 3);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x - s, y - s * 0.2);
-        ctx.lineTo(x + s, y - s * 0.2);
-        ctx.stroke();
-        ctx.fillRect(x - s * 0.5, y + s * 0.1, s * 0.3, s * 0.3);
-        ctx.fillRect(x + s * 0.2, y + s * 0.1, s * 0.3, s * 0.3);
-      } else {
-        // Default circle icon
-        ctx.beginPath();
-        ctx.arc(x, y, s * 0.6, 0, Math.PI * 2);
-        ctx.stroke();
+    if (!anyCurrentCardVisible && globalState.videoSync.isActive) {
+      const prevScenario = getPreviousScenario(globalState.videoSync.currentTime);
+      if (prevScenario && prevScenario.items.length > 0) {
+        itemsToDraw = prevScenario.items as typeof scenario.extractedItems;
+        usePrevCards = true;
       }
-    };
+    }
 
-    // Draw all 3 card slots (fixed positions)
-    scenario.extractedItems.forEach((item, i) => {
-      // Check if this item's highlight is complete (progress >= 1)
-      const highlightState = highlightStates.find(h => h.category === item.category);
-      const isVisible = highlightState && highlightState.progress >= 1;
-
-      // Card fades in smoothly over 0.3s after highlight completes
-      const fadeInDuration = 0.3;
-      const cardOpacity = isVisible ? Math.min(1, highlightState.timeSinceComplete / fadeInDuration) : 0;
-
-      if (cardOpacity <= 0) return;
+    // Draw card slots using unified styled helper
+    itemsToDraw.forEach((item, i) => {
+      let cardOpacity = 1;
+      if (!usePrevCards) {
+        const segIdx = itemSegIndices[i];
+        const hs = segIdx >= 0 ? highlightStates[segIdx] : undefined;
+        const isVisible = hs && hs.progress >= 1;
+        const fadeInDuration = 0.3;
+        cardOpacity = isVisible ? Math.min(1, hs.timeSinceComplete / fadeInDuration) : 0;
+        if (cardOpacity <= 0) return;
+      }
 
       ctx.globalAlpha = cardOpacity;
       const thisCardY = cardStartY + i * (cardH + cardGap);
-
-      // Get pastel colors for this category
-      const colors = pastelColors[item.category] || DEFAULT_CARD_COLOR;
-      // Glass card background
-      drawGlassCardBg(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius, colors);
-
-      // Left color accent bar - on the edge, shorter with padding top/bottom
-      const barWidth = 4;
-      const barPadding = cardH * 0.2;
-      ctx.fillStyle = colors.accent;
-      roundRect(ctx, cardStartX, thisCardY + barPadding, barWidth, cardH - barPadding * 2, 2);
-      ctx.fill();
-
-      // Simple icon
-      const iconSize = height * 0.04;
-      const iconX = cardStartX + 30;
-      const iconY = thisCardY + cardH / 2;
-      drawSimpleIcon(ctx, item.category, iconX, iconY, iconSize, colors.text);
-
-      // Content text - left aligned after icon
-      const contentTextX = iconX + iconSize + 12;
-
-      // Label
-      ctx.fillStyle = colors.text;
-      ctx.font = `600 ${height * 0.020}px -apple-system`;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.fillText(item.label, contentTextX, thisCardY + height * 0.018);
-
-      // Content
-      const isHeroEvent = item.category === 'events' || item.category === 'event' || item.category === 'calendar' || item.category === 'appointment';
-      ctx.fillStyle = '#374151';
-      ctx.font = `500 ${height * 0.024}px -apple-system`;
-      ctx.fillText(item.content, contentTextX, thisCardY + (isHeroEvent ? height * 0.035 : height * 0.052));
-
-      // Event tags
-      if (isHeroEvent) {
-        drawEventTags(ctx, contentTextX, thisCardY + height * 0.062, item.content, cardH);
-      }
-
-      // Action buttons - stacked vertically on the right
-      const btnSize = height * 0.024;
-      const btnX = cardStartX + cardW - btnSize * 1.2;
-      const checkBtnY = thisCardY + cardH * 0.32;
-      const xBtnY = thisCardY + cardH * 0.68;
-
-      // Checkmark button (confirm) - top
-      ctx.fillStyle = colors.accent;
-      ctx.font = `600 ${btnSize}px -apple-system`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('✓', btnX, checkBtnY);
-
-      // X button (dismiss) - bottom
-      ctx.fillStyle = '#cbd5e1';
-      ctx.font = `500 ${btnSize * 0.9}px -apple-system`;
-      ctx.fillText('✕', btnX, xBtnY);
+      drawStyledCard(ctx, cardStartX, thisCardY, cardW, cardH, cardRadius,
+        item.label, item.content, item.icon, item.category);
     });
 
     ctx.globalAlpha = 1;
@@ -3773,10 +3811,11 @@ function SceneContent() {
     const accentColor = '#ff6b35'; // Orange accent like Apple Watch Ultra
 
     // Hero showcase mode - show fullscreen recording UI in hero section (synced with phone voicenotes)
-    const isHeroShowcase = globalState.heroShowcaseActive &&
+    const isHeroShowcase = (globalState.heroShowcaseActive &&
       globalState.currentSection === 'hero' &&
       !demoState.isWaitingToStart &&
-      globalState.phoneScreenState.currentScreen === 'voicenote';
+      globalState.phoneScreenState.currentScreen === 'voicenote') ||
+      (globalState.videoSync.isActive && globalState.currentSection === 'hero');
 
     // Get scenario timing (syncs with phone's voicenote animation)
     const scenarioState = getScenarioState();
@@ -3791,9 +3830,14 @@ function SceneContent() {
 
     // === HERO SHOWCASE MODE (synced with phone voicenotes, 3 phases) ===
     if (isHeroShowcase) {
-      const scElapsed = scenarioState.elapsed;
+      let scElapsed = scenarioState.elapsed;
       const typingDuration = scenarioState.fullTranscript.length / TYPING_SPEED;
       const typingEndTime = RECORDING_START_TIME + typingDuration;
+
+      // ── Video sync override: when phone is the active device, watch shows "Sent to iPhone" ──
+      if (globalState.videoSync.isActive && globalState.videoSync.currentDevice === 'phone') {
+        scElapsed = typingEndTime + 0.5; // Force Phase 3
+      }
 
       // ── Phase 1: Sent-to-iPhone → Tap-to-record → Tap animation (0 to RECORDING_START_TIME) ──
       if (scElapsed < RECORDING_START_TIME) {
@@ -4668,9 +4712,8 @@ function SceneContent() {
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
     const entranceProgress = easeOutCubic(entranceProgressRef.current);
 
-    // Ambient floating movement (reduced during scroll for better performance)
-    const scrollDampening = isScrolling ? 0.2 : 1.0;
-    const ambientScale = entranceProgress * scrollDampening;
+    // Ambient floating movement (consistent regardless of scroll state)
+    const ambientScale = entranceProgress;
     const ambientY = Math.sin(time * 0.8) * 0.015 * ambientScale;
     const ambientX = Math.cos(time * 0.6) * 0.008 * ambientScale;
     const ambientRotX = Math.sin(time * 0.5) * 0.02 * ambientScale;

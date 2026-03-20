@@ -232,10 +232,10 @@ export const ActionCards: React.FC = () => {
             className="lg:pr-8"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
-              Action Cards
+              Is AI safe to put things in your calendar without&nbsp;oversight?
             </h2>
             <p className="text-xl md:text-2xl text-slate-600 leading-relaxed mb-6">
-              Most things get automatically routed to your databases. But when it's important—a calendar invitation, a new contact, a task—you get a card first. One tap to add, or edit whatever needs changing. You choose which databases need this.
+              No. That's why Vois gives you Action Cards. When it matters—a calendar event, a new contact, a task—you get a card first. Review it, edit it, or dismiss it. You stay in control of what goes where.
             </p>
           </motion.div>
 

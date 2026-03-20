@@ -132,6 +132,7 @@ interface MobileScrollHeroProps {
   chatOpened: boolean;
   chatMessageCount: number;
   allCardsVerified: boolean;
+  appOpened?: boolean;
   remaining?: number | null;
   tryNowElement: React.ReactNode;
   bgVariant?: number;
@@ -153,6 +154,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
   chatOpened,
   chatMessageCount,
   allCardsVerified,
+  appOpened = false,
   remaining,
   tryNowElement,
   bgVariant = 0,
@@ -817,6 +819,7 @@ export const MobileScrollHero: React.FC<MobileScrollHeroProps> = ({
               chatOpened={chatOpened}
               chatMessageCount={chatMessageCount}
               allCardsVerified={allCardsVerified}
+              appOpened={appOpened}
             />
           </div>
         )}

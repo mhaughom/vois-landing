@@ -78,6 +78,25 @@ for (const [aliases, card, highlight] of COLOR_MAP) {
   }
 }
 
+// ── Label-based card colors (for canvas action cards) ────────────────────────
+// Maps item labels (Note, Task, Calendar, etc.) to their visual color.
+// Key difference from category map: Note = YELLOW (not SLATE).
+
+export const LABEL_CARD_COLORS: Record<string, CardColor> = {
+  calendar: BLUE,
+  note:     YELLOW,
+  task:     GREEN,
+  email:    PINK,
+  idea:     YELLOW,
+  insight:  YELLOW,
+  shopping: VIOLET,
+  reminder: PURPLE,
+};
+
+export function getLabelCardColor(label: string): CardColor {
+  return LABEL_CARD_COLORS[label.toLowerCase()] || DEFAULT_CARD_COLOR;
+}
+
 // ── Helper functions ────────────────────────────────────────────────────────
 
 export function getCardColor(category: string): CardColor {

@@ -15,6 +15,7 @@ const Login = React.lazy(() => import('./pages/Login'));
 const Legal = React.lazy(() => import('./pages/Legal'));
 const Success = React.lazy(() => import('./pages/Success'));
 const Support = React.lazy(() => import('./pages/Support'));
+const Setup = React.lazy(() => import('./pages/Setup'));
 
 // Work feature pages
 const MeetingNotes = React.lazy(() => import('./pages/work/meeting-notes'));
@@ -52,6 +53,7 @@ root.render(
           <Route path="/work/org-chart" element={<OrgChart />} />
           <Route path="/work/reports" element={<Reports />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />
         </Routes>
       </Suspense>

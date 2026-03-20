@@ -93,7 +93,8 @@ export const DemoSteps: React.FC<{
   chatOpened?: boolean;
   chatMessageCount?: number;
   allCardsVerified?: boolean;
-}> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageCount = 0, allCardsVerified = false }) => {
+  appOpened?: boolean;
+}> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageCount = 0, allCardsVerified = false, appOpened = false }) => {
   const isMobile = useIsMobile();
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
   const [demoPhase, setDemoPhase] = useState<'steps' | 'question' | 'chat'>('steps');
@@ -140,31 +141,17 @@ export const DemoSteps: React.FC<{
     >
       {/* Recording indicator with countdown and stop button */}
       {isActuallyRecording && (
-        <motion.div
+        <motion.button
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
-          className="flex items-center gap-3"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={onStopRecording}
+          className="px-5 py-2.5 rounded-full text-sm font-medium bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200"
         >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-200">
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-2 h-2 rounded-full bg-red-500"
-            />
-            <span className="text-red-600 text-sm font-medium">
-              Recording... {demoState.elapsed}s / 30s
-            </span>
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onStopRecording}
-            className="px-4 py-2 rounded-full text-sm font-medium bg-slate-900 text-white hover:bg-slate-800 transition-all duration-200"
-          >
-            Stop
-          </motion.button>
-        </motion.div>
+          Stop
+        </motion.button>
       )}
 
       <AnimatePresence mode="wait">
@@ -186,7 +173,7 @@ export const DemoSteps: React.FC<{
               >
                 <span className={`font-serif text-lg sm:text-xl md:text-2xl ${stage === 'waiting' ? 'text-slate-900' : 'text-slate-400'}`}>
                   <span className="text-slate-400 mr-2">1.</span>
-                  Tap record on the phone or watch
+                  Tap the VOIS shortcut on your phone or watch
                 </span>
                 {stage !== 'waiting' && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
               </motion.div>
@@ -390,7 +377,7 @@ export const DemoSteps: React.FC<{
               </motion.div>
             )}
 
-            {/* Step 3: Verify or decline action cards — visible after 2 messages */}
+            {/* Step 3: Explore the apps — visible after 2 messages */}
             {hasSentTwoMessages && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -399,22 +386,22 @@ export const DemoSteps: React.FC<{
                 className="flex flex-col gap-1 items-center sm:items-start"
               >
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${allCardsVerified ? 'text-slate-400' : 'text-slate-900'}`}>
+                  <span className={`font-serif text-lg sm:text-xl md:text-2xl ${appOpened ? 'text-slate-400' : 'text-slate-900'}`}>
                     <span className="text-slate-400 mr-2">3.</span>
-                    Verify or decline the action cards
+                    Explore the apps
                   </span>
-                  {allCardsVerified && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
+                  {appOpened && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
                 </div>
-                {!allCardsVerified && (
+                {!appOpened && (
                   <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
-                    Tap ✓ or ✕ on each card on the phone
+                    Tap the <span className="font-medium">apps icon</span> on the phone and open one
                   </span>
                 )}
               </motion.div>
             )}
 
-            {/* "Do you want to see more?" — visible after all cards verified */}
-            {allCardsVerified && (
+            {/* Join waitlist CTA — visible after user opens an app */}
+            {appOpened && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -422,7 +409,7 @@ export const DemoSteps: React.FC<{
                 className="flex flex-col gap-3 items-center sm:items-start mt-2"
               >
                 <p className="font-serif text-xl sm:text-2xl md:text-3xl text-slate-900 leading-snug">
-                  Do you want to see more?
+                  Want early access?
                 </p>
                 <div className="flex items-center gap-3">
                   <motion.button
@@ -430,11 +417,11 @@ export const DemoSteps: React.FC<{
                     whileTap={{ scale: 0.97 }}
                     onClick={() => {
                       onReset?.();
-                      document.getElementById('video-transition')?.scrollIntoView({ behavior: 'smooth' });
+                      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="px-8 py-3 rounded-full text-base font-medium bg-slate-900 text-white shadow-lg shadow-black/10 hover:bg-slate-800 transition-all duration-200"
                   >
-                    Yes
+                    Join the Waitlist
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -442,7 +429,7 @@ export const DemoSteps: React.FC<{
                     onClick={() => onReset?.()}
                     className="px-8 py-3 rounded-full text-base font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-200"
                   >
-                    No
+                    Maybe Later
                   </motion.button>
                 </div>
               </motion.div>

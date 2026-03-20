@@ -353,7 +353,7 @@ function OrganizeSectionDesktop() {
     if (!isAutoScrolling) return;
     const interval = setInterval(() => {
       setCurrentViewIndex((prev) => (prev + 1) % SCREEN_VIEWS.length);
-    }, 4000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [isAutoScrolling]);
 
@@ -435,7 +435,7 @@ function OrganizeSectionDesktop() {
       />
 
       {/* Headline */}
-      <div style={{ position: 'relative', zIndex: 30, pointerEvents: 'none', textAlign: 'center', padding: '22vh 2rem 0' }}>
+      <div style={{ position: 'relative', zIndex: 30, pointerEvents: 'none', textAlign: 'center', padding: '14vh 2rem 0' }}>
         <h2
           style={{
             fontFamily: "'Instrument Serif', Georgia, serif",
@@ -448,6 +448,9 @@ function OrganizeSectionDesktop() {
           <span style={{ fontSize: 'clamp(1.5rem, 3.5vw, 3rem)', color: '#64748b', fontWeight: 400 }}>2</span>
           Organize at the speed of AI.
         </h2>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', color: '#64748b', margin: '4px auto 0', maxWidth: '540px', lineHeight: 1.7 }}>
+          AI <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>automatically sorts</span> your voice notes into the right databases and extracts the most valuable information.
+        </p>
 
         {/* View name + arrows */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '1.5rem', pointerEvents: 'auto' }}>
@@ -548,8 +551,8 @@ function OrganizeSectionMobile() {
             <span style={{ fontSize: 'clamp(1.5rem, 3.5vw, 3rem)', color: '#64748b', fontWeight: 400 }}>2</span>
             Organize at the speed of AI.
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', color: '#94a3b8', margin: '12px 0 0' }}>
-            Every voice note becomes a structured entry in the right place.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(1.05rem, 2vw, 1.25rem)', color: '#94a3b8', margin: '4px auto 0', maxWidth: '440px', lineHeight: 1.7 }}>
+            AI <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>automatically sorts</span> your voice notes into the right databases and extracts the most valuable information.
           </p>
         </div>
 

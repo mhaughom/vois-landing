@@ -3,7 +3,8 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link, useSearchParams } from 'react-router-dom';
 import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
-import { setCurrentSection, setOnChatOpen, setOnChatMessageSent, setOnCardVerified, areAllCardsVerified, resetCardVerifications } from './components/deviceState';
+import { setCurrentSection, setOnChatOpen, setOnChatMessageSent, setOnCardVerified, areAllCardsVerified, resetCardVerifications, setOnAppOpened, setVideoSyncActive, setVideoSyncTime } from './components/deviceState';
+import { getVideoScenario } from './lib/videoSyncTimeline';
 import type { SectionId } from './components/deviceState';
 import { DeviceScene } from './components/DeviceScene';
 // FlowVisualization deactivated — removed import to avoid bundling Three.js code
@@ -26,6 +27,7 @@ import { ActionCards } from './components/ActionCards';
 import { ContextualChat } from './components/ContextualChat';
 import { LifeAreas } from './components/LifeAreas';
 import { WaitlistModal } from './components/WaitlistModal';
+import { MobileVideoCards } from './components/MobileVideoCards';
 
 const faqData = [
   {
@@ -244,6 +246,7 @@ const App = () => {
   const [chatOpened, setChatOpened] = useState(false);
   const [chatMessageCount, setChatMessageCount] = useState(0);
   const [allCardsVerified, setAllCardsVerified] = useState(false);
+  const [appOpened, setAppOpened] = useState(false);
   const [demoGatePassed, setDemoGatePassed] = useState(false);
   const [retrieveVideoPlaying, setRetrieveVideoPlaying] = useState(false);
   const retrieveVideoRef = useRef<HTMLVideoElement>(null);
@@ -264,6 +267,7 @@ const App = () => {
       setChatOpened(false);
       setChatMessageCount(0);
       setAllCardsVerified(false);
+      setAppOpened(false);
       resetCardVerifications();
     }
   }, [demoStage, demoIsRecording]);
@@ -284,6 +288,29 @@ const App = () => {
         v.play();
       });
     }
+  }, [showVideoClose]);
+
+  // Sync 3D devices with hero video currentTime
+  useEffect(() => {
+    if (!showVideoClose) {
+      setVideoSyncActive(false);
+      return;
+    }
+    setVideoSyncActive(true);
+    let raf = 0;
+    const tick = () => {
+      const v = heroVideoRef.current;
+      if (v && !v.paused) {
+        const scenario = getVideoScenario(v.currentTime);
+        setVideoSyncTime(v.currentTime, scenario?.device ?? null);
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      setVideoSyncActive(false);
+    };
   }, [showVideoClose]);
 
   // Set session properties on mount
@@ -351,6 +378,14 @@ const App = () => {
       }
     });
     return () => setOnCardVerified(null);
+  }, []);
+
+  // Set up callback when user opens an app detail screen on the phone
+  useEffect(() => {
+    setOnAppOpened(() => {
+      setAppOpened(true);
+    });
+    return () => setOnAppOpened(null);
   }, []);
   // Demo is active when user has started the try-now flow (not idle/error)
   const isDemoActive = demoStage !== 'idle' && demoStage !== 'error';
@@ -585,17 +620,14 @@ const App = () => {
       className="relative w-full min-h-screen font-sans scroll-smooth"
       style={isMobile && !demoGatePassed ? { height: '100dvh', overflow: 'hidden' } : undefined}
     >
-      {/* Top white gradient overlay — only on desktop for Safari Liquid Glass toolbar */}
-      {!isMobile && (
-        <div
-          className="fixed top-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: 'calc(env(safe-area-inset-top, 0px) + 120px)',
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
-            zIndex: 40,
-          }}
-        />
-      )}
+      {/* Top white gradient overlay */}
+      <div
+        className="fixed top-0 left-0 right-0 pointer-events-none z-30"
+        style={{
+          height: 'calc(env(safe-area-inset-top, 0px) + 160px)',
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 40%, transparent 100%)',
+        }}
+      />
       <Navbar
         onCycleBg={() => setBgVariant((v) => (v + 1) % BG_VARIANTS.length)}
         bgVariant={bgVariant}
@@ -620,63 +652,53 @@ const App = () => {
         isDemoActive={isDemoActive}
       />
 
-      {/* Video Modal */}
+      {/* Video Modal — Mobile: custom card experience / Desktop: standard video */}
       <AnimatePresence>
         {showVideoModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-8"
-            onClick={() => setShowVideoModal(false)}
-          >
-            {/* Backdrop - hidden on mobile when fullscreen */}
+          isMobile ? (
+            <MobileVideoCards onClose={() => setShowVideoModal(false)} />
+          ) : (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black md:bg-black/80 md:backdrop-blur-sm"
-            />
-
-            {/* Modal Content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="relative w-full h-full md:h-auto md:max-w-4xl md:aspect-video bg-black md:rounded-2xl overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-8"
+              onClick={() => setShowVideoModal(false)}
             >
-              {/* Close Button - hidden on mobile, shown on desktop */}
-              <button
-                onClick={() => setShowVideoModal(false)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full items-center justify-center text-white transition-colors hidden md:flex"
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                className="relative max-w-4xl w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
               >
-                <X size={20} />
-              </button>
-
-              {/* Video Player */}
-              <div className="relative w-full h-full">
-                <video
-                  src="/videos/Situations.mp4"
-                  controls
-                  autoPlay
-                  playsInline
-                  className="w-full h-full object-contain"
-                  onLoadedMetadata={(e) => {
-                    // Request fullscreen on mobile
-                    if (isMobile && e.currentTarget.requestFullscreen) {
-                      e.currentTarget.requestFullscreen().catch(() => {
-                        // Fallback if fullscreen fails
-                      });
-                    }
-                  }}
-                  onEnded={() => setShowVideoModal(false)}
-                />
-              </div>
+                <button
+                  onClick={() => setShowVideoModal(false)}
+                  className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                >
+                  <X size={20} />
+                </button>
+                <div className="relative w-full h-full">
+                  <video
+                    src="/videos/Situations.mp4"
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-contain"
+                    onEnded={() => setShowVideoModal(false)}
+                  />
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )
         )}
       </AnimatePresence>
 
@@ -729,6 +751,7 @@ const App = () => {
             chatOpened={chatOpened}
             chatMessageCount={chatMessageCount}
             allCardsVerified={allCardsVerified}
+            appOpened={appOpened}
             remaining={null}
             bgVariant={bgVariant}
             bgIntensity={bgIntensity}
@@ -1077,6 +1100,7 @@ const App = () => {
               chatOpened={chatOpened}
               chatMessageCount={chatMessageCount}
               allCardsVerified={allCardsVerified}
+              appOpened={appOpened}
             />
                 </motion.div>
               )}
@@ -1398,8 +1422,8 @@ const App = () => {
               Retrieve at the speed of sound.
             </h2>
 
-            <p className="text-slate-500 text-center text-base md:text-lg max-w-2xl mb-4">
-              Ask naturally and get instant answers. Your voice assistant finds exactly what you need from everything you've captured.
+            <p className="text-center max-w-xl" style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', color: '#64748b', margin: '4px auto 0', lineHeight: 1.7 }}>
+              Ask naturally and get <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>instant answers</span>. Your voice assistant finds exactly what you need from everything you've captured.
             </p>
 
             {/* Video with click-to-play (has sound) */}
@@ -1857,6 +1881,11 @@ const App = () => {
                     <a href="mailto:hello@tryvois.com" onClick={() => Analytics.externalLinkClicked('contact_email')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
                       Contact Us
                     </a>
+                  </li>
+                  <li>
+                    <Link to="/setup" onClick={() => Analytics.externalLinkClicked('setup_guide')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      Setup Guide
+                    </Link>
                   </li>
                 </ul>
               </div>

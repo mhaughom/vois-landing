@@ -23,8 +23,8 @@ export const Login = () => {
     >
       <div className="absolute inset-0 bg-[#FAFAFA]" />
       <div className="relative text-center">
-        <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center mx-auto mb-4">
-          <span className="text-white font-serif italic font-medium text-xl pt-1">V</span>
+        <div className="mx-auto mb-4">
+          <img src="/Logo/vois-logo.svg" alt="Vois" className="h-12 w-12" />
         </div>
         <p className="text-slate-500 text-sm">Redirecting to login...</p>
       </div>

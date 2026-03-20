@@ -9,22 +9,16 @@ const Support = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link
-                to="/"
-                className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors"
-              >
-                <ArrowLeft size={18} />
-                <span className="text-sm font-medium hidden sm:inline">Back to Home</span>
-              </Link>
-              <div className="h-6 w-px bg-slate-200 hidden sm:block" />
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 bg-black rounded-lg flex items-center justify-center">
-                  <span className="text-white font-serif italic text-sm">V</span>
-                </div>
-                <span className="font-semibold text-slate-900">Support</span>
-              </div>
+          <div className="flex items-center gap-3 h-16">
+            <Link
+              to="/"
+              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors flex-shrink-0"
+            >
+              <ArrowLeft size={16} />
+            </Link>
+            <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
+              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-6 w-6" />
+              <span className="font-semibold text-sm text-slate-900">Support</span>
             </div>
           </div>
         </div>

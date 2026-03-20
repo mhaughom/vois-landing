@@ -97,6 +97,12 @@ export const globalState = {
   watchHoverUV: null as { x: number; y: number } | null,
   // Watch UV mapping (repeat/offset from texture setup, for raw→canvas conversion)
   watchUVMapping: null as { repeatX: number; repeatY: number; offsetX: number; offsetY: number } | null,
+  // Video sync — when the Situations video plays, devices sync to its currentTime
+  videoSync: {
+    isActive: false,
+    currentTime: 0,
+    currentDevice: null as 'phone' | 'watch' | null,
+  },
 };
 
 // Callback holders — shared between setter functions and DeviceScene's click handlers
@@ -109,6 +115,7 @@ export const callbacks = {
   onChatSendMessage: null as ((message: string) => void) | null,
   onChatInputClick: null as (() => void) | null,
   onCardVerified: null as ((cardIndex: number, action: 'verified' | 'declined') => void) | null,
+  onAppOpened: null as (() => void) | null,
 };
 
 // --- Setter / Getter functions ---
@@ -139,6 +146,9 @@ export const setPhoneScreen = (screen: PhoneScreen) => {
   }
   if (screen === 'magic' && callbacks.onChatOpen) {
     callbacks.onChatOpen();
+  }
+  if (screen.startsWith('app-') && callbacks.onAppOpened) {
+    callbacks.onAppOpened();
   }
 };
 
@@ -401,6 +411,10 @@ export const setOnChatInputClick = (callback: (() => void) | null) => {
 
 // --- Card verification ---
 
+export const setOnAppOpened = (callback: (() => void) | null) => {
+  callbacks.onAppOpened = callback;
+};
+
 export const setOnCardVerified = (callback: ((cardIndex: number, action: 'verified' | 'declined') => void) | null) => {
   callbacks.onCardVerified = callback;
 };
@@ -422,4 +436,19 @@ export const areAllCardsVerified = (): boolean => {
   const items = globalState.demoState.items;
   if (items.length === 0) return false;
   return items.every((_, i) => i in globalState.cardVerifications);
+};
+
+// --- Video sync ---
+
+export const setVideoSyncActive = (active: boolean) => {
+  globalState.videoSync.isActive = active;
+  if (!active) {
+    globalState.videoSync.currentTime = 0;
+    globalState.videoSync.currentDevice = null;
+  }
+};
+
+export const setVideoSyncTime = (time: number, device: 'phone' | 'watch' | null) => {
+  globalState.videoSync.currentTime = time;
+  globalState.videoSync.currentDevice = device;
 };
