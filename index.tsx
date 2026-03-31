@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Work from './pages/Work';
+const Work = React.lazy(() => import('./pages/Work'));
 import './index.css';
 import { bootConsent } from './lib/consent';
 
