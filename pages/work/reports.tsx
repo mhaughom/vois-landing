@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, FileText, Mic, Clock, CheckSquare } from 'lucide-react';
+import ReportsDemo from './features/ReportsDemo';
 
 const Reports: React.FC = () => {
   return (
@@ -57,6 +58,19 @@ const Reports: React.FC = () => {
               Talk reports into existence. Walk through a site inspection speaking your observations—
               AI generates a formatted PDF instantly.
             </p>
+          </motion.div>
+
+          {/* Interactive Demo */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-20 rounded-3xl border border-slate-200 overflow-hidden shadow-lg bg-white"
+          >
+            <div className="p-2 md:p-4">
+              <ReportsDemo />
+            </div>
           </motion.div>
 
           {/* The Problem */}

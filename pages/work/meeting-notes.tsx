@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Zap, Watch, Monitor, Sparkles } from 'lucide-react';
+import MeetingNotesDemo from './features/MeetingNotesDemo';
 
 const MeetingNotes: React.FC = () => {
   return (
@@ -59,18 +60,16 @@ const MeetingNotes: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Video Demo Placeholder */}
+          {/* Interactive Demo */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="aspect-video rounded-3xl bg-gradient-to-br from-indigo-50 to-indigo-100 mb-20 shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-20 rounded-3xl border border-slate-200 overflow-hidden shadow-lg bg-white"
           >
-            <div className="w-full h-full flex items-center justify-center text-slate-400">
-              <div className="text-center">
-                <Sparkles size={48} className="mx-auto mb-4 text-indigo-400" />
-                <p className="text-lg">Demo video coming soon</p>
-              </div>
+            <div className="p-2 md:p-4">
+              <MeetingNotesDemo />
             </div>
           </motion.div>
 

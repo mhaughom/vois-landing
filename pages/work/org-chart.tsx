@@ -1,15 +1,137 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Network, Users, Sparkles, Bot } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Network,
+  Shield,
+  Users,
+  GitBranch,
+  CheckCircle2,
+  ClipboardList,
+} from 'lucide-react';
+
+/* ── animation helpers ─────────────────────────────────────────────────── */
+
+const EASE_OUT = [0, 0, 0.2, 1] as const;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.10 } },
+};
+
+/* ── org-chart mock data ───────────────────────────────────────────────── */
+
+interface OrgNode {
+  name: string;
+  role: string;
+  bg: string;
+  text: string;
+  border: string;
+  draft?: string;
+}
+
+const ceo: OrgNode = {
+  name: 'Elena Park',
+  role: 'CEO',
+  bg: 'bg-slate-900',
+  text: 'text-white',
+  border: 'border-slate-900',
+};
+
+const heads: OrgNode[] = [
+  { name: 'James Okoro', role: 'VP Operations', bg: 'bg-indigo-600', text: 'text-white', border: 'border-indigo-600' },
+  { name: 'Lisa Chen', role: 'VP Sales', bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-600' },
+];
+
+const members: OrgNode[] = [
+  { name: 'Mike R.', role: 'Field Ops Lead', bg: 'bg-white', text: 'text-slate-900', border: 'border-indigo-300', draft: 'Draft: moved from Sales' },
+  { name: 'Sara T.', role: 'Logistics Coord.', bg: 'bg-white', text: 'text-slate-900', border: 'border-indigo-200' },
+  { name: 'David K.', role: 'Account Exec', bg: 'bg-white', text: 'text-slate-900', border: 'border-emerald-200' },
+  { name: 'Amy J.', role: 'Sales Rep', bg: 'bg-white', text: 'text-slate-900', border: 'border-emerald-200' },
+];
+
+/* ── node renderer ─────────────────────────────────────────────────────── */
+
+const NodeCard: React.FC<{ node: OrgNode; className?: string }> = ({ node, className = '' }) => (
+  <div
+    className={`relative rounded-xl px-4 py-3 border-2 ${node.bg} ${node.text} ${node.border} shadow-sm text-center min-w-[130px] ${
+      node.draft ? 'border-dashed !border-amber-500' : ''
+    } ${className}`}
+  >
+    <p className="text-sm font-semibold leading-tight">{node.name}</p>
+    <p className={`text-xs mt-0.5 ${node.text === 'text-white' ? 'text-white/70' : 'text-slate-500'}`}>{node.role}</p>
+    {node.draft && (
+      <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+        ({node.draft})
+      </span>
+    )}
+  </div>
+);
+
+/* ── connector lines (pure CSS) ────────────────────────────────────────── */
+
+const Connector: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`w-px bg-slate-300 ${className}`} />
+);
+
+const HLine: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`h-px bg-slate-300 ${className}`} />
+);
+
+/* ── benefit cards data ────────────────────────────────────────────────── */
+
+const benefits = [
+  {
+    icon: Shield,
+    title: '37-app permissions',
+    desc: 'Auto-scoped by department and org level. When someone moves, their permissions update instantly across every connected tool.',
+    color: 'indigo',
+  },
+  {
+    icon: ClipboardList,
+    title: 'RACI tracking',
+    desc: 'Define who owns, approves, consults, and gets informed for every process. Never wonder "who signs off on this?" again.',
+    color: 'violet',
+  },
+  {
+    icon: GitBranch,
+    title: 'Dual reporting',
+    desc: 'Matrix structures with primary and secondary managers. Dotted-line relationships are first-class citizens, not afterthoughts.',
+    color: 'sky',
+  },
+] as const;
+
+const colorMap: Record<string, { iconBg: string; iconText: string }> = {
+  indigo: { iconBg: 'bg-indigo-100', iconText: 'text-indigo-600' },
+  violet: { iconBg: 'bg-violet-100', iconText: 'text-violet-600' },
+  sky:    { iconBg: 'bg-sky-100',    iconText: 'text-sky-600' },
+};
+
+/* ── tech strip items ──────────────────────────────────────────────────── */
+
+const techItems = [
+  'ReactFlow visualization',
+  'Sandbox drafts',
+  'Atomic apply',
+  '37-app permission matrix',
+  'RACI responsibility',
+] as const;
+
+/* ── page component ────────────────────────────────────────────────────── */
 
 const OrgChart: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
+      {/* ── Nav ───────────────────────────────────────────────────────── */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "circOut" }}
+        transition={{ duration: 0.8, ease: 'circOut' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
         style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
       >
@@ -29,8 +151,8 @@ const OrgChart: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
             >
-              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
+              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
             </motion.div>
           </a>
         </div>
@@ -38,182 +160,208 @@ const OrgChart: React.FC = () => {
         <div className="w-32" />
       </motion.nav>
 
-      {/* Hero Section */}
+      {/* ── Main ──────────────────────────────────────────────────────── */}
       <main className="pt-32 pb-24 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+        <div className="max-w-5xl mx-auto">
+
+          {/* ── 1. Hero ───────────────────────────────────────────────── */}
+          <motion.section
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="mb-20 max-w-3xl"
           >
-            <div className="inline-block px-4 py-2 bg-slate-200 text-slate-700 rounded-full text-sm font-medium mb-6">
-              Coming Soon
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Org Chart & AI Agents
-            </h1>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-8">
-              Assign specialized AI agents to team members. Keep humans in the loop longer by
-              making them supervisors of AI, not replacements.
-            </p>
-          </motion.div>
+            <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
+              <span className="inline-block px-4 py-1.5 bg-indigo-500/10 text-indigo-700 rounded-full text-sm font-medium mb-6">
+                Team Management
+              </span>
+            </motion.div>
 
-          {/* The Problem */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            <motion.h1
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: EASE_OUT }}
+              className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-5 leading-[1.1]"
+            >
+              Drag. Drop.<br />Reorganize.
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: EASE_OUT }}
+              className="text-lg md:text-xl text-slate-500 leading-relaxed max-w-2xl"
+            >
+              Interactive org chart with sandbox drafts — model reorganizations, diff against
+              current state, and apply atomically. Plus a 37-app permission matrix that
+              auto-scopes by department and seniority.
+            </motion.p>
+          </motion.section>
+
+          {/* ── 2. Mock Org Chart ─────────────────────────────────────── */}
+          <motion.section
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-amber-50 border border-amber-200 rounded-2xl p-8 mb-16"
+            transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT }}
+            className="mb-20"
           >
-            <h3 className="text-xl font-semibold text-amber-900 mb-3 text-center">The Challenge</h3>
-            <p className="text-amber-800 leading-relaxed text-center">
-              Most people don't use AI effectively—not because they're opposed to it, but because
-              they <strong>can't think of when to use it</strong>. They need AI to suggest itself
-              at the right moments, in the right context.
-            </p>
-          </motion.div>
+            <div className="bg-indigo-50/50 rounded-3xl p-6 md:p-8 overflow-hidden">
+              {/* Tree visualization */}
+              <div className="flex flex-col items-center gap-0">
+                {/* CEO */}
+                <NodeCard node={ceo} />
+                <Connector className="h-6" />
 
-          {/* Key Features */}
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                <Network size={24} className="text-pink-600" />
+                {/* Horizontal connector between heads */}
+                <div className="relative w-full max-w-md">
+                  <HLine className="absolute top-0 left-1/4 right-1/4" />
+                  {/* vertical taps down from h-line */}
+                  <div className="flex justify-between px-[25%]">
+                    <Connector className="h-6" />
+                    <Connector className="h-6" />
+                  </div>
+                </div>
+
+                {/* Department Heads */}
+                <div className="flex gap-8 md:gap-16 justify-center">
+                  {heads.map((h) => (
+                    <NodeCard key={h.name} node={h} />
+                  ))}
+                </div>
+
+                {/* Connectors to team members */}
+                <div className="flex gap-8 md:gap-16 justify-center w-full">
+                  {/* Ops side */}
+                  <div className="flex flex-col items-center">
+                    <Connector className="h-6" />
+                    <div className="relative">
+                      <HLine className="w-32 md:w-40" />
+                      <div className="flex justify-between">
+                        <Connector className="h-5" />
+                        <Connector className="h-5" />
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <NodeCard node={members[0]} className="mb-8" />
+                      <NodeCard node={members[1]} />
+                    </div>
+                  </div>
+
+                  {/* Sales side */}
+                  <div className="flex flex-col items-center">
+                    <Connector className="h-6" />
+                    <div className="relative">
+                      <HLine className="w-32 md:w-40" />
+                      <div className="flex justify-between">
+                        <Connector className="h-5" />
+                        <Connector className="h-5" />
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <NodeCard node={members[2]} />
+                      <NodeCard node={members[3]} />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Interactive Org Chart</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Leaders create a visual org chart and assign AI agents to specific team members.
-                A marketing specialist might have 3 AI agents: Content Writer, SEO Analyzer,
-                and Campaign Optimizer.
-              </p>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                <Bot size={24} className="text-pink-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Proactive AI Suggestions</h3>
-              <p className="text-slate-600 leading-relaxed">
-                During meetings and while reading emails, VOIS listens and suggests relevant agent
-                actions: "Should the SEO Analyzer review this landing page?" or "Want the Content
-                Writer to draft that blog post?"
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                <Users size={24} className="text-pink-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Humans as Supervisors</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Instead of replacing workers, this system elevates them. Your marketing specialist
-                becomes a supervisor managing AI agents. They review AI work, approve actions,
-                and maintain control.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                <Sparkles size={24} className="text-pink-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Third-Party Agent Integration</h3>
-              <p className="text-slate-600 leading-relaxed">
-                We don't build every agent ourselves. Org Chart integrates with specialized third-party
-                AI agents for different fields—legal, design, engineering, finance. Best-in-class tools
-                for each specialty.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* How It Works */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="bg-slate-950 rounded-3xl p-10 md:p-14 text-white mb-20"
-          >
-            <h2 className="text-3xl font-serif mb-6 text-center">How It Works</h2>
-            <div className="space-y-4 text-slate-300 text-lg leading-relaxed">
-              <p>
-                <strong className="text-white">Setup:</strong> Your manager assigns you three AI agents
-                in the org chart—matched to your role and responsibilities.
-              </p>
-              <p>
-                <strong className="text-white">Meeting:</strong> During a team discussion, someone mentions
-                a new marketing campaign. VOIS, listening in, pops up an action card: "Should the Campaign
-                Optimizer analyze this strategy?"
-              </p>
-              <p>
-                <strong className="text-white">One tap:</strong> You approve. The agent starts working in
-                the background.
-              </p>
-              <p>
-                <strong className="text-white">Email:</strong> Later, you receive a draft email that needs
-                polishing. Another action card appears: "Want the Content Writer to refine this?"
-              </p>
-              <p>
-                <strong className="text-white">The result:</strong> You work faster, accomplish more, and
-                stay in control. The AI doesn't replace you—it amplifies you.
+              {/* Caption */}
+              <p className="text-center text-sm text-slate-500 mt-10 max-w-lg mx-auto leading-relaxed">
+                Create a draft, model the reorg, preview the diff, and apply when ready.
+                No one sees changes until you publish.
               </p>
             </div>
-          </motion.div>
+          </motion.section>
 
-          {/* The Vision */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="bg-indigo-50 border border-indigo-200 rounded-2xl p-10 mb-20"
+          {/* ── 3. Three Benefit Cards ────────────────────────────────── */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={stagger}
+            className="grid md:grid-cols-3 gap-6 mb-20"
           >
-            <h3 className="text-2xl font-serif text-indigo-900 mb-4 text-center">
-              Job Security Through AI Supervision
-            </h3>
-            <p className="text-indigo-800 leading-relaxed">
-              Many people fear AI will replace them. Org Chart & AI Agents does the opposite—it
-              positions humans as managers of AI teams. You become more valuable, not less.
-              Companies get AI productivity gains while keeping experienced humans in decision-making
-              roles. Everyone wins.
-            </p>
-          </motion.div>
+            {benefits.map((b) => {
+              const c = colorMap[b.color];
+              return (
+                <motion.div
+                  key={b.title}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5, ease: EASE_OUT }}
+                  className="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm"
+                >
+                  <div className={`w-11 h-11 ${c.iconBg} rounded-xl flex items-center justify-center mb-4`}>
+                    <b.icon size={22} className={c.iconText} />
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{b.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{b.desc}</p>
+                </motion.div>
+              );
+            })}
+          </motion.section>
 
-          {/* Status */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-center bg-slate-50 rounded-2xl p-10"
+          {/* ── 4. Scenario Callout ───────────────────────────────────── */}
+          <motion.section
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: EASE_OUT }}
+            className="mb-20"
           >
-            <h3 className="text-2xl font-serif text-slate-900 mb-4">
-              Currently in Development
-            </h3>
-            <p className="text-slate-600 mb-2">
-              Org Chart & AI Agents is built in our development environment. We're finalizing third-party
-              agent integrations and enterprise security features.
-            </p>
-            <p className="text-slate-500 text-sm">
-              Expected to be available as part of the enterprise offering within 6-12 months.
-            </p>
-          </motion.div>
+            <div className="bg-slate-950 rounded-3xl p-8 md:p-12 text-white">
+              <p className="text-lg md:text-xl leading-relaxed text-slate-300">
+                <span className="text-white font-medium">You're restructuring the field ops team.</span>{' '}
+                Instead of making live changes and confusing everyone, you create a draft. Drag Mike
+                from Sales to Operations, add a new team lead position, and preview the diff.
+                Three people moved, two reporting lines changed. You review, approve, and publish —{' '}
+                <span className="text-white font-medium">the entire org updates atomically.</span>
+              </p>
+            </div>
+          </motion.section>
+
+          {/* ── 5. Tech Strip ─────────────────────────────────────────── */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: EASE_OUT }}
+            className="mb-20"
+          >
+            <div className="flex flex-wrap justify-center gap-3">
+              {techItems.map((item) => (
+                <span
+                  key={item}
+                  className="px-4 py-2 bg-slate-100 text-slate-600 rounded-full text-sm font-medium"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ── 6. Closing ────────────────────────────────────────────── */}
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: EASE_OUT }}
+            className="text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-4 leading-tight max-w-2xl mx-auto">
+              Other org charts are a static PDF.<br />
+              HABOS org charts are a live command center.
+            </h2>
+
+            <a href="/#waitlist">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="mt-8 inline-flex items-center gap-2 bg-indigo-600 text-white px-8 py-3.5 rounded-full font-semibold text-base shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors"
+              >
+                Join Waitlist
+                <ArrowRight size={18} />
+              </motion.button>
+            </a>
+          </motion.section>
+
         </div>
       </main>
     </div>

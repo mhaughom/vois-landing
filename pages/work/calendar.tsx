@@ -1,6 +1,73 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, GripVertical, Layers, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Brain, Layers, GitBranch } from 'lucide-react';
+import CalendarDemo from './features/CalendarDemo';
+
+const scheduleBlocks = [
+  {
+    time: '9:00 – 10:30',
+    borderColor: 'border-blue-400',
+    type: 'Deep Work',
+    tasks: 'Henderson proposal (critical path) + Review contract draft',
+  },
+  {
+    time: '10:30 – 11:00',
+    borderColor: 'border-amber-400',
+    type: 'Admin',
+    tasks: 'Reply to 3 flagged emails + Approve invoice',
+  },
+  {
+    time: '11:00 – 12:00',
+    borderColor: 'border-red-400',
+    type: 'Meeting',
+    tasks: 'Team sync (brief auto-generated)',
+  },
+  {
+    time: '1:00 – 2:30',
+    borderColor: 'border-green-400',
+    type: 'Project',
+    tasks: 'Kitchen renovation — tile selection + vendor calls',
+  },
+  {
+    time: '2:30 – 3:00',
+    borderColor: 'border-purple-400',
+    type: 'Operations',
+    tasks: 'Review daily reports + flag anomalies',
+  },
+];
+
+const benefits = [
+  {
+    icon: Brain,
+    title: '7-factor priority',
+    description:
+      'Manual rank, priority label, AI importance, AI urgency, due date, calendar fit, creation date. Tasks aren\'t just sorted — they\'re understood.',
+  },
+  {
+    icon: Layers,
+    title: 'Focus blocks',
+    description:
+      'Deep work, admin, project, personal — each block has an affinity filter. Critical path tasks always slot first.',
+  },
+  {
+    icon: GitBranch,
+    title: 'Dependency-aware',
+    description:
+      'Topological sort ensures predecessors are scheduled before dependents. The calendar respects your project\'s logic.',
+  },
+];
+
+const techItems = [
+  'Greedy auto-fill algorithm',
+  'Topological dependency sort',
+  'BroadcastChannel sync',
+  'Google + Outlook + iOS calendars',
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+};
 
 const CalendarPage: React.FC = () => {
   return (
@@ -9,7 +76,7 @@ const CalendarPage: React.FC = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "circOut" }}
+        transition={{ duration: 0.8, ease: 'circOut' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
         style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
       >
@@ -29,8 +96,8 @@ const CalendarPage: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
             >
-              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
+              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
             </motion.div>
           </a>
         </div>
@@ -38,12 +105,11 @@ const CalendarPage: React.FC = () => {
         <div className="w-32" />
       </motion.nav>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            {...fadeUp}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
@@ -51,138 +117,135 @@ const CalendarPage: React.FC = () => {
               AI Scheduling
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Calendar &mdash; AI Scheduling
+              Say &lsquo;Plan My Day.&rsquo;
+              <br />
+              Watch It Fill.
             </h1>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-8">
-              Tell VOIS what you need to get done. The AI looks at your tasks, priorities, deadlines,
-              and existing calendar &mdash; then proposes a full schedule you preview before it commits.
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+              HABOS analyzes your tasks, priorities, and deadlines &mdash; then proposes a full
+              schedule. You approve before anything moves.
             </p>
           </motion.div>
 
-          {/* Key Features */}
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                <Calendar size={24} className="text-amber-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Chat to Schedule</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Say "Plan my day" and get a visual schedule preview. Review the proposed blocks,
-                make adjustments, and approve when you're ready. Nothing moves without your say-so.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                <Layers size={24} className="text-amber-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Container Blocks</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Themed time blocks &mdash; Deep Work, Admin, Creative &mdash; with tasks packed inside by priority.
-                Life area time blocks (Work, Personal, Family) with strict or flexible modes.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                <GripVertical size={24} className="text-amber-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Drag-Ripple Effect</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Move one block and see the chain reaction before confirming. Understand exactly
-                how rescheduling ripples through the rest of your day.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                <RefreshCw size={24} className="text-amber-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Multi-Calendar Sync</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Google Calendar, Outlook, iOS &mdash; all synced. VOIS sees your full picture across
-                every calendar so scheduling decisions account for everything.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* How It Works */}
+          {/* Interactive Demo */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="bg-slate-950 rounded-3xl p-10 md:p-14 text-white mb-20"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-20 rounded-3xl border border-slate-200 overflow-hidden shadow-lg bg-white"
           >
-            <h2 className="text-3xl font-serif mb-8 text-center">How AI Scheduling Works</h2>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center font-semibold text-slate-900">1</div>
-                <div>
-                  <h4 className="font-semibold mb-2">Tell VOIS Your Goals</h4>
-                  <p className="text-slate-300">Say "Plan my day" or "I need to finish the proposal and prep for tomorrow's meeting."</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center font-semibold text-slate-900">2</div>
-                <div>
-                  <h4 className="font-semibold mb-2">AI Proposes a Schedule</h4>
-                  <p className="text-slate-300">VOIS analyzes tasks, priorities, deadlines, and your calendar to create themed time blocks.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center font-semibold text-slate-900">3</div>
-                <div>
-                  <h4 className="font-semibold mb-2">Preview &amp; Adjust</h4>
-                  <p className="text-slate-300">Drag blocks, see ripple effects, and refine until the schedule feels right.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center font-semibold text-slate-900">4</div>
-                <div>
-                  <h4 className="font-semibold mb-2">Approve</h4>
-                  <p className="text-slate-300">One tap and your schedule is set. Events sync across all your calendars.</p>
-                </div>
-              </div>
+            <div className="p-2 md:p-4">
+              <CalendarDemo />
             </div>
+          </motion.div>
+
+          {/* Mock Schedule */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-amber-50/50 rounded-3xl p-6 md:p-8 mb-16"
+          >
+            <h2 className="font-semibold text-slate-900 text-lg mb-6">Wednesday, March 26</h2>
+
+            <div className="space-y-2">
+              {scheduleBlocks.map((block, i) => (
+                <motion.div
+                  key={block.type}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+                  className={`bg-white rounded-xl p-4 border-l-4 ${block.borderColor}`}
+                >
+                  <div className="flex items-baseline gap-3 mb-1">
+                    <span className="font-mono text-sm text-slate-400">{block.time}</span>
+                    <span className="font-medium text-slate-900">{block.type}</span>
+                  </div>
+                  <p className="text-sm text-slate-500">{block.tasks}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <p className="text-center text-sm text-slate-400 mt-6">
+              Generated in 2 seconds. Every task placed by AI priority score.
+            </p>
+          </motion.div>
+
+          {/* Benefits */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid md:grid-cols-3 gap-4 mb-20"
+          >
+            {benefits.map((b) => (
+              <div
+                key={b.title}
+                className="bg-white border border-slate-200 rounded-2xl p-5"
+              >
+                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center mb-3">
+                  <b.icon size={20} className="text-amber-600" />
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-2">{b.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{b.description}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Before / After */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid md:grid-cols-2 gap-4 mb-20"
+          >
+            <div className="bg-slate-100 rounded-2xl p-6 md:p-8">
+              <h3 className="font-semibold text-slate-900 mb-3">Without HABOS</h3>
+              <p className="text-sm text-slate-500 leading-relaxed mb-4">
+                Sunday night: stare at empty calendar. Try to remember what&rsquo;s urgent. Manually
+                block time for each task. Get interrupted. Reschedule everything.
+              </p>
+              <p className="text-sm font-medium text-slate-400">~45 min of planning</p>
+            </div>
+
+            <div className="bg-amber-50 rounded-2xl p-6 md:p-8">
+              <h3 className="font-semibold text-slate-900 mb-3">With HABOS</h3>
+              <p className="text-sm text-slate-500 leading-relaxed mb-4">
+                &ldquo;Plan my day.&rdquo; Review the proposed schedule. Drag one block to adjust.
+                Approve.
+              </p>
+              <p className="text-sm font-medium text-amber-600">~30 seconds</p>
+            </div>
+          </motion.div>
+
+          {/* Tech Strip */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="bg-slate-950 rounded-2xl px-6 py-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300 mb-20"
+          >
+            {techItems.map((item, i) => (
+              <React.Fragment key={item}>
+                {i > 0 && <span className="text-slate-600">&middot;</span>}
+                <span>{item}</span>
+              </React.Fragment>
+            ))}
           </motion.div>
 
           {/* Closing */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center"
           >
             <p className="text-lg text-slate-400 italic mb-8">
-              Motion auto-schedules without asking. VOIS proposes, you decide.
+              Motion auto-schedules without asking. HABOS proposes &mdash; you decide.
             </p>
-            <a href="/work#pricing">
+            <a href="/#waitlist">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
-                See Pricing
+                Join Waitlist
               </motion.button>
             </a>
           </motion.div>

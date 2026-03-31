@@ -1,6 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, FolderKanban, TrendingUp, AlertTriangle, Target } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, AlertTriangle, Clock, Zap, Shield, Link2, ArrowRight } from 'lucide-react';
+import ProjectsDemo from './features/ProjectsDemo';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+};
 
 const Projects: React.FC = () => {
   return (
@@ -9,7 +15,7 @@ const Projects: React.FC = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "circOut" }}
+        transition={{ duration: 0.8, ease: 'circOut' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
         style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
       >
@@ -29,8 +35,8 @@ const Projects: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
             >
-              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
+              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
             </motion.div>
           </a>
         </div>
@@ -42,172 +48,222 @@ const Projects: React.FC = () => {
       <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            {...fadeUp}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-16"
           >
-            <div className="inline-block px-4 py-2 bg-emerald-500/10 text-emerald-700 rounded-full text-sm font-medium mb-6">
-              Available Now via VOIS for Work Plan
+            <div className="inline-block px-4 py-2 bg-orange-500/10 text-orange-700 rounded-full text-sm font-medium mb-6">
+              AI Project Intelligence
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Projects
+              Always Know What's<br />Blocking Progress.
             </h1>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-8">
-              Organize your work into projects. AI automatically tags conversations, meetings,
-              and documents—then identifies what's blocking progress.
+            <p className="text-xl text-slate-500 max-w-2xl mb-8">
+              HABOS continuously analyzes every task, dependency, and deadline to surface the critical path.
+              You see bottlenecks before they become problems.
             </p>
           </motion.div>
 
-          {/* Current Version Notice */}
+          {/* Interactive Demo */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-12 text-center"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-20 rounded-3xl border border-slate-200 overflow-hidden shadow-lg bg-white"
           >
-            <p className="text-amber-900">
-              <strong>Current Version:</strong> Basic project categorization with voice capture and task management.
-              <br />
-              <strong>Coming Soon:</strong> Advanced features including critical path analysis, email integration,
-              and cross-team collaboration.
+            <div className="p-2 md:p-4">
+              <ProjectsDemo />
+            </div>
+          </motion.div>
+
+          {/* Mock Critical Path */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="bg-orange-50/50 rounded-3xl p-6 md:p-8 mb-20"
+          >
+            <h2 className="text-lg font-semibold text-slate-900 mb-5">
+              Henderson Kitchen Renovation — Critical Path
+            </h2>
+
+            <div className="relative pl-6">
+              {/* Vertical connector line */}
+              <div className="absolute left-[11px] top-3 bottom-3 w-px bg-slate-200" />
+
+              {/* Item 1 — Completed */}
+              <div className="relative bg-white rounded-xl p-3 mb-1 border border-slate-200">
+                <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full">
+                  <CheckCircle2 size={18} className="text-emerald-500" />
+                </div>
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <span className="text-sm font-medium text-slate-900">Permits approved</span>
+                  <span className="text-xs text-slate-400">Completed Mar 20</span>
+                </div>
+              </div>
+
+              {/* Item 2 — Completed */}
+              <div className="relative bg-white rounded-xl p-3 mb-1 border border-slate-200">
+                <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full">
+                  <CheckCircle2 size={18} className="text-emerald-500" />
+                </div>
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <span className="text-sm font-medium text-slate-900">Plumbing rough-in</span>
+                  <span className="text-xs text-slate-400">Completed Mar 23</span>
+                </div>
+              </div>
+
+              {/* Item 3 — BLOCKING (highlighted) */}
+              <div className="relative bg-orange-50 rounded-xl p-3 mb-1 border border-orange-300">
+                <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full">
+                  <AlertTriangle size={18} className="text-amber-500" />
+                </div>
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <span className="text-sm font-semibold text-orange-900">Tile selection</span>
+                  <span className="text-xs font-medium text-orange-700">
+                    BLOCKING — waiting on sample delivery (due Mar 28)
+                  </span>
+                </div>
+              </div>
+
+              {/* Item 4 — Blocked */}
+              <div className="relative bg-white rounded-xl p-3 mb-1 border border-slate-200">
+                <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full">
+                  <Clock size={18} className="text-slate-400" />
+                </div>
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <span className="text-sm font-medium text-slate-900">Tile installation</span>
+                  <span className="text-xs text-slate-400">Blocked by: Tile selection</span>
+                </div>
+              </div>
+
+              {/* Item 5 — Blocked */}
+              <div className="relative bg-white rounded-xl p-3 border border-slate-200">
+                <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full">
+                  <Clock size={18} className="text-slate-400" />
+                </div>
+                <div className="flex items-center justify-between flex-wrap gap-1">
+                  <span className="text-sm font-medium text-slate-900">Final inspection</span>
+                  <span className="text-xs text-slate-400">Blocked by: Tile installation</span>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-sm text-slate-600 mt-5 leading-relaxed">
+              AI identified "Tile selection" as the bottleneck 3 days before the team noticed.
+              Critical path items are auto-promoted to highest priority in your schedule.
             </p>
           </motion.div>
 
-          {/* Available Now Features */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-serif text-slate-900 mb-8 text-center">Available Now</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-              >
-                <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                  <FolderKanban size={24} className="text-amber-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Project Categories</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Create projects and categorize your voice notes, tasks, and calendar items.
-                  Everything stays organized within your VOIS workspace.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-              >
-                <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
-                  <Target size={24} className="text-amber-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Voice-First Capture</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Speak your project updates, ideas, and tasks. AI automatically routes them to
-                  the right project and creates actionable items.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Coming Soon: Enterprise Features */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-serif text-slate-900 mb-8 text-center">Coming Soon: Enterprise Features</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-slate-50 rounded-2xl p-8 border border-slate-200"
-              >
-                <div className="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center mb-4">
-                  <AlertTriangle size={24} className="text-slate-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Critical Path Analysis</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  AI continuously analyzes all project data—emails, meetings, documents—to identify
-                  bottlenecks and blockers. Get alerts when something's preventing forward progress.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="bg-slate-50 rounded-2xl p-8 border border-slate-200"
-              >
-                <div className="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center mb-4">
-                  <TrendingUp size={24} className="text-slate-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Auto-Tagging & Context</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Email threads, meeting notes, and documents automatically get tagged with relevant
-                  projects. AI builds context over time, making project management effortless.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* The Vision */}
+          {/* Three Benefit Blocks */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="bg-slate-950 rounded-3xl p-10 md:p-14 text-white mb-20"
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="grid md:grid-cols-3 gap-5 mb-20"
           >
-            <h2 className="text-3xl font-serif mb-6 text-center">The Full Vision</h2>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-slate-300 text-lg leading-relaxed mb-4">
-                VOIS Projects will evolve into a comprehensive project intelligence system. Imagine
-                an AI that:
+            <div className="bg-white border border-slate-200 rounded-2xl p-5">
+              <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                <Zap size={20} className="text-orange-600" />
+              </div>
+              <h3 className="text-base font-semibold text-slate-900 mb-2">
+                Bottlenecks found automatically
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                AI examines all plan items, dependencies, and status. It sets critical_rank on items that form
+                the blocking chain — and your calendar prioritizes them immediately.
               </p>
-              <ul className="text-slate-300 space-y-3">
-                <li>
-                  <strong>Watches everything:</strong> Every email, meeting, document, and conversation
-                  related to a project is automatically tracked and analyzed.
-                </li>
-                <li>
-                  <strong>Finds the bottleneck:</strong> Searches through massive amounts of data to
-                  identify exactly what's preventing progress right now.
-                </li>
-                <li>
-                  <strong>Keeps you informed:</strong> Proactively alerts project managers and team
-                  members when critical issues arise.
-                </li>
-                <li>
-                  <strong>Answers questions:</strong> "Why is this project behind schedule?" Chat with
-                  your project AI to understand complex dependencies and timelines.
-                </li>
-              </ul>
-              <p className="text-slate-300 text-lg leading-relaxed mt-6">
-                We're building this incrementally—starting with solid project organization, then adding
-                intelligence as we grow.
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl p-5">
+              <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                <Shield size={20} className="text-orange-600" />
+              </div>
+              <h3 className="text-base font-semibold text-slate-900 mb-2">
+                Dependencies enforced
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                If a predecessor isn't complete, the dependent task is marked blocked and can't be started.
+                No more working on the wrong thing.
+              </p>
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl p-5">
+              <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                <Link2 size={20} className="text-orange-600" />
+              </div>
+              <h3 className="text-base font-semibold text-slate-900 mb-2">
+                Every source connected
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Emails, meetings, voice notes, and documents are auto-tagged to projects. Ask "why is this
+                behind?" and get a real answer.
               </p>
             </div>
           </motion.div>
 
-          {/* CTA */}
+          {/* Before / After */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="grid md:grid-cols-2 gap-5 mb-20"
+          >
+            {/* Without HABOS */}
+            <div className="bg-slate-100 rounded-2xl p-6 md:p-8">
+              <h3 className="text-lg font-semibold text-slate-900 mb-4">Without HABOS</h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                Monday standup: "Any blockers?" Silence. Thursday: "Why isn't the tile installed?"
+                "Oh, the samples never arrived." Three days lost.
+              </p>
+              <div className="inline-block px-3 py-1.5 bg-slate-200 text-slate-700 rounded-full text-xs font-medium">
+                Bottleneck discovered: 3 days late
+              </div>
+            </div>
+
+            {/* With HABOS */}
+            <div className="bg-orange-50 rounded-2xl p-6 md:p-8">
+              <h3 className="text-lg font-semibold text-slate-900 mb-4">With HABOS</h3>
+              <p className="text-sm text-slate-700 leading-relaxed mb-6">
+                Tuesday morning: notification — "Tile selection is now the critical path bottleneck.
+                Sample delivery is 2 days out. Recommend: escalate with supplier." Action taken same day.
+              </p>
+              <div className="inline-block px-3 py-1.5 bg-orange-200 text-orange-800 rounded-full text-xs font-medium">
+                Bottleneck flagged: 3 days early
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Tech Strip */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="bg-slate-950 rounded-2xl px-6 py-4 mb-20 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-400"
+          >
+            <span>GPT-4o critical path analysis</span>
+            <span className="hidden sm:inline text-slate-700">&middot;</span>
+            <span>Topological dependency sort</span>
+            <span className="hidden sm:inline text-slate-700">&middot;</span>
+            <span>Auto-priority elevation</span>
+            <span className="hidden sm:inline text-slate-700">&middot;</span>
+            <span>Cross-module data tagging</span>
+          </motion.div>
+
+          {/* Closing CTA */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.55 }}
             className="text-center"
           >
-            <h3 className="text-2xl font-serif text-slate-900 mb-4">
-              Start organizing your projects today
+            <h3 className="text-2xl md:text-3xl font-serif text-slate-900 mb-4">
+              Other project tools show you tasks.<br />HABOS shows you what matters.
             </h3>
-            <p className="text-slate-600 mb-8">
-              Projects is included in the VOIS for Work plan.
-            </p>
-            <a href="/#pricing">
+            <a href="/#waitlist">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
+                className="mt-6 inline-flex items-center gap-2 px-8 py-4 bg-orange-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
-                See Pricing
+                Join Waitlist
+                <ArrowRight size={18} />
               </motion.button>
             </a>
           </motion.div>

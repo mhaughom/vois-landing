@@ -1,0 +1,337 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Car, MapPin, Eye, Route, Users, Gauge } from 'lucide-react';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
+});
+
+/* ── Pin data ─────────────────────────────────────────────────────────── */
+
+type PinStatus = 'on-site' | 'driving' | 'available';
+
+interface MapPin_ {
+  name: string;
+  status: PinStatus;
+  label: string;
+  sublabel?: string;
+  speed: number;
+  color: string; // tailwind dot color class
+  dotBg: string; // raw hex for the pulsing dot
+  top: string;
+  left: string;
+}
+
+const pins: MapPin_[] = [
+  {
+    name: 'Mike T.',
+    status: 'on-site',
+    label: 'On site — Henderson',
+    speed: 0,
+    color: 'bg-emerald-400',
+    dotBg: '#34d399',
+    top: '22%',
+    left: '28%',
+  },
+  {
+    name: 'Sarah L.',
+    status: 'driving',
+    label: 'En route — Wilson',
+    sublabel: '(driving)',
+    speed: 45,
+    color: 'bg-amber-400',
+    dotBg: '#fbbf24',
+    top: '48%',
+    left: '62%',
+  },
+  {
+    name: 'James K.',
+    status: 'on-site',
+    label: 'On site — Garcia',
+    speed: 0,
+    color: 'bg-emerald-400',
+    dotBg: '#34d399',
+    top: '65%',
+    left: '35%',
+  },
+  {
+    name: 'Lisa M.',
+    status: 'available',
+    label: 'Available',
+    sublabel: 'Last: Baker Office',
+    speed: 0,
+    color: 'bg-sky-400',
+    dotBg: '#38bdf8',
+    top: '38%',
+    left: '78%',
+  },
+];
+
+const groupTabs = ['All', 'Project', 'Department', 'Operations'] as const;
+
+/* ── Faux road network (purely decorative SVG lines) ──────────────────── */
+
+const RoadNetwork = () => (
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    preserveAspectRatio="none"
+    viewBox="0 0 800 500"
+  >
+    {/* Horizontal roads */}
+    <line x1="0" y1="120" x2="800" y2="120" stroke="#475569" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.4" />
+    <line x1="0" y1="260" x2="800" y2="260" stroke="#475569" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.4" />
+    <line x1="0" y1="380" x2="800" y2="380" stroke="#475569" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.4" />
+    {/* Vertical roads */}
+    <line x1="200" y1="0" x2="200" y2="500" stroke="#475569" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.4" />
+    <line x1="450" y1="0" x2="450" y2="500" stroke="#475569" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.4" />
+    <line x1="650" y1="0" x2="650" y2="500" stroke="#475569" strokeWidth="1.5" strokeDasharray="8 6" opacity="0.4" />
+    {/* Diagonal / curved connector */}
+    <path d="M200,120 Q350,190 450,260" stroke="#475569" strokeWidth="1" fill="none" strokeDasharray="6 8" opacity="0.25" />
+    <path d="M450,260 Q550,320 650,380" stroke="#475569" strokeWidth="1" fill="none" strokeDasharray="6 8" opacity="0.25" />
+  </svg>
+);
+
+/* ── Component ────────────────────────────────────────────────────────── */
+
+const TeamMap: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<typeof groupTabs[number]>('All');
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* ─── Navigation ─── */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: 'circOut' }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-5 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
+        style={{ paddingTop: 'calc(1.25rem + env(safe-area-inset-top, 0px))' }}
+      >
+        <a href="/work">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+          >
+            <ArrowLeft size={16} className="text-slate-600" />
+            <span className="font-medium text-sm text-slate-600">Back to Work</span>
+          </motion.div>
+        </a>
+
+        <div className="absolute left-1/2 -translate-x-1/2">
+          <a href="/">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+            >
+              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
+              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
+            </motion.div>
+          </a>
+        </div>
+
+        <div className="w-32" />
+      </motion.nav>
+
+      {/* ─── Content ─── */}
+      <main className="pt-32 pb-24 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+
+          {/* ━━━ 1. Hero ━━━ */}
+          <motion.section {...fadeUp()} className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500/10 text-sky-700 rounded-full text-sm font-medium mb-6">
+              <Eye size={14} />
+              Real-Time Visibility
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
+              See Your Entire Team.<br />In Real Time.
+            </h1>
+            <p className="text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
+              Every field worker on a live map — color-coded by project, department, or operation.
+              Know who's driving, who's on-site, and who's available.
+            </p>
+          </motion.section>
+
+          {/* ━━━ 2. Mock map ━━━ */}
+          <motion.section {...fadeUp(0.15)} className="mb-20">
+            <div className="bg-slate-800 rounded-3xl p-6 md:p-8 text-white">
+              {/* Map area */}
+              <div className="relative bg-slate-700 rounded-2xl p-6 overflow-hidden" style={{ minHeight: '420px' }}>
+                <RoadNetwork />
+
+                {/* Group-by tabs — top right */}
+                <div className="absolute top-4 right-4 z-10 flex gap-1 bg-slate-800/70 backdrop-blur-sm rounded-full p-1">
+                  {groupTabs.map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`px-3 py-1 rounded-full text-[11px] font-medium transition-colors ${
+                        activeTab === tab
+                          ? 'bg-white text-slate-900'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Pins */}
+                {pins.map((pin) => (
+                  <motion.div
+                    key={pin.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="absolute"
+                    style={{ top: pin.top, left: pin.left }}
+                  >
+                    <div className="bg-slate-600/80 backdrop-blur-sm rounded-lg p-2.5 text-xs min-w-[140px] shadow-lg border border-slate-500/30">
+                      <div className="flex items-center gap-2 mb-1">
+                        {/* Pulsing dot */}
+                        <span className="relative flex h-2.5 w-2.5 shrink-0">
+                          <span
+                            className="absolute inline-flex h-full w-full rounded-full opacity-40 animate-ping"
+                            style={{ backgroundColor: pin.dotBg }}
+                          />
+                          <span
+                            className="relative inline-flex h-2.5 w-2.5 rounded-full"
+                            style={{ backgroundColor: pin.dotBg }}
+                          />
+                        </span>
+                        <span className="font-semibold text-white">{pin.name}</span>
+                        {pin.status === 'driving' && (
+                          <Car size={11} className="text-amber-400 ml-auto" />
+                        )}
+                      </div>
+                      <p className="text-slate-300 leading-snug">{pin.label}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-slate-400">{pin.speed} km/h</span>
+                        {pin.sublabel && (
+                          <span className="text-slate-500 text-[10px]">{pin.sublabel}</span>
+                        )}
+                      </div>
+                    </div>
+                    {/* Pin tail */}
+                    <div className="flex justify-center">
+                      <div
+                        className="w-0.5 h-3 rounded-full"
+                        style={{ backgroundColor: pin.dotBg }}
+                      />
+                    </div>
+                    <div className="flex justify-center">
+                      <div
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: pin.dotBg }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Caption */}
+              <p className="text-xs text-slate-400 text-center mt-5">
+                Updated every ~30 seconds via Supabase Realtime. Driving badge appears when speed &gt; 3 km/h.
+              </p>
+            </div>
+          </motion.section>
+
+          {/* ━━━ 3. Three benefit cards ━━━ */}
+          <motion.section {...fadeUp(0.25)} className="mb-20">
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* 5 grouping modes */}
+              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-9 h-9 bg-sky-100 rounded-lg flex items-center justify-center">
+                    <Users size={18} className="text-sky-600" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900">5 grouping modes</h3>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  View by All, Project, Department, Operations, or Org Level. Each with
+                  deterministic color palette — same person, same color, every time.
+                </p>
+              </div>
+
+              {/* Driving detection */}
+              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-9 h-9 bg-sky-100 rounded-lg flex items-center justify-center">
+                    <Gauge size={18} className="text-sky-600" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900">Driving detection</h3>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  When a worker's speed exceeds 3 km/h, an amber car badge appears on their pin.
+                  Managers instantly see who's between jobs.
+                </p>
+              </div>
+
+              {/* Route overlay */}
+              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-9 h-9 bg-sky-100 rounded-lg flex items-center justify-center">
+                    <Route size={18} className="text-sky-600" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900">Route overlay</h3>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Toggle route polylines from Mapbox Directions API. See the planned route vs
+                  actual location — spot deviations or delays immediately.
+                </p>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* ━━━ 4. Scenario callout ━━━ */}
+          <motion.section {...fadeUp(0.35)} className="mb-20">
+            <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-10">
+              <p className="text-lg md:text-xl leading-relaxed text-slate-300">
+                A client calls: <span className="text-white font-medium">&ldquo;The leak is getting worse, can someone come sooner?&rdquo;</span> You
+                open Team Map, see Mike is 10 minutes away and finishing his current job. You
+                reassign the emergency to Mike from the dispatch board. His phone updates, the map
+                pin changes to <span className="text-white font-medium">&ldquo;En route — Johnson,&rdquo;</span> and you tell the
+                client: <span className="text-white font-medium">&ldquo;Mike will be there in 15 minutes.&rdquo;</span> No guessing, no phone tag.
+              </p>
+            </div>
+          </motion.section>
+
+          {/* ━━━ 5. Tech strip ━━━ */}
+          <motion.section {...fadeUp(0.4)} className="mb-20">
+            <div className="bg-sky-50 border border-sky-200 rounded-2xl px-8 py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sky-700 text-sm font-medium">
+              <span>Mapbox GL</span>
+              <span className="text-sky-300">&middot;</span>
+              <span>Supabase Realtime</span>
+              <span className="text-sky-300">&middot;</span>
+              <span>~30s refresh</span>
+              <span className="text-sky-300">&middot;</span>
+              <span>GPS waypoints</span>
+              <span className="text-sky-300">&middot;</span>
+              <span>Deterministic color palette</span>
+            </div>
+          </motion.section>
+
+          {/* ━━━ 6. Closing ━━━ */}
+          <motion.section {...fadeUp(0.45)} className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-6 leading-snug">
+              Other tools show you where workers <em>were</em>.<br />
+              HABOS shows you where they <em>are</em>.
+            </h2>
+            <a href="/work">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-3.5 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
+              >
+                Join Waitlist
+              </motion.button>
+            </a>
+          </motion.section>
+
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default TeamMap;

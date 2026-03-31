@@ -68,7 +68,7 @@ export const FEATURE_MAP: Record<string, FeatureInfo> = {
     demoKey: 'custom-apps',
   },
   'AI Agents': {
-    headline: 'First ten hires don\'t need salaries.',
+    headline: 'Your first ten hires don\'t need salaries.',
     body: 'Build your AI team in an org chart. Assign agents to roles — researcher, writer, analyst, ops. Each has responsibilities, tools, budgets, and reporting lines. They plan before acting and pause for approval.',
     closingLine: 'ChatGPT answers questions. VOIS agents complete missions.',
     demoKey: 'agents',

@@ -66,9 +66,11 @@ interface AnimationSceneProps {
   onSnapToFace: (index: number) => void;
   onPreviewFace: (index: number) => void;
   onPhaseChange?: (phase: Phase) => void;
-  facePointsRef?: React.MutableRefObject<{x: number; y: number}[] | null>;
   muted?: boolean;
+  containerWidth?: number;
 }
+
+const BASE_CONTAINER = 672; // 42rem
 
 export const AnimationScene: React.FC<AnimationSceneProps> = ({
   onIntroComplete,
@@ -81,8 +83,8 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
   onSnapToFace,
   onPreviewFace,
   onPhaseChange,
-  facePointsRef,
   muted,
+  containerWidth = BASE_CONTAINER,
 }) => {
   const elapsedRef = useRef(0);
   const introCompleteRef = useRef(false);
@@ -97,8 +99,9 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
   const hexGroupRef = useRef<THREE.Group>(null);
   const [dimAmount, setDimAmount] = useState(0);
   const { camera, scene } = useThree();
-  const BASE_ZOOM = 160;
-  const FOCUS_ZOOM = 220;
+  const scale = containerWidth / BASE_CONTAINER;
+  const BASE_ZOOM = 160 * scale;
+  const FOCUS_ZOOM = 220 * scale;
   const fogRef = useRef<THREE.Fog | null>(null);
   const localCamDirRef = useRef(new THREE.Vector3(0, 0, 1));
   const [camDirTuple, setCamDirTuple] = useState<[number, number, number]>([0, 0, 1]);
@@ -264,30 +267,6 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
           onSnapToFace(bestIdx);
         }
 
-        // Project face vertices to screen space for HTML panel positioning
-        if (facePointsRef) {
-          const isQuad = bestIdx === 16 || bestIdx === 18;
-          const vertIdxs = isQuad
-            ? [...new Set([...HEX_FACE_TRIS[bestIdx], ...HEX_FACE_TRIS[bestIdx + 1]])]
-            : [...HEX_FACE_TRIS[bestIdx]];
-          const projected = vertIdxs.map(vi => {
-            const wp = verts[vi].clone().applyQuaternion(currentQuat.current);
-            const ndc = wp.project(camera);
-            // NDC → container-relative fraction (canvas has inset -20% -40%)
-            return { x: 0.9 * ndc.x + 0.5, y: 0.5 - 0.7 * ndc.y };
-          });
-          // For quads, sort vertices by angle around centroid for proper polygon winding
-          if (projected.length > 3) {
-            const pcx = projected.reduce((s, p) => s + p.x, 0) / projected.length;
-            const pcy = projected.reduce((s, p) => s + p.y, 0) / projected.length;
-            projected.sort((a, b) =>
-              Math.atan2(a.y - pcy, a.x - pcx) - Math.atan2(b.y - pcy, b.x - pcx)
-            );
-          }
-          facePointsRef.current = projected;
-        }
-      } else if (facePointsRef) {
-        facePointsRef.current = null;
       }
       wasDraggingRef.current = isDraggingRef.current;
 
@@ -306,17 +285,17 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
       // Camera at z=10, shape radius ~2.3. Focused face ~z=12.3, back face ~z=7.7
       // Fog near must be > 10 (camera) to avoid fogging the focused face
       if (!fogRef.current) {
-        fogRef.current = new THREE.Fog('#f8f9fa', 12, 16);
+        fogRef.current = new THREE.Fog('#dfe3e8', 12, 18);
         scene.fog = fogRef.current;
       }
       if (focusedTri !== null) {
-        // Focus: fog starts behind the focused face, fully fogs the back
-        fogRef.current.near += (8.5 - fogRef.current.near) * (1 - Math.exp(-3 * dt));
-        fogRef.current.far += (10.5 - fogRef.current.far) * (1 - Math.exp(-3 * dt));
-      } else {
-        // Idle: gentle fog — back faces fade slightly
+        // Focus: fog starts behind the focused face, wider spread
         fogRef.current.near += (9.5 - fogRef.current.near) * (1 - Math.exp(-3 * dt));
         fogRef.current.far += (13 - fogRef.current.far) * (1 - Math.exp(-3 * dt));
+      } else {
+        // Idle: gentle fog — back faces fade slightly
+        fogRef.current.near += (11 - fogRef.current.near) * (1 - Math.exp(-3 * dt));
+        fogRef.current.far += (16 - fogRef.current.far) * (1 - Math.exp(-3 * dt));
       }
     }
   });

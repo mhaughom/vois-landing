@@ -629,6 +629,7 @@ const App = () => {
         }}
       />
       <Navbar
+        variant="vois"
         onCycleBg={() => setBgVariant((v) => (v + 1) % BG_VARIANTS.length)}
         bgVariant={bgVariant}
         bgIntensity={bgIntensity}

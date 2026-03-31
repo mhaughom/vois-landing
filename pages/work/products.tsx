@@ -1,0 +1,264 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import {
+  ArrowLeft,
+  Package,
+  Box,
+  Layers,
+  RefreshCw,
+  ShieldCheck,
+  CreditCard,
+  ArrowRightLeft,
+  ArrowRight,
+} from 'lucide-react';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
+});
+
+const productTypes = [
+  { icon: Package, label: 'Services', desc: 'Hourly or fixed pricing' },
+  { icon: Box, label: 'Physical Goods', desc: 'Variant-level stock' },
+  { icon: Layers, label: 'Packages', desc: 'Bundle multiple items' },
+  { icon: RefreshCw, label: 'Subscriptions', desc: 'Recurring billing' },
+] as const;
+
+const orderSteps = ['Quote', 'Pending', 'Confirmed', 'In Progress', 'Completed'] as const;
+const activeStep = 3; // "In Progress"
+
+const lineItems = [
+  { product: 'Custom cabinetry (walnut)', qty: 1, unit: '$2,400', total: '$2,400' },
+  { product: 'Countertop — quartz 60"', qty: 2, unit: '$650', total: '$1,300' },
+  { product: 'Installation labor (4 hr)', qty: 1, unit: '$550', total: '$550' },
+] as const;
+
+const benefits = [
+  {
+    icon: ShieldCheck,
+    title: 'Stock never lies',
+    desc: 'Variant-level inventory deducts on order confirmation. Low-stock alerts fire automatically. Refunds restore stock.',
+  },
+  {
+    icon: CreditCard,
+    title: 'Stripe in 3 clicks',
+    desc: 'Checkout sessions, invoices, payment links, and refunds \u2014 all through Stripe Connect. Money goes to your bank, not a middleman.',
+  },
+  {
+    icon: ArrowRightLeft,
+    title: 'Website \u2192 order \u2192 CRM',
+    desc: 'Customer buys on your HABOS website. Order created. CRM contact upserted. Receipt sent. Zero manual data entry.',
+  },
+] as const;
+
+const techItems = [
+  '4 product types',
+  'Variant-level stock',
+  'Stripe Connect Express',
+  'Server-side line items',
+  'Booking \u2194 order sync',
+] as const;
+
+const Products: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-white">
+      {/* ─── Navigation ─── */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: 'circOut' }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-5 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
+        style={{ paddingTop: 'calc(1.25rem + env(safe-area-inset-top, 0px))' }}
+      >
+        <a href="/work">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+          >
+            <ArrowLeft size={16} className="text-slate-600" />
+            <span className="font-medium text-sm text-slate-600">Back to Work</span>
+          </motion.div>
+        </a>
+
+        <div className="absolute left-1/2 -translate-x-1/2">
+          <a href="/">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+            >
+              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
+              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
+            </motion.div>
+          </a>
+        </div>
+
+        <div className="w-32" />
+      </motion.nav>
+
+      {/* ─── Content ─── */}
+      <main className="pt-32 pb-24 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+
+          {/* ━━━ 1. Hero ━━━ */}
+          <motion.section {...fadeUp()} className="max-w-3xl mx-auto text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 text-emerald-700 rounded-full text-sm font-medium mb-6">
+              Commerce
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
+              Products, Orders, and Payments.<br />All Connected.
+            </h1>
+            <p className="text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
+              Services, physical goods, packages, and subscriptions &mdash; all with variant-level
+              inventory, automated pricing, and Stripe checkout built in.
+            </p>
+          </motion.section>
+
+          {/* ━━━ 2. Product type showcase ━━━ */}
+          <motion.section {...fadeUp(0.1)} className="mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {productTypes.map((t) => (
+                <div
+                  key={t.label}
+                  className="bg-white border border-slate-200 rounded-xl p-4 text-center"
+                >
+                  <div className="w-10 h-10 mx-auto mb-3 rounded-lg bg-emerald-50 flex items-center justify-center">
+                    <t.icon size={20} className="text-emerald-600" />
+                  </div>
+                  <p className="font-semibold text-sm text-slate-900 mb-1">{t.label}</p>
+                  <p className="text-xs text-slate-500">{t.desc}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-slate-500 text-center max-w-xl mx-auto leading-relaxed">
+              One catalog system handles all four. Turn any product into a bookable appointment or a
+              website widget.
+            </p>
+          </motion.section>
+
+          {/* ━━━ 3. Mock order card ━━━ */}
+          <motion.section {...fadeUp(0.2)} className="mb-20">
+            <div className="bg-emerald-50/50 rounded-3xl p-6 md:p-8">
+              {/* Header */}
+              <h2 className="text-lg font-semibold text-slate-900 mb-5">
+                Order #1247 &mdash; Henderson Kitchen Renovation
+              </h2>
+
+              {/* Status flow */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                {orderSteps.map((step, i) => (
+                  <React.Fragment key={step}>
+                    {i > 0 && (
+                      <span className="text-slate-300 text-xs select-none">&rarr;</span>
+                    )}
+                    <span
+                      className={`text-xs font-medium px-3 py-1.5 rounded-full ${
+                        i === activeStep
+                          ? 'bg-emerald-600 text-white'
+                          : i < activeStep
+                          ? 'bg-emerald-100 text-emerald-700'
+                          : 'bg-slate-100 text-slate-400'
+                      }`}
+                    >
+                      {step}
+                    </span>
+                  </React.Fragment>
+                ))}
+              </div>
+
+              {/* Line items table */}
+              <div className="bg-white rounded-xl border border-slate-200 overflow-hidden mb-4">
+                {/* Table header */}
+                <div className="hidden sm:grid grid-cols-[1fr_60px_90px_90px] gap-2 px-4 py-2.5 text-xs font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                  <span>Product</span>
+                  <span className="text-right">Qty</span>
+                  <span className="text-right">Unit</span>
+                  <span className="text-right">Total</span>
+                </div>
+                {lineItems.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`grid sm:grid-cols-[1fr_60px_90px_90px] gap-1 sm:gap-2 px-4 py-3 text-sm ${
+                      i < lineItems.length - 1 ? 'border-b border-slate-50' : ''
+                    }`}
+                  >
+                    <span className="font-medium text-slate-900">{item.product}</span>
+                    <span className="text-slate-500 sm:text-right">{item.qty}</span>
+                    <span className="text-slate-500 sm:text-right">{item.unit}</span>
+                    <span className="font-medium text-slate-900 sm:text-right">{item.total}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Totals row */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+                <span className="font-semibold text-slate-900">Subtotal: $4,250</span>
+                <span className="text-emerald-700 font-medium">
+                  Stripe Payment: &#10003; Confirmed
+                </span>
+                <span className="text-slate-500">Deposit: $1,000 paid</span>
+              </div>
+            </div>
+
+            {/* Annotation below card */}
+            <p className="text-sm text-slate-500 text-center max-w-2xl mx-auto mt-5 leading-relaxed">
+              Orders auto-generate from bookings, website purchases, or manual creation. Line items
+              calculated server-side &mdash; no client-side fraud.
+            </p>
+          </motion.section>
+
+          {/* ━━━ 4. Three benefit cards ━━━ */}
+          <motion.section {...fadeUp(0.3)} className="mb-20">
+            <div className="grid md:grid-cols-3 gap-5">
+              {benefits.map((b) => (
+                <div
+                  key={b.title}
+                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"
+                >
+                  <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center mb-4">
+                    <b.icon size={20} className="text-emerald-600" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900 mb-3">{b.title}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ━━━ 5. Tech strip ━━━ */}
+          <motion.section {...fadeUp(0.4)} className="mb-20">
+            <div className="bg-slate-950 rounded-2xl py-5 px-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-400">
+              {techItems.map((item, i) => (
+                <React.Fragment key={item}>
+                  {i > 0 && <span className="text-slate-600">&middot;</span>}
+                  <span>{item}</span>
+                </React.Fragment>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* ━━━ 6. Closing CTA ━━━ */}
+          <motion.section {...fadeUp(0.5)} className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-5 leading-tight">
+              Other commerce tools are a separate platform.<br />
+              HABOS commerce is built into everything.
+            </h2>
+            <a href="/#waitlist">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="mt-4 inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-600 text-white rounded-full font-medium text-sm shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-colors"
+              >
+                Join Waitlist
+                <ArrowRight size={18} />
+              </motion.button>
+            </a>
+          </motion.section>
+
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Products;
