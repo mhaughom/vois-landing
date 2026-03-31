@@ -264,6 +264,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
 
   const brand = brandConfig[variant];
   const menuData = habosMenuData;
+  const isVois = variant === 'vois';
 
   const handleGetEarlyAccess = () => {
     Analytics.waitlistModalOpened('navbar');
@@ -323,6 +324,26 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
         )}
 
         {/* ── Desktop pill menu ───────────────────────────────────────── */}
+        {isVois ? (
+          /* VOIS: simple nav — just "VOIS for Work" link + Try Now CTA */
+          <div className="pointer-events-auto hidden md:flex items-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg pl-1.5 pr-1.5 py-1">
+            <a
+              href="https://habos.ai"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50/80 transition-all duration-150 rounded-full"
+            >
+              VOIS for Work
+            </a>
+            <div className="w-px h-5 bg-slate-200/60 mx-1" />
+            <motion.button
+              onClick={handleGetEarlyAccess}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-5 py-2 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
+            >
+              Try Now
+            </motion.button>
+          </div>
+        ) : (
         <div className="pointer-events-auto hidden md:flex items-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg pl-1.5 pr-1.5 py-1">
           {menuData.map((category, ci) => (
             <div
@@ -430,6 +451,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
             {brand.ctaLabel}
           </motion.button>
         </div>
+        )}
 
         {/* ── Mobile hamburger ────────────────────────────────────────── */}
         <motion.button

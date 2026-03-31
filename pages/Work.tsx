@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ContextualChat } from '../components/ContextualChat';
+import VoiceNotesDemoComponent from './work/features/VoiceNotesDemo';
+import MeetingNotesDemoComponent from './work/features/MeetingNotesDemo';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, ArrowLeft, Play, Check,
@@ -12,7 +15,7 @@ import {
   Volume2, VolumeX,
   Phone, BookOpen, MapPin, ShoppingCart,
   Watch, FolderOpen, UserCog,
-  ShieldCheck, ChevronLeft, ChevronRight, Server, Wifi, WifiOff,
+  ShieldCheck, ChevronLeft, ChevronRight, Server, Wifi, WifiOff, X,
 } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 import { WorkHero3D, AnimPhase } from '../components/WorkHero3D';
@@ -72,49 +75,12 @@ const LABEL_COLORS: Record<string, string> = {
   'Growth Engine': '#ea580c',
 };
 
-// ── Compact airlock card data for carousel ─────────────────────────────────
+// ── Agent demo panel labels ────────────────────────────────────────────────
 
-const compactCards = [
-  {
-    type: 'task' as const,
-    gradient: 'linear-gradient(135deg, rgba(236,252,241,0.98), rgba(209,250,223,0.98), rgba(167,243,208,0.98))',
-    shadow: '0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(34,197,94,0.08)',
-    dateBadge: { color: 'text-green-700 bg-white/80', label: 'Thu, Feb 6' },
-    categoryBadge: { color: 'from-blue-500 to-blue-600', label: 'Work' },
-    emoji: '💼',
-    title: 'Follow up with Sarah about Q1 budget',
-    detail: '15 min',
-    detailIcon: 'clock' as const,
-    body: 'Sarah mentioned needing the revised budget projections. Send the updated spreadsheet and schedule a quick call.',
-    addColor: 'from-green-500 to-emerald-500',
-  },
-  {
-    type: 'person' as const,
-    gradient: 'linear-gradient(135deg, rgba(224,231,255,0.98), rgba(199,210,254,0.98), rgba(165,180,252,0.98))',
-    shadow: '0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(99,102,241,0.08)',
-    dateBadge: { color: 'text-indigo-700 bg-white/80', label: 'New person' },
-    categoryBadge: { color: 'from-cyan-400 to-cyan-500', label: 'Professional' },
-    emoji: '',
-    title: 'Deborah J. Trouw',
-    detail: 'Financial advisor',
-    detailIcon: 'user' as const,
-    body: 'Name on business card. Mentioned during voice note about Q1 planning.',
-    addColor: 'from-indigo-500 to-indigo-600',
-    initials: 'DJ',
-  },
-  {
-    type: 'event' as const,
-    gradient: 'linear-gradient(135deg, rgba(254,243,199,0.98), rgba(253,230,138,0.98), rgba(252,211,77,0.98))',
-    shadow: '0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(245,158,11,0.08)',
-    dateBadge: { color: 'text-amber-700 bg-white/80', label: 'Mon, Feb 9' },
-    categoryBadge: { color: 'from-blue-500 to-blue-600', label: 'Work' },
-    emoji: '📅',
-    title: 'Team Strategy Meeting',
-    detail: '10:00 AM · 1 hr',
-    detailIcon: 'clock' as const,
-    body: 'Quarterly planning and team alignment.',
-    addColor: 'from-amber-500 to-amber-600',
-  },
+const agentPanels = [
+  { label: 'AI Assistant', desc: 'Chat with full business context' },
+  { label: 'Smart Router', desc: 'Voice → structured actions' },
+  { label: 'Meeting Notes', desc: 'Live transcription → action items' },
 ];
 
 // ── Replacement comparison data ─────────────────────────────────────────────
@@ -201,78 +167,143 @@ const Section: React.FC<{
 
 // ── Agent Philosophy Section ───────────────────────────────────────────────
 
-const AgentPhilosophySection: React.FC = () => (
-  <Section className="py-24 md:py-32 px-6 md:px-12">
-    <div className="max-w-6xl mx-auto">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={stagger}
-      >
-        {/* ── Headline ─────────────────────────────────────────── */}
-        <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-6">
-          <span className="inline-block text-sm font-semibold text-indigo-600 uppercase tracking-wider mb-3">
-            Agent Philosophy
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-4">
-            Every employee gets a <span className="italic">super-agent.</span>
-          </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Not a chatbot. An autonomous AI partner with access to the same data, the same context,
-            and the same permissions as the person it serves — but it never acts without approval.
-          </p>
+const cardSlideVariants = {
+  enter: (dir: number) => ({ x: dir > 0 ? 200 : -200, opacity: 0, scale: 0.95 }),
+  center: { x: 0, opacity: 1, scale: 1 },
+  exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0, scale: 0.95 }),
+};
+
+const AgentPhilosophySection: React.FC = () => {
+  const [activeCard, setActiveCard] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setActiveCard(i => (i + 1) % agentPanels.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setActiveCard(i => (i - 1 + agentPanels.length) % agentPanels.length);
+  }, []);
+
+  // No auto-advance — demos are interactive and self-animating
+
+  return (
+    <Section className="py-24 md:py-32 px-6 md:px-12">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={stagger}
+        >
+          {/* ── Headline ─────────────────────────────────────────── */}
+          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-6">
+            <span className="inline-block text-sm font-semibold text-indigo-600 uppercase tracking-wider mb-3">
+              Agent Philosophy
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-4">
+              Every employee gets a <span className="italic">super-agent.</span>
+            </h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              An autonomous AI partner with access to the same data, context, and permissions as the person it serves.
+              It surfaces the most valuable information, drafts replies, proposes schedules, and flags risks — but never acts alone.
+            </p>
+          </motion.div>
+
+          {/* ── Principles + card carousel side by side ──────────── */}
+          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid lg:grid-cols-2 gap-10 items-center mb-14">
+            {/* Left: principles */}
+            <div className="space-y-5">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Brain size={18} className="text-indigo-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 text-sm mb-1">Same data, same brain</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    Your agent reasons across projects, emails, calendar, CRM, and conversations simultaneously — pulling from every database you have access to.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <ShieldCheck size={18} className="text-emerald-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 text-sm mb-1">Airlock, not autopilot</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    Every action passes through an approval gate. The agent drafts the email, proposes the calendar block, flags the risk — you review, edit, or dismiss.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Users size={18} className="text-amber-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 text-sm mb-1">Serves, never competes</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    The agent exists to make you more effective. It provides the most valuable information at the right moment — the human always leads.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: demo panel carousel */}
+            <div>
+              {/* Panel tabs */}
+              <div className="flex items-center gap-2 mb-3">
+                {agentPanels.map((panel, i) => (
+                  <button
+                    key={panel.label}
+                    onClick={() => { setDirection(i > activeCard ? 1 : -1); setActiveCard(i); }}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                      i === activeCard
+                        ? 'bg-slate-900 text-white shadow-sm'
+                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    }`}
+                  >
+                    {panel.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Demo panel */}
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg" style={{ height: 480 }}>
+                <AnimatePresence custom={direction} mode="wait">
+                  <motion.div
+                    key={activeCard}
+                    custom={direction}
+                    variants={cardSlideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }}
+                    className="absolute inset-0 overflow-hidden"
+                  >
+                    <div className="h-full overflow-hidden">
+                      {activeCard === 0 && <ContextualChat />}
+                      {activeCard === 1 && <VoiceNotesDemoComponent />}
+                      {activeCard === 2 && <MeetingNotesDemoComponent />}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <p className="text-xs text-slate-400 text-center mt-2">{agentPanels[activeCard].desc}</p>
+            </div>
+          </motion.div>
+
+          <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="text-center text-slate-400 text-sm mt-6">
+            AI power, human control. Every draft reviewed. Every action approved. Every decision yours.
+          </motion.p>
         </motion.div>
-
-        {/* ── Three principles ──────────────────────────────────── */}
-        <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid md:grid-cols-3 gap-5 mb-8 max-w-3xl mx-auto">
-          <div className="text-center px-4">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-100 flex items-center justify-center mx-auto mb-3">
-              <Brain size={22} className="text-indigo-600" />
-            </div>
-            <h4 className="font-semibold text-slate-900 text-sm mb-1">Same data, same brain</h4>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Your agent sees your projects, emails, calendar, CRM, and conversations. It reasons across all of them at once.
-            </p>
-          </div>
-          <div className="text-center px-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto mb-3">
-              <ShieldCheck size={22} className="text-emerald-600" />
-            </div>
-            <h4 className="font-semibold text-slate-900 text-sm mb-1">Airlock, not autopilot</h4>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Every action passes through an approval gate. The agent drafts — you decide. Nothing leaves the system without your say.
-            </p>
-          </div>
-          <div className="text-center px-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center mx-auto mb-3">
-              <Users size={22} className="text-amber-600" />
-            </div>
-            <h4 className="font-semibold text-slate-900 text-sm mb-1">Serves, never competes</h4>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              The agent's job is to make you more effective — surface the right info, draft the reply, flag the risk. The human always leads.
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-
-    {/* ── Real Action Cards — the airlock in action ─────────── */}
-    <ActionCardsComponent />
-
-    <div className="max-w-5xl mx-auto">
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-center text-slate-400 text-sm mt-6"
-      >
-        AI power, human control. Every draft reviewed. Every action approved. Every decision yours.
-      </motion.p>
-    </div>
-  </Section>
-);
+      </div>
+    </Section>
+  );
+};
 
 // ═══════════════════════════════════════════════════════════════════════════
 // WORK PAGE
@@ -508,6 +539,102 @@ const Work: React.FC = () => {
           AGENT PHILOSOPHY — ONE AGENT PER EMPLOYEE
           ═══════════════════════════════════════════════════════════════════ */}
       <AgentPhilosophySection />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SECURITY & INFRASTRUCTURE
+          ═══════════════════════════════════════════════════════════════════ */}
+      <Section dark className="py-20 md:py-28 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={stagger}
+          >
+            <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-12">
+              <span className="inline-block text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">
+                Security & Infrastructure
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-4">
+                Your data. Your infrastructure. <span className="italic">Your rules.</span>
+              </h2>
+              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+                Run HABOS in our cloud, deploy on-prem at your location, or go fully air-gapped with local LLMs. The same platform, wherever your data needs to live.
+              </p>
+            </motion.div>
+
+            {/* Deployment options */}
+            <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid md:grid-cols-3 gap-5 mb-12">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
+                  <Wifi size={18} className="text-blue-400" />
+                </div>
+                <h4 className="font-semibold text-white text-sm mb-2">Cloud</h4>
+                <p className="text-sm text-slate-400 leading-relaxed mb-3">
+                  Railway for compute, Supabase for database, and the major hyperscalers (OpenAI, Anthropic, Google) for LLM. Production-ready from day one.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Railway</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Supabase</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Cloudflare</span>
+                </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
+                  <Server size={18} className="text-emerald-400" />
+                </div>
+                <h4 className="font-semibold text-white text-sm mb-2">On-Prem</h4>
+                <p className="text-sm text-slate-400 leading-relaxed mb-3">
+                  Deploy the full backend and database at your location. Run Qwen models on standard Mac hardware for local AI — no GPU cluster required.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Qwen models</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Mac compatible</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Self-hosted DB</span>
+                </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center mb-4">
+                  <WifiOff size={18} className="text-violet-400" />
+                </div>
+                <h4 className="font-semibold text-white text-sm mb-2">Air-Gapped Datacenter</h4>
+                <p className="text-sm text-slate-400 leading-relaxed mb-3">
+                  For maximum isolation, deploy a local datacenter with models like Kimi K2. Full AI capabilities with zero internet dependency.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Kimi K2</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Air-gapped</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Zero egress</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Security features strip */}
+            <motion.div variants={fadeUp} transition={{ duration: 0.6 }}>
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-slate-400">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-amber-400" />
+                  <span>Cryptographic approval tokens</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-emerald-400" />
+                  <span>Row-level security on every table</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-blue-400" />
+                  <span>Per-run budget tracking</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-violet-400" />
+                  <span>Full audit trail</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           WHAT HABOS REPLACES
