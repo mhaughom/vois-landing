@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ContextualChat } from '../components/ContextualChat';
 import { ActionCards as ActionCardsComponent } from '../components/ActionCards';
+import ChatPanel from '../components/ChatPanel';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, ArrowLeft, Play, Check,
@@ -14,7 +15,7 @@ import {
   Volume2, VolumeX,
   Phone, BookOpen, MapPin, ShoppingCart,
   Watch, FolderOpen, UserCog,
-  ShieldCheck, ChevronLeft, ChevronRight, Server, Wifi, WifiOff, X,
+  ShieldCheck, ChevronLeft, ChevronRight, X,
 } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 import { WorkHero3D, AnimPhase } from '../components/WorkHero3D';
@@ -637,27 +638,12 @@ const cardSlideVariants = {
 };
 
 const AgentPhilosophySection: React.FC = () => {
-  const [activeCard, setActiveCard] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
 
-  // Auto-cycle through tabs every 8 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDirection(1);
-      setActiveCard(i => (i + 1) % agentPanels.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const selectCard = useCallback((i: number) => {
-    setDirection(i > activeCard ? 1 : -1);
-    setActiveCard(i);
-  }, [activeCard]);
-
-  const principles = [
-    { icon: Brain, bg: 'bg-indigo-100', fg: 'text-indigo-600', activeBorder: 'border-indigo-400', title: 'AI Assistant', desc: 'Chat with full business context. Your agent reasons across projects, emails, calendar, CRM, and conversations simultaneously — pulling from every database you have access to.' },
-    { icon: ShieldCheck, bg: 'bg-emerald-100', fg: 'text-emerald-600', activeBorder: 'border-emerald-400', title: 'Smart Router', desc: 'Speak naturally — the agent parses your voice into structured actions. Follow-ups become tasks, meetings land on your calendar, and every intent is routed to the right place.' },
-    { icon: Users, bg: 'bg-amber-100', fg: 'text-amber-600', activeBorder: 'border-amber-400', title: 'Meeting Notes', desc: 'Live transcription that captures decisions, action items, and follow-ups as they happen. Every meeting produces a structured summary — no manual note-taking required.' },
+  const tabs = [
+    { icon: Brain, bg: 'bg-indigo-100', fg: 'text-indigo-600', title: 'AI Assistant', desc: 'Chat with full business context. Your agent reasons across projects, emails, calendar, CRM, and conversations simultaneously — pulling from every database you have access to.' },
+    { icon: ShieldCheck, bg: 'bg-emerald-100', fg: 'text-emerald-600', title: 'Smart Router', desc: 'Speak naturally — the agent parses your voice into structured actions. Follow-ups become tasks, meetings land on your calendar, and every intent is routed to the right place.' },
+    { icon: Users, bg: 'bg-amber-100', fg: 'text-amber-600', title: 'Meeting Notes', desc: 'Live transcription that captures decisions, action items, and follow-ups as they happen. Every meeting produces a structured summary — no manual note-taking required.' },
   ];
 
   return (
@@ -670,7 +656,7 @@ const AgentPhilosophySection: React.FC = () => {
           variants={stagger}
         >
           {/* ── Headline ─────────────────────────────────────────── */}
-          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-6">
+          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-10">
             <span className="inline-block text-sm font-semibold text-indigo-600 uppercase tracking-wider mb-3">
               Agent Philosophy
             </span>
@@ -683,60 +669,71 @@ const AgentPhilosophySection: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* ── Principles + card carousel side by side ──────────── */}
-          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid lg:grid-cols-2 gap-6 md:gap-10 items-center mb-14">
-            {/* Left: clickable principles */}
-            <div className="space-y-3">
-              {principles.map((p, i) => {
-                const Icon = p.icon;
-                const isActive = i === activeCard;
+          {/* ── Tabs ─────────────────────────────────────────────── */}
+          <motion.div variants={fadeUp} transition={{ duration: 0.6 }}>
+            {/* Tab buttons */}
+            <div className="flex gap-2 mb-6 border-b border-slate-200">
+              {tabs.map((tab, i) => {
+                const Icon = tab.icon;
+                const isActive = i === activeTab;
                 return (
                   <button
-                    key={p.title}
-                    onClick={() => selectCard(i)}
-                    className={`w-full flex items-start gap-4 text-left p-4 rounded-xl border-2 transition-all duration-300 ${
+                    key={tab.title}
+                    onClick={() => setActiveTab(i)}
+                    className={`flex items-center gap-2.5 px-5 py-3 text-sm font-medium transition-all duration-200 border-b-2 -mb-px ${
                       isActive
-                        ? `${p.activeBorder} bg-white shadow-sm`
-                        : 'border-transparent hover:bg-slate-50'
+                        ? 'border-slate-900 text-slate-900'
+                        : 'border-transparent text-slate-400 hover:text-slate-600'
                     }`}
                   >
-                    <div className={`w-10 h-10 rounded-xl ${p.bg} flex items-center justify-center flex-shrink-0 mt-0.5 transition-transform duration-300 ${isActive ? 'scale-110' : ''}`}>
-                      <Icon size={18} className={p.fg} />
+                    <div className={`w-7 h-7 rounded-lg ${tab.bg} flex items-center justify-center flex-shrink-0`}>
+                      <Icon size={14} className={tab.fg} />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className={`font-semibold text-sm mb-1 transition-colors duration-300 ${isActive ? 'text-slate-900' : 'text-slate-600'}`}>{p.title}</h4>
-                      <p className={`text-sm leading-relaxed transition-all duration-300 ${isActive ? 'text-slate-500 max-h-24 opacity-100' : 'text-slate-400 max-h-0 opacity-0 overflow-hidden'}`}>
-                        {p.desc}
-                      </p>
-                    </div>
+                    {tab.title}
                   </button>
                 );
               })}
             </div>
 
-            {/* Right: demo panel */}
-            <div>
-              <div className="relative overflow-hidden rounded-2xl border border-slate-200 shadow-sm min-h-[360px] md:min-h-[500px]">
-                <AnimatePresence custom={direction} mode="wait">
-                  <motion.div
-                    key={activeCard}
-                    custom={direction}
-                    variants={cardSlideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }}
+            {/* Tab content */}
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* Left: description */}
+              <div className="py-4">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-base text-slate-500 leading-relaxed"
                   >
-                    {activeCard === 0 && <ContextualChat compact />}
-                    {activeCard === 1 && <SmartRouterPanel />}
-                    {activeCard === 2 && <MeetingNotesPanel />}
+                    {tabs[activeTab].desc}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+
+              {/* Right: demo panel */}
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200 shadow-sm min-h-[360px] md:min-h-[460px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="h-full"
+                  >
+                    {activeTab === 0 && <ContextualChat compact />}
+                    {activeTab === 1 && <SmartRouterPanel />}
+                    {activeTab === 2 && <MeetingNotesPanel />}
                   </motion.div>
                 </AnimatePresence>
               </div>
             </div>
           </motion.div>
 
-          <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="text-center text-slate-400 text-sm mt-6">
+          <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="text-center text-slate-400 text-sm mt-10">
             AI power, human control. Every draft reviewed. Every action approved. Every decision yours.
           </motion.p>
         </motion.div>
@@ -753,6 +750,7 @@ const Work: React.FC = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [annualBilling, setAnnualBilling] = useState(true);
+  const [chatOpen, setChatOpen] = useState(false);
   const [animPhase, setAnimPhase] = useState<AnimPhase>('dot');
   const [focusLabel, setFocusLabel] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
@@ -841,7 +839,7 @@ const Work: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA' }}>
+    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA', marginRight: chatOpen ? 380 : 0, transition: 'margin-right 0.4s ease' }}>
       {/* Background image — gradient + grain baked into one JPEG, tiles vertically, parallax */}
       <motion.div
         className="absolute inset-x-0 top-0 pointer-events-none z-0"
@@ -1291,102 +1289,6 @@ const Work: React.FC = () => {
       <AgentPhilosophySection />
 
       {/* ═══════════════════════════════════════════════════════════════════
-          SECURITY & INFRASTRUCTURE
-          ═══════════════════════════════════════════════════════════════════ */}
-      <Section dark className="py-20 md:py-28 px-6 md:px-12">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-12">
-              <span className="inline-block text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">
-                Security & Infrastructure
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-4">
-                Your data. Your infrastructure. <span className="italic">Your rules.</span>
-              </h2>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Run HABOS in our cloud, deploy on-prem at your location, or go fully air-gapped with local LLMs. The same platform, wherever your data needs to live.
-              </p>
-            </motion.div>
-
-            {/* Deployment options */}
-            <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid md:grid-cols-3 gap-5 mb-12">
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
-                  <Wifi size={18} className="text-blue-400" />
-                </div>
-                <h4 className="font-semibold text-white text-sm mb-2">Cloud</h4>
-                <p className="text-sm text-slate-400 leading-relaxed mb-3">
-                  Railway for compute, Supabase for database, and the major hyperscalers (OpenAI, Anthropic, Google) for LLM. Production-ready from day one.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Railway</span>
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Supabase</span>
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Cloudflare</span>
-                </div>
-              </div>
-
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
-                  <Server size={18} className="text-emerald-400" />
-                </div>
-                <h4 className="font-semibold text-white text-sm mb-2">On-Prem</h4>
-                <p className="text-sm text-slate-400 leading-relaxed mb-3">
-                  Deploy the full backend and database at your location. Run Qwen models on standard Mac hardware for local AI — no GPU cluster required.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Qwen models</span>
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Mac compatible</span>
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Self-hosted DB</span>
-                </div>
-              </div>
-
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center mb-4">
-                  <WifiOff size={18} className="text-violet-400" />
-                </div>
-                <h4 className="font-semibold text-white text-sm mb-2">Air-Gapped Datacenter</h4>
-                <p className="text-sm text-slate-400 leading-relaxed mb-3">
-                  For maximum isolation, deploy a local datacenter with models like Kimi K2. Full AI capabilities with zero internet dependency.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Kimi K2</span>
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Air-gapped</span>
-                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-300">Zero egress</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Security features strip */}
-            <motion.div variants={fadeUp} transition={{ duration: 0.6 }}>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-slate-400">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={14} className="text-amber-400" />
-                  <span>Cryptographic approval tokens</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={14} className="text-emerald-400" />
-                  <span>Row-level security on every table</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={14} className="text-blue-400" />
-                  <span>Per-run budget tracking</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={14} className="text-violet-400" />
-                  <span>Full audit trail</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </Section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
           WHAT HABOS REPLACES
           ═══════════════════════════════════════════════════════════════════ */}
       <Section className="py-24 md:py-32 px-6 md:px-12">
@@ -1764,6 +1666,7 @@ const Work: React.FC = () => {
       </div>{/* end content z-10 wrapper */}
 
       {/* Video modal removed — video now plays inline in hero */}
+      <ChatPanel onToggle={setChatOpen} />
     </div>
   );
 };

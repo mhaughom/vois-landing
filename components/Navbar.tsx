@@ -83,7 +83,7 @@ const habosMenuData: MenuCategory[] = [
       {
         title: 'Intelligence You Control',
         items: [
-          { icon: Shield, color: '#22c55e', label: 'The Airlock', desc: 'AI proposes. You decide.', href: '/philosophy/the-airlock' },
+          { icon: Shield, color: '#22c55e', label: 'Security First', desc: 'AI with limits. Your limits.', href: '/philosophy/the-airlock' },
           { icon: Bot, color: '#8b5cf6', label: 'One Assistant', desc: 'Ask anything, from anywhere', href: '/philosophy/one-assistant' },
           { icon: Brain, color: '#ec4899', label: 'Capture Your Brain', desc: 'Catch ideas before they fade', href: '/philosophy/capture-your-brain' },
         ],
@@ -452,7 +452,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               {activeCluster}
             </Link>
             <button
-              onClick={() => setActiveCluster(null)}
+              onClick={() => { setActiveCluster(null); navigate('/work'); }}
               className="p-0.5 rounded-full text-slate-400 hover:text-slate-600 transition-colors"
             >
               <X size={11} />
