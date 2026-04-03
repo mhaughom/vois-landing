@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ContextualChat } from '../components/ContextualChat';
-import VoiceNotesDemoComponent from './work/features/VoiceNotesDemo';
-import MeetingNotesDemoComponent from './work/features/MeetingNotesDemo';
+import { ActionCards as ActionCardsComponent } from '../components/ActionCards';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, ArrowLeft, Play, Check,
@@ -21,6 +20,7 @@ import { Analytics } from '../lib/analytics';
 import { WorkHero3D, AnimPhase } from '../components/WorkHero3D';
 import { Navbar } from '../components/Navbar';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';
+import { BoxAnimation } from '../components/BoxAnimation';
 
 import FeatureSection from './work/features/FeatureSection';
 import VoiceNotesDemo from './work/features/VoiceNotesDemo';
@@ -36,6 +36,105 @@ import AgentsDemo from './work/features/AgentsDemo';
 import TeamViewDemo from './work/features/TeamViewDemo';
 import LiveViewDemo from './work/features/LiveViewDemo';
 import CustomAppsDemo from './work/features/CustomAppsDemo';
+
+// ── Chroma key video — renders video to canvas, replacing white with transparency ──
+
+const ChromaKeyVideo: React.FC<{
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+  src: string;
+  loopSrc?: string;
+  keyStrength: number;
+  className?: string;
+  onVideoTime?: (totalElapsed: number) => void;
+}> = ({ videoRef, src, loopSrc, keyStrength, className, onVideoTime }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef = useRef<number>(0);
+  const introVideoRef = useRef<HTMLVideoElement | null>(null);
+  const loopVideoRef = useRef<HTMLVideoElement | null>(null);
+  const useLoopRef = useRef(false);
+  const introEndTimeRef = useRef(0);
+  const startWallTime = useRef(0);
+
+  // Expose the intro video to parent
+  useEffect(() => {
+    if (videoRef && 'current' in videoRef) {
+      (videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = introVideoRef.current;
+    }
+  }, [videoRef]);
+
+  // Preload loop video and switch when intro ends
+  useEffect(() => {
+    const intro = introVideoRef.current;
+    const loop = loopVideoRef.current;
+    if (!intro || !loop || !loopSrc) return;
+    // Preload loop video so it's ready instantly
+    loop.src = loopSrc;
+    loop.load();
+    const onEnded = () => {
+      if (useLoopRef.current) return;
+      introEndTimeRef.current = intro.duration || 39;
+      useLoopRef.current = true;
+      loop.currentTime = 0;
+      loop.play().catch(() => {});
+    };
+    intro.addEventListener('ended', onEnded);
+    return () => intro.removeEventListener('ended', onEnded);
+  }, [loopSrc]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
+
+    let running = true;
+    const draw = () => {
+      if (!running) return;
+      const video = useLoopRef.current ? loopVideoRef.current : introVideoRef.current;
+      if (video && video.readyState >= 2 && video.videoWidth > 0) {
+        if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+        }
+        ctx.drawImage(video, 0, 0);
+        if (keyStrength > 0.01) {
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const d = imageData.data;
+          const threshold = 220;
+          for (let i = 0; i < d.length; i += 4) {
+            const r = d[i], g = d[i + 1], b = d[i + 2];
+            if (r > threshold && g > threshold && b > threshold) {
+              const whiteness = Math.min(1, (Math.min(r, g, b) - threshold) / (255 - threshold));
+              d[i + 3] = Math.round(255 * (1 - whiteness * keyStrength));
+            }
+          }
+          ctx.putImageData(imageData, 0, 0);
+        }
+        // Report total elapsed video time
+        if (onVideoTime) {
+          const elapsed = useLoopRef.current
+            ? introEndTimeRef.current + (loopVideoRef.current?.currentTime || 0)
+            : video.currentTime;
+          onVideoTime(elapsed);
+        }
+      }
+      rafRef.current = requestAnimationFrame(draw);
+    };
+    rafRef.current = requestAnimationFrame(draw);
+    return () => { running = false; cancelAnimationFrame(rafRef.current); };
+  }, [keyStrength, onVideoTime]);
+
+  return (
+    <div className={className}>
+      <video ref={introVideoRef} src={src} muted playsInline preload="auto" style={{ display: 'none' }} />
+      <video ref={loopVideoRef} muted playsInline loop preload="auto" style={{ display: 'none' }} />
+      <canvas
+        ref={canvasRef}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </div>
+  );
+};
 
 // ── Animation variants ──────────────────────────────────────────────────────
 
@@ -77,57 +176,375 @@ const LABEL_COLORS: Record<string, string> = {
 
 // ── Agent demo panel labels ────────────────────────────────────────────────
 
+// ── Mobile hero video with synced business labels ──────────────────────────
+const HERO_BUSINESSES = [
+  'Creative Agencies', 'Plumbers', 'Dental Practices', 'Consulting Firms',
+  'Salons & Spas', 'Construction Companies', 'Real Estate Agents',
+  'Restaurants', 'Cleaning Companies', 'Online Stores', 'Property Managers',
+];
+const CLIP_DURATION = 3.04;
+
+const MobileHeroVideo: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [label, setLabel] = useState(HERO_BUSINESSES[0]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    let raf: number;
+    // Switch label slightly before midpoint so it feels snappy — matches desktop carousel
+    const offset = CLIP_DURATION * 0.6;
+    const sync = () => {
+      const t = video.currentTime;
+      const idx = Math.min(
+        Math.floor((t + offset) / CLIP_DURATION),
+        HERO_BUSINESSES.length - 1,
+      );
+      setLabel(HERO_BUSINESSES[idx]);
+      raf = requestAnimationFrame(sync);
+    };
+    raf = requestAnimationFrame(sync);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <>
+      <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200/60">
+        <video
+          ref={videoRef}
+          src="/videos/hero-businesses.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full"
+        />
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={label}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.25 }}
+          className="text-center text-sm text-slate-500 mt-2.5 font-medium"
+        >
+          {label}
+        </motion.p>
+      </AnimatePresence>
+    </>
+  );
+};
+
+// ── Glow text — word-by-word glow effect, cycles every 15s ────────────────
+const GLOW_TOTAL_WORDS = 6;
+const GLOW_WORD_MS = 500;
+const GLOW_PAUSE_MS = 15000;
+
+let glowTick = -1;
+let glowListeners: Array<(t: number) => void> = [];
+let glowTimeout: ReturnType<typeof setTimeout> | null = null;
+
+function runGlowCycle() {
+  let i = 0;
+  const step = () => {
+    glowTick = i;
+    glowListeners.forEach(fn => fn(i));
+    i++;
+    if (i < GLOW_TOTAL_WORDS) {
+      glowTimeout = setTimeout(step, GLOW_WORD_MS);
+    } else {
+      glowTimeout = setTimeout(() => {
+        glowTick = -1;
+        glowListeners.forEach(fn => fn(-1));
+        glowTimeout = setTimeout(runGlowCycle, GLOW_PAUSE_MS);
+      }, GLOW_WORD_MS);
+    }
+  };
+  step();
+}
+
+function startGlow() {
+  if (glowTimeout) return;
+  glowTimeout = setTimeout(runGlowCycle, 1500);
+}
+
+function stopGlow() {
+  if (glowTimeout) { clearTimeout(glowTimeout); glowTimeout = null; }
+  glowTick = -1;
+  glowListeners.forEach(fn => fn(-1));
+}
+
+const GlowText: React.FC<{
+  text: string;
+  active: boolean;
+  globalOffset: number;
+  totalWords: number;
+  className?: string;
+  style?: React.CSSProperties;
+}> = ({ text, active, globalOffset, totalWords, className = '', style }) => {
+  const words = text.split(' ');
+  const [tick, setTick] = useState(-1);
+
+  useEffect(() => {
+    if (!active) { setTick(-1); return; }
+    const listener = (t: number) => setTick(t);
+    glowListeners.push(listener);
+    startGlow();
+    return () => {
+      glowListeners = glowListeners.filter(l => l !== listener);
+      if (glowListeners.length === 0) stopGlow();
+    };
+  }, [active]);
+
+  return (
+    <span className={className} style={style}>
+      {words.map((word, idx) => {
+        const globalIdx = globalOffset + idx;
+        const isGlowing = tick >= 0 && globalIdx === tick;
+        return (
+          <span
+            key={idx}
+            className="transition-all duration-500 ease-in-out"
+            style={{
+              textShadow: active && isGlowing
+                ? '0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.15)'
+                : '0 0 0px transparent',
+            }}
+          >
+            {word}{idx < words.length - 1 ? ' ' : ''}
+          </span>
+        );
+      })}
+    </span>
+  );
+};
+
 const agentPanels = [
   { label: 'AI Assistant', desc: 'Chat with full business context' },
   { label: 'Smart Router', desc: 'Voice → structured actions' },
   { label: 'Meeting Notes', desc: 'Live transcription → action items' },
 ];
 
+// ── Smart Router panel — transcription with highlighting + real action cards ─
+
+const transcript = "Remind me to follow up with Sarah about the kitchen renovation quote, and schedule a site visit next Tuesday at 2pm.";
+const segments = [
+  { text: "Remind me to follow up with Sarah about the kitchen renovation quote", color: '#22c55e', type: 'Task' },
+  { text: ", and ", color: '', type: '' },
+  { text: "schedule a site visit next Tuesday at 2pm", color: '#3b82f6', type: 'Event' },
+  { text: ".", color: '', type: '' },
+];
+
+const SmartRouterPanel: React.FC = () => {
+  const [phase, setPhase] = useState(0);
+  const [cycle, setCycle] = useState(0);
+
+  useEffect(() => {
+    const t: ReturnType<typeof setTimeout>[] = [];
+    t.push(setTimeout(() => setPhase(1), 600));   // Show transcript
+    t.push(setTimeout(() => setPhase(2), 2200));  // Highlight segment 1
+    t.push(setTimeout(() => setPhase(3), 3200));  // Highlight segment 2
+    t.push(setTimeout(() => setPhase(4), 4000));  // Show task card
+    t.push(setTimeout(() => setPhase(5), 5000));  // Show event card
+    t.push(setTimeout(() => { setPhase(0); setCycle(c => c + 1); }, 9000));
+    return () => t.forEach(clearTimeout);
+  }, [cycle]);
+
+  return (
+    <div className="bg-white h-full flex flex-col rounded-2xl overflow-hidden">
+      {/* Header */}
+      <div className="px-5 py-3 border-b border-slate-100 flex items-center gap-2">
+        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ opacity: phase >= 1 && phase < 4 ? 1 : 0 }} />
+        <span className="text-xs font-medium text-slate-500">
+          {phase >= 4 ? 'Smart Router — 2 intents detected' : phase >= 1 ? 'Recording...' : 'Ready'}
+        </span>
+      </div>
+
+      {/* Transcript */}
+      <div className="px-5 py-4 border-b border-slate-50">
+        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Transcript</p>
+        <p className="text-sm leading-relaxed text-slate-600">
+          {phase >= 1 ? segments.map((seg, i) => (
+            seg.color ? (
+              <span
+                key={i}
+                className="transition-all duration-500 rounded px-0.5"
+                style={{
+                  backgroundColor: (phase >= 2 && seg.type === 'Task') || (phase >= 3 && seg.type === 'Event')
+                    ? seg.color + '18' : 'transparent',
+                  color: (phase >= 2 && seg.type === 'Task') || (phase >= 3 && seg.type === 'Event')
+                    ? seg.color : undefined,
+                  fontWeight: (phase >= 2 && seg.type === 'Task') || (phase >= 3 && seg.type === 'Event')
+                    ? 600 : 400,
+                  borderBottom: (phase >= 2 && seg.type === 'Task') || (phase >= 3 && seg.type === 'Event')
+                    ? `2px solid ${seg.color}` : '2px solid transparent',
+                }}
+              >
+                {seg.text}
+              </span>
+            ) : <span key={i}>{seg.text}</span>
+          )) : <span className="text-slate-300 italic">Listening...</span>}
+        </p>
+      </div>
+
+      {/* Real Action Cards (mini) */}
+      <motion.div
+        className="flex-1 px-2 py-2 overflow-hidden"
+        animate={{ opacity: phase >= 4 ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <ActionCardsComponent compact />
+      </motion.div>
+    </div>
+  );
+};
+
+// ── Meeting Notes panel — transcript + action items on white bg ──────────
+
+const meetingLines = [
+  { speaker: 'You', text: "Let's start with the Q1 numbers. Revenue was up 12%.", isAI: false, time: '0:15' },
+  { speaker: 'Sarah', text: 'The pipeline looks strong but delivery timelines concern me.', isAI: false, time: '0:42' },
+  { speaker: 'You', text: 'Fair point. What if we add a buffer week to each milestone?', isAI: false, time: '1:08' },
+  { speaker: 'AI', text: 'Suggested: "What\'s the contingency if Q2 targets slip?"', isAI: true, time: '1:15' },
+];
+
+const meetingActions = [
+  { text: 'Send updated timeline to Sarah by Friday', done: false },
+  { text: 'Schedule follow-up with engineering lead', done: false },
+  { text: 'Prepare risk assessment for Q2 board meeting', done: false },
+];
+
+const MeetingNotesPanel: React.FC = () => {
+  const [visibleLines, setVisibleLines] = useState(0);
+  const [showActions, setShowActions] = useState(false);
+  const [cycle, setCycle] = useState(0);
+
+  useEffect(() => {
+    const t: ReturnType<typeof setTimeout>[] = [];
+    t.push(setTimeout(() => setVisibleLines(1), 800));
+    t.push(setTimeout(() => setVisibleLines(2), 2200));
+    t.push(setTimeout(() => setVisibleLines(3), 3800));
+    t.push(setTimeout(() => setVisibleLines(4), 5000));
+    t.push(setTimeout(() => setShowActions(true), 6000));
+    t.push(setTimeout(() => { setVisibleLines(0); setShowActions(false); setCycle(c => c + 1); }, 10000));
+    return () => t.forEach(clearTimeout);
+  }, [cycle]);
+
+  return (
+    <div className="bg-white h-full flex flex-col rounded-2xl overflow-hidden">
+      {/* Header */}
+      <div className="px-5 py-3 border-b border-slate-100 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ opacity: visibleLines > 0 && !showActions ? 1 : 0 }} />
+          <span className="text-xs font-medium text-slate-500">
+            {showActions ? 'Meeting ended — 3 action items' : visibleLines > 0 ? 'Recording — Team Strategy Meeting' : 'Ready'}
+          </span>
+        </div>
+        <span className="text-[10px] text-slate-400 font-mono">{visibleLines > 0 ? meetingLines[Math.min(visibleLines - 1, meetingLines.length - 1)].time : '0:00'}</span>
+      </div>
+
+      {/* Live transcript */}
+      <div className="flex-1 px-5 py-4 space-y-3 overflow-hidden">
+        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Live Transcript</p>
+
+        {meetingLines.slice(0, visibleLines).map((line, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className={`flex gap-3 ${line.isAI ? 'pl-4 border-l-2 border-indigo-200' : ''}`}
+          >
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold flex-shrink-0 ${
+              line.isAI ? 'bg-indigo-100 text-indigo-600' : line.speaker === 'You' ? 'bg-slate-200 text-slate-600' : 'bg-blue-100 text-blue-600'
+            }`}>
+              {line.isAI ? 'AI' : line.speaker[0]}
+            </div>
+            <div>
+              <span className="text-[10px] font-semibold text-slate-500">{line.speaker}</span>
+              <p className={`text-sm leading-relaxed ${line.isAI ? 'text-indigo-600 italic' : 'text-slate-700'}`}>{line.text}</p>
+            </div>
+          </motion.div>
+        ))}
+
+        {visibleLines > 0 && !showActions && (
+          <div className="flex gap-1 pl-9">
+            {[0, 1, 2].map(i => (
+              <motion.div key={i} animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
+                className="w-1.5 h-1.5 bg-slate-300 rounded-full" />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Action items — always full height, content fades in */}
+      <div className="border-t border-slate-100 px-5 py-4">
+        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Action Items Extracted</p>
+        <div className="space-y-2">
+          {meetingActions.map((action, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: showActions ? 1 : 0 }}
+              transition={{ duration: 0.3, delay: i * 0.15 }}
+              className="flex items-start gap-2 rounded-xl p-2 bg-emerald-50 border border-emerald-100"
+            >
+              <div className="w-4 h-4 rounded border-2 border-emerald-400 flex-shrink-0 mt-0.5" />
+              <span className="text-xs text-slate-700">{action.text}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // ── Replacement comparison data ─────────────────────────────────────────────
 
 const replacements = [
-  { tool: 'Otter.ai / Fireflies', category: 'Meeting Notes', vois: 'Auto-generated briefs before, live transcription during, action items extracted and routed after', icon: Headphones, group: 'Productivity' },
-  { tool: 'Todoist / Trello', category: 'Task Management', vois: '7-factor AI priority scoring, voice extraction, focus block scheduling, automatic meeting-to-task pipeline', icon: ListTodo, group: 'Productivity' },
-  { tool: 'Motion / Reclaim', category: 'AI Scheduling', vois: 'Auto-fill focus blocks with affinity filtering, dependency ordering, voice-driven with preview/approval', icon: Calendar, group: 'Productivity' },
-  { tool: 'Asana / Jira / Monday.com', category: 'Project Tracking', vois: 'AI health scoring, stall detection, critical path analysis, dependency graphs, proactive alerts', icon: BarChart3, group: 'Productivity' },
+  { tool: 'Otter.ai / Fireflies', category: 'Meeting Notes', vois: 'Briefings before every meeting, live transcription during, action items extracted and sent to the right people after', icon: Headphones, group: 'Productivity' },
+  { tool: 'Todoist / Trello', category: 'Task Management', vois: 'Your most important tasks always surface first — created from voice, meetings, or email with smart scheduling built in', icon: ListTodo, group: 'Productivity' },
+  { tool: 'Motion / Reclaim', category: 'AI Scheduling', vois: 'Your calendar fills itself with focused work blocks, ordered by priority and deadline — just approve and go', icon: Calendar, group: 'Productivity' },
+  { tool: 'Asana / Jira / Monday.com', category: 'Project Tracking', vois: 'See which projects are healthy and which need attention — stalled work and missed deadlines flagged before they escalate', icon: BarChart3, group: 'Productivity' },
   { tool: 'Google Docs / Notion', category: 'Documents', vois: 'Talk it out, get a document back — AI pulls context from your projects and data automatically', icon: FileText, group: 'Productivity' },
-  { tool: 'Trainual / Process Street', category: 'Playbooks & SOPs', vois: 'Living workflows that monitor compliance, guide team members step-by-step, flag deviations', icon: BookOpen, group: 'Productivity' },
+  { tool: 'Trainual / Process Street', category: 'Playbooks & SOPs', vois: 'Living workflows that guide your team step-by-step and alert you when something is done wrong', icon: BookOpen, group: 'Productivity' },
 
-  { tool: 'HubSpot / Salesforce', category: 'CRM & Sales', vois: 'Auto-built from conversations, sentiment trends, AI strategy across 5 dimensions, opportunity routing', icon: Users, group: 'Commerce & Customers' },
-  { tool: 'Shopify / WooCommerce', category: 'Products & Orders', vois: 'Variants, pricing models, inventory tracking, bookable services — all connected to your AI and website', icon: ShoppingCart, group: 'Commerce & Customers' },
-  { tool: 'Calendly / Acuity', category: 'Bookings', vois: 'Availability engine with auto-order creation, CRM linking, and Stripe payments in one transaction', icon: Calendar, group: 'Commerce & Customers' },
-  { tool: 'Mailchimp / ActiveCampaign', category: 'Marketing & Funnels', vois: 'AI campaigns, broadcasts, email/SMS automation with triggers, segments, and GTM analysis', icon: Zap, group: 'Commerce & Customers' },
-  { tool: 'Later / Hootsuite', category: 'Social Media', vois: 'Instagram management, AI captions, metrics tracking, content deployment from Creative Studio', icon: Monitor, group: 'Commerce & Customers' },
-  { tool: 'Canva / Adobe Express', category: 'Creative Studio', vois: 'AI content generation from business context, deployment tracking, opportunity-driven creative briefs', icon: Sparkles, group: 'Commerce & Customers' },
+  { tool: 'HubSpot / Salesforce', category: 'CRM & Sales', vois: 'Client profiles built automatically from every conversation, email, and meeting — with AI-suggested next steps', icon: Users, group: 'Commerce & Customers' },
+  { tool: 'Shopify / WooCommerce', category: 'Products & Orders', vois: 'Products, pricing, inventory, and bookable services — all connected to your website and AI assistant', icon: ShoppingCart, group: 'Commerce & Customers' },
+  { tool: 'Calendly / Acuity', category: 'Bookings', vois: 'Clients book online, orders are created automatically, payment is collected — one step, no manual work', icon: Calendar, group: 'Commerce & Customers' },
+  { tool: 'Mailchimp / ActiveCampaign', category: 'Marketing & Funnels', vois: 'Email and SMS campaigns with AI-written copy, smart audience segments, and automated follow-up sequences', icon: Zap, group: 'Commerce & Customers' },
+  { tool: 'Later / Hootsuite', category: 'Social Media', vois: 'Schedule posts, get AI-written captions, and track what performs — connected to your brand and content library', icon: Monitor, group: 'Commerce & Customers' },
+  { tool: 'Canva / Adobe Express', category: 'Creative Studio', vois: 'Generate marketing content from your business context — social posts, ads, and visuals that match your brand', icon: Sparkles, group: 'Commerce & Customers' },
 
-  { tool: 'Superhuman / Spark', category: 'AI Email', vois: 'Voice email sessions, 3-tone AI reply drafts, SLA timers, unified with chat and CRM timeline', icon: Mail, group: 'Communication & Content' },
-  { tool: 'Gmail / Outlook / Slack', category: 'Unified Messaging', vois: 'Every channel merged per-person — email, chat, SMS in one stream with AI reply drafts and snooze', icon: Mail, group: 'Communication & Content' },
-  { tool: 'Squarespace / Wix', category: 'Website Builder', vois: 'AI-generated from your business data, clone competitor sites, auto-connected commerce and bookings', icon: Monitor, group: 'Communication & Content' },
-  { tool: 'PowerPoint / Google Slides', category: 'Presentations', vois: 'AI decks with live business data binding, 12 layouts, brand-aware image generation', icon: Monitor, group: 'Communication & Content' },
+  { tool: 'Superhuman / Spark', category: 'AI Email', vois: 'Answer your inbox by voice, get three reply options that sound like you, and never lose track of follow-ups', icon: Mail, group: 'Communication & Content' },
+  { tool: 'Gmail / Outlook / Slack', category: 'Unified Messaging', vois: 'Every conversation with a person — email, chat, SMS — in one timeline with AI-drafted replies', icon: Mail, group: 'Communication & Content' },
+  { tool: 'Squarespace / Wix', category: 'Website Builder', vois: 'Describe your business and get a website — AI writes the copy, connects your booking and payments automatically', icon: Monitor, group: 'Communication & Content' },
+  { tool: 'PowerPoint / Google Slides', category: 'Presentations', vois: 'AI-generated slide decks that pull real numbers from your business — ready to present, not just pretty templates', icon: Monitor, group: 'Communication & Content' },
 
-  { tool: 'Zapier / Make', category: 'Process Automation', vois: 'Trigger-based workflows across all 87 modules — no external tools, no webhook delays, unified data layer', icon: Zap, group: 'Operations & Field' },
-  { tool: 'ClickUp / Monday.com', category: 'Operations', vois: 'Cadence-based health scoring, AI corrective actions, pattern anomaly detection, leadership dashboard', icon: Zap, group: 'Operations & Field' },
-  { tool: 'Zendesk / Freshdesk', category: 'Support Tickets', vois: 'SLA timers, priority escalation, auto-created from forms or email, linked to CRM and conversations', icon: AlertTriangle, group: 'Operations & Field' },
-  { tool: 'ServiceTitan / Jobber', category: 'Field Operations', vois: 'Jobs, dispatch, routes, team GPS, driving logs, time tracking — field to office with zero data entry', icon: MapPin, group: 'Operations & Field' },
-  { tool: 'Routific / Circuit', category: 'Route Planning', vois: 'Mapbox geocoding, intelligent stop ordering, Google Maps deep links, integrated with dispatch and team map', icon: MapPin, group: 'Operations & Field' },
-  { tool: 'Google Forms / SurveyMonkey', category: 'Reports', vois: 'Fill by voice in 90 seconds — AI interviews you field by field, pre-fills from context, feeds health scoring', icon: FileBarChart, group: 'Operations & Field' },
+  { tool: 'Zapier / Make', category: 'Process Automation', vois: 'Workflows that trigger across everything — no third-party tools, no delays, because it all lives in one system', icon: Zap, group: 'Operations & Field' },
+  { tool: 'ClickUp / Monday.com', category: 'Operations', vois: 'Get alerted when a process is falling behind before it becomes a problem — with suggested fixes, not just warnings', icon: Zap, group: 'Operations & Field' },
+  { tool: 'Zendesk / Freshdesk', category: 'Support Tickets', vois: 'Tickets created automatically from forms or email, with priority levels, timers, and escalation to the right person', icon: AlertTriangle, group: 'Operations & Field' },
+  { tool: 'ServiceTitan / Jobber', category: 'Field Operations', vois: 'Jobs, dispatch, routes, team GPS, time tracking — a 30-second voice note from the van replaces all the paperwork', icon: MapPin, group: 'Operations & Field' },
+  { tool: 'Routific / Circuit', category: 'Route Planning', vois: 'Drag-and-drop route planning with smart stop ordering and Google Maps links for your team in the field', icon: MapPin, group: 'Operations & Field' },
+  { tool: 'Google Forms / SurveyMonkey', category: 'Reports', vois: 'Fill any report by voice in 90 seconds — the AI asks the questions, you answer, and the report is filed', icon: FileBarChart, group: 'Operations & Field' },
 
-  { tool: 'QuickBooks / Xero', category: 'Finance', vois: 'Voice expense capture, unified receivables/payables, real-time P&L, Stripe Connect to your bank', icon: BarChart3, group: 'Finance & Admin' },
-  { tool: 'Procurify / Coupa', category: 'Purchasing & Suppliers', vois: 'Purchase orders, supplier management, stock adjustments, bill tracking with partial payments', icon: ShoppingCart, group: 'Finance & Admin' },
-  { tool: 'Toggl / Clockify', category: 'Time Tracking', vois: 'Clock in/out from mobile, billable hours per job/project, overtime rates, links to payroll and dispatch', icon: Clock, group: 'Finance & Admin' },
-  { tool: 'BambooHR / Gusto', category: 'Team & Org Chart', vois: 'Interactive drag-and-drop org chart, 3-tier access control, draft reorgs, per-member AI budgets', icon: UserCog, group: 'Finance & Admin' },
-  { tool: 'Typeform / JotForm', category: 'Forms', vois: '20+ field types, conditional routing to CRM leads or tickets with SLA timers, auto-reply', icon: FileText, group: 'Finance & Admin' },
-  { tool: 'Confluence / Guru', category: 'Knowledge Search', vois: '19-source semantic search — voice, email, docs, CRM, meetings, chat — one answer in under a second', icon: Search, group: 'Finance & Admin' },
-  { tool: 'Google Drive / Dropbox', category: 'Files & Media', vois: 'Unified media library with AI tagging, website intelligence scraping, text-to-speech reader', icon: FolderOpen, group: 'Finance & Admin' },
+  { tool: 'QuickBooks / Xero', category: 'Finance', vois: 'Log expenses by voice, track invoices and payments, see your profit in real time — connected to Stripe', icon: BarChart3, group: 'Finance & Admin' },
+  { tool: 'Procurify / Coupa', category: 'Purchasing & Suppliers', vois: 'Purchase orders, supplier tracking, and stock management with partial payment support and bill matching', icon: ShoppingCart, group: 'Finance & Admin' },
+  { tool: 'Toggl / Clockify', category: 'Time Tracking', vois: 'Clock in and out from your phone, track billable hours per job, and link time entries to dispatch and payroll', icon: Clock, group: 'Finance & Admin' },
+  { tool: 'BambooHR / Gusto', category: 'Team & Org Chart', vois: 'See your whole team structure, manage roles and access, and plan changes — all drag-and-drop', icon: UserCog, group: 'Finance & Admin' },
+  { tool: 'Typeform / JotForm', category: 'Forms', vois: 'Build any form, route submissions to CRM or tickets automatically, and send instant confirmation replies', icon: FileText, group: 'Finance & Admin' },
+  { tool: 'Confluence / Guru', category: 'Knowledge Search', vois: 'Ask a question and get the answer from across your entire business — voice notes, emails, docs, meetings, everything', icon: Search, group: 'Finance & Admin' },
+  { tool: 'Google Drive / Dropbox', category: 'Files & Media', vois: 'One place for all your files with AI tagging, full-text search, and a reader that speaks documents aloud', icon: FolderOpen, group: 'Finance & Admin' },
 
-  { tool: 'A real executive assistant', category: 'Your Super-Assistant', vois: 'Knows your entire business, anticipates needs, acts on your behalf across every tool — voice, watch, phone, inbox', icon: Brain, group: 'AI & Voice' },
-  { tool: 'ChatGPT / Copilot', category: 'AI Chat', vois: 'Full workspace context across 19 data sources, proactive suggestions, tool execution with approval gates', icon: Sparkles, group: 'AI & Voice' },
-  { tool: 'Custom dev / Agency', category: 'AI Agents', vois: 'Autonomous agents with planning, approval gates, budget tracking, delegation, and 8 master tools', icon: Bot, group: 'AI & Voice' },
-  { tool: 'Perplexity / SearchGPT', category: 'AI Research', vois: 'Deep web research with source attribution, delegated to specialized reasoning LLMs, integrated with Brain', icon: Search, group: 'AI & Voice' },
-  { tool: 'McKinsey / consulting', category: 'AI Business Strategy', vois: 'Analyzes revenue, CRM, products, competitors across 5 dimensions — generates actionable opportunities with routing', icon: Sparkles, group: 'AI & Voice' },
-  { tool: 'Siri / Google Assistant', category: 'Voice Intelligence', vois: 'One voice note becomes tasks, events, inventory updates, and messages — routed to 11 intent types automatically', icon: Mic, group: 'AI & Voice' },
-  { tool: 'Apple Watch apps', category: 'Watch Assistant', vois: 'Full AI assistant on your wrist — real-time voice, tool execution, suggestion cards, sub-300ms latency', icon: Watch, group: 'AI & Voice' },
-  { tool: 'Answering service', category: 'AI Phone & SMS', vois: 'Real phone number answered by your AI with full tool access — calendar, tasks, email, all by voice or text', icon: Phone, group: 'AI & Voice' },
+  { tool: 'Virtual executive assistant', category: 'Your AI Assistant', vois: 'Knows your entire business, anticipates what you need, and acts across every tool — by voice, watch, phone, or inbox', icon: Brain, group: 'AI & Voice' },
+  { tool: 'ChatGPT / Copilot', category: 'AI Chat', vois: 'An AI that knows your actual business data — not just the internet — and can take action with your approval', icon: Sparkles, group: 'AI & Voice' },
+  { tool: 'Custom dev / Agency', category: 'AI Agents', vois: 'AI workers that plan multi-step tasks, use your tools, and pause for your approval before doing anything important', icon: Bot, group: 'AI & Voice' },
+  { tool: 'Perplexity / SearchGPT', category: 'AI Research', vois: 'Deep web research with sources cited — delegated to specialized AI and saved to your knowledge base', icon: Search, group: 'AI & Voice' },
+  { tool: 'Business consultants', category: 'Strategy Analysis', vois: 'Analyzes your revenue, clients, products, and competitors — surfaces opportunities you would have missed', icon: Sparkles, group: 'AI & Voice' },
+  { tool: 'Siri / Google Assistant', category: 'Voice Intelligence', vois: 'One voice note creates tasks, events, inventory updates, and messages — routed to the right place automatically', icon: Mic, group: 'AI & Voice' },
+  { tool: 'Apple Watch apps', category: 'Watch Assistant', vois: 'Full AI assistant on your wrist — talk, get answers, approve actions, all without pulling out your phone', icon: Watch, group: 'AI & Voice' },
+  { tool: 'Answering service', category: 'AI Phone & SMS', vois: 'A real phone number answered by your AI — books appointments, answers questions, and handles messages 24/7', icon: Phone, group: 'AI & Voice' },
 ];
 
 // ── Pricing features ────────────────────────────────────────────────────────
@@ -177,17 +594,25 @@ const AgentPhilosophySection: React.FC = () => {
   const [activeCard, setActiveCard] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  const next = useCallback(() => {
-    setDirection(1);
-    setActiveCard(i => (i + 1) % agentPanels.length);
+  // Auto-cycle through tabs every 8 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1);
+      setActiveCard(i => (i + 1) % agentPanels.length);
+    }, 8000);
+    return () => clearInterval(interval);
   }, []);
 
-  const prev = useCallback(() => {
-    setDirection(-1);
-    setActiveCard(i => (i - 1 + agentPanels.length) % agentPanels.length);
-  }, []);
+  const selectCard = useCallback((i: number) => {
+    setDirection(i > activeCard ? 1 : -1);
+    setActiveCard(i);
+  }, [activeCard]);
 
-  // No auto-advance — demos are interactive and self-animating
+  const principles = [
+    { icon: Brain, bg: 'bg-indigo-100', fg: 'text-indigo-600', activeBorder: 'border-indigo-400', title: 'AI Assistant', desc: 'Chat with full business context. Your agent reasons across projects, emails, calendar, CRM, and conversations simultaneously — pulling from every database you have access to.' },
+    { icon: ShieldCheck, bg: 'bg-emerald-100', fg: 'text-emerald-600', activeBorder: 'border-emerald-400', title: 'Smart Router', desc: 'Speak naturally — the agent parses your voice into structured actions. Follow-ups become tasks, meetings land on your calendar, and every intent is routed to the right place.' },
+    { icon: Users, bg: 'bg-amber-100', fg: 'text-amber-600', activeBorder: 'border-amber-400', title: 'Meeting Notes', desc: 'Live transcription that captures decisions, action items, and follow-ups as they happen. Every meeting produces a structured summary — no manual note-taking required.' },
+  ];
 
   return (
     <Section className="py-24 md:py-32 px-6 md:px-12">
@@ -213,65 +638,39 @@ const AgentPhilosophySection: React.FC = () => {
           </motion.div>
 
           {/* ── Principles + card carousel side by side ──────────── */}
-          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid lg:grid-cols-2 gap-10 items-center mb-14">
-            {/* Left: principles */}
-            <div className="space-y-5">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Brain size={18} className="text-indigo-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900 text-sm mb-1">Same data, same brain</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    Your agent reasons across projects, emails, calendar, CRM, and conversations simultaneously — pulling from every database you have access to.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <ShieldCheck size={18} className="text-emerald-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900 text-sm mb-1">Airlock, not autopilot</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    Every action passes through an approval gate. The agent drafts the email, proposes the calendar block, flags the risk — you review, edit, or dismiss.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Users size={18} className="text-amber-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900 text-sm mb-1">Serves, never competes</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    The agent exists to make you more effective. It provides the most valuable information at the right moment — the human always leads.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: demo panel carousel */}
-            <div>
-              {/* Panel tabs */}
-              <div className="flex items-center gap-2 mb-3">
-                {agentPanels.map((panel, i) => (
+          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid lg:grid-cols-2 gap-6 md:gap-10 items-center mb-14">
+            {/* Left: clickable principles */}
+            <div className="space-y-3">
+              {principles.map((p, i) => {
+                const Icon = p.icon;
+                const isActive = i === activeCard;
+                return (
                   <button
-                    key={panel.label}
-                    onClick={() => { setDirection(i > activeCard ? 1 : -1); setActiveCard(i); }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
-                      i === activeCard
-                        ? 'bg-slate-900 text-white shadow-sm'
-                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    key={p.title}
+                    onClick={() => selectCard(i)}
+                    className={`w-full flex items-start gap-4 text-left p-4 rounded-xl border-2 transition-all duration-300 ${
+                      isActive
+                        ? `${p.activeBorder} bg-white shadow-sm`
+                        : 'border-transparent hover:bg-slate-50'
                     }`}
                   >
-                    {panel.label}
+                    <div className={`w-10 h-10 rounded-xl ${p.bg} flex items-center justify-center flex-shrink-0 mt-0.5 transition-transform duration-300 ${isActive ? 'scale-110' : ''}`}>
+                      <Icon size={18} className={p.fg} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className={`font-semibold text-sm mb-1 transition-colors duration-300 ${isActive ? 'text-slate-900' : 'text-slate-600'}`}>{p.title}</h4>
+                      <p className={`text-sm leading-relaxed transition-all duration-300 ${isActive ? 'text-slate-500 max-h-24 opacity-100' : 'text-slate-400 max-h-0 opacity-0 overflow-hidden'}`}>
+                        {p.desc}
+                      </p>
+                    </div>
                   </button>
-                ))}
-              </div>
+                );
+              })}
+            </div>
 
-              {/* Demo panel */}
-              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg" style={{ height: 480 }}>
+            {/* Right: demo panel */}
+            <div>
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200 shadow-sm min-h-[360px] md:min-h-[500px]">
                 <AnimatePresence custom={direction} mode="wait">
                   <motion.div
                     key={activeCard}
@@ -281,18 +680,13 @@ const AgentPhilosophySection: React.FC = () => {
                     animate="center"
                     exit="exit"
                     transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-                    className="absolute inset-0 overflow-hidden"
                   >
-                    <div className="h-full overflow-hidden">
-                      {activeCard === 0 && <ContextualChat />}
-                      {activeCard === 1 && <VoiceNotesDemoComponent />}
-                      {activeCard === 2 && <MeetingNotesDemoComponent />}
-                    </div>
+                    {activeCard === 0 && <ContextualChat compact />}
+                    {activeCard === 1 && <SmartRouterPanel />}
+                    {activeCard === 2 && <MeetingNotesPanel />}
                   </motion.div>
                 </AnimatePresence>
               </div>
-
-              <p className="text-xs text-slate-400 text-center mt-2">{agentPanels[activeCard].desc}</p>
             </div>
           </motion.div>
 
@@ -315,9 +709,24 @@ const Work: React.FC = () => {
   const [annualBilling, setAnnualBilling] = useState(true);
   const [animPhase, setAnimPhase] = useState<AnimPhase>('dot');
   const [focusLabel, setFocusLabel] = useState<string | null>(null);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [geoVisible, setGeoVisible] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [boxTime, setBoxTime] = useState(0);
+  const [videoElapsed, setVideoElapsed] = useState(0);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
+  const introStartedRef = useRef(false);
   const unfocusRef = React.useRef<(() => void) | null>(null);
+
+  // Start intro video when box animation reaches crossfade point
+  useEffect(() => {
+    if (boxTime >= 32.5 && !introStartedRef.current && introVideoRef.current) {
+      introStartedRef.current = true;
+      introVideoRef.current.currentTime = 0;
+      introVideoRef.current.play().catch(() => {});
+    }
+  }, [boxTime]);
 
   // Parallax: gradient scrolls at ~70% of content speed (lags 30% behind)
   const { scrollY } = useScroll();
@@ -326,6 +735,19 @@ const Work: React.FC = () => {
   useEffect(() => {
     Analytics.workPageViewed();
   }, []);
+
+  // Play/pause hero video based on showVideo state
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    if (showVideo) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [showVideo]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -340,7 +762,7 @@ const Work: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative" style={{ backgroundColor: '#F8F9FA' }}>
+    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA' }}>
       {/* Background image — gradient + grain baked into one JPEG, tiles vertically, parallax */}
       <motion.div
         className="absolute inset-x-0 top-0 pointer-events-none z-0"
@@ -373,74 +795,303 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           HERO SECTION — Traditional headline + CTA
           ═══════════════════════════════════════════════════════════════════ */}
-      <Section className="min-h-screen pt-36 md:pt-44 pb-20 md:pb-28 px-6 md:px-12 flex items-center">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <Section className="h-screen min-h-screen pt-28 md:pt-44 pb-12 md:pb-28 px-6 md:px-12 flex items-center relative" style={{ overflow: 'visible' }}>
+        {/* Box Animation — hard cut off when video takes over */}
+        <div
+          className="absolute inset-0 z-0 flex items-center justify-end pointer-events-none"
+          style={{
+            opacity: showVideo ? 0 : (boxTime >= 32.5 ? 0 : 1),
+            transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
+            paddingRight: '5%',
+          }}
+        >
+          <BoxAnimation style={{ width: '65%', height: '100%' }} onTimeUpdate={(t) => {
+            if (Math.abs(t - boxTime) > 0.1) setBoxTime(t);
+          }} />
+        </div>
+        {/* Intro video — hard cut in, white keyed out via canvas */}
+        {(() => {
+          const videoOn = boxTime >= 32.5;
+          const videoAge = Math.max(0, boxTime - 32.5);
+          const bgFade = Math.min(1, Math.max(0, (videoAge - 2) / 3));
+          return (
+            <div
+              className="absolute inset-0 z-0 flex items-center justify-end pointer-events-none"
+              style={{
+                opacity: showVideo ? 0 : (videoOn ? 1 : 0),
+                transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
+                paddingRight: '5%',
+              }}
+            >
+              <div style={{ width: '65%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {(() => {
+                  const VIDEO_BUSINESSES = [
+                    'Creative Agencies', 'Plumbers', 'Dental Practices',
+                    'Consulting Firms', 'Salons & Spas', 'Construction Companies',
+                    'Real Estate Agents', 'Restaurants', 'Cleaning Companies',
+                    'Online Stores', 'Property Managers',
+                  ];
+                  // Offset by -0.5s to compensate for state propagation delay
+                  const vt = videoElapsed - 0.5;
+                  const lipsVisible = vt >= 5.5;
+                  const lipsOpacity = Math.min(1, Math.max(0, (vt - 5) / 1));
+                  // Each scene is ~3s. Use modulo to wrap around for loop video
+                  const sceneTime = Math.max(0, vt - 4.5);
+                  const sceneIdx = Math.floor(sceneTime / 3) % VIDEO_BUSINESSES.length;
+                  return (
+                    <div className="flex flex-col items-center">
+                      {/* "Made for..." top lip */}
+                      <p
+                        className="text-sm font-medium text-slate-400 tracking-wide mb-3 transition-opacity duration-500"
+                        style={{ opacity: lipsOpacity }}
+                      >
+                        Made for all types of companies.
+                      </p>
+                      <div
+                        className="relative"
+                        style={{
+                          width: 'min(280px, 30vh)',
+                          height: 'min(280px, 30vh)',
+                        }}
+                      >
+                        {/* White background + frame that fades in */}
+                        <div
+                          className="absolute inset-0 rounded-2xl bg-white border border-slate-200/60 shadow-2xl"
+                          style={{ opacity: bgFade }}
+                        />
+                        {/* Canvas-keyed video */}
+                        <ChromaKeyVideo
+                          videoRef={introVideoRef}
+                          src="/videos/Intro-trimmed.mp4"
+                          loopSrc="/videos/Intro-loop.mp4"
+                          keyStrength={1 - bgFade}
+                          className="absolute inset-0 rounded-2xl overflow-hidden"
+                          onVideoTime={(t) => {
+                            if (Math.abs(t - videoElapsed) > 0.05) setVideoElapsed(t);
+                          }}
+                        />
+                      </div>
+                      {/* Company name bottom lip */}
+                      <div
+                        className="mt-4 transition-opacity duration-500"
+                        style={{ opacity: lipsOpacity, minHeight: 40 }}
+                      >
+                        <AnimatePresence mode="wait">
+                          {lipsVisible && (
+                            <motion.h3
+                              key={VIDEO_BUSINESSES[sceneIdx]}
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -6 }}
+                              transition={{ duration: 0.3 }}
+                              className="text-2xl font-semibold text-slate-900 tracking-tight text-center"
+                            >
+                              {VIDEO_BUSINESSES[sceneIdx]}
+                            </motion.h3>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+          );
+        })()}
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Left: Text content */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="flex-1 text-center lg:text-left"
+              className="text-center lg:text-left lg:flex-shrink-0 transition-all duration-700 ease-in-out"
+              style={{ width: showVideo ? '20%' : undefined, flex: showVideo ? undefined : '1 1 0%' }}
             >
-              <motion.p
-                variants={fadeUp}
-                transition={{ duration: 0.4 }}
-                className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-blue-600 mb-5"
-              >
-                World's First
-              </motion.p>
+              {/* Animated story headline — synced to box animation */}
+              {(() => {
+                // Story phases synced to the V5 box animation timeline
+                const stories: { at: number; label: string; headline: string }[] = [
+                  { at: 0,  label: "The Problem",        headline: "Your company's data is fragmented\nacross dozens of tools." },
+                  { at: 5,  label: "The Cost",           headline: "Employees spend their days\nmoving data — not creating value." },
+                  { at: 11, label: "The Breaking Point",  headline: "The faster you grow,\nthe harder it falls apart." },
+                  { at: 17, label: "The Solution",        headline: "So we built one platform\nfor everything." },
+                  { at: 24, label: "HABOS",               headline: "Your tools. Your data.\nAll working as one." },
+                  { at: 34, label: "final",               headline: "" },
+                ];
+                const active = [...stories].reverse().find(s => boxTime >= s.at) || stories[0];
+                const isFinal = active.label === 'final';
+                return (
+                  <>
+                    <motion.p variants={fadeUp} transition={{ duration: 0.4 }} className="mb-1">
+                      {showVideo ? (
+                        <GlowText
+                          text="World's First"
+                          active={showVideo}
+                          globalOffset={0}
+                          totalWords={6}
+                          className="font-semibold tracking-[0.2em] uppercase inline-block origin-left transition-all duration-700 ease-in-out text-xs sm:text-sm"
+                          style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1rem)', color: '#1e293b' }}
+                        />
+                      ) : (
+                        <AnimatePresence mode="wait">
+                          <motion.span
+                            key={active.label}
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.5 }}
+                            className={`font-semibold tracking-[0.2em] uppercase inline-block ${isFinal ? 'text-xs sm:text-sm' : 'text-xs sm:text-sm'}`}
+                            style={{ color: '#2563eb' }}
+                          >
+                            {isFinal ? 'World\'s First' : active.label}
+                          </motion.span>
+                        </AnimatePresence>
+                      )}
+                    </motion.p>
+                    <motion.h1 variants={fadeUp} transition={{ duration: 0.5 }} className="mb-3 md:mb-5">
+                      {showVideo ? (
+                        <>
+                          <GlowText text="Human-to-Agent" active={showVideo} globalOffset={2} totalWords={6}
+                            className="font-bold tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-nowrap"
+                            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#0f172a' }} />
+                          <br />
+                          <GlowText text="Business Operating System" active={showVideo} globalOffset={3} totalWords={6}
+                            className="font-normal tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-nowrap"
+                            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#334155' }} />
+                        </>
+                      ) : (
+                        <AnimatePresence mode="wait">
+                          {isFinal ? (
+                            <motion.span
+                              key="final"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.6 }}
+                              className="block tracking-tight leading-[1.08] text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+                            >
+                              <span className="font-bold" style={{ color: '#0f172a' }}>Human-to-Agent</span>
+                              <br />
+                              <span className="font-normal whitespace-nowrap" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>Business Operating</span>
+                              <br />
+                              <span className="font-normal" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>System</span>
+                            </motion.span>
+                          ) : (
+                            <motion.span
+                              key={active.at}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.6 }}
+                              className="block tracking-tight leading-[1.08] text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                              style={{ whiteSpace: 'pre-line' }}
+                            >
+                              {active.headline.split('\n').map((line, i) => (
+                                <span key={i} className={i === 0 ? 'font-bold' : 'font-normal'} style={{ color: i === 0 ? '#0f172a' : 'rgba(30, 58, 138, 0.5)' }}>
+                                  {line}{i < active.headline.split('\n').length - 1 && <br />}
+                                </span>
+                              ))}
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      )}
+                    </motion.h1>
+                  </>
+                );
+              })()}
 
-              <motion.h1
-                variants={fadeUp}
-                transition={{ duration: 0.5 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-5 leading-[1.08]"
+              {/* Subtitle + buttons — hidden during animation, shown at final phase or when video plays */}
+              <div
+                className="transition-all duration-700 ease-in-out overflow-hidden"
+                style={{
+                  maxHeight: showVideo || boxTime < 34 ? 0 : 300,
+                  opacity: showVideo || boxTime < 34 ? 0 : 1,
+                  marginTop: showVideo || boxTime < 34 ? 0 : undefined,
+                }}
               >
-                Human-to-Agent
-                <br />
-                <span className="font-normal text-blue-900/50">Business Operating System</span>
-              </motion.h1>
-
-              <motion.p
-                variants={fadeUp}
-                transition={{ duration: 0.6 }}
-                className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl"
-              >
-                All your software, one platform.
-                <br />
-                Supercharge your employees with the AI assistance we were always promised but never got.
-              </motion.p>
-
-              <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <motion.button
-                  onClick={() => scrollToSection('pricing')}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-8 py-3.5 bg-slate-900 text-white rounded-full text-base font-semibold shadow-xl shadow-slate-900/20 hover:bg-slate-800 transition-all flex items-center gap-2"
+                <motion.p
+                  variants={fadeUp}
+                  transition={{ duration: 0.6 }}
+                  className="text-base md:text-xl text-slate-600 mb-6 md:mb-10 leading-relaxed max-w-2xl mt-3 md:mt-5"
                 >
-                  Try Free
-                  <ArrowRight size={18} />
-                </motion.button>
-                <motion.button
-                  onClick={() => scrollToSection('explore')}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-8 py-3.5 bg-white text-slate-700 rounded-full text-base font-semibold shadow-lg border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-2"
+                  All your software, one platform.
+                  <br />
+                  Supercharge your employees with the AI assistance we were always promised but never got.
+                </motion.p>
+
+                <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="flex flex-row items-center justify-center lg:justify-start gap-3">
+                  <motion.button
+                    onClick={() => scrollToSection('pricing')}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-5 py-2.5 sm:px-8 sm:py-3.5 bg-slate-900 text-white rounded-full text-sm sm:text-base font-semibold shadow-xl shadow-slate-900/20 hover:bg-slate-800 transition-all flex items-center gap-2"
+                  >
+                    Join Waitlist
+                    <ArrowRight size={16} />
+                  </motion.button>
+                  <motion.button
+                    onClick={() => setShowVideo(true)}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-5 py-2.5 sm:px-8 sm:py-3.5 bg-white text-slate-700 rounded-full text-sm sm:text-base font-semibold shadow-lg border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-2"
+                  >
+                    <Play size={14} className="fill-current" />
+                    Play Video
+                  </motion.button>
+                </motion.div>
+              </div>
+
+              {/* Back button — fades in when video is playing */}
+              <div
+                className="transition-all duration-500 ease-in-out overflow-hidden"
+                style={{
+                  maxHeight: showVideo ? 60 : 0,
+                  opacity: showVideo ? 1 : 0,
+                }}
+              >
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="mt-4 px-5 py-2.5 bg-white text-slate-600 rounded-full text-sm font-medium border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-2 mx-auto lg:mx-0"
                 >
-                  <Play size={16} className="fill-current" />
-                  Explore the Platform
-                </motion.button>
+                  <ArrowLeft size={14} />
+                  Back
+                </button>
+              </div>
+
+              {/* Mobile: hero video on loop with synced label */}
+              <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="lg:hidden mt-6 w-full max-w-sm mx-auto">
+                <MobileHeroVideo />
               </motion.div>
             </motion.div>
 
-            {/* Right: Business carousel */}
+            {/* Right: Video player */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex-1 hidden lg:flex items-center justify-center w-full max-w-md"
+              className="hidden lg:flex items-center justify-center relative transition-all duration-700 ease-in-out flex-1"
             >
-              <HeroBusinessCarousel />
+              {/* Video — fades in and grows */}
+              <div
+                className="w-full transition-all duration-700 ease-in-out"
+                style={{
+                  opacity: showVideo ? 1 : 0,
+                  transform: showVideo ? 'scale(1)' : 'scale(0.9)',
+                  pointerEvents: showVideo ? 'auto' : 'none',
+                }}
+              >
+                <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200/60 bg-black">
+                  <video
+                    ref={heroVideoRef}
+                    src="/videos/Situations.mp4"
+                    loop
+                    controls
+                    playsInline
+                    className="w-full"
+                  />
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -449,7 +1100,7 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           INTERACTIVE 3D SECTION — No container, floats on page background
           ═══════════════════════════════════════════════════════════════════ */}
-      <div id="explore" className="relative pt-16 md:pt-24 pb-0">
+      <div id="explore" className="relative h-screen min-h-screen flex flex-col justify-center">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -472,8 +1123,8 @@ const Work: React.FC = () => {
 
         <div className="flex flex-col items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             onViewportEnter={() => setGeoVisible(true)}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -483,13 +1134,22 @@ const Work: React.FC = () => {
             {geoVisible && <WorkHero3D onPhaseChange={setAnimPhase} onFocusChange={setFocusLabel} unfocusRef={unfocusRef} muted={muted} onToggleMute={() => setMuted(m => !m)} />}
 
             {/* Story text + sound button — positioned above the 3D geometry */}
-            <div className="absolute left-0 right-0 -top-[30%] z-20 px-6 flex justify-center items-center gap-3">
+            <div className="absolute left-0 right-0 -top-[16%] md:-top-[22%] z-20 px-4 md:px-6 flex justify-center items-center gap-3">
+              {/* White cloud behind text — only in focused/zoomed state */}
+              <div
+                className="absolute pointer-events-none transition-opacity duration-700 ease-in-out"
+                style={{
+                  opacity: focusLabel ? 1 : 0,
+                  inset: '-220% -30%',
+                  background: 'radial-gradient(ellipse 60% 70% at center, rgba(248,249,250,0.97) 0%, rgba(248,249,250,0.8) 30%, rgba(248,249,250,0.4) 55%, transparent 80%)',
+                }}
+              />
               <motion.p
                 key={focusLabel || animPhase}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-slate-950 max-w-2xl leading-snug text-center pointer-events-none"
+                className="relative text-lg sm:text-2xl md:text-4xl lg:text-5xl font-serif italic text-slate-950 max-w-2xl leading-snug text-center pointer-events-none"
               >
                 {focusLabel
                   ? focusLabel
@@ -658,8 +1318,8 @@ const Work: React.FC = () => {
 
             <motion.div variants={fadeUp} transition={{ duration: 0.6 }}>
               <div className="bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                {/* Table header */}
-                <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 bg-slate-50/80">
+                {/* Table header — hidden on mobile, shown as grid on md+ */}
+                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 bg-slate-50/80">
                   <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Category</div>
                   <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Replaces</div>
                   <div className="col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">HABOS Advantage</div>
@@ -675,8 +1335,9 @@ const Work: React.FC = () => {
                           <span className="text-xs font-semibold text-slate-900 uppercase tracking-wider">{row.group}</span>
                         </div>
                       )}
+                      {/* Desktop: 3-column row */}
                       <div
-                        className={`grid grid-cols-12 gap-4 px-6 py-5 items-start ${i < replacements.length - 1 && replacements[i + 1].group === row.group ? 'border-b border-slate-100' : ''}`}
+                        className={`hidden md:grid grid-cols-12 gap-4 px-6 py-5 items-start ${i < replacements.length - 1 && replacements[i + 1].group === row.group ? 'border-b border-slate-100' : ''}`}
                       >
                         <div className="col-span-3 flex items-center gap-2.5">
                           <row.icon size={16} className="text-slate-400 flex-shrink-0" />
@@ -688,6 +1349,15 @@ const Work: React.FC = () => {
                         <div className="col-span-6">
                           <span className="text-sm text-slate-600">{row.vois}</span>
                         </div>
+                      </div>
+                      {/* Mobile: stacked card */}
+                      <div className={`md:hidden px-5 py-4 space-y-2 ${i < replacements.length - 1 && replacements[i + 1].group === row.group ? 'border-b border-slate-100' : ''}`}>
+                        <div className="flex items-center gap-2.5">
+                          <row.icon size={16} className="text-slate-400 flex-shrink-0" />
+                          <span className="text-sm font-medium text-slate-900">{row.category}</span>
+                        </div>
+                        <p className="text-xs text-slate-400">Replaces <span className="text-slate-500">{row.tool}</span></p>
+                        <p className="text-sm text-slate-600">{row.vois}</p>
                       </div>
                     </React.Fragment>
                   );
@@ -799,25 +1469,25 @@ const Work: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="mt-10 bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm overflow-hidden"
             >
-              <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 bg-slate-50/80">
-                <div className="col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Feature</div>
-                <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">Personal</div>
-                <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">Work</div>
+              <div className="grid grid-cols-[1fr_4rem_4rem] md:grid-cols-12 gap-2 md:gap-4 px-4 md:px-6 py-4 border-b border-slate-100 bg-slate-50/80">
+                <div className="md:col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Feature</div>
+                <div className="md:col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">Personal</div>
+                <div className="md:col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">Work</div>
               </div>
               {pricingFeatures.map((row, i) => (
                 <div
                   key={row.feature}
-                  className={`grid grid-cols-12 gap-4 px-6 py-3.5 items-center ${i < pricingFeatures.length - 1 ? 'border-b border-slate-50' : ''}`}
+                  className={`grid grid-cols-[1fr_4rem_4rem] md:grid-cols-12 gap-2 md:gap-4 px-4 md:px-6 py-3.5 items-center ${i < pricingFeatures.length - 1 ? 'border-b border-slate-50' : ''}`}
                 >
-                  <div className="col-span-6 text-sm text-slate-600">{row.feature}</div>
-                  <div className="col-span-3 text-center">
+                  <div className="md:col-span-6 text-sm text-slate-600">{row.feature}</div>
+                  <div className="md:col-span-3 text-center">
                     {row.personal ? (
                       <Check size={16} className="text-emerald-500 mx-auto" />
                     ) : (
                       <span className="text-slate-300">—</span>
                     )}
                   </div>
-                  <div className="col-span-3 text-center">
+                  <div className="md:col-span-3 text-center">
                     {row.work ? (
                       <Check size={16} className="text-emerald-500 mx-auto" />
                     ) : (
@@ -915,7 +1585,7 @@ const Work: React.FC = () => {
             {/* Col 1: Logo & Tagline */}
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
+                <img src="/Logo/vois-logo.svg" alt="HABOS" className="h-8 w-8" />
                 <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
               </div>
               <p className="text-slate-500 text-sm">Your AI workday.</p>
@@ -929,13 +1599,13 @@ const Work: React.FC = () => {
                   <Link to="/login" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Login</Link>
                 </li>
                 <li>
-                  <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Download for iPhone</a>
+                  <button onClick={() => scrollToSection('pricing')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Pricing</button>
                 </li>
                 <li>
-                  <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Download for Watch</a>
+                  <button onClick={() => scrollToSection('explore')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Platform</button>
                 </li>
                 <li>
-                  <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Download for Mac</a>
+                  <Link to="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">VOIS Personal</Link>
                 </li>
               </ul>
             </div>
@@ -948,7 +1618,7 @@ const Work: React.FC = () => {
                   <Link to="/support" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Help & FAQ</Link>
                 </li>
                 <li>
-                  <a href="mailto:hello@tryvois.com" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Contact Us</a>
+                  <a href="mailto:hello@tryvois.com" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Contact Sales</a>
                 </li>
                 <li>
                   <Link to="/setup" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Setup Guide</Link>
@@ -1001,60 +1671,9 @@ const Work: React.FC = () => {
         </div>
       </footer>
 
-      {/* Original hero content — parked below footer for safekeeping */}
-      <Section className="pb-20 md:pb-28 px-6 md:px-12">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="text-center"
-          >
-            <motion.h1
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-slate-900 mb-6 leading-[1.08] tracking-tight"
-            >
-              Your AI-powered workday,
-              <br />
-              <span className="italic">driven by voice.</span>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed"
-            >
-              HABOS replaces your meeting tool, scheduler, task manager, and project tracker
-              with one voice-first assistant — where everything shares one brain.
-            </motion.p>
-
-            <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.button
-                onClick={() => scrollToSection('pricing')}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-3.5 bg-slate-900 text-white rounded-full text-base font-semibold shadow-xl shadow-slate-900/20 hover:bg-slate-800 transition-all flex items-center gap-2"
-              >
-                Try Free
-                <ArrowRight size={18} />
-              </motion.button>
-              <motion.button
-                onClick={() => scrollToSection('voice-notes')}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-3.5 bg-white text-slate-700 rounded-full text-base font-semibold shadow-lg border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-2"
-              >
-                <Play size={16} className="fill-current" />
-                See How It Works
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </Section>
-
       </div>{/* end content z-10 wrapper */}
+
+      {/* Video modal removed — video now plays inline in hero */}
     </div>
   );
 };

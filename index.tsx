@@ -46,6 +46,7 @@ const Payments = React.lazy(() => import('./pages/work/payments'));
 const SchedulingLinks = React.lazy(() => import('./pages/work/scheduling-links'));
 const WebsiteBuilder = React.lazy(() => import('./pages/work/website-builder'));
 const Marketing = React.lazy(() => import('./pages/work/marketing'));
+const Ads = React.lazy(() => import('./pages/work/ads'));
 const CreativeStudio = React.lazy(() => import('./pages/work/creative-studio'));
 const Funnels = React.lazy(() => import('./pages/work/funnels'));
 const Domains = React.lazy(() => import('./pages/work/domains'));
@@ -57,6 +58,24 @@ const Forms = React.lazy(() => import('./pages/work/forms'));
 const Playbooks = React.lazy(() => import('./pages/work/playbooks'));
 const Files = React.lazy(() => import('./pages/work/files'));
 const People = React.lazy(() => import('./pages/work/people'));
+
+// Category landing pages
+const CommunicationPage = React.lazy(() => import('./pages/work/communication'));
+const SchedulingPage = React.lazy(() => import('./pages/work/scheduling'));
+const JobsOperationsPage = React.lazy(() => import('./pages/work/jobs-operations'));
+const SalesPaymentsPage = React.lazy(() => import('./pages/work/sales-payments'));
+const VoiceAIPage = React.lazy(() => import('./pages/work/voice-ai'));
+const WebsiteMarketingPage = React.lazy(() => import('./pages/work/website-marketing'));
+
+// Philosophy pages
+const AINative = React.lazy(() => import('./pages/philosophy/ai-native'));
+const OneBrain = React.lazy(() => import('./pages/philosophy/one-brain'));
+const VoiceFirstPage = React.lazy(() => import('./pages/philosophy/voice-first'));
+const HumanControl = React.lazy(() => import('./pages/philosophy/human-control'));
+const AdvisorsThatDisagree = React.lazy(() => import('./pages/philosophy/advisors-that-disagree'));
+const MemoryThatCompounds = React.lazy(() => import('./pages/philosophy/memory-that-compounds'));
+const SmallTeamLeverage = React.lazy(() => import('./pages/philosophy/small-team-leverage'));
+const SuperchargeYourTeam = React.lazy(() => import('./pages/philosophy/supercharge-your-team'));
 
 // Wrapper components for direct Privacy/Terms routes
 const PrivacyPage = () => <Legal defaultSection="privacy" />;
@@ -111,6 +130,13 @@ root.render(
           <Route path="/work/scheduling-links" element={<SchedulingLinks />} />
           <Route path="/work/website-builder" element={<WebsiteBuilder />} />
           <Route path="/work/marketing" element={<Marketing />} />
+          <Route path="/work/ads" element={<Ads />} />
+          <Route path="/work/communication" element={<CommunicationPage />} />
+          <Route path="/work/scheduling" element={<SchedulingPage />} />
+          <Route path="/work/jobs-operations" element={<JobsOperationsPage />} />
+          <Route path="/work/sales-payments" element={<SalesPaymentsPage />} />
+          <Route path="/work/voice-ai" element={<VoiceAIPage />} />
+          <Route path="/work/website-marketing" element={<WebsiteMarketingPage />} />
           <Route path="/work/creative-studio" element={<CreativeStudio />} />
           <Route path="/work/funnels" element={<Funnels />} />
           <Route path="/work/domains" element={<Domains />} />
@@ -122,6 +148,14 @@ root.render(
           <Route path="/work/playbooks" element={<Playbooks />} />
           <Route path="/work/files" element={<Files />} />
           <Route path="/work/people" element={<People />} />
+          <Route path="/philosophy/ai-native" element={<AINative />} />
+          <Route path="/philosophy/one-brain" element={<OneBrain />} />
+          <Route path="/philosophy/voice-first" element={<VoiceFirstPage />} />
+          <Route path="/philosophy/human-control" element={<HumanControl />} />
+          <Route path="/philosophy/advisors-that-disagree" element={<AdvisorsThatDisagree />} />
+          <Route path="/philosophy/memory-that-compounds" element={<MemoryThatCompounds />} />
+          <Route path="/philosophy/small-team-leverage" element={<SmallTeamLeverage />} />
+          <Route path="/philosophy/supercharge-your-team" element={<SuperchargeYourTeam />} />
           <Route path="/support" element={<Support />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />

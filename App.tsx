@@ -1866,6 +1866,11 @@ const App = () => {
                       Download for Mac
                     </a>
                   </li>
+                  <li>
+                    <Link to="/work" onClick={() => Analytics.externalLinkClicked('habos_work')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
+                      HABOS for Business
+                    </Link>
+                  </li>
                 </ul>
               </div>
               

@@ -2,42 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, MessageSquare, Zap } from 'lucide-react';
 import MailDemo from './features/MailDemo';
+import { Navbar } from '../../components/Navbar';
 
 const Email: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'circOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
-        style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
-      >
-        <a href="/work">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-          >
-            <ArrowLeft size={16} className="text-slate-600" />
-            <span className="font-medium text-sm text-slate-600">Back to Work</span>
-          </motion.div>
-        </a>
-
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <a href="/">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-            >
-              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
-            </motion.div>
-          </a>
-        </div>
-
-        <div className="w-32" />
-      </motion.nav>
+      <Navbar />
 
       {/* Hero Section */}
       <main className="pt-32 pb-24 px-6 md:px-12">
@@ -59,6 +29,8 @@ const Email: React.FC = () => {
               email. Send the one you like.
             </p>
           </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16"><p className="text-lg text-slate-600 leading-relaxed">Say 'read my inbox' while driving. HABOS summarizes your most important emails, reads the urgent ones aloud, and generates three reply drafts in different tones — Short & Direct, Warm & Professional, and Executive. You say 'send the second one' and it's done. Every email also gets AI-extracted action items: deadlines become tasks, meeting requests become calendar events, and follow-ups get flagged — all without you typing a single word.</p></motion.div>
 
           {/* Interactive Demo */}
           <motion.div

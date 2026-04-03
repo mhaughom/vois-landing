@@ -377,12 +377,12 @@ export const Hex3DScene: React.FC<{
         let faceOpacity = glassOpacity;
         if (isFocusMode) {
           const smoothOpacity = 0.03 + score * 0.27;
-          const focusedOpacity = isBestFace ? 0.22 + score * 0.08 : 0.04;
+          const focusedOpacity = isBestFace ? 0 : 0.04;
           faceOpacity = smoothOpacity * (1 - focus * 0.7) + focusedOpacity * focus * 0.7;
         }
 
         const faceVideoOpacity = isFocusMode
-          ? (isBestFace ? videoOpacity : 0)
+          ? (isBestFace ? Math.min(1, videoOpacity / 0.8) : 0)
           : (isQuad
             ? Math.max(perFaceOpacity.current[idx], perFaceOpacity.current[partnerIdx])
             : perFaceOpacity.current[idx]);
@@ -409,18 +409,35 @@ export const Hex3DScene: React.FC<{
               />
             </mesh>
             {showVideo && (
-              <mesh geometry={geo} renderOrder={1}>
-                <meshStandardMaterial
-                  map={faceEntry!.texture}
-                  transparent
-                  opacity={faceVideoOpacity}
-                  side={THREE.DoubleSide}
-                  roughness={0.3}
-                  metalness={0.05}
-                  depthWrite={false}
-                  fog={false}
-                />
-              </mesh>
+              <>
+                {/* Lit video — fades out as focus increases */}
+                <mesh geometry={geo} renderOrder={1}>
+                  <meshStandardMaterial
+                    map={faceEntry!.texture}
+                    transparent
+                    opacity={faceVideoOpacity * (1 - (isBestFace ? focus : 0))}
+                    side={THREE.DoubleSide}
+                    roughness={0.3}
+                    metalness={0.05}
+                    depthWrite={false}
+                    fog={false}
+                  />
+                </mesh>
+                {/* True-color video — fades in as focus increases */}
+                {isBestFace && focus > 0.01 && (
+                  <mesh geometry={geo} renderOrder={2}>
+                    <meshBasicMaterial
+                      map={faceEntry!.texture}
+                      transparent
+                      opacity={faceVideoOpacity * focus}
+                      side={THREE.DoubleSide}
+                      depthWrite={false}
+                      fog={false}
+                      toneMapped={false}
+                    />
+                  </mesh>
+                )}
+              </>
             )}
           </group>
         );

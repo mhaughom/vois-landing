@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, FileText, Send } from 'lucide-react';
+import { Sparkles, FileText, Send, Brain, Search, Database, Mail, Calendar, Users } from 'lucide-react';
 
-export const ContextualChat: React.FC = () => {
+export const ContextualChat: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const [selectedModels, setSelectedModels] = useState<Array<'claude' | 'gpt' | 'gemini' | 'grok'>>(['claude']);
   const [visibleMessages, setVisibleMessages] = useState<number>(0);
   const [typingText, setTypingText] = useState<string>('');
@@ -10,6 +10,8 @@ export const ContextualChat: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
   const [isMultiChat, setIsMultiChat] = useState<boolean>(false);
   const [typingModel, setTypingModel] = useState<string | null>(null);
+  const [thinkingPhase, setThinkingPhase] = useState<string | null>(null); // null | 'thinking' | source name
+  const [searchedSources, setSearchedSources] = useState<string[]>([]);
 
   const models = [
     { id: 'claude' as const, name: 'Claude', color: 'bg-amber-500' },
@@ -126,6 +128,8 @@ export const ContextualChat: React.FC = () => {
         setTypingText('');
         setIsTyping(false);
         setInputText('');
+        setThinkingPhase(null);
+        setSearchedSources([]);
 
         // Switch model and multi-chat mode
         if (conversation.multiChat) {
@@ -159,10 +163,31 @@ export const ContextualChat: React.FC = () => {
             setVisibleMessages(i + 1);
             await sleep(600);
           } else {
-            // AI response
+            // AI response — think, search, then type
             setTypingModel(message.model || null);
+
+            // Thinking phase
+            setThinkingPhase('thinking');
+            setSearchedSources([]);
+            await sleep(600);
+
+            // Search databases sequentially
+            const sources = ['Voice notes', 'Projects', 'Calendar', 'Email', 'CRM'];
+            // Pick 2-3 relevant sources based on conversation index
+            const relevantSources = sources.slice(0, 2 + (convIdx % 2));
+            for (const source of relevantSources) {
+              if (isCancelled) return;
+              setThinkingPhase(source);
+              setSearchedSources(prev => [...prev, source]);
+              await sleep(400);
+            }
+
+            // Brief pause after searching, then start typing
+            setThinkingPhase(null);
+            await sleep(300);
+
             setIsTyping(true);
-            await sleep(800);
+            await sleep(400);
 
             setIsTyping(false);
             const text = message.text;
@@ -192,45 +217,9 @@ export const ContextualChat: React.FC = () => {
     };
   }, []);
 
-  return (
-    <section id="contextual-chat" className="py-24 md:py-32 px-6 md:px-16 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Right: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:pl-8 lg:order-last"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
-              A ChatGPT that actually helps you.
-            </h2>
-            <div className="space-y-4 text-slate-600 leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)' }}>
-              <p>
-                Tired of constantly explaining what project you're working on? This chat <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>actually knows</span>.
-              </p>
-              <p>
-                It references your voice notes, suggests action cards, and helps plan your work week—without you having to repeat yourself.
-              </p>
-              <p className="text-slate-700 font-medium">
-                Choose Claude, Gemini, ChatGPT, or Grok. Or enable multi-chat to get all four perspectives on the same question—side by side.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right: Chat Card Interface */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative h-[600px] overflow-visible"
-          >
-            {/* Chat Card */}
+  const chatCard = (
             <div
-              className="absolute inset-x-0 top-0 rounded-3xl overflow-hidden"
+              className={compact ? "rounded-2xl overflow-hidden h-full" : "absolute inset-x-0 top-0 rounded-3xl overflow-hidden"}
               style={{
                 background: 'linear-gradient(135deg, rgba(249, 250, 251, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%)',
                 backdropFilter: 'blur(40px) saturate(180%)',
@@ -276,7 +265,7 @@ export const ContextualChat: React.FC = () => {
               </div>
 
               {/* Messages */}
-              <div className="px-6 py-6 space-y-6 bg-white min-h-[400px] overflow-y-auto">
+              <div className="px-6 py-6 space-y-6 bg-white h-[380px] overflow-y-auto flex flex-col justify-end">
                   <AnimatePresence mode="sync">
                     {conversations.find(c =>
                       (c.multiChat === isMultiChat) &&
@@ -284,9 +273,9 @@ export const ContextualChat: React.FC = () => {
                     )?.messages.slice(0, visibleMessages).map((message, idx) => (
                       <motion.div
                         key={idx}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.25 }}
                         className="space-y-3"
                       >
                         {message.type === 'user' ? (
@@ -326,8 +315,8 @@ export const ContextualChat: React.FC = () => {
                                 {message.references.map((ref, i) => (
                                   <motion.div
                                     key={i}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.4 + i * 0.1 }}
                                     className="bg-blue-50 border border-blue-100 rounded-2xl p-3 max-w-[85%]"
                                   >
@@ -349,8 +338,8 @@ export const ContextualChat: React.FC = () => {
                                 {message.actionCards.map((card, i) => (
                                   <motion.div
                                     key={i}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.4 + i * 0.1 }}
                                     className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100 rounded-2xl p-3 max-w-[85%]"
                                   >
@@ -368,12 +357,73 @@ export const ContextualChat: React.FC = () => {
                       </motion.div>
                     ))}
 
+                    {/* Thinking + searching databases */}
+                    {thinkingPhase && (
+                      <motion.div
+                        key="thinking"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex justify-start"
+                      >
+                        <div className="bg-white rounded-3xl rounded-tl-md px-4 py-3 border border-slate-100 max-w-[85%]">
+                          {typingModel && (
+                            <div className="flex items-center gap-1.5 mb-2">
+                              <div className={`w-2 h-2 rounded-full ${models.find(m => m.id === typingModel)?.color}`} />
+                              <span className="text-xs font-semibold text-slate-600">
+                                {models.find(m => m.id === typingModel)?.name}
+                              </span>
+                            </div>
+                          )}
+                          {thinkingPhase === 'thinking' ? (
+                            <div className="flex items-center gap-2 text-xs text-slate-500">
+                              <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                                <Brain size={14} className="text-indigo-500" />
+                              </motion.div>
+                              <span className="font-medium text-slate-600">Thinking...</span>
+                            </div>
+                          ) : (
+                            <div className="space-y-1.5">
+                              <div className="flex items-center gap-2 text-xs text-slate-500">
+                                <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                                  <Search size={13} className="text-indigo-500" />
+                                </motion.div>
+                                <span className="font-medium text-slate-600">Searching {thinkingPhase}...</span>
+                              </div>
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {searchedSources.map((src) => {
+                                  const iconMap: Record<string, React.ReactNode> = {
+                                    'Voice notes': <FileText size={9} />,
+                                    'Projects': <Database size={9} />,
+                                    'Calendar': <Calendar size={9} />,
+                                    'Email': <Mail size={9} />,
+                                    'CRM': <Users size={9} />,
+                                  };
+                                  return (
+                                    <motion.span
+                                      key={src}
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-medium"
+                                    >
+                                      {iconMap[src] || <Database size={9} />}
+                                      {src}
+                                    </motion.span>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+
                     {/* Typing indicator */}
                     {isTyping && (
                       <motion.div
                         key="typing"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="flex justify-start"
                       >
@@ -411,8 +461,8 @@ export const ContextualChat: React.FC = () => {
                     {typingText && (
                       <motion.div
                         key="typing-text"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         className="flex justify-start"
                       >
                         <div className="bg-white rounded-3xl rounded-tl-md px-4 py-3 max-w-[85%] border border-slate-100">
@@ -469,8 +519,48 @@ export const ContextualChat: React.FC = () => {
                 </div>
               </div>
             </div>
+  );
+
+  if (compact) return chatCard;
+
+  return (
+    <section id="contextual-chat" className="py-24 md:py-32 px-6 md:px-16 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:pl-8 lg:order-last"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-tight">
+              A ChatGPT that actually helps you.
+            </h2>
+            <div className="space-y-4 text-slate-600 leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)' }}>
+              <p>
+                Tired of constantly explaining what project you're working on? This chat <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>actually knows</span>.
+              </p>
+              <p>
+                It references your voice notes, suggests action cards, and helps plan your work week—without you having to repeat yourself.
+              </p>
+              <p className="text-slate-700 font-medium">
+                Choose Claude, Gemini, ChatGPT, or Grok. Or enable multi-chat to get all four perspectives on the same question—side by side.
+              </p>
+            </div>
           </motion.div>
 
+          {/* Right: Chat Card Interface */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative h-[600px] overflow-visible"
+          >
+            {chatCard}
+          </motion.div>
         </div>
       </div>
     </section>

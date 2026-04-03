@@ -4,7 +4,7 @@ import { Calendar, Clock, MapPin, FileText, ChevronDown, X, Users, Check, Plus, 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export const ActionCards: React.FC = () => {
+export const ActionCards: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   // Category options
   const categoryOptions = ['Personal', 'Work', 'Health', 'Finance', 'Home', 'Social'];
   const personCategoryOptions = ['Personal', 'Professional', 'Family', 'Friends'];
@@ -218,6 +218,118 @@ export const ActionCards: React.FC = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // ── Compact mode: just task + calendar cards, scaled down, no wrapper ──
+  if (compact) {
+    return (
+      <div className="space-y-3 origin-top" style={{ transform: 'scale(0.72)', transformOrigin: 'top center', overflow: 'visible' }}>
+        {/* Task Card (mini) */}
+        {!taskAction ? (
+          <div
+            className="relative rounded-[24px] p-4"
+            style={{
+              background: 'linear-gradient(135deg, rgba(236, 252, 241, 0.98) 0%, rgba(209, 250, 223, 0.98) 40%, rgba(167, 243, 208, 0.98) 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.5)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(34, 197, 94, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/20 to-transparent pointer-events-none rounded-[24px]" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-3">
+                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 text-xs font-bold text-green-700 uppercase tracking-wider">
+                  <Calendar size={12} className="text-green-600" />
+                  {formatDate(taskDate)}
+                </span>
+                <span className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${getCategoryColor(taskCategory)} text-white text-xs font-bold uppercase tracking-wider`}>
+                  {taskCategory}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xl">{taskEmoji}</span>
+                <h3 className="text-lg font-semibold text-slate-900">{taskTitle}</h3>
+              </div>
+              <p className="text-sm text-slate-600 mb-4">{taskDescription}</p>
+              <div className="flex items-center gap-2">
+                <button onClick={() => setTaskAction('dismissed')} className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/70 text-red-600 text-xs font-semibold border border-white/40">
+                  <X size={12} /> Dismiss
+                </button>
+                <button onClick={() => setTaskAction('added')} className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold shadow-md">
+                  <Plus size={12} /> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-[24px] p-8 flex items-center justify-center" style={{
+            background: taskAction === 'added'
+              ? 'linear-gradient(135deg, rgba(236, 252, 241, 0.98), rgba(167, 243, 208, 0.98))'
+              : 'linear-gradient(135deg, rgba(254, 242, 242, 0.98), rgba(252, 165, 165, 0.98))',
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+          }}>
+            <div className="text-center">
+              <div className={`w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center ${taskAction === 'added' ? 'bg-green-500' : 'bg-red-500'}`}>
+                {taskAction === 'added' ? <Check size={24} className="text-white" /> : <X size={24} className="text-white" />}
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">{taskAction === 'added' ? 'Task Added!' : 'Dismissed'}</h3>
+            </div>
+          </div>
+        )}
+
+        {/* Calendar Card (mini) */}
+        {!eventAction ? (
+          <div
+            className="relative rounded-[24px] p-4"
+            style={{
+              background: 'linear-gradient(135deg, rgba(239, 246, 255, 0.98) 0%, rgba(224, 242, 254, 0.98) 40%, rgba(186, 230, 253, 0.98) 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.5)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(59, 130, 246, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/20 to-transparent pointer-events-none rounded-[24px]" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-3">
+                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 text-blue-600 text-xs font-bold uppercase tracking-wider">
+                  <Calendar size={12} />
+                  {formatDate(eventDate)}
+                </span>
+                <span className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${getCategoryColor(eventCategory)} text-white text-xs font-bold uppercase tracking-wider`}>
+                  {eventCategory}
+                </span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{eventTitle}</h3>
+              <div className="flex items-center gap-3 mb-4 text-sm text-slate-600">
+                <span className="flex items-center gap-1"><Clock size={14} className="text-blue-500" /> {eventTime}</span>
+                <span className="text-slate-400">·</span>
+                <span className="flex items-center gap-1"><Hourglass size={14} className="text-blue-500" /> {eventDuration}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button onClick={() => setEventAction('dismissed')} className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/70 text-red-600 text-xs font-semibold border border-white/40">
+                  <X size={12} /> Dismiss
+                </button>
+                <button onClick={() => setEventAction('added')} className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-semibold shadow-md">
+                  <Plus size={12} /> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-[24px] p-8 flex items-center justify-center" style={{
+            background: eventAction === 'added'
+              ? 'linear-gradient(135deg, rgba(239, 246, 255, 0.98), rgba(186, 230, 253, 0.98))'
+              : 'linear-gradient(135deg, rgba(254, 242, 242, 0.98), rgba(252, 165, 165, 0.98))',
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+          }}>
+            <div className="text-center">
+              <div className={`w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center ${eventAction === 'added' ? 'bg-blue-500' : 'bg-red-500'}`}>
+                {eventAction === 'added' ? <Calendar size={24} className="text-white" /> : <X size={24} className="text-white" />}
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">{eventAction === 'added' ? 'Added!' : 'Dismissed'}</h3>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <section id="action-cards" className="py-24 md:py-32 px-6 md:px-16 relative z-10" style={{ overflow: 'visible' }}>

@@ -13,11 +13,14 @@ import { Hex3DScene } from './Hex3DScene';
 
 const DOT_END = 1.0;
 const HSPLIT_START = 1.0;
-const HSPLIT_END = 2.2;
-const VSPLIT_START = 1.8;
-const VSPLIT_END = 4.0;
+const HSPLIT_END = 3.0;
+const VSPLIT_START = 2.4;
+const VSPLIT_END = 5.0;
+const CUBE_ROT_START = 4.2;       // rotation begins before split finishes — no "stuck" moment
+const HEX_MORPH_START = 7.0;     // morph begins while cube is still rotating — seamless blend
 const CUBE_SPIN_END = 8.0;
-const HEX_MORPH_END = 8.8;
+const HEX_MORPH_ANIM_END = 9.0;   // morph visual finishes here
+const HEX_MORPH_END = 12.0;       // phase lingers so text is readable
 // crossfade removed — hard cut like HABOS logo
 const AUTO_ROTATE_SPEED = 0.15;
 const FOCUS_LERP_SPEED = 4.0; // how fast the focus rotation interpolates
@@ -106,6 +109,7 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
   const localCamDirRef = useRef(new THREE.Vector3(0, 0, 1));
   const [camDirTuple, setCamDirTuple] = useState<[number, number, number]>([0, 0, 1]);
   const wasDraggingRef = useRef(false);
+  const autoRotBlend = useRef(1); // 0 = suppressed (just released drag), 1 = full auto-rotate
 
   // Compute target rotation for focused triangle
   const targetQuat = useMemo(() => {
@@ -154,23 +158,45 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
         easing: Easing.out(Easing.cubic),
         extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
       }));
+      // Start rotation early so the square never feels stuck
+      if (t >= CUBE_ROT_START) {
+        setCubeRotY(interpolate(t, [CUBE_ROT_START, CUBE_SPIN_END], [0, CUBE_ROT], {
+          easing: Easing.inOut(Easing.cubic),
+          extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+        }));
+        setCubeRotX(interpolate(t, [CUBE_ROT_START, CUBE_SPIN_END], [0, ISO_X], {
+          easing: Easing.inOut(Easing.cubic),
+          extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+        }));
+      }
     } else if (currentPhase === 'cube') {
       setSplitH(1); setSplitV(1);
-      setCubeRotY(interpolate(t, [VSPLIT_END, CUBE_SPIN_END], [0, CUBE_ROT], {
+      setCubeRotY(interpolate(t, [CUBE_ROT_START, CUBE_SPIN_END], [0, CUBE_ROT], {
         easing: Easing.inOut(Easing.cubic),
         extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
       }));
-      setCubeRotX(interpolate(t, [VSPLIT_END, CUBE_SPIN_END], [0, ISO_X], {
+      setCubeRotX(interpolate(t, [CUBE_ROT_START, CUBE_SPIN_END], [0, ISO_X], {
         easing: Easing.inOut(Easing.cubic),
         extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
       }));
+      // Start morph early during cube phase for seamless blend
+      if (t >= HEX_MORPH_START) {
+        setMorph(interpolate(t, [HEX_MORPH_START, HEX_MORPH_ANIM_END], [0, 1], {
+          easing: Easing.inOut(Easing.cubic),
+          extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+        }));
+      }
     } else if (currentPhase === 'hex-morph') {
-      setMorph(interpolate(t, [CUBE_SPIN_END, HEX_MORPH_END], [0, 1], {
+      setMorph(interpolate(t, [HEX_MORPH_START, HEX_MORPH_ANIM_END], [0, 1], {
+        easing: Easing.inOut(Easing.cubic),
+        extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+      }));
+      // Ease in the rotation during morph — continuous from cube spin
+      const morphProgress = interpolate(t, [CUBE_SPIN_END, HEX_MORPH_END], [0, 1], {
         easing: Easing.out(Easing.cubic),
         extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
-      }));
-      // Rotate during morph so there's never a stall
-      const morphRotSpeed = AUTO_ROTATE_SPEED * 1.5;
+      });
+      const morphRotSpeed = AUTO_ROTATE_SPEED * (0.5 + morphProgress);
       const autoRotY = new THREE.Quaternion().setFromAxisAngle(
         new THREE.Vector3(0, 1, 0), dt * morphRotSpeed,
       );
@@ -205,19 +231,31 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
         // FOCUSED (not dragging): slerp to target face
         currentQuat.current.slerp(targetQuat, 1 - Math.exp(-FOCUS_LERP_SPEED * dt));
       } else {
-        // IDLE: auto-rotate + inertia from last drag
-        // Apply inertia (decaying velocity quaternion)
-        lastVelocityQuat.current.slerp(new THREE.Quaternion(), 0.05); // decay
-        if (Math.abs(1 - lastVelocityQuat.current.w) > 0.0001) {
+        // IDLE: floaty inertia from drag, then auto-rotate eases back in smoothly
+
+        // Decay inertia slowly — shape floats and drifts
+        const decayRate = 1 - Math.exp(-1.2 * dt);
+        lastVelocityQuat.current.slerp(new THREE.Quaternion(), decayRate);
+        const inertiaAmount = Math.abs(1 - lastVelocityQuat.current.w);
+
+        if (inertiaAmount > 0.00005) {
           currentQuat.current.premultiply(lastVelocityQuat.current);
           currentQuat.current.normalize();
+          // Reset blend to 0 while there's real inertia — auto-rotate fully suppressed
+          autoRotBlend.current = 0;
+        } else {
+          // Inertia has died — now very slowly ramp auto-rotate back in
+          // Takes ~3 seconds to reach full speed (0→1 at rate 0.3/s)
+          autoRotBlend.current = Math.min(1, autoRotBlend.current + dt * 0.35);
         }
-        // Auto-rotate: mostly Y, a bit of X for variety
+
+        // Apply auto-rotate scaled by the smooth blend factor
+        const s = autoRotBlend.current * autoRotBlend.current; // quadratic ease for extra smoothness
         const autoRotY = new THREE.Quaternion().setFromAxisAngle(
-          new THREE.Vector3(0, 1, 0), dt * AUTO_ROTATE_SPEED,
+          new THREE.Vector3(0, 1, 0), dt * AUTO_ROTATE_SPEED * s,
         );
         const autoRotX = new THREE.Quaternion().setFromAxisAngle(
-          new THREE.Vector3(1, 0, 0), dt * AUTO_ROTATE_SPEED * 0.15,
+          new THREE.Vector3(1, 0, 0), dt * AUTO_ROTATE_SPEED * 0.15 * s,
         );
         currentQuat.current.premultiply(autoRotY);
         currentQuat.current.premultiply(autoRotX);

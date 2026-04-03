@@ -11,7 +11,7 @@ export type AnimPhase = 'dot' | 'split' | 'cube' | 'hex-morph' | 'idle';
 // ─── Card component ───
 const Card: React.FC<{ title: string; subtitle?: string; body: string; className?: string; visual?: React.ReactNode }> = ({ title, subtitle, body, className = '', visual }) => (
   <div className={`bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-lg border border-white/70 pointer-events-auto ${className}`}>
-    <div className="text-xs text-indigo-500 font-semibold uppercase tracking-wider mb-2">{title}</div>
+    <div className="text-xs text-blue-500 font-semibold uppercase tracking-wider mb-2">{title}</div>
     {subtitle && <div className="text-slate-700 text-sm font-medium mb-1">{subtitle}</div>}
     <div className="text-slate-500 text-xs leading-relaxed">{body}</div>
     {visual}
@@ -376,204 +376,672 @@ function buildTemplateFromRef(
 // Helper: big stat block
 const Stat: React.FC<{ value: string; label: string }> = ({ value, label }) => (
   <div className="text-center">
-    <div className="text-3xl md:text-4xl font-bold text-indigo-500 leading-none">{value}</div>
-    <div className="text-slate-500 text-xs mt-1">{label}</div>
+    <div className="text-4xl font-bold text-blue-500 leading-none">{value}</div>
+    <div className="text-slate-400 text-[12px] mt-1 leading-tight">{label}</div>
   </div>
 );
 
-// Helper: italic quote
+// Helper: italic quote — short, punchy
 const Quote: React.FC<{ text: string }> = ({ text }) => (
   <div className="text-center">
-    <div className="text-slate-700 text-sm font-serif italic leading-snug">&ldquo;{text}&rdquo;</div>
+    <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{text}&rdquo;</div>
   </div>
 );
 
-// Helper: body text
+// Helper: body text — main description
 const Body: React.FC<{ text: string }> = ({ text }) => (
   <div className="text-center">
-    <div className="text-slate-600 text-sm leading-relaxed">{text}</div>
+    <div className="text-slate-500 text-[15px] leading-relaxed">{text}</div>
   </div>
 );
 
-// Helper: labeled section with short text
+// Helper: labeled section
 const LabeledText: React.FC<{ label: string; text: string }> = ({ label, text }) => (
   <div className="text-center">
-    <div className="text-[10px] text-indigo-500 font-semibold uppercase tracking-wider mb-1">{label}</div>
-    <div className="text-slate-600 text-sm leading-relaxed">{text}</div>
+    <div className="text-[11px] text-blue-500 font-semibold uppercase tracking-wider mb-1">{label}</div>
+    <div className="text-slate-500 text-[14px] leading-relaxed">{text}</div>
+  </div>
+);
+
+// Helper: tiny label — for very small triangle panels
+const Tiny: React.FC<{ text: string }> = ({ text }) => (
+  <div className="text-center">
+    <div className="text-slate-400 text-[12px] font-medium leading-tight">{text}</div>
   </div>
 );
 
 function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (React.ReactNode | null)[] {
   if (!feat) return [null, null, null, null];
 
-  // P0 = primary (largest), P1 = secondary, P2 = accent (often small), P3 = fourth (quads only)
-  // Content must be centered and compact — panels are irregular polygons that clip edges.
-
   switch (label) {
 
-    // ── Your Assistant ── P0=left tall, P1=right upper, P2=bottom-right
+    // ── Your Assistant ── P0=left wide rect, P1=right trapezoid, P2=bottom-right
     case 'Your Assistant':
       return [
-        <Stat key="p" value="19" label="data sources, one search" />,
-        <Body key="s" text="It learns your processes and history. Anticipates needs, drafts responses, acts on your behalf." />,
-        <Quote key="a" text="Other assistants need instructions. VOIS already knows." />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Total awareness</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">It already knows<br />your business.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Learns your processes, preferences, and history. Anticipates what you need before you ask.</div>
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            {['Emails', 'Meetings', 'Projects', 'CRM', 'Docs', 'Voice'].map(s => (
+              <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">19</div>
+          <div className="text-slate-600 text-[14px] font-semibold">data sources</div>
+          <div className="text-slate-400 text-[12px]">searched in parallel</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Voice, email, CRM,<br />docs, chat, projects,<br />and <span className="font-semibold text-slate-700">13 more</span>.</div>
+        </div>,
+        <div key="a" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Other assistants need instructions.<br />VOIS already knows.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── Your Super-Assistant ── P0=right tall, P1=bottom-left small, P2=top wide
+    // ── Your Super-Assistant ── P0=right narrow tall, P1=bottom-left, P2=top wide rect
     case 'Your Super-Assistant':
       return [
-        <Body key="p" text="Voice, watch, inbox, email — every input lands in one intelligent system that routes, prioritizes, and remembers." />,
-        <Quote key="s" text="One brain. Every interface." />,
-        <LabeledText key="a" label="Surfaces" text="Chat, voice, watch, inbox, desktop, Slack" />,
+        <div key="p" className="text-center space-y-2.5 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Inputs</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">
+            <span className="font-semibold text-slate-600">Voice</span> &mdash; speak naturally<br />
+            <span className="font-semibold text-slate-600">Watch</span> &mdash; tap your wrist<br />
+            <span className="font-semibold text-slate-600">Email</span> &mdash; forward it<br />
+            <span className="font-semibold text-slate-600">Chat</span> &mdash; type or text<br />
+            <span className="font-semibold text-slate-600">Slack</span> &mdash; command it
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;One brain.<br />Every interface.&rdquo;</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Every surface, one brain</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Speak, type, tap, forward.<br />It all lands in one place.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Every input is routed, prioritized, and remembered — no matter which device you used.</div>
+          <div className="flex items-center justify-center gap-2 mt-2">
+            {['Watch', 'Phone', 'Desktop', 'Inbox'].map(s => (
+              <div key={s} className="bg-blue-50 rounded-full px-2 py-0.5 text-[11px] text-blue-500 font-semibold">{s}</div>
+            ))}
+          </div>
+        </div>,
         null,
       ];
 
-    // ── Your Day ── P0=left tall, P2=right upper, P1=bottom-right
+    // ── Your Day ── P0=left wide rect, P1=bottom-right, P2=right upper rect
     case 'Your Day':
       return [
-        <Body key="p" text="VOIS reviews your tasks, calendar, and priorities overnight. Each morning: a proposed schedule, prep notes, and flagged items." />,
-        <Quote key="s" text="Your day should start with a plan, not decisions." />,
-        <LabeledText key="a" label="Every morning" text="Time blocks, meeting prep, priorities" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Morning brief</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your day, planned<br />before you wake up.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">VOIS reviews tasks, calendar, and deadlines overnight. You wake to a proposed schedule.</div>
+          <div className="space-y-1 mt-2 text-left">
+            {[
+              ['8:00', 'Deep work — Q3 proposal'],
+              ['10:00', 'Client call — Henderson'],
+              ['11:30', 'Review — sprint items'],
+            ].map(([time, task]) => (
+              <div key={time} className="flex items-center gap-2">
+                <div className="text-[12px] font-mono text-blue-500 w-8 shrink-0">{time}</div>
+                <div className="text-[12px] text-slate-500">{task}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">7 AM</div>
+          <div className="text-slate-600 text-[14px] font-semibold">your plan is ready</div>
+          <div className="text-slate-400 text-[12px]">built while you slept</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Time blocks, prep notes,<br />and flagged priorities.<br /><span className="font-semibold text-slate-700">Zero decisions needed</span>.</div>
+        </div>,
+        <div key="a" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your day should start with a plan, not decisions.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── Meetings ── P0=right tall, P1=bottom-left small, P2=left upper
+    // ── Meetings ── P0=right wide rect, P1=bottom-left, P2=left upper rect
     case 'Meetings':
       return [
-        <Body key="p" text="Personalized briefings before. Live transcription with speaker diarization during. Action items extracted and routed after." />,
-        <Quote key="s" text="Other tools transcribe. VOIS prepares, captures, and acts." />,
-        <LabeledText key="a" label="The cycle" text="Prepare &rarr; Capture &rarr; Act" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">The full cycle</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Prepared. Transcribed.<br />Acted on.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">
+            <span className="font-semibold text-slate-600">Before</span> &mdash; personalized briefing<br />
+            <span className="font-semibold text-slate-600">During</span> &mdash; live transcription<br />
+            <span className="font-semibold text-slate-600">After</span> &mdash; action items routed
+          </div>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Prep</div>
+              <div className="text-[10px] text-slate-400">auto-brief</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Capture</div>
+              <div className="text-[10px] text-slate-400">transcribe</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Act</div>
+              <div className="text-[10px] text-slate-400">route tasks</div>
+            </div>
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Other tools transcribe.<br />VOIS prepares, captures,<br />and acts.&rdquo;</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">0</div>
+          <div className="text-slate-600 text-[14px] font-semibold">manual follow-ups</div>
+          <div className="text-slate-400 text-[12px]">actions auto-routed to projects</div>
+        </div>,
         null,
       ];
 
-    // ── Projects ── P0=left tall, P1=bottom wide, P2=right upper
+    // ── Projects ── P0=left narrow tall, P1=bottom wide rect, P2=right upper wide rect
     case 'Projects':
       return [
-        <Body key="p" text="AI health scoring monitors completion, activity, and timelines. When a project stalls, VOIS flags it and suggests next steps." />,
-        <Quote key="s" text="Dashboards show what happened. VOIS tells you what to do next." />,
-        <LabeledText key="a" label="Monitors" text="Tasks, milestones, activity patterns" />,
+        <div key="p" className="text-center space-y-2.5 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Health</div>
+          <div className="space-y-1.5">
+            {[
+              ['On track', 'bg-emerald-400', '82%'],
+              ['At risk', 'bg-amber-400', '14%'],
+              ['Stalled', 'bg-red-400', '4%'],
+            ].map(([label, color, pct]) => (
+              <div key={label} className="flex items-center gap-1.5">
+                <div className={`w-2 h-2 rounded-full ${color} shrink-0`} />
+                <div className="text-[11px] text-slate-500 w-10">{label}</div>
+                <div className="text-[11px] font-semibold text-slate-700">{pct}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Proactive, not reactive</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">Know what needs you<br />before it stalls.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">AI monitors completion, activity, and timelines. When a project goes quiet, VOIS flags it and suggests next steps.</div>
+          <div className="grid grid-cols-2 gap-1.5 mt-2">
+            {['Stalled tasks', 'Missed milestones', 'Activity drops', 'Timeline drift'].map(s => (
+              <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
+            ))}
+          </div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Dashboards show what happened.<br />VOIS tells you what to do next.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── Operations ── P0=right tall, P1=left upper, P2=bottom-left
+    // ── Operations ── P0=right wide rect, P1=left upper, P2=bottom-left
     case 'Operations':
       return [
-        <Body key="p" text="VOIS watches KPIs, workflows, and recurring processes. Deviations trigger alerts with context and recommended action." />,
-        <Quote key="s" text="Stop firefighting. Start preventing." />,
-        <Stat key="a" value="24/7" label="background monitoring" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Always watching</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your business<br />monitors itself.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">KPIs, workflows, recurring processes. When something deviates, you get context and a recommended fix.</div>
+          <div className="space-y-1 mt-2">
+            {[
+              ['Delayed delivery', 'Auto-notify client'],
+              ['Missed SLA', 'Escalate to lead'],
+              ['Budget overrun', 'Flag for review'],
+            ].map(([trigger, action]) => (
+              <div key={trigger} className="flex items-center gap-1.5 text-[11px]">
+                <div className="text-red-400 font-semibold shrink-0">{trigger}</div>
+                <div className="text-slate-300">&rarr;</div>
+                <div className="text-emerald-500 font-medium">{action}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">24/7</div>
+          <div className="text-slate-600 text-[14px] font-semibold">monitoring</div>
+          <div className="text-slate-400 text-[12px]">zero human bandwidth</div>
+        </div>,
+        <div key="a" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Stop firefighting.<br />Start preventing.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── Clients ── P0=left tall, P1=right upper, P2=bottom-right small
+    // ── Clients ── P0=left wide rect, P1=right upper trapezoid, P2=bottom-right
     case 'Clients':
       return [
-        <Body key="p" text="Rich profiles from every interaction — meetings, emails, notes. Full history, sentiment trends, and AI-suggested talking points before every call." />,
-        <LabeledText key="s" label="Before every call" text="History, sentiment, talking points, open items" />,
-        <Quote key="a" text="Your CRM should be a memory, not a database." />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Full context CRM</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Every relationship,<br />total recall.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Rich profiles built from every interaction. Before any call, see full history and AI-suggested talking points.</div>
+          <div className="space-y-1.5 mt-2 text-left">
+            {[
+              ['Last contact', '3 days ago — email'],
+              ['Sentiment', 'Positive, engaged'],
+              ['Open items', '2 proposals pending'],
+              ['Next step', 'Follow up on pricing'],
+            ].map(([k, v]) => (
+              <div key={k} className="flex items-start gap-2">
+                <div className="text-[11px] font-semibold text-slate-600 w-16 shrink-0">{k}</div>
+                <div className="text-[11px] text-slate-400">{v}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Before every call</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">History, sentiment,<br />open items, talking<br />points — <span className="font-semibold text-slate-700">auto-prepared</span>.</div>
+        </div>,
+        <div key="a" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your CRM should be a memory, not a database.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── Documents ── P0=left tall, P1=bottom, P2=right upper wide
+    // ── Documents ── P0=left narrow tall, P1=bottom, P2=right upper wide rect
     case 'Documents':
       return [
-        <Body key="p" text="Describe what you need — a brief, a proposal, an update — and VOIS generates it from your voice, pulling context from your projects." />,
-        <Quote key="s" text="Stop staring at blank pages. Start talking." />,
-        <LabeledText key="a" label="Input" text="Voice, chat, or template" />,
+        <div key="p" className="text-center space-y-2.5 w-full">
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">Voice</div>
+          <div className="text-slate-600 text-[14px] font-semibold">to document</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[12px] leading-relaxed">
+            Briefs<br />Proposals<br />Reports<br />Updates
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Stop staring at blank pages. Start talking.&rdquo;</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Talk, don't type</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Describe what you need.<br />Get a finished document.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">VOIS pulls context from your projects and generates structured docs from your voice.</div>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Speak</div>
+              <div className="text-[10px] text-slate-400">describe it</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">AI</div>
+              <div className="text-[10px] text-slate-400">drafts it</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Done</div>
+              <div className="text-[10px] text-slate-400">formatted</div>
+            </div>
+          </div>
+        </div>,
         null,
       ];
 
-    // ── Finance ── P0=left tall, P1=bottom-right, P2=right upper
+    // ── Finance ── P0=left wide rect, P1=bottom-right, P2=right upper rect
     case 'Finance':
       return [
-        <Body key="p" text="Revenue, expenses, invoices, and forecasts in one AI-powered dashboard. Ask questions about your numbers in plain language." />,
-        <Quote key="s" text="Your books should explain themselves." />,
-        <LabeledText key="a" label="Unified" text="Revenue, expenses, invoices, forecasts" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Financial intelligence</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Every dollar,<br />one view.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Revenue, expenses, invoices, and forecasts in one AI dashboard. Ask questions in plain language.</div>
+          <div className="space-y-1 mt-2">
+            {[
+              ['Revenue', '$48.2K', 'text-emerald-500'],
+              ['Expenses', '$31.7K', 'text-amber-500'],
+              ['Net', '$16.5K', 'text-blue-500'],
+            ].map(([label, val, color]) => (
+              <div key={label} className="flex items-center justify-between">
+                <div className="text-[11px] text-slate-500">{label}</div>
+                <div className={`text-[12px] font-bold ${color}`}>{val}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your books should explain themselves.&rdquo;</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Ask anything</div>
+          <div className="space-y-1">
+            {['"How much did we spend on marketing?"', '"Show overdue invoices"', '"Revenue trend last 6 months"'].map(q => (
+              <div key={q} className="bg-slate-50 rounded px-2 py-1 text-[11px] text-slate-500 italic">{q}</div>
+            ))}
+          </div>
+        </div>,
         null,
       ];
 
-    // ── Website ── P0=right tall, P1=bottom-left, P2=left upper
+    // ── Website ── P0=right wide rect, P1=bottom-left, P2=left upper rect
     case 'Website':
       return [
-        <Body key="p" text="Describe your business and VOIS generates a complete website — copy, layout, images, SEO. Update by voice. No code needed." />,
-        <Quote key="s" text="Your website shouldn't need a developer." />,
-        <Stat key="a" value="0" label="lines of code required" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">AI-built sites</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Describe your business.<br />Get a website.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Copy, layout, images, SEO — generated. Update by voice. Connect forms, booking, and payments.</div>
+          <div className="grid grid-cols-2 gap-1.5 mt-2">
+            {['Copy & SEO', 'Layout', 'Forms', 'Booking', 'Payments', 'Analytics'].map(s => (
+              <div key={s} className="bg-blue-50 rounded px-1.5 py-1 text-[11px] text-blue-500 font-medium text-center">{s}</div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your website shouldn&rsquo;t need a developer.&rdquo;</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">0</div>
+          <div className="text-slate-600 text-[14px] font-semibold">lines of code</div>
+          <div className="text-slate-400 text-[12px]">voice-updated, always live</div>
+        </div>,
         null,
       ];
 
-    // ── AI Agents ── P0=right tall, P1=bottom wide, P2=top-left
+    // ── AI Agents ── P0=right wide rect, P1=bottom wide rect, P2=top-left wide rect
     case 'AI Agents':
       return [
-        <Quote key="p" text="ChatGPT answers questions. VOIS agents complete missions." />,
-        <LabeledText key="s" label="Your AI team" text="Researcher, Writer, Strategist, Coder, Slides" />,
-        <LabeledText key="a" label="The loop" text="Plan &rarr; Act &rarr; Approve &rarr; Deliver" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Your AI org chart</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your first ten hires<br />don&rsquo;t need salaries.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Build agents in an org chart. Each has responsibilities, tools, budgets, and reporting lines.</div>
+          <div className="space-y-1 mt-2">
+            {[
+              ['Researcher', 'Web scraping, analysis'],
+              ['Writer', 'Content, proposals'],
+              ['Analyst', 'Data, forecasts'],
+              ['Ops', 'Scheduling, routing'],
+            ].map(([role, desc]) => (
+              <div key={role} className="flex items-center gap-2 text-[11px]">
+                <div className="font-semibold text-blue-500 w-14 shrink-0">{role}</div>
+                <div className="text-slate-400">{desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">The loop</div>
+          <div className="flex items-center justify-center gap-2 mt-1">
+            {['Plan', 'Act', 'Pause', 'Deliver'].map((step, i) => (
+              <React.Fragment key={step}>
+                {i > 0 && <div className="text-slate-300 text-[14px]">&rarr;</div>}
+                <div className="bg-blue-50 rounded-full px-2 py-0.5 text-[11px] text-blue-500 font-semibold">{step}</div>
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Agents plan before acting<br />and pause for your approval.<br /><span className="font-semibold text-slate-700">Always in control</span>.</div>
+        </div>,
+        <div key="a" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;ChatGPT answers questions.<br />VOIS agents complete missions.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── Reports ── P0=large, P1=secondary, P2=accent
+    // ── Reports ── P0=left wide rect, P1=bottom-right, P2=right upper
     case 'Reports':
       return [
-        <Body key="p" text="Upload a template, VOIS extracts every field. Fill the entire report by voice — the AI interviews you and pre-fills what it already knows." />,
-        <Quote key="s" text="Ten questions. Done." />,
-        <Stat key="a" value="90s" label="average report time" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Reports, reimagined</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Call your assistant.<br />Describe what happened.<br />Get a finished report.</div>
+          <div className="text-slate-400 text-[14px] leading-relaxed">No forms. No laptop. Just a phone call.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Upload any template and VOIS extracts every field. Then fill it by voice — the AI interviews you and pre-fills what it already knows.</div>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex flex-col items-center">
+              <div className="text-[19px] font-bold text-blue-500">Upload</div>
+              <div className="text-[10px] text-slate-400">template</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[19px] font-bold text-blue-500">Call</div>
+              <div className="text-[10px] text-slate-400">your AI</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[19px] font-bold text-blue-500">Done</div>
+              <div className="text-[10px] text-slate-400">report filed</div>
+            </div>
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">90s</div>
+          <div className="text-slate-600 text-[14px] font-semibold">avg. report time</div>
+          <div className="text-slate-400 text-[12px]">vs 30 min traditional</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">People talk 3&ndash;4x faster<br />than they type. Add AI<br />formatting = <span className="font-semibold text-slate-700">10x faster</span>.</div>
+        </div>,
+        <div key="a" className="text-center space-y-2.5 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Voice-first</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">AI asks. You answer.<br />10 questions. Done.</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">
+            <span className="font-semibold text-slate-600">Phone call</span> &mdash; ring your assistant<br />
+            <span className="font-semibold text-slate-600">Interview</span> &mdash; AI walks through fields<br />
+            <span className="font-semibold text-slate-600">Dictation</span> &mdash; one voice note fills all<br />
+            <span className="font-semibold text-slate-600">Chat</span> &mdash; conversational text input
+          </div>
+        </div>,
         null,
       ];
 
-    // ── Your Team ── P0=bottom-left, P1=bottom-right, P2=top wide
+    // ── Your Team ── P0=bottom-left rect, P1=bottom-right rect, P2=top wide rect
     case 'Your Team':
       return [
-        <Body key="p" text="Every team member gets their own AI assistant — company context, processes, and history. Personalized per role." />,
-        <Quote key="s" text="Scale your best practices to every seat." />,
-        <LabeledText key="a" label="Per-role AI" text="Onboarding, daily planning, knowledge lookup" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Per-role AI</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">Every seat gets<br />a super-assistant.</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Company context, processes, and history — personalized per role.</div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">1:1</div>
+          <div className="text-slate-600 text-[14px] font-semibold">AI per employee</div>
+          <div className="text-slate-400 text-[12px]">tailored to their role</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Not a shared chatbot.<br />A <span className="font-semibold text-slate-700">personal assistant</span><br />that knows their job.</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">What each employee gets</div>
+          <div className="grid grid-cols-2 gap-1.5 mt-1">
+            {['Onboarding guide', 'Daily planner', 'Knowledge lookup', 'Task manager', 'Process coach', 'Meeting prep'].map(s => (
+              <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
+            ))}
+          </div>
+        </div>,
         null,
       ];
 
-    // ── Playbooks ── P0=right large, P1=bottom-left small, P2=top wide
+    // ── Playbooks ── P0=right wide rect, P1=bottom-left, P2=top wide rect
     case 'Playbooks':
       return [
-        <Body key="p" text="Turn SOPs into living workflows. VOIS monitors compliance, guides each step, and flags deviations before they become problems." />,
-        <Quote key="s" text="SOPs shouldn't live in binders." />,
-        <LabeledText key="a" label="Living workflows" text="Monitor, guide, enforce" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Living SOPs</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your playbooks<br />run themselves.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Turn procedures into workflows that monitor compliance, guide each step, and flag deviations.</div>
+          <div className="space-y-1 mt-2">
+            {[
+              ['Step 1', 'Guide team member', 'text-emerald-500'],
+              ['Step 2', 'Verify compliance', 'text-blue-500'],
+              ['Step 3', 'Flag deviation', 'text-amber-500'],
+            ].map(([step, desc, color]) => (
+              <div key={step} className="flex items-center gap-2 text-[11px]">
+                <div className={`font-bold ${color} w-8 shrink-0`}>{step}</div>
+                <div className="text-slate-400">{desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;SOPs shouldn&rsquo;t live in binders. They should run themselves.&rdquo;</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Compliance score</div>
+          <div className="text-5xl font-black text-emerald-500 leading-none tracking-tight">97%</div>
+          <div className="text-slate-400 text-[12px]">avg. across active playbooks</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Real-time monitoring.<br />Deviations caught <span className="font-semibold text-slate-700">before</span><br />they become problems.</div>
+        </div>,
         null,
       ];
 
-    // ── Field to Office ── P0=left, P1=right upper, P2=bottom wide
+    // ── Field to Office ── P0=left wide rect, P1=right upper trapezoid, P2=bottom wide rect
     case 'Field to Office':
       return [
-        <Body key="p" text="A technician speaks a 30-second update. The office sees it instantly — structured, filed, and linked to the right project and client." />,
-        <Quote key="s" text="The field is never a day behind again." />,
-        <Stat key="a" value="30s" label="voice note replaces 20 min of data entry" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Bridge the gap</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">Field update in 30s.<br />Office sees it instantly.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Technician speaks a voice note. It&rsquo;s structured, filed, and linked to the right project, client, and invoice.</div>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Speak</div>
+              <div className="text-[10px] text-slate-400">on site</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">AI</div>
+              <div className="text-[10px] text-slate-400">structures</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">Office</div>
+              <div className="text-[10px] text-slate-400">sees it</div>
+            </div>
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">30s</div>
+          <div className="text-slate-600 text-[13px] font-semibold">voice note replaces</div>
+          <div className="text-slate-400 text-[12px]">20 min of paperwork</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Auto-linked to</div>
+          <div className="grid grid-cols-2 gap-1.5 mt-1">
+            {['Project', 'Client', 'Invoice', 'Timeline'].map(s => (
+              <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
+            ))}
+          </div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;The field is never<br />a day behind again.&rdquo;</div>
+        </div>,
         null,
       ];
 
-    // ── The Airlock ── P0=right tall, P1=left upper, P2=bottom wide
+    // ── The Airlock ── P0=right wide rect, P1=left upper, P2=bottom wide rect
     case 'The Airlock':
       return [
-        <Body key="p" text="Every AI action shows a preview with cryptographic confirmation. You review the exact output, then approve. Nothing happens without your sign-off." />,
-        <Quote key="s" text="Trust isn't a setting. It's an architecture." />,
-        <LabeledText key="a" label="The iron rule" text="AI proposes. You approve. Always." />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">AI safety layer</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">AI power.<br />Human control.</div>
+          <div className="w-8 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Every AI action goes through a preview card. You see the exact output, then approve. Nothing happens without your sign-off.</div>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">AI</div>
+              <div className="text-[10px] text-slate-400">proposes</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-blue-500">You</div>
+              <div className="text-[10px] text-slate-400">review</div>
+            </div>
+            <div className="text-slate-300 text-[16px]">&rarr;</div>
+            <div className="flex flex-col items-center">
+              <div className="text-[16px] font-bold text-emerald-500">Approve</div>
+              <div className="text-[10px] text-slate-400">or reject</div>
+            </div>
+          </div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">100%</div>
+          <div className="text-slate-600 text-[14px] font-semibold">human-approved</div>
+          <div className="text-slate-400 text-[12px]">every action, every time</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">The iron rule</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">AI proposes. You review.<br />You approve. Always.</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Trust isn&rsquo;t a setting.<br />It&rsquo;s an architecture.&rdquo;</div>
+        </div>,
         null,
       ];
 
     // ── Your Memory (quad) ── P0=right, P1=left, P2=bottom wide, P3=top wide
     case 'Your Memory':
       return [
-        <Body key="p" text="Search across all 19 data sources — voice, emails, documents, transcripts, CRM — with semantic search." />,
-        <Quote key="s" text="Your second brain, with perfect recall." />,
-        <LabeledText key="a" label="Semantic search" text="Finds answers even when you forget which app it was in" />,
-        <Stat key="f" value="19" label="sources searched at once" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Semantic search</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">Ask anything<br />you&rsquo;ve ever said.</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Search by meaning, not keywords. VOIS finds answers across every source.</div>
+        </div>,
+        <div key="s" className="text-center space-y-2.5 w-full">
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">19</div>
+          <div className="text-slate-600 text-[13px] font-semibold">sources indexed</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[12px] leading-relaxed">
+            Voice &middot; Email &middot; Docs<br />
+            CRM &middot; Chat &middot; Notes<br />
+            + 13 more
+          </div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Example queries</div>
+          <div className="space-y-1">
+            {['"What did Sarah say about the budget?"', '"Find everything about permit delays"', '"Where are we with Henderson?"'].map(q => (
+              <div key={q} className="bg-slate-50 rounded px-2 py-1 text-[11px] text-slate-500 italic">{q}</div>
+            ))}
+          </div>
+        </div>,
+        <div key="f" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your second brain,<br />with perfect recall.&rdquo;</div>
+        </div>,
       ];
 
     // ── Growth Engine (quad) ── P0=right, P1=left, P2=bottom wide, P3=top wide
     case 'Growth Engine':
       return [
-        <Body key="p" text="Shared meeting notes become a growth channel. Recipients see your company, get a promo offer, and sign up pre-seeded with their data." />,
-        <Quote key="s" text="Your product sells itself through the work it does." />,
-        <LabeledText key="a" label="The flywheel" text="Share notes &rarr; Discover &rarr; Sign up" />,
-        <Stat key="f" value="90%" label="off for referred signups" />,
+        <div key="p" className="text-center space-y-3 w-full">
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Viral loop</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">Share a meeting note.<br />Gain a customer.</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Recipients see your company, get a promo, and sign up pre-seeded with their own data.</div>
+        </div>,
+        <div key="s" className="text-center space-y-3 w-full">
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">90%</div>
+          <div className="text-slate-600 text-[13px] font-semibold">off for referrals</div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[12px] leading-relaxed">Referred signups get<br />a workspace pre-seeded<br />from <span className="font-semibold text-slate-700">their own data</span>.</div>
+        </div>,
+        <div key="a" className="text-center space-y-3 w-full">
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">The flywheel</div>
+          <div className="flex items-center justify-center gap-2 mt-1">
+            {['Share', 'Discover', 'Sign up', 'Share'].map((step, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <div className="text-slate-300 text-[12px]">&rarr;</div>}
+                <div className="bg-blue-50 rounded-full px-2 py-0.5 text-[10px] text-blue-500 font-semibold">{step}</div>
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="w-6 h-px bg-slate-200 mx-auto" />
+          <div className="text-slate-500 text-[13px] leading-relaxed">Your product sells itself<br />through the work it does.</div>
+        </div>,
+        <div key="f" className="text-center space-y-2 w-full">
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Every meeting note<br />is a growth channel.&rdquo;</div>
+        </div>,
       ];
 
-    // ── Fallback ──
     default:
       return [
         <Body key="p" text={feat.body} />,
@@ -594,7 +1062,8 @@ const FocusPanels: React.FC<{
   label: string;
   faceIdx: number;
   interactive: boolean;
-}> = ({ containerWidth, label, faceIdx }) => {
+  visible?: boolean;
+}> = ({ containerWidth, label, faceIdx, visible = true }) => {
   const feat = FEATURE_MAP[label];
 
   // Analytically compute panel template from pre-computed world-space vertices.
@@ -635,36 +1104,90 @@ const FocusPanels: React.FC<{
           <path
             key={i}
             d={panel.svgPath}
-            fill="rgba(255,255,255,0.85)"
+            fill="rgba(255,255,255,0.94)"
             stroke="rgba(226,232,240,0.4)"
             strokeWidth="0.15"
             filter="url(#panelShadow)"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(2px)',
+              transition: visible
+                ? `opacity 500ms ease-out ${i * 150}ms, transform 500ms ease-out ${i * 150}ms`
+                : 'opacity 80ms ease-out, transform 80ms ease-out',
+            }}
           />
         ))}
       </svg>
 
-      {/* Content clipped to panel shapes */}
+      {/* Content positioned in safe inscribed rectangles — no clip-path clipping */}
       {template.panels.map((panel, i) => {
         if (!panel.svgPath || !contents[i] || panel.region.length < 3) return null;
-        const clipPts = panel.region.map(p => {
-          const px = panel.bbox.width > 0 ? ((p.x - panel.bbox.left) / panel.bbox.width) * 100 : 50;
-          const py = panel.bbox.height > 0 ? ((p.y - panel.bbox.top) / panel.bbox.height) * 100 : 50;
-          return `${px.toFixed(1)}% ${py.toFixed(1)}%`;
-        });
+
+        // Compute largest inscribed axis-aligned rectangle inside the polygon.
+        // Sample horizontal strips and find the widest safe rect.
+        const pts = panel.region;
+        const ys = pts.map(p => p.y);
+        const minY = Math.min(...ys), maxY = Math.max(...ys);
+        const STEPS = 40;
+        let bestRect = { left: 0, top: 0, width: 0, height: 0, area: 0 };
+
+        for (let a = 0; a < STEPS; a++) {
+          const y0 = minY + (a / STEPS) * (maxY - minY);
+          for (let b = a + 1; b <= STEPS; b++) {
+            const y1 = minY + (b / STEPS) * (maxY - minY);
+            // Find min x-range across this y band
+            let xMin = -Infinity, xMax = Infinity;
+            for (let s = 0; s <= 4; s++) {
+              const yy = y0 + (s / 4) * (y1 - y0);
+              // Ray cast: find x intersections at this y
+              const xs: number[] = [];
+              for (let e = 0; e < pts.length; e++) {
+                const p1 = pts[e], p2 = pts[(e + 1) % pts.length];
+                if ((p1.y <= yy && p2.y > yy) || (p2.y <= yy && p1.y > yy)) {
+                  const t = (yy - p1.y) / (p2.y - p1.y);
+                  xs.push(p1.x + t * (p2.x - p1.x));
+                }
+              }
+              if (xs.length >= 2) {
+                xs.sort((a, b) => a - b);
+                xMin = Math.max(xMin, xs[0]);
+                xMax = Math.min(xMax, xs[xs.length - 1]);
+              }
+            }
+            if (xMax > xMin) {
+              const area = (xMax - xMin) * (y1 - y0);
+              if (area > bestRect.area) {
+                bestRect = { left: xMin, top: y0, width: xMax - xMin, height: y1 - y0, area };
+              }
+            }
+          }
+        }
+
+        // Add inward padding from polygon edges
+        const inset = 0.03;
+        const safeRect = {
+          left: bestRect.left + inset,
+          top: bestRect.top + inset,
+          width: Math.max(0.01, bestRect.width - inset * 2),
+          height: Math.max(0.01, bestRect.height - inset * 2),
+        };
+
         const scale = containerWidth / BASE_CONTAINER_PX;
-        const pad = Math.round(16 * scale);
         return (
           <div
             key={i}
             className="absolute pointer-events-none overflow-hidden flex items-center justify-center"
             style={{
-              left: `${(panel.bbox.left * 100).toFixed(2)}%`,
-              top: `${(panel.bbox.top * 100).toFixed(2)}%`,
-              width: `${(panel.bbox.width * 100).toFixed(2)}%`,
-              height: `${(panel.bbox.height * 100).toFixed(2)}%`,
-              padding: `${pad}px`,
+              left: `${(safeRect.left * 100).toFixed(2)}%`,
+              top: `${(safeRect.top * 100).toFixed(2)}%`,
+              width: `${(safeRect.width * 100).toFixed(2)}%`,
+              height: `${(safeRect.height * 100).toFixed(2)}%`,
               fontSize: `${Math.max(0.65, scale)}em`,
-              clipPath: `polygon(${clipPts.join(', ')})`,
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(8px)',
+              transition: visible
+                ? `opacity 500ms ease-out ${i * 150}ms, transform 500ms ease-out ${i * 150}ms`
+                : 'opacity 80ms ease-out, transform 80ms ease-out',
             }}
           >
             {contents[i]}
@@ -720,8 +1243,9 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
     [introComplete],
   );
 
-  const onPointerMove = useCallback(
-    (e: React.PointerEvent) => {
+  // Window-level move/up so dragging works even outside the container
+  React.useEffect(() => {
+    const handleMove = (e: PointerEvent) => {
       if (!isDraggingRef.current) return;
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
@@ -731,15 +1255,26 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
       lastVelocityQuat.current.copy(delta);
       dragDistRef.current += Math.abs(e.movementX) + Math.abs(e.movementY);
       lastSpherePoint.current.copy(newPoint);
-    },
-    [],
-  );
-
-  const onPointerUp = useCallback(() => {
-    isDraggingRef.current = false;
-    setDragging(false);
-    dragDeltaQuat.current.identity();
+    };
+    const handleUp = () => {
+      if (!isDraggingRef.current) return;
+      isDraggingRef.current = false;
+      setDragging(false);
+      dragDeltaQuat.current.identity();
+    };
+    window.addEventListener('pointermove', handleMove);
+    window.addEventListener('pointerup', handleUp);
+    window.addEventListener('pointercancel', handleUp);
+    return () => {
+      window.removeEventListener('pointermove', handleMove);
+      window.removeEventListener('pointerup', handleUp);
+      window.removeEventListener('pointercancel', handleUp);
+    };
   }, []);
+
+  // Keep these as no-ops so JSX props don't break
+  const onPointerMove = useCallback(() => {}, []);
+  const onPointerUp = useCallback(() => {}, []);
 
   const handleTriClick = useCallback((index: number | null) => {
     if (dragDistRef.current > 8) return;
@@ -773,6 +1308,18 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
   const isFocusMode = focusedTri !== null;
   const displayLabel = isFocusMode ? (TRI_LABELS[previewFace] || TRI_LABELS[focusedTri!]) : null;
 
+  // Delay panel appearance so the camera snap finishes first
+  // Re-triggers on focus enter, face change (previewFace), and drag release
+  const [panelsReady, setPanelsReady] = useState(false);
+  React.useEffect(() => {
+    if (isFocusMode && !dragging) {
+      setPanelsReady(false);
+      const timer = setTimeout(() => setPanelsReady(true), 800);
+      return () => clearTimeout(timer);
+    }
+    if (!isFocusMode) setPanelsReady(false);
+  }, [isFocusMode, dragging, previewFace]);
+
   // Report focus state to parent
   React.useEffect(() => {
     onFocusChange?.(displayLabel);
@@ -782,6 +1329,10 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
   React.useEffect(() => {
     if (unfocusRef) unfocusRef.current = () => setFocusedTri(null);
   }, [unfocusRef]);
+
+  // Reduce canvas overdraw on mobile for performance
+  const isMobile = containerWidth > 0 && containerWidth < 500;
+  const canvasInset = isMobile ? '-25% -35%' : '-50% -70%';
 
   return (
     <div
@@ -798,23 +1349,15 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
       onPointerCancel={onPointerUp}
       onWheel={onWheel}
     >
-      {/* Subtle vignette — fades geometry edges into page, no hard boundary */}
-      <div
-        className="absolute pointer-events-none z-10"
-        style={{
-          inset: '-50% -70%',
-          background: 'radial-gradient(ellipse 42% 45% at center, rgba(248,249,250,0.6) 0%, rgba(248,249,250,0.25) 20%, rgba(248,249,250,0.08) 35%, transparent 50%, transparent 100%)',
-        }}
-      />
       {/* Canvas matches fog size so nothing gets clipped */}
       {containerWidth > 0 && (
-      <div className="absolute" style={{ inset: '-50% -70%' }}>
+      <div className="absolute" style={{ inset: canvasInset }}>
       <Canvas
         orthographic
         camera={{ zoom: 160 * (containerWidth / 672), position: [0, 0, 10], near: 0.1, far: 100 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
-        dpr={[1, 2]}
+        dpr={isMobile ? [1, 1.5] : [1, 2]}
       >
         <ambientLight intensity={0.3} />
         <directionalLight position={[5, 5, 10]} intensity={1.2} />
@@ -848,20 +1391,17 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
 
       {/* Focus overlay — panels vary per face, fade in/out */}
       {(() => {
-        const panelsVisible = isFocusMode && !dragging;
+        const panelsVisible = isFocusMode && panelsReady && !dragging;
         return (
       <div
         className="absolute pointer-events-none z-20"
         style={{
           inset: '-10% -35%',
-          opacity: panelsVisible ? 1 : 0,
-          transform: panelsVisible ? 'scale(1)' : 'scale(0.97)',
-          transition: panelsVisible
-            ? 'opacity 600ms ease-in-out, transform 600ms ease-in-out'
-            : 'opacity 150ms ease-out, transform 150ms ease-out',
+          transition: !panelsVisible ? 'opacity 80ms ease-out' : 'none',
+          opacity: isFocusMode ? 1 : 0,
         }}
       >
-        <FocusPanels containerWidth={containerWidth} label={displayLabel || ''} faceIdx={previewFace} interactive={isFocusMode} />
+        <FocusPanels containerWidth={containerWidth} label={displayLabel || ''} faceIdx={previewFace} interactive={isFocusMode} visible={panelsVisible} />
       </div>
         );
       })()}

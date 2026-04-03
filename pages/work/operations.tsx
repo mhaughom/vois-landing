@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Mic, MessageSquare, FileText, ClipboardList, AlertTriangle, TrendingDown, Zap } from 'lucide-react';
+import { Navbar } from '../../components/Navbar';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -36,38 +37,7 @@ const StatusDot = ({ color }: { color: string }) => (
 const Operations: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* ─── Navigation ─── */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'circOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-5 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
-        style={{ paddingTop: 'calc(1.25rem + env(safe-area-inset-top, 0px))' }}
-      >
-        <a href="/work">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-          >
-            <ArrowLeft size={16} className="text-slate-600" />
-            <span className="font-medium text-sm text-slate-600">Back to Work</span>
-          </motion.div>
-        </a>
-
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <a href="/">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-            >
-              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
-            </motion.div>
-          </a>
-        </div>
-
-        <div className="w-32" />
-      </motion.nav>
+      <Navbar />
 
       {/* ─── Content ─── */}
       <main className="pt-32 pb-24 px-6 md:px-12">
@@ -87,6 +57,8 @@ const Operations: React.FC = () => {
               automatically and flags anomalies with corrective actions.
             </p>
           </motion.section>
+
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16"><p className="text-lg text-slate-600 leading-relaxed">The Operations module doesn't wait for someone to notice problems — it detects them automatically. Admin configures rules per operation: 'if completion rate drops below 90%, flag yellow; below 70%, flag red.' When team members submit reports via voice, dictation, chat, or form, the system evaluates every rule, calculates compliance scores, produces health status, and immediately surfaces results on the dashboard. Across multiple report runs, it tracks trends and alerts on anomalies before they become crises.</p></motion.div>
 
           {/* ━━━ 2. Mock health dashboard ━━━ */}
           <motion.section {...fadeUp(0.15)} className="mb-20">

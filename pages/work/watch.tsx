@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
+import { Navbar } from '../../components/Navbar';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -37,38 +38,7 @@ const techPills = [
 const WatchAssistant: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'circOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
-        style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
-      >
-        <a href="/work">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-          >
-            <ArrowLeft size={16} className="text-slate-600" />
-            <span className="font-medium text-sm text-slate-600">Back to Work</span>
-          </motion.div>
-        </a>
-
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <a href="/">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-            >
-              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
-            </motion.div>
-          </a>
-        </div>
-
-        <div className="w-32" />
-      </motion.nav>
+      <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
@@ -88,6 +58,17 @@ const WatchAssistant: React.FC = () => {
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
               Not a notification mirror. A full AI assistant with voice,
               tools, and sub-300ms responses.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto text-center mb-16">
+              A field worker wearing the watch can dictate a 30-second voice note between jobs. The Smart Router processes it into tasks, events, and notes. They never open their phone. The data flows into the unified system and is immediately visible to the office team on the web dashboard. Three NECP compliance fixes prevent watchOS from killing the connection &mdash; solving the 35-second timeout that plagues every other watch AI app.
             </p>
           </motion.div>
 

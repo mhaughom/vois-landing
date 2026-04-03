@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
   ArrowRight,
@@ -65,38 +66,7 @@ const trustSignals = [
 const Agents: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'circOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
-        style={{ paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
-      >
-        <a href="/work">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-          >
-            <ArrowLeft size={16} className="text-slate-600" />
-            <span className="font-medium text-sm text-slate-600">Back to Work</span>
-          </motion.div>
-        </a>
-
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <a href="/">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-3 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-            >
-              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
-            </motion.div>
-          </a>
-        </div>
-
-        <div className="w-32" />
-      </motion.nav>
+      <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
@@ -114,6 +84,17 @@ const Agents: React.FC = () => {
               executes across your business, and asks permission before anything risky.
             </p>
           </motion.section>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mb-16">
+              This is not a chatbot with API integrations. It&rsquo;s an autonomous agent framework with planning, approval gates, budget tracking, delegation, and fault recovery &mdash; operating across 87 business modules with row-level security. The architecture is comparable to enterprise workflow engines like ServiceNow or Salesforce Flow, but driven by natural language instead of drag-and-drop flowcharts. Active runs even survive server restarts.
+            </p>
+          </motion.div>
 
           {/* ── 2. Pipeline flow ─────────────────────────────────────── */}
           <motion.section {...fadeUp(0.15)} className="mb-20">

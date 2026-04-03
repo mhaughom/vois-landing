@@ -8,7 +8,9 @@ export function screenToSphere(
 ): THREE.Vector3 {
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
-  const r = Math.min(rect.width, rect.height) / 2;
+  // Use a larger virtual sphere (1.5x) so the cursor stays "on" the sphere
+  // even near the edges — eliminates the hard rotation boundary
+  const r = Math.min(rect.width, rect.height) / 2 * 1.5;
   const nx = (clientX - cx) / r;
   const ny = -(clientY - cy) / r; // flip Y
   const len2 = nx * nx + ny * ny;
@@ -16,8 +18,10 @@ export function screenToSphere(
   if (len2 <= 1) {
     return new THREE.Vector3(nx, ny, Math.sqrt(1 - len2));
   }
+  // Beyond sphere: use hyperbolic falloff instead of hard clamp to z=0
+  // This keeps rotation smooth and directional even far from center
   const len = Math.sqrt(len2);
-  return new THREE.Vector3(nx / len, ny / len, 0);
+  return new THREE.Vector3(nx / len, ny / len, 1 / (2 * len));
 }
 
 // Compute incremental quaternion from two points on the arcball sphere

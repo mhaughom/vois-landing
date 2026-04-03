@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Mic, Calendar, ListTodo, Mail, Headphones, BarChart3,
@@ -10,6 +10,9 @@ import {
   Presentation, Wrench, ClipboardList, UserCheck, Landmark,
   Watch, Route, Clock, LayoutGrid, Megaphone, PenTool,
   Ticket, FormInput, Link2, BookMarked, FolderOpen,
+  Lightbulb, Zap, AudioLines, Hand, Rocket, UsersRound,
+  Stethoscope, HardHat, Palette, UtensilsCrossed, Home, Scissors,
+  GraduationCap, Dumbbell,
 } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 
@@ -47,73 +50,13 @@ const habosMenuData: MenuCategory[] = [
     label: 'Product',
     sections: [
       {
-        title: 'Key Features',
         items: [
-          { icon: Sparkles, label: 'HABOS Assistant', desc: 'Your AI business partner', href: '/work/assistant' },
-          { icon: Brain, label: 'HABOS Brain', desc: '19-source semantic search', href: '/work/brain' },
-          { icon: Headphones, label: 'HABOS Meetings', desc: 'AI briefs & action items', href: '/work/meeting-notes' },
-          { icon: FileBarChart, label: 'HABOS Reports', desc: 'Voice-first AI reporting', href: '/work/reports' },
-          { icon: FileText, label: 'HABOS Briefs', desc: 'Auto-generated meeting prep', href: '/work/briefs' },
-          { icon: Bot, label: 'HABOS Agents', desc: 'Autonomous AI workflows', href: '/work/agents' },
-          { icon: Mic, label: 'Smart Router', desc: 'Voice → multi-system actions', href: '/work/voice-notes' },
-          { icon: Watch, label: 'Watch Assistant', desc: 'Full AI on your wrist', href: '/work/watch' },
-        ],
-      },
-      {
-        title: 'Workspace',
-        items: [
-          { icon: Mic, label: 'Voice Notes', desc: 'Talk, we handle the rest', href: '/work/voice-notes' },
-          { icon: Calendar, label: 'Calendar', desc: 'Auto-fill focus blocks', href: '/work/calendar' },
-          { icon: ListTodo, label: 'Tasks', desc: '7-factor AI prioritization', href: '/work/tasks' },
-          { icon: Mail, label: 'Email', desc: 'Unified inbox + voice mode', href: '/work/email' },
-          { icon: BarChart3, label: 'Projects', desc: 'Critical path & dependencies', href: '/work/projects' },
-          { icon: Presentation, label: 'Slides', desc: 'AI decks with live data', href: '/work/slides' },
-        ],
-      },
-      {
-        title: 'Operations',
-        items: [
-          { icon: ClipboardList, label: 'Operations', desc: 'Health scoring & cadences', href: '/work/operations' },
-          { icon: Search, label: 'Research', desc: 'AI deep dives & citations', href: '/work/research' },
-          { icon: Truck, label: 'Dispatch & Jobs', desc: 'Day-of board & status flow', href: '/work/dispatch' },
-          { icon: Route, label: 'Routes', desc: 'Geocoded stop ordering', href: '/work/routes' },
-          { icon: Clock, label: 'Time Tracking', desc: 'Clock in/out & billable hours', href: '/work/time-tracking' },
-          { icon: MapPin, label: 'Team Map', desc: 'Real-time field locations', href: '/work/team-map' },
-        ],
-      },
-      {
-        title: 'Commerce',
-        items: [
-          { icon: UserCheck, label: 'CRM & Sales', desc: 'Pipeline, kanban & AI strategy', href: '/work/crm' },
-          { icon: ShoppingCart, label: 'Products & Orders', desc: 'Variants, inventory & payments', href: '/work/products' },
-          { icon: Calendar, label: 'Bookings', desc: 'Availability & auto-orders', href: '/work/bookings' },
-          { icon: Landmark, label: 'Finance', desc: 'Receivables, payables & P&L', href: '/work/finance' },
-          { icon: CreditCard, label: 'Stripe Payments', desc: 'Direct bank payouts', href: '/work/payments' },
-          { icon: Link2, label: 'Scheduling Links', desc: 'Calendly-style public booking', href: '/work/scheduling-links' },
-        ],
-      },
-      {
-        title: 'Marketing',
-        items: [
-          { icon: Globe, label: 'Website Builder', desc: 'AI sites with live widgets', href: '/work/website-builder' },
-          { icon: Megaphone, label: 'Marketing Hub', desc: 'Campaigns & GTM analysis', href: '/work/marketing' },
-          { icon: PenTool, label: 'Creative Studio', desc: 'AI content & social publishing', href: '/work/creative-studio' },
-          { icon: LayoutGrid, label: 'Funnels', desc: 'Email/SMS automation flows', href: '/work/funnels' },
-          { icon: Globe, label: 'Custom Domains', desc: 'Domain + email + SSL in one', href: '/work/domains' },
-          { icon: Wrench, label: 'Scraper', desc: 'Website intelligence & brand extraction', href: '/work/scraper' },
-        ],
-      },
-      {
-        title: 'Team & Support',
-        items: [
-          { icon: Users, label: 'Team & Org Chart', desc: 'Drag-and-drop org structure', href: '/work/org-chart' },
-          { icon: MessageSquare, label: 'Unified Messenger', desc: 'Every channel, one timeline', href: '/work/messenger' },
-          { icon: Phone, label: 'Telephony', desc: 'AI receptionist & SMS assistant', href: '/work/telephony' },
-          { icon: Ticket, label: 'Tickets', desc: 'SLA timers & auto-escalation', href: '/work/tickets' },
-          { icon: FormInput, label: 'Forms', desc: '20+ field types & routing rules', href: '/work/forms' },
-          { icon: BookMarked, label: 'Playbooks', desc: 'SOP library & drag-to-assign', href: '/work/playbooks' },
-          { icon: FolderOpen, label: 'Files & Docs', desc: 'Media library & AI reader', href: '/work/files' },
-          { icon: User, label: 'People', desc: 'Every relationship, one view', href: '/work/people' },
+          { icon: MessageSquare, label: 'Communication', desc: 'Email, Messenger, Phone, Support Tickets', href: '/work/communication' },
+          { icon: Calendar, label: 'Scheduling & Bookings', desc: 'Calendar, Bookings, Scheduling Links', href: '/work/scheduling' },
+          { icon: Truck, label: 'Jobs & Operations', desc: 'Dispatch, Routes, Projects, Tasks, Time Tracking', href: '/work/jobs-operations' },
+          { icon: CreditCard, label: 'Sales & Payments', desc: 'CRM, Products, Invoicing, Payments', href: '/work/sales-payments' },
+          { icon: Mic, label: 'Voice & AI', desc: 'Voice Notes, Meeting Notes, Assistant, Playbooks', href: '/work/voice-ai' },
+          { icon: Globe, label: 'Website & Marketing', desc: 'Website Builder, Social, Email Campaigns', href: '/work/website-marketing' },
         ],
       },
     ],
@@ -123,23 +66,31 @@ const habosMenuData: MenuCategory[] = [
     sections: [
       {
         items: [
-          { icon: User, label: 'VOIS Personal', desc: 'Your personal operating system', href: 'https://tryvois.com' },
-          { icon: Briefcase, label: 'For Work', desc: 'Supercharge your productivity', href: '/work' },
-          { icon: Users, label: 'Teams', desc: 'Collaborate with AI', href: '/work' },
-          { icon: Building2, label: 'Enterprise', desc: 'Scale with intelligence', href: '/work' },
+          { icon: Wrench, label: 'Service Businesses', desc: 'Plumbers to consultants to therapists', href: '/work' },
+          { icon: ShoppingCart, label: 'Product Businesses', desc: 'Shops to e-commerce to manufacturers', href: '/work' },
+          { icon: Palette, label: 'Creative Businesses', desc: 'Agencies to photographers to studios', href: '/work' },
+        ],
+      },
+      {
+        items: [
+          { icon: MapPin, label: 'Field Operations', desc: 'Construction to delivery to property mgmt', href: '/work' },
+          { icon: Users, label: 'Teams & Startups', desc: 'Building a company with 2-50 people', href: '/work' },
+          { icon: User, label: 'Solo Founders', desc: 'Freelancers to one-person companies', href: '/work' },
         ],
       },
     ],
   },
   {
-    label: 'Resources',
+    label: 'Philosophy',
     sections: [
       {
         items: [
-          { icon: LifeBuoy, label: 'Support', desc: 'Get help from our team', href: '/support' },
-          { icon: BookOpen, label: 'Documentation', desc: 'Guides & API reference', href: '/support' },
-          { icon: Shield, label: 'Privacy Policy', desc: 'How we protect your data', href: '/Privacy' },
-          { icon: ScrollText, label: 'Terms of Service', desc: 'Our service agreement', href: '/Terms' },
+          { icon: Hand, label: 'The Airlock', desc: 'The pause is a feature', href: '/philosophy/human-control' },
+          { icon: Lightbulb, label: 'The End of Data Entry', desc: 'Feel the difference on day one', href: '/philosophy/ai-native' },
+          { icon: Brain, label: 'One Brain', desc: 'Compound intelligence, not features', href: '/philosophy/one-brain' },
+          { icon: AudioLines, label: 'Your Voice, Not Ours', desc: 'AI that sounds like you', href: '/philosophy/voice-first' },
+          { icon: UsersRound, label: 'Advisors That Disagree', desc: 'Productive conflict, not consensus', href: '/philosophy/advisors-that-disagree' },
+          { icon: Rocket, label: 'Memory That Compounds', desc: 'Every conversation makes the next smarter', href: '/philosophy/memory-that-compounds' },
         ],
       },
     ],
@@ -179,14 +130,64 @@ const voisMenuData: MenuCategory[] = [
   },
 ];
 
-// ── Mega-menu cluster groupings ─────────────────────────────────────────────
-// Groups the Product sections into 3 logical clusters for the two-tier layout
+// ── Product cluster sub-pages ──────────────────────────────────────────────
+// When a cluster is selected, these pages appear in a secondary nav bar
 
-const megaClusters = [
-  { title: 'Platform', indices: [0, 1] },      // Key Features + Workspace
-  { title: 'Operations', indices: [2, 3] },     // Operations + Commerce
-  { title: 'Growth', indices: [4, 5] },         // Marketing + Team & Support
-];
+const PRODUCT_CLUSTERS: Record<string, { label: string; href: string }[]> = {
+  'Communication': {
+    overview: '/work/communication',
+    pages: [
+      { label: 'Email', href: '/work/email' },
+      { label: 'Messenger', href: '/work/messenger' },
+      { label: 'Phone', href: '/work/telephony' },
+      { label: 'Support Tickets', href: '/work/tickets' },
+    ],
+  },
+  'Scheduling & Bookings': {
+    overview: '/work/scheduling',
+    pages: [
+      { label: 'Calendar', href: '/work/calendar' },
+      { label: 'Bookings', href: '/work/bookings' },
+      { label: 'Scheduling Links', href: '/work/scheduling-links' },
+    ],
+  },
+  'Jobs & Operations': {
+    overview: '/work/jobs-operations',
+    pages: [
+      { label: 'Dispatch', href: '/work/dispatch' },
+      { label: 'Routes', href: '/work/routes' },
+      { label: 'Projects', href: '/work/projects' },
+      { label: 'Tasks', href: '/work/tasks' },
+      { label: 'Time Tracking', href: '/work/time-tracking' },
+    ],
+  },
+  'Sales & Payments': {
+    overview: '/work/sales-payments',
+    pages: [
+      { label: 'CRM', href: '/work/crm' },
+      { label: 'Products', href: '/work/products' },
+      { label: 'Invoicing', href: '/work/finance' },
+      { label: 'Payments', href: '/work/payments' },
+    ],
+  },
+  'Voice & AI': {
+    overview: '/work/voice-ai',
+    pages: [
+      { label: 'Voice Notes', href: '/work/voice-notes' },
+      { label: 'Meeting Notes', href: '/work/meeting-notes' },
+      { label: 'Assistant', href: '/work/assistant' },
+      { label: 'Playbooks', href: '/work/playbooks' },
+    ],
+  },
+  'Website & Marketing': {
+    overview: '/work/website-marketing',
+    pages: [
+      { label: 'Website Builder', href: '/work/website-builder' },
+      { label: 'Creative Studio', href: '/work/creative-studio' },
+      { label: 'Marketing', href: '/work/marketing' },
+    ],
+  },
+};
 
 // ── Brand configs ───────────────────────────────────────────────────────────
 
@@ -221,12 +222,12 @@ const dropdownVariants = {
 
 const staggerItems = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.03 } },
+  visible: { transition: { staggerChildren: 0.04 } },
 };
 
 const itemVariant = {
-  hidden: { opacity: 0, x: -4 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
+  hidden: { opacity: 0, y: 6 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.15, ease: 'easeOut' } },
 };
 
 const mobileOverlay = {
@@ -256,15 +257,86 @@ interface NavbarProps {
   isDemoActive?: boolean;
 }
 
+// Skip nav entrance animation after first mount (persists across remounts)
+let navHasAnimated = false;
+
+// Detect cluster from a path synchronously
+function detectCluster(path: string): string | null {
+  for (const [cluster, data] of Object.entries(PRODUCT_CLUSTERS)) {
+    if (data.overview === path || data.pages.some(p => p.href === path)) {
+      return cluster;
+    }
+  }
+  return null;
+}
+
 export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlist, onResetDemo, isDemoActive }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const skipEntrance = navHasAnimated;
+  useEffect(() => { navHasAnimated = true; }, []);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [mobileClusterExpanded, setMobileClusterExpanded] = useState<string | null>(null);
+  const [activeCluster, setActiveCluster] = useState<string | null>(() => detectCluster(location.pathname));
+  const [navExpanded, setNavExpanded] = useState(false);
   const leaveTimeoutRef = useRef<number | null>(null);
+  const rightPillRef = useRef<HTMLDivElement>(null);
+  const centerPillRef = useRef<HTMLDivElement>(null);
+  const [rightPillTop, setRightPillTop] = useState<number | null>(null);
+  const [pillsOverlap, setPillsOverlap] = useState(false);
 
   const brand = brandConfig[variant];
   const menuData = habosMenuData;
   const isVois = variant === 'vois';
+
+  // Keep cluster in sync when URL changes (for in-app navigation without remount)
+  useEffect(() => {
+    setActiveCluster(detectCluster(location.pathname));
+  }, [location.pathname]);
+
+  // Measure right pill position to align center pill — single RAF + observer, no polling
+  useEffect(() => {
+    const measure = () => {
+      if (rightPillRef.current) {
+        const top = rightPillRef.current.getBoundingClientRect().top;
+        if (top > 0) setRightPillTop(top);
+      }
+    };
+    const raf = requestAnimationFrame(measure);
+    const ro = new ResizeObserver(measure);
+    if (rightPillRef.current) ro.observe(rightPillRef.current);
+    window.addEventListener('resize', measure);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); window.removeEventListener('resize', measure); };
+  }, [location.pathname]);
+
+  // Check if centered cluster pill would overlap the right pill when dropdowns are visible.
+  // Estimate center pill width from page labels to avoid async DOM measurement.
+  const DROPDOWN_NAV_WIDTH = 350;
+  const RIGHT_PILL_BASE = 220;
+  const CHAR_WIDTH = 7.5; // approx px per character at text-sm
+  const PILL_PAD = 32 + 12; // px padding per link (px-4 = 32) + container padding (pl-1.5 + pr-1.5 = 12)
+
+  useEffect(() => {
+    if (!activeCluster) {
+      setPillsOverlap(false);
+      return;
+    }
+    const pages = PRODUCT_CLUSTERS[activeCluster]?.pages;
+    if (!pages) return;
+    const estimatedW = pages.reduce((sum, p) => sum + p.label.length * CHAR_WIDTH + PILL_PAD, 0) + 12;
+    const check = () => {
+      const windowW = window.innerWidth;
+      const navPadding = 48;
+      const centerRight = windowW / 2 + estimatedW / 2;
+      const rightLeftWithDropdowns = windowW - navPadding - RIGHT_PILL_BASE - DROPDOWN_NAV_WIDTH;
+      setPillsOverlap(centerRight + 24 > rightLeftWithDropdowns);
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => { window.removeEventListener('resize', check); };
+  }, [activeCluster, location.pathname]);
 
   const handleGetEarlyAccess = () => {
     Analytics.waitlistModalOpened('navbar');
@@ -288,7 +360,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
+        initial={skipEntrance ? false : { y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: 'circOut' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 pt-6 md:pt-8 pointer-events-none"
@@ -299,12 +371,12 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-4 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full border border-slate-100 shadow-lg"
+              className="flex items-center gap-2.5 sm:gap-4 bg-white/80 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-slate-100 shadow-lg"
             >
-              <img src={brand.logo} alt={brand.name} className="h-9 w-9" />
+              <img src={brand.logo} alt={brand.name} className="h-6 w-6 sm:h-9 sm:w-9" />
               <div className="flex flex-col">
-                <span className="font-black text-3xl tracking-tight text-slate-900 leading-none">{brand.name}</span>
-                <span className="text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{brand.tagline}</span>
+                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{brand.name}</span>
+                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{brand.tagline}</span>
               </div>
             </motion.div>
           </button>
@@ -312,12 +384,12 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
           <Link to={brand.homeLink} className="pointer-events-auto">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-4 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full border border-slate-100 shadow-lg"
+              className="flex items-center gap-2.5 sm:gap-4 bg-white/80 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-slate-100 shadow-lg"
             >
-              <img src={brand.logo} alt={brand.name} className="h-9 w-9" />
+              <img src={brand.logo} alt={brand.name} className="h-6 w-6 sm:h-9 sm:w-9" />
               <div className="flex flex-col">
-                <span className="font-black text-3xl tracking-tight text-slate-900 leading-none">{brand.name}</span>
-                <span className="text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{brand.tagline}</span>
+                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{brand.name}</span>
+                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{brand.tagline}</span>
               </div>
             </motion.div>
           </Link>
@@ -344,113 +416,207 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
             </motion.button>
           </div>
         ) : (
-        <div className="pointer-events-auto hidden md:flex items-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg pl-1.5 pr-1.5 py-1">
-          {menuData.map((category, ci) => (
-            <div
-              key={category.label}
-              className="relative"
-              onMouseEnter={() => handleMouseEnter(category.label)}
-              onMouseLeave={handleMouseLeave}
+        <>{/* ── Center: cluster pill ──────────────────────────────── */}
+        {activeCluster && PRODUCT_CLUSTERS[activeCluster]?.pages && (
+        <div
+          className="hidden md:flex flex-col items-center pointer-events-none fixed left-0 z-50"
+          style={{
+            top: rightPillTop ?? undefined,
+            right: navExpanded && pillsOverlap && rightPillRef.current
+              ? `${rightPillRef.current.offsetWidth + 64}px`
+              : '0px',
+          }}
+        >
+          {/* Thin category label pill — floats above */}
+          <div className="pointer-events-auto flex items-center gap-2 absolute -top-5">
+            <Link
+              to={PRODUCT_CLUSTERS[activeCluster].overview}
+              className={`px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-full whitespace-nowrap transition-colors duration-150 ${
+                location.pathname === PRODUCT_CLUSTERS[activeCluster].overview
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-slate-200/80 text-slate-500 hover:text-slate-700'
+              }`}
             >
-              {/* Trigger */}
-              <button
-                className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-150 rounded-full ${
-                  activeDropdown === category.label
-                    ? 'text-slate-900 bg-slate-100/80'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/80'
-                }`}
-              >
-                {category.label}
-                <ChevronDown
-                  size={13}
-                  className={`transition-transform duration-200 ${
-                    activeDropdown === category.label ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              {/* Dropdown (non-mega only — mega renders outside nav to avoid transform containment) */}
-              <AnimatePresence>
-                {activeDropdown === category.label && category.sections.length <= 3 && (
-                  <div
-                    className="absolute top-full pt-3"
-                    style={{ left: '50%', transform: 'translateX(-50%)' }}
-                    onMouseEnter={() => handleMouseEnter(category.label)}
-                    onMouseLeave={handleMouseLeave}
+              {activeCluster}
+            </Link>
+            <button
+              onClick={() => setActiveCluster(null)}
+              className="p-0.5 rounded-full text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X size={11} />
+            </button>
+          </div>
+          {/* Main page selection pill — matches right side pill */}
+          <div
+            ref={centerPillRef}
+            className="pointer-events-auto flex items-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg pl-1.5 pr-1.5 py-1"
+          >
+            <LayoutGroup>
+              {PRODUCT_CLUSTERS[activeCluster].pages.map((page) => {
+                const isActive = location.pathname === page.href;
+                return (
+                  <Link
+                    key={page.href}
+                    to={page.href}
+                    className={`relative px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors duration-150 ${
+                      isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/80'
+                    }`}
                   >
-                    <motion.div
-                      variants={dropdownVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                      className="relative bg-white backdrop-blur-2xl rounded-2xl border border-slate-200/80 overflow-hidden pointer-events-auto"
-                      style={{
-                        minWidth: category.sections.length > 1 ? '560px' : '300px',
-                        boxShadow: '0 20px 60px -15px rgba(0,0,0,0.15), 0 8px 20px -8px rgba(0,0,0,0.08)',
-                      }}
-                    >
-                      <div className="h-[2px] bg-gradient-to-r from-blue-400/0 via-blue-400/60 to-blue-400/0" />
+                    {isActive && (
                       <motion.div
-                        variants={staggerItems}
+                        layoutId="cluster-active-pill"
+                        className="absolute inset-0 bg-slate-900 rounded-full"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{page.label}</span>
+                  </Link>
+                );
+              })}
+            </LayoutGroup>
+          </div>
+        </div>
+        )}
+
+        {/* ── Right: dropdowns + CTA ─────────────────────────────── */}
+        <div ref={rightPillRef} className="pointer-events-auto hidden md:flex items-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg pl-1.5 pr-1.5 py-1">
+
+            {/* Dropdown nav items — hidden when overlapping, unless force-expanded */}
+            <div className={`flex items-center ${pillsOverlap && !navExpanded ? 'hidden' : ''}`}>
+            {menuData.map((category) => (
+              <div
+                key={category.label}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(category.label)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-150 rounded-full ${
+                    activeDropdown === category.label
+                      ? 'text-slate-900 bg-slate-100/80'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/80'
+                  }`}
+                >
+                  {category.label}
+                  <ChevronDown
+                    size={13}
+                    className={`transition-transform duration-200 ${
+                      activeDropdown === category.label ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {activeDropdown === category.label && category.sections.length <= 3 && (
+                    <div
+                      className="absolute top-full pt-3"
+                      style={{ left: '50%', transform: 'translateX(-50%)' }}
+                      onMouseEnter={() => handleMouseEnter(category.label)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <motion.div
+                        variants={dropdownVariants}
                         initial="hidden"
                         animate="visible"
-                        className={category.sections.length > 1 ? 'grid grid-cols-3 gap-5 p-5' : 'p-5'}
+                        exit="exit"
+                        className="relative bg-white backdrop-blur-2xl rounded-2xl border border-slate-200/80 overflow-hidden pointer-events-auto"
+                        style={{
+                          minWidth: category.sections.length > 1 ? '560px' : '300px',
+                          boxShadow: '0 20px 60px -15px rgba(0,0,0,0.15), 0 8px 20px -8px rgba(0,0,0,0.08)',
+                        }}
                       >
-                        {category.sections.map((section, si) => (
-                          <div key={si}>
-                            {section.title && (
-                              <p className="font-semibold text-slate-400 uppercase tracking-widest mb-3 text-[11px] px-3">
-                                {section.title}
-                              </p>
-                            )}
-                            <div className="space-y-0.5">
-                              {section.items.map((item) => (
-                                <motion.a
-                                  key={item.label}
-                                  href={item.href}
-                                  variants={itemVariant}
-                                  className="group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-3 py-2.5"
-                                >
-                                  <div className="flex-shrink-0 rounded-lg bg-slate-50 border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 flex items-center justify-center transition-all duration-200 w-8 h-8">
-                                    <item.icon
-                                      size={15}
-                                      className="text-slate-400 group-hover:text-blue-600 transition-colors duration-200"
-                                    />
-                                  </div>
-                                  <div className="min-w-0 pt-0.5">
-                                    <p className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-[13px]">
-                                      {item.label}
-                                    </p>
-                                    <p className="text-slate-400 group-hover:text-slate-500 mt-0.5 leading-snug transition-colors text-[11px] leading-relaxed">
-                                      {item.desc}
-                                    </p>
-                                  </div>
-                                </motion.a>
-                              ))}
+                        <div className="h-[2px] bg-gradient-to-r from-blue-400/0 via-blue-400/60 to-blue-400/0" />
+                        <motion.div
+                          variants={staggerItems}
+                          initial="hidden"
+                          animate="visible"
+                          className={category.sections.length > 1 ? 'grid grid-cols-3 gap-5 p-5 items-start' : 'p-5'}
+                        >
+                          {category.sections.map((section, si) => {
+                            const hasAnyTitle = category.sections.some(s => s.title);
+                            return (
+                            <div key={si}>
+                              {hasAnyTitle && (
+                                <p className={`font-semibold text-slate-400 uppercase tracking-widest mb-3 text-[11px] px-3 ${!section.title ? 'invisible' : ''}`}>
+                                  {section.title || '\u00A0'}
+                                </p>
+                              )}
+                              <div className="space-y-0.5">
+                                {section.items.map((item) => {
+                                  const isCluster = category.label === 'Product' && !!PRODUCT_CLUSTERS[item.label];
+                                  return (
+                                  <motion.a
+                                    key={item.label}
+                                    href={isCluster ? undefined : item.href}
+                                    onClick={isCluster ? (e: React.MouseEvent) => {
+                                      e.preventDefault();
+                                      setActiveCluster(item.label);
+                                      setActiveDropdown(null);
+                                      setNavExpanded(false);
+                                      navigate(item.href);
+                                    } : undefined}
+                                    variants={itemVariant}
+                                    className={`group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-3 py-2.5 ${isCluster ? 'cursor-pointer' : ''}`}
+                                  >
+                                    <div className="flex-shrink-0 rounded-lg bg-slate-50 border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 flex items-center justify-center transition-all duration-200 w-8 h-8">
+                                      <item.icon
+                                        size={15}
+                                        className="text-slate-400 group-hover:text-blue-600 transition-colors duration-200"
+                                      />
+                                    </div>
+                                    <div className="min-w-0 pt-0.5">
+                                      <p className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-[13px]">
+                                        {item.label}
+                                      </p>
+                                      <p className="text-slate-400 group-hover:text-slate-500 mt-0.5 leading-snug transition-colors text-[11px] leading-relaxed">
+                                        {item.desc}
+                                      </p>
+                                    </div>
+                                  </motion.a>
+                                  );
+                                })}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                            );
+                          })}
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  </div>
-                )}
-              </AnimatePresence>
+                    </div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
             </div>
-          ))}
 
-          {/* Divider */}
-          <div className="w-px h-5 bg-slate-200/60 mx-1" />
+            {/* Toggle arrow — shown when dropdowns are hidden due to overlap */}
+            {pillsOverlap && activeCluster && (
+              <button
+                onClick={() => setNavExpanded(!navExpanded)}
+                className="flex items-center justify-center w-8 h-8 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-50/80 transition-all duration-150"
+              >
+                <ChevronDown size={14} className={`transition-transform duration-200 ${navExpanded ? 'rotate-180' : '-rotate-90'}`} />
+              </button>
+            )}
 
-          {/* CTA */}
-          <motion.button
-            onClick={handleGetEarlyAccess}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-5 py-2 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
-          >
-            {brand.ctaLabel}
-          </motion.button>
+            {/* Divider + CTA — always visible */}
+            <div className="w-px h-5 bg-slate-200/60 mx-1" />
+            <motion.button
+              onClick={handleGetEarlyAccess}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-5 py-2 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
+            >
+              {brand.ctaLabel}
+            </motion.button>
+            <a
+              href="/login"
+              className="ml-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 whitespace-nowrap"
+              style={{ backgroundColor: '#6681a5', color: '#ffffff' }}
+            >
+              Beta Login
+            </a>
         </div>
+        </>
         )}
 
         {/* ── Mobile hamburger ────────────────────────────────────────── */}
@@ -472,6 +638,53 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
           </AnimatePresence>
         </motion.button>
       </motion.nav>
+
+      {/* ── Mobile sticky cluster chip bar ──────────────────────────── */}
+      {activeCluster && PRODUCT_CLUSTERS[activeCluster]?.pages && (
+        <div
+          className="fixed left-0 right-0 z-40 md:hidden"
+          style={{ top: 'calc(env(safe-area-inset-top, 0px) + 70px)' }}
+        >
+          {/* Category label */}
+          <div className="flex items-center justify-between px-4 py-1.5 bg-white/90 backdrop-blur-md border-b border-slate-100">
+            <Link
+              to={PRODUCT_CLUSTERS[activeCluster].overview}
+              className={`text-xs font-semibold uppercase tracking-wider ${
+                location.pathname === PRODUCT_CLUSTERS[activeCluster].overview
+                  ? 'text-slate-900'
+                  : 'text-slate-400'
+              }`}
+            >
+              {activeCluster}
+            </Link>
+            <button
+              onClick={() => setActiveCluster(null)}
+              className="p-1 text-slate-400"
+            >
+              <X size={14} />
+            </button>
+          </div>
+          {/* Scrollable chip bar */}
+          <div className="flex items-center gap-1.5 px-4 py-2 bg-white/90 backdrop-blur-md border-b border-slate-100 overflow-x-auto scrollbar-hide">
+            {PRODUCT_CLUSTERS[activeCluster].pages.map((page) => {
+              const isActive = location.pathname === page.href;
+              return (
+                <Link
+                  key={page.href}
+                  to={page.href}
+                  className={`flex-shrink-0 px-3.5 py-1.5 text-xs font-medium rounded-full whitespace-nowrap transition-colors ${
+                    isActive
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-600 active:bg-slate-200'
+                  }`}
+                >
+                  {page.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* ── Mega dropdown (outside nav to avoid transform containment) ── */}
       <AnimatePresence>
@@ -576,11 +789,10 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               {menuData.map((category) => (
                 <div key={category.label} className="border-b border-slate-100">
                   <button
-                    onClick={() =>
-                      setMobileExpanded(
-                        mobileExpanded === category.label ? null : category.label
-                      )
-                    }
+                    onClick={() => {
+                      setMobileExpanded(mobileExpanded === category.label ? null : category.label);
+                      setMobileClusterExpanded(null);
+                    }}
                     className="w-full flex items-center justify-between py-4"
                   >
                     <span className="text-lg font-semibold text-slate-900">
@@ -604,33 +816,97 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                         className="overflow-hidden"
                       >
                         <div className="pb-4">
-                          {category.sections.map((section, si) => (
-                            <div key={si} className="mb-2">
-                              {section.title && (
-                                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-2 px-2">
-                                  {section.title}
-                                </p>
-                              )}
-                              {section.items.map((item) => (
-                                <a
-                                  key={item.label}
-                                  href={item.href}
-                                  onClick={() => setMobileMenuOpen(false)}
-                                  className="flex items-center gap-3 px-2 py-3 rounded-xl active:bg-slate-50 transition-colors"
+                          {category.label === 'Product' ? (
+                            /* Product: show clusters with nested sub-pages */
+                            Object.entries(PRODUCT_CLUSTERS).map(([clusterName, cluster]) => (
+                              <div key={clusterName} className="mb-1">
+                                {/* Cluster header — tappable to expand */}
+                                <button
+                                  onClick={() => setMobileClusterExpanded(mobileClusterExpanded === clusterName ? null : clusterName)}
+                                  className="w-full flex items-center justify-between px-2 py-3 rounded-xl active:bg-slate-50 transition-colors"
                                 >
-                                  <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
-                                    <item.icon size={16} className="text-slate-500" />
-                                  </div>
-                                  <div>
-                                    <p className="text-sm font-medium text-slate-800">
-                                      {item.label}
-                                    </p>
-                                    <p className="text-xs text-slate-400">{item.desc}</p>
-                                  </div>
-                                </a>
-                              ))}
-                            </div>
-                          ))}
+                                  <span className="text-sm font-semibold text-slate-800">{clusterName}</span>
+                                  <ChevronDown
+                                    size={14}
+                                    className={`text-slate-400 transition-transform duration-200 ${
+                                      mobileClusterExpanded === clusterName ? 'rotate-180' : ''
+                                    }`}
+                                  />
+                                </button>
+                                {/* Sub-pages accordion */}
+                                <AnimatePresence>
+                                  {mobileClusterExpanded === clusterName && (
+                                    <motion.div
+                                      variants={mobileAccordion}
+                                      initial="hidden"
+                                      animate="visible"
+                                      exit="exit"
+                                      className="overflow-hidden"
+                                    >
+                                      <div className="pl-4 pb-2">
+                                        {/* Overview link */}
+                                        <Link
+                                          to={cluster.overview}
+                                          onClick={() => setMobileMenuOpen(false)}
+                                          className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                                            location.pathname === cluster.overview
+                                              ? 'bg-slate-900 text-white'
+                                              : 'text-slate-600 active:bg-slate-50'
+                                          }`}
+                                        >
+                                          Overview
+                                        </Link>
+                                        {/* Sub-page links */}
+                                        {cluster.pages.map((page) => (
+                                          <Link
+                                            key={page.href}
+                                            to={page.href}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className={`block px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                                              location.pathname === page.href
+                                                ? 'bg-slate-900 text-white font-medium'
+                                                : 'text-slate-600 active:bg-slate-50'
+                                            }`}
+                                          >
+                                            {page.label}
+                                          </Link>
+                                        ))}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+                            ))
+                          ) : (
+                            /* Other categories: flat list as before */
+                            category.sections.map((section, si) => (
+                              <div key={si} className="mb-2">
+                                {section.title && (
+                                  <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-2 px-2">
+                                    {section.title}
+                                  </p>
+                                )}
+                                {section.items.map((item) => (
+                                  <Link
+                                    key={item.label}
+                                    to={item.href}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="flex items-center gap-3 px-2 py-3 rounded-xl active:bg-slate-50 transition-colors"
+                                  >
+                                    <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
+                                      <item.icon size={16} className="text-slate-500" />
+                                    </div>
+                                    <div>
+                                      <p className="text-sm font-medium text-slate-800">
+                                        {item.label}
+                                      </p>
+                                      <p className="text-xs text-slate-400">{item.desc}</p>
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                            ))
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -639,16 +915,26 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               ))}
 
               {/* Mobile CTA */}
-              <motion.button
-                onClick={() => {
-                  handleGetEarlyAccess();
-                  setMobileMenuOpen(false);
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full mt-6 py-3.5 rounded-full text-sm font-semibold bg-slate-900 text-white shadow-lg"
-              >
-                {brand.ctaLabel}
-              </motion.button>
+              <div className="mt-6 flex flex-col gap-3">
+                <motion.button
+                  onClick={() => {
+                    handleGetEarlyAccess();
+                    setMobileMenuOpen(false);
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full py-3.5 rounded-full text-sm font-semibold bg-slate-900 text-white shadow-lg"
+                >
+                  {brand.ctaLabel}
+                </motion.button>
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-3.5 rounded-full text-sm font-medium text-center"
+                  style={{ backgroundColor: '#6681a5', color: '#ffffff' }}
+                >
+                  Beta Login
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}

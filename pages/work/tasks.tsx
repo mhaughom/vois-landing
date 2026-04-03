@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Mic, Video, Mail, Bot } from 'lucide-react';
 import TasksDemo from './features/TasksDemo';
+import { Navbar } from '../../components/Navbar';
 
 const tasks = [
   {
@@ -59,38 +60,7 @@ const fadeUp = {
 const Tasks: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'circOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-5 md:px-12 bg-white/80 backdrop-blur-xl border-b border-slate-100"
-        style={{ paddingTop: 'calc(1.25rem + env(safe-area-inset-top, 0px))' }}
-      >
-        <a href="/work">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-          >
-            <ArrowLeft size={16} className="text-slate-600" />
-            <span className="font-medium text-sm text-slate-600">Back to Work</span>
-          </motion.div>
-        </a>
-
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <a href="/">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-100 shadow-sm"
-            >
-              <img src="/Logo/habos-icon.svg" alt="HABOS" className="h-8 w-8" />
-              <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
-            </motion.div>
-          </a>
-        </div>
-
-        <div className="w-32" />
-      </motion.nav>
+      <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
@@ -110,6 +80,17 @@ const Tasks: React.FC = () => {
             <p className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed">
               Create tasks by voice, from meetings, or from email. Every task gets an
               AI-calculated score that feeds directly into your schedule.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mb-16">
+              Every task receives two AI-calculated scores: importance (how much it matters to your goals) and urgency (how time-sensitive it is). The AI weighs deadlines, project health, dependencies, domain context, and your personal patterns. High-scoring tasks get scheduled first when the AI plans your day. Low-scoring noise stays out of your focus time. Tasks flow in from voice notes, meeting transcripts, emails, and agent output &mdash; you capture, HABOS prioritizes.
             </p>
           </motion.div>
 

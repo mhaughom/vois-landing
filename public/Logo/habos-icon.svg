@@ -30,7 +30,5 @@
   <line x1="50" y1="50" x2="85" y2="70" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
   <line x1="50" y1="50" x2="50" y2="90" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
 
-  <!-- Cross edges (upper & lower hexagon diagonals) -->
-  <line x1="15" y1="30" x2="85" y2="30" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
-  <line x1="15" y1="70" x2="85" y2="70" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
+
 </svg>
