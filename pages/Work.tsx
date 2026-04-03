@@ -838,7 +838,7 @@ const Work: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA', marginRight: chatOpen ? 412 : 0, transition: 'margin-right 0.4s ease' }}>
+    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA', marginRight: chatOpen ? 396 : 0, transition: 'margin-right 0.4s ease' }}>
       {/* Background image — gradient + grain baked into one JPEG, tiles vertically, parallax */}
       <motion.div
         className="absolute inset-x-0 top-0 pointer-events-none z-0"

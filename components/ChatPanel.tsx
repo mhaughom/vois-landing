@@ -101,10 +101,10 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: PANEL_WIDTH, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            style={{ width: PANEL_WIDTH + 32, top: 120, right: 0, bottom: 0, background: 'linear-gradient(135deg, #e8edf5 0%, #dde3ef 100%)', padding: 16 }}
-            className="fixed z-40 flex flex-col rounded-tl-2xl"
+            style={{ width: PANEL_WIDTH, top: 120, right: 16, bottom: 16 }}
+            className="fixed z-40 flex flex-col bg-white rounded-2xl shadow-2xl border border-slate-200/60 overflow-hidden"
           >
-            <div className="flex flex-col flex-1 bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="flex flex-col flex-1 overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
