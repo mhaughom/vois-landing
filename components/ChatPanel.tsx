@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, createContext, useContext, useCallb
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // ═══════════════════════════════════════════════════════════════════
 // Chat Navigation Context — lets the AI navigate pages & highlight elements
@@ -140,7 +141,7 @@ const INTENT_PATTERNS: { patterns: RegExp[]; match: IntentMatch }[] = [
   {
     patterns: [/voice/i, /record/i, /note/i, /transcri/i],
     match: {
-      reply: "Voice Notes capture your thoughts instantly — just speak and VOIS structures it.",
+      reply: "Voice Notes capture your thoughts instantly — just speak and HABOS structures it.",
       actions: [
         { type: 'navigate', target: '/work/voice-notes', label: 'Voice Notes' },
         { type: 'navigate', target: '/work/meeting-notes', label: 'Meeting Notes' },
@@ -233,10 +234,11 @@ interface ChatPanelProps {
 }
 
 export default function ChatPanel({ onToggle }: ChatPanelProps) {
+  const { t } = useTranslation('chat-panel');
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessageData[]>([
-    { id: 1, role: 'assistant', text: "Hi! I can help you explore HABOS. Ask about any feature — email, CRM, tasks, calendar — and I'll take you there." },
+    { id: 1, role: 'assistant', text: t('introMessage') },
   ]);
   const [input, setInput] = useState('');
   const [highlightSelector, setHighlightSelector] = useState<string | null>(null);
@@ -310,7 +312,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
       setMessages((prev) => [...prev, {
         id: Date.now() + 1,
         role: 'assistant',
-        text: intent?.reply || "I can help you navigate VOIS features. Try asking about email, calendar, tasks, CRM, voice notes, or pricing!",
+        text: intent?.reply || "I can help you navigate HABOS features. Try asking about email, calendar, tasks, CRM, voice notes, or pricing!",
         actions: intent?.actions || [],
       }]);
     } finally {
@@ -351,7 +353,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             onClick={() => toggle(true)}
             className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg hover:bg-gray-800 transition-colors"
-            aria-label="Open chat"
+            aria-label={t('openChatAriaLabel')}
           >
             <MessageCircle size={24} />
           </motion.button>
@@ -367,27 +369,27 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             exit={{ x: PANEL_WIDTH, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             style={{ width: PANEL_WIDTH, top: 120, right: 16, bottom: 16 }}
-            className="fixed z-40 flex flex-col bg-transparent overflow-hidden"
+            className="fixed z-40 flex flex-col bg-white rounded-2xl shadow-2xl border border-slate-200/40 overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 bg-white rounded-2xl mb-2 shadow-sm border border-slate-200/40">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
                 </div>
-                <span className="text-sm font-semibold text-gray-900">HABOS Chat</span>
+                <span className="text-sm font-semibold text-gray-900">{t('header')}</span>
               </div>
               <button
                 onClick={() => toggle(false)}
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
-                aria-label="Close chat"
+                aria-label={t('closeChatAriaLabel')}
               >
                 <X size={18} />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 bg-white rounded-2xl mb-2 shadow-sm border border-slate-200/40">
+            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
               {messages.map((msg) => (
                 <div key={msg.id}>
                   <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -395,7 +397,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
                       className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                         msg.role === 'user'
                           ? 'bg-gray-900 text-white rounded-br-md'
-                          : 'bg-white/80 text-gray-800 rounded-bl-md border border-gray-100'
+                          : 'bg-gray-50 text-gray-800 rounded-bl-md'
                       }`}
                     >
                       {msg.text}
@@ -408,7 +410,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
                         <button
                           key={i}
                           onClick={() => executeAction(action)}
-                          className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50/80 hover:bg-blue-100 rounded-full transition-colors border border-blue-100"
+                          className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-full transition-colors border border-blue-100"
                         >
                           <ExternalLink size={10} />
                           {action.label || action.target}
@@ -420,7 +422,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white/80 border border-gray-100 rounded-2xl rounded-bl-md px-4 py-3 flex gap-1.5">
+                  <div className="bg-gray-50 rounded-2xl rounded-bl-md px-4 py-3 flex gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }} />
                     <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }} />
                     <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -431,22 +433,22 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             </div>
 
             {/* Input */}
-            <div className="px-4 py-3 bg-white rounded-2xl shadow-sm border border-slate-200/40">
-              <div className="flex items-center gap-2 rounded-xl bg-white/60 border border-gray-200/60 px-3 py-2 focus-within:border-gray-400 transition-colors">
+            <div className="border-t border-gray-100 px-4 py-3">
+              <div className="flex items-center gap-2 rounded-xl bg-gray-50 border border-gray-200 px-3 py-2 focus-within:border-gray-400 transition-colors">
                 <input
                   ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Ask about any feature..."
+                  placeholder={t('placeholder')}
                   className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!input.trim()}
                   className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                  aria-label="Send message"
+                  aria-label={t('sendMessageAriaLabel')}
                 >
                   <Send size={16} />
                 </button>
