@@ -1,28 +1,245 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, createContext, useContext, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface ChatPanelProps {
-  /** Called whenever the panel opens or closes */
-  onToggle?: (isOpen: boolean) => void;
+// ═══════════════════════════════════════════════════════════════════
+// Chat Navigation Context — lets the AI navigate pages & highlight elements
+// ═══════════════════════════════════════════════════════════════════
+
+export interface ChatAction {
+  type: 'navigate' | 'highlight' | 'scroll';
+  /** Route path for navigate, CSS selector or element ID for highlight/scroll */
+  target: string;
+  /** Optional label shown as a clickable chip in the chat */
+  label?: string;
 }
 
-const PANEL_WIDTH = 380;
-
-interface ChatMessage {
+export interface ChatMessageData {
   id: number;
   role: 'user' | 'assistant';
   text: string;
+  /** Actions the assistant can attach (navigate links, highlight targets) */
+  actions?: ChatAction[];
 }
 
-const placeholderMessages: ChatMessage[] = [
-  { id: 1, role: 'assistant', text: 'Hi! How can I help you today?' },
+interface ChatNavContextValue {
+  /** Navigate to a route and optionally highlight an element */
+  navigateTo: (path: string) => void;
+  /** Highlight a DOM element by selector — adds a pulsing ring overlay */
+  highlightElement: (selector: string) => void;
+  /** Clear any active highlight */
+  clearHighlight: () => void;
+  /** Scroll an element into view by selector */
+  scrollToElement: (selector: string) => void;
+}
+
+const ChatNavContext = createContext<ChatNavContextValue>({
+  navigateTo: () => {},
+  highlightElement: () => {},
+  clearHighlight: () => {},
+  scrollToElement: () => {},
+});
+
+export const useChatNav = () => useContext(ChatNavContext);
+
+// ═══════════════════════════════════════════════════════════════════
+// Highlight Overlay — renders a pulsing ring around a target element
+// ═══════════════════════════════════════════════════════════════════
+
+const HighlightOverlay: React.FC<{ selector: string | null; onClear: () => void }> = ({ selector, onClear }) => {
+  const [rect, setRect] = useState<DOMRect | null>(null);
+
+  useEffect(() => {
+    if (!selector) { setRect(null); return; }
+    const el = document.querySelector(selector);
+    if (!el) { setRect(null); return; }
+
+    const update = () => setRect(el.getBoundingClientRect());
+    update();
+
+    // Re-measure on scroll/resize
+    window.addEventListener('scroll', update, true);
+    window.addEventListener('resize', update);
+    // Auto-clear after 4s
+    const timer = setTimeout(onClear, 4000);
+    return () => {
+      window.removeEventListener('scroll', update, true);
+      window.removeEventListener('resize', update);
+      clearTimeout(timer);
+    };
+  }, [selector, onClear]);
+
+  if (!rect) return null;
+
+  const pad = 8;
+  return (
+    <div
+      className="fixed inset-0 z-[60] pointer-events-none"
+      onClick={onClear}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="absolute rounded-xl"
+        style={{
+          top: rect.top - pad,
+          left: rect.left - pad,
+          width: rect.width + pad * 2,
+          height: rect.height + pad * 2,
+          boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5), 0 0 24px rgba(59, 130, 246, 0.15)',
+          animation: 'pulse 1.5s ease-in-out infinite',
+        }}
+      />
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// Intent matcher — maps user questions to navigation actions
+// This is the groundwork for AI-powered navigation.
+// Replace this with a real LLM call when ready.
+// ═══════════════════════════════════════════════════════════════════
+
+interface IntentMatch {
+  reply: string;
+  actions: ChatAction[];
+}
+
+const INTENT_PATTERNS: { patterns: RegExp[]; match: IntentMatch }[] = [
+  {
+    patterns: [/email/i, /mail/i, /inbox/i],
+    match: {
+      reply: "Here's our Email feature — AI drafts replies in your tone and keeps your inbox clean.",
+      actions: [
+        { type: 'navigate', target: '/work/email', label: 'View Email' },
+      ],
+    },
+  },
+  {
+    patterns: [/calendar/i, /schedule/i, /booking/i],
+    match: {
+      reply: "Check out our Calendar & Scheduling tools — AI finds the perfect time slots.",
+      actions: [
+        { type: 'navigate', target: '/work/calendar', label: 'View Calendar' },
+        { type: 'navigate', target: '/work/bookings', label: 'View Bookings' },
+      ],
+    },
+  },
+  {
+    patterns: [/task/i, /todo/i, /project/i],
+    match: {
+      reply: "Our task management uses AI scoring to surface what matters most.",
+      actions: [
+        { type: 'navigate', target: '/work/tasks', label: 'View Tasks' },
+        { type: 'navigate', target: '/work/projects', label: 'View Projects' },
+      ],
+    },
+  },
+  {
+    patterns: [/voice/i, /record/i, /note/i, /transcri/i],
+    match: {
+      reply: "Voice Notes capture your thoughts instantly — just speak and VOIS structures it.",
+      actions: [
+        { type: 'navigate', target: '/work/voice-notes', label: 'Voice Notes' },
+        { type: 'navigate', target: '/work/meeting-notes', label: 'Meeting Notes' },
+      ],
+    },
+  },
+  {
+    patterns: [/crm/i, /customer/i, /contact/i, /lead/i],
+    match: {
+      reply: "The CRM keeps every customer interaction in one place with AI-powered follow-up reminders.",
+      actions: [
+        { type: 'navigate', target: '/work/crm', label: 'View CRM' },
+      ],
+    },
+  },
+  {
+    patterns: [/website/i, /site builder/i, /landing page/i],
+    match: {
+      reply: "Build your website with our AI-powered builder — no code required.",
+      actions: [
+        { type: 'navigate', target: '/work/website-builder', label: 'Website Builder' },
+      ],
+    },
+  },
+  {
+    patterns: [/pric/i, /cost/i, /plan/i, /how much/i],
+    match: {
+      reply: "Let me take you to our pricing section.",
+      actions: [
+        { type: 'scroll', target: '#pricing', label: 'View Pricing' },
+      ],
+    },
+  },
+  {
+    patterns: [/phone/i, /call/i, /telephon/i],
+    match: {
+      reply: "Our AI receptionist answers calls, books appointments, and handles inquiries 24/7.",
+      actions: [
+        { type: 'navigate', target: '/work/telephony', label: 'View Phone' },
+      ],
+    },
+  },
+  {
+    patterns: [/agent/i, /assistant/i, /ai/i, /brain/i],
+    match: {
+      reply: "Every employee gets a personal AI agent with full business context.",
+      actions: [
+        { type: 'navigate', target: '/work/assistant', label: 'AI Assistant' },
+        { type: 'navigate', target: '/work/brain', label: 'The Brain' },
+      ],
+    },
+  },
+  {
+    patterns: [/marketing/i, /ads/i, /campaign/i, /social/i],
+    match: {
+      reply: "Run campaigns across email, social, and ads — all from one dashboard.",
+      actions: [
+        { type: 'navigate', target: '/work/marketing', label: 'Marketing' },
+        { type: 'navigate', target: '/work/ads', label: 'Ads' },
+      ],
+    },
+  },
+  {
+    patterns: [/invoice/i, /payment/i, /financ/i, /billing/i],
+    match: {
+      reply: "Handle invoicing, payments, and financial tracking in one place.",
+      actions: [
+        { type: 'navigate', target: '/work/finance', label: 'Finance' },
+        { type: 'navigate', target: '/work/payments', label: 'Payments' },
+      ],
+    },
+  },
 ];
 
+function matchIntent(text: string): IntentMatch | null {
+  for (const { patterns, match } of INTENT_PATTERNS) {
+    if (patterns.some((p) => p.test(text))) return match;
+  }
+  return null;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// Chat Panel Component
+// ═══════════════════════════════════════════════════════════════════
+
+const PANEL_WIDTH = 380;
+
+interface ChatPanelProps {
+  onToggle?: (isOpen: boolean) => void;
+}
+
 export default function ChatPanel({ onToggle }: ChatPanelProps) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>(placeholderMessages);
+  const [messages, setMessages] = useState<ChatMessageData[]>([
+    { id: 1, role: 'assistant', text: "Hi! I can help you explore VOIS. Ask about any feature — email, CRM, tasks, calendar — and I'll take you there." },
+  ]);
   const [input, setInput] = useState('');
+  const [highlightSelector, setHighlightSelector] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -32,39 +249,57 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     onToggle?.(value);
   };
 
-  // Auto-scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Focus input when panel opens
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 350);
-    }
+    if (isOpen) setTimeout(() => inputRef.current?.focus(), 350);
   }, [isOpen]);
+
+  const clearHighlight = useCallback(() => setHighlightSelector(null), []);
+
+  const executeAction = useCallback((action: ChatAction) => {
+    switch (action.type) {
+      case 'navigate':
+        navigate(action.target);
+        break;
+      case 'highlight':
+        setHighlightSelector(action.target);
+        break;
+      case 'scroll': {
+        const el = document.querySelector(action.target);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        break;
+      }
+    }
+  }, [navigate]);
 
   const handleSend = () => {
     const trimmed = input.trim();
     if (!trimmed) return;
 
-    setMessages((prev) => [
-      ...prev,
-      { id: Date.now(), role: 'user', text: trimmed },
-    ]);
+    setMessages((prev) => [...prev, { id: Date.now(), role: 'user', text: trimmed }]);
     setInput('');
 
-    // Simulate a placeholder reply
+    // Match intent
+    const intent = matchIntent(trimmed);
     setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
+      if (intent) {
+        setMessages((prev) => [...prev, {
           id: Date.now() + 1,
           role: 'assistant',
-          text: "Thanks for your message! This is a placeholder — real responses coming soon.",
-        },
-      ]);
-    }, 800);
+          text: intent.reply,
+          actions: intent.actions,
+        }]);
+      } else {
+        setMessages((prev) => [...prev, {
+          id: Date.now() + 1,
+          role: 'assistant',
+          text: "I can help you navigate VOIS features. Try asking about email, calendar, tasks, CRM, voice notes, website builder, pricing, or any other feature!",
+        }]);
+      }
+    }, 600);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -74,8 +309,22 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     }
   };
 
+  const navContext: ChatNavContextValue = {
+    navigateTo: (path) => navigate(path),
+    highlightElement: (sel) => setHighlightSelector(sel),
+    clearHighlight,
+    scrollToElement: (sel) => document.querySelector(sel)?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+  };
+
   return (
-    <>
+    <ChatNavContext.Provider value={navContext}>
+      {/* Highlight overlay */}
+      <AnimatePresence>
+        {highlightSelector && (
+          <HighlightOverlay selector={highlightSelector} onClear={clearHighlight} />
+        )}
+      </AnimatePresence>
+
       {/* Floating trigger button */}
       <AnimatePresence>
         {!isOpen && (
@@ -102,18 +351,15 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             exit={{ x: PANEL_WIDTH, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             style={{ width: PANEL_WIDTH, top: 120, right: 16, bottom: 16 }}
-            className="fixed z-40 flex flex-col bg-white rounded-2xl shadow-2xl border border-slate-200/60 overflow-hidden"
+            className="fixed z-40 flex flex-col backdrop-blur-xl bg-white/70 rounded-2xl shadow-2xl border border-white/50 overflow-hidden"
           >
-            <div className="flex flex-col flex-1 overflow-hidden">
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200/50">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
                 </div>
-                <span className="text-sm font-semibold text-gray-900">
-                  VOIS Chat
-                </span>
+                <span className="text-sm font-semibold text-gray-900">VOIS Chat</span>
               </div>
               <button
                 onClick={() => toggle(false)}
@@ -127,34 +373,48 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
               {messages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-gray-900 text-white rounded-br-md'
-                        : 'bg-gray-100 text-gray-800 rounded-bl-md'
-                    }`}
-                  >
-                    {msg.text}
+                <div key={msg.id}>
+                  <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                        msg.role === 'user'
+                          ? 'bg-gray-900 text-white rounded-br-md'
+                          : 'bg-white/80 text-gray-800 rounded-bl-md border border-gray-100'
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
                   </div>
+                  {/* Action chips */}
+                  {msg.actions && msg.actions.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-2 ml-1">
+                      {msg.actions.map((action, i) => (
+                        <button
+                          key={i}
+                          onClick={() => executeAction(action)}
+                          className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50/80 hover:bg-blue-100 rounded-full transition-colors border border-blue-100"
+                        >
+                          <ExternalLink size={10} />
+                          {action.label || action.target}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
               <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
-            <div className="border-t border-gray-100 px-4 py-3">
-              <div className="flex items-center gap-2 rounded-xl bg-gray-50 border border-gray-200 px-3 py-2 focus-within:border-gray-400 transition-colors">
+            <div className="border-t border-gray-200/50 px-4 py-3">
+              <div className="flex items-center gap-2 rounded-xl bg-white/60 border border-gray-200/60 px-3 py-2 focus-within:border-gray-400 transition-colors">
                 <input
                   ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Type a message..."
+                  placeholder="Ask about any feature..."
                   className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none"
                 />
                 <button
@@ -167,10 +427,9 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
                 </button>
               </div>
             </div>
-            </div>{/* end inner white card */}
           </motion.aside>
         )}
       </AnimatePresence>
-    </>
+    </ChatNavContext.Provider>
   );
 }
