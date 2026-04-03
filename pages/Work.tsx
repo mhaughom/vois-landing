@@ -671,8 +671,8 @@ const AgentPhilosophySection: React.FC = () => {
 
           {/* ── Tabs ─────────────────────────────────────────────── */}
           <motion.div variants={fadeUp} transition={{ duration: 0.6 }}>
-            {/* Tab buttons */}
-            <div className="flex gap-2 mb-6 border-b border-slate-200">
+            {/* Tab pills — centered */}
+            <div className="flex justify-center gap-2 mb-8">
               {tabs.map((tab, i) => {
                 const Icon = tab.icon;
                 const isActive = i === activeTab;
@@ -680,14 +680,14 @@ const AgentPhilosophySection: React.FC = () => {
                   <button
                     key={tab.title}
                     onClick={() => setActiveTab(i)}
-                    className={`flex items-center gap-2.5 px-5 py-3 text-sm font-medium transition-all duration-200 border-b-2 -mb-px ${
+                    className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-200 ${
                       isActive
-                        ? 'border-slate-900 text-slate-900'
-                        : 'border-transparent text-slate-400 hover:text-slate-600'
+                        ? 'bg-slate-900 text-white shadow-lg'
+                        : 'bg-white text-slate-500 hover:text-slate-700 border border-slate-200 hover:border-slate-300'
                     }`}
                   >
-                    <div className={`w-7 h-7 rounded-lg ${tab.bg} flex items-center justify-center flex-shrink-0`}>
-                      <Icon size={14} className={tab.fg} />
+                    <div className={`w-6 h-6 rounded-md ${isActive ? 'bg-white/20' : tab.bg} flex items-center justify-center flex-shrink-0`}>
+                      <Icon size={13} className={isActive ? 'text-white' : tab.fg} />
                     </div>
                     {tab.title}
                   </button>
@@ -695,25 +695,24 @@ const AgentPhilosophySection: React.FC = () => {
               })}
             </div>
 
-            {/* Tab content */}
-            <div className="grid lg:grid-cols-2 gap-8 items-start">
-              {/* Left: description */}
-              <div className="py-4">
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={activeTab}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-base text-slate-500 leading-relaxed"
-                  >
-                    {tabs[activeTab].desc}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
+            {/* Description — centered above demo */}
+            <div className="text-center mb-8" style={{ minHeight: 60 }}>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  className="text-base text-slate-500 leading-relaxed max-w-2xl mx-auto"
+                >
+                  {tabs[activeTab].desc}
+                </motion.p>
+              </AnimatePresence>
+            </div>
 
-              {/* Right: demo panel */}
+            {/* Demo panel — centered */}
+            <div className="max-w-2xl mx-auto">
               <div className="relative overflow-hidden rounded-2xl border border-slate-200 shadow-sm min-h-[360px] md:min-h-[460px]">
                 <AnimatePresence mode="wait">
                   <motion.div
