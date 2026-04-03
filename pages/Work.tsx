@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ContextualChat } from '../components/ContextualChat';
 import { ActionCards as ActionCardsComponent } from '../components/ActionCards';
@@ -210,17 +211,14 @@ const LABEL_COLORS: Record<string, string> = {
 // ── Agent demo panel labels ────────────────────────────────────────────────
 
 // ── Mobile hero video with synced business labels ──────────────────────────
-const HERO_BUSINESSES = [
-  'Creative Agencies', 'Plumbers', 'Dental Practices', 'Consulting Firms',
-  'Salons & Spas', 'Construction Companies', 'Real Estate Agents',
-  'Restaurants', 'Cleaning Companies', 'Online Stores', 'Property Managers',
-];
 const CLIP_DURATION = 3.04;
 
 const MobileHeroVideo: React.FC = () => {
+  const { t } = useTranslation('work-home');
+  const heroBusinesses = t('heroBusinesses', { returnObjects: true }) as string[];
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [label, setLabel] = useState(HERO_BUSINESSES[0]);
+  const [label, setLabel] = useState(heroBusinesses[0]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -232,9 +230,9 @@ const MobileHeroVideo: React.FC = () => {
       const t = video.currentTime;
       const idx = Math.min(
         Math.floor((t + offset) / CLIP_DURATION),
-        HERO_BUSINESSES.length - 1,
+        heroBusinesses.length - 1,
       );
-      setLabel(HERO_BUSINESSES[idx]);
+      setLabel(heroBusinesses[idx]);
       raf = requestAnimationFrame(sync);
     };
     raf = requestAnimationFrame(sync);
@@ -367,12 +365,6 @@ const GlowText: React.FC<{
   );
 };
 
-const agentPanels = [
-  { label: 'AI Assistant', desc: 'Chat with full business context' },
-  { label: 'Smart Router', desc: 'Voice → structured actions' },
-  { label: 'Meeting Notes', desc: 'Live transcription → action items' },
-];
-
 // ── Smart Router panel — transcription with highlighting + real action cards ─
 
 const transcript = "Remind me to follow up with Sarah about the kitchen renovation quote, and schedule a site visit next Tuesday at 2pm.";
@@ -384,18 +376,19 @@ const segments = [
 ];
 
 const SmartRouterPanel: React.FC = () => {
+  const { t } = useTranslation('work-home');
   const [phase, setPhase] = useState(0);
   const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
-    const t: ReturnType<typeof setTimeout>[] = [];
-    t.push(setTimeout(() => setPhase(1), 600));   // Show transcript
-    t.push(setTimeout(() => setPhase(2), 2200));  // Highlight segment 1
-    t.push(setTimeout(() => setPhase(3), 3200));  // Highlight segment 2
-    t.push(setTimeout(() => setPhase(4), 4000));  // Show task card
-    t.push(setTimeout(() => setPhase(5), 5000));  // Show event card
-    t.push(setTimeout(() => { setPhase(0); setCycle(c => c + 1); }, 9000));
-    return () => t.forEach(clearTimeout);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    timers.push(setTimeout(() => setPhase(1), 600));   // Show transcript
+    timers.push(setTimeout(() => setPhase(2), 2200));  // Highlight segment 1
+    timers.push(setTimeout(() => setPhase(3), 3200));  // Highlight segment 2
+    timers.push(setTimeout(() => setPhase(4), 4000));  // Show task card
+    timers.push(setTimeout(() => setPhase(5), 5000));  // Show event card
+    timers.push(setTimeout(() => { setPhase(0); setCycle(c => c + 1); }, 9000));
+    return () => timers.forEach(clearTimeout);
   }, [cycle]);
 
   return (
@@ -404,13 +397,13 @@ const SmartRouterPanel: React.FC = () => {
       <div className="px-5 py-3 border-b border-slate-100 flex items-center gap-2">
         <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ opacity: phase >= 1 && phase < 4 ? 1 : 0 }} />
         <span className="text-xs font-medium text-slate-500">
-          {phase >= 4 ? 'Smart Router — 2 intents detected' : phase >= 1 ? 'Recording...' : 'Ready'}
+          {phase >= 4 ? t('smartRouter.statusDetected') : phase >= 1 ? t('smartRouter.statusRecording') : t('smartRouter.statusReady')}
         </span>
       </div>
 
       {/* Transcript */}
       <div className="px-5 py-4 border-b border-slate-50">
-        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Transcript</p>
+        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">{t('smartRouter.transcriptLabel')}</p>
         <p className="text-sm leading-relaxed text-slate-600">
           {phase >= 1 ? segments.map((seg, i) => (
             seg.color ? (
@@ -431,7 +424,7 @@ const SmartRouterPanel: React.FC = () => {
                 {seg.text}
               </span>
             ) : <span key={i}>{seg.text}</span>
-          )) : <span className="text-slate-300 italic">Listening...</span>}
+          )) : <span className="text-slate-300 italic">{t('smartRouter.listening')}</span>}
         </p>
       </div>
 
@@ -449,34 +442,27 @@ const SmartRouterPanel: React.FC = () => {
 
 // ── Meeting Notes panel — transcript + action items on white bg ──────────
 
-const meetingLines = [
-  { speaker: 'You', text: "Let's start with the Q1 numbers. Revenue was up 12%.", isAI: false, time: '0:15' },
-  { speaker: 'Sarah', text: 'The pipeline looks strong but delivery timelines concern me.', isAI: false, time: '0:42' },
-  { speaker: 'You', text: 'Fair point. What if we add a buffer week to each milestone?', isAI: false, time: '1:08' },
-  { speaker: 'AI', text: 'Suggested: "What\'s the contingency if Q2 targets slip?"', isAI: true, time: '1:15' },
-];
-
-const meetingActions = [
-  { text: 'Send updated timeline to Sarah by Friday', done: false },
-  { text: 'Schedule follow-up with engineering lead', done: false },
-  { text: 'Prepare risk assessment for Q2 board meeting', done: false },
-];
-
 const MeetingNotesPanel: React.FC = () => {
+  const { t } = useTranslation('work-home');
+  const meetingLines = t('meetingLines', { returnObjects: true }) as Array<{ speaker: string; text: string; time: string }>;
+  const meetingActions = t('meetingActions', { returnObjects: true }) as Array<{ text: string }>;
+
   const [visibleLines, setVisibleLines] = useState(0);
   const [showActions, setShowActions] = useState(false);
   const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
-    const t: ReturnType<typeof setTimeout>[] = [];
-    t.push(setTimeout(() => setVisibleLines(1), 800));
-    t.push(setTimeout(() => setVisibleLines(2), 2200));
-    t.push(setTimeout(() => setVisibleLines(3), 3800));
-    t.push(setTimeout(() => setVisibleLines(4), 5000));
-    t.push(setTimeout(() => setShowActions(true), 6000));
-    t.push(setTimeout(() => { setVisibleLines(0); setShowActions(false); setCycle(c => c + 1); }, 10000));
-    return () => t.forEach(clearTimeout);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    timers.push(setTimeout(() => setVisibleLines(1), 800));
+    timers.push(setTimeout(() => setVisibleLines(2), 2200));
+    timers.push(setTimeout(() => setVisibleLines(3), 3800));
+    timers.push(setTimeout(() => setVisibleLines(4), 5000));
+    timers.push(setTimeout(() => setShowActions(true), 6000));
+    timers.push(setTimeout(() => { setVisibleLines(0); setShowActions(false); setCycle(c => c + 1); }, 10000));
+    return () => timers.forEach(clearTimeout);
   }, [cycle]);
+
+  const isAI = (speaker: string) => speaker === 'AI';
 
   return (
     <div className="bg-white h-full flex flex-col rounded-2xl overflow-hidden">
@@ -485,7 +471,7 @@ const MeetingNotesPanel: React.FC = () => {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ opacity: visibleLines > 0 && !showActions ? 1 : 0 }} />
           <span className="text-xs font-medium text-slate-500">
-            {showActions ? 'Meeting ended — 3 action items' : visibleLines > 0 ? 'Recording — Team Strategy Meeting' : 'Ready'}
+            {showActions ? t('meetingNotes.statusEnded') : visibleLines > 0 ? t('meetingNotes.statusRecording') : t('meetingNotes.statusReady')}
           </span>
         </div>
         <span className="text-[10px] text-slate-400 font-mono">{visibleLines > 0 ? meetingLines[Math.min(visibleLines - 1, meetingLines.length - 1)].time : '0:00'}</span>
@@ -493,7 +479,7 @@ const MeetingNotesPanel: React.FC = () => {
 
       {/* Live transcript */}
       <div className="flex-1 px-5 py-4 space-y-3 overflow-hidden">
-        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Live Transcript</p>
+        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">{t('meetingNotes.transcriptLabel')}</p>
 
         {meetingLines.slice(0, visibleLines).map((line, i) => (
           <motion.div
@@ -501,16 +487,16 @@ const MeetingNotesPanel: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className={`flex gap-3 ${line.isAI ? 'pl-4 border-l-2 border-indigo-200' : ''}`}
+            className={`flex gap-3 ${isAI(line.speaker) ? 'pl-4 border-l-2 border-indigo-200' : ''}`}
           >
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold flex-shrink-0 ${
-              line.isAI ? 'bg-indigo-100 text-indigo-600' : line.speaker === 'You' ? 'bg-slate-200 text-slate-600' : 'bg-blue-100 text-blue-600'
+              isAI(line.speaker) ? 'bg-indigo-100 text-indigo-600' : line.speaker === 'You' ? 'bg-slate-200 text-slate-600' : 'bg-blue-100 text-blue-600'
             }`}>
-              {line.isAI ? 'AI' : line.speaker[0]}
+              {isAI(line.speaker) ? 'AI' : line.speaker[0]}
             </div>
             <div>
               <span className="text-[10px] font-semibold text-slate-500">{line.speaker}</span>
-              <p className={`text-sm leading-relaxed ${line.isAI ? 'text-indigo-600 italic' : 'text-slate-700'}`}>{line.text}</p>
+              <p className={`text-sm leading-relaxed ${isAI(line.speaker) ? 'text-indigo-600 italic' : 'text-slate-700'}`}>{line.text}</p>
             </div>
           </motion.div>
         ))}
@@ -527,7 +513,7 @@ const MeetingNotesPanel: React.FC = () => {
 
       {/* Action items — always full height, content fades in */}
       <div className="border-t border-slate-100 px-5 py-4">
-        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Action Items Extracted</p>
+        <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">{t('meetingNotes.actionsLabel')}</p>
         <div className="space-y-2">
           {meetingActions.map((action, i) => (
             <motion.div
@@ -547,72 +533,6 @@ const MeetingNotesPanel: React.FC = () => {
   );
 };
 
-// ── Replacement comparison data ─────────────────────────────────────────────
-
-const replacements = [
-  { tool: 'Otter.ai / Fireflies', category: 'Meeting Notes', vois: 'Briefings before every meeting, live transcription during, action items extracted and sent to the right people after', icon: Headphones, group: 'Productivity' },
-  { tool: 'Todoist / Trello', category: 'Task Management', vois: 'Your most important tasks always surface first — created from voice, meetings, or email with smart scheduling built in', icon: ListTodo, group: 'Productivity' },
-  { tool: 'Motion / Reclaim', category: 'AI Scheduling', vois: 'Your calendar fills itself with focused work blocks, ordered by priority and deadline — just approve and go', icon: Calendar, group: 'Productivity' },
-  { tool: 'Asana / Jira / Monday.com', category: 'Project Tracking', vois: 'See which projects are healthy and which need attention — stalled work and missed deadlines flagged before they escalate', icon: BarChart3, group: 'Productivity' },
-  { tool: 'Google Docs / Notion', category: 'Documents', vois: 'Talk it out, get a document back — AI pulls context from your projects and data automatically', icon: FileText, group: 'Productivity' },
-  { tool: 'Trainual / Process Street', category: 'Playbooks & SOPs', vois: 'Living workflows that guide your team step-by-step and alert you when something is done wrong', icon: BookOpen, group: 'Productivity' },
-
-  { tool: 'HubSpot / Salesforce', category: 'CRM & Sales', vois: 'Client profiles built automatically from every conversation, email, and meeting — with AI-suggested next steps', icon: Users, group: 'Commerce & Customers' },
-  { tool: 'Shopify / WooCommerce', category: 'Products & Orders', vois: 'Products, pricing, inventory, and bookable services — all connected to your website and AI assistant', icon: ShoppingCart, group: 'Commerce & Customers' },
-  { tool: 'Calendly / Acuity', category: 'Bookings', vois: 'Clients book online, orders are created automatically, payment is collected — one step, no manual work', icon: Calendar, group: 'Commerce & Customers' },
-  { tool: 'Mailchimp / ActiveCampaign', category: 'Marketing & Funnels', vois: 'Email and SMS campaigns with AI-written copy, smart audience segments, and automated follow-up sequences', icon: Zap, group: 'Commerce & Customers' },
-  { tool: 'Later / Hootsuite', category: 'Social Media', vois: 'Schedule posts, get AI-written captions, and track what performs — connected to your brand and content library', icon: Monitor, group: 'Commerce & Customers' },
-  { tool: 'Canva / Adobe Express', category: 'Creative Studio', vois: 'Generate marketing content from your business context — social posts, ads, and visuals that match your brand', icon: Sparkles, group: 'Commerce & Customers' },
-
-  { tool: 'Superhuman / Spark', category: 'AI Email', vois: 'Answer your inbox by voice, get three reply options that sound like you, and never lose track of follow-ups', icon: Mail, group: 'Communication & Content' },
-  { tool: 'Gmail / Outlook / Slack', category: 'Unified Messaging', vois: 'Every conversation with a person — email, chat, SMS — in one timeline with AI-drafted replies', icon: Mail, group: 'Communication & Content' },
-  { tool: 'Squarespace / Wix', category: 'Website Builder', vois: 'Describe your business and get a website — AI writes the copy, connects your booking and payments automatically', icon: Monitor, group: 'Communication & Content' },
-  { tool: 'PowerPoint / Google Slides', category: 'Presentations', vois: 'AI-generated slide decks that pull real numbers from your business — ready to present, not just pretty templates', icon: Monitor, group: 'Communication & Content' },
-
-  { tool: 'Zapier / Make', category: 'Process Automation', vois: 'Workflows that trigger across everything — no third-party tools, no delays, because it all lives in one system', icon: Zap, group: 'Operations & Field' },
-  { tool: 'ClickUp / Monday.com', category: 'Operations', vois: 'Get alerted when a process is falling behind before it becomes a problem — with suggested fixes, not just warnings', icon: Zap, group: 'Operations & Field' },
-  { tool: 'Zendesk / Freshdesk', category: 'Support Tickets', vois: 'Tickets created automatically from forms or email, with priority levels, timers, and escalation to the right person', icon: AlertTriangle, group: 'Operations & Field' },
-  { tool: 'ServiceTitan / Jobber', category: 'Field Operations', vois: 'Jobs, dispatch, routes, team GPS, time tracking — a 30-second voice note from the van replaces all the paperwork', icon: MapPin, group: 'Operations & Field' },
-  { tool: 'Routific / Circuit', category: 'Route Planning', vois: 'Drag-and-drop route planning with smart stop ordering and Google Maps links for your team in the field', icon: MapPin, group: 'Operations & Field' },
-  { tool: 'Google Forms / SurveyMonkey', category: 'Reports', vois: 'Fill any report by voice in 90 seconds — the AI asks the questions, you answer, and the report is filed', icon: FileBarChart, group: 'Operations & Field' },
-
-  { tool: 'QuickBooks / Xero', category: 'Finance', vois: 'Log expenses by voice, track invoices and payments, see your profit in real time — connected to Stripe', icon: BarChart3, group: 'Finance & Admin' },
-  { tool: 'Procurify / Coupa', category: 'Purchasing & Suppliers', vois: 'Purchase orders, supplier tracking, and stock management with partial payment support and bill matching', icon: ShoppingCart, group: 'Finance & Admin' },
-  { tool: 'Toggl / Clockify', category: 'Time Tracking', vois: 'Clock in and out from your phone, track billable hours per job, and link time entries to dispatch and payroll', icon: Clock, group: 'Finance & Admin' },
-  { tool: 'BambooHR / Gusto', category: 'Team & Org Chart', vois: 'See your whole team structure, manage roles and access, and plan changes — all drag-and-drop', icon: UserCog, group: 'Finance & Admin' },
-  { tool: 'Typeform / JotForm', category: 'Forms', vois: 'Build any form, route submissions to CRM or tickets automatically, and send instant confirmation replies', icon: FileText, group: 'Finance & Admin' },
-  { tool: 'Confluence / Guru', category: 'Knowledge Search', vois: 'Ask a question and get the answer from across your entire business — voice notes, emails, docs, meetings, everything', icon: Search, group: 'Finance & Admin' },
-  { tool: 'Google Drive / Dropbox', category: 'Files & Media', vois: 'One place for all your files with AI tagging, full-text search, and a reader that speaks documents aloud', icon: FolderOpen, group: 'Finance & Admin' },
-
-  { tool: 'Virtual executive assistant', category: 'Your AI Assistant', vois: 'Knows your entire business, anticipates what you need, and acts across every tool — by voice, watch, phone, or inbox', icon: Brain, group: 'AI & Voice' },
-  { tool: 'ChatGPT / Copilot', category: 'AI Chat', vois: 'An AI that knows your actual business data — not just the internet — and can take action with your approval', icon: Sparkles, group: 'AI & Voice' },
-  { tool: 'Custom dev / Agency', category: 'AI Agents', vois: 'AI workers that plan multi-step tasks, use your tools, and pause for your approval before doing anything important', icon: Bot, group: 'AI & Voice' },
-  { tool: 'Perplexity / SearchGPT', category: 'AI Research', vois: 'Deep web research with sources cited — delegated to specialized AI and saved to your knowledge base', icon: Search, group: 'AI & Voice' },
-  { tool: 'Business consultants', category: 'Strategy Analysis', vois: 'Analyzes your revenue, clients, products, and competitors — surfaces opportunities you would have missed', icon: Sparkles, group: 'AI & Voice' },
-  { tool: 'Siri / Google Assistant', category: 'Voice Intelligence', vois: 'One voice note creates tasks, events, inventory updates, and messages — routed to the right place automatically', icon: Mic, group: 'AI & Voice' },
-  { tool: 'Apple Watch apps', category: 'Watch Assistant', vois: 'Full AI assistant on your wrist — talk, get answers, approve actions, all without pulling out your phone', icon: Watch, group: 'AI & Voice' },
-  { tool: 'Answering service', category: 'AI Phone & SMS', vois: 'A real phone number answered by your AI — books appointments, answers questions, and handles messages 24/7', icon: Phone, group: 'AI & Voice' },
-];
-
-// ── Pricing features ────────────────────────────────────────────────────────
-
-const pricingFeatures = [
-  { feature: 'Voice capture & Smart Router', personal: true, work: true },
-  { feature: 'AI chat assistant', personal: true, work: true },
-  { feature: 'Task management with AI scoring', personal: true, work: true },
-  { feature: 'Calendar with AI scheduling', personal: true, work: true },
-  { feature: 'Custom apps & marketplace', personal: true, work: true },
-  { feature: 'Life areas & automations', personal: true, work: true },
-  { feature: 'Live meeting transcription', personal: false, work: true },
-  { feature: 'Meeting briefs & prep', personal: false, work: true },
-  { feature: 'Private AI notes per attendee', personal: false, work: true },
-  { feature: 'Projects & monitoring', personal: false, work: true },
-  { feature: 'Reports & work reviews', personal: false, work: true },
-  { feature: 'AI agents & research', personal: false, work: true },
-  { feature: 'Email integration', personal: false, work: true },
-  { feature: 'Desktop app (Live Guide)', personal: false, work: true },
-];
-
 // ── Section wrapper ─────────────────────────────────────────────────────────
 
 const Section: React.FC<{
@@ -620,9 +540,11 @@ const Section: React.FC<{
   className?: string;
   id?: string;
   dark?: boolean;
-}> = ({ children, className = '', id, dark }) => (
+  style?: React.CSSProperties;
+}> = ({ children, className = '', id, dark, style }) => (
   <section
     id={id}
+    style={style}
     className={`relative ${dark ? 'bg-slate-950 text-white' : ''} ${className}`}
   >
     {children}
@@ -638,12 +560,15 @@ const cardSlideVariants = {
 };
 
 const AgentPhilosophySection: React.FC = () => {
+  const { t } = useTranslation('work-home');
   const [activeTab, setActiveTab] = useState(0);
 
+  const agentTabsData = t('agentTabs', { returnObjects: true }) as Array<{ title: string; desc: string }>;
+
   const tabs = [
-    { icon: Brain, bg: 'bg-indigo-100', fg: 'text-indigo-600', title: 'AI Assistant', desc: 'Chat with full business context. Your agent reasons across projects, emails, calendar, CRM, and conversations simultaneously — pulling from every database you have access to.' },
-    { icon: ShieldCheck, bg: 'bg-emerald-100', fg: 'text-emerald-600', title: 'Smart Router', desc: 'Speak naturally — the agent parses your voice into structured actions. Follow-ups become tasks, meetings land on your calendar, and every intent is routed to the right place.' },
-    { icon: Users, bg: 'bg-amber-100', fg: 'text-amber-600', title: 'Meeting Notes', desc: 'Live transcription that captures decisions, action items, and follow-ups as they happen. Every meeting produces a structured summary — no manual note-taking required.' },
+    { icon: Brain, bg: 'bg-indigo-100', fg: 'text-indigo-600', title: agentTabsData[0].title, desc: agentTabsData[0].desc },
+    { icon: ShieldCheck, bg: 'bg-emerald-100', fg: 'text-emerald-600', title: agentTabsData[1].title, desc: agentTabsData[1].desc },
+    { icon: Users, bg: 'bg-amber-100', fg: 'text-amber-600', title: agentTabsData[2].title, desc: agentTabsData[2].desc },
   ];
 
   return (
@@ -658,14 +583,17 @@ const AgentPhilosophySection: React.FC = () => {
           {/* ── Headline ─────────────────────────────────────────── */}
           <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-10">
             <span className="inline-block text-sm font-semibold text-indigo-600 uppercase tracking-wider mb-3">
-              Agent Philosophy
+              {t('agentPhilosophy.badge')}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-4">
-              Every employee gets a <span className="italic">super-agent.</span>
+              {t('agentPhilosophy.heading').split('super-agent').map((part, i, arr) =>
+                i < arr.length - 1
+                  ? <React.Fragment key={i}>{part}<span className="italic">super-agent.</span></React.Fragment>
+                  : <React.Fragment key={i}>{part}</React.Fragment>
+              )}
             </h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              An autonomous AI partner with access to the same data, context, and permissions as the person it serves.
-              It surfaces the most valuable information, drafts replies, proposes schedules, and flags risks — but never acts alone.
+              {t('agentPhilosophy.description')}
             </p>
           </motion.div>
 
@@ -733,7 +661,7 @@ const AgentPhilosophySection: React.FC = () => {
           </motion.div>
 
           <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="text-center text-slate-400 text-sm mt-10">
-            AI power, human control. Every draft reviewed. Every action approved. Every decision yours.
+            {t('agentPhilosophy.footer')}
           </motion.p>
         </motion.div>
       </div>
@@ -741,11 +669,53 @@ const AgentPhilosophySection: React.FC = () => {
   );
 };
 
+// ── Icon map for replacements table ────────────────────────────────────────
+const REPLACEMENT_ICONS: Record<string, React.ElementType> = {
+  'Meeting Notes':         Headphones,
+  'Task Management':       ListTodo,
+  'AI Scheduling':         Calendar,
+  'Project Tracking':      BarChart3,
+  'Documents':             FileText,
+  'Playbooks & SOPs':      BookOpen,
+  'CRM & Sales':           Users,
+  'Products & Orders':     ShoppingCart,
+  'Bookings':              Calendar,
+  'Marketing & Funnels':   Zap,
+  'Social Media':          Monitor,
+  'Creative Studio':       Sparkles,
+  'AI Email':              Mail,
+  'Unified Messaging':     Mail,
+  'Website Builder':       Monitor,
+  'Presentations':         Monitor,
+  'Process Automation':    Zap,
+  'Operations':            Zap,
+  'Support Tickets':       AlertTriangle,
+  'Field Operations':      MapPin,
+  'Route Planning':        MapPin,
+  'Reports':               FileBarChart,
+  'Finance':               BarChart3,
+  'Purchasing & Suppliers':ShoppingCart,
+  'Time Tracking':         Clock,
+  'Team & Org Chart':      UserCog,
+  'Forms':                 FileText,
+  'Knowledge Search':      Search,
+  'Files & Media':         FolderOpen,
+  'Your AI Assistant':     Brain,
+  'AI Chat':               Sparkles,
+  'AI Agents':             Bot,
+  'AI Research':           Search,
+  'Strategy Analysis':     Sparkles,
+  'Voice Intelligence':    Mic,
+  'Watch Assistant':       Watch,
+  'AI Phone & SMS':        Phone,
+};
+
 // ═══════════════════════════════════════════════════════════════════════════
 // WORK PAGE
 // ═══════════════════════════════════════════════════════════════════════════
 
 const Work: React.FC = () => {
+  const { t } = useTranslation('work-home');
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [annualBilling, setAnnualBilling] = useState(true);
@@ -764,6 +734,39 @@ const Work: React.FC = () => {
   const introVideoRef = useRef<HTMLVideoElement>(null);
   const introStartedRef = useRef(false);
   const unfocusRef = React.useRef<(() => void) | null>(null);
+
+  const heroHeadlines = t('heroHeadlines', { returnObjects: true }) as Array<{ label: string; bold: string; light: string }>;
+  const heroStories = t('heroStories', { returnObjects: true }) as Array<{ label: string; headline: string; at?: number }>;
+  const replacements = t('replacements', { returnObjects: true }) as Array<{ tool: string; category: string; vois: string; group: string }>;
+  const pricingFeaturesData = t('pricingFeatures', { returnObjects: true }) as Array<{ feature: string }>;
+
+  // Restore original `at` timing values for story phases
+  const stories: { at: number; label: string; headline: string }[] = [
+    { at: 0,  label: heroStories[0].label, headline: heroStories[0].headline },
+    { at: 5,  label: heroStories[1].label, headline: heroStories[1].headline },
+    { at: 11, label: heroStories[2].label, headline: heroStories[2].headline },
+    { at: 17, label: heroStories[3].label, headline: heroStories[3].headline },
+    { at: 24, label: heroStories[4].label, headline: heroStories[4].headline },
+    { at: 34, label: heroStories[5].label, headline: heroStories[5].headline },
+  ];
+
+  // Restore original pricingFeatures shape (personal/work boolean flags)
+  const pricingFeatures = [
+    { feature: pricingFeaturesData[0].feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[1].feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[2].feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[3].feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[4].feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[5].feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[6].feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[7].feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[8].feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[9].feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[10].feature, personal: false, work: true },
+    { feature: pricingFeaturesData[11].feature, personal: false, work: true },
+    { feature: pricingFeaturesData[12].feature, personal: false, work: true },
+    { feature: pricingFeaturesData[13].feature, personal: false, work: true },
+  ];
 
   // Start intro video when box animation reaches crossfade point
   useEffect(() => {
@@ -806,16 +809,6 @@ const Work: React.FC = () => {
     }
   }, [showVideo]);
 
-  // Rotating hero headlines — cycle every 12s once final phase is reached
-  const heroHeadlines = [
-    { label: "World's First", bold: 'Human-to-Agent', light: 'Business Operating\nSystem' },
-    { label: 'Business in a Box', bold: 'Business in a Box', light: 'Everything You Need' },
-    { label: 'All-in-One Platform', bold: 'All Your Software', light: 'One Platform' },
-    { label: 'One Login, Every Tool', bold: 'Every Tool You Need', light: 'Behind One Login' },
-    { label: 'Replace Your Stack', bold: 'One System', light: 'Instead of Dozens' },
-    { label: 'Software That Thinks', bold: 'AI-Native Software', light: 'Built From Scratch' },
-  ];
-
   useEffect(() => {
     const isFinalPhase = boxTime >= 34 && !showVideo;
     if (!isFinalPhase) return;
@@ -838,7 +831,7 @@ const Work: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA', marginRight: chatOpen ? 396 : 0, transition: 'margin-right 0.4s ease' }}>
+    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA' }}>
       {/* Background image — gradient + grain baked into one JPEG, tiles vertically, parallax */}
       <motion.div
         className="absolute inset-x-0 top-0 pointer-events-none z-0"
@@ -922,7 +915,7 @@ const Work: React.FC = () => {
                         className="text-sm font-medium text-slate-400 tracking-wide mb-3 transition-opacity duration-500"
                         style={{ opacity: lipsOpacity }}
                       >
-                        Made for all types of companies.
+                        {t('heroVideo.madeFor')}
                       </p>
                       <div
                         className="relative"
@@ -987,15 +980,6 @@ const Work: React.FC = () => {
             >
               {/* Animated story headline — synced to box animation */}
               {(() => {
-                // Story phases synced to the V5 box animation timeline
-                const stories: { at: number; label: string; headline: string }[] = [
-                  { at: 0,  label: "The Problem",        headline: "Your company's data is fragmented\nacross dozens of tools." },
-                  { at: 5,  label: "The Cost",           headline: "Employees spend their days\nmoving data — not creating value." },
-                  { at: 11, label: "The Breaking Point",  headline: "The faster you grow,\nthe harder it falls apart." },
-                  { at: 17, label: "The Solution",        headline: "So we built one platform\nfor everything." },
-                  { at: 24, label: "HABOS",               headline: "Your tools. Your data.\nAll working as one." },
-                  { at: 34, label: "final",               headline: "" },
-                ];
                 const active = [...stories].reverse().find(s => boxTime >= s.at) || stories[0];
                 const isFinal = active.label === 'final';
 
@@ -1007,7 +991,7 @@ const Work: React.FC = () => {
                     <motion.p variants={fadeUp} transition={{ duration: 0.4 }} className="mb-1" style={{ minHeight: '1.5em' }}>
                       {showVideo ? (
                         <GlowText
-                          text="World's First"
+                          text={t('heroGlowLabel')}
                           active={showVideo}
                           globalOffset={0}
                           totalWords={6}
@@ -1097,9 +1081,12 @@ const Work: React.FC = () => {
                 }}
               >
                 <p className="text-base md:text-xl text-slate-600 mb-6 md:mb-10 leading-relaxed max-w-2xl mt-3 md:mt-5">
-                  All your software, one platform.
-                  <br />
-                  Supercharge your employees with the AI assistance we were always promised but never got.
+                  {t('heroSubtitle').split('\n').map((line, i, arr) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < arr.length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
                 </p>
 
                 <div className="flex flex-row items-center justify-center lg:justify-start gap-3">
@@ -1109,7 +1096,7 @@ const Work: React.FC = () => {
                     whileTap={{ scale: 0.98 }}
                     className="px-5 py-2.5 sm:px-8 sm:py-3.5 bg-slate-900 text-white rounded-full text-sm sm:text-base font-semibold shadow-xl shadow-slate-900/20 hover:bg-slate-800 transition-all flex items-center gap-2"
                   >
-                    Join Waitlist
+                    {t('heroButtons.joinWaitlist')}
                     <ArrowRight size={16} />
                   </motion.button>
                   <motion.button
@@ -1119,7 +1106,7 @@ const Work: React.FC = () => {
                     className="px-5 py-2.5 sm:px-8 sm:py-3.5 bg-white text-slate-700 rounded-full text-sm sm:text-base font-semibold shadow-lg border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-2"
                   >
                     <Play size={14} className="fill-current" />
-                    Play Video
+                    {t('heroButtons.playVideo')}
                   </motion.button>
                 </div>
               </div>
@@ -1137,7 +1124,7 @@ const Work: React.FC = () => {
                   className="mt-4 px-5 py-2.5 bg-white text-slate-600 rounded-full text-sm font-medium border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-2 mx-auto lg:mx-0"
                 >
                   <ArrowLeft size={14} />
-                  Back
+                  {t('heroButtons.back')}
                 </button>
               </div>
 
@@ -1201,10 +1188,14 @@ const Work: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-2xl md:text-3xl lg:text-4xl font-serif text-slate-900 mb-3"
           >
-            One platform. <span className="italic">Every tool.</span>
+            {t('explore.heading').split('Every tool.').map((part, i, arr) =>
+              i < arr.length - 1
+                ? <React.Fragment key={i}>{part}<span className="italic">Every tool.</span></React.Fragment>
+                : <React.Fragment key={i}>{part}</React.Fragment>
+            )}
           </motion.h2>
           <motion.p variants={fadeUp} transition={{ duration: 0.6 }} className="text-slate-500 max-w-lg mx-auto">
-            Click any face to explore what HABOS can do for your business.
+            {t('explore.description')}
           </motion.p>
         </motion.div>
 
@@ -1241,11 +1232,11 @@ const Work: React.FC = () => {
                 {focusLabel
                   ? focusLabel
                   : <>
-                      {animPhase === 'dot' && 'One mind that learns your entire business.'}
-                      {animPhase === 'split' && 'It connects everything you do.'}
-                      {animPhase === 'cube' && 'Structure forms around you — not the other way around.'}
-                      {animPhase === 'hex-morph' && 'Every surface, a workspace. Every action, anticipated.'}
-                      {animPhase === 'idle' && 'Click any face to explore.'}
+                      {animPhase === 'dot' && t('animPhase.dot')}
+                      {animPhase === 'split' && t('animPhase.split')}
+                      {animPhase === 'cube' && t('animPhase.cube')}
+                      {animPhase === 'hex-morph' && t('animPhase.hexMorph')}
+                      {animPhase === 'idle' && t('animPhase.idle')}
                     </>
                 }
               </motion.p>
@@ -1300,10 +1291,14 @@ const Work: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-4">
-                What HABOS <span className="italic">replaces.</span>
+                {t('replacesSection.heading').split('replaces.').map((part, i, arr) =>
+                  i < arr.length - 1
+                    ? <React.Fragment key={i}>{part}<span className="italic">replaces.</span></React.Fragment>
+                    : <React.Fragment key={i}>{part}</React.Fragment>
+                )}
               </h2>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-                Shared context makes every capability smarter than any standalone tool.
+                {t('replacesSection.description')}
               </p>
             </motion.div>
 
@@ -1311,14 +1306,15 @@ const Work: React.FC = () => {
               <div className="bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
                 {/* Table header — hidden on mobile, shown as grid on md+ */}
                 <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-100 bg-slate-50/80">
-                  <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Category</div>
-                  <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Replaces</div>
-                  <div className="col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">HABOS Advantage</div>
+                  <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">{t('replacesSection.colCategory')}</div>
+                  <div className="col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">{t('replacesSection.colReplaces')}</div>
+                  <div className="col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">{t('replacesSection.colAdvantage')}</div>
                 </div>
 
                 {/* Table rows with group headers */}
                 {replacements.map((row, i) => {
                   const showGroupHeader = i === 0 || row.group !== replacements[i - 1].group;
+                  const RowIcon = (REPLACEMENT_ICONS[row.category] ?? FileText) as React.FC<{ size?: number; className?: string }>;
                   return (
                     <React.Fragment key={row.category}>
                       {showGroupHeader && (
@@ -1331,7 +1327,7 @@ const Work: React.FC = () => {
                         className={`hidden md:grid grid-cols-12 gap-4 px-6 py-5 items-start ${i < replacements.length - 1 && replacements[i + 1].group === row.group ? 'border-b border-slate-100' : ''}`}
                       >
                         <div className="col-span-3 flex items-center gap-2.5">
-                          <row.icon size={16} className="text-slate-400 flex-shrink-0" />
+                          <RowIcon size={16} className="text-slate-400 flex-shrink-0" />
                           <span className="text-sm font-medium text-slate-900">{row.category}</span>
                         </div>
                         <div className="col-span-3">
@@ -1344,10 +1340,10 @@ const Work: React.FC = () => {
                       {/* Mobile: stacked card */}
                       <div className={`md:hidden px-5 py-4 space-y-2 ${i < replacements.length - 1 && replacements[i + 1].group === row.group ? 'border-b border-slate-100' : ''}`}>
                         <div className="flex items-center gap-2.5">
-                          <row.icon size={16} className="text-slate-400 flex-shrink-0" />
+                          <RowIcon size={16} className="text-slate-400 flex-shrink-0" />
                           <span className="text-sm font-medium text-slate-900">{row.category}</span>
                         </div>
-                        <p className="text-xs text-slate-400">Replaces <span className="text-slate-500">{row.tool}</span></p>
+                        <p className="text-xs text-slate-400">{t('replacesSection.mobileReplaces')} <span className="text-slate-500">{row.tool}</span></p>
                         <p className="text-sm text-slate-600">{row.vois}</p>
                       </div>
                     </React.Fragment>
@@ -1372,16 +1368,20 @@ const Work: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="text-center mb-6">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-4">
-                Simple, transparent <span className="italic">pricing.</span>
+                {t('pricing.heading').split('pricing.').map((part, i, arr) =>
+                  i < arr.length - 1
+                    ? <React.Fragment key={i}>{part}<span className="italic">pricing.</span></React.Fragment>
+                    : <React.Fragment key={i}>{part}</React.Fragment>
+                )}
               </h2>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-                Personal gets the full voice-to-action loop. Work adds the three professional pillars.
+                {t('pricing.description')}
               </p>
             </motion.div>
 
             {/* Billing toggle */}
             <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="flex items-center justify-center gap-3 mb-12">
-              <span className={`text-sm font-medium transition-colors ${!annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>Monthly</span>
+              <span className={`text-sm font-medium transition-colors ${!annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>{t('pricing.billingMonthly')}</span>
               <button
                 onClick={() => setAnnualBilling(!annualBilling)}
                 className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${annualBilling ? 'bg-slate-900' : 'bg-slate-300'}`}
@@ -1392,14 +1392,14 @@ const Work: React.FC = () => {
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
               </button>
-              <span className={`text-sm font-medium transition-colors ${annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>Annual</span>
+              <span className={`text-sm font-medium transition-colors ${annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>{t('pricing.billingAnnual')}</span>
               {annualBilling && (
                 <motion.span
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full"
                 >
-                  Save up to 40%
+                  {t('pricing.saveLabel')}
                 </motion.span>
               )}
             </motion.div>
@@ -1408,13 +1408,13 @@ const Work: React.FC = () => {
             <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="grid md:grid-cols-2 gap-6">
               {/* Personal */}
               <div className="bg-white rounded-2xl md:rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col">
-                <h3 className="text-lg font-semibold text-slate-900 mb-1">Personal</h3>
-                <p className="text-sm text-slate-500 mb-5">For everyday life organization</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-1">{t('pricing.personal.name')}</h3>
+                <p className="text-sm text-slate-500 mb-5">{t('pricing.personal.description')}</p>
                 <div className="flex items-baseline gap-2 mb-8">
                   <span className="text-4xl font-bold text-slate-900 tracking-tight">
-                    {annualBilling ? '$6.67' : '$14.99'}
+                    {annualBilling ? t('pricing.personal.priceAnnual') : t('pricing.personal.priceMonthly')}
                   </span>
-                  <span className="text-slate-400 text-sm">/month</span>
+                  <span className="text-slate-400 text-sm">{t('pricing.personal.perMonth')}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -1422,25 +1422,25 @@ const Work: React.FC = () => {
                   }}
                   className="w-full bg-slate-100 text-slate-900 py-3.5 rounded-full text-base font-semibold hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] mb-6"
                 >
-                  Start Free Trial
+                  {t('pricing.personal.cta')}
                 </button>
-                <p className="text-xs text-slate-400 text-center mb-6">30-day money-back guarantee</p>
+                <p className="text-xs text-slate-400 text-center mb-6">{t('pricing.personal.guarantee')}</p>
               </div>
 
               {/* Work */}
               <div className="bg-slate-950 rounded-2xl md:rounded-3xl p-8 shadow-2xl flex flex-col relative overflow-hidden">
                 <div className="absolute top-4 right-4">
                   <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/15 px-3 py-1 rounded-full border border-emerald-500/20">
-                    Recommended
+                    {t('pricing.work.badge')}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-1">Work</h3>
-                <p className="text-sm text-slate-400 mb-5">For professionals & teams</p>
+                <h3 className="text-lg font-semibold text-white mb-1">{t('pricing.work.name')}</h3>
+                <p className="text-sm text-slate-400 mb-5">{t('pricing.work.description')}</p>
                 <div className="flex items-baseline gap-2 mb-8">
                   <span className="text-4xl font-bold text-white tracking-tight">
-                    {annualBilling ? '$29' : '$39'}
+                    {annualBilling ? t('pricing.work.priceAnnual') : t('pricing.work.priceMonthly')}
                   </span>
-                  <span className="text-slate-500 text-sm">/month</span>
+                  <span className="text-slate-500 text-sm">{t('pricing.work.perMonth')}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -1448,9 +1448,9 @@ const Work: React.FC = () => {
                   }}
                   className="w-full bg-white text-slate-950 py-3.5 rounded-full text-base font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg mb-6"
                 >
-                  Start Free Trial
+                  {t('pricing.work.cta')}
                 </button>
-                <p className="text-xs text-slate-500 text-center mb-6">30-day money-back guarantee</p>
+                <p className="text-xs text-slate-500 text-center mb-6">{t('pricing.work.guarantee')}</p>
               </div>
             </motion.div>
 
@@ -1461,9 +1461,9 @@ const Work: React.FC = () => {
               className="mt-10 bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm overflow-hidden"
             >
               <div className="grid grid-cols-[1fr_4rem_4rem] md:grid-cols-12 gap-2 md:gap-4 px-4 md:px-6 py-4 border-b border-slate-100 bg-slate-50/80">
-                <div className="md:col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Feature</div>
-                <div className="md:col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">Personal</div>
-                <div className="md:col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">Work</div>
+                <div className="md:col-span-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">{t('pricing.featureColHeader')}</div>
+                <div className="md:col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">{t('pricing.personalColHeader')}</div>
+                <div className="md:col-span-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-center">{t('pricing.workColHeader')}</div>
               </div>
               {pricingFeatures.map((row, i) => (
                 <div
@@ -1509,14 +1509,18 @@ const Work: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-5"
             >
-              Start talking to <span className="italic">your workday.</span>
+              {t('cta.heading').split('your workday.').map((part, i, arr) =>
+                i < arr.length - 1
+                  ? <React.Fragment key={i}>{part}<span className="italic">your workday.</span></React.Fragment>
+                  : <React.Fragment key={i}>{part}</React.Fragment>
+              )}
             </motion.h2>
             <motion.p
               variants={fadeUp}
               transition={{ duration: 0.6 }}
               className="text-lg text-slate-500 mb-10"
             >
-              One voice. One brain. Everything connected.
+              {t('cta.description')}
             </motion.p>
 
             <motion.div variants={fadeUp} transition={{ duration: 0.6 }}>
@@ -1524,14 +1528,14 @@ const Work: React.FC = () => {
                 {!submitted ? (
                   <>
                     <p className="text-slate-400 text-sm mb-6">
-                      Join the waitlist for early access to HABOS for Work.
+                      {t('cta.waitlistDescription')}
                     </p>
                     <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your work email"
+                        placeholder={t('cta.emailPlaceholder')}
                         className="flex-1 px-5 py-3.5 rounded-full bg-white/10 border border-white/20 text-white placeholder-slate-500 focus:outline-none focus:border-white/40 transition-colors text-sm"
                         required
                       />
@@ -1541,12 +1545,12 @@ const Work: React.FC = () => {
                         whileTap={{ scale: 0.98 }}
                         className="px-8 py-3.5 bg-white text-slate-900 rounded-full font-semibold hover:bg-slate-100 transition-colors flex items-center justify-center gap-2 text-sm"
                       >
-                        Get Early Access
+                        {t('cta.submitButton')}
                         <ArrowRight size={16} />
                       </motion.button>
                     </form>
                     <p className="text-slate-600 text-xs mt-5">
-                      No spam. No credit card. Just updates on HABOS for Work.
+                      {t('cta.noSpam')}
                     </p>
                   </>
                 ) : (
@@ -1556,7 +1560,7 @@ const Work: React.FC = () => {
                     className="py-4 px-6 bg-emerald-500/20 border border-emerald-500/30 rounded-2xl"
                   >
                     <p className="text-emerald-400 font-medium">
-                      You're on the list! We'll be in touch soon.
+                      {t('cta.successMessage')}
                     </p>
                   </motion.div>
                 )}
@@ -1576,78 +1580,78 @@ const Work: React.FC = () => {
             {/* Col 1: Logo & Tagline */}
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <img src="/Logo/vois-logo.svg" alt="HABOS" className="h-8 w-8" />
-                <span className="font-semibold text-sm tracking-tight text-slate-900">HABOS</span>
+                <img src="/Logo/vois-logo.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
+                <span className="font-semibold text-sm tracking-tight text-slate-900">{t('footer.brandName')}</span>
               </div>
-              <p className="text-slate-500 text-sm">Your AI workday.</p>
+              <p className="text-slate-500 text-sm">{t('footer.tagline')}</p>
             </div>
 
             {/* Col 2: Product */}
             <div>
-              <h4 className="text-slate-900 font-medium text-sm mb-4">Product</h4>
+              <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.product.heading')}</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/login" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Login</Link>
+                  <Link to="/login" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.login')}</Link>
                 </li>
                 <li>
-                  <button onClick={() => scrollToSection('pricing')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Pricing</button>
+                  <button onClick={() => scrollToSection('pricing')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.pricing')}</button>
                 </li>
                 <li>
-                  <button onClick={() => scrollToSection('explore')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Platform</button>
+                  <button onClick={() => scrollToSection('explore')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.platform')}</button>
                 </li>
                 <li>
-                  <Link to="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">VOIS Personal</Link>
+                  <Link to="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.voisPersonal')}</Link>
                 </li>
               </ul>
             </div>
 
             {/* Col 3: Support */}
             <div>
-              <h4 className="text-slate-900 font-medium text-sm mb-4">Support</h4>
+              <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.support.heading')}</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/support" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Help & FAQ</Link>
+                  <Link to="/support" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.helpFaq')}</Link>
                 </li>
                 <li>
-                  <a href="mailto:hello@tryvois.com" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Contact Sales</a>
+                  <a href="mailto:hello@tryvois.com" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.contactSales')}</a>
                 </li>
                 <li>
-                  <Link to="/setup" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Setup Guide</Link>
+                  <Link to="/setup" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.setupGuide')}</Link>
                 </li>
               </ul>
             </div>
 
             {/* Col 4: Legal */}
             <div>
-              <h4 className="text-slate-900 font-medium text-sm mb-4">Legal</h4>
+              <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.legal.heading')}</h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/Privacy" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Privacy Policy</Link>
+                  <Link to="/Privacy" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.legal.privacyPolicy')}</Link>
                 </li>
                 <li>
-                  <Link to="/Terms" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Terms of Service</Link>
+                  <Link to="/Terms" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.legal.termsOfService')}</Link>
                 </li>
                 <li>
-                  <Link to="/legal#refund" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Refund Policy</Link>
+                  <Link to="/legal#refund" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.legal.refundPolicy')}</Link>
                 </li>
               </ul>
             </div>
 
             {/* Col 5: Social */}
             <div>
-              <h4 className="text-slate-900 font-medium text-sm mb-4">Social</h4>
+              <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.social.heading')}</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="https://x.com/voisaiapp" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">X / Twitter</a>
+                  <a href="https://x.com/voisaiapp" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.xTwitter')}</a>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com/usevois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Instagram</a>
+                  <a href="https://www.instagram.com/usevois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.instagram')}</a>
                 </li>
                 <li>
-                  <a href="https://www.tiktok.com/@getvois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">TikTok</a>
+                  <a href="https://www.tiktok.com/@getvois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.tiktok')}</a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/tryvois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">Facebook</a>
+                  <a href="https://www.facebook.com/tryvois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.facebook')}</a>
                 </li>
               </ul>
             </div>
