@@ -48,7 +48,7 @@ const VoiceFirst: React.FC = () => {
               Voice is the fastest, lowest-friction way to capture intent. You speak at roughly 150 words per minute. You type at 40. That's not a small difference — it's a 4x multiplier on input speed, and the gap between having an idea and losing it.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Not transcription. Understanding.</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Not transcription. Understanding.</h2>
             <p>
               Most voice products transcribe your speech into text and stop there. You get a wall of words and the same amount of work ahead of you. HABOS does something fundamentally different.
             </p>
@@ -91,7 +91,7 @@ const VoiceFirst: React.FC = () => {
               <span className="text-sm text-amber-300 font-medium">Voice surfaces overview</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Every surface speaks</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Every surface speaks</h2>
             <p>
               Voice isn't limited to one feature. It's a first-class input across the entire platform:
             </p>
@@ -108,7 +108,7 @@ const VoiceFirst: React.FC = () => {
               <span className="text-sm text-indigo-300 font-medium">Voice flow diagram</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Context-aware routing</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Context-aware routing</h2>
             <p>
               The Smart Router is duration-aware. A 2-minute recording mentioning "meeting" is classified as scheduling a meeting. A 15-minute recording mentioning "meeting" is classified as meeting notes. The system understands that short recordings are commands and long recordings are content.
             </p>

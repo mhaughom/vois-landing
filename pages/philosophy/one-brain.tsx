@@ -56,7 +56,7 @@ const OneBrain: React.FC = () => {
               Every time you switch apps to find context, you pay a tax — in time, in attention, and in decisions made without the full picture. The average knowledge worker switches between apps 1,200 times per day. That's not productivity. That's friction masquerading as work.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">One database. Shared understanding.</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">One database. Shared understanding.</h2>
             <p>
               HABOS stores everything in one unified data layer. One SQL query can join CRM contacts with meeting transcripts, order line items with support tickets, calendar events with task dependencies, email threads with project milestones, and voice note transcripts with playbook SOPs.
             </p>
@@ -86,7 +86,7 @@ const OneBrain: React.FC = () => {
               <span className="text-sm text-violet-300 font-medium">Brain search visualization</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">What this looks like in practice</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">What this looks like in practice</h2>
             <p>
               You ask: <em>"What's going on with Nordic Fishing?"</em>
             </p>
@@ -94,7 +94,7 @@ const OneBrain: React.FC = () => {
               Within three seconds you get: their CRM status (negotiation stage), their last three orders ($47K total), the open support ticket about delivery timing, what Lars said about expansion in the last meeting, and a reminder that the contract renewal is coming up in April. Every piece of information links back to its source. You didn't open five different apps.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Semantic, not just keyword</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Semantic, not just keyword</h2>
             <p>
               The Brain uses 512-dimensional vector embeddings across every data source. Searching for "revenue projections" finds a voice note titled "Q3 financial outlook." Searching for "that HVAC thing Jonas mentioned" finds the meeting transcript where he talked about compressor wear at the Fjordview Hotel.
             </p>
@@ -102,7 +102,7 @@ const OneBrain: React.FC = () => {
               All 19 sources are queried concurrently. Typical latency: under one second for a full cross-platform search. The AI doesn't just keyword-match — it <em>understands</em> your data semantically.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">The moat that deepens</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The moat that deepens</h2>
             <p>
               Competitors can move data between apps. They can build API bridges and sync pipelines. What they cannot replicate is shared understanding — the ability for every part of the system to reason over every other part, because it was all designed to live together.
             </p>

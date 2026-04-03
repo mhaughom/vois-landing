@@ -51,7 +51,7 @@ const MemoryThatCompounds: React.FC = () => {
               That accumulated understanding isn't a feature you can install. It's intelligence that was earned — conversation by conversation, decision by decision.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">What compounds</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">What compounds</h2>
 
             <div className="not-prose my-12 grid gap-4">
               {[
@@ -111,7 +111,7 @@ const MemoryThatCompounds: React.FC = () => {
               <span className="text-sm text-emerald-300 font-medium">Compounding intelligence curve</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">The moat you build by using it</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The moat you build by using it</h2>
             <p>
               Most software has zero switching cost beyond the data export. Your project management tool doesn't get smarter the longer you use it. Your CRM doesn't learn your sales patterns. Your calendar doesn't anticipate your scheduling preferences.
             </p>
@@ -119,7 +119,7 @@ const MemoryThatCompounds: React.FC = () => {
               HABOS is different because the intelligence layer compounds. After six months, the system's understanding of your business is genuinely unique — built from your conversations, your decisions, your patterns, your corrections. That understanding can't be exported as a CSV. It's not in any single database table. It's distributed across embeddings, style profiles, routing models, and behavioral patterns.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Institutional memory that doesn't quit</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Institutional memory that doesn't quit</h2>
             <p>
               When a key employee leaves, they take their knowledge with them. The client preferences they memorized, the processes they invented, the relationships they built — all gone.
             </p>
@@ -127,7 +127,7 @@ const MemoryThatCompounds: React.FC = () => {
               HABOS captures that institutional knowledge as it happens. Every voice note, every meeting, every client interaction feeds the Brain. When someone new joins, they inherit not just the data but the understanding — the AI can brief them on client history, explain why certain decisions were made, and surface the playbooks that the previous person developed.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">A benefit, not a trap</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">A benefit, not a trap</h2>
             <p>
               We're not building lock-in through data hostage-taking. Your data is always exportable. You own it. But the intelligence — the patterns, the predictions, the contextual understanding — that's the compound interest on the time you've invested. It makes every month more valuable than the last.
             </p>

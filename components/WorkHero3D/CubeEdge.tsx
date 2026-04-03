@@ -23,7 +23,7 @@ export const CubeEdge: React.FC<{ a: THREE.Vector3; b: THREE.Vector3; opacity?: 
 
   const geo = useMemo(() => {
     if (length < 0.001) return null;
-    const nSegs = 32;
+    const nSegs = 16;
     const minR = 0.03;
     const maxR = NODE_SIZE * 0.6;
     const innerZone = 0.08;
@@ -36,7 +36,7 @@ export const CubeEdge: React.FC<{ a: THREE.Vector3; b: THREE.Vector3; opacity?: 
       const r = minR + (maxR - minR) * Math.pow(zone, power);
       points.push(new THREE.Vector2(r, (t - 0.5) * length));
     }
-    return new THREE.LatheGeometry(points, 20);
+    return new THREE.LatheGeometry(points, 12);
   }, [length]);
 
   if (!geo) return null;

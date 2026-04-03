@@ -1203,10 +1203,11 @@ interface WorkHero3DProps {
   onFocusChange?: (label: string | null) => void;
   unfocusRef?: React.MutableRefObject<(() => void) | null>;
   muted?: boolean;
+  paused?: boolean;
   onToggleMute?: () => void;
 }
 
-export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusChange, unfocusRef, muted = true, onToggleMute }) => {
+export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusChange, unfocusRef, muted = true, paused = false, onToggleMute }) => {
   const [introComplete, setIntroComplete] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [focusedTri, setFocusedTri] = useState<number | null>(null);
@@ -1357,7 +1358,7 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
         camera={{ zoom: 160 * (containerWidth / 672), position: [0, 0, 10], near: 0.1, far: 100 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
-        dpr={isMobile ? [1, 1.5] : [1, 2]}
+        dpr={[1, 1.5]}
       >
         <ambientLight intensity={0.3} />
         <directionalLight position={[5, 5, 10]} intensity={1.2} />
@@ -1375,6 +1376,7 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
             onPreviewFace={handlePreviewFace}
             onPhaseChange={onPhaseChange}
             muted={muted}
+            paused={paused}
             containerWidth={containerWidth || 672}
           />
         </Suspense>

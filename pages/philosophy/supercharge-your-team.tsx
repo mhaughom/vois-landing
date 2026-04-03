@@ -48,7 +48,7 @@ const SuperchargeYourTeam: React.FC = () => {
               This isn't about giving everyone the same tool. It's about giving everyone the right copilot for how <em>they</em> work.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Same meeting, different intelligence</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Same meeting, different intelligence</h2>
             <p>
               When your team sits in the same meeting, HABOS generates different AI notes for each person based on their role, responsibilities, and projects. A junior developer and a VP see entirely different suggested questions. The sales lead gets follow-up tasks related to the pipeline. The project manager gets timeline risks highlighted.
             </p>
@@ -101,7 +101,7 @@ const SuperchargeYourTeam: React.FC = () => {
               <span className="text-sm text-rose-300 font-medium">Team amplification visual</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Emails that sound like you</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Emails that sound like you</h2>
             <p>
               When the AI drafts a reply, it matches <em>your</em> writing style — not a generic corporate tone. HABOS builds a profile from your past messages: formality level, sentence length, emoji usage, how you sign off. The sales lead's drafts sound like the sales lead. The founder's drafts sound like the founder.
             </p>
@@ -109,7 +109,7 @@ const SuperchargeYourTeam: React.FC = () => {
               Three reply options appear — Short & Direct, Warm & Professional, Executive — each matching your voice. You pick one, edit a sentence if you want, and send. What used to take five minutes of staring at a blank compose window takes ten seconds.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Structure that adapts to how people actually work</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Structure that adapts to how people actually work</h2>
             <p>
               Not everyone works the same way. Some people are disciplined with their task lists. Others think in voice notes and scattered ideas. Some thrive with structured schedules. Others need flexibility.
             </p>
@@ -117,7 +117,7 @@ const SuperchargeYourTeam: React.FC = () => {
               HABOS doesn't force a single workflow. The voice-first capture meets people where they are. The AI organizes the chaos afterwards — turning rambling voice notes into structured actions, surfacing the right information at the right time, and gently enforcing the processes that matter without micromanaging the ones that don't.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">The multiplier, not the replacement</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The multiplier, not the replacement</h2>
             <p>
               The AI industry loves to talk about replacing jobs. We think that misses the point. A great employee with AI assistance doesn't become replaceable — they become irreplaceable. The technician who can do 8 jobs a day instead of 5. The sales lead who never forgets a follow-up. The office manager who catches problems before they escalate.
             </p>

@@ -67,15 +67,28 @@ const SalesPaymentsPage = React.lazy(() => import('./pages/work/sales-payments')
 const VoiceAIPage = React.lazy(() => import('./pages/work/voice-ai'));
 const WebsiteMarketingPage = React.lazy(() => import('./pages/work/website-marketing'));
 
+// Solution pages
+const ServiceBusinesses = React.lazy(() => import('./pages/solutions/service-businesses'));
+const ProductBusinesses = React.lazy(() => import('./pages/solutions/product-businesses'));
+const CreativeBusinesses = React.lazy(() => import('./pages/solutions/creative-businesses'));
+const FieldOperations = React.lazy(() => import('./pages/solutions/field-operations'));
+const TeamsStartups = React.lazy(() => import('./pages/solutions/teams-startups'));
+const SoloFounders = React.lazy(() => import('./pages/solutions/solo-founders'));
+
+// Dev tools (temporary — remove after use)
+const BoxAnimationRecorder = React.lazy(() => import('./components/BoxAnimationRecorder'));
+
 // Philosophy pages
-const AINative = React.lazy(() => import('./pages/philosophy/ai-native'));
-const OneBrain = React.lazy(() => import('./pages/philosophy/one-brain'));
-const VoiceFirstPage = React.lazy(() => import('./pages/philosophy/voice-first'));
-const HumanControl = React.lazy(() => import('./pages/philosophy/human-control'));
-const AdvisorsThatDisagree = React.lazy(() => import('./pages/philosophy/advisors-that-disagree'));
-const MemoryThatCompounds = React.lazy(() => import('./pages/philosophy/memory-that-compounds'));
-const SmallTeamLeverage = React.lazy(() => import('./pages/philosophy/small-team-leverage'));
-const SuperchargeYourTeam = React.lazy(() => import('./pages/philosophy/supercharge-your-team'));
+const TheAirlock = React.lazy(() => import('./pages/philosophy/the-airlock'));
+const OneAssistant = React.lazy(() => import('./pages/philosophy/one-assistant'));
+const CaptureYourBrain = React.lazy(() => import('./pages/philosophy/capture-your-brain'));
+const AlwaysWithinReach = React.lazy(() => import('./pages/philosophy/always-within-reach'));
+const SuggestionsNotMenus = React.lazy(() => import('./pages/philosophy/suggestions-not-menus'));
+const TwoInterfaces = React.lazy(() => import('./pages/philosophy/two-interfaces'));
+const SpeedOfThought = React.lazy(() => import('./pages/philosophy/speed-of-thought'));
+const EverythingInOnePlace = React.lazy(() => import('./pages/philosophy/everything-in-one-place'));
+const BuiltForTeams = React.lazy(() => import('./pages/philosophy/built-for-teams'));
+const YourSoftwareYourWay = React.lazy(() => import('./pages/philosophy/your-software-your-way'));
 
 // Wrapper components for direct Privacy/Terms routes
 const PrivacyPage = () => <Legal defaultSection="privacy" />;
@@ -148,14 +161,23 @@ root.render(
           <Route path="/work/playbooks" element={<Playbooks />} />
           <Route path="/work/files" element={<Files />} />
           <Route path="/work/people" element={<People />} />
-          <Route path="/philosophy/ai-native" element={<AINative />} />
-          <Route path="/philosophy/one-brain" element={<OneBrain />} />
-          <Route path="/philosophy/voice-first" element={<VoiceFirstPage />} />
-          <Route path="/philosophy/human-control" element={<HumanControl />} />
-          <Route path="/philosophy/advisors-that-disagree" element={<AdvisorsThatDisagree />} />
-          <Route path="/philosophy/memory-that-compounds" element={<MemoryThatCompounds />} />
-          <Route path="/philosophy/small-team-leverage" element={<SmallTeamLeverage />} />
-          <Route path="/philosophy/supercharge-your-team" element={<SuperchargeYourTeam />} />
+          <Route path="/record-box" element={<BoxAnimationRecorder />} />
+          <Route path="/solutions/service-businesses" element={<ServiceBusinesses />} />
+          <Route path="/solutions/product-businesses" element={<ProductBusinesses />} />
+          <Route path="/solutions/creative-businesses" element={<CreativeBusinesses />} />
+          <Route path="/solutions/field-operations" element={<FieldOperations />} />
+          <Route path="/solutions/teams-startups" element={<TeamsStartups />} />
+          <Route path="/solutions/solo-founders" element={<SoloFounders />} />
+          <Route path="/philosophy/the-airlock" element={<TheAirlock />} />
+          <Route path="/philosophy/one-assistant" element={<OneAssistant />} />
+          <Route path="/philosophy/capture-your-brain" element={<CaptureYourBrain />} />
+          <Route path="/philosophy/always-within-reach" element={<AlwaysWithinReach />} />
+          <Route path="/philosophy/suggestions-not-menus" element={<SuggestionsNotMenus />} />
+          <Route path="/philosophy/two-interfaces" element={<TwoInterfaces />} />
+          <Route path="/philosophy/speed-of-thought" element={<SpeedOfThought />} />
+          <Route path="/philosophy/everything-in-one-place" element={<EverythingInOnePlace />} />
+          <Route path="/philosophy/built-for-teams" element={<BuiltForTeams />} />
+          <Route path="/philosophy/your-software-your-way" element={<YourSoftwareYourWay />} />
           <Route path="/support" element={<Support />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />

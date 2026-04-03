@@ -70,6 +70,7 @@ interface AnimationSceneProps {
   onPreviewFace: (index: number) => void;
   onPhaseChange?: (phase: Phase) => void;
   muted?: boolean;
+  paused?: boolean;
   containerWidth?: number;
 }
 
@@ -87,6 +88,7 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
   onPreviewFace,
   onPhaseChange,
   muted,
+  paused,
   containerWidth = BASE_CONTAINER,
 }) => {
   const elapsedRef = useRef(0);
@@ -411,6 +413,7 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
           camDirTuple={phase === 'idle' ? camDirTuple : undefined}
           onTriClick={phase === 'idle' ? onTriClick : undefined}
           muted={muted}
+          paused={paused}
         />
       </group>
     );

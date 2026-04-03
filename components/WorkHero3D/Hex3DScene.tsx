@@ -4,6 +4,10 @@ import { HEX_SPH, HEX_A, HEX3D_EDGES, HEX_FACE_TRIS, getTriGroup } from './geome
 import { CubeEdge } from './CubeEdge';
 import { CubeNode } from './CubeNode';
 
+// Rendered face indices — skip quad partners 17, 19 (handled by 16, 18)
+const RENDERED_FACES = HEX_FACE_TRIS.map((_, i) => i).filter(i => i !== 17 && i !== 19);
+const VIDEO_POOL_SIZE = 5;
+
 // ── Helpers: build face geometry once per morph change ──────────────────────
 
 function buildFaceGeometry(
@@ -87,13 +91,14 @@ export const Hex3DScene: React.FC<{
   glassOpacity?: number;
   focusedTri?: number | null;
   isDragging?: boolean;
+  paused?: boolean;
   camDirTuple?: [number, number, number];
   onTriClick?: (index: number) => void;
   muted?: boolean;
 }> = ({
   rotationX, rotationY, morph,
   glassOpacity = 0.18,
-  focusedTri = null, isDragging = false, camDirTuple, onTriClick, muted = true,
+  focusedTri = null, isDragging = false, paused = false, camDirTuple, onTriClick, muted = true,
 }) => {
   const verts = useMemo(() => {
     const a = 1 - morph * (1 - HEX_A);
@@ -231,53 +236,55 @@ export const Hex3DScene: React.FC<{
     return blended;
   }, [faceScores, bestFaceIdx, verts.length, focus]);
 
-  // ── Per-face video textures (each face gets its own video at a staggered time) ──
+  // ── Video pool — only VIDEO_POOL_SIZE elements instead of one per face ──
+  const videoPoolRef = useRef<{ video: HTMLVideoElement; texture: THREE.VideoTexture; assignedFace: number | null }[]>([]);
   const faceVideosRef = useRef<Map<number, { video: HTMLVideoElement; texture: THREE.VideoTexture }>>(new Map());
   const smoothVideoOpacity = useRef(0);
   const smoothVolume = useRef(0);
   const perFaceOpacity = useRef(new Float32Array(HEX_FACE_TRIS.length));
   const lastFocusedFaceRef = useRef<number | null>(null);
+  const normalizedFocusFace = focusedTri === 17 ? 16 : focusedTri === 19 ? 18 : focusedTri;
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     const src = isMobile ? '/videos/Situations-mobile.mp4' : '/videos/Situations-with-cards.mp4';
-    const map = faceVideosRef.current;
+    const pool: typeof videoPoolRef.current = [];
 
-    // Rendered face indices (skip 17, 19 — quad partners handled by 16, 18)
-    const rendered = HEX_FACE_TRIS.map((_, i) => i).filter(i => i !== 17 && i !== 19);
-
-    rendered.forEach((faceIdx, order) => {
+    for (let i = 0; i < VIDEO_POOL_SIZE; i++) {
       const v = document.createElement('video');
       v.src = src;
       v.crossOrigin = 'anonymous';
       v.loop = true;
-      v.muted = true; // must be muted for autoplay
+      v.muted = true;
       v.playsInline = true;
       v.volume = 0;
       v.preload = 'auto';
 
       const tex = new THREE.VideoTexture(v);
       tex.colorSpace = THREE.SRGBColorSpace;
-      map.set(faceIdx, { video: v, texture: tex });
+      pool.push({ video: v, texture: tex, assignedFace: null });
 
-      // Stagger start times so each face shows a different frame
+      // Stagger initial times across the pool
       v.addEventListener('loadedmetadata', () => {
         if (v.duration && isFinite(v.duration)) {
-          v.currentTime = (order / rendered.length) * v.duration;
+          v.currentTime = (i / VIDEO_POOL_SIZE) * v.duration;
         }
       }, { once: true });
 
       v.play().catch(() => {});
-    });
+    }
+
+    videoPoolRef.current = pool;
 
     return () => {
-      map.forEach(({ video, texture }) => {
+      pool.forEach(({ video, texture }) => {
         video.pause();
         video.removeAttribute('src');
         video.load();
         texture.dispose();
       });
-      map.clear();
+      videoPoolRef.current = [];
+      faceVideosRef.current.clear();
     };
   }, []);
 
@@ -313,8 +320,48 @@ export const Hex3DScene: React.FC<{
     }
   }
 
+  // ── Pool assignment: give pool entries to the most visible faces ──
+  const pool = videoPoolRef.current;
+  if (pool.length > 0) {
+    const pf = perFaceOpacity.current;
+    const faceMap = faceVideosRef.current;
+
+    // When paused (off-screen), release all entries and pause all videos
+    const wantedFaces = new Set<number>();
+    if (!paused) {
+      // Rank rendered faces by opacity; focused face always gets priority
+      const ranked = RENDERED_FACES
+        .map(fi => ({ fi, op: Math.max(pf[fi], fi === normalizedFocusFace ? 1 : 0) }))
+        .sort((a, b) => b.op - a.op);
+      ranked.slice(0, VIDEO_POOL_SIZE).filter(f => f.op >= 0.02).forEach(f => wantedFaces.add(f.fi));
+    }
+
+    // Release pool entries for faces no longer visible and pause their videos
+    for (const entry of pool) {
+      if (entry.assignedFace !== null && !wantedFaces.has(entry.assignedFace)) {
+        faceMap.delete(entry.assignedFace);
+        entry.assignedFace = null;
+        entry.video.pause();
+      }
+    }
+
+    // Assign free entries to newly visible faces
+    for (const fi of wantedFaces) {
+      if (faceMap.has(fi)) continue; // already has an entry
+      const free = pool.find(e => e.assignedFace === null);
+      if (!free) break;
+      free.assignedFace = fi;
+      faceMap.set(fi, { video: free.video, texture: free.texture });
+      // Set stagger time based on face order
+      const order = RENDERED_FACES.indexOf(fi);
+      if (free.video.duration && isFinite(free.video.duration)) {
+        free.video.currentTime = (order / RENDERED_FACES.length) * free.video.duration;
+      }
+      free.video.play().catch(() => {});
+    }
+  }
+
   // Audio fade — only on the focused face's video, mute all others
-  const normalizedFocusFace = focusedTri === 17 ? 16 : focusedTri === 19 ? 18 : focusedTri;
   const targetVolume = (!muted && isFocusMode) ? Math.min(1, videoOpacity * 0.8) : 0;
   smoothVolume.current += (targetVolume - smoothVolume.current) * 0.03;
   faceVideosRef.current.forEach((entry, faceIdx) => {
@@ -397,14 +444,12 @@ export const Hex3DScene: React.FC<{
               onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
               onPointerOut={() => { document.body.style.cursor = ''; }}
             >
-              <meshPhysicalMaterial
+              <meshStandardMaterial
                 color={isFocusMode && isBestFace ? '#a5b4fc' : '#b8c4d8'}
                 transparent
                 opacity={faceOpacity}
                 roughness={0.4}
                 metalness={0.1}
-                clearcoat={0.8}
-                clearcoatRoughness={0.3}
                 side={THREE.DoubleSide}
               />
             </mesh>
@@ -442,6 +487,7 @@ export const Hex3DScene: React.FC<{
           </group>
         );
       })}
+
     </group>
   );
 };

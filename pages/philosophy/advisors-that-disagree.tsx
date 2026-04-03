@@ -48,7 +48,7 @@ const AdvisorsThatDisagree: React.FC = () => {
               That's fine for writing emails. It's dangerous for making business decisions. A founder who only hears "great idea" is a founder who walks into walls.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">The Strategic Council</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The Strategic Council</h2>
             <p>
               HABOS doesn't give you one AI perspective. It gives you several — each with a different mandate, a different risk tolerance, and a different set of priorities. We call it the Strategic Council.
             </p>
@@ -91,7 +91,7 @@ const AdvisorsThatDisagree: React.FC = () => {
               <span className="text-sm text-violet-300 font-medium">Council debate visualization</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Structured disagreement</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Structured disagreement</h2>
             <p>
               When you bring a decision to the Council — "Should we expand into the Bergen market?" or "Should we hire a second technician?" — you don't get one answer. You get a structured debate. Each advisor presents their case, responds to the others, and surfaces risks the others didn't mention.
             </p>
@@ -99,7 +99,7 @@ const AdvisorsThatDisagree: React.FC = () => {
               The output isn't a recommendation. It's a decision brief: the strongest arguments for and against, the key uncertainties, the data points that matter most, and the questions you should answer before committing. You make the call. The Council makes sure you've heard everything first.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Why this is harder than it sounds</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Why this is harder than it sounds</h2>
             <p>
               Building AI that argues with itself is genuinely difficult. It requires giving each advisor a distinct reasoning framework, preventing them from collapsing into agreement, grounding their arguments in your actual business data, and presenting the disagreement in a way that's useful rather than confusing.
             </p>
@@ -107,7 +107,7 @@ const AdvisorsThatDisagree: React.FC = () => {
               Most AI companies won't attempt it because consensus is easier to ship and easier to market. But consensus is also less valuable. The whole point of having advisors is that they see things you don't — including things you don't want to see.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Calibrated to your business</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Calibrated to your business</h2>
             <p>
               The Council isn't generic. The Operator knows your team's actual capacity because it reads your resource data. The Strategist knows your competitive landscape because it reads your market research. The Customer Voice knows your clients' real concerns because it reads your CRM and support tickets.
             </p>

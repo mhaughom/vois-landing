@@ -48,7 +48,7 @@ const AINative: React.FC = () => {
               The result is a veneer of intelligence on top of fundamentally unintelligent architecture. The AI sits beside the software. It doesn't <em>live inside</em> it.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Built with intelligence at the foundation</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Built with intelligence at the foundation</h2>
             <p>
               HABOS was designed from day one with AI as a structural element, not a feature. The three core systems that power the platform — the Smart Router, the Brain, and the Agent Orchestrator — are all AI-native. They don't wrap existing software in a chatbot. They <em>are</em> the software.
             </p>
@@ -80,7 +80,7 @@ const AINative: React.FC = () => {
               <span className="text-sm text-blue-300 font-medium">Architecture diagram</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">What AI-native actually means in practice</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">What AI-native actually means in practice</h2>
             <p>
               It means a plumber finishes a job, speaks for 30 seconds into his phone, and the system creates the job record, updates inventory, generates the invoice, notifies the office, and logs the time. That entire chain works because every module shares one AI-powered brain — not because someone wired 6 APIs together.
             </p>
@@ -88,7 +88,7 @@ const AINative: React.FC = () => {
               It means when the AI prepares you for a meeting, it pulls from your CRM, order history, meeting transcripts, voice notes, emails, playbooks, and open tickets — in one pass. Not because it searched 7 separate apps. Because all that data lives in one place and was designed to be reasoned over.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">The compound effect</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The compound effect</h2>
             <p>
               An AI-native platform gets smarter the longer you use it. After six months, the system knows which clients reorder on predictable cycles, which operations consistently drift, which team members are overutilized, and what the average time-to-close is for different deal types.
             </p>

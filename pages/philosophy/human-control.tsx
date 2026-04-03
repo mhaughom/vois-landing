@@ -48,7 +48,7 @@ const HumanControl: React.FC = () => {
               When you say "send an email to Lars," the AI drafts it, shows it to you, and waits. When you say "create a task," the AI shows you the task card and waits. When an agent completes a ten-step research mission and wants to save the results — it shows you the artifact and waits. Always.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Three tiers of trust</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Three tiers of trust</h2>
 
             <div className="not-prose my-12 grid gap-4">
               {[
@@ -87,12 +87,12 @@ const HumanControl: React.FC = () => {
               <span className="text-sm text-emerald-300 font-medium">Approval flow diagram</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Cryptographic confirmation</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Cryptographic confirmation</h2>
             <p>
               Every write action generates a confirmation token — cryptographic, with a 10-minute expiry, bound to the specific user and the exact arguments. If anything changes between preview and confirmation, a new token is required. The AI can't modify the action after showing you the preview. What you saw is what gets executed.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">Workspace-level policy</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Workspace-level policy</h2>
             <p>
               Admins have additional controls that override everything else:
             </p>
@@ -111,7 +111,7 @@ const HumanControl: React.FC = () => {
               <span className="text-sm text-amber-300 font-medium">Approval flow screenshot</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Why this matters</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Why this matters</h2>
             <p>
               The AI industry is racing toward autonomy. Fully autonomous agents that act on your behalf without asking. We believe this is backwards for business software.
             </p>

@@ -27,7 +27,8 @@ export const scrollToSection = (sectionId: string) => {
 // ── Menu data types ────────────────────────────────────────────────────────
 
 type MenuItem = {
-  icon: React.FC<{ className?: string; size?: number }>;
+  icon: React.FC<{ className?: string; size?: number; style?: React.CSSProperties }>;
+  color?: string;
   label: string;
   desc: string;
   href: string;
@@ -51,12 +52,12 @@ const habosMenuData: MenuCategory[] = [
     sections: [
       {
         items: [
-          { icon: MessageSquare, label: 'Communication', desc: 'Email, Messenger, Phone, Support Tickets', href: '/work/communication' },
-          { icon: Calendar, label: 'Scheduling & Bookings', desc: 'Calendar, Bookings, Scheduling Links', href: '/work/scheduling' },
-          { icon: Truck, label: 'Jobs & Operations', desc: 'Dispatch, Routes, Projects, Tasks, Time Tracking', href: '/work/jobs-operations' },
-          { icon: CreditCard, label: 'Sales & Payments', desc: 'CRM, Products, Invoicing, Payments', href: '/work/sales-payments' },
-          { icon: Mic, label: 'Voice & AI', desc: 'Voice Notes, Meeting Notes, Assistant, Playbooks', href: '/work/voice-ai' },
-          { icon: Globe, label: 'Website & Marketing', desc: 'Website Builder, Social, Email Campaigns', href: '/work/website-marketing' },
+          { icon: MessageSquare, color: '#3b82f6', label: 'Communication', desc: 'Email, Messenger, Phone, Support Tickets', href: '/work/communication' },
+          { icon: Calendar, color: '#8b5cf6', label: 'Scheduling & Bookings', desc: 'Calendar, Bookings, Scheduling Links', href: '/work/scheduling' },
+          { icon: Truck, color: '#f59e0b', label: 'Jobs & Operations', desc: 'Dispatch, Routes, Projects, Tasks, Time Tracking', href: '/work/jobs-operations' },
+          { icon: CreditCard, color: '#22c55e', label: 'Sales & Payments', desc: 'CRM, Products, Invoicing, Payments', href: '/work/sales-payments' },
+          { icon: Mic, color: '#ef4444', label: 'Voice & AI', desc: 'Voice Notes, Meeting Notes, Assistant, Playbooks', href: '/work/voice-ai' },
+          { icon: Globe, color: '#06b6d4', label: 'Website & Marketing', desc: 'Website Builder, Social, Email Campaigns', href: '/work/website-marketing' },
         ],
       },
     ],
@@ -66,16 +67,12 @@ const habosMenuData: MenuCategory[] = [
     sections: [
       {
         items: [
-          { icon: Wrench, label: 'Service Businesses', desc: 'Plumbers to consultants to therapists', href: '/work' },
-          { icon: ShoppingCart, label: 'Product Businesses', desc: 'Shops to e-commerce to manufacturers', href: '/work' },
-          { icon: Palette, label: 'Creative Businesses', desc: 'Agencies to photographers to studios', href: '/work' },
-        ],
-      },
-      {
-        items: [
-          { icon: MapPin, label: 'Field Operations', desc: 'Construction to delivery to property mgmt', href: '/work' },
-          { icon: Users, label: 'Teams & Startups', desc: 'Building a company with 2-50 people', href: '/work' },
-          { icon: User, label: 'Solo Founders', desc: 'Freelancers to one-person companies', href: '/work' },
+          { icon: Wrench, color: '#f59e0b', label: 'Service Businesses', desc: 'Plumbers to consultants to therapists', href: '/solutions/service-businesses' },
+          { icon: ShoppingCart, color: '#22c55e', label: 'Product Businesses', desc: 'Shops to e-commerce to manufacturers', href: '/solutions/product-businesses' },
+          { icon: Palette, color: '#ec4899', label: 'Creative Businesses', desc: 'Agencies to photographers to studios', href: '/solutions/creative-businesses' },
+          { icon: MapPin, color: '#ef4444', label: 'Field Operations', desc: 'Construction to delivery to property mgmt', href: '/solutions/field-operations' },
+          { icon: Users, color: '#3b82f6', label: 'Teams & Startups', desc: 'Building a company with 2-50 people', href: '/solutions/teams-startups' },
+          { icon: User, color: '#8b5cf6', label: 'Solo Founders', desc: 'Freelancers to one-person companies', href: '/solutions/solo-founders' },
         ],
       },
     ],
@@ -84,13 +81,28 @@ const habosMenuData: MenuCategory[] = [
     label: 'Philosophy',
     sections: [
       {
+        title: 'Intelligence You Control',
         items: [
-          { icon: Hand, label: 'The Airlock', desc: 'The pause is a feature', href: '/philosophy/human-control' },
-          { icon: Lightbulb, label: 'The End of Data Entry', desc: 'Feel the difference on day one', href: '/philosophy/ai-native' },
-          { icon: Brain, label: 'One Brain', desc: 'Compound intelligence, not features', href: '/philosophy/one-brain' },
-          { icon: AudioLines, label: 'Your Voice, Not Ours', desc: 'AI that sounds like you', href: '/philosophy/voice-first' },
-          { icon: UsersRound, label: 'Advisors That Disagree', desc: 'Productive conflict, not consensus', href: '/philosophy/advisors-that-disagree' },
-          { icon: Rocket, label: 'Memory That Compounds', desc: 'Every conversation makes the next smarter', href: '/philosophy/memory-that-compounds' },
+          { icon: Shield, color: '#22c55e', label: 'The Airlock', desc: 'AI proposes. You decide.', href: '/philosophy/the-airlock' },
+          { icon: Bot, color: '#8b5cf6', label: 'One Assistant', desc: 'Ask anything, from anywhere', href: '/philosophy/one-assistant' },
+          { icon: Brain, color: '#ec4899', label: 'Capture Your Brain', desc: 'Catch ideas before they fade', href: '/philosophy/capture-your-brain' },
+        ],
+      },
+      {
+        title: 'Fast by Design',
+        items: [
+          { icon: Zap, color: '#ef4444', label: 'Suggestions, Not Menus', desc: 'Read. Tap. Done.', href: '/philosophy/suggestions-not-menus' },
+          { icon: LayoutGrid, color: '#3b82f6', label: 'Two Interfaces', desc: 'Screens for you, APIs for agents', href: '/philosophy/two-interfaces' },
+          { icon: Mic, color: '#06b6d4', label: 'Speed of Thought', desc: 'Voice in, tap out', href: '/philosophy/speed-of-thought' },
+          { icon: Watch, color: '#f59e0b', label: 'Always Within Reach', desc: 'Watch, phone, lock screen', href: '/philosophy/always-within-reach' },
+        ],
+      },
+      {
+        title: 'Built for Your Business',
+        items: [
+          { icon: Sparkles, color: '#a855f7', label: 'Everything in One Place', desc: 'One login, every tool', href: '/philosophy/everything-in-one-place' },
+          { icon: Users, color: '#f97316', label: 'Built for Teams', desc: 'Same truth, different lenses', href: '/philosophy/built-for-teams' },
+          { icon: Wrench, color: '#8b5cf6', label: 'Your Software, Your Way', desc: 'Flexible by design', href: '/philosophy/your-software-your-way' },
         ],
       },
     ],
@@ -215,9 +227,9 @@ const brandConfig = {
 // ── Animation variants ──────────────────────────────────────────────────────
 
 const dropdownVariants = {
-  hidden: { opacity: 0, y: 10, scale: 0.96 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] } },
-  exit: { opacity: 0, y: 6, scale: 0.97, transition: { duration: 0.2, ease: [0.23, 1, 0.32, 1] } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.15 } },
+  exit: { opacity: 0, transition: { duration: 0.1 } },
 };
 
 const staggerItems = {
@@ -226,8 +238,8 @@ const staggerItems = {
 };
 
 const itemVariant = {
-  hidden: { opacity: 0, y: 6 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.15, ease: 'easeOut' } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.12 } },
 };
 
 const mobileOverlay = {
@@ -521,7 +533,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                         exit="exit"
                         className="relative bg-white backdrop-blur-2xl rounded-2xl border border-slate-200/80 overflow-hidden pointer-events-auto"
                         style={{
-                          minWidth: category.sections.length > 1 ? '560px' : '300px',
+                          width: '340px',
                           boxShadow: '0 20px 60px -15px rgba(0,0,0,0.15), 0 8px 20px -8px rgba(0,0,0,0.08)',
                         }}
                       >
@@ -530,53 +542,38 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                           variants={staggerItems}
                           initial="hidden"
                           animate="visible"
-                          className={category.sections.length > 1 ? 'grid grid-cols-3 gap-5 p-5 items-start' : 'p-5'}
+                          className="grid grid-cols-1 gap-y-0.5 p-4"
                         >
-                          {category.sections.map((section, si) => {
-                            const hasAnyTitle = category.sections.some(s => s.title);
+                          {category.sections.flatMap(s => s.items).map((item) => {
+                            const isCluster = category.label === 'Product' && !!PRODUCT_CLUSTERS[item.label];
                             return (
-                            <div key={si}>
-                              {hasAnyTitle && (
-                                <p className={`font-semibold text-slate-400 uppercase tracking-widest mb-3 text-[11px] px-3 ${!section.title ? 'invisible' : ''}`}>
-                                  {section.title || '\u00A0'}
+                            <motion.a
+                              key={item.label}
+                              href={isCluster ? undefined : item.href}
+                              onClick={isCluster ? (e: React.MouseEvent) => {
+                                e.preventDefault();
+                                setActiveCluster(item.label);
+                                setActiveDropdown(null);
+                                setNavExpanded(false);
+                                navigate(item.href);
+                              } : undefined}
+                              variants={itemVariant}
+                              className={`group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-3 py-2.5 ${isCluster ? 'cursor-pointer' : ''}`}
+                            >
+                              <item.icon
+                                size={16}
+                                className="flex-shrink-0 mt-0.5"
+                                style={{ color: item.color || '#94a3b8' }}
+                              />
+                              <div className="min-w-0 pt-0.5">
+                                <p className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-[13px]">
+                                  {item.label}
                                 </p>
-                              )}
-                              <div className="space-y-0.5">
-                                {section.items.map((item) => {
-                                  const isCluster = category.label === 'Product' && !!PRODUCT_CLUSTERS[item.label];
-                                  return (
-                                  <motion.a
-                                    key={item.label}
-                                    href={isCluster ? undefined : item.href}
-                                    onClick={isCluster ? (e: React.MouseEvent) => {
-                                      e.preventDefault();
-                                      setActiveCluster(item.label);
-                                      setActiveDropdown(null);
-                                      setNavExpanded(false);
-                                      navigate(item.href);
-                                    } : undefined}
-                                    variants={itemVariant}
-                                    className={`group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-3 py-2.5 ${isCluster ? 'cursor-pointer' : ''}`}
-                                  >
-                                    <div className="flex-shrink-0 rounded-lg bg-slate-50 border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 flex items-center justify-center transition-all duration-200 w-8 h-8">
-                                      <item.icon
-                                        size={15}
-                                        className="text-slate-400 group-hover:text-blue-600 transition-colors duration-200"
-                                      />
-                                    </div>
-                                    <div className="min-w-0 pt-0.5">
-                                      <p className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-[13px]">
-                                        {item.label}
-                                      </p>
-                                      <p className="text-slate-400 group-hover:text-slate-500 mt-0.5 leading-snug transition-colors text-[11px] leading-relaxed">
-                                        {item.desc}
-                                      </p>
-                                    </div>
-                                  </motion.a>
-                                  );
-                                })}
+                                <p className="text-slate-400 group-hover:text-slate-500 mt-0.5 transition-colors text-[11px] leading-relaxed">
+                                  {item.desc}
+                                </p>
                               </div>
-                            </div>
+                            </motion.a>
                             );
                           })}
                         </motion.div>
@@ -608,13 +605,15 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
             >
               {brand.ctaLabel}
             </motion.button>
-            <a
+            <motion.a
               href="/login"
-              className="ml-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 whitespace-nowrap"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="ml-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap shadow-sm"
               style={{ backgroundColor: '#6681a5', color: '#ffffff' }}
             >
               Beta Login
-            </a>
+            </motion.a>
         </div>
         </>
         )}

@@ -21,6 +21,7 @@ import { WorkHero3D, AnimPhase } from '../components/WorkHero3D';
 import { Navbar } from '../components/Navbar';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';
 import { BoxAnimation } from '../components/BoxAnimation';
+import { AppGridBox } from '../components/AppGridBox';
 
 import FeatureSection from './work/features/FeatureSection';
 import VoiceNotesDemo from './work/features/VoiceNotesDemo';
@@ -48,12 +49,14 @@ const ChromaKeyVideo: React.FC<{
   onVideoTime?: (totalElapsed: number) => void;
 }> = ({ videoRef, src, loopSrc, keyStrength, className, onVideoTime }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const introVideoRef = useRef<HTMLVideoElement | null>(null);
   const loopVideoRef = useRef<HTMLVideoElement | null>(null);
   const useLoopRef = useRef(false);
   const introEndTimeRef = useRef(0);
   const startWallTime = useRef(0);
+  const isVisibleRef = useRef(true);
 
   // Expose the intro video to parent
   useEffect(() => {
@@ -61,6 +64,26 @@ const ChromaKeyVideo: React.FC<{
       (videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = introVideoRef.current;
     }
   }, [videoRef]);
+
+  // Pause videos when off-screen
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisibleRef.current = entry.isIntersecting;
+      const intro = introVideoRef.current;
+      const loop = loopVideoRef.current;
+      if (entry.isIntersecting) {
+        const active = useLoopRef.current ? loop : intro;
+        active?.play().catch(() => {});
+      } else {
+        intro?.pause();
+        loop?.pause();
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Preload loop video and switch when intro ends
   useEffect(() => {
@@ -90,13 +113,22 @@ const ChromaKeyVideo: React.FC<{
     let running = true;
     const draw = () => {
       if (!running) return;
+      // Skip draw when off-screen
+      if (!isVisibleRef.current) {
+        rafRef.current = requestAnimationFrame(draw);
+        return;
+      }
       const video = useLoopRef.current ? loopVideoRef.current : introVideoRef.current;
       if (video && video.readyState >= 2 && video.videoWidth > 0) {
-        if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
+        // Render at half resolution during chroma key for performance
+        const scale = keyStrength > 0.01 ? 0.5 : 1;
+        const tw = Math.round(video.videoWidth * scale);
+        const th = Math.round(video.videoHeight * scale);
+        if (canvas.width !== tw || canvas.height !== th) {
+          canvas.width = tw;
+          canvas.height = th;
         }
-        ctx.drawImage(video, 0, 0);
+        ctx.drawImage(video, 0, 0, tw, th);
         if (keyStrength > 0.01) {
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const d = imageData.data;
@@ -125,7 +157,7 @@ const ChromaKeyVideo: React.FC<{
   }, [keyStrength, onVideoTime]);
 
   return (
-    <div className={className}>
+    <div ref={containerRef} className={className}>
       <video ref={introVideoRef} src={src} muted playsInline preload="auto" style={{ display: 'none' }} />
       <video ref={loopVideoRef} muted playsInline loop preload="auto" style={{ display: 'none' }} />
       <canvas
@@ -186,6 +218,7 @@ const CLIP_DURATION = 3.04;
 
 const MobileHeroVideo: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [label, setLabel] = useState(HERO_BUSINESSES[0]);
 
   useEffect(() => {
@@ -207,9 +240,22 @@ const MobileHeroVideo: React.FC = () => {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  // Pause video when off-screen
+  useEffect(() => {
+    const el = containerRef.current;
+    const video = videoRef.current;
+    if (!el || !video) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200/60">
+      <div ref={containerRef} className="rounded-2xl overflow-hidden shadow-lg border border-slate-200/60">
         <video
           ref={videoRef}
           src="/videos/hero-businesses.mp4"
@@ -711,7 +757,10 @@ const Work: React.FC = () => {
   const [focusLabel, setFocusLabel] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
   const [geoVisible, setGeoVisible] = useState(false);
+  const [geoPaused, setGeoPaused] = useState(false);
+  const geoSectionRef = useRef<HTMLDivElement>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const [heroHeadlineIdx, setHeroHeadlineIdx] = useState(0);
   const [boxTime, setBoxTime] = useState(0);
   const [videoElapsed, setVideoElapsed] = useState(0);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
@@ -721,7 +770,7 @@ const Work: React.FC = () => {
 
   // Start intro video when box animation reaches crossfade point
   useEffect(() => {
-    if (boxTime >= 32.5 && !introStartedRef.current && introVideoRef.current) {
+    if (boxTime >= 32 && !introStartedRef.current && introVideoRef.current) {
       introStartedRef.current = true;
       introVideoRef.current.currentTime = 0;
       introVideoRef.current.play().catch(() => {});
@@ -736,6 +785,17 @@ const Work: React.FC = () => {
     Analytics.workPageViewed();
   }, []);
 
+  // Pause hex 3D videos when section scrolls off-screen
+  useEffect(() => {
+    const el = geoSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setGeoPaused(!entry.isIntersecting);
+    }, { rootMargin: '100px' });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   // Play/pause hero video based on showVideo state
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -748,6 +808,25 @@ const Work: React.FC = () => {
       video.currentTime = 0;
     }
   }, [showVideo]);
+
+  // Rotating hero headlines — cycle every 12s once final phase is reached
+  const heroHeadlines = [
+    { label: "World's First", bold: 'Human-to-Agent', light: 'Business Operating\nSystem' },
+    { label: 'Business in a Box', bold: 'Business in a Box', light: 'Everything You Need' },
+    { label: 'All-in-One Platform', bold: 'All Your Software', light: 'One Platform' },
+    { label: 'One Login, Every Tool', bold: 'Every Tool You Need', light: 'Behind One Login' },
+    { label: 'Replace Your Stack', bold: 'One System', light: 'Instead of Dozens' },
+    { label: 'Software That Thinks', bold: 'AI-Native Software', light: 'Built From Scratch' },
+  ];
+
+  useEffect(() => {
+    const isFinalPhase = boxTime >= 34 && !showVideo;
+    if (!isFinalPhase) return;
+    const interval = setInterval(() => {
+      setHeroHeadlineIdx(prev => (prev + 1) % heroHeadlines.length);
+    }, 12000);
+    return () => clearInterval(interval);
+  }, [boxTime >= 34, showVideo]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -796,34 +875,35 @@ const Work: React.FC = () => {
           HERO SECTION — Traditional headline + CTA
           ═══════════════════════════════════════════════════════════════════ */}
       <Section className="h-screen min-h-screen pt-28 md:pt-44 pb-12 md:pb-28 px-6 md:px-12 flex items-center relative" style={{ overflow: 'visible' }}>
-        {/* Box Animation — hard cut off when video takes over */}
+        {/* Shared anchor for 3D box + intro video — desktop only, hidden on narrow screens */}
+        {/* Box Animation — smooth crossfade out */}
         <div
-          className="absolute inset-0 z-0 flex items-center justify-end pointer-events-none"
+          className="hidden lg:flex absolute inset-0 z-0 items-center justify-center pointer-events-none"
           style={{
-            opacity: showVideo ? 0 : (boxTime >= 32.5 ? 0 : 1),
+            opacity: showVideo ? 0 : Math.max(0, Math.min(1, 1 - (boxTime - 32) / 0.5)),
             transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
-            paddingRight: '5%',
+            left: '40%',
           }}
         >
-          <BoxAnimation style={{ width: '65%', height: '100%' }} onTimeUpdate={(t) => {
+          <BoxAnimation style={{ width: '100%', height: '100%' }} onTimeUpdate={(t) => {
             if (Math.abs(t - boxTime) > 0.1) setBoxTime(t);
           }} />
         </div>
-        {/* Intro video — hard cut in, white keyed out via canvas */}
+        {/* Intro video — smooth crossfade in */}
         {(() => {
-          const videoOn = boxTime >= 32.5;
-          const videoAge = Math.max(0, boxTime - 32.5);
-          const bgFade = Math.min(1, Math.max(0, (videoAge - 2) / 3));
+          const videoFadeIn = Math.max(0, Math.min(1, (boxTime - 32) / 0.5));
+          const videoAge = Math.max(0, boxTime - 32);
+          const bgFade = Math.min(1, Math.max(0, (videoAge - 3) / 3));
           return (
             <div
-              className="absolute inset-0 z-0 flex items-center justify-end pointer-events-none"
+              className="hidden lg:flex absolute inset-0 z-0 items-center justify-center pointer-events-none"
               style={{
-                opacity: showVideo ? 0 : (videoOn ? 1 : 0),
+                opacity: showVideo ? 0 : videoFadeIn,
                 transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
-                paddingRight: '5%',
+                left: '40%',
               }}
             >
-              <div style={{ width: '65%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="flex flex-col items-center">
                 {(() => {
                   const VIDEO_BUSINESSES = [
                     'Creative Agencies', 'Plumbers', 'Dental Practices',
@@ -839,7 +919,7 @@ const Work: React.FC = () => {
                   const sceneTime = Math.max(0, vt - 4.5);
                   const sceneIdx = Math.floor(sceneTime / 3) % VIDEO_BUSINESSES.length;
                   return (
-                    <div className="flex flex-col items-center">
+                    <>
                       {/* "Made for..." top lip */}
                       <p
                         className="text-sm font-medium text-slate-400 tracking-wide mb-3 transition-opacity duration-500"
@@ -850,8 +930,8 @@ const Work: React.FC = () => {
                       <div
                         className="relative"
                         style={{
-                          width: 'min(280px, 30vh)',
-                          height: 'min(280px, 30vh)',
+                          width: 'min(340px, 38vh)',
+                          height: 'min(340px, 38vh)',
                         }}
                       >
                         {/* White background + frame that fades in */}
@@ -891,7 +971,7 @@ const Work: React.FC = () => {
                           )}
                         </AnimatePresence>
                       </div>
-                    </div>
+                    </>
                   );
                 })()}
               </div>
@@ -905,8 +985,8 @@ const Work: React.FC = () => {
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="text-center lg:text-left lg:flex-shrink-0 transition-all duration-700 ease-in-out"
-              style={{ width: showVideo ? '20%' : undefined, flex: showVideo ? undefined : '1 1 0%' }}
+              className="text-center lg:text-left lg:flex-shrink-0 transition-all duration-700 ease-in-out relative w-full lg:max-w-[50%]"
+              style={{ width: showVideo ? '20%' : undefined, minHeight: 'clamp(320px, 45vh, 500px)' }}
             >
               {/* Animated story headline — synced to box animation */}
               {(() => {
@@ -921,9 +1001,13 @@ const Work: React.FC = () => {
                 ];
                 const active = [...stories].reverse().find(s => boxTime >= s.at) || stories[0];
                 const isFinal = active.label === 'final';
+
+                // Consistent font size class for ALL phases
+                const headlineSizeClass = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl';
+
                 return (
                   <>
-                    <motion.p variants={fadeUp} transition={{ duration: 0.4 }} className="mb-1">
+                    <motion.p variants={fadeUp} transition={{ duration: 0.4 }} className="mb-1" style={{ minHeight: '1.5em' }}>
                       {showVideo ? (
                         <GlowText
                           text="World's First"
@@ -936,55 +1020,60 @@ const Work: React.FC = () => {
                       ) : (
                         <AnimatePresence mode="wait">
                           <motion.span
-                            key={active.label}
+                            key={isFinal ? `final-label-${heroHeadlineIdx}` : active.label}
                             initial={{ opacity: 0, y: 6 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -6 }}
-                            transition={{ duration: 0.5 }}
-                            className={`font-semibold tracking-[0.2em] uppercase inline-block ${isFinal ? 'text-xs sm:text-sm' : 'text-xs sm:text-sm'}`}
+                            transition={{ duration: 0.4, ease: 'easeInOut' }}
+                            className="font-semibold tracking-[0.2em] uppercase inline-block text-xs sm:text-sm"
                             style={{ color: '#2563eb' }}
                           >
-                            {isFinal ? 'World\'s First' : active.label}
+                            {isFinal ? heroHeadlines[heroHeadlineIdx].label : active.label}
                           </motion.span>
                         </AnimatePresence>
                       )}
                     </motion.p>
-                    <motion.h1 variants={fadeUp} transition={{ duration: 0.5 }} className="mb-3 md:mb-5">
+                    {/* Fixed-height headline container prevents layout shift */}
+                    <motion.h1 variants={fadeUp} transition={{ duration: 0.5 }} className="mb-3 md:mb-5"
+                      style={{ minHeight: 'clamp(120px, 18vh, 240px)' }}
+                    >
                       {showVideo ? (
                         <>
-                          <GlowText text="Human-to-Agent" active={showVideo} globalOffset={2} totalWords={6}
-                            className="font-bold tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-nowrap"
+                          <GlowText text={heroHeadlines[heroHeadlineIdx].bold} active={showVideo} globalOffset={2} totalWords={6}
+                            className={`font-bold tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out ${headlineSizeClass} whitespace-nowrap`}
                             style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#0f172a' }} />
                           <br />
-                          <GlowText text="Business Operating System" active={showVideo} globalOffset={3} totalWords={6}
-                            className="font-normal tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-nowrap"
+                          <GlowText text={heroHeadlines[heroHeadlineIdx].light.replace('\n', ' ')} active={showVideo} globalOffset={3} totalWords={6}
+                            className={`font-normal tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out ${headlineSizeClass} whitespace-nowrap`}
                             style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#334155' }} />
                         </>
                       ) : (
                         <AnimatePresence mode="wait">
                           {isFinal ? (
                             <motion.span
-                              key="final"
-                              initial={{ opacity: 0, y: 10 }}
+                              key={`final-headline-${heroHeadlineIdx}`}
+                              initial={{ opacity: 0, y: 12 }}
                               animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ duration: 0.6 }}
-                              className="block tracking-tight leading-[1.08] text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+                              exit={{ opacity: 0, y: -12 }}
+                              transition={{ duration: 0.5, ease: 'easeInOut' }}
+                              className={`block tracking-tight leading-[1.08] ${headlineSizeClass}`}
                             >
-                              <span className="font-bold" style={{ color: '#0f172a' }}>Human-to-Agent</span>
-                              <br />
-                              <span className="font-normal whitespace-nowrap" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>Business Operating</span>
-                              <br />
-                              <span className="font-normal" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>System</span>
+                              <span className="font-bold" style={{ color: '#0f172a' }}>{heroHeadlines[heroHeadlineIdx].bold}</span>
+                              {heroHeadlines[heroHeadlineIdx].light.split('\n').map((line, i) => (
+                                <React.Fragment key={i}>
+                                  <br />
+                                  <span className="font-normal whitespace-nowrap" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>{line}</span>
+                                </React.Fragment>
+                              ))}
                             </motion.span>
                           ) : (
                             <motion.span
                               key={active.at}
-                              initial={{ opacity: 0, y: 10 }}
+                              initial={{ opacity: 0, y: 12 }}
                               animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ duration: 0.6 }}
-                              className="block tracking-tight leading-[1.08] text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                              exit={{ opacity: 0, y: -12 }}
+                              transition={{ duration: 0.5, ease: 'easeInOut' }}
+                              className={`block tracking-tight leading-[1.08] ${headlineSizeClass}`}
                               style={{ whiteSpace: 'pre-line' }}
                             >
                               {active.headline.split('\n').map((line, i) => (
@@ -1001,26 +1090,22 @@ const Work: React.FC = () => {
                 );
               })()}
 
-              {/* Subtitle + buttons — hidden during animation, shown at final phase or when video plays */}
+              {/* Subtitle + buttons — pinned position, fades in smoothly */}
               <div
-                className="transition-all duration-700 ease-in-out overflow-hidden"
                 style={{
-                  maxHeight: showVideo || boxTime < 34 ? 0 : 300,
                   opacity: showVideo || boxTime < 34 ? 0 : 1,
-                  marginTop: showVideo || boxTime < 34 ? 0 : undefined,
+                  transform: showVideo || boxTime < 34 ? 'translateY(12px)' : 'translateY(0)',
+                  transition: 'opacity 0.8s ease-in-out, transform 0.8s ease-in-out',
+                  pointerEvents: showVideo || boxTime < 34 ? 'none' : 'auto',
                 }}
               >
-                <motion.p
-                  variants={fadeUp}
-                  transition={{ duration: 0.6 }}
-                  className="text-base md:text-xl text-slate-600 mb-6 md:mb-10 leading-relaxed max-w-2xl mt-3 md:mt-5"
-                >
+                <p className="text-base md:text-xl text-slate-600 mb-6 md:mb-10 leading-relaxed max-w-2xl mt-3 md:mt-5">
                   All your software, one platform.
                   <br />
                   Supercharge your employees with the AI assistance we were always promised but never got.
-                </motion.p>
+                </p>
 
-                <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="flex flex-row items-center justify-center lg:justify-start gap-3">
+                <div className="flex flex-row items-center justify-center lg:justify-start gap-3">
                   <motion.button
                     onClick={() => scrollToSection('pricing')}
                     whileHover={{ scale: 1.03 }}
@@ -1039,7 +1124,7 @@ const Work: React.FC = () => {
                     <Play size={14} className="fill-current" />
                     Play Video
                   </motion.button>
-                </motion.div>
+                </div>
               </div>
 
               {/* Back button — fades in when video is playing */}
@@ -1098,9 +1183,14 @@ const Work: React.FC = () => {
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          APP GRID BOX — Every app in an Excel-like grid with absorb animation
+          ═══════════════════════════════════════════════════════════════════ */}
+      <AppGridBox />
+
+      {/* ═══════════════════════════════════════════════════════════════════
           INTERACTIVE 3D SECTION — No container, floats on page background
           ═══════════════════════════════════════════════════════════════════ */}
-      <div id="explore" className="relative h-screen min-h-screen flex flex-col justify-center">
+      <div ref={geoSectionRef} id="explore" className="relative h-screen min-h-screen flex flex-col justify-center">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1131,7 +1221,7 @@ const Work: React.FC = () => {
             className="relative w-full mx-auto"
             style={{ maxWidth: 'min(42rem, 62vh)' }}
           >
-            {geoVisible && <WorkHero3D onPhaseChange={setAnimPhase} onFocusChange={setFocusLabel} unfocusRef={unfocusRef} muted={muted} onToggleMute={() => setMuted(m => !m)} />}
+            {geoVisible && <WorkHero3D onPhaseChange={setAnimPhase} onFocusChange={setFocusLabel} unfocusRef={unfocusRef} muted={muted} paused={geoPaused} onToggleMute={() => setMuted(m => !m)} />}
 
             {/* Story text + sound button — positioned above the 3D geometry */}
             <div className="absolute left-0 right-0 -top-[16%] md:-top-[22%] z-20 px-4 md:px-6 flex justify-center items-center gap-3">

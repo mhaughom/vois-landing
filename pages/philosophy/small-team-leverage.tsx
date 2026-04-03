@@ -48,7 +48,7 @@ const SmallTeamLeverage: React.FC = () => {
               Small businesses — the plumber with 5 technicians, the consulting firm with 3 partners, the dental practice with 8 staff — don't have those people. They have everyone wearing four hats, context-switching all day, and losing information in the gaps between their 12 different apps.
             </p>
 
-            <h2 className="text-2xl font-serif text-slate-900">One platform. No departments required.</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">One platform. No departments required.</h2>
             <p>
               HABOS replaces the entire stack. CRM, project management, task tracking, calendar, email, documents, invoicing, bookings, operations monitoring, team management, marketing, and analytics — all in one platform, all sharing one brain, all accessible by voice.
             </p>
@@ -85,7 +85,7 @@ const SmallTeamLeverage: React.FC = () => {
               <span className="text-sm text-sky-300 font-medium">Platform overview screenshot</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">The morning briefing</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The morning briefing</h2>
             <p>
               Every morning, HABOS summarizes what needs your attention. Not a dashboard you have to interpret. A concise briefing: three things that matter today, why they matter, what the playbook says to do, and a one-tap action to approve the suggested response.
             </p>
@@ -101,7 +101,7 @@ const SmallTeamLeverage: React.FC = () => {
               <span className="text-sm text-emerald-300 font-medium">Dashboard screenshot</span>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900">Grow the business, not the overhead</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Grow the business, not the overhead</h2>
             <p>
               The traditional growth path for a small business is: get more work, hire more people to handle the work, hire more people to manage the people. Each employee adds operational complexity — more coordination, more handoffs, more things falling through cracks.
             </p>

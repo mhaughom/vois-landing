@@ -165,11 +165,11 @@ const PANELS: {
   { type: "flap", flapIdx: 0 },   // 8: front flap
 ];
 
-// Saturated vivid palette
+// Light pastel palette (saturated but lightened)
 const PANEL_COLORS = [
-  '#FF80C8', '#20B0FF', '#FFB060',
-  '#20E860', '#D080FF', '#FFC820',
-  '#00C8E0', '#FF8080', '#40E8A0',
+  '#FF9ED4', '#60C0FF', '#FFB878',
+  '#50EE90', '#D09CFF', '#FFD060',
+  '#40D8F0', '#FF9898', '#50EAAC',
 ];
 
 // 3x3 grid adjacency (including diagonals)
@@ -574,7 +574,7 @@ const PanelEdges: React.FC<{ opacity: number }> = ({ opacity }) => {
     <>
       {edges.map((e, j) => (
         <mesh key={j} position={e.mid} rotation={e.rot}>
-          <cylinderGeometry args={[BORDER_R, BORDER_R, e.len, 6]} />
+          <cylinderGeometry args={[BORDER_R, BORDER_R, e.len, 4]} />
           <meshStandardMaterial color="#0d1525" transparent opacity={opacity} />
         </mesh>
       ))}
@@ -611,10 +611,10 @@ const PanelMesh: React.FC<{
     <group position={pos} quaternion={quat} scale={[scaleXY, scaleXY, 1]}>
       <mesh>
         <boxGeometry args={[S * 2, S * 2, THICK]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color={color} emissive={emissive} emissiveIntensity={emissiveIntensity}
           transparent opacity={opacity}
-          metalness={0.05} roughness={0.15} clearcoat={1} clearcoatRoughness={0.05}
+          metalness={0.05} roughness={0.2}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -652,8 +652,8 @@ const BoxEdges: React.FC<{ opacity: number }> = ({ opacity }) => {
     <>
       {BOX_EDGES.map((e, i) => (
         <mesh key={i} position={e.mid} rotation={AXIS_ROT[e.axis]}>
-          <cylinderGeometry args={[EDGE_R, EDGE_R, e.len, 8]} />
-          <meshPhysicalMaterial color="#1a2744" transparent opacity={opacity} metalness={0.2} roughness={0.3} />
+          <cylinderGeometry args={[EDGE_R, EDGE_R, e.len, 4]} />
+          <meshStandardMaterial color="#1a2744" transparent opacity={opacity} metalness={0.2} roughness={0.3} />
         </mesh>
       ))}
     </>
@@ -672,8 +672,8 @@ const CHAIN_CONNECTIONS: { a: number; b: number; dir: "x" | "z" }[] = [
 
 const CHAIN_R = S * 0.1;
 const CHAIN_TUBE = S * 0.022;
-const chainGeo = new THREE.TorusGeometry(CHAIN_R, CHAIN_TUBE, 12, 24);
-const halfChainGeo = new THREE.TorusGeometry(CHAIN_R, CHAIN_TUBE, 12, 12, Math.PI);
+const chainGeo = new THREE.TorusGeometry(CHAIN_R, CHAIN_TUBE, 6, 16);
+const halfChainGeo = new THREE.TorusGeometry(CHAIN_R, CHAIN_TUBE, 6, 8, Math.PI);
 
 const CHAIN_APPEAR_ORDER = [4, 9, 1, 7, 11, 2, 6, 0, 10, 3, 8, 5];
 const CHAIN_BREAK_ORDER = [7, 2, 10, 5, 0, 8, 3, 11, 6, 1, 9, 4];
@@ -723,20 +723,38 @@ const ChainLink: React.FC<{
 // Main scene - uses useFrame to drive elapsed time
 // ═══════════════════════════════════════════════════
 
-const BoxAnimationScene: React.FC<{ onTimeUpdate?: React.MutableRefObject<((time: number) => void) | undefined> }> = ({ onTimeUpdate }) => {
+const BoxAnimationScene: React.FC<{
+  onTimeUpdate?: React.MutableRefObject<((time: number) => void) | undefined>;
+  manualTimeRef?: React.MutableRefObject<number>;
+}> = ({ onTimeUpdate, manualTimeRef }) => {
   const elapsedRef = useRef(0);
   const lastRenderTime = useRef(0);
+  const isComplete = useRef(false);
   const [, setTick] = React.useState(0);
 
+  const frameSkip = useRef(0);
   useFrame((_, delta) => {
-    const dt = Math.min(delta, 0.1);
-    if (elapsedRef.current < 38) {
-      elapsedRef.current += dt;
+    if (manualTimeRef) {
+      elapsedRef.current = manualTimeRef.current;
+    } else {
+      const dt = Math.min(delta, 0.1);
+      if (elapsedRef.current < 38) {
+        elapsedRef.current += dt;
+      }
     }
     onTimeUpdate?.current?.(elapsedRef.current);
-    // Throttle React re-renders to ~30fps — the heavy part
-    if (elapsedRef.current - lastRenderTime.current > 0.033) {
-      lastRenderTime.current = elapsedRef.current;
+    // Stop re-rendering once animation is complete — scene is static
+    if (elapsedRef.current >= 38 && !manualTimeRef) {
+      if (!isComplete.current) {
+        isComplete.current = true;
+        setTick(t => t + 1); // one final render
+      }
+      return;
+    }
+    // Re-render React tree at ~30fps instead of 60fps
+    frameSkip.current++;
+    if (frameSkip.current >= 2) {
+      frameSkip.current = 0;
       setTick(t => t + 1);
     }
   });
@@ -1038,7 +1056,7 @@ const BoxAnimationScene: React.FC<{ onTimeUpdate?: React.MutableRefObject<((time
   const rays: React.ReactNode[] = [];
   if (rayT >= 0.01) {
     const RAY_COLORS = ['#FFE888', '#FFCC44', '#FFF0BB', '#FFD870', '#FFFFDD', '#FFE0A0'];
-    const RAY_COUNT = 30;
+    const RAY_COUNT = 24;
     for (let ri = 0; ri < RAY_COUNT; ri++) {
       const angle = (ri / RAY_COUNT) * Math.PI * 2 + time * 0.15;
       const tilt = 0.5 + Math.sin(ri * 2.3) * 0.35;
@@ -1061,7 +1079,7 @@ const BoxAnimationScene: React.FC<{ onTimeUpdate?: React.MutableRefObject<((time
 
     // Particles flowing upward
     const PARTICLE_COLORS = ['#FFE888', '#FF88C0', '#88BBFF', '#6CDBA0', '#B090FF', '#FFD870'];
-    const PARTICLE_COUNT = 20;
+    const PARTICLE_COUNT = 15;
     for (let pi = 0; pi < PARTICLE_COUNT; pi++) {
       const seed = pi * 47.3;
       const pAngle = (seed * 1.3) % (Math.PI * 2);
@@ -1087,7 +1105,7 @@ const BoxAnimationScene: React.FC<{ onTimeUpdate?: React.MutableRefObject<((time
   const fogLevel = interp(time, [tWidgetStart + 1.8, tWidgetStart + 5, tFlapStart], [0, 0.6, 1.0]);
   const fogElements: React.ReactNode[] = [];
   if (fogLevel >= 0.01 && fogBlobTextures.length > 0) {
-    const COUNT = 25;
+    const COUNT = 20;
     for (let fi = 0; fi < COUNT; fi++) {
       const seed = fi * 73.7;
       const px = Math.sin(seed * 1.3 + time * 0.5) * S * 0.6;
@@ -1110,8 +1128,12 @@ const BoxAnimationScene: React.FC<{ onTimeUpdate?: React.MutableRefObject<((time
     }
   }
 
+  // Scene scale: start big (1.6x), ease down to 1.0 as box closes
+  const sceneScale = interp(time, [0, tSettle], [1.6, 1.0],
+    Easing.inOut(Easing.cubic));
+
   return (
-    <group rotation={[camRotX + flipAngle, camRotY, 0]}>
+    <group rotation={[camRotX + flipAngle, camRotY, 0]} scale={[sceneScale, sceneScale, sceneScale]}>
       {panels.map((p, i) => (
         <PanelMesh key={i} pos={p.pos} quat={p.quat}
           scaleXY={p.scaleXY} opacity={p.opacity} edgeOp={1}
@@ -1150,9 +1172,12 @@ export interface BoxAnimationProps {
   className?: string;
   style?: React.CSSProperties;
   onTimeUpdate?: (time: number) => void;
+  preserveDrawingBuffer?: boolean;
+  /** When set, animation advances only when this ref's value increases (frame-step mode for recording) */
+  manualTimeRef?: React.MutableRefObject<number>;
 }
 
-export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, onTimeUpdate }) => {
+export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, onTimeUpdate, preserveDrawingBuffer = false, manualTimeRef }) => {
   const timeCallbackRef = useRef(onTimeUpdate);
   timeCallbackRef.current = onTimeUpdate;
 
@@ -1160,16 +1185,16 @@ export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, on
     <div className={className} style={{ width: "100%", height: "100%", ...style }}>
       <Canvas
         orthographic
-        camera={{ zoom: 50, position: [0, 0, 10], near: 0.1, far: 100 }}
+        camera={{ zoom: 55, position: [0, 0, 10], near: 0.1, far: 100 }}
         style={{ width: "100%", height: "100%", background: "transparent" }}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        dpr={[1, 1.5]}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', preserveDrawingBuffer }}
+        dpr={1}
         onCreated={({ gl }) => { gl.setClearColor(0x000000, 0); }}
       >
         <ambientLight intensity={0.3} />
         <directionalLight position={[5, 5, 10]} intensity={1.2} />
         <directionalLight position={[-3, -2, -8]} intensity={0.3} />
-        <BoxAnimationScene onTimeUpdate={timeCallbackRef} />
+        <BoxAnimationScene onTimeUpdate={timeCallbackRef} manualTimeRef={manualTimeRef} />
       </Canvas>
     </div>
   );
