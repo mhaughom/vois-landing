@@ -275,31 +275,47 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     }
   }, [navigate]);
 
-  const handleSend = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSend = async () => {
     const trimmed = input.trim();
-    if (!trimmed) return;
+    if (!trimmed || isLoading) return;
 
     setMessages((prev) => [...prev, { id: Date.now(), role: 'user', text: trimmed }]);
     setInput('');
+    setIsLoading(true);
 
-    // Match intent
-    const intent = matchIntent(trimmed);
-    setTimeout(() => {
-      if (intent) {
-        setMessages((prev) => [...prev, {
-          id: Date.now() + 1,
-          role: 'assistant',
-          text: intent.reply,
-          actions: intent.actions,
-        }]);
-      } else {
-        setMessages((prev) => [...prev, {
-          id: Date.now() + 1,
-          role: 'assistant',
-          text: "I can help you navigate VOIS features. Try asking about email, calendar, tasks, CRM, voice notes, website builder, pricing, or any other feature!",
-        }]);
-      }
-    }, 600);
+    // Build history for context (last 6 messages)
+    const history = messages.slice(-6).map((m) => ({ role: m.role, text: m.text }));
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: trimmed, history }),
+      });
+
+      if (!res.ok) throw new Error('API error');
+
+      const data = await res.json();
+      setMessages((prev) => [...prev, {
+        id: Date.now() + 1,
+        role: 'assistant',
+        text: data.text || "I'm not sure how to help with that. Try asking about a specific feature!",
+        actions: data.actions || [],
+      }]);
+    } catch {
+      // Fallback to local intent matching if API is unavailable
+      const intent = matchIntent(trimmed);
+      setMessages((prev) => [...prev, {
+        id: Date.now() + 1,
+        role: 'assistant',
+        text: intent?.reply || "I can help you navigate VOIS features. Try asking about email, calendar, tasks, CRM, voice notes, or pricing!",
+        actions: intent?.actions || [],
+      }]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -402,6 +418,15 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
                   )}
                 </div>
               ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-white/80 border border-gray-100 rounded-2xl rounded-bl-md px-4 py-3 flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 

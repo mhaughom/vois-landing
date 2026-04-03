@@ -8,6 +8,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/((?!assets|3d_models|Photos|videos|Logo|favicon).*)", "destination": "/index.html" }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/((?!api|assets|3d_models|Photos|videos|Logo|favicon).*)", "destination": "/index.html" }
   ]
 }
