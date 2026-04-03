@@ -1870,8 +1870,8 @@ export const AppGridBox: React.FC = () => {
       <div className="max-w-5xl mx-auto px-6 relative z-10 space-y-6">
         {appCategories.map(cat => (
           <div key={cat.category}>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 pl-1">{cat.category}</h3>
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
+            <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-3 text-center">{cat.category}</h3>
+            <div className="flex flex-wrap justify-center gap-3">
           {cat.items.map(app => {
             const gone = absorbed.has(app.label);
             const flying = absorbing.has(app.label);
@@ -1883,7 +1883,7 @@ export const AppGridBox: React.FC = () => {
               <motion.div
                 key={app.label}
                 ref={(el) => { if (el) cardRefs.current.set(app.label, el); }}
-                className="relative select-none"
+                className="relative select-none w-[88px] sm:w-[100px]"
                 style={{
                   zIndex: flying ? (descending.has(app.label) ? 20 : 50) : 10,
                   visibility: gone ? 'hidden' : 'visible',
