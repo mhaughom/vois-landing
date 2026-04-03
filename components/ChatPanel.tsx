@@ -236,7 +236,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessageData[]>([
-    { id: 1, role: 'assistant', text: "Hi! I can help you explore VOIS. Ask about any feature — email, CRM, tasks, calendar — and I'll take you there." },
+    { id: 1, role: 'assistant', text: "Hi! I can help you explore HABOS. Ask about any feature — email, CRM, tasks, calendar — and I'll take you there." },
   ]);
   const [input, setInput] = useState('');
   const [highlightSelector, setHighlightSelector] = useState<string | null>(null);
@@ -367,15 +367,15 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             exit={{ x: PANEL_WIDTH, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             style={{ width: PANEL_WIDTH, top: 120, right: 16, bottom: 16 }}
-            className="fixed z-40 flex flex-col backdrop-blur-xl bg-white/70 rounded-2xl shadow-2xl border border-white/50 overflow-hidden"
+            className="fixed z-40 flex flex-col bg-transparent overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200/50">
+            <div className="flex items-center justify-between px-5 py-4 bg-white rounded-2xl mb-2 shadow-sm border border-slate-200/40">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
                 </div>
-                <span className="text-sm font-semibold text-gray-900">VOIS Chat</span>
+                <span className="text-sm font-semibold text-gray-900">HABOS Chat</span>
               </div>
               <button
                 onClick={() => toggle(false)}
@@ -387,7 +387,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 bg-white rounded-2xl mb-2 shadow-sm border border-slate-200/40">
               {messages.map((msg) => (
                 <div key={msg.id}>
                   <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -431,7 +431,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
             </div>
 
             {/* Input */}
-            <div className="border-t border-gray-200/50 px-4 py-3">
+            <div className="px-4 py-3 bg-white rounded-2xl shadow-sm border border-slate-200/40">
               <div className="flex items-center gap-2 rounded-xl bg-white/60 border border-gray-200/60 px-3 py-2 focus-within:border-gray-400 transition-colors">
                 <input
                   ref={inputRef}

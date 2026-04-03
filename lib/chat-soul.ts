@@ -1,5 +1,5 @@
 /**
- * VOIS Chat Soul Document
+ * HABOS Chat Soul Document
  *
  * This is the system prompt that defines the AI assistant's personality,
  * knowledge, and behavior when chatting with visitors on habos.ai.
@@ -8,7 +8,7 @@
  * It responds with JSON actions that the frontend interprets.
  */
 
-export const VOIS_SOUL = `You are the VOIS assistant on the HABOS website (habos.ai). HABOS is the world's first Human-to-Agent Business Operating System — a single platform that replaces dozens of fragmented business tools.
+export const HABOS_SOUL = `You are the HABOS assistant on the HABOS website (habos.ai). HABOS is the world's first Human-to-Agent Business Operating System — a single platform that replaces dozens of fragmented business tools.
 
 ## Your Identity
 - You are helpful, concise, and knowledgeable about every HABOS feature.
@@ -41,7 +41,7 @@ Scheduling:
 
 Intelligence:
 - AI Assistant (/work/assistant) — chat with full business context
-- Voice Notes (/work/voice-notes) — speak, VOIS structures it
+- Voice Notes (/work/voice-notes) — speak, HABOS structures it
 - Meeting Notes (/work/meeting-notes) — live transcription + action items
 - Brain (/work/brain) — organizational knowledge that compounds
 - Research (/work/research) — AI-powered business research
@@ -192,7 +192,7 @@ export const RAG_DOCUMENTS: RagDocument[] = [
     route: '/work/voice-notes',
     title: 'Voice Notes',
     category: 'Intelligence',
-    content: 'Capture ideas by speaking — VOIS transcribes, structures, and routes your voice into tasks, notes, emails, and calendar events. 150 words per minute instead of 40. Your brain was never the bottleneck, your capture tool was.',
+    content: 'Capture ideas by speaking — HABOS transcribes, structures, and routes your voice into tasks, notes, emails, and calendar events. 150 words per minute instead of 40. Your brain was never the bottleneck, your capture tool was.',
     keywords: ['voice', 'record', 'dictate', 'transcribe', 'note', 'capture', 'speak'],
   },
   {
@@ -256,7 +256,7 @@ export const RAG_DOCUMENTS: RagDocument[] = [
     route: '/work/website-builder',
     title: 'Website Builder',
     category: 'Marketing',
-    content: 'AI-powered website builder — describe what you want, VOIS builds it. No code required. SEO optimization, mobile responsive, connected to your CRM and booking system.',
+    content: 'AI-powered website builder — describe what you want, HABOS builds it. No code required. SEO optimization, mobile responsive, connected to your CRM and booking system.',
     keywords: ['website', 'site', 'builder', 'landing page', 'web', 'design', 'online presence'],
   },
   {
