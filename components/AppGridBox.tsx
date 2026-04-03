@@ -1343,58 +1343,218 @@ const WAutomation = ({ c, h }: { c: string; h?: boolean }) => (
 
 /* ─── App list with estimated standalone prices ─────────────────────────── */
 
+// ── Illustrated SVG widgets (hand-coded to match generated reference images) ──
+
+const WIconEmail = ({ c, h }: { c: string; h?: boolean }) => (
+  <div className="w-full h-full flex items-center justify-center p-1.5">
+    <svg viewBox="0 0 80 80" className="w-full h-full">
+      <path d="M12,35 L12,65 Q12,68 15,68 L65,68 Q68,68 68,65 L68,35 L40,52 Z" fill={`${c}30`} stroke={c} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M12,35 L40,18 L68,35" fill={`${c}50`} stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'translateY(-3px) scaleY(0.9)' : 'none', transformOrigin: '40px 35px' }} />
+      <rect x="18" y="20" width="44" height="34" rx="3" fill={`${c}12`} stroke={c} strokeWidth="2"
+        style={{ transition: T, transform: h ? 'translateY(-4px)' : 'none' }} />
+      <circle cx="40" cy="36" r="8" fill="none" stroke={c} strokeWidth="2.2"
+        style={{ transition: T, transform: h ? 'translateY(-4px)' : 'none' }} />
+      <path d="M44,36 A4,4 0 1,0 40,40 L44,40" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round"
+        style={{ transition: T, transform: h ? 'translateY(-4px)' : 'none' }} />
+      <path d="M12,35 L40,55 L68,35" fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12,65 L30,50" fill="none" stroke={c} strokeWidth="1.5" opacity="0.3" />
+      <path d="M68,65 L50,50" fill="none" stroke={c} strokeWidth="1.5" opacity="0.3" />
+    </svg>
+  </div>
+);
+
+const WIconPhone = ({ c, h }: { c: string; h?: boolean }) => (
+  <div className="w-full h-full flex items-center justify-center p-1.5">
+    <svg viewBox="0 0 80 80" className="w-full h-full">
+      <path
+        d="M22,58 Q14,54 16,44 L20,30 Q22,26 26,28 L30,30 Q33,32 32,36 L30,42 Q29,44 31,46 L36,50 Q38,52 40,51 L46,48 Q50,46 52,49 L56,53 Q58,57 54,60 L42,66 Q32,68 22,58 Z"
+        fill={c} stroke={`${c}cc`} strokeWidth="2.5" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'rotate(-8deg)' : 'none', transformOrigin: '38px 48px' }}
+      />
+      {[0, 1, 2].map(i => (
+        <path key={i}
+          d={`M${50 + i * 6},${28 - i * 4} Q${58 + i * 6},${36} ${50 + i * 6},${44 + i * 4}`}
+          fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round"
+          style={{
+            transition: T, transitionDelay: h ? `${i * 80}ms` : '0ms',
+            opacity: h ? 0.7 - i * 0.15 : 0.5 - i * 0.15,
+            transform: h ? `scale(${1.1 + i * 0.05})` : 'scale(1)',
+            transformOrigin: `${50 + i * 6}px 36px`,
+          }}
+        />
+      ))}
+    </svg>
+  </div>
+);
+
+const WIconJobs = ({ c, h }: { c: string; h?: boolean }) => (
+  <div className="w-full h-full flex items-center justify-center p-1.5">
+    <svg viewBox="0 0 80 80" className="w-full h-full">
+      <path
+        d="M40,12 L44,12 L46,17 L51,15 L54,13 L57,17 L53,21 L56,25 L61,24 L63,28 L59,31 L60,36 L65,37 L65,41 L60,43 L59,48 L63,51 L61,55 L56,53 L53,57 L57,61 L54,64 L51,62 L46,64 L44,68 L36,68 L34,64 L29,62 L26,64 L23,61 L27,57 L24,53 L19,55 L17,51 L21,48 L20,43 L15,41 L15,37 L20,36 L21,31 L17,28 L19,24 L24,25 L27,21 L23,17 L26,13 L29,15 L34,17 L36,12 Z"
+        fill={c} stroke="#2e7d32" strokeWidth="2" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'rotate(15deg)' : 'none', transformOrigin: '40px 40px' }}
+      />
+      <circle cx="40" cy="40" r="14" fill="white" stroke="#2e7d32" strokeWidth="2" />
+      <path d="M30,42 L30,36 Q30,28 40,28 Q50,28 50,36 L50,42 Z" fill="#ff9800" stroke="#e65100" strokeWidth="1.8" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'translateY(-2px)' : 'none' }} />
+      <path d="M26,42 L54,42" stroke="#e65100" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M50,52 L60,62 Q62,64 60,66 Q58,68 56,66 L46,56" fill={c} stroke="#2e7d32" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'rotate(-10deg)' : 'none', transformOrigin: '53px 59px' }} />
+      <circle cx="60" cy="64" r="1.5" fill="white" />
+    </svg>
+  </div>
+);
+
+const WIconFinance = ({ c, h }: { c: string; h?: boolean }) => (
+  <div className="w-full h-full flex items-center justify-center p-1.5">
+    <svg viewBox="0 0 80 80" className="w-full h-full">
+      <path d="M14,65 L14,40 L38,55 L55,30 L68,65 Z" fill={`${c}30`} />
+      <path d="M14,65 L14,50 L38,60 L55,45 L68,65 Z" fill={`${c}50`} />
+      <path d="M10,65 L70,65" stroke={c} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M14,58 L30,52 L42,56 L56,32" fill="none" stroke={c} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'translateY(-3px)' : 'none' }} />
+      <path d="M52,38 L56,32 L62,36" fill="none" stroke={c} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+        style={{ transition: T, transform: h ? 'translate(-1px, -4px)' : 'none' }} />
+      <text x="18" y="46" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="26" fill={c} opacity="0.8"
+        style={{ transition: T, transform: h ? 'scale(1.1)' : 'scale(1)', transformOrigin: '26px 38px' }}>$</text>
+    </svg>
+  </div>
+);
+
 type AppDef = { label: string; color: string; W: React.FC<{ c: string; h?: boolean }>; price: number; icon?: string };
 
-const apps: AppDef[] = [
-  { label: 'Email', color: '#3b82f6', W: WLines, price: 6, icon: '/icons/svg/email.svg' },
-  { label: 'Messenger', color: '#8b5cf6', W: WChat, price: 15, icon: '/icons/svg/messenger.svg' },
-  { label: 'Phone', color: '#22c55e', W: WDots, price: 25, icon: '/icons/svg/phone.svg' },
-  { label: 'Tickets', color: '#f59e0b', W: WTag, price: 20, icon: '/icons/svg/tickets.svg' },
-  { label: 'Calendar', color: '#6366f1', W: WCalendar, price: 8, icon: '/icons/svg/calendar.svg' },
-  { label: 'Bookings', color: '#ec4899', W: WSlots, price: 25, icon: '/icons/svg/bookings.svg' },
-  { label: 'Scheduling Links', color: '#14b8a6', W: WLink, price: 10, icon: '/icons/svg/scheduling-links.svg' },
-  { label: 'Dispatch', color: '#f97316', W: WMap, price: 40, icon: '/icons/svg/dispatch.svg' },
-  { label: 'Jobs', color: '#84cc16', W: WJobSteps, price: 30, icon: '/icons/svg/jobs.svg' },
-  { label: 'Routes', color: '#0ea5e9', W: WPath, price: 30, icon: '/icons/svg/routes.svg' },
-  { label: 'Projects', color: '#a855f7', W: WKanban, price: 10, icon: '/icons/svg/projects.svg' },
-  { label: 'Tasks', color: '#ef4444', W: WChecks, price: 5, icon: '/icons/svg/tasks.svg' },
-  { label: 'Operations', color: '#64748b', W: WGauges, price: 25, icon: '/icons/svg/operations.svg' },
-  { label: 'Time Tracking', color: '#06b6d4', W: WTimer, price: 10, icon: '/icons/svg/time-tracking.svg' },
-  { label: 'CRM', color: '#3b82f6', W: WPeople, price: 25, icon: '/icons/svg/crm.svg' },
-  { label: 'Products', color: '#22c55e', W: WCard, price: 15, icon: '/icons/svg/products.svg' },
-  { label: 'Orders', color: '#f97316', W: WReceipt, price: 20, icon: '/icons/svg/orders.svg' },
-  { label: 'Finance', color: '#059669', W: WLineChart, price: 25, icon: '/icons/svg/finance.svg' },
-  { label: 'Invoicing', color: '#f59e0b', W: WDoc, price: 20, icon: '/icons/svg/invoicing.svg' },
-  { label: 'Payments', color: '#8b5cf6', W: WPayment, price: 15, icon: '/icons/svg/payments.svg' },
-  { label: 'Purchasing', color: '#b45309', W: WShipping, price: 15, icon: '/icons/svg/purchasing.svg' },
-  { label: 'Voice Notes', color: '#ef4444', W: WWave, price: 8, icon: '/icons/svg/voice-notes.svg' },
-  { label: 'Meeting Notes', color: '#6366f1', W: WMeetingNotes, price: 10, icon: '/icons/svg/meeting-notes.svg' },
-  { label: 'Documents', color: '#0891b2', W: WDocBlocks, price: 10, icon: '/icons/svg/documents.svg' },
-  { label: 'Assistant', color: '#a855f7', W: WAssistant, price: 20, icon: '/icons/svg/assistant.svg' },
-  { label: 'Brain', color: '#ec4899', W: WNodes, price: 10, icon: '/icons/svg/brain.svg' },
-  { label: 'Agents', color: '#7c3aed', W: WAgent, price: 20, icon: '/icons/svg/agents.svg' },
-  { label: 'Research', color: '#6366f1', W: WSearch, price: 15, icon: '/icons/svg/research.svg' },
-  { label: 'Playbooks', color: '#14b8a6', W: WPlaybook, price: 15, icon: '/icons/svg/playbooks.svg' },
-  { label: 'Org Chart', color: '#8b5cf6', W: WTree, price: 5, icon: '/icons/svg/org-chart.svg' },
-  { label: 'Team Map', color: '#d97706', W: WTeamBubbles, price: 10, icon: '/icons/svg/team-map.svg' },
-  { label: 'People', color: '#f97316', W: WPeopleGrid, price: 8, icon: '/icons/svg/people.svg' },
-  { label: 'Website Builder', color: '#06b6d4', W: WBlocks, price: 20, icon: '/icons/svg/website-builder.svg' },
-  { label: 'Creative Studio', color: '#ec4899', W: WCreative, price: 15, icon: '/icons/svg/creative-studio.svg' },
-  { label: 'Marketing', color: '#f97316', W: WMegaphone, price: 30, icon: '/icons/svg/marketing.svg' },
-  { label: 'Social', color: '#e11d48', W: WSocial, price: 15, icon: '/icons/svg/social.svg' },
-  { label: 'Funnels', color: '#f59e0b', W: WFunnel, price: 20, icon: '/icons/svg/funnels.svg' },
-  { label: 'Reports', color: '#3b82f6', W: WPieChart, price: 15, icon: '/icons/svg/reports.svg' },
-  { label: 'Slides', color: '#22c55e', W: WSlide, price: 12, icon: '/icons/svg/slides.svg' },
-  { label: 'Briefs', color: '#06b6d4', W: WBrief, price: 10, icon: '/icons/svg/briefs.svg' },
-  { label: 'Files', color: '#84cc16', W: WFiles, price: 8, icon: '/icons/svg/files.svg' },
-  { label: 'Forms', color: '#14b8a6', W: WForm, price: 10, icon: '/icons/svg/forms.svg' },
-  { label: 'Custom Apps', color: '#a855f7', W: WPuzzle, price: 10, icon: '/icons/svg/custom-apps.svg' },
-  { label: 'Watch', color: '#ef4444', W: WWatch, price: 5, icon: '/icons/svg/watch.svg' },
-  { label: 'Strategy Analysis', color: '#0d9488', W: WStrategy, price: 30 },
-  { label: 'AI Phone & SMS', color: '#16a34a', W: WAIPhone, price: 25 },
-  { label: 'Knowledge Search', color: '#7c3aed', W: WKnowledge, price: 10 },
-  { label: 'Automation', color: '#eab308', W: WAutomation, price: 20 },
+/* Simple placeholder widget for new apps without custom SVGs */
+const WPlaceholder = (letter: string) => {
+  const Comp = ({ c, h }: { c: string; h?: boolean }) => (
+    <div className="w-full h-full flex items-center justify-center">
+      <span className="text-lg font-bold" style={{ color: c, transition: T, opacity: h ? 1 : 0.5 }}>{letter}</span>
+    </div>
+  );
+  Comp.displayName = `WPlaceholder_${letter}`;
+  return Comp;
+};
+
+type AppCategory = { category: string; items: AppDef[] };
+
+const appCategories: AppCategory[] = [
+  {
+    category: 'Communication & Support',
+    items: [
+      { label: 'Email', color: '#3b82f6', W: WIconEmail, price: 6 },
+      { label: 'Messenger', color: '#8b5cf6', W: WChat, price: 15, icon: '/icons/svg/messenger.svg' },
+      { label: 'Phone', color: '#22c55e', W: WIconPhone, price: 25 },
+      { label: 'Tickets', color: '#f59e0b', W: WTag, price: 20, icon: '/icons/svg/tickets.svg' },
+      { label: 'Client Portal', color: '#0ea5e9', W: WPlaceholder('CP'), price: 15 },
+    ],
+  },
+  {
+    category: 'Scheduling & Bookings',
+    items: [
+      { label: 'Calendar', color: '#6366f1', W: WCalendar, price: 8, icon: '/icons/svg/calendar.svg' },
+      { label: 'Bookings', color: '#ec4899', W: WSlots, price: 25, icon: '/icons/svg/bookings.svg' },
+      { label: 'Scheduling Links', color: '#14b8a6', W: WLink, price: 10, icon: '/icons/svg/scheduling-links.svg' },
+      { label: 'Scheduling Engine', color: '#7c3aed', W: WPlaceholder('SE'), price: 15 },
+      { label: 'Now', color: '#ef4444', W: WPlaceholder('N'), price: 5 },
+    ],
+  },
+  {
+    category: 'Jobs & Field Work',
+    items: [
+      { label: 'Dispatch', color: '#f97316', W: WMap, price: 40, icon: '/icons/svg/dispatch.svg' },
+      { label: 'Jobs', color: '#84cc16', W: WIconJobs, price: 30 },
+      { label: 'Routes', color: '#0ea5e9', W: WPath, price: 30, icon: '/icons/svg/routes.svg' },
+      { label: 'Team Map', color: '#d97706', W: WTeamBubbles, price: 10, icon: '/icons/svg/team-map.svg' },
+      { label: 'Driving Logs', color: '#64748b', W: WPlaceholder('DL'), price: 10 },
+      { label: 'Time Tracking', color: '#06b6d4', W: WTimer, price: 10, icon: '/icons/svg/time-tracking.svg' },
+    ],
+  },
+  {
+    category: 'Projects & Tasks',
+    items: [
+      { label: 'Projects', color: '#a855f7', W: WKanban, price: 10, icon: '/icons/svg/projects.svg' },
+      { label: 'Tasks', color: '#ef4444', W: WChecks, price: 5, icon: '/icons/svg/tasks.svg' },
+      { label: 'Operations', color: '#64748b', W: WGauges, price: 25, icon: '/icons/svg/operations.svg' },
+      { label: 'Reports', color: '#3b82f6', W: WPieChart, price: 15, icon: '/icons/svg/reports.svg' },
+      { label: 'Playbooks', color: '#14b8a6', W: WPlaybook, price: 15, icon: '/icons/svg/playbooks.svg' },
+    ],
+  },
+  {
+    category: 'Sales & CRM',
+    items: [
+      { label: 'CRM', color: '#3b82f6', W: WPeople, price: 25, icon: '/icons/svg/crm.svg' },
+      { label: 'People', color: '#f97316', W: WPeopleGrid, price: 8, icon: '/icons/svg/people.svg' },
+      { label: 'Products', color: '#22c55e', W: WCard, price: 15, icon: '/icons/svg/products.svg' },
+      { label: 'Orders', color: '#f97316', W: WReceipt, price: 20, icon: '/icons/svg/orders.svg' },
+      { label: 'Funnels', color: '#f59e0b', W: WFunnel, price: 20, icon: '/icons/svg/funnels.svg' },
+      { label: 'Forms', color: '#14b8a6', W: WForm, price: 10, icon: '/icons/svg/forms.svg' },
+    ],
+  },
+  {
+    category: 'Money',
+    items: [
+      { label: 'Finance', color: '#059669', W: WIconFinance, price: 25 },
+      { label: 'Invoicing', color: '#f59e0b', W: WDoc, price: 20, icon: '/icons/svg/invoicing.svg' },
+      { label: 'Payments', color: '#8b5cf6', W: WPayment, price: 15, icon: '/icons/svg/payments.svg' },
+      { label: 'Purchasing', color: '#b45309', W: WShipping, price: 15, icon: '/icons/svg/purchasing.svg' },
+      { label: 'Shopping', color: '#ec4899', W: WPlaceholder('$'), price: 15 },
+    ],
+  },
+  {
+    category: 'Voice & Capture',
+    items: [
+      { label: 'Voice Notes', color: '#ef4444', W: WWave, price: 8, icon: '/icons/svg/voice-notes.svg' },
+      { label: 'Meeting Notes', color: '#6366f1', W: WMeetingNotes, price: 10, icon: '/icons/svg/meeting-notes.svg' },
+      { label: 'Journal', color: '#f59e0b', W: WPlaceholder('J'), price: 5 },
+      { label: 'Reader', color: '#0891b2', W: WPlaceholder('R'), price: 8 },
+      { label: 'Scraper', color: '#64748b', W: WPlaceholder('Sc'), price: 10 },
+    ],
+  },
+  {
+    category: 'AI & Intelligence',
+    items: [
+      { label: 'Assistant', color: '#a855f7', W: WAssistant, price: 20, icon: '/icons/svg/assistant.svg' },
+      { label: 'Brain', color: '#ec4899', W: WNodes, price: 10, icon: '/icons/svg/brain.svg' },
+      { label: 'Agents', color: '#7c3aed', W: WAgent, price: 20, icon: '/icons/svg/agents.svg' },
+      { label: 'Research', color: '#6366f1', W: WSearch, price: 15, icon: '/icons/svg/research.svg' },
+      { label: 'Strategy Analysis', color: '#0d9488', W: WStrategy, price: 30 },
+      { label: 'Knowledge Search', color: '#7c3aed', W: WKnowledge, price: 10 },
+      { label: 'AI Phone & SMS', color: '#16a34a', W: WAIPhone, price: 25 },
+    ],
+  },
+  {
+    category: 'Team & Workspace',
+    items: [
+      { label: 'Org Chart', color: '#8b5cf6', W: WTree, price: 5, icon: '/icons/svg/org-chart.svg' },
+      { label: 'Manager Dashboard', color: '#0ea5e9', W: WPlaceholder('MD'), price: 15 },
+      { label: 'Custom Apps', color: '#a855f7', W: WPuzzle, price: 10, icon: '/icons/svg/custom-apps.svg' },
+      { label: 'Automation', color: '#eab308', W: WAutomation, price: 20 },
+      { label: 'Watch', color: '#ef4444', W: WWatch, price: 5, icon: '/icons/svg/watch.svg' },
+    ],
+  },
+  {
+    category: 'Website & Marketing',
+    items: [
+      { label: 'Website Builder', color: '#06b6d4', W: WBlocks, price: 20, icon: '/icons/svg/website-builder.svg' },
+      { label: 'Creative Studio', color: '#ec4899', W: WCreative, price: 15, icon: '/icons/svg/creative-studio.svg' },
+      { label: 'Marketing', color: '#f97316', W: WMegaphone, price: 30, icon: '/icons/svg/marketing.svg' },
+      { label: 'Social', color: '#e11d48', W: WSocial, price: 15, icon: '/icons/svg/social.svg' },
+    ],
+  },
+  {
+    category: 'Content & Files',
+    items: [
+      { label: 'Documents', color: '#0891b2', W: WDocBlocks, price: 10, icon: '/icons/svg/documents.svg' },
+      { label: 'Slides', color: '#22c55e', W: WSlide, price: 12, icon: '/icons/svg/slides.svg' },
+      { label: 'Briefs', color: '#06b6d4', W: WBrief, price: 10, icon: '/icons/svg/briefs.svg' },
+      { label: 'Files', color: '#84cc16', W: WFiles, price: 8, icon: '/icons/svg/files.svg' },
+    ],
+  },
 ];
+
+// Flat list for backward compat (absorb animation, total price, etc.)
+const apps: AppDef[] = appCategories.flatMap(c => c.items);
 
 const TOTAL_PRICE = apps.reduce((s, a) => s + a.price, 0);
 
@@ -1471,9 +1631,154 @@ const ClosingBox: React.FC<{ phase: 'closing' | 'present' }> = () => (
   </div>
 );
 
-/* ─── Scroll-driven component ───────────────────────────────────────────── */
+/* ─── Hover overlay micro-animations per icon ───────────────────────────── */
 
-/* no scroll constants needed — click-driven */
+const HoverOverlay: React.FC<{ label: string; color: string; hovered?: boolean }> = ({ label, color, hovered }) => {
+  const h = !!hovered;
+  const base = 'absolute pointer-events-none transition-all duration-300';
+
+  switch (label) {
+    case 'Email':
+      // Envelope flap lifts
+      return (
+        <svg viewBox="0 0 64 48" className={`${base} inset-0 w-full h-full p-4`}>
+          <path
+            d="M8,16 L32,4 L56,16"
+            fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round"
+            style={{ transition: 'transform 0.3s ease', transform: h ? 'translateY(-4px) scaleY(0.85)' : 'none', transformOrigin: '32px 16px', opacity: h ? 0.7 : 0 }}
+          />
+        </svg>
+      );
+    case 'Phone':
+      // Signal waves pulse
+      return (
+        <svg viewBox="0 0 64 64" className={`${base} inset-0 w-full h-full p-3`}>
+          {[0, 1, 2].map(i => (
+            <path key={i}
+              d={`M${40 + i * 6},${18 - i * 4} Q${48 + i * 6},${32} ${40 + i * 6},${46 + i * 4}`}
+              fill="none" stroke={color} strokeWidth="2" strokeLinecap="round"
+              style={{
+                opacity: h ? 0.4 - i * 0.1 : 0,
+                transform: h ? 'scale(1)' : 'scale(0.8)',
+                transformOrigin: '50px 32px',
+                transition: `all 0.3s ease ${i * 100}ms`,
+              }}
+            />
+          ))}
+        </svg>
+      );
+    case 'Messenger':
+      // Typing dots bounce
+      return (
+        <div className={`${base} bottom-[38%] left-[22%] flex gap-0.5`}>
+          {[0, 1, 2].map(i => (
+            <div key={i}
+              className="w-1 h-1 rounded-full"
+              style={{
+                background: color,
+                opacity: h ? 0.6 : 0,
+                transform: h ? 'translateY(-2px)' : 'translateY(0)',
+                transition: `all 0.2s ease ${i * 80}ms`,
+              }}
+            />
+          ))}
+        </div>
+      );
+    case 'Voice Notes':
+      // Sound waves expand
+      return (
+        <svg viewBox="0 0 64 64" className={`${base} inset-0 w-full h-full p-3`}>
+          {[0, 1].map(i => (
+            <path key={i}
+              d={`M${44 + i * 7},${22 - i * 3} Q${50 + i * 7},${32} ${44 + i * 7},${42 + i * 3}`}
+              fill="none" stroke={color} strokeWidth="2" strokeLinecap="round"
+              style={{
+                opacity: h ? 0.5 - i * 0.15 : 0,
+                transform: h ? 'scaleX(1.1)' : 'scaleX(0.8)',
+                transformOrigin: '40px 32px',
+                transition: `all 0.3s ease ${i * 120}ms`,
+              }}
+            />
+          ))}
+        </svg>
+      );
+    case 'Finance':
+      // Arrow bounces up
+      return (
+        <svg viewBox="0 0 64 64" className={`${base} inset-0 w-full h-full p-3`}>
+          <path d="M40,28 L48,16 L52,22"
+            fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            style={{
+              opacity: h ? 0.6 : 0,
+              transform: h ? 'translateY(-3px)' : 'translateY(2px)',
+              transition: 'all 0.3s ease',
+            }}
+          />
+        </svg>
+      );
+    case 'Tickets':
+      // Ticket wiggles
+      return (
+        <div className={`${base} inset-0`} style={{
+          transform: h ? 'rotate(3deg)' : 'rotate(0deg)',
+          opacity: 0,
+        }} />
+      );
+    case 'Calendar':
+      // Date highlight pulses
+      return (
+        <div className={`${base} top-[45%] left-[40%] w-3 h-3 rounded-sm`} style={{
+          background: color,
+          opacity: h ? 0.3 : 0,
+          transform: h ? 'scale(1.3)' : 'scale(0.8)',
+        }} />
+      );
+    case 'Brain':
+      // Nodes pulse outward
+      return (
+        <div className={`${base} inset-0`}>
+          {[{ t: '20%', l: '20%' }, { t: '20%', l: '70%' }, { t: '70%', l: '25%' }, { t: '70%', l: '72%' }].map((pos, i) => (
+            <div key={i} className="absolute w-1.5 h-1.5 rounded-full" style={{
+              top: pos.t, left: pos.l,
+              background: color, opacity: h ? 0.4 : 0,
+              transform: h ? 'scale(1.5)' : 'scale(0.5)',
+              transition: `all 0.3s ease ${i * 60}ms`,
+            }} />
+          ))}
+        </div>
+      );
+    case 'Marketing':
+      // Sound waves from megaphone
+      return (
+        <svg viewBox="0 0 64 64" className={`${base} inset-0 w-full h-full p-3`}>
+          {[0, 1].map(i => (
+            <path key={i}
+              d={`M${46 + i * 5},${24 - i * 3} Q${52 + i * 5},${32} ${46 + i * 5},${40 + i * 3}`}
+              fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round"
+              style={{
+                opacity: h ? 0.4 - i * 0.1 : 0,
+                transition: `all 0.3s ease ${i * 100}ms`,
+              }}
+            />
+          ))}
+        </svg>
+      );
+    case 'Assistant':
+      // Sparkle
+      return (
+        <div className={`${base} top-[18%] right-[20%] text-xs`} style={{
+          color, opacity: h ? 0.7 : 0,
+          transform: h ? 'scale(1) rotate(20deg)' : 'scale(0) rotate(0deg)',
+        }}>
+          ✦
+        </div>
+      );
+    default:
+      return null;
+  }
+};
+
+/* ─── Click-driven component ────────────────────────────────────────────── */
 
 export const AppGridBox: React.FC = () => {
   const { t } = useTranslation('app-grid-box');
@@ -1561,11 +1866,13 @@ export const AppGridBox: React.FC = () => {
         </p>
       </div>
 
-      {/* Card grid — normal flow, scrolls with page */}
-      <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
-          {apps.map(app => {
-            const Widget = app.W;
+      {/* Card grid — categorized rows with headers */}
+      <div className="max-w-5xl mx-auto px-6 relative z-10 space-y-6">
+        {appCategories.map(cat => (
+          <div key={cat.category}>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 pl-1">{cat.category}</h3>
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
+          {cat.items.map(app => {
             const gone = absorbed.has(app.label);
             const flying = absorbing.has(app.label);
             const target = arcTargets.current.get(app.label);
@@ -1604,21 +1911,45 @@ export const AppGridBox: React.FC = () => {
                 onMouseLeave={() => setHoveredApp(null)}
               >
                 <div
-                  className="w-full aspect-square rounded-xl overflow-hidden border bg-white shadow-sm cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all"
-                  style={{ borderColor: `${app.color}20`, transition: 'transform 0.15s ease, box-shadow 0.15s ease' }}
+                  className="w-full aspect-square rounded-xl overflow-hidden border bg-white shadow-sm cursor-pointer transition-all group/card"
+                  style={{
+                    borderColor: `${app.color}20`,
+                    transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                  }}
                 >
-                  <Widget c={app.color} h={hoveredApp?.label === app.label} />
+                  {/* SVG illustration */}
+                  {app.icon ? (
+                    <div className="w-full h-full flex items-center justify-center p-2 relative">
+                      <img
+                        src={app.icon}
+                        alt={app.label}
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover/card:scale-110"
+                        draggable={false}
+                      />
+                      {/* Hover glow */}
+                      <div
+                        className="absolute inset-0 rounded-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none"
+                        style={{ background: `radial-gradient(circle at 50% 45%, ${app.color}12 0%, transparent 70%)` }}
+                      />
+                      {/* Per-icon hover overlays */}
+                      <HoverOverlay label={app.label} color={app.color} hovered={hoveredApp?.label === app.label} />
+                    </div>
+                  ) : (
+                    <app.W c={app.color} h={hoveredApp?.label === app.label} />
+                  )}
                   <div
                     className="absolute bottom-0 inset-x-0 text-center text-[9px] font-semibold pb-1.5 truncate px-1 rounded-b-xl"
                     style={{ color: app.color, background: 'linear-gradient(to top, white 60%, transparent)' }}
                   >
-                    {appLabel(app.label)}
+                    {app.label}
                   </div>
                 </div>
               </motion.div>
             );
           })}
-        </div>
+            </div>
+          </div>
+        ))}
 
         {/* Hover popup */}
         <AnimatePresence>
