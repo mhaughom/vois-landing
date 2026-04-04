@@ -117,17 +117,24 @@ const FLAP_DEFS: FlapDef[] = [
   { hinge: [-S, S, 0], offset: [S, 0, 0], axis: "z", sign: 1 },   // left
 ];
 
+// Pre-allocated objects for hingeState to avoid GC pressure (called ~27x per render)
+const _hingeAxisX = new THREE.Vector3(1, 0, 0);
+const _hingeAxisZ = new THREE.Vector3(0, 0, 1);
+const _hingeQ = new THREE.Quaternion();
+const _hingeOff = new THREE.Vector3();
+const _hingeBaseQ = new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0));
+const _hingeTotalQ = new THREE.Quaternion();
+
 function hingeState(def: FlapDef, angle: number): { pos: V3; quat: Q4 } {
   const a = angle * def.sign;
   const [hx, hy, hz] = def.hinge;
-  const hingeAxis = def.axis === "x" ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 0, 1);
-  const hingeQ = new THREE.Quaternion().setFromAxisAngle(hingeAxis, a);
-  const off = new THREE.Vector3(...def.offset).applyQuaternion(hingeQ);
-  const baseQ = new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0));
-  const totalQ = new THREE.Quaternion().multiplyQuaternions(hingeQ, baseQ);
+  const hingeAxis = def.axis === "x" ? _hingeAxisX : _hingeAxisZ;
+  _hingeQ.setFromAxisAngle(hingeAxis, a);
+  _hingeOff.set(def.offset[0], def.offset[1], def.offset[2]).applyQuaternion(_hingeQ);
+  _hingeTotalQ.multiplyQuaternions(_hingeQ, _hingeBaseQ);
   return {
-    pos: [hx + off.x, hy + off.y, hz + off.z],
-    quat: [totalQ.x, totalQ.y, totalQ.z, totalQ.w],
+    pos: [hx + _hingeOff.x, hy + _hingeOff.y, hz + _hingeOff.z],
+    quat: [_hingeTotalQ.x, _hingeTotalQ.y, _hingeTotalQ.z, _hingeTotalQ.w],
   };
 }
 
@@ -685,17 +692,22 @@ const CHAIN_FLY: V3[] = [
 
 const chainMat = { color: "#d0d0d0", metalness: 0.85, roughness: 0.15 };
 
+// Pre-allocated objects for ChainLink (called ~12x per render)
+const _chainEulerX = new THREE.Euler(0, 0, Math.PI / 2);
+const _chainEulerZ = new THREE.Euler(0, Math.PI / 2, Math.PI / 2);
+const _chainBaseQ = new THREE.Quaternion();
+const _chainSpinQ = new THREE.Quaternion();
+const _chainSpinAxis = new THREE.Vector3(0, 1, 0);
+const _chainFinalQ = new THREE.Quaternion();
+
 const ChainLink: React.FC<{
   pos: V3; dir: "x" | "z"; scaleXYZ: V3; opacity: number; threadSpin: number; splitT: number;
 }> = ({ pos, dir, scaleXYZ, opacity, threadSpin, splitT }) => {
   if (opacity < 0.01) return null;
-  const baseEuler = dir === "x"
-    ? new THREE.Euler(0, 0, Math.PI / 2)
-    : new THREE.Euler(0, Math.PI / 2, Math.PI / 2);
-  const baseQ = new THREE.Quaternion().setFromEuler(baseEuler);
-  const spinQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), threadSpin);
-  const finalQ = baseQ.clone().multiply(spinQ);
-  const q: Q4 = [finalQ.x, finalQ.y, finalQ.z, finalQ.w];
+  _chainBaseQ.setFromEuler(dir === "x" ? _chainEulerX : _chainEulerZ);
+  _chainSpinQ.setFromAxisAngle(_chainSpinAxis, threadSpin);
+  _chainFinalQ.copy(_chainBaseQ).multiply(_chainSpinQ);
+  const q: Q4 = [_chainFinalQ.x, _chainFinalQ.y, _chainFinalQ.z, _chainFinalQ.w];
 
   if (splitT < 0.01) {
     return (
@@ -732,7 +744,18 @@ const BoxAnimationScene: React.FC<{
   const isComplete = useRef(false);
   const [, setTick] = React.useState(0);
 
+  // Pre-allocated reusable THREE objects to avoid GC pressure during animation.
+  // Creating new Color/Vector3/Quaternion objects every render causes 180ms GC pauses.
+  const _tmpColor = useMemo(() => new THREE.Color(), []);
+  const _tmpColor2 = useMemo(() => new THREE.Color(), []);
+  const _tmpColor3 = useMemo(() => new THREE.Color(), []);
+  const _tmpAvgColor = useMemo(() => new THREE.Color(), []);
+  const _panelColors = useMemo(() => PANEL_COLORS.map(c => new THREE.Color(c)), []);
+  const _flapColors = useMemo(() => ['#FF80C8', '#60D8FF', '#FFB060', '#60FF90'].map(c => new THREE.Color(c)), []);
+
   const frameSkip = useRef(0);
+  const fpsFrames = useRef(0);
+  const fpsLastLog = useRef(performance.now());
   useFrame((_, delta) => {
     if (manualTimeRef) {
       elapsedRef.current = manualTimeRef.current;
@@ -741,6 +764,15 @@ const BoxAnimationScene: React.FC<{
       if (elapsedRef.current < 38) {
         elapsedRef.current += dt;
       }
+    }
+    // FPS counter — logs every 2 seconds
+    fpsFrames.current++;
+    const now = performance.now();
+    if (now - fpsLastLog.current >= 2000) {
+      const fps = fpsFrames.current / ((now - fpsLastLog.current) / 1000);
+      console.log(`[PERF] R3F render loop: ${fps.toFixed(1)} fps | delta: ${(delta * 1000).toFixed(1)}ms | elapsed: ${elapsedRef.current.toFixed(1)}s`);
+      fpsFrames.current = 0;
+      fpsLastLog.current = now;
     }
     onTimeUpdate?.current?.(elapsedRef.current);
     // Stop re-rendering once animation is complete — scene is static
@@ -751,9 +783,9 @@ const BoxAnimationScene: React.FC<{
       }
       return;
     }
-    // Re-render React tree at ~30fps instead of 60fps
+    // Re-render React tree at ~20fps instead of 60fps to reduce reconciliation cost
     frameSkip.current++;
-    if (frameSkip.current >= 2) {
+    if (frameSkip.current >= 3) {
       frameSkip.current = 0;
       setTick(t => t + 1);
     }
@@ -862,17 +894,18 @@ const BoxAnimationScene: React.FC<{
     const scaleXY = scBase * appear;
 
     // Color: vibrant pastel -> neighbor spill -> desaturate to gray -> MAGIC recolor
-    const col = new THREE.Color(PANEL_COLORS[i]);
+    // Uses pre-allocated _tmpColor objects to avoid GC pressure
+    const col = _tmpColor.copy(_panelColors[i]);
     const spillAmt = interp(time, [tGather, tHold], [0, 0.25]);
     if (spillAmt > 0) {
-      const avg = new THREE.Color(0, 0, 0);
-      NEIGHBORS[i].forEach(ni => avg.add(new THREE.Color(PANEL_COLORS[ni])));
-      avg.multiplyScalar(1 / NEIGHBORS[i].length);
-      col.lerp(avg, spillAmt);
+      _tmpAvgColor.setRGB(0, 0, 0);
+      NEIGHBORS[i].forEach(ni => _tmpAvgColor.add(_panelColors[ni]));
+      _tmpAvgColor.multiplyScalar(1 / NEIGHBORS[i].length);
+      col.lerp(_tmpAvgColor, spillAmt);
     }
     const grayT2 = interp(time, [tHold + 3.5, tSpread + 3], [0, 1],
       Easing.inOut(Easing.cubic));
-    const emissiveCol = col.clone();
+    const emissiveCol = _tmpColor2.copy(col);
     col.lerp(GRAY_COLOR, grayT2);
 
     // Widget phase
@@ -883,22 +916,18 @@ const BoxAnimationScene: React.FC<{
       const widgetGlow = interp(time, [tWidgetStart + 1.8, tWidgetStart + 6], [0, 0.9],
         Easing.out(Easing.cubic));
       if (widgetGlow > 0) {
-        const pureColor = new THREE.Color(PANEL_COLORS[i]);
-        col.copy(GRAY_COLOR).lerp(pureColor, widgetGlow);
-        emissiveCol.copy(pureColor).multiplyScalar(widgetGlow * 0.5);
+        col.copy(GRAY_COLOR).lerp(_panelColors[i], widgetGlow);
+        emissiveCol.copy(_panelColors[i]).multiplyScalar(widgetGlow * 0.5);
       }
     }
 
     // Flaps: unified top color
-    const FLAP_COLORS_ARR = ['#FF80C8', '#60D8FF', '#FFB060', '#60FF90'];
     if (isFlap) {
       const flapProgress = interp(time, [tFlapStart, tFlapStart + 4 * tFlapGap + tFlapDur], [0, 4]);
       const colorIdx = Math.min(Math.floor(flapProgress), 3);
       const colorBlend = flapProgress - colorIdx;
       const nextIdx = Math.min(colorIdx + 1, 3);
-      const currentCol = new THREE.Color(FLAP_COLORS_ARR[colorIdx]);
-      const nextCol = new THREE.Color(FLAP_COLORS_ARR[nextIdx]);
-      currentCol.lerp(nextCol, colorBlend);
+      _tmpColor3.copy(_flapColors[colorIdx]).lerp(_flapColors[nextIdx], colorBlend);
 
       closingColor = def.flapIdx !== undefined
         ? interp(time, [tFlapStart + def.flapIdx * tFlapGap, tFlapStart + def.flapIdx * tFlapGap + tFlapDur], [0, 0.9],
@@ -906,8 +935,8 @@ const BoxAnimationScene: React.FC<{
         : 0;
 
       if (closingColor > 0) {
-        col.copy(GRAY_COLOR).lerp(currentCol, closingColor);
-        emissiveCol.copy(currentCol).multiplyScalar(closingColor * 0.5);
+        col.copy(GRAY_COLOR).lerp(_tmpColor3, closingColor);
+        emissiveCol.copy(_tmpColor3).multiplyScalar(closingColor * 0.5);
       }
     }
 
@@ -916,8 +945,7 @@ const BoxAnimationScene: React.FC<{
     const transformT = interp(time, [fAllClosed, fAllClosed + 3], [0, 1],
       Easing.inOut(Easing.cubic));
     if (transformT > 0) {
-      const magicCol = new THREE.Color(PANEL_COLORS[i]);
-      col.lerp(magicCol, 0.6 + transformT * 0.4);
+      col.lerp(_panelColors[i], 0.6 + transformT * 0.4);
     }
 
     // When color is active, boost opacity + emissive
@@ -995,9 +1023,17 @@ const BoxAnimationScene: React.FC<{
   const panelDataTextures = useMemo(() => Array.from({ length: 9 }, (_, i) => createPanelDataTexture(i)), []);
   const widgetTextures = useMemo(() => WIDGETS.map(createWidgetTexture), []);
 
-  // === Widget animations ===
-  const groupQ = new THREE.Quaternion().setFromEuler(new THREE.Euler(camRotX + flipAngle, camRotY, 0));
-  const billQ = groupQ.clone().invert();
+  // === Widget animations (pre-allocated to avoid GC) ===
+  const _widgetGroupQ = useMemo(() => new THREE.Quaternion(), []);
+  const _widgetBillQ = useMemo(() => new THREE.Quaternion(), []);
+  const _widgetTiltQ = useMemo(() => new THREE.Quaternion(), []);
+  const _widgetFaceQ = useMemo(() => new THREE.Quaternion(), []);
+  const _scratchEuler = useMemo(() => new THREE.Euler(), []);
+  _scratchEuler.set(camRotX + flipAngle, camRotY, 0);
+  _widgetGroupQ.setFromEuler(_scratchEuler);
+  _widgetBillQ.copy(_widgetGroupQ).invert();
+  const groupQ = _widgetGroupQ;
+  const billQ = _widgetBillQ;
 
   const STARTS: V3[] = [
     [-S * 1, S * 5, S * 0.3], [S * 0.8, S * 5.5, -S * 0.3],
@@ -1026,12 +1062,13 @@ const BoxAnimationScene: React.FC<{
     const y = start[1] + (landY - start[1]) * Easing.inOut(Easing.cubic)(t);
 
     const tumble = (1 - t) * 0.5;
-    const tiltQ = new THREE.Quaternion().setFromEuler(new THREE.Euler(
+    _scratchEuler.set(
       Math.sin(wi * 2.1 + t * 3) * tumble,
       Math.cos(wi * 1.7 + t * 2) * tumble,
       Math.sin(wi * 3.3 + t * 4) * tumble * 0.4,
-    ));
-    const faceQ = billQ.clone().multiply(tiltQ);
+    );
+    _widgetTiltQ.setFromEuler(_scratchEuler);
+    const faceQ = _widgetFaceQ.copy(billQ).multiply(_widgetTiltQ);
 
     const opacity = interp(t, [0, 0.1], [0, 1]);
     const scale = interp(t, [0, 0.15, 0.55, 0.75], [0.5, 1, 1, 0]);
@@ -1180,9 +1217,17 @@ export interface BoxAnimationProps {
 export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, onTimeUpdate, preserveDrawingBuffer = false, manualTimeRef }) => {
   const timeCallbackRef = useRef(onTimeUpdate);
   timeCallbackRef.current = onTimeUpdate;
+  // Delay Canvas creation by one frame so StrictMode's unmount can release the
+  // previous WebGL context before we allocate a new one (prevents 2 competing canvases).
+  const [ready, setReady] = React.useState(false);
+  React.useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => { cancelAnimationFrame(id); setReady(false); };
+  }, []);
 
   return (
     <div className={className} style={{ width: "100%", height: "100%", ...style }}>
+      {ready && (
       <Canvas
         orthographic
         camera={{ zoom: 55, position: [0, 0, 10], near: 0.1, far: 100 }}
@@ -1196,6 +1241,7 @@ export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, on
         <directionalLight position={[-3, -2, -8]} intensity={0.3} />
         <BoxAnimationScene onTimeUpdate={timeCallbackRef} manualTimeRef={manualTimeRef} />
       </Canvas>
+      )}
     </div>
   );
 };

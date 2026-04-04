@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ContextualChat } from '../components/ContextualChat';
 import { ActionCards as ActionCardsComponent } from '../components/ActionCards';
-import ChatPanel from '../components/ChatPanel';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, ArrowLeft, Play, Check,
@@ -178,6 +177,7 @@ const fadeUp = {
 };
 
 const stagger = {
+  hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
@@ -715,65 +715,103 @@ const REPLACEMENT_ICONS: Record<string, React.ElementType> = {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const Work: React.FC = () => {
-  const { t } = useTranslation('work-home');
+  const { t, i18n } = useTranslation('work-home');
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [annualBilling, setAnnualBilling] = useState(true);
-  const [chatOpen, setChatOpen] = useState(false);
   const [animPhase, setAnimPhase] = useState<AnimPhase>('dot');
   const [focusLabel, setFocusLabel] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
   const [geoVisible, setGeoVisible] = useState(false);
   const [geoPaused, setGeoPaused] = useState(false);
   const geoSectionRef = useRef<HTMLDivElement>(null);
+  // Inline display style avoids Tailwind CDN race condition where R3F Canvas
+  // mounts inside a display:none container and never initializes its render loop.
+  const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
   const [showVideo, setShowVideo] = useState(false);
   const [heroHeadlineIdx, setHeroHeadlineIdx] = useState(0);
   const [boxTime, setBoxTime] = useState(0);
+  const boxTimeRef = useRef(0);
+  const boxTimeCallback = useCallback((t: number) => {
+    // Only trigger React re-render at story thresholds — avoids re-rendering
+    // the entire Work component (1600+ DOM nodes) on every tick
+    const thresholds = [0, 5, 11, 17, 24, 32, 34];
+    const prev = boxTimeRef.current;
+    boxTimeRef.current = t;
+    const crossedThreshold = thresholds.some(th => (prev < th && t >= th) || (prev >= th && t < th));
+    if (crossedThreshold) {
+      setBoxTime(t);
+    }
+  }, []);
   const [videoElapsed, setVideoElapsed] = useState(0);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const introVideoRef = useRef<HTMLVideoElement>(null);
   const introStartedRef = useRef(false);
   const unfocusRef = React.useRef<(() => void) | null>(null);
 
-  const heroHeadlines = t('heroHeadlines', { returnObjects: true }) as Array<{ label: string; bold: string; light: string }>;
-  const heroStories = t('heroStories', { returnObjects: true }) as Array<{ label: string; headline: string; at?: number }>;
-  const replacements = t('replacements', { returnObjects: true }) as Array<{ tool: string; category: string; vois: string; group: string }>;
-  const pricingFeaturesData = t('pricingFeatures', { returnObjects: true }) as Array<{ feature: string }>;
+  const heroHeadlines = useMemo(() => t('heroHeadlines', { returnObjects: true }) as Array<{ label: string; bold: string; light: string }>, [i18n.language]);
+  const heroStories = useMemo(() => t('heroStories', { returnObjects: true }) as Array<{ label: string; headline: string; at?: number }>, [i18n.language]);
+  const replacements = useMemo(() => t('replacements', { returnObjects: true }) as Array<{ tool: string; category: string; vois: string; group: string }>, [i18n.language]);
+  const pricingFeaturesData = useMemo(() => t('pricingFeatures', { returnObjects: true }) as Array<{ feature: string }>, [i18n.language]);
 
   // Restore original `at` timing values for story phases
-  const stories: { at: number; label: string; headline: string }[] = [
-    { at: 0,  label: heroStories[0].label, headline: heroStories[0].headline },
-    { at: 5,  label: heroStories[1].label, headline: heroStories[1].headline },
-    { at: 11, label: heroStories[2].label, headline: heroStories[2].headline },
-    { at: 17, label: heroStories[3].label, headline: heroStories[3].headline },
-    { at: 24, label: heroStories[4].label, headline: heroStories[4].headline },
-    { at: 34, label: heroStories[5].label, headline: heroStories[5].headline },
-  ];
+  const stories = useMemo(() => [
+    { at: 0,  label: heroStories[0]?.label, headline: heroStories[0]?.headline },
+    { at: 5,  label: heroStories[1]?.label, headline: heroStories[1]?.headline },
+    { at: 11, label: heroStories[2]?.label, headline: heroStories[2]?.headline },
+    { at: 17, label: heroStories[3]?.label, headline: heroStories[3]?.headline },
+    { at: 24, label: heroStories[4]?.label, headline: heroStories[4]?.headline },
+    { at: 34, label: heroStories[5]?.label, headline: heroStories[5]?.headline },
+  ], [heroStories]);
 
   // Restore original pricingFeatures shape (personal/work boolean flags)
-  const pricingFeatures = [
-    { feature: pricingFeaturesData[0].feature,  personal: true,  work: true },
-    { feature: pricingFeaturesData[1].feature,  personal: true,  work: true },
-    { feature: pricingFeaturesData[2].feature,  personal: true,  work: true },
-    { feature: pricingFeaturesData[3].feature,  personal: true,  work: true },
-    { feature: pricingFeaturesData[4].feature,  personal: true,  work: true },
-    { feature: pricingFeaturesData[5].feature,  personal: true,  work: true },
-    { feature: pricingFeaturesData[6].feature,  personal: false, work: true },
-    { feature: pricingFeaturesData[7].feature,  personal: false, work: true },
-    { feature: pricingFeaturesData[8].feature,  personal: false, work: true },
-    { feature: pricingFeaturesData[9].feature,  personal: false, work: true },
-    { feature: pricingFeaturesData[10].feature, personal: false, work: true },
-    { feature: pricingFeaturesData[11].feature, personal: false, work: true },
-    { feature: pricingFeaturesData[12].feature, personal: false, work: true },
-    { feature: pricingFeaturesData[13].feature, personal: false, work: true },
-  ];
+  const pricingFeatures = useMemo(() => [
+    { feature: pricingFeaturesData[0]?.feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[1]?.feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[2]?.feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[3]?.feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[4]?.feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[5]?.feature,  personal: true,  work: true },
+    { feature: pricingFeaturesData[6]?.feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[7]?.feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[8]?.feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[9]?.feature,  personal: false, work: true },
+    { feature: pricingFeaturesData[10]?.feature, personal: false, work: true },
+    { feature: pricingFeaturesData[11]?.feature, personal: false, work: true },
+    { feature: pricingFeaturesData[12]?.feature, personal: false, work: true },
+    { feature: pricingFeaturesData[13]?.feature, personal: false, work: true },
+  ], [pricingFeaturesData]);
+
+  // DEBUG: boxTime tracking
+  useEffect(() => {
+    console.log('[HERO DEBUG] boxTime changed:', boxTime.toFixed(1), '| showVideo:', showVideo, '| heroHeadlineIdx:', heroHeadlineIdx);
+  }, [boxTime, showVideo, heroHeadlineIdx]);
+
+  // Fallback: if boxTime stalls (WebGL dies), force final state after 8s
+  // Only fires if animation truly hasn't moved (not just slow)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (boxTimeRef.current < 1) {
+        console.log('[HERO DEBUG] boxTime stalled at', boxTimeRef.current.toFixed(1), '— forcing final state');
+        setBoxTime(35);
+      }
+    }, 8000);
+    return () => clearTimeout(timer);
+  }, []); // runs once on mount
 
   // Start intro video when box animation reaches crossfade point
   useEffect(() => {
     if (boxTime >= 32 && !introStartedRef.current && introVideoRef.current) {
+      console.log('[HERO DEBUG] Starting intro video at boxTime:', boxTime.toFixed(1));
       introStartedRef.current = true;
       introVideoRef.current.currentTime = 0;
-      introVideoRef.current.play().catch(() => {});
+      introVideoRef.current.play().catch((e) => console.error('[HERO DEBUG] Intro video play failed:', e));
     }
   }, [boxTime]);
 
@@ -783,6 +821,35 @@ const Work: React.FC = () => {
 
   useEffect(() => {
     Analytics.workPageViewed();
+    console.log('[HERO DEBUG] Work component MOUNTED');
+    console.log('[HERO DEBUG] Video count:', document.querySelectorAll('video').length);
+    console.log('[HERO DEBUG] Canvas count:', document.querySelectorAll('canvas').length);
+    // Check WebGL context
+    const testCanvas = document.createElement('canvas');
+    const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl');
+    console.log('[HERO DEBUG] WebGL available:', !!gl, gl ? `(${gl.getParameter(gl.RENDERER)})` : '');
+
+    // Page-level FPS monitor — measures actual browser paint rate
+    let frames = 0;
+    let lastTime = performance.now();
+    let rafId: number;
+    const measureFPS = () => {
+      frames++;
+      const now = performance.now();
+      if (now - lastTime >= 3000) {
+        const fps = frames / ((now - lastTime) / 1000);
+        console.log(`[PERF] Page FPS: ${fps.toFixed(1)} | DOM nodes: ${document.querySelectorAll('*').length} | Canvases: ${document.querySelectorAll('canvas').length}`);
+        frames = 0;
+        lastTime = now;
+      }
+      rafId = requestAnimationFrame(measureFPS);
+    };
+    rafId = requestAnimationFrame(measureFPS);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      console.log('[HERO DEBUG] Work component UNMOUNTED');
+    };
   }, []);
 
   // Pause hex 3D videos when section scrolls off-screen
@@ -868,16 +935,15 @@ const Work: React.FC = () => {
         {/* Shared anchor for 3D box + intro video — desktop only, hidden on narrow screens */}
         {/* Box Animation — smooth crossfade out */}
         <div
-          className="hidden lg:flex absolute inset-0 z-0 items-center justify-center pointer-events-none"
+          className="absolute inset-0 z-0 items-center justify-center pointer-events-none"
           style={{
+            display: isDesktop ? 'flex' : 'none',
             opacity: showVideo ? 0 : Math.max(0, Math.min(1, 1 - (boxTime - 32) / 0.5)),
             transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
             left: '40%',
           }}
         >
-          <BoxAnimation style={{ width: '100%', height: '100%' }} onTimeUpdate={(t) => {
-            if (Math.abs(t - boxTime) > 0.1) setBoxTime(t);
-          }} />
+          <BoxAnimation style={{ width: '100%', height: '100%' }} onTimeUpdate={boxTimeCallback} />
         </div>
         {/* Intro video — smooth crossfade in */}
         {(() => {
@@ -886,8 +952,9 @@ const Work: React.FC = () => {
           const bgFade = Math.min(1, Math.max(0, (videoAge - 3) / 3));
           return (
             <div
-              className="hidden lg:flex absolute inset-0 z-0 items-center justify-center pointer-events-none"
+              className="absolute inset-0 z-0 items-center justify-center pointer-events-none"
               style={{
+                display: isDesktop ? 'flex' : 'none',
                 opacity: showVideo ? 0 : videoFadeIn,
                 transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
                 left: '40%',
@@ -895,12 +962,7 @@ const Work: React.FC = () => {
             >
               <div className="flex flex-col items-center">
                 {(() => {
-                  const VIDEO_BUSINESSES = [
-                    'Creative Agencies', 'Plumbers', 'Dental Practices',
-                    'Consulting Firms', 'Salons & Spas', 'Construction Companies',
-                    'Real Estate Agents', 'Restaurants', 'Cleaning Companies',
-                    'Online Stores', 'Property Managers',
-                  ];
+                  const VIDEO_BUSINESSES = t('heroBusinesses', { returnObjects: true }) as string[];
                   // Offset by -0.5s to compensate for state propagation delay
                   const vt = videoElapsed - 0.5;
                   const lipsVisible = vt >= 5.5;
@@ -971,24 +1033,22 @@ const Work: React.FC = () => {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Left: Text content */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-              className="text-center lg:text-left lg:flex-shrink-0 transition-all duration-700 ease-in-out relative w-full lg:max-w-[50%]"
+            <div
+              className="text-center lg:text-left lg:flex-shrink-0 transition-[width] duration-700 ease-in-out relative w-full lg:max-w-[50%]"
               style={{ width: showVideo ? '20%' : undefined, minHeight: 'clamp(320px, 45vh, 500px)' }}
             >
               {/* Animated story headline — synced to box animation */}
               {(() => {
                 const active = [...stories].reverse().find(s => boxTime >= s.at) || stories[0];
                 const isFinal = active.label === 'final';
+                // Debug log removed — rrweb console recorder creates feedback loop
 
                 // Consistent font size class for ALL phases
                 const headlineSizeClass = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl';
 
                 return (
                   <>
-                    <motion.p variants={fadeUp} transition={{ duration: 0.4 }} className="mb-1" style={{ minHeight: '1.5em' }}>
+                    <p className="mb-1" style={{ minHeight: '1.5em' }}>
                       {showVideo ? (
                         <GlowText
                           text={t('heroGlowLabel')}
@@ -1013,9 +1073,9 @@ const Work: React.FC = () => {
                           </motion.span>
                         </AnimatePresence>
                       )}
-                    </motion.p>
+                    </p>
                     {/* Fixed-height headline container prevents layout shift */}
-                    <motion.h1 variants={fadeUp} transition={{ duration: 0.5 }} className="mb-3 md:mb-5"
+                    <h1 className="mb-3 md:mb-5"
                       style={{ minHeight: 'clamp(120px, 18vh, 240px)' }}
                     >
                       {showVideo ? (
@@ -1066,12 +1126,13 @@ const Work: React.FC = () => {
                           )}
                         </AnimatePresence>
                       )}
-                    </motion.h1>
+                    </h1>
                   </>
                 );
               })()}
 
               {/* Subtitle + buttons — pinned position, fades in smoothly */}
+              {/* Debug log removed */}
               <div
                 style={{
                   opacity: showVideo || boxTime < 34 ? 0 : 1,
@@ -1129,10 +1190,10 @@ const Work: React.FC = () => {
               </div>
 
               {/* Mobile: hero video on loop with synced label */}
-              <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="lg:hidden mt-6 w-full max-w-sm mx-auto">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.24 }} className="lg:hidden mt-6 w-full max-w-sm mx-auto">
                 <MobileHeroVideo />
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* Right: Video player */}
             <motion.div
@@ -1669,7 +1730,6 @@ const Work: React.FC = () => {
       </div>{/* end content z-10 wrapper */}
 
       {/* Video modal removed — video now plays inline in hero */}
-      <ChatPanel onToggle={setChatOpen} />
     </div>
   );
 };

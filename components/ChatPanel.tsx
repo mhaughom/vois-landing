@@ -259,6 +259,16 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 350);
   }, [isOpen]);
 
+  // Push page content left when chat opens by adding padding to body
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.paddingRight = `${PANEL_WIDTH + 32}px`;
+    } else {
+      document.body.style.paddingRight = '';
+    }
+    return () => { document.body.style.paddingRight = ''; };
+  }, [isOpen]);
+
   const clearHighlight = useCallback(() => setHighlightSelector(null), []);
 
   const executeAction = useCallback((action: ChatAction) => {

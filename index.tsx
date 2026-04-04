@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ChatPanel from './components/ChatPanel';
 const Work = React.lazy(() => import('./pages/Work'));
 import './index.css';
+import './lib/i18n';
 import { bootConsent } from './lib/consent';
 
 // Boot consent: reads stored preference and starts PostHog only if user opted in.
@@ -182,6 +184,7 @@ root.render(
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />
         </Routes>
+        <ChatPanel />
       </Suspense>
     </BrowserRouter>
   </React.StrictMode>
