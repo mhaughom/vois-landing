@@ -1,0 +1,68 @@
+{
+  "badge": "Libreria Media",
+  "hero": {
+    "title": "Caricalo.\nL'AI lo Comprende.",
+    "description": "Carica immagini, video, documenti o audio. L'AI estrae prodotti, persone, testo e significato — poi li rende ricercabili per contenuto, non solo per nome file."
+  },
+  "intro": "Trascina e rilascia immagini, video, documenti o audio — Sharp genera automaticamente miniature WebP e GPT-4o-mini arricchisce tutto in modo asincrono. L'analisi visiva estrae prodotti, persone, posizioni, colori e testo visibile dalle immagini. I documenti ottengono OCR. Video e audio ottengono trascrizione e sintesi. Il testo estratto viene suddiviso in embedding a 512 dimensioni così puoi cercare per significato — 'foto prodotto sauna' o 'fattura Henderson' — non solo per nome file. Un'unica libreria media condivisa tra Prodotti, Social, Marketing, Siti web e Presentazioni.",
+  "grid": {
+    "annotation": "Cerca per significato: \"foto prodotto sauna\" o \"fattura Henderson\" — non solo per nome file. Un'unica libreria condivisa da Prodotti, Social, Marketing, Siti web e Presentazioni."
+  },
+  "mediaItems": [
+    {
+      "filename": "foto-prodotto-01.jpg",
+      "tag": "Prodotto · Scaldabagno",
+      "ai": "AI: Unità istantanea, acciaio inossidabile, residenziale"
+    },
+    {
+      "filename": "foto-team.jpg",
+      "tag": "Team · 4 persone rilevate",
+      "ai": "AI: Ambiente ufficio, divise con brand"
+    },
+    {
+      "filename": "fattura-marzo.pdf",
+      "tag": "Documento · OCR estratto",
+      "ai": "AI: Henderson Plumbing, $4.250, marzo 2026"
+    },
+    {
+      "filename": "sopralluogo-lavoro.mp4",
+      "tag": "Video · Trascritto",
+      "ai": "AI: Sopralluogo 3 min, ristrutturazione bagno"
+    },
+    {
+      "filename": "chiamata-cliente.m4a",
+      "tag": "Audio · Trascritto",
+      "ai": "AI: Sarah Henderson, discussione permessi"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logo · Asset brand",
+      "ai": "AI: Logo principale, variante scura"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Analisi visiva AI",
+      "desc": "GPT-4o-mini rileva prodotti, persone, colori e testo nelle immagini. I documenti ottengono OCR. Video e audio ottengono trascrizione."
+    },
+    {
+      "title": "Un'unica libreria ovunque",
+      "desc": "Lo stesso selettore media usato in Prodotti, Social, Marketing, Siti web, Presentazioni. Nessuna duplicazione."
+    },
+    {
+      "title": "Ricerca semantica",
+      "desc": "Testo suddiviso in embedding a 512 dimensioni. Trova i media per significato, non solo per metadati."
+    }
+  ],
+  "techItems": [
+    "Visione GPT-4o-mini",
+    "Miniature Sharp WebP",
+    "Embedding a 512 dimensioni",
+    "Deduplicazione SHA-256",
+    "Inferenza ruolo automatica"
+  ],
+  "cta": {
+    "title": "I gestori di file degli altri archiviano i file.\nHABOS li comprende.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "category": "Philosophy",
+  "title": "Built for Teams, Not Just You",
+  "tagline": "Everyone sees what matters to them. Everyone shares the same truth.",
+  "heroAlt": "Team coordination through shared intelligence",
+  "body1": "A project stalls for 4 days because someone missed a question buried in a Slack thread. The CEO asks \"what's the status of the Henderson project?\" and gets three different answers — because everyone keeps their own version of the truth. Personal AI doesn't fix any of this. Team infrastructure does.",
+  "rolesLabel": "Same data, three lenses",
+  "roles": [
+    {
+      "name": "Dispatcher",
+      "desc": "Routes, crew locations, unassigned jobs. Drag-to-assign board."
+    },
+    {
+      "name": "Field worker",
+      "desc": "Next job with directions, client history, one-tap completion."
+    },
+    {
+      "name": "CEO",
+      "desc": "Revenue, active projects, flagged issues. Weekly AI summary."
+    }
+  ],
+  "body2": "The biggest tax on small businesses isn't labor cost. It's communication latency. A 5-minute decision takes 4 days because of email chains, missed messages, and \"I'll get to it when I'm back at my desk.\" Every feature in VOIS is designed to collapse the time between \"someone needs a decision\" and \"the decision is made.\"",
+  "quote": "\"A company doesn't move at the speed of its fastest person. It moves at the speed of its slowest handoff.\"",
+  "nav": {
+    "prevLabel": "Previous",
+    "prevTitle": "One Assistant",
+    "nextLabel": "Next",
+    "nextTitle": "Suggestions, Not Menus"
+  }
+}

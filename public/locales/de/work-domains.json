@@ -1,0 +1,62 @@
+{
+  "badge": "Eigene Domains",
+  "hero": {
+    "title": "Deine Domain. Deine E-Mail. Eine Einrichtung.",
+    "description": "Verbinde deine eigene Domain, erhalte Arbeitsbereich-E-Mail-Adressen und automatisches SSL — alles gestützt auf die Enterprise-Infrastruktur von Cloudflare."
+  },
+  "body": "Ein Domain-Kauf gibt dir eine Website, E-Mail-Adressen für dein Team und ein vollständiges E-Mail-System mit Zustellbarkeits-Tracking, Bounce- und Beschwerde-Handling sowie KI-Antwortvorschlägen — alles von einer Einstellungsseite aus verwaltet. Cloudflare stellt SSL und benutzerdefinierte Hostnamen automatisch bereit. AWS SES verwaltet die E-Mail-Identität mit DKIM für authentifiziertes Senden. Eingehende E-Mails werden über Empfangsregeln an das HABOS-Mailsystem weitergeleitet, wo sie geparst, in Threads gruppiert und durchsuchbar gemacht werden.",
+  "mockCard": {
+    "domain": "hendersonplumbing.com",
+    "badges": {
+      "domain": "Domain",
+      "connected": "Verbunden",
+      "ssl": "SSL",
+      "sslActive": "Aktiv",
+      "email": "E-Mail",
+      "emailConfigured": "Konfiguriert"
+    },
+    "rows": [
+      { "label": "Website", "value": "hendersonplumbing.com" },
+      { "label": "E-Mail", "value": "mike@hendersonplumbing.com" },
+      { "label": "Buchung", "value": "hendersonplumbing.com/book" }
+    ],
+    "annotation": "DNS-Propagierung ist mit Cloudflare typischerweise in unter 5 Minuten abgeschlossen."
+  },
+  "benefits": [
+    {
+      "title": "Domain + E-Mail + SSL",
+      "desc": "Kein separater Domain-Registrar, E-Mail-Anbieter und SSL-Zertifikat. Alles an einem Ort konfiguriert, ein Dashboard, eine Rechnung."
+    },
+    {
+      "title": "Professionelle E-Mail",
+      "desc": "Sende E-Mails von deiner Domain — Rechnungen, Bestätigungen, Marketing. Nicht von noreply@einer-plattform.com. Deine Marke, überall."
+    },
+    {
+      "title": "Enterprise-Infrastruktur",
+      "desc": "Cloudflares globales Edge-Netzwerk stellt deine Website bereit. Enterprise-DDoS-Schutz, CDN und SSL-Zertifikatsverwaltung inklusive."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "heading": "Ohne HABOS",
+      "text": "Domain kaufen (12 €/Jahr). DNS einrichten. SSL-Zertifikat besorgen. E-Mail-Hosting konfigurieren (6 €/Monat). Alles verbinden. Hoffen, dass es funktioniert. DNS-Propagierung debuggen.",
+      "badge": "3 Dienste, 2+ Stunden Einrichtung"
+    },
+    "with": {
+      "heading": "Mit HABOS",
+      "text": "Domain eingeben. DNS-Einträge hinzufügen. Fertig. E-Mail, SSL und Website-Routing werden automatisch konfiguriert.",
+      "badge": "1 Dienst, 5 Minuten"
+    }
+  },
+  "techItems": [
+    "Cloudflare Workers",
+    "Auto-SSL-Bereitstellung",
+    "Arbeitsbereich-E-Mail-Routing",
+    "DNS-Verifizierung",
+    "Globales CDN"
+  ],
+  "cta": {
+    "heading": "Andere Plattformen lassen dich 3 Dienste verwalten. HABOS erledigt alles.",
+    "button": "Warteliste beitreten"
+  }
+}

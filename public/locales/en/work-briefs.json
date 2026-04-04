@@ -1,0 +1,44 @@
+{
+  "badge": "Core Feature",
+  "hero": {
+    "title": "Walk Into Every Meeting",
+    "titleHighlight": "Prepared",
+    "description": "VOIS reads your calendar, searches your history, and builds a brief automatically. You just read it."
+  },
+  "intro": "Before every meeting, HABOS automatically pulls from the linked project's open tasks and milestones, the relevant operation's health status, previous meetings with the same attendees, CRM client history, and your private Brain knowledge. A standalone meeting tool has access to none of this. Because every module shares one database, the brief knows what no external tool ever could.",
+  "timeComparison": {
+    "before": {
+      "value": "20 min",
+      "description": "scrambling through emails, CRM, and last meeting's notes"
+    },
+    "after": {
+      "value": "60 sec",
+      "description": "skim the brief on your phone while walking to the room"
+    }
+  },
+  "briefPreview": {
+    "title": "What's in the brief"
+  },
+  "benefitCards": [
+    {
+      "title": "Auto-generated",
+      "description": "Briefs appear before you even think about prep. Calendar triggers them automatically."
+    },
+    {
+      "title": "Cross-referenced",
+      "description": "Pulls from emails, meetings, CRM, project notes, and past action items. Nothing missed."
+    },
+    {
+      "title": "Attendee-aware",
+      "description": "See each person's recent interactions, sentiment, and open items. Know where you stand."
+    }
+  ],
+  "callout": {
+    "body": "You're about to join a call with a client you haven't spoken to in 3 weeks. Instead of searching your inbox, checking CRM, and trying to remember what was discussed \u2014 you open VOIS and see a one-page brief with every relevant detail, organized and ready.",
+    "punchline": "That's 20 minutes back in your day, every day."
+  },
+  "closing": {
+    "tagline": "Other apps remind you about meetings. VOIS prepares you for them.",
+    "cta": "Join Waitlist"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "badge": "Compras",
+  "hero": {
+    "title": "Fornecedores, Pedidos e Estoque.\nConectados.",
+    "description": "Gerencie fornecedores, crie pedidos de compra, receba mercadorias e veja os níveis de estoque ajustarem automaticamente — sem planilhas, sem entrada dupla de dados."
+  },
+  "mockPO": {
+    "title": "PC #0042 — Nordic Supply Co",
+    "status": "Aguardando entrega",
+    "tableHeaders": {
+      "item": "Item",
+      "qty": "Qtd",
+      "unit": "Unitário",
+      "total": "Total"
+    },
+    "lineItems": [
+      { "product": "Conectores flexíveis x20", "qty": 20, "unit": "$17,00", "total": "$340" },
+      { "product": "Cano de cobre 15mm x50m", "qty": 50, "unit": "$17,80", "total": "$890" },
+      { "product": "Caixas de selante x12", "qty": 12, "unit": "$13,00", "total": "$156" }
+    ],
+    "totalsRow": {
+      "total": "Total: $1.386",
+      "lineCount": "3 itens de linha"
+    },
+    "received": {
+      "heading": "Recebido (2 de 3)",
+      "items": [
+        { "product": "Conectores flexíveis x20", "checked": true },
+        { "product": "Cano de cobre 15mm x50m", "checked": true },
+        { "product": "Caixas de selante x12", "checked": false }
+      ]
+    },
+    "annotation": "Os pedidos de compra se vinculam diretamente ao seu catálogo de produtos. O recebimento atualiza o estoque em tempo real — mesmo para entregas parciais."
+  },
+  "benefits": [
+    {
+      "title": "Diretório de fornecedores",
+      "desc": "Rastreie fornecedores, dados de contato, condições de pagamento e histórico de pedidos. Saiba quem entrega o quê e quando."
+    },
+    {
+      "title": "Pedidos de compra",
+      "desc": "Crie PCs a partir de alertas de estoque baixo ou solicitações manuais. Os itens de linha se vinculam ao seu catálogo de produtos."
+    },
+    {
+      "title": "Recebimento e estoque",
+      "desc": "Marque itens como recebidos. Os níveis de estoque são atualizados automaticamente. Entregas parciais rastreadas."
+    }
+  ],
+  "scenario": "Seu almoxarifado sinaliza estoque baixo de conectores flexíveis. O VOIS cria um rascunho de PC para o seu fornecedor preferido com as quantidades e preços corretos do seu último pedido. Você aprova com um toque. Quando a entrega chega, sua equipe marca os itens como recebidos e o estoque é atualizado instantaneamente.",
+  "techItems": [
+    "Gestão de fornecedores",
+    "Pedidos de compra",
+    "Recebimento parcial",
+    "Ajuste automático de estoque",
+    "Rastreamento de faturas",
+    "Alertas de estoque baixo"
+  ],
+  "cta": {
+    "title": "Da reposição ao reabastecimento.\nUm sistema.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

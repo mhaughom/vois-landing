@@ -1,0 +1,50 @@
+{
+  "badge": "Horas & Folha de Pagamento",
+  "hero": {
+    "title": "Registre a Entrada. Nós Cuidamos dos Cálculos.",
+    "description": "Controle de horas verificado por GPS com cálculo automático de horas extras, rastreamento de intervalos e faturamento pronto para folha de pagamento — sem planilhas de horas, sem planilhas."
+  },
+  "body": "O rastreamento de localização só é ativado durante uma sessão de trabalho — sem sessão significa sem acesso ao GPS. Privacidade por design. O sistema captura waypoints de GPS, calcula horas normais versus horas extras por dia corrido e aciona notificações assíncronas ao gerente quando os limites diários são excedidos. No final do mês, as horas de cada membro da equipe já estão calculadas, as horas extras separadas e os valores de faturamento computados com taxas horárias e de horas extras configuráveis. Exporte para a folha de pagamento com um clique.",
+  "timecard": {
+    "heading": "Mike Torres — Esta Semana",
+    "summary": "36,5 hrs normais · 4,5 hrs extras",
+    "days": [
+      { "day": "Seg", "range": "7h00 → 15h30", "hours": "8,0 hrs", "badge": "Normal" },
+      { "day": "Ter", "range": "6h45 → 16h15", "hours": "9,0 hrs", "badge": "1,0 HE" },
+      { "day": "Qua", "range": "7h00 → 17h00", "hours": "9,5 hrs", "badge": "1,5 HE" },
+      { "day": "Qui", "range": "7h15 → 15h45", "hours": "8,0 hrs", "badge": "Normal" },
+      { "day": "Sex", "range": "7h00 → 13h30", "hours": "6,5 hrs", "badge": "Meio período" }
+    ],
+    "totalLine": "Total: 41,0 hrs | Normal: 36,5 × $45/hr = $1.642,50 | HE: 4,5 × $67,50/hr = $303,75 | Total: $1.946,25",
+    "footnote": "Horas extras calculadas automaticamente por dia corrido. Gerente notificado quando o limite diário é excedido."
+  },
+  "benefits": {
+    "gps": {
+      "title": "GPS com privacidade em primeiro lugar",
+      "description": "O rastreamento de localização só é ativado durante uma sessão de trabalho. Sem sessão = sem acesso ao GPS. Os trabalhadores controlam quando são rastreados."
+    },
+    "pause": {
+      "title": "Pausar/retomar",
+      "description": "Registre intervalos dentro de uma sessão. O sistema calcula automaticamente o tempo normal versus o tempo pausado. Sem deduções manuais."
+    },
+    "alerts": {
+      "title": "Alertas ao gerente",
+      "description": "O registro de saída aciona uma verificação assíncrona de horas extras. Se as horas diárias excederem o limite (padrão 8h), o gerente é notificado via hierarquia do organograma."
+    }
+  },
+  "scenario": "Fim do mês. Em vez de coletar folhas de ponto em papel, corrigir erros de cálculo e fazer referências cruzadas com registros de trabalho — você abre o HABOS. As horas de cada membro da equipe já estão calculadas, as horas extras separadas, os valores de faturamento computados. Exporte para a folha de pagamento com um clique. São 4 horas de trabalho administrativo, eliminadas.",
+  "scenarioHighlight": "São 4 horas de trabalho administrativo, eliminadas.",
+  "techStrip": {
+    "items": [
+      "Sessões com GPS",
+      "Quilometragem de Haversine",
+      "Cálculo de HE por dia",
+      "Taxa de HE padrão 1,5×",
+      "Exportação pronta para folha de pagamento"
+    ]
+  },
+  "cta": {
+    "heading": "Outros rastreadores de horas fazem seu contador chorar. O HABOS torna a folha de pagamento indolor.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

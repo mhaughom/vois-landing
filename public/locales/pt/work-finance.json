@@ -1,0 +1,58 @@
+{
+  "badge": "Central de Comando Financeiro",
+  "hero": {
+    "title": "Dinheiro Entrando. Dinheiro Saindo. Uma Verdade.",
+    "description": "Recebíveis da sua plataforma contábil, despesas operacionais do HABOS, custos capturados por voz do campo — tudo reconciliado em um único painel."
+  },
+  "body": "O módulo Financeiro fornece uma visão unificada de todo o dinheiro que flui pelo negócio. Os recebíveis são sincronizados da sua plataforma contábil com rastreamento de status de fatura — rascunho, enviada, parcialmente paga, paga, em atraso. As despesas são capturadas por voz: diga 'gastei R$45 em adesivo para cerâmica na loja de materiais de construção' e o Smart Router cria um registro de despesa com loja, valor e alocação por projeto. Os snapshots mensais de receita são reconstruídos automaticamente para visibilidade do fluxo de caixa.",
+  "metrics": [
+    { "label": "Faturado", "value": "$47.250" },
+    { "label": "Recebido", "value": "$38.100" },
+    { "label": "Em Aberto", "value": "$9.150" },
+    { "label": "Em Atraso", "value": "$2.300" }
+  ],
+  "moneyIn": {
+    "heading": "Entradas",
+    "rows": [
+      { "client": "Henderson Reno", "amount": "$12.500", "status": "Pago" },
+      { "client": "Baker HVAC", "amount": "$8.200", "status": "Em Aberto" },
+      { "client": "Wilson Plumb", "amount": "$2.300", "status": "Em Atraso (14 dias)" }
+    ]
+  },
+  "moneyOut": {
+    "heading": "Saídas",
+    "rows": [
+      { "item": "Materiais de cerâmica", "amount": "$1.850", "status": "Pago" },
+      { "item": "Combustível do veículo", "amount": "$420", "status": "Capturado por voz" },
+      { "item": "Subcontratado", "amount": "$3.200", "status": "Pendente" }
+    ]
+  },
+  "dashboardCaption": "Recebíveis sincronizados da sua plataforma contábil. Despesas capturadas por voz, recibo ou entrada manual. Snapshots mensais de receita reconstruídos automaticamente.",
+  "benefits": [
+    {
+      "title": "Captura de despesas por voz",
+      "desc": "Diga \"gastei $180 em cerâmica no Home Depot\" ao dirigir. O HABOS cria a despesa, identifica automaticamente o fornecedor e sugere o código contábil."
+    },
+    {
+      "title": "Automação de faturas",
+      "desc": "Transforme pedidos e lançamentos de horas do HABOS em faturas contábeis. A resolução inteligente de entidades mapeia clientes do CRM para contatos contábeis automaticamente."
+    },
+    {
+      "title": "Snapshots mensais",
+      "desc": "Totais de faturado, recebido, em aberto e em atraso reconstruídos mensalmente. Veja as tendências de fluxo de caixa sem precisar de uma planilha."
+    }
+  ],
+  "scenario": "Fim do mês. Seu contador pergunta: \"Qual é o saldo em aberto e quais clientes estão em atraso?\" Em vez de exportar de 3 sistemas e fazer referências cruzadas no Excel — você abre o HABOS Finance. $9.150 em aberto, $2.300 em atraso da Wilson Plumbing (14 dias). Uma tela, números reais da sua plataforma contábil, zero reconciliação.",
+  "scenarioHighlight": "$9.150 em aberto, $2.300 em atraso da Wilson Plumbing (14 dias). Uma tela, números reais da sua plataforma contábil, zero reconciliação.",
+  "techItems": [
+    "Sincronização com plataforma contábil",
+    "Resolução de entidades",
+    "Operações idempotentes",
+    "Captura de despesas por voz",
+    "Reconstrução mensal de receita"
+  ],
+  "cta": {
+    "heading": "Outros painéis mostram estimativas. O HABOS mostra a verdade contábil.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

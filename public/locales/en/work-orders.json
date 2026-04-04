@@ -1,0 +1,52 @@
+{
+  "badge": "Order Management",
+  "hero": {
+    "title": "From quote to paid. Every step tracked.",
+    "description": "Full lifecycle order management with line items, payment tracking, and auto-stock adjustments — so nothing falls through the cracks."
+  },
+  "intro": "Orders in VOIS are the central record connecting CRM clients, products with variants, and inventory. When a booking completes or a job finishes, an order is auto-created with the correct line items and pricing. Payment status flows from unpaid to partially paid to paid to refunded — always visible, always current. Every line item deducts from product inventory in real time, eliminating manual stock counts entirely.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovation", "amount": "$12,500", "status": "Paid ✓" },
+    { "id": "#1248", "client": "Baker HVAC Service", "amount": "$3,200", "status": "Partial" },
+    { "id": "#1249", "client": "Wilson Emergency", "amount": "$890", "status": "Unpaid" }
+  ],
+  "lineItems": {
+    "heading": "Line Items — Order #1247 · Henderson Renovation",
+    "items": [
+      { "item": "Porcelain floor tile (600x600)", "qty": 48, "unit": "$85.00", "total": "$4,080" },
+      { "item": "Tile adhesive (25kg bag)", "qty": 12, "unit": "$32.00", "total": "$384" },
+      { "item": "Labour — tiling (hrs)", "qty": 24, "unit": "$95.00", "total": "$2,280" },
+      { "item": "Underfloor heating kit", "qty": 1, "unit": "$1,850.00", "total": "$1,850" }
+    ],
+    "total": "Total: $12,500",
+    "annotation": "Orders auto-created from bookings and jobs. Line items pull from your product catalogue with variant support."
+  },
+  "benefitCards": [
+    {
+      "title": "Auto-created from bookings",
+      "desc": "When a booking completes, the order generates automatically with correct line items and pricing. No duplicate data entry, no missed charges."
+    },
+    {
+      "title": "Live stock adjustments",
+      "desc": "Each order line item deducts from product inventory in real time. No manual stock counts. Reorder alerts trigger before you run out."
+    },
+    {
+      "title": "Payment lifecycle",
+      "desc": "Track unpaid → partial → paid → refunded. Every status change is logged and connected to your accounting platform automatically."
+    }
+  ],
+  "scenario": "A plumber finishes a job. On the drive back, he tells VOIS what parts he used — two ball valves, a flex hose, and three hours of labour.",
+  "scenarioHighlight": "VOIS auto-creates the order with the correct line items, deducts the parts from inventory, links the order to the CRM client, and prepares the invoice — before he's back at the office.",
+  "techItems": [
+    "Auto-stock deduction",
+    "Line item variants",
+    "Payment lifecycle",
+    "CRM client linking",
+    "Booking-to-order pipeline",
+    "Voice-captured orders"
+  ],
+  "cta": {
+    "title": "Stop chasing paperwork.\nLet orders build themselves.",
+    "button": "Join Waitlist"
+  }
+}

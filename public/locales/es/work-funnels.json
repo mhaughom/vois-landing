@@ -1,0 +1,69 @@
+{
+  "badge": "Automatización de marketing",
+  "hero": {
+    "title": "Los leads entran. Los ingresos salen.",
+    "description": "Envío de formulario → secuencia de nurturing generada por IA → SMS y correo → reserva o venta. Basada en psicología, con consentimiento primero, y suficientemente inteligente para detenerse cuando el lead responde."
+  },
+  "body": "Cuando llega un envío de formulario, los leads fluyen automáticamente a secuencias de nurturing generadas por IA. Todo el contenido sigue un marco de persuasión de cuatro pasos probado: personalización, autoridad con números específicos, una oferta cuantificada con reversión de riesgo y una llamada a la acción específica. Los embudos se detienen automáticamente cuando el lead responde, alcanza una etapa terminal del CRM o cancela la suscripción — evitando el contacto excesivo. Los envíos de correo y SMS están protegidos por consentimiento explícito, con palabras clave STOP que revocan globalmente.",
+  "sequence": {
+    "label": "Secuencia de nurturing",
+    "step1": "Formulario enviado",
+    "step2": {
+      "label": "Inmediato: SMS de bienvenida",
+      "message": "«Hola Sarah, ¡gracias por su consulta sobre nuestros servicios de HVAC! Soy Mike de Henderson...»"
+    },
+    "wait1": "Esperar 2 horas",
+    "step3": {
+      "label": "Correo: Autoridad + prueba",
+      "message": "«Asunto: El 94% de nuestros clientes ahorra $200+ en facturas de energía...»"
+    },
+    "wait2": "Esperar 1 día",
+    "step4": {
+      "label": "SMS: Oferta + CTA",
+      "message": "«Especial de primavera: afinación de AC por $99 (precio regular $149). Reserve antes del viernes → habos.app/s/henderson-ac»"
+    },
+    "autostop": {
+      "label": "Parada automática",
+      "desc": "Lead respondió / reservó / ganado → la secuencia se detiene automáticamente"
+    },
+    "summary": "Marco de persuasión de 4 pasos: Personalización → Autoridad → Oferta → CTA. 7 estrategias preestablecidas listas para desplegar.",
+    "summaryFramework": "Personalización → Autoridad → Oferta → CTA."
+  },
+  "benefits": [
+    {
+      "title": "Consentimiento primero",
+      "desc": "Correo y SMS protegidos por consentimiento explícito. Las palabras clave STOP revocan globalmente. El primer mensaje operativo tiene protección legal — los seguimientos requieren opt-in."
+    },
+    {
+      "title": "Reglas de parada inteligentes",
+      "desc": "Los embudos se detienen automáticamente cuando el lead responde (SMS o correo), alcanza una etapa terminal del CRM (ganado/perdido/reservado) o cancela la suscripción. Sin contacto excesivo."
+    },
+    {
+      "title": "7 estrategias integradas",
+      "desc": "Seguimiento de lead cálido, prospección B2B en frío, nurturing de formulario, recordatorios de reserva, reactivación, upsell a clientes y personalizada. Cada una ajustada para su caso de uso."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Sin HABOS",
+      "text": "El lead rellena el formulario. Usted lo ve 3 horas después. Redacta un correo. Lo envía. Espera. Hace seguimiento manualmente. Olvida el 40% de los leads.",
+      "badge": "Tiempo de respuesta promedio: 3+ horas"
+    },
+    "with": {
+      "label": "Con HABOS",
+      "text": "El lead rellena el formulario. SMS de bienvenida inmediato. Correo de autoridad 2 horas después. Oferta al día siguiente. Si responden o reservan — la secuencia se detiene.",
+      "badge": "Tiempo de respuesta: inmediato"
+    }
+  },
+  "techItems": [
+    "Mensajería basada en psicología",
+    "Horario de silencio + zona horaria",
+    "Detección de respuesta entrante",
+    "Sincronización de etapa del CRM",
+    "Orquestación de múltiples pasos"
+  ],
+  "cta": {
+    "heading": "Otras herramientas de automatización envían mensajes. HABOS nutre relaciones.",
+    "button": "Unirse a la lista de espera"
+  }
+}

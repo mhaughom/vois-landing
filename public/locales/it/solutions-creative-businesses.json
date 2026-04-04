@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Soluzioni — Aziende Creative",
+    "title": "Dedica il tuo tempo a creare.\u00a0Non ad amministrare.",
+    "subtitle": "Gestione clienti, monitoraggio progetti, proposte, fatturazione e coordinamento del team — risolti.",
+    "description": "Agenzie, studi, fotografi, videomaker, scrittori freelance, organizzatori di eventi, architetti e qualsiasi azienda in cui il lavoro è creativo ma tutto il resto è un'impresa."
+  },
+  "body": {
+    "caseStudyLabel": "Caso Studio",
+    "section1": {
+      "heading": "Come un'agenzia di 6 persone a Bergen ha recuperato 12 ore a settimana",
+      "p1": "Marte gestisce un'agenzia digitale. Sei persone. Branding, social media, web design. I suoi clienti sono aziende norvegesi di medie dimensioni che si aspettano una comunicazione rapida e un lavoro creativo di alta qualità. Il suo problema non era il lavoro creativo. Era tutto il resto."
+    },
+    "section2": {
+      "heading": "Il prima",
+      "p1": "Le mattine del lunedì iniziavano con una riunione di stato di due ore. Non perché il team fosse lento — ma perché nessuno riusciva a vedere dove si trovasse qualsiasi progetto senza chiedere. Asana aveva le liste delle attività. Notion aveva le note delle riunioni. Toggl aveva le ore. Il CRM aveva i dettagli dei clienti. Slack aveva le conversazioni reali. Ottenere un quadro completo di qualsiasi progetto significava controllare cinque strumenti.",
+      "p2": "Un cliente rispondeva a una proposta alle 23:00. Prima che Marte potesse scrivere tre frasi di risposta, aveva bisogno di controllare la proposta originale in Google Docs, il budget in un foglio di calcolo e la disponibilità del suo team in Asana. Quattro schede. Quindici minuti. Per un'email di tre frasi.",
+      "p3": "La fatturazione era la cosa peggiore. Le ore erano in Toggl. I deliverable erano in Asana. I termini del contratto erano in un allegato email di tre mesi fa. Le fatture finivano per essere approssimative. Stava o sottofacturando o avendo conversazioni imbarazzanti.",
+      "p4": "E i potenziali clienti? Quando qualcuno chiedeva \"puoi inviare esempi di lavori simili?\" — trovare casi studio tra Google Drive, Dropbox e vecchi thread email richiedeva quarantacinque minuti. Prometteva di mandare entro fine giornata e consegnava due giorni dopo."
+    },
+    "section3": {
+      "heading": "Il punto di svolta",
+      "p1": "Marte è passata a HABOS. Non per una singola funzionalità, ma perché era stanca di essere un'amministratrice di sistema invece di una direttrice creativa.",
+      "p2": "La prima cosa che è cambiata sono state le chiamate con i clienti. HABOS genera un briefing della riunione prima di ogni chiamata — note precedenti, stato del progetto, decisioni in sospeso. Durante la chiamata, la trascrizione in tempo reale cattura tutto. Dopo: elementi di azione estratti automaticamente, assegnati alle persone giuste, collegati al progetto. Il cliente riceve un'email di follow-up che riassume le decisioni, redatta nella voce di Marte, entro dieci minuti.",
+      "highlight": {
+        "label": "Il momento che l'ha convinta",
+        "voiceNote": "\"VOIS, trovami tutto dai progetti simili alla richiesta Andersson — campagne social media per marchi alimentari, negli ultimi due anni.\"",
+        "result": "Tre secondi. Due casi studio, un template di proposta e una timeline da un progetto comparabile. Tutto trovato tra documenti, record di progetto, proposte e trascrizioni di riunioni."
+      }
+    },
+    "section4": {
+      "heading": "Il dopo",
+      "p1": "La riunione di stato del lunedì è sparita. Sostituita da una verifica al dashboard di cinque minuti. Ogni progetto mostra il suo stato, gli ostacoli e le prossime milestone. La riunione che l'ha sostituita dura venticinque minuti di decisioni reali.",
+      "p2": "La fatturazione richiede minuti, non ore. Il monitoraggio del tempo è collegato ai progetti. I deliverable vengono spuntati nelle milestone. I termini del contratto vivono nel record CRM. La fattura si genera con le voci corrette, le ore fatturabili e le condizioni di pagamento. Un tocco per inviare.",
+      "p3": "Le proposte che richiedevano un giorno ora richiedono un'ora. Descrivi il progetto in una nota vocale, e HABOS redige una proposta attingendo dai dati dei progetti passati e dai prezzi.",
+      "p4": "I clienti hanno notato la differenza prima del team di Marte. Risposte più rapide. Migliore esecuzione. Un portale clienti dove possono vedere l'avanzamento del progetto, approvare i deliverable e inviare messaggi al team direttamente. Niente più email \"puoi mandarmi un aggiornamento?\""
+    },
+    "section5": {
+      "heading": "I risultati",
+      "stats": [
+        ["12 ore", "risparmiate a settimana sull'amministrazione"],
+        ["90%", "più veloce il turnaround delle proposte"],
+        ["$200+", "risparmiati al mese sugli strumenti"],
+        ["0", "conoscenza di progetto persa"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Trascorrevamo le mattine del lunedì in una riunione di stato di 2 ore solo per capire dove si trovava ogni progetto. Ora controlliamo il dashboard in 5 minuti e andiamo subito al lavoro. Le note delle riunioni AI da sole ci hanno fatto risparmiare 6 ore a settimana — e i nostri clienti hanno notato che rispondiamo più velocemente.\"",
+      "attribution": "— Marte, 34 · Agenzia digitale · 6 persone · Bergen"
+    },
+    "cta": {
+      "heading": "Torna al lavoro per cui hai davvero avviato questa attività.",
+      "button": "Unisciti alla lista d'attesa"
+    }
+  }
+}

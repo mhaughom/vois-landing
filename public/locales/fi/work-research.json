@@ -1,0 +1,52 @@
+{
+  "badge": "Tekoälytutkimus",
+  "hero": {
+    "title": "Esitä kysymys.\nSaa viittauksin varustettu raportti.",
+    "description": "HABOS delegoi syvällisen tutkimuksen Perplexity AI:lle, tarkentaa kysymystä selventävillä kehotteilla ja toimittaa jäsennellyn johtajan yhteenvedon \u2014 sitten upottaa kaiken Brainiin tulevaa hakua varten."
+  },
+  "intro": "Puhu kysymys puhelimeesi \u2014 HABOS luokittelee sen automaattisesti tutkimusaikeeksi ja käynnistää syvällisen tutkimuksen. Ennen kalliin tutkimuksen suorittamista tekoäly esittää kaksi kohdennettua selventävää kysymystä kaventaakseen laajuuden. Sitten Perplexityn sonar-pro-malli toimii asynkronisesti, toimittaen jäsennellyn johtajan yhteenvedon keskeisillä löydöksillä, viittauksilla ja jatkokysymyksillä. Valmis tutkimus pilkotaan ja upotetaan Brainiin, joten se nousee esiin tulevissa hauissa ja tekoälykeskusteluissa ikuisesti.",
+  "flow": {
+    "label": "Kuinka se toimii",
+    "userQuestion": "Mikä on tekoälyaikataulutustyökalujen kilpailutilanne kenttäpalveluissa?",
+    "clarifyIntro": "Ennen tutkimusta kaksi nopeaa kysymystä:",
+    "clarifyQ1": "Keskitytko Yhdysvaltain vai globaaleihin markkinoihin?",
+    "clarifyQ2": "Yrityksen koko: pk-yritys vai yritys?",
+    "answerPills": ["Yhdysvaltain markkinat", "Pk-yritys"],
+    "result": {
+      "label": "Johtajan yhteenveto",
+      "title": "Kilpailutilanne: Tekoälyaikataulutus kenttäpalveluissa",
+      "findings": [
+        "ServiceTitan hallitsee yritysmarkkinoita 42 %:n markkinaosuudella, mutta heidän pk-tarjontansa on rajallinen ja ylihinnoiteltu 89 $/käyttäjä/kk.",
+        "Jobber ja Housecall Pro kilpailevat yksinkertaisuudella pk-yrityksille, mutta kumpikaan ei tarjoa tekoäly-natiivista aikataulutusta — molemmat liittävät perustason automaation päälle.",
+        "Tekoäly-ensimmäiset tulokkaat (FieldPulse, Zuper) kasvavat 3x vuodessa 10–30 $/käyttäjä -alueella, mikä viittaa vahvaan pk-kysyntään älykkäälle aikataulutukselle."
+      ],
+      "citations": "12 viittausta",
+      "embeddedLabel": "Upotettu Brainiin"
+    }
+  },
+  "benefitCards": [
+    {
+      "title": "Äänestä tutkimukseen",
+      "body": "Sano \"tutki kilpailijan hinnoittelu alallassamme\" äänimuistiinpanon aikana. HABOS havaitsee tutkimusaikeen ja käynnistää analyysin automaattisesti."
+    },
+    {
+      "title": "Aina Brainissasi",
+      "body": "Valmis tutkimus pilkottu, upotettu (512-ulotteiset vektorit) ja haettavissa ikuisesti. Kysy siitä kuukausia myöhemmin \u2014 Brain muistaa."
+    },
+    {
+      "title": "Projektiin linkitetty asiayhteys",
+      "body": "Linkitä tutkimus projekteihin. Tuleva tutkimus samasta aiheesta hyödyntää aiempia löydöksiä rikkaampaa, ei-toistuvaa analyysiä varten."
+    }
+  ],
+  "techStrip": [
+    "Perplexity sonar-pro",
+    "Tekoälyn selventävät kysymykset",
+    "RAG-upotetut tulokset",
+    "Projektienvälinen asiayhteys",
+    "Pysyvät chat-jatket"
+  ],
+  "closing": {
+    "title": "Muut työkalut antavat hakupalkin.\nHABOS antaa tutkimustiimin.",
+    "cta": "Liity odotuslistalle"
+  }
+}

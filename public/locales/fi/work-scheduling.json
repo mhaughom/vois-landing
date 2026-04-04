@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Aikataulutus ja varaukset",
+  "hero": {
+    "title": "Kalenterisi toimii itsestään",
+    "description": "Tekoälyaikataulutus, online-varaukset ja jaettavat linkit — yhdistetty CRM:ään ja maksuihin niin, ettei mikään putoa läpi."
+  },
+  "items": [
+    {
+      "title": "Kalenteri",
+      "desc": "Fokusajanjaksot täytetään automaattisesti, kokoukset valmisteltu tekoälyyhteenvedoilla."
+    },
+    {
+      "title": "Varaukset",
+      "desc": "Asiakkaat varaavat verkossa, tilaukset luodaan automaattisesti, maksu kerätään yhdessä vaiheessa."
+    },
+    {
+      "title": "Aikataulutuslinkit",
+      "desc": "Jaettavat varaussivut saatavuuden synkronoinnilla ja Stripe-maksuilla."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "Kernfunctie",
+  "hero": {
+    "title": "Praat met je bedrijf",
+    "description": "Stel een vraag, geef een instructie, of denk hardop\u00a0\u2014 de assistent regelt de rest in minder dan 300ms."
+  },
+  "heroPills": ["300ms respons", "8 ingebouwde tools", "Stem + tekst"],
+  "intro": "Wanneer je met de HABOS-assistent praat, kent hij al je projecten, je agenda, je team en je recente gesprekken. Je hoeft de context niet uit te leggen \u2014 hij heeft die al. Vraag 'hoe ziet de debiteurenadministratie eruit?' en hij bevraagt je financiële gegevens. Zeg 'stel een follow-up op voor Sarah' en hij haalt de laatste e-mailthread op, je CRM-notities en haar sentimenttrend. Dan schrijft hij het concept en wacht op je goedkeuring voor het versturen. Één gesprek vervangt vijf apps en tien klikken.",
+  "mockConversation": {
+    "userMessage": "Wat staat er morgen in mijn agenda en stel een follow-up e-mail op voor Sarah over de renovatieofferte",
+    "assistantMessage": "Je hebt morgen 3 vergaderingen. De eerste is om 9\u00a0uur met het Henderson-team. Ik heb een follow-up voor Sarah opgesteld\u00a0\u2014 hier is een voorbeeld:",
+    "emailTo": "Aan: sarah@...",
+    "emailSubject": "Onderwerp: Follow-up keukenovatie",
+    "emailBody": "Hallo Sarah, ik kom even terug op de offerte die we hebben besproken...",
+    "footer": "Één zin. Twee systemen bijgewerkt. Nul van app wisselen."
+  },
+  "savings": {
+    "title": "Wat dit je bespaart",
+    "items": [
+      {
+        "stat": "45 min/dag",
+        "text": "Gemiddeld bespaarde tijd door het vervangen van app-switching door spraakopdrachten. Vraag in plaats van klikken."
+      },
+      {
+        "stat": "5 apps \u2192 1",
+        "text": "Agenda, e-mail, taken, CRM en zoeken \u2014 allemaal toegankelijk in één gesprek."
+      },
+      {
+        "stat": "0 formulieren ingevuld",
+        "text": "Zeg 'log 3 uur op de Henderson-opdracht' en de urenregistratie, het project en de facturering worden automatisch bijgewerkt."
+      }
+    ]
+  },
+  "capabilities": [
+    "Zoek in je gegevens",
+    "Maak taken aan",
+    "Plan evenementen",
+    "Stel e-mails op",
+    "Controleer financiën",
+    "Beheer boekingen",
+    "Voer onderzoek uit",
+    "Vul rapporten in"
+  ],
+  "context": {
+    "title": "Kent altijd jouw context",
+    "description": "De assistent heroppelt elke sessie zijn context\u00a0\u2014 jouw profiel, actieve projecten, aankomende evenementen, teamstructuur en beschikbare gegevens. Je hoeft nooit uit te leggen wie je bent of waaraan je werkt.",
+    "items": [
+      "Je agenda",
+      "Actieve projecten",
+      "Team & rollen",
+      "Recente gesprekken",
+      "Bedrijfsgegevens"
+    ]
+  },
+  "closing": {
+    "tagline": "Andere apps geven je een chatbot. VOIS geeft je een zakelijke partner.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "badge": "Personenverzeichnis",
+  "hero": {
+    "title": "Jede Person. Jede Interaktion. Eine Ansicht.",
+    "description": "Sprachaufnahmen, E-Mails, Chats, Meetings, CRM-Timeline — HABOS konsolidiert jeden Kontaktpunkt mit einer Person in einem einzigen Beziehungsprofil."
+  },
+  "intro": "Das Personenverzeichnis baut sich aus der Art auf, wie du über Personen sprichst. Erwähne den Namen einer Person in einer Sprachnotiz und HABOS erstellt oder verknüpft sie automatisch mit Kontext und Stimmungsanalyse. Der Personen-Hub aggregiert jede Interaktion: Sprachaufnahmen, in denen sie erwähnt werden, E-Mail-Threads, Chat-Gespräche, Meetings, in denen sie sprachen, CRM-Timeline-Einträge und personenbezogene KI-Sitzungen — alle durch einen einzigen Datenbankaufruf zurückgegeben. Gemeinsame Themen werden KI-inferiert und Stimmungstrends werden über alle Kanäle verfolgt.",
+  "profile": {
+    "name": "Sarah Henderson",
+    "sentiment": "Positiv",
+    "role": "Entscheidungsträger bei Henderson Sanitär",
+    "interactions": "47 Interaktionen",
+    "lastContact": "Letzter Kontakt: vor 2 Tagen",
+    "actionItems": "3 offene Aktionspunkte",
+    "annotation": "Das Personenverzeichnis baut sich aus der Art auf, wie du über Personen sprichst. Erwähne jemanden in einer Sprachnotiz — sie werden automatisch mit Kontext erstellt."
+  },
+  "timeline": [
+    {
+      "title": "Re: Küchenrenovierung Zeitplan",
+      "detail": "21. März — Überarbeiteten Zeitplan bestätigt"
+    },
+    {
+      "title": "Sprachanruf",
+      "detail": "20. März — Genehmigung besprochen, positive Stimmung"
+    },
+    {
+      "title": "Slack #henderson",
+      "detail": "19. März — Nach Fliesenmustern gefragt"
+    },
+    {
+      "title": "Team-Sync",
+      "detail": "18. März — 2 Aktionspunkte Sarah zugewiesen"
+    },
+    {
+      "title": "Sprachnotizerwähnung",
+      "detail": "15. März — 'Sarah braucht das Budget-Update bis Freitag'"
+    }
+  ],
+  "benefitCards": [
+    {
+      "title": "Automatisch aus Sprache erstellt",
+      "body": "Erwähne den Namen einer Person während einer Aufnahme oder eines Anrufs, HABOS erstellt oder verknüpft sie in deinem Verzeichnis mit Kontext und Stimmung."
+    },
+    {
+      "title": "Multi-Rollen-Verknüpfung",
+      "body": "Dieselbe Person kann 'Entscheidungsträger' bei Unternehmen A und 'Technischer Leiter' bei Unternehmen B sein. Flexible Rollenverfolgung über alle CRM-Kunden."
+    },
+    {
+      "title": "Neuindex-Pipeline",
+      "body": "Alle Aufnahmen massenweise verarbeiten, um Personenerwähnungen zu finden, Kontakte zu erstellen/deduplizieren, Stimmung zu analysieren und gemeinsame Themen zu extrahieren."
+    }
+  ],
+  "scenario": "Du willst Sarah anrufen, aber kannst dich nicht erinnern, wo die Dinge stehen. Öffne ihr Profil — sieh die E-Mail von Dienstag zum überarbeiteten Zeitplan, die Slack-Frage zu Fliesenmustern und eine Sprachnotiz von letzter Woche, in der du erwähntest, dass sie das Budget-Update braucht. Drei offene Aktionspunkte sind aufgelistet. Du bist in 10 Sekunden vollständig vorbereitet — ohne eine einzige App zu durchsuchen.",
+  "techItems": [
+    "get_person_hub() RPC",
+    "Kanalübergreifende Stimmung",
+    "Sprach-Erwähnungserkennung",
+    "Auto-Deduplizierung nach Name",
+    "CRM ↔ Personen-Verknüpfung"
+  ],
+  "cta": {
+    "tagline": "Andere Apps verfolgen Kontakte. HABOS verfolgt Beziehungen.",
+    "button": "Warteliste beitreten"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "badge": "Driftsintelligens",
+  "hero": {
+    "title": "Problemer opstår, inden nogen bemærker det.",
+    "description": "Definer dine forretningskadencer. Teammedlemmer rapporterer via tale. AI scorer sundhed automatisk og markerer anomalier med korrigerende handlinger."
+  },
+  "body": "Driftsmodulet venter ikke på, at nogen bemærker problemer — det registrerer dem automatisk. Admin konfigurerer regler pr. operation: 'hvis færdiggørelsesrate falder under 90%, markér gul; under 70%, markér rød.' Når teammedlemmer indsender rapporter via tale, diktat, chat eller formular, evaluerer systemet alle regler, beregner overholdelsescores, producerer sundhedsstatus og fremhæver straks resultater på dashboardet. På tværs af flere rapportkørsler sporer det tendenser og advarer om anomalier, inden de bliver til kriser.",
+  "dashboard": {
+    "title": "Livesundheds-dashboard",
+    "items": {
+      "dailyRevenue": {
+        "name": "Daglig omsætningsrapport",
+        "category": "Salg"
+      },
+      "weeklySafety": {
+        "name": "Ugentlig sikkerhedsaudit",
+        "category": "Feltoperationer"
+      },
+      "monthlyEquipment": {
+        "name": "Månedlig udstyrscheck",
+        "category": "Vedligeholdelse"
+      }
+    },
+    "aiAlert": {
+      "label": "AI-handling:",
+      "message": "Færdiggørelse af udstyrscheck faldt fra 95% til 41% denne måned. Anbefaling: planlæg obligatorisk træning + tildel til senior tekniker."
+    },
+    "footnote": "Sundhedsscorer opdateres automatisk, når rapporter indsendes. Ingen manuel sporing."
+  },
+  "benefits": {
+    "reporting": {
+      "title": "4 måder at rapportere på",
+      "description": "Taleinterview, diktat, chat eller traditionel formular. Feltmedarbejdere udfylder rapporter ved at tale på køreturen tilbage. Ingen clipboard."
+    },
+    "rules": {
+      "title": "Regler fanger problemer",
+      "description": "Konfigurer tærskler: \"hvis daglig_omsætning < kr. 35.000, markér RØD.\" Overholdelsessporing sporer rettidighed. For sent = proportionalt lavere score."
+    },
+    "ai": {
+      "title": "AI-korrigerende handlinger",
+      "description": "Når sundheden falder, genererer AI 3-5 specifikke handlinger med presserende niveauer. Ikke vagt råd — konkrete næste skridt routet til de rette personer."
+    }
+  },
+  "comparison": {
+    "without": {
+      "label": "Uden HABOS",
+      "description": "Fredag: \"Hvordan går det med sikkerhedsauditten?\" \"Øh, lad mig tjekke.\" Mandag: \"Det viser sig at 3 steder sprang det over.\" Onsdag: hændelsesrapport.",
+      "outcome": "Problem opdaget: 5 dage for sent"
+    },
+    "with": {
+      "label": "Med HABOS",
+      "description": "Tirsdag: Auto-alarm — \"Sikkerhedsaudit-færdiggørelse på 67%, 3 steder forsinket. Forslag: tildel til backup-inspektører.\" Handling taget samme dag.",
+      "outcome": "Problem markeret: samme dag"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "BPMN-stiliserede flowdiagrammer",
+      "Regelbaseret sundhedsscoring",
+      "7-dages trendgnister",
+      "AI-korrigerende handlinger",
+      "4 rapportudfyldelsesstilstande"
+    ]
+  },
+  "cta": {
+    "heading": "Andre værktøjer sporer, hvad der skete. HABOS fanger, hvad der er ved at gå galt.",
+    "button": "Tilmeld venteliste"
+  }
+}

@@ -2,40 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { useTranslation } from 'react-i18next';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
 };
 
-const timelineEntries = [
-  {
-    time: '7:45 AM',
-    text: 'Driving to first job. Raise wrist: "What\'s my schedule today?" Watch reads back 4 appointments.',
-  },
-  {
-    time: '9:15 AM',
-    text: 'Between jobs. "Just finished the Henderson water heater, used two flex connectors, took 3 hours." Watch creates job record, updates inventory, logs time.',
-  },
-  {
-    time: '11:00 AM',
-    text: 'On site. "Remind me to order more flex connectors and follow up with Sarah about the renovation." Two tasks created, zero typing.',
-  },
-  {
-    time: '12:30 PM',
-    text: 'Lunch break. Switches to text mode in quiet restaurant. Types: "How are receivables this month?" Gets a full financial summary.',
-  },
-];
-
-const techPills = [
-  'WebSocket relay',
-  'OpenAI Realtime V2',
-  'NECP-compliant (no 35s timeout)',
-  '37 Swift files',
-  'Dual mode: voice + text',
-];
-
 const WatchAssistant: React.FC = () => {
+  const { t } = useTranslation('work-watch');
+  const stats = t('stats', { returnObjects: true }) as Array<{ number: string; label: string }>;
+  const timelineEntries = t('timeline.entries', { returnObjects: true }) as Array<{ time: string; text: string }>;
+  const techPills = t('techPills', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -50,14 +29,13 @@ const WatchAssistant: React.FC = () => {
             className="text-center mb-20"
           >
             <div className="inline-block px-4 py-2 bg-emerald-500/10 text-emerald-700 rounded-full text-sm font-medium mb-6">
-              Core Feature
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-5 leading-tight">
-              Your Entire Business.<br />On Your Wrist.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              Not a notification mirror. A full AI assistant with voice,
-              tools, and sub-300ms responses.
+              {t('hero.description')}
             </p>
           </motion.div>
 
@@ -68,26 +46,13 @@ const WatchAssistant: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto text-center mb-16">
-              A field worker wearing the watch can dictate a 30-second voice note between jobs. The Smart Router processes it into tasks, events, and notes. They never open their phone. The data flows into the unified system and is immediately visible to the office team on the web dashboard. Three NECP compliance fixes prevent watchOS from killing the connection &mdash; solving the 35-second timeout that plagues every other watch AI app.
+              {t('intro')}
             </p>
           </motion.div>
 
           {/* Stat Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-20">
-            {[
-              {
-                number: '<300ms',
-                label: 'Speech-to-speech response time. Faster than pulling out your phone.',
-              },
-              {
-                number: '8 Tools',
-                label: 'Create tasks, check calendar, search data, draft emails — all from your wrist.',
-              },
-              {
-                number: '0 Apps Opened',
-                label: 'Dictate a 30-second update between jobs. It becomes tasks, events, and notes automatically.',
-              },
-            ].map((stat, i) => (
+            {stats.map((stat, i) => (
               <motion.div
                 key={stat.number}
                 {...fadeUp}
@@ -111,7 +76,7 @@ const WatchAssistant: React.FC = () => {
             className="bg-slate-50 rounded-3xl p-8 md:p-12 mb-20"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-10 text-center">
-              A Morning in the Field
+              {t('timeline.title')}
             </h2>
 
             <div className="max-w-3xl mx-auto relative">
@@ -149,24 +114,18 @@ const WatchAssistant: React.FC = () => {
           >
             <div>
               <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                Suggestion Cards
+                {t('features.suggestionCards.title')}
               </h3>
               <p className="text-slate-600 leading-relaxed">
-                After every exchange, action cards appear on the watch face.
-                &ldquo;Create task: Follow up with Sarah&rdquo; or &ldquo;Schedule:
-                Site visit Tuesday 2pm&rdquo;. Tap to confirm, swipe to dismiss.
-                No tiny keyboard needed.
+                {t('features.suggestionCards.description')}
               </p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                Seamless Handoff
+                {t('features.seamlessHandoff.title')}
               </h3>
               <p className="text-slate-600 leading-relaxed">
-                Start a conversation on your watch, pick it up on your phone or
-                Mac. Voice notes recorded on the watch flow through the Smart
-                Router &mdash; the office team sees updates in real-time without
-                you touching your phone.
+                {t('features.seamlessHandoff.description')}
               </p>
             </div>
           </motion.div>
@@ -196,7 +155,7 @@ const WatchAssistant: React.FC = () => {
             className="text-center"
           >
             <p className="text-lg text-slate-400 italic mb-8">
-              Other watch apps show notifications. VOIS puts your entire business on your wrist.
+              {t('closing.tagline')}
             </p>
             <a href="/work#waitlist">
               <motion.button
@@ -204,7 +163,7 @@ const WatchAssistant: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
-                Join Waitlist
+                {t('closing.cta')}
               </motion.button>
             </a>
           </motion.div>

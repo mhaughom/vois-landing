@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Website & Marketing",
+  "hero": {
+    "title": "Deine Marke, verstärkt durch KI",
+    "description": "Websites erstellen, Inhalte produzieren und Kampagnen starten — alles angetrieben von deinen Geschäftsdaten, nicht von generischen Vorlagen."
+  },
+  "items": [
+    {
+      "title": "Website-Builder",
+      "desc": "Beschreibe dein Unternehmen, erhalte eine Website — KI schreibt den Text, verbindet Zahlungen und Buchungen."
+    },
+    {
+      "title": "Kreativstudio",
+      "desc": "Marketinginhalte generieren, die zu deiner Marke aus deinem Geschäftskontext passen."
+    },
+    {
+      "title": "Marketing",
+      "desc": "E-Mail- und SMS-Kampagnen mit KI-geschriebenen Texten und intelligenten Zielgruppensegmenten."
+    }
+  ]
+}

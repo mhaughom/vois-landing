@@ -1,0 +1,59 @@
+{
+  "badge": "Kärnfunktion",
+  "hero": {
+    "title": "Prata med din verksamhet",
+    "description": "Ställ en fråga, ge en instruktion eller tänk högt\u00a0\u2014 assistenten sköter resten på under 300ms."
+  },
+  "heroPills": ["300ms svarstid", "8 inbyggda verktyg", "Röst + text"],
+  "intro": "När du pratar med HABOS-assistenten känner den redan till dina projekt, din kalender, ditt team och dina senaste konversationer. Du behöver inte förklara kontexten \u2014 den har den. Fråga 'hur ser kundfordringarna ut?' och den frågar i din ekonomidata. Säg 'utkasta en uppföljning till Sarah' och den hämtar den senaste mejltråden, dina CRM-anteckningar och hennes sentimenttrend. Sedan skriver den utkastet och väntar på att du ska godkänna innan den skickar. En konversation ersätter fem appar och tio klick.",
+  "mockConversation": {
+    "userMessage": "Vad har jag på kalendern imorgon och utkasta ett uppföljningsmejl till Sarah om renoveringsofferten",
+    "assistantMessage": "Du har 3 möten imorgon. Det första är klockan 9\u00a0med Henderson-teamet. Jag har utkasdat en uppföljning till Sarah\u00a0\u2014 här är en förhandsgranskning:",
+    "emailTo": "Till: sarah@...",
+    "emailSubject": "Ärende: Uppföljning köksrenovering",
+    "emailBody": "Hej Sarah, återkommer angående offerten vi diskuterade...",
+    "footer": "En mening. Två system uppdaterade. Noll appbyte."
+  },
+  "savings": {
+    "title": "Vad detta sparar dig",
+    "items": [
+      {
+        "stat": "45 min/dag",
+        "text": "Genomsnittlig tid sparad genom att ersätta appbyte med röstkommandon. Fråga i stället för att klicka."
+      },
+      {
+        "stat": "5 appar \u2192 1",
+        "text": "Kalender, mejl, uppgifter, CRM och sökning — allt tillgängligt i en enda konversation."
+      },
+      {
+        "stat": "0 formulär ifyllda",
+        "text": "Säg 'logga 3 timmar på Henderson-jobbet' och tidrapporten, projektet och faktureringen uppdaterar sig själva."
+      }
+    ]
+  },
+  "capabilities": [
+    "Sök i din data",
+    "Skapa uppgifter",
+    "Schemalägg händelser",
+    "Utkasta mejl",
+    "Kontrollera ekonomi",
+    "Hantera bokningar",
+    "Kör research",
+    "Fyll i rapporter"
+  ],
+  "context": {
+    "title": "Känner alltid din kontext",
+    "description": "Assistenten återuppbygger sin kontext varje session\u00a0\u2014 din profil, aktiva projekt, kommande händelser, teamstruktur och tillgänglig data. Du behöver aldrig förklara vem du är eller vad du arbetar med.",
+    "items": [
+      "Din kalender",
+      "Aktiva projekt",
+      "Team & roller",
+      "Senaste konversationer",
+      "Affärsdata"
+    ]
+  },
+  "closing": {
+    "tagline": "Andra appar ger dig en chatbot. VOIS ger dig en affärspartner.",
+    "cta": "Gå med i väntelistan"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "badge": "Funzionalità Principale",
+  "hero": {
+    "title": "L'Intera Tua Azienda.\nAl Tuo Polso.",
+    "description": "Non un mirror di notifiche. Un assistente AI completo con voce, strumenti e risposte sotto i 300ms."
+  },
+  "intro": "Un lavoratore sul campo che indossa l'orologio può dettare una nota vocale di 30 secondi tra un lavoro e l'altro. Il Router Intelligente la elabora in attività, eventi e note. Non aprono mai il telefono. I dati fluiscono nel sistema unificato e sono immediatamente visibili al team dell'ufficio sulla dashboard web. Tre correzioni di conformità NECP impediscono a watchOS di terminare la connessione — risolvendo il timeout di 35 secondi che affligge ogni altra app AI per orologio.",
+  "stats": [
+    {
+      "number": "<300ms",
+      "label": "Tempo di risposta da parlato a parlato. Più veloce che tirare fuori il telefono."
+    },
+    {
+      "number": "8 Strumenti",
+      "label": "Crea attività, controlla calendario, cerca dati, bozza email — tutto dal tuo polso."
+    },
+    {
+      "number": "0 App Aperte",
+      "label": "Detta un aggiornamento di 30 secondi tra un lavoro e l'altro. Diventa automaticamente attività, eventi e note."
+    }
+  ],
+  "timeline": {
+    "title": "Una Mattina sul Campo",
+    "entries": [
+      {
+        "time": "7:45",
+        "text": "In viaggio verso il primo lavoro. Alza il polso: \"Qual è il mio programma oggi?\" L'orologio legge 4 appuntamenti."
+      },
+      {
+        "time": "9:15",
+        "text": "Tra un lavoro e l'altro. \"Ho appena finito lo scaldabagno Henderson, usato due raccordi flessibili, impiegato 3 ore.\" L'orologio crea il record del lavoro, aggiorna l'inventario, registra il tempo."
+      },
+      {
+        "time": "11:00",
+        "text": "In sede. \"Ricordami di ordinare altri raccordi flessibili e fare follow-up con Sarah sulla ristrutturazione.\" Due attività create, zero digitazione."
+      },
+      {
+        "time": "12:30",
+        "text": "Pausa pranzo. Passa alla modalità testo in un ristorante tranquillo. Scrive: \"Come sono i crediti questo mese?\" Riceve un riepilogo finanziario completo."
+      }
+    ]
+  },
+  "features": {
+    "suggestionCards": {
+      "title": "Schede di Suggerimento",
+      "description": "Dopo ogni scambio, le schede azione appaiono sul quadrante dell'orologio. \"Crea attività: Follow-up con Sarah\" o \"Pianifica: Visita sito Martedì 14\". Tocca per confermare, scorri per ignorare. Nessuna tastiera minuscola necessaria."
+    },
+    "seamlessHandoff": {
+      "title": "Passaggio Fluido",
+      "description": "Inizia una conversazione sull'orologio, riprendi sul telefono o Mac. Le note vocali registrate sull'orologio fluiscono attraverso il Router Intelligente — il team dell'ufficio vede gli aggiornamenti in tempo reale senza che tu tocchi il telefono."
+    }
+  },
+  "techPills": [
+    "Relay WebSocket",
+    "OpenAI Realtime V2",
+    "Conforme NECP (nessun timeout 35s)",
+    "37 file Swift",
+    "Doppia modalità: voce + testo"
+  ],
+  "closing": {
+    "tagline": "Le altre app per orologio mostrano notifiche. VOIS mette l'intera tua azienda al tuo polso.",
+    "cta": "Iscriviti alla lista d'attesa"
+  }
+}

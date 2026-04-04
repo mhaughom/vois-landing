@@ -1,0 +1,21 @@
+{
+  "category": "Philosophie",
+  "title": "Gedankengeschwindigkeit",
+  "tagline": "Ihre schnellste Eingabe ist Ihre Stimme. Ihre schnellste Ausgabe ist ein Tippen.",
+  "heroAlt": "Gedankengeschwindigkeit",
+  "speedLines": {
+    "typing": "Tippen: 40 WPM.",
+    "speaking": "Sprechen: 150 WPM.",
+    "reading": "Lesen: 250 WPM.",
+    "tapping": "Tippen: sofort."
+  },
+  "body1": "Ein 30-minütiges Meeting produziert zehn Entscheidungen. Dann verbringt jemand 45 Minuten damit, diese Entscheidungen in ein Projektmanagement-Tool einzutippen. Das Gehirn arbeitet mit Gedankengeschwindigkeit. Software arbeitet mit Tippgeschwindigkeit. Dieses Missverhältnis kostet täglich Stunden.",
+  "body2": "Betrachten Sie eine E-Mail-Antwort. Drei KI-generierte Varianten lesen: 10 Sekunden. Auf die richtige tippen und senden: 0,1 Sekunden. Gesamt: 10,1 Sekunden. Von Grund auf schreiben: 3–5 Minuten. Das ist 20-mal schneller. Bei 20 E-Mails pro Tag ist das der Unterschied zwischen einer Stunde und vier Minuten.",
+  "quote": "\"Wir haben das Tippen nicht beschleunigt. Wir haben die Notwendigkeit dafür beseitigt.\"",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Erfassen Sie Ihre Gedanken",
+    "nextLabel": "Weiter",
+    "nextTitle": "Immer griffbereit"
+  }
+}

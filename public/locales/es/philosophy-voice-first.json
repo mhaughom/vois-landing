@@ -1,0 +1,50 @@
+{
+  "category": "Filosofía",
+  "title": "Su voz, no la nuestra",
+  "tagline": "La IA no tiene que hacer que todos suenen igual. HABOS aprende su estilo de escritura, su tono, sus particularidades — para que cada borrador, cada correo, cada respuesta suene como usted. No un chatbot corporativo. Usted.",
+  "heroPlaceholder": "Ilustración principal",
+  "section1": {
+    "heading": "El teclado es un cuello de botella",
+    "body1": "La escritura fue inventada para las máquinas de escribir. El teclado táctil fue inventado para los teléfonos. Ninguno fue inventado para dirigir una empresa. Cuando un técnico de campo termina un trabajo, lo último que quiere hacer es sentarse en la furgoneta llenando cuatro aplicaciones diferentes. Cuando un fundador tiene una idea a las 11 pm, no quiere abrir un portátil y navegar por tres menús.",
+    "body2": "La voz es la forma más rápida y con menos fricción de capturar intención. Habla a aproximadamente 150 palabras por minuto. Escribe a 40. Esa no es una diferencia pequeña — es un multiplicador de 4 veces en la velocidad de entrada y la diferencia entre tener una idea y perderla."
+  },
+  "section2": {
+    "heading": "No es transcripción. Es comprensión.",
+    "body1": "La mayoría de los productos de voz transcriben su discurso a texto y se detienen ahí. Obtiene un muro de palabras y la misma cantidad de trabajo por delante. HABOS hace algo fundamentalmente diferente.",
+    "body2": "El Enrutador Inteligente toma una grabación de voz y clasifica cada oración en intenciones — tareas, eventos de calendario, actualizaciones del CRM, notas de inventario, mensajes, solicitudes de investigación — luego extrae datos estructurados para cada una y las enruta al destino correcto. Todo en menos de tres segundos."
+  },
+  "voiceNoteLabel": "Nota de voz de 30 segundos",
+  "voiceNoteText": "«Terminé en Fjordview. El compresor de la Unidad 3 muestra desgaste temprano, recomiendo reemplazo en seis meses. Necesito pedir filtros para las unidades 1 y 5, el SKU es 4427-B. También recuérdame hablar con el gerente del hotel sobre renovar su contrato de mantenimiento.»",
+  "voiceNoteActions": [
+    { "label": "Informe", "text": "Inspección de HVAC rellenada automáticamente con hallazgos" },
+    { "label": "Orden de compra", "text": "Filtros SKU 4427-B → cola de compras" },
+    { "label": "Tarea", "text": "Seguimiento con el gerente sobre renovación del contrato" },
+    { "label": "Nota del CRM", "text": "Hallazgo del compresor registrado en el expediente del cliente" }
+  ],
+  "voiceNoteFooter": "4 toques para aprobar. 40 segundos en total. Habría llevado 20 minutos en 4 aplicaciones.",
+  "voiceSurfacesPlaceholder": "Descripción general de las superficies de voz",
+  "section3": {
+    "heading": "Cada superficie habla",
+    "intro": "La voz no se limita a una sola función. Es una entrada de primer nivel en toda la plataforma:",
+    "items": [
+      { "label": "iPhone y Apple Watch", "body": "grabe notas de voz en movimiento, reciba tarjetas de acción en su muñeca, confirme con un toque o una palabra" },
+      { "label": "Conversación en tiempo real", "body": "voz bidireccional con el asistente de IA, latencia de voz a voz inferior a 300 ms" },
+      { "label": "Correo por voz", "body": "responda toda su bandeja de entrada hablando: «Respóndele a Lars, dile que estoy disponible el jueves»" },
+      { "label": "Informes por voz", "body": "llene formularios estructurados mediante conversación en lugar de hacer clic en campos" },
+      { "label": "Transcripción de reuniones", "body": "notas en tiempo real, elementos de acción y preguntas sugeridas, todo generado en tiempo real" }
+    ]
+  },
+  "voiceFlowPlaceholder": "Diagrama de flujo de voz",
+  "section4": {
+    "heading": "Enrutamiento consciente del contexto",
+    "body1": "El Enrutador Inteligente es consciente de la duración. Una grabación de 2 minutos que menciona «reunión» se clasifica como programar una reunión. Una grabación de 15 minutos que menciona «reunión» se clasifica como notas de reunión. El sistema entiende que las grabaciones cortas son comandos y las largas son contenido.",
+    "body2": "También mapea índices a nivel de palabras — para que la interfaz móvil pueda resaltar exactamente qué palabras se convirtieron en qué acciones. Toque «programa una visita al sitio el próximo martes a las 2 pm» en la transcripción y abre el evento de calendario creado a partir de esas palabras exactas."
+  },
+  "quote": "«El análogo más cercano es un asistente ejecutivo humano que escucha su actualización confusa y crea cuatro elementos diferentes en cuatro sistemas diferentes. Excepto que HABOS lo hace en menos de tres segundos.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Un solo Cerebro",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Asesores que discrepan"
+  }
+}

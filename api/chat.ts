@@ -24,7 +24,8 @@ You MUST respond with valid JSON in this exact format:
   ]
 }
 
-Action types: "navigate" (go to page), "scroll" (scroll to #id), "highlight" (highlight element).
+Action types: "navigate" (go to a /work/* page), "scroll" (scroll to a homepage section anchor).
+Homepage anchors you can scroll to: #hero, #retrieve, #faq, #pricing.
 Include 1-3 relevant actions when the user asks about a feature. Empty array for casual chat.
 Keep replies under 2-3 sentences unless they ask for detail.`;
 
@@ -137,7 +138,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const systemPrompt = SYSTEM_PROMPT + ragContext;
 
     const response = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 400,
       system: systemPrompt,
       messages: [
@@ -152,17 +153,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       .map((b) => b.text)
       .join('');
 
+    // Strip markdown code fences before parsing
+    const stripped = rawText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+
     // Try to parse JSON response
     try {
-      const parsed = JSON.parse(rawText);
+      const parsed = JSON.parse(stripped);
       return res.status(200).json({
-        text: parsed.text || rawText,
+        text: parsed.text || stripped,
         actions: parsed.actions || [],
       });
     } catch {
       // If JSON parsing fails, return raw text with no actions
       return res.status(200).json({
-        text: rawText,
+        text: stripped,
         actions: [],
       });
     }

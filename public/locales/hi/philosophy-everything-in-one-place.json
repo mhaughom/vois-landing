@@ -1,0 +1,44 @@
+{
+  "category": "दर्शन",
+  "title": "सब कुछ एक जगह",
+  "tagline": "एक लॉगिन। हर उपकरण। साझा संदर्भ।",
+  "heroAlt": "सब कुछ एक जगह — एकीकृत व्यापार platform",
+  "section1": {
+    "heading": "SaaS कर",
+    "body1": "औसत छोटा व्यवसाय 8 से 12 सॉफ़्टवेयर उपकरणों का उपयोग करता है। प्रत्येक का अपना लॉगिन, data model, billing cycle, और सीखने की curve। इनमें से कोई भी मूल रूप से एक-दूसरे से बात नहीं करता। व्यापार मालिक integration layer बन जाता है — ऐप्स के बीच मैन्युअल रूप से डेटा copy करना और दो को सहयोग करने का नाटक करने के लिए एक तीसरे tool का भुगतान करना।",
+    "body2": "सदस्यता लागत वास्तविक कर भी नहीं है। यह cognitive कर है। Context switching। \"किस tool के पास नवीनतम version है?\" का सवाल। जब हर नए hire को 10 accounts की ज़रूरत होती है तो onboarding कर। Zapier workflow जो शनिवार को चुपचाप टूट जाता है।"
+  },
+  "section2": {
+    "heading": "एक voice note, छह अपडेट",
+    "quote": "\"Henderson kitchen remodel हो गया। 4 घंटे लगे, इन्वेंटरी से बची हुई tile इस्तेमाल की। Client खुश था — bathroom के लिए भी quote चाहते हैं।\"",
+    "intro": "उस एकल voice note से, VOIS अपडेट करता है:",
+    "updates": [
+      "Project status → पूर्ण",
+      "Time tracking → 4 घंटे logged और बंद",
+      "Invoice → project scope से draft जनरेट",
+      "Client notification → completion email queued",
+      "CRM timeline → completion + नई रुचि के साथ अपडेट",
+      "नया अवसर → bathroom quote pipeline में जोड़ा गया"
+    ],
+    "outro": "एक input से छह \"modules\" अपडेट — क्योंकि वे एक ही database साझा करते हैं, न कि उम्मीद से एक साथ सिले गए छह APIs।"
+  },
+  "costComparison": {
+    "separateTitle": "10 अलग उपकरण",
+    "separatePrice": "$350+",
+    "separatePricePer": "/माह",
+    "separateDetail1": "10 लॉगिन · 5+ Zapier workflows",
+    "separateDetail2": "नए hire को onboard करने में ~3 घंटे",
+    "voisTitle": "VOIS",
+    "voisPrice": "$35",
+    "voisPricePer": "/माह",
+    "voisDetail1": "1 लॉगिन · 0 integrations बनाए रखने के लिए",
+    "voisDetail2": "नए hire को onboard करने में ~5 मिनट"
+  },
+  "quote": "\"Integration इस बात की स्वीकृति है कि आपके उपकरण एक साथ काम नहीं करते। हमने एक उपकरण बनाया जो करता है।\"",
+  "nav": {
+    "prevLabel": "पिछला",
+    "prevTitle": "Airlock",
+    "nextLabel": "अगला",
+    "nextTitle": "एक असिस्टेंट"
+  }
+}

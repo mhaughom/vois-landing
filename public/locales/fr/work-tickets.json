@@ -1,0 +1,92 @@
+{
+  "badge": "Support & Tickets",
+  "hero": {
+    "title": "Minuteries SLA. Escalade automatique.\nZéro dépassement.",
+    "description": "Chaque ticket reçoit un compte à rebours SLA. L'alerte de dépassement se déclenche 30 minutes avant l'échéance. En cas de dépassement, réaffectation automatique au prochain agent disponible."
+  },
+  "body": "Chaque ticket reçoit un compte à rebours SLA avec des cibles configurables de première réponse et de résolution par priorité. Des minuteries visuelles avertissent 30 minutes avant le dépassement. Si un ticket dépasse son SLA, l'escalade automatique s'enclenche — réaffectation au prochain agent disponible. Les tickets peuvent être créés depuis des formulaires, des e-mails, des appels vocaux, l'API ou la saisie manuelle avec déduplication automatique. Les e-mails clients apparaissent comme des fils de conversation avec des notes internes visibles uniquement par les agents, et l'IA suggère des réponses en fonction du contexte.",
+  "queue": {
+    "header": "File d'attente active",
+    "countLabel": "tickets · 1 alerte de dépassement",
+    "tickets": [
+      {
+        "priority": "urgent",
+        "title": "Urgence : rupture de canalisation Johnson",
+        "assignee": "Mike T.",
+        "sla": "23 min restantes"
+      },
+      {
+        "priority": "high",
+        "title": "CVC ne refroidit pas — Bureaux Baker",
+        "assignee": "Sarah L.",
+        "sla": "2h 15 min restantes"
+      },
+      {
+        "priority": "normal",
+        "title": "Demande de devis : rénovation salle de bain",
+        "assignee": "Non assigné",
+        "sla": "7h restantes"
+      },
+      {
+        "priority": "normal",
+        "title": "Planifier inspection annuelle",
+        "assignee": "Auto-assigné",
+        "sla": "Résolu en 1h 20 min",
+        "resolved": true
+      }
+    ],
+    "priorityLabels": {
+      "urgent": "Urgent",
+      "high": "Haute",
+      "normal": "Normal"
+    },
+    "automation": {
+      "breach30": "30 minutes avant dépassement",
+      "breach30Action": "notification d'avertissement",
+      "onBreach": "En cas de dépassement",
+      "onBreachAction": "réaffectation automatique au prochain disponible",
+      "postResolution": "Après résolution",
+      "postResolutionAction": "Enquête CSAT envoyée automatiquement"
+    }
+  },
+  "benefits": {
+    "multiSource": {
+      "title": "Création multi-source",
+      "desc": "Depuis des formulaires, e-mails, appels vocaux, API ou saisie manuelle. Déduplication automatique des demandes similaires."
+    },
+    "pipeline": {
+      "title": "Pipeline ticket → action",
+      "desc": "Liez aux projets, missions terrain et tâches. Un seul ticket peut déclencher des workflows entiers."
+    },
+    "csat": {
+      "title": "Collecte CSAT",
+      "desc": "Enquête automatique après résolution pour le scoring de satisfaction et le suivi des tendances."
+    }
+  },
+  "sourceIcons": {
+    "email": "E-mail",
+    "voice": "Voix",
+    "webForm": "Formulaire web",
+    "voiceNote": "Note vocale",
+    "api": "API"
+  },
+  "beforeAfter": {
+    "beforeLabel": "Avant",
+    "beforeText": "Le client envoie un e-mail. Vous le voyez 3 heures plus tard. Vous l'assignez. Vous le suivez dans un tableur. Vous espérez que personne ne le laisse tomber. SLA ? Quel SLA ?",
+    "beforeStat": "Délai de réponse moyen : plus de 3 heures",
+    "afterLabel": "Après",
+    "afterText": "Le client envoie un e-mail. Ticket créé automatiquement. Le minuteur SLA démarre. Avertissement à 30 min. Escalade automatique en cas de dépassement. Enquête CSAT après résolution.",
+    "afterStat": "Délai de réponse : toujours dans le SLA"
+  },
+  "techStrip": [
+    "Application du SLA",
+    "Escalade automatique",
+    "Fil d'e-mail",
+    "Suggestions de réponse IA",
+    "Enquêtes CSAT"
+  ],
+  "closing": {
+    "title": "Les autres outils de ticketing suivent les problèmes.\nHABOS les résout.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

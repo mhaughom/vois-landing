@@ -1,0 +1,59 @@
+{
+  "badge": "Ydinominaisuus",
+  "hero": {
+    "title": "Puhu liiketoiminnallesi",
+    "description": "Esitä kysymys, anna ohje tai ajattele ääneen\u00a0— assistentti hoitaa loput alle 300 millisekunnissa."
+  },
+  "heroPills": ["300 ms vastaus", "8 sisäänrakennettua työkalua", "Ääni + teksti"],
+  "intro": "Kun puhut HABOS-assistentille, se tietää jo projektisi, kalenterisi, tiimisi ja viimeisimmät keskustelusi. Sen ei tarvitse selittää asiayhteyttä — sillä on se. Kysy \"miten saatavat näyttävät?\" ja se hakee taloushallintodatasi. Sano \"kirjoita seurantaviesti Saralle\" ja se hakee viimeisimmän sähköpostiketjun, CRM-muistiinpanosi ja hänen tunnesuuntauksensa. Sitten se kirjoittaa luonnoksen ja odottaa hyväksyntääsi ennen lähettämistä. Yksi keskustelu korvaa viisi sovellusta ja kymmenen klikkausta.",
+  "mockConversation": {
+    "userMessage": "Mitä kalenterissani on huomenna ja kirjoita seurantasähköposti Saralle remonttitarjouksesta",
+    "assistantMessage": "Sinulla on 3 tapaamista huomenna. Ensimmäinen on kello 9 Henderson-tiimin kanssa. Olen kirjoittanut seurantaviestin Saralle\u00a0— tässä esikatselu:",
+    "emailTo": "Vastaanottaja: sarah@...",
+    "emailSubject": "Aihe: Keittiöremontin seuranta",
+    "emailBody": "Hei Sara, palaan vielä käymäämme tarjoukseen...",
+    "footer": "Yksi lause. Kaksi järjestelmää päivitetty. Ei sovelluksesta toiseen vaihtamista."
+  },
+  "savings": {
+    "title": "Mitä tämä säästää sinulta",
+    "items": [
+      {
+        "stat": "45 min/päivä",
+        "text": "Keskimääräinen aika, joka säästyy korvaamalla sovellusten välillä hyppiminen äänikomennoilla. Kysy sen sijaan, että klikkaat."
+      },
+      {
+        "stat": "5 sovellusta → 1",
+        "text": "Kalenteri, sähköposti, tehtävät, CRM ja haku — kaikki saatavilla yhdessä keskustelussa."
+      },
+      {
+        "stat": "0 lomaketta täytetty",
+        "text": "Sano \"kirjaa 3 tuntia Henderson-työlle\" ja tuntilista, projekti ja laskutus päivittyvät itse."
+      }
+    ]
+  },
+  "capabilities": [
+    "Hae dataasi",
+    "Luo tehtäviä",
+    "Aikatauluta tapahtumia",
+    "Kirjoita sähköposteja",
+    "Tarkista talous",
+    "Hallinnoi varauksia",
+    "Tee tutkimusta",
+    "Täytä raportteja"
+  ],
+  "context": {
+    "title": "Tietää aina asiayhteyden",
+    "description": "Assistentti rakentaa asiayhteyden uudelleen joka sessiolle\u00a0— profiilisi, aktiiviset projektit, tulevat tapahtumat, tiimin rakenne ja saatavilla oleva data. Sinun ei tarvitse koskaan selittää kuka olet tai mitä olet tekemässä.",
+    "items": [
+      "Kalenterisi",
+      "Aktiiviset projektit",
+      "Tiimi ja roolit",
+      "Viimeisimmät keskustelut",
+      "Liiketoimintadata"
+    ]
+  },
+  "closing": {
+    "tagline": "Muut sovellukset antavat chatbotin. VOIS antaa liikekumppanin.",
+    "cta": "Liity odotuslistalle"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "badge": "Médiathèque",
+  "hero": {
+    "title": "Importez-le.\nL'IA le comprend.",
+    "description": "Déposez des images, vidéos, documents ou fichiers audio. L'IA extrait les produits, les personnes, le texte et le sens — puis les rend consultables par contenu, pas seulement par nom de fichier."
+  },
+  "intro": "Glissez-déposez des images, vidéos, documents ou fichiers audio — Sharp génère automatiquement des miniatures WebP et GPT-4o-mini enrichit tout de manière asynchrone. L'analyse visuelle extrait les produits, les personnes, les lieux, les couleurs et le texte visible depuis les images. Les documents sont traités par OCR. La vidéo et l'audio sont transcrits et résumés. Le texte extrait est découpé en embeddings de 512 dimensions pour vous permettre de rechercher par sens — « photo produit sauna » ou « facture Henderson » — et non par nom de fichier. Une médiathèque partagée entre les Produits, les Réseaux sociaux, le Marketing, les Sites web et les Présentations.",
+  "grid": {
+    "annotation": "Recherchez par sens : « photo produit sauna » ou « facture Henderson » — pas seulement par nom de fichier. Une bibliothèque partagée par les Produits, les Réseaux sociaux, le Marketing, les Sites web et les Présentations."
+  },
+  "mediaItems": [
+    {
+      "filename": "product-photo-01.jpg",
+      "tag": "Produit · Chauffe-eau",
+      "ai": "IA : Unité sans réservoir, acier inoxydable, résidentiel"
+    },
+    {
+      "filename": "team-photo.jpg",
+      "tag": "Équipe · 4 personnes détectées",
+      "ai": "IA : Cadre de bureau, uniformes de marque"
+    },
+    {
+      "filename": "invoice-march.pdf",
+      "tag": "Document · OCR extrait",
+      "ai": "IA : Henderson Plumbing, 4 250 $, mars 2026"
+    },
+    {
+      "filename": "job-walkthrough.mp4",
+      "tag": "Vidéo · Transcrite",
+      "ai": "IA : Visite 3 min, rénovation salle de bain"
+    },
+    {
+      "filename": "client-call.m4a",
+      "tag": "Audio · Transcrit",
+      "ai": "IA : Sarah Henderson, discussion permis"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logo · Ressource de marque",
+      "ai": "IA : Logo principal, variante sombre"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Analyse visuelle IA",
+      "desc": "GPT-4o-mini détecte les produits, les personnes, les couleurs et le texte dans les images. Les documents sont traités par OCR. La vidéo et l'audio sont transcrits."
+    },
+    {
+      "title": "Une bibliothèque partout",
+      "desc": "Le même sélecteur de médias utilisé dans les Produits, les Réseaux sociaux, le Marketing, les Sites web, les Présentations. Aucune duplication."
+    },
+    {
+      "title": "Recherche sémantique",
+      "desc": "Texte découpé en embeddings de 512 dimensions. Trouvez des médias par sens, pas seulement par métadonnées."
+    }
+  ],
+  "techItems": [
+    "Vision GPT-4o-mini",
+    "Miniatures WebP Sharp",
+    "Embeddings 512 dim",
+    "Déduplication SHA-256",
+    "Inférence de rôle automatique"
+  ],
+  "cta": {
+    "title": "Les autres gestionnaires de fichiers stockent les fichiers.\nHABOS les comprend.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

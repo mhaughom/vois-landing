@@ -1,0 +1,63 @@
+{
+  "category": "Filosofia",
+  "title": "Potencialize Sua Equipe",
+  "tagline": "O HABOS não está aqui para substituir seus funcionários — está aqui para tornar cada um deles dramaticamente mais capaz. As melhores equipes não são menores. São amplificadas.",
+  "heroPlaceholder": "Ilustração principal",
+  "section1": {
+    "heading": "Um agente por funcionário",
+    "body1": "Cada membro da equipe recebe seu próprio assistente de IA — não um chatbot compartilhado, mas um agente pessoal que conhece seu papel, seus projetos, seu estilo de escrita e seu histórico. O agente do técnico conhece sistemas de HVAC e protocolos de inspeção. O agente do gerente de escritório conhece conflitos de agendamento e preferências de clientes. O agente do fundador conhece tudo.",
+    "body2": "Não se trata de dar a todos a mesma ferramenta. É sobre dar a todos o copiloto certo para a forma como trabalham."
+  },
+  "section2": {
+    "heading": "A mesma reunião, inteligências diferentes",
+    "body1": "Quando sua equipe está na mesma reunião, o HABOS gera notas de IA diferentes para cada pessoa com base em seu papel, responsabilidades e projetos. Um desenvolvedor júnior e um VP veem perguntas sugeridas completamente diferentes. O líder de vendas recebe tarefas de acompanhamento relacionadas ao pipeline. O gerente de projeto recebe riscos de prazo destacados.",
+    "body2": "Após o término da reunião, cada pessoa recebe itens de ação delimitados ao seu domínio — pré-atribuídos, com data predefinida e vinculados ao projeto certo. Ninguém precisa descobrir \"o que isso significou para mim?\" A IA já sabe."
+  },
+  "roles": [
+    {
+      "role": "O Técnico de Campo",
+      "before": "Passa 20 minutos por trabalho em papelada. Esquece de registrar acompanhamentos. Atualiza o CRM dois dias depois.",
+      "after": "Fala por 30 segundos. O sistema cria o registro do trabalho, atualiza o inventário, sinaliza o acompanhamento e registra tudo. Eles já estão dirigindo para o próximo trabalho."
+    },
+    {
+      "role": "O Gerente de Escritório",
+      "before": "Alterna entre 8 aplicativos o dia todo. Verifica manualmente quem está disponível. Encaminha e-mails para as pessoas certas.",
+      "after": "Recebe um resumo matinal do que precisa de atenção. A IA lida com conflitos de agendamento, roteia mensagens e traz à tona as coisas que realmente precisam de uma decisão humana."
+    },
+    {
+      "role": "O Líder de Vendas",
+      "before": "Esquece de fazer o acompanhamento. Entra em reuniões sem preparação. Perde o controle dos estágios de negócio em 30 clientes.",
+      "after": "Recebe resumos gerados por IA antes de cada ligação. O CRM está sempre atualizado porque as notas de voz o atualizam automaticamente. Negócios parados são sinalizados automaticamente."
+    },
+    {
+      "role": "O Fundador",
+      "before": "Afogando em detalhes operacionais. Não consegue ver o quadro estratégico. Toma decisões com informações incompletas.",
+      "after": "Recebe o Conselho Estratégico — perspectivas de IA concorrentes sobre decisões de crescimento. Os resumos matinais trazem padrões entre equipes. Os problemas o encontram antes de ele encontrar os problemas."
+    }
+  ],
+  "beforeLabel": "Antes",
+  "withHabosLabel": "Com o HABOS",
+  "teamVisualPlaceholder": "Visual de amplificação da equipe",
+  "section3": {
+    "heading": "E-mails que soam como você",
+    "body1": "Quando a IA rascunha uma resposta, ela combina seu estilo de escrita — não um tom corporativo genérico. O HABOS constrói um perfil a partir das suas mensagens anteriores: nível de formalidade, tamanho das frases, uso de emojis, como você assina. Os rascunhos do líder de vendas soam como o líder de vendas. Os rascunhos do fundador soam como o fundador.",
+    "body2": "Três opções de resposta aparecem — Curto e Direto, Caloroso e Profissional, Executivo — cada uma combinando sua voz. Você escolhe uma, edita uma frase se quiser e envia. O que costumava levar cinco minutos olhando para uma janela de composição em branco leva dez segundos."
+  },
+  "section4": {
+    "heading": "Estrutura que se adapta à forma como as pessoas realmente trabalham",
+    "body1": "Nem todos trabalham da mesma forma. Algumas pessoas são disciplinadas com suas listas de tarefas. Outras pensam em notas de voz e ideias dispersas. Algumas prosperam com horários estruturados. Outras precisam de flexibilidade.",
+    "body2": "O HABOS não força um único fluxo de trabalho. A captura por voz encontra as pessoas onde estão. A IA organiza o caos depois — transformando notas de voz divagantes em ações estruturadas, trazendo a informação certa no momento certo e aplicando suavemente os processos que importam sem microgerenciar os que não importam."
+  },
+  "section5": {
+    "heading": "O multiplicador, não o substituto",
+    "body1": "A indústria de IA adora falar sobre substituição de empregos. Achamos que isso perde o ponto. Um ótimo funcionário com assistência de IA não se torna substituível — torna-se insubstituível. O técnico que consegue fazer 8 trabalhos por dia em vez de 5. O líder de vendas que nunca esquece um acompanhamento. O gerente de escritório que detecta problemas antes que escalem.",
+    "body2": "O HABOS faz com que os humanos da sua equipe sejam a melhor versão de si mesmos no trabalho. Isso não é uma funcionalidade. É todo o ponto."
+  },
+  "quote": "\"A promessa nunca foi 'a IA fará seu trabalho.' A promessa é 'a IA fará com que você seja extraordinário no seu trabalho.'\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Alavancagem para Pequenas Equipes",
+    "backLabel": "Voltar para",
+    "backTitle": "HABOS"
+  }
+}

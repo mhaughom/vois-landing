@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Route, CheckCircle, Clock, MapPin, Navigation } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { useTranslation } from 'react-i18next';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -16,14 +17,6 @@ type Stop = {
   status: 'completed' | 'in-progress' | 'pending';
   statusLabel: string;
 };
-
-const stops: Stop[] = [
-  { name: 'Henderson Residence', time: '9:00 AM', task: 'Water heater install', status: 'completed', statusLabel: 'Completed' },
-  { name: 'Baker Office', time: '11:00 AM', task: 'HVAC maintenance', status: 'completed', statusLabel: 'Completed' },
-  { name: 'Wilson Home', time: '1:00 PM', task: 'Plumbing repair', status: 'in-progress', statusLabel: 'In progress' },
-  { name: 'Garcia Apartment', time: '3:00 PM', task: 'Electrical inspection', status: 'pending', statusLabel: 'Pending' },
-  { name: 'Johnson Property', time: '4:30 PM', task: 'Emergency leak', status: 'pending', statusLabel: 'Added today' },
-];
 
 const StopIndicator = ({ status }: { status: Stop['status'] }) => {
   if (status === 'completed') {
@@ -57,30 +50,29 @@ const StatusBadge = ({ status, label }: { status: Stop['status']; label: string 
   );
 };
 
-const benefits = [
-  {
-    title: 'Auto-sync from dispatch',
-    desc: 'When you assign a job visit to a tech, their managed route updates automatically. Edit manually and it detaches \u2014 no accidental overwrites.',
-  },
-  {
-    title: 'Stop status tracking',
-    desc: 'Field workers mark stops as completed or skipped from their phone. The office sees progress in real-time without calling.',
-  },
-  {
-    title: 'GPS mileage tracking',
-    desc: 'Every route captures GPS waypoints (5-sec intervals). Haversine distance computed server-side. Accurate mileage for billing and reimbursement.',
-  },
-];
-
-const techItems = [
-  'Mapbox geocoding + directions',
-  'Managed route auto-sync',
-  'GPS waypoints every 5s',
-  'Haversine distance',
-  'Google Maps deep link',
-];
-
 const Routes: React.FC = () => {
+  const { t } = useTranslation('work-routes');
+
+  const stopsData = t('stops', { returnObjects: true }) as Array<{
+    name: string;
+    time: string;
+    task: string;
+    statusLabel: string;
+  }>;
+
+  const stopStatuses: Stop['status'][] = ['completed', 'completed', 'in-progress', 'pending', 'pending'];
+
+  const stops: Stop[] = stopsData.map((s, i) => ({
+    name: s.name,
+    time: s.time,
+    task: s.task,
+    statusLabel: s.statusLabel,
+    status: stopStatuses[i] ?? 'pending',
+  }));
+
+  const benefits = t('benefits', { returnObjects: true }) as Array<{ title: string; desc: string }>;
+  const techItems = t('techStrip.items', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -93,18 +85,17 @@ const Routes: React.FC = () => {
           <motion.section {...fadeUp()} className="max-w-3xl mx-auto text-center mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-lime-500/10 text-lime-700 rounded-full text-sm font-medium mb-6">
               <Route size={14} />
-              Route Management
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
-              Routes That Build Themselves.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
-              Assign jobs to a technician and HABOS auto-generates their route for the day &mdash;
-              geocoded stops, optimized order, and one-tap navigation to Google Maps.
+              {t('hero.description')}
             </p>
           </motion.section>
 
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16"><p className="text-lg text-slate-600 leading-relaxed">When you assign a job visit to a technician, their managed route updates automatically with geocoded stops from Mapbox. Edit manually and it detaches to prevent automation overwrites. Every route captures GPS waypoints at five-second intervals, with Haversine distance computed server-side for accurate mileage billing. Field workers mark stops as completed or skipped from their phone — the office sees progress in real-time without a single phone call.</p></motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16"><p className="text-lg text-slate-600 leading-relaxed">{t('body')}</p></motion.div>
 
           {/* ━━━ 2. Mock route card ━━━ */}
           <motion.section {...fadeUp(0.15)} className="mb-20">
@@ -113,15 +104,15 @@ const Routes: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                 <div>
                   <h2 className="text-lg font-semibold text-slate-900">
-                    Mike Torres &mdash; Wednesday Route
+                    {t('routeCard.heading')}
                   </h2>
                   <p className="text-sm text-slate-500 mt-0.5">
-                    5 stops &middot; 47 mi estimated
+                    {t('routeCard.subheading')}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <Navigation size={14} className="text-lime-600" />
-                  <span className="text-sm font-medium text-lime-700">Navigate</span>
+                  <span className="text-sm font-medium text-lime-700">{t('routeCard.navigate')}</span>
                 </div>
               </div>
 
@@ -158,7 +149,7 @@ const Routes: React.FC = () => {
 
               {/* Footer note */}
               <p className="text-xs text-slate-400 mt-5 leading-relaxed">
-                Stops auto-geocoded via Mapbox. Drag to reorder. Tap &lsquo;Navigate&rsquo; for turn-by-turn directions.
+                {t('routeCard.footnote')}
               </p>
             </div>
           </motion.section>
@@ -184,28 +175,26 @@ const Routes: React.FC = () => {
               {/* Without HABOS */}
               <div className="bg-slate-100 rounded-2xl p-8">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">
-                  Without HABOS
+                  {t('comparison.without.label')}
                 </p>
                 <p className="text-slate-600 leading-relaxed mb-6">
-                  Morning: print job list. Manually enter addresses into Google Maps one at a time.
-                  Hope the order makes sense. Call the office for changes. Log mileage on paper.
+                  {t('comparison.without.description')}
                 </p>
                 <p className="text-sm font-semibold text-slate-900">
-                  ~30 min wasted daily
+                  {t('comparison.without.outcome')}
                 </p>
               </div>
 
               {/* With HABOS */}
               <div className="bg-lime-50 rounded-2xl p-8">
                 <p className="text-xs font-semibold uppercase tracking-widest text-lime-600 mb-4">
-                  With HABOS
+                  {t('comparison.with.label')}
                 </p>
                 <p className="text-lime-800 leading-relaxed mb-6">
-                  Morning: open app. Route is ready with all stops, optimized order, and one-tap
-                  navigation. Mark stops done as you go. Mileage logged automatically.
+                  {t('comparison.with.description')}
                 </p>
                 <p className="text-sm font-semibold text-lime-900">
-                  0 min planning
+                  {t('comparison.with.outcome')}
                 </p>
               </div>
             </div>
@@ -226,8 +215,7 @@ const Routes: React.FC = () => {
           {/* ━━━ 6. Closing CTA ━━━ */}
           <motion.section {...fadeUp(0.55)} className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-5 leading-tight">
-              Other tools make you plan routes.<br />
-              HABOS plans them for you.
+              {t('cta.heading')}
             </h2>
             <a href="/#waitlist">
               <motion.button
@@ -235,7 +223,7 @@ const Routes: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="mt-4 px-8 py-3.5 bg-lime-600 text-white rounded-full font-medium text-sm shadow-lg shadow-lime-600/20 hover:bg-lime-700 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
               </motion.button>
             </a>
           </motion.section>

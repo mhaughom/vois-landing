@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Lösningar — Produktföretag",
+    "title": "Hela din butik på ett ställe.",
+    "subtitle": "Produkter, beställningar, lager, hemsida, marknadsföring och kundtjänst — utan att byta app.",
+    "description": "Nätbutiker, fysiska butiker, hantverksprodukter, livsmedelsproducenter, grossister, prenumerationslådor och alla som säljer fysiska eller digitala produkter."
+  },
+  "body": {
+    "section1": {
+      "heading": "Räkna ihop din nuvarande tech-stack",
+      "p1": "Shopify: $39/månad. Mailchimp: $20/månad. Later för sociala medier: $25/månad. Gorgias för support: $60/månad. Ett kalkylblad du underhåller manuellt för \"riktiga\" lagersiffror. Squarespace för hemsidan du uppdaterar separat från din faktiska produktkatalog. En lapp som påminner dig om att beställa förpackningsmaterial från en leverantör vars nummer finns i din telefonkontakter.",
+      "p2": "Det är $144 i månaden i programvara — utan att räkna med den tid du lägger på att flytta data mellan alla dessa system."
+    },
+    "section2": {
+      "heading": "Var tiden tar vägen",
+      "p1": "Fyra minuter för att svara på ett \"var är min beställning?\"-mejl. Kolla Shopify för beställningen, fraktwebbplatsen för spårning, skriv svaret i Gmail med spårningsnumret inklistrat. Multiplicera med tolv kunder om dagen. Det är fyrtioåtta minuter på en uppgift som kan hanteras av en AI som redan känner till orderstatus och spårningsnumret.",
+      "p2": "En hel eftermiddag för att köra en kampanj. Din e-postlista finns i Mailchimp. Din köphistorik finns i Shopify. Ditt sociala innehåll hanteras via Later. En 15 %-rabattkampanj för återkommande kunder innebär att exportera data från ett verktyg, importera till ett annat och manuellt koordinera med ett tredje.",
+      "p3": "En populär vara tar slut för att påminnelsen om att beställa var ett mejl du begravde förra veckan. Nu expresskör du till dubbla fraktkostnaden och förlorar försäljning under tiden."
+    },
+    "section3": {
+      "heading": "Vad som förändras med HABOS",
+      "p1": "En instrumentpanel. Beställningar, lagernivåer och kundmeddelanden i samma vy. När en fraktfråga kommer in har AI:n redan orderstatus och spårningsnummer — den skriver utkastet till svaret under natten. Du granskar tre av dem på trettio sekunder vid morgonkaffet.",
+      "p2": "När lagret börjar ta slut flaggar HABOS det tre dagar innan du hade märkt det. En inköpsorder utkastas hos din vanliga leverantör i vanlig kvantitet. Du godkänner den på telefonen när du promenerar till lunchen.",
+      "voiceNote": "\"VOIS, skapa en kampanj för återkommande kunder — 15 % rabatt, e-post och Instagram, kör nästa vecka.\"",
+      "voiceResult": "AI:n hämtar upprepade kunder från CRM. Skriver e-postkopia i ditt varumärkes ton. Föreslår Instagram-bildtext med ditt bästsäljande produktfoto. Du justerar ämnesraden, trycker på godkänn. Fem minuter.",
+      "p3": "Din hemsida genereras från din faktiska produktkatalog. Ändra ett pris, det uppdateras på sajten. Lägg till en produkt, den dyker upp. Inget separat CMS att underhålla. Inga synkproblem. Ingen \"hemsidan säger $24,99 men det är faktiskt $29,99 nu.\""
+    },
+    "section4": {
+      "heading": "Den nya kalkylen",
+      "before": {
+        "label": "Före",
+        "price": "$144+/mån",
+        "note": "6 verktyg, inga kopplade"
+      },
+      "after": {
+        "label": "Efter",
+        "price": "$35/mån",
+        "note": "Allt, sammankopplat"
+      },
+      "stats": [
+        ["8 tim", "sparade på support/vecka"],
+        ["5 tim", "sparade på marknadsföring/vecka"],
+        ["0", "slut i lager från missade påfyllningar"],
+        ["30 sek", "för att svara på en fraktfråga"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Jag levde i Shopify, Mailchimp och Google Kalkylark samtidigt. Nu kollar jag en instrumentpanel på morgonen och allt finns där. AI:n svarade på 6 kundmejl medan jag packade beställningar. Mina returer minskade eftersom kunderna får omedelbara svar istället för att vänta en dag.\"",
+      "attribution": "— Ingrid, 29 · Nordiskt hudvårdsmärke · 2 deltidsanställda"
+    },
+    "cta": {
+      "heading": "Spendera morgondagen på att göra produkter, inte hantera programvara.",
+      "button": "Gå med i väntelistan"
+    }
+  }
+}

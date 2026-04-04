@@ -1,0 +1,52 @@
+{
+  "badge": "Tiimin hallinta",
+  "hero": {
+    "title": "Vedä. Pudota. Uudelleenjärjestä.",
+    "description": "Interaktiivinen organisaatiokaavio hiekkalaatikkovedoksilla — mallinna uudelleenjärjestelyjä, vertaile nykyiseen tilaan ja sovella atomisesti. Plus 37 sovelluksen käyttöoikeusmatriisi, joka rajaa automaattisesti osaston ja senioriteetin mukaan."
+  },
+  "body": "Organisaatiokaavio renderöityy interaktiivisena puuna — vedä solmuja siirtääksesi esimiehiä. Luo organisaatiokaaviovedoksia malliintaaksesi uudelleenjärjestelyjä: ota tilannekuva nykyisestä rakenteesta, tee muutoksia, vertaile live-tilaan ja sovella atomisesti kun valmis. Kolmitasoinen pääsynhallintajärjestelmä hallinnoi 37 sovellusta osaston profiilin perinnöllä ja suorilla ylikirjoituksilla. Ylläpitäjät hallitsevat mitä moduuleita kukin henkilö näkee, voivatko he hyväksyä toimenpiteitä, heidän tuntihintansa ja kuukausittaiset tekoälykreditirajansa.",
+  "orgChart": {
+    "caption": "Luo vedos, mallinna uudelleenjärjestely, esikatsele ero ja sovella kun valmis. Kukaan ei näe muutoksia ennen kuin julkaiset."
+  },
+  "orgNodes": {
+    "ceo": { "name": "Elena Park", "role": "Toimitusjohtaja" },
+    "vpOps": { "name": "James Okoro", "role": "VP Toiminnot" },
+    "vpSales": { "name": "Lisa Chen", "role": "VP Myynti" },
+    "fieldOpsLead": { "name": "Mike R.", "role": "Kenttätoimintojen johto", "draft": "Vedos: siirretty Myynnistä" },
+    "logisticsCoord": { "name": "Sara T.", "role": "Logistiikkakoordinaattori" },
+    "accountExec": { "name": "David K.", "role": "Asiakkuuspäällikkö" },
+    "salesRep": { "name": "Amy J.", "role": "Myyntiedustaja" }
+  },
+  "benefits": {
+    "permissions": {
+      "title": "37 sovelluksen käyttöoikeudet",
+      "description": "Rajattu automaattisesti osaston ja organisaatiotason mukaan. Kun joku siirtyy, heidän käyttöoikeutensa päivittyvät välittömästi kaikissa yhdistetyissä työkaluissa."
+    },
+    "raci": {
+      "title": "RACI-seuranta",
+      "description": "Määritä kuka omistaa, hyväksyy, konsultoi ja saa tiedoksi jokaisen prosessin. Ei enää mietitä \"kuka hyväksyy tämän?\"."
+    },
+    "dual": {
+      "title": "Kaksoisraportointi",
+      "description": "Matriisirakenteet ensisijaisilla ja toissijaisilla esimiehillä. Pisteyhteydet ovat ensiluokan kansalaisia, ei jälkiajatuksia."
+    }
+  },
+  "scenario": {
+    "intro": "Olet uudelleenjärjestelemässä kenttätoimintotiimiä.",
+    "narrative": "Sen sijaan, että tekisit live-muutoksia ja hämmentäisit kaikkia, luot vedoksen. Vedät Miken Myynnistä Toimintoihin, lisäät uuden tiimivetäjäposition ja esikatselet eron. Kolme henkilöä siirretty, kaksi raportointilinjaa muutettu. Tarkistat, hyväksyt ja julkaiset —",
+    "highlight": "koko organisaatio päivittyy atomisesti."
+  },
+  "techStrip": {
+    "items": [
+      "ReactFlow-visualisointi",
+      "Hiekkalaatikkovedokset",
+      "Atominen soveltaminen",
+      "37 sovelluksen käyttöoikeusmatriisi",
+      "RACI-vastuu"
+    ]
+  },
+  "cta": {
+    "heading": "Muut organisaatiokaaviot ovat staattinen PDF. HABOS:n organisaatiokaaviot ovat live-komentokeskus.",
+    "button": "Liity odotuslistalle"
+  }
+}

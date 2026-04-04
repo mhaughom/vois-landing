@@ -1,0 +1,69 @@
+{
+  "badge": "Realtime zichtbaarheid",
+  "hero": {
+    "title": "Zie je hele team. In realtime.",
+    "description": "Elke veldmedewerker op een live kaart — kleurgecodeerd op project, afdeling of operatie. Weet wie rijdt, wie op locatie is en wie beschikbaar is."
+  },
+  "body": "Elke ingeklokte teamlid verschijnt op een live Mapbox-kaart, elke 30 seconden bijgewerkt via Supabase Realtime. Wanneer de snelheid van een medewerker meer dan 3 km/u is, verschijnt een oranje rijbadge op hun pin — managers weten direct wie onderweg is tussen taken. Vijf groeperingsmodi laten je weergeven per project, afdeling, operaties, organisatieniveau of iedereen tegelijk, elk met een deterministische kleurenpalet zodat dezelfde persoon altijd dezelfde kleur krijgt.",
+  "groupTabs": ["Alle", "Project", "Afdeling", "Operaties"],
+  "pins": [
+    {
+      "name": "Mike T.",
+      "label": "Op locatie — Henderson",
+      "speed": 0
+    },
+    {
+      "name": "Sarah L.",
+      "label": "Onderweg — Wilson",
+      "sublabel": "(rijdt)",
+      "speed": 45
+    },
+    {
+      "name": "James K.",
+      "label": "Op locatie — Garcia",
+      "speed": 0
+    },
+    {
+      "name": "Lisa M.",
+      "label": "Beschikbaar",
+      "sublabel": "Laatste: Kantoor Baker",
+      "speed": 0
+    }
+  ],
+  "mapCaption": "Elke ~30 seconden bijgewerkt via Supabase Realtime. Rijbadge verschijnt wanneer snelheid > 3 km/u.",
+  "benefits": {
+    "grouping": {
+      "title": "5 groeperingsmodi",
+      "description": "Bekijk per Alle, Project, Afdeling, Operaties of Organisatieniveau. Elk met deterministische kleurenpalet — dezelfde persoon, dezelfde kleur, altijd."
+    },
+    "driving": {
+      "title": "Rijdetectie",
+      "description": "Wanneer de snelheid van een medewerker meer dan 3 km/u is, verschijnt een oranje autobadge op hun pin. Managers zien direct wie onderweg is tussen taken."
+    },
+    "route": {
+      "title": "Route-overlay",
+      "description": "Schakel routepolylinen in vanuit de Mapbox Directions API. Zie de geplande route versus de werkelijke locatie — detecteer afwijkingen of vertragingen direct."
+    }
+  },
+  "scenario": {
+    "quote1": "De lekkage wordt erger, kan iemand eerder komen?",
+    "narrative1": "Je opent Teamkaart, ziet dat Mike 10 minuten verwijderd is en zijn huidige taak afrondt. Je wijst de spoed opnieuw toe aan Mike vanaf het dispatch board. Zijn telefoon wordt bijgewerkt, de kaartpin verandert naar",
+    "quote2": "Onderweg — Johnson,",
+    "narrative2": "en je vertelt de klant:",
+    "quote3": "Mike is er over 15 minuten.",
+    "narrative3": "Geen giswerk, geen telefoon-pingpong."
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox GL",
+      "Supabase Realtime",
+      "~30s verversing",
+      "GPS-waypoints",
+      "Deterministisch kleurenpalet"
+    ]
+  },
+  "cta": {
+    "heading": "Andere tools tonen je waar medewerkers waren. HABOS toont je waar ze zijn.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

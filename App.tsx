@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
-import { COPY } from './constants';
 import { Navbar, scrollToSection } from './components/Navbar';
 import { setCurrentSection, setOnChatOpen, setOnChatMessageSent, setOnCardVerified, areAllCardsVerified, resetCardVerifications, setOnAppOpened, setVideoSyncActive, setVideoSyncTime } from './components/deviceState';
 import { getVideoScenario } from './lib/videoSyncTimeline';
@@ -28,25 +28,6 @@ import { ContextualChat } from './components/ContextualChat';
 import { LifeAreas } from './components/LifeAreas';
 import { WaitlistModal } from './components/WaitlistModal';
 import { MobileVideoCards } from './components/MobileVideoCards';
-
-const faqData = [
-  {
-    question: "What's the difference between Personal and Work?",
-    answer: "Personal is for everyday life — capturing tasks, ideas, reminders, and notes. Work adds meeting transcription, action items, team collaboration tools, and priority support."
-  },
-  {
-    question: "Is my voice data private?",
-    answer: "Yes. We use a local-first architecture. Your recordings are processed securely, and we do not use your personal thoughts to train our public models. Your brain is yours."
-  },
-  {
-    question: "Can I switch plans or cancel anytime?",
-    answer: "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time. If you cancel, you'll keep access until the end of your current billing period."
-  },
-  {
-    question: "What if it doesn't work for me?",
-    answer: "We offer a 30-day money-back guarantee. If Vois doesn't help you clear your mind in the first month, email us for a full refund."
-  }
-];
 
 // Hook to detect user's motion preference
 const usePrefersReducedMotion = () => {
@@ -218,6 +199,10 @@ const ColorWaveTags: React.FC<{ tags: string[]; visible: boolean }> = ({ tags, v
 };
 
 const App = () => {
+  const { t } = useTranslation('home');
+
+  const faqData = t('faq.items', { returnObjects: true }) as Array<{ question: string; answer: string }>;
+
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [discoveryMode, setDiscoveryMode] = useState<DiscoveryMode>(null);
@@ -401,7 +386,7 @@ const App = () => {
 
   // Staged animation timing - faster, devices appear right after subheadline
   useEffect(() => {
-    const fullSubheadline = COPY.hero.subheadline;
+    const fullSubheadline = t('hero.subheadline');
     const timeouts: NodeJS.Timeout[] = [];
     let typeIntervalRef: NodeJS.Timeout | null = null;
 
@@ -495,7 +480,7 @@ const App = () => {
       }, 100);
     }
   }, [searchParams, setSearchParams]);
-  
+
   // Section tracking with IntersectionObserver - tells DeviceScene which section is visible
   useEffect(() => {
     const sectionMap: { ref: React.RefObject<HTMLElement | HTMLDivElement | null>; id: SectionId }[] = [
@@ -504,11 +489,11 @@ const App = () => {
       { ref: captureRef, id: 'capture' },
       { ref: flowRef, id: 'flow' },
     ];
-    
+
     // Track visibility ratios for all sections
     const visibilityMap = new Map<SectionId, number>();
     sectionMap.forEach(({ id }) => visibilityMap.set(id, id === 'hero' ? 1 : 0));
-    
+
     // Function to determine and set the current section
     // NOTE: 'capture' section is handled directly by NarrativeTransition via scroll progress
     // This observer handles hero, video-transition, narrative, and flow
@@ -517,24 +502,24 @@ const App = () => {
       const heroRatio = visibilityMap.get('hero') || 0;
       const flowRatio = visibilityMap.get('flow') || 0;
       const narrativeRatio = visibilityMap.get('narrative') || 0;
-      
+
       // Priority 1: Hero if visible
       if (heroRatio > 0.3) {
         setCurrentSection('hero');
         return;
       }
-      
+
       // Priority 2: Flow section - but only when narrative is NOT visible
       // (capture is part of narrative, so if narrative is visible, let NarrativeTransition handle it)
       if (flowRatio > 0.5 && narrativeRatio < 0.1) {
         setCurrentSection('flow');
         return;
       }
-      
+
       // Default: pick the most visible section (excluding capture which is handled separately)
       let maxRatio = 0;
       let mostVisibleSection: SectionId = 'hero';
-      
+
       visibilityMap.forEach((ratio, id) => {
         // Skip capture - handled by NarrativeTransition
         // Skip flow - handled above with narrative check
@@ -544,17 +529,17 @@ const App = () => {
           mostVisibleSection = id;
         }
       });
-      
+
       if (maxRatio > 0.1) {
         setCurrentSection(mostVisibleSection);
       }
     };
-    
+
     const observers: IntersectionObserver[] = [];
-    
+
     sectionMap.forEach(({ ref, id }) => {
       if (!ref.current) return;
-      
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -570,11 +555,11 @@ const App = () => {
           rootMargin: '0px' // No margin - track actual visibility
         }
       );
-      
+
       observer.observe(ref.current);
       observers.push(observer);
     });
-    
+
     // CRITICAL: Run initial check immediately on mount
     // This ensures correct section is set before user scrolls
     setTimeout(() => {
@@ -589,7 +574,7 @@ const App = () => {
       });
       updateCurrentSection();
     }, 100);
-    
+
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
@@ -601,12 +586,12 @@ const App = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.15,
         delayChildren: 0.2
-      } 
+      }
     }
   };
 
@@ -730,7 +715,7 @@ const App = () => {
       {/* Video close button moved inside flat video container */}
 
       <main className="w-full max-w-7xl mx-auto relative z-20">
-        
+
         {/* HERO */}
         {isMobile ? (
           <MobileScrollHero
@@ -772,7 +757,7 @@ const App = () => {
           />
         ) : (
         <section ref={heroRef} id="hero" className="min-h-screen flex flex-col lg:flex-row items-center sm:justify-center px-4 sm:px-6 md:px-16 pt-24 sm:pt-32 pb-12 sm:pb-24 gap-4 sm:gap-6 lg:gap-16 relative">
-          
+
           {/* Right: 3D Devices - Fixed but scrolls with page via transform */}
           {/* Disabled when user prefers reduced motion for better performance */}
           {/* Only show after devicesReady to allow staged loading */}
@@ -912,7 +897,7 @@ const App = () => {
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 leading-[1.05] tracking-tight mb-6"
             >
-              {COPY.hero.headline}
+              {t('hero.headline')}
             </motion.h1>
 
             {/* Default Hero Content - fades out when discovery mode is active */}
@@ -981,7 +966,7 @@ const App = () => {
                       </span>
                       {/* Text changes color on hover */}
                       <span className="relative z-10 transition-colors duration-500 delay-100 group-hover:text-slate-900">
-                        {showVideoClose ? 'End Video' : 'Watch Video'}
+                        {showVideoClose ? t('hero.endVideo') : t('hero.watchVideo')}
                       </span>
                     </button>
 
@@ -1043,7 +1028,7 @@ const App = () => {
                           <span className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-400/30 to-amber-300/30">
                             <span className="text-violet-600">✦</span>
                           </span>
-                          <span className="relative z-10 font-semibold text-slate-900">Join Waitlist</span>
+                          <span className="relative z-10 font-semibold text-slate-900">{t('hero.joinWaitlist')}</span>
                         </motion.button>
 
                         {/* Retry button - only when idle or results (not during recording/processing) */}
@@ -1058,7 +1043,7 @@ const App = () => {
                             }}
                             className="text-slate-400 hover:text-slate-600 text-sm transition-colors"
                           >
-                            Try again
+                            {t('hero.tryAgain')}
                           </button>
                         )}
                       </motion.div>
@@ -1177,20 +1162,20 @@ const App = () => {
             className="absolute right-0 top-0 bottom-0 w-full lg:w-[45%] flex flex-col justify-start lg:justify-center px-6 sm:px-8 md:px-16 lg:px-20 z-10 pt-28 sm:pt-32 lg:pt-0"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-slate-900 mb-6 sm:mb-8 lg:mb-12 leading-[1.1] tracking-tight">
-              Life doesn't wait for your notes app.
+              {t('videoTransition.headline')}
             </h2>
             <div className="space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed font-light max-w-lg">
               <p>
-                Walking into the meeting. Standing in the shower. Halfway out the door.
+                {t('videoTransition.p1')}
               </p>
               <p>
-                An invitation. A task. A thought you can't afford to lose.
+                {t('videoTransition.p2')}
               </p>
               <p className="text-xl sm:text-2xl md:text-3xl font-serif text-slate-900 italic leading-snug">
-                You tell yourself: "I'll just remember that."
+                {t('videoTransition.p3')}
               </p>
               <p className="text-slate-400">
-                (You won't.)
+                {t('videoTransition.p4')}
               </p>
             </div>
           </motion.div>
@@ -1343,10 +1328,10 @@ const App = () => {
                   <span className="font-mono text-xs uppercase tracking-widest">Realtime Processing</span>
                </div>
                <p className="text-xl md:text-2xl font-serif italic text-slate-400 mb-6 leading-relaxed">
-                 {COPY.demo.input}
+                 {t('demo.input')}
                </p>
                <div className="pl-6 border-l-2 border-slate-200">
-                  <p className="text-slate-900 font-medium text-sm">{COPY.demo.caption}</p>
+                  <p className="text-slate-900 font-medium text-sm">{t('demo.caption')}</p>
                </div>
             </motion.div>
         </section> */}
@@ -1360,9 +1345,9 @@ const App = () => {
              transition={{ duration: 0.6 }}
              className="max-w-xl mr-auto ml-6 lg:ml-16 bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-100"
            >
-             <h2 className="text-2xl md:text-3xl font-serif text-slate-900 mb-4">{COPY.adapt.title}</h2>
+             <h2 className="text-2xl md:text-3xl font-serif text-slate-900 mb-4">{t('adapt.title')}</h2>
              <p className="text-base text-slate-500 leading-relaxed max-w-lg mb-8">
-               {COPY.adapt.body}
+               {t('adapt.body')}
              </p>
              <div className="grid gap-3 max-w-sm">
                 {[
@@ -1418,13 +1403,13 @@ const App = () => {
                   fontWeight: 400,
                 }}
               >
-                3
+                {t('retrieve.stepNumber')}
               </span>
-              Retrieve at the speed of sound.
+              {t('retrieve.headline')}
             </h2>
 
             <p className="text-center max-w-xl" style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', color: '#64748b', margin: '4px auto 0', lineHeight: 1.7 }}>
-              Ask naturally and get <span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>instant answers</span>. Your voice assistant finds exactly what you need from everything you've captured.
+              {t('retrieve.bodyBefore')}<span style={{ color: '#dc2626', backgroundColor: 'white', padding: '0 4px', borderRadius: '4px', fontWeight: 500 }}>{t('retrieve.bodyHighlight')}</span>{t('retrieve.bodyAfter')}
             </p>
 
             {/* Video with click-to-play (has sound) */}
@@ -1521,7 +1506,7 @@ const App = () => {
                 <div className="mb-8 md:mb-10">
                   <img
                     src="/images/privacy-illustration.svg"
-                    alt="Privacy and control"
+                    alt={t('privacy.privacyIllustrationAlt')}
                     className="w-full max-w-xs mx-auto"
                     onError={(e) => {
                       // Fallback to icon if image doesn't exist
@@ -1535,17 +1520,17 @@ const App = () => {
                   </div>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6">{COPY.privacy.title}</h3>
+                <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6">{t('privacy.title')}</h3>
                 <p className="text-lg text-slate-500 leading-relaxed mb-10">
-                  {COPY.privacy.body}
+                  {t('privacy.body')}
                 </p>
 
                 <div className="flex items-center justify-center gap-4 text-sm font-medium text-slate-900">
                   <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
-                    <Lock size={16} /> Local First
+                    <Lock size={16} /> {t('privacy.localFirst')}
                   </div>
                   <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
-                    <Cloud size={16} /> Encrypted Sync
+                    <Cloud size={16} /> {t('privacy.encryptedSync')}
                   </div>
                 </div>
               </motion.div>
@@ -1562,7 +1547,7 @@ const App = () => {
                 <div className="mb-8 md:mb-10">
                   <img
                     src="/images/security-illustration.svg"
-                    alt="Enterprise security"
+                    alt={t('privacy.securityIllustrationAlt')}
                     className="w-full max-w-xs mx-auto"
                     onError={(e) => {
                       // Fallback to icon if image doesn't exist
@@ -1576,20 +1561,20 @@ const App = () => {
                   </div>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6">Enterprise-Grade Security</h3>
+                <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6">{t('privacy.enterpriseTitle')}</h3>
                 <p className="text-lg text-slate-500 leading-relaxed mb-10">
-                  Your data is protected by the same infrastructure trusted by the world's largest companies. We use industry-leading services for reliability and security.
+                  {t('privacy.enterpriseBody')}
                 </p>
 
                 <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium text-slate-900">
                   <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
-                    AWS Servers
+                    {t('privacy.awsServers')}
                   </div>
                   <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
-                    Supabase
+                    {t('privacy.supabase')}
                   </div>
                   <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50">
-                    SOC 2 Compliant
+                    {t('privacy.soc2')}
                   </div>
                 </div>
               </motion.div>
@@ -1599,16 +1584,16 @@ const App = () => {
           {/* SECTION 5: FAQ */}
         <section id="faq" className="py-24 px-6 md:px-16">
           <div className="max-w-2xl mx-auto">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="text-3xl md:text-4xl font-serif text-slate-900 text-center mb-12"
             >
-              Common Questions
+              {t('faq.title')}
             </motion.h2>
-            
+
             <div className="divide-y divide-slate-200/60">
               {faqData.map((faq, index) => (
                 <motion.div
@@ -1636,7 +1621,7 @@ const App = () => {
                       <ChevronDown size={20} className="text-slate-400" />
                     </motion.div>
                   </button>
-                  
+
                   <AnimatePresence initial={false}>
                     {openFaq === index && (
                       <motion.div
@@ -1669,11 +1654,11 @@ const App = () => {
           >
             {/* Section header */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif text-slate-900 mb-3">Choose Your Plan</h2>
-              <p className="text-slate-500 text-lg">Start free. Upgrade when you're ready.</p>
+              <h2 className="text-3xl md:text-4xl font-serif text-slate-900 mb-3">{t('pricing.title')}</h2>
+              <p className="text-slate-500 text-lg">{t('pricing.subtitle')}</p>
               {/* Billing toggle */}
               <div className="flex items-center justify-center gap-3 mt-6">
-                <span className={`text-sm font-medium ${!annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>Monthly</span>
+                <span className={`text-sm font-medium ${!annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>{t('pricing.billingMonthly')}</span>
                 <button
                   onClick={() => setAnnualBilling(!annualBilling)}
                   className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${annualBilling ? 'bg-slate-900' : 'bg-slate-300'}`}
@@ -1684,14 +1669,14 @@ const App = () => {
                     transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
                 </button>
-                <span className={`text-sm font-medium ${annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>Annual</span>
+                <span className={`text-sm font-medium ${annualBilling ? 'text-slate-900' : 'text-slate-400'}`}>{t('pricing.billingAnnual')}</span>
                 {annualBilling && (
                   <motion.span
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full"
                   >
-                    Save up to 40%
+                    {t('pricing.saveLabel')}
                   </motion.span>
                 )}
               </div>
@@ -1707,11 +1692,11 @@ const App = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-white rounded-3xl p-8 shadow-xl relative flex flex-col"
               >
-                <h3 className="text-lg font-semibold text-slate-900 mb-1">Free</h3>
-                <p className="text-slate-500 text-sm mb-5">Try it out, no card required</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-1">{t('pricing.freePlanTitle')}</h3>
+                <p className="text-slate-500 text-sm mb-5">{t('pricing.freePlanDescription')}</p>
                 <div className="flex items-baseline gap-2 mb-6">
                   <span className="text-4xl font-bold text-slate-900 tracking-tight">$0</span>
-                  <span className="text-slate-400 text-sm">forever</span>
+                  <span className="text-slate-400 text-sm">{t('pricing.freePlanPeriod')}</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {FREE_FEATURES.map((feature, i) => (
@@ -1730,7 +1715,7 @@ const App = () => {
                   onClick={() => Analytics.externalLinkClicked('download_ios_pricing')}
                   className="block w-full bg-slate-100 text-slate-900 py-3.5 rounded-full text-base font-semibold hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
-                  Download Free
+                  {t('pricing.freePlanCta')}
                 </a>
               </motion.div>
 
@@ -1743,15 +1728,15 @@ const App = () => {
                 className="bg-white rounded-3xl p-8 shadow-2xl relative flex flex-col ring-2 ring-slate-900/10"
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-lg font-semibold text-slate-900">Personal</h3>
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Popular</span>
+                  <h3 className="text-lg font-semibold text-slate-900">{t('pricing.personalPlanTitle')}</h3>
+                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">{t('pricing.personalPlanBadge')}</span>
                 </div>
-                <p className="text-slate-500 text-sm mb-5">For everyday life organization</p>
+                <p className="text-slate-500 text-sm mb-5">{t('pricing.personalPlanDescription')}</p>
                 <div className="flex items-baseline gap-2 mb-6">
                   <span className="text-4xl font-bold text-slate-900 tracking-tight">
                     {annualBilling ? '$6.67' : '$14.99'}
                   </span>
-                  <span className="text-slate-400 text-sm">/month</span>
+                  <span className="text-slate-400 text-sm">{t('pricing.personalPlanPeriod')}</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {PERSONAL_FEATURES.map((feature, i) => (
@@ -1771,10 +1756,10 @@ const App = () => {
                   }}
                   className="block w-full bg-slate-900 text-white py-3.5 rounded-full text-base font-semibold hover:bg-slate-800 transition-all hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
-                  Join Waitlist
+                  {t('pricing.personalPlanCta')}
                 </button>
                 <p className="text-center text-slate-500 text-xs mt-4">
-                  Cancel anytime. 30-day money-back guarantee.
+                  {t('pricing.personalPlanNote')}
                 </p>
               </motion.div>
 
@@ -1787,13 +1772,13 @@ const App = () => {
                 className="bg-slate-950 rounded-3xl p-8 shadow-2xl relative flex flex-col"
               >
                 <div className="flex flex-col flex-1">
-                  <h3 className="text-lg font-semibold text-white mb-1">Work</h3>
-                  <p className="text-slate-400 text-sm mb-5">For professionals & teams</p>
+                  <h3 className="text-lg font-semibold text-white mb-1">{t('pricing.workPlanTitle')}</h3>
+                  <p className="text-slate-400 text-sm mb-5">{t('pricing.workPlanDescription')}</p>
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="text-4xl font-bold text-white tracking-tight">
                       {annualBilling ? '$20.83' : '$34.99'}
                     </span>
-                    <span className="text-slate-500 text-sm">/month</span>
+                    <span className="text-slate-500 text-sm">{t('pricing.workPlanPeriod')}</span>
                   </div>
                   <ul className="space-y-3 mb-8 flex-1">
                     {WORK_FEATURES.map((feature, i) => (
@@ -1813,84 +1798,84 @@ const App = () => {
                     }}
                     className="block w-full bg-white text-slate-950 py-3.5 rounded-full text-base font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg text-center"
                   >
-                    Join Waitlist
+                    {t('pricing.workPlanCta')}
                   </button>
                   <p className="text-center text-slate-500 text-xs mt-4">
-                    Cancel anytime. 30-day money-back guarantee.
+                    {t('pricing.workPlanNote')}
                   </p>
                 </div>
               </motion.div>
             </div>
           </motion.div>
         </section>
-        
+
         {/* SECTION 7: FOOTER */}
         <footer className="py-16 px-6 md:px-16" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))' }}>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
-              
+
               {/* Col 1: Logo & Tagline */}
               <div className="col-span-2 md:col-span-1">
                 <div className="flex items-center gap-2 mb-4">
-                  <img 
-                    src="/Logo/vois-logo.svg" 
-                    alt="Vois" 
+                  <img
+                    src="/Logo/vois-logo.svg"
+                    alt="Vois"
                     className="h-8 w-8"
                   />
                   <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
                 </div>
-                <p className="text-slate-500 text-sm">Clear your mind.</p>
+                <p className="text-slate-500 text-sm">{t('footer.tagline')}</p>
               </div>
-              
+
               {/* Col 2: Product */}
               <div>
-                <h4 className="text-slate-900 font-medium text-sm mb-4">Product</h4>
+                <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.colProduct')}</h4>
                 <ul className="space-y-3">
                   <li>
                     <Link to="/login" onClick={() => Analytics.externalLinkClicked('login')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Login
+                      {t('footer.linkLogin')}
                     </Link>
                   </li>
                   <li>
                     <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('download_ios')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Download for iPhone
+                      {t('footer.linkDownloadIphone')}
                     </a>
                   </li>
                   <li>
                     <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('download_watch')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Download for Watch
+                      {t('footer.linkDownloadWatch')}
                     </a>
                   </li>
                   <li>
                     <a href="https://apps.apple.com/app/vois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('download_mac')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Download for Mac
+                      {t('footer.linkDownloadMac')}
                     </a>
                   </li>
                   <li>
                     <Link to="/work" onClick={() => Analytics.externalLinkClicked('habos_work')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      HABOS for Business
+                      {t('footer.linkHabos')}
                     </Link>
                   </li>
                 </ul>
               </div>
-              
+
               {/* Col 3: Support */}
               <div>
-                <h4 className="text-slate-900 font-medium text-sm mb-4">Support</h4>
+                <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.colSupport')}</h4>
                 <ul className="space-y-3">
                   <li>
                     <Link to="/support" onClick={() => Analytics.externalLinkClicked('support')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Help & FAQ
+                      {t('footer.linkHelpFaq')}
                     </Link>
                   </li>
                   <li>
                     <a href="mailto:hello@tryvois.com" onClick={() => Analytics.externalLinkClicked('contact_email')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Contact Us
+                      {t('footer.linkContactUs')}
                     </a>
                   </li>
                   <li>
                     <Link to="/setup" onClick={() => Analytics.externalLinkClicked('setup_guide')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Setup Guide
+                      {t('footer.linkSetupGuide')}
                     </Link>
                   </li>
                 </ul>
@@ -1898,21 +1883,21 @@ const App = () => {
 
               {/* Col 4: Legal */}
               <div>
-                <h4 className="text-slate-900 font-medium text-sm mb-4">Legal</h4>
+                <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.colLegal')}</h4>
                 <ul className="space-y-3">
                   <li>
                     <Link to="/Privacy" onClick={() => Analytics.externalLinkClicked('privacy_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Privacy Policy
+                      {t('footer.linkPrivacyPolicy')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/Terms" onClick={() => Analytics.externalLinkClicked('terms_of_service')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Terms of Service
+                      {t('footer.linkTerms')}
                     </Link>
                   </li>
                   <li>
                     <Link to="/legal#refund" onClick={() => Analytics.externalLinkClicked('refund_policy')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Refund Policy
+                      {t('footer.linkRefund')}
                     </Link>
                   </li>
                   <li>
@@ -1920,35 +1905,35 @@ const App = () => {
                   </li>
                 </ul>
               </div>
-              
-              {/* Col 4: Social */}
+
+              {/* Col 5: Social */}
               <div>
-                <h4 className="text-slate-900 font-medium text-sm mb-4">Social</h4>
+                <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.colSocial')}</h4>
                 <ul className="space-y-3">
                   <li>
                     <a href="https://x.com/voisaiapp" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('twitter')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      X / Twitter
+                      {t('footer.linkTwitter')}
                     </a>
                   </li>
                   <li>
                     <a href="https://www.instagram.com/usevois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('instagram')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Instagram
+                      {t('footer.linkInstagram')}
                     </a>
                   </li>
                   <li>
                     <a href="https://www.tiktok.com/@getvois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('tiktok')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      TikTok
+                      {t('footer.linkTikTok')}
                     </a>
                   </li>
                   <li>
                     <a href="https://www.facebook.com/tryvois" target="_blank" rel="noopener noreferrer" onClick={() => Analytics.externalLinkClicked('facebook')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">
-                      Facebook
+                      {t('footer.linkFacebook')}
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            
+
             {/* Copyright */}
             <div className="mt-12 pt-8 border-t border-slate-100 text-center">
               <p className="text-slate-400 text-xs">

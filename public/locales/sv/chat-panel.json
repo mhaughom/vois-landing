@@ -1,0 +1,8 @@
+{
+  "introMessage": "Hej! Jag kan hjälpa dig utforska HABOS. Fråga om vilken funktion som helst — e-post, CRM, uppgifter, kalender — så tar jag dig dit.",
+  "header": "HABOS Chat",
+  "placeholder": "Fråga om vilken funktion som helst...",
+  "openChatAriaLabel": "Öppna chatt",
+  "closeChatAriaLabel": "Stäng chatt",
+  "sendMessageAriaLabel": "Skicka meddelande"
+}

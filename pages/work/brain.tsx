@@ -2,45 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, X, Check, Search, ArrowRight } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
-
-const sources = [
-  'Voice recordings', 'Documents', 'Emails', 'Contacts', 'Chat messages',
-  'Playbooks', 'Products', 'Orders', 'Bookings', 'CRM records',
-  'Tickets', 'Form submissions', 'Jobs & visits', 'Routes', 'Websites',
-  'Social posts', 'Presentations', 'Project notes', 'Meeting transcripts',
-];
-
-const painPoints = [
-  'Search Gmail... nothing',
-  'Check Slack... maybe?',
-  'Open CRM... scroll scroll scroll',
-  'Ask a colleague... they\'re in a meeting',
-  'Give up and wing it',
-];
-
-const scenarios = [
-  {
-    question: 'Where are we with the Henderson deal?',
-    answer: 'CRM pipeline, 3 email threads, last meeting notes',
-  },
-  {
-    question: 'What did Sarah say about the budget?',
-    answer: 'Voice recording transcript, project comment, Slack message',
-  },
-  {
-    question: 'Find everything about permit delays',
-    answer: '2 project notes, 1 email chain, 1 form submission, 1 job log',
-  },
-];
-
-const techStats = [
-  '512-dim embeddings',
-  'HNSW vector indexes',
-  'Hybrid semantic + keyword',
-  '11 search functions',
-];
+import { useTranslation } from 'react-i18next';
 
 const VoisBrain: React.FC = () => {
+  const { t } = useTranslation('work-brain');
+  const sources = t('sources.items', { returnObjects: true }) as string[];
+  const painPoints = t('comparison.without.painPoints', { returnObjects: true }) as string[];
+  const scenarios = t('scenarios', { returnObjects: true }) as Array<{ question: string; answer: string }>;
+  const techStats = t('techStats', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -56,13 +26,13 @@ const VoisBrain: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-cyan-500/10 text-cyan-700 rounded-full text-sm font-medium mb-6">
-              Core Feature
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              One Question. Nineteen Sources.<br />One Second.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              Ask anything about your business and get a cited answer before you finish your coffee.
+              {t('hero.description')}
             </p>
           </motion.div>
 
@@ -73,7 +43,7 @@ const VoisBrain: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto text-center mb-16">
-              When you ask &lsquo;what did we discuss about the Johnson project?&rsquo; &mdash; HABOS doesn&rsquo;t search one app. It searches meeting transcripts, project notes, email threads, CRM timeline, task comments, and chat messages simultaneously. A company using separate tools for each of these &mdash; Notion, HubSpot, Gmail, Slack, Asana &mdash; would need to search five products and mentally synthesize the results. HABOS returns a ranked, citation-backed answer in under a second.
+              {t('intro')}
             </p>
           </motion.div>
 
@@ -86,7 +56,7 @@ const VoisBrain: React.FC = () => {
           >
             <div className="bg-gradient-to-br from-cyan-50 to-slate-50 rounded-3xl p-8">
               <p className="text-xs uppercase tracking-widest text-cyan-600 text-center mb-6">
-                All searched simultaneously
+                {t('sources.label')}
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 {sources.map((source, i) => (
@@ -113,7 +83,7 @@ const VoisBrain: React.FC = () => {
           >
             {/* Without */}
             <div className="bg-slate-100 border border-slate-200 rounded-2xl p-8">
-              <h3 className="text-lg font-semibold text-slate-900 mb-5">Without VOIS Brain</h3>
+              <h3 className="text-lg font-semibold text-slate-900 mb-5">{t('comparison.without.title')}</h3>
               <ul className="space-y-3 mb-6">
                 {painPoints.map((point) => (
                   <li key={point} className="flex items-start gap-3">
@@ -122,28 +92,28 @@ const VoisBrain: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <p className="text-sm font-medium text-slate-400">~20 minutes. Partial answer.</p>
+              <p className="text-sm font-medium text-slate-400">{t('comparison.without.footer')}</p>
             </div>
 
             {/* With */}
             <div className="bg-cyan-50 border border-cyan-200 rounded-2xl p-8">
-              <h3 className="text-lg font-semibold text-slate-900 mb-5">With VOIS Brain</h3>
+              <h3 className="text-lg font-semibold text-slate-900 mb-5">{t('comparison.with.title')}</h3>
               <div className="flex items-start gap-3 mb-5">
                 <Check size={18} className="text-cyan-600 flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-slate-700 italic">
-                  &ldquo;What did we discuss about the Johnson project?&rdquo;
+                  {t('comparison.with.query')}
                 </span>
               </div>
               <div className="bg-white/70 border border-cyan-100 rounded-xl p-4 mb-6">
-                <p className="text-xs text-cyan-600 font-medium mb-2">Found across 4 sources:</p>
+                <p className="text-xs text-cyan-600 font-medium mb-2">{t('comparison.with.foundLabel')}</p>
                 <p className="text-xs text-slate-500 mb-2">
-                  meeting transcript (Mar 12) &middot; email thread (Mar 15) &middot; CRM note (Mar 18) &middot; project update (Mar 20)
+                  {t('comparison.with.sources')}
                 </p>
                 <p className="text-sm text-slate-700">
-                  The Johnson kitchen renovation is on track with permits approved...
+                  {t('comparison.with.answer')}
                 </p>
               </div>
-              <p className="text-sm font-medium text-cyan-700">0.8 seconds. Full picture.</p>
+              <p className="text-sm font-medium text-cyan-700">{t('comparison.with.footer')}</p>
             </div>
           </motion.div>
 
@@ -197,7 +167,7 @@ const VoisBrain: React.FC = () => {
             className="text-center"
           >
             <p className="text-lg text-slate-400 italic mb-8">
-              Other platforms search one app at a time. VOIS searches your entire business at once.
+              {t('closing.tagline')}
             </p>
             <a href="/work#waitlist">
               <motion.button
@@ -205,7 +175,7 @@ const VoisBrain: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
-                Join Waitlist
+                {t('closing.cta')}
               </motion.button>
             </a>
           </motion.div>

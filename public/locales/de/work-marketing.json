@@ -1,0 +1,65 @@
+{
+  "badge": "Marketing-Hub",
+  "hero": {
+    "title": "Von der Strategie zum Umsatz. Eine Plattform.",
+    "description": "Definiere deine Markenstimme und Positionierung einmalig. Jede Kampagne, jedes Creative und jede Chance verankert sich automatisch in deiner Strategie. Verfolge die Attribution vom ersten Klick bis zum abgeschlossenen Deal."
+  },
+  "body": "Definiere deine Markenstimme, Positionierung, Ziel-ICPs und Beweispunkte einmalig — jede Kampagne, jedes Creative-Asset und jede Chance verankert sich automatisch in deinem Strategieprofil. Das System analysiert kontinuierlich deinen Markt, Mitbewerber und Leistungsdaten, um Chancen aufzuzeigen, die du sonst verpassen würdest: Preislücken, Trendverschiebungen und Wiederverwendungswinkel. Anonyme Besuchersitzungen werden vom ersten Klick bis zur Conversion verfolgt, sodass du sehen kannst, welches Creative, welche Kampagne und welcher Kanal jeden Lead, jede Buchung und jeden Auftrag getrieben hat.",
+  "dashboard": {
+    "activeCampaigns": {
+      "label": "Aktive Kampagnen",
+      "count": "3",
+      "campaigns": ["Frühjahrs-HVAC-Aktion", "Notdienste", "Empfehlungsprogramm"]
+    },
+    "attribution": {
+      "label": "Pipeline-Attribution",
+      "revenue": "127.000 € Umsatz verfolgt",
+      "channels": [
+        { "name": "Website 45%" },
+        { "name": "E-Mail 30%" },
+        { "name": "Social 25%" }
+      ]
+    },
+    "opportunities": {
+      "label": "KI-Chancen",
+      "items": [
+        { "tag": "Lücke", "text": "Mitbewerber-Lücke: Notfalldienst-Positionierung" },
+        { "tag": "Trend", "text": "Smart-Home-Integrationsnachfrage +40%" }
+      ]
+    },
+    "creative": {
+      "label": "Creative-Pipeline",
+      "summary": "12 Assets in Überprüfung",
+      "approved": "8 genehmigt",
+      "pending": "3 ausstehend",
+      "revision": "1 Überarbeitung"
+    },
+    "caption": "9 Dashboards in einem: Strategie, Kampagnen, Broadcasts, Funnels, Proof-Assets, Creative, Kalender und ROI-Analysen."
+  },
+  "benefits": [
+    {
+      "title": "KI-Chancenerkennung",
+      "desc": "Das System analysiert deinen Markt, Mitbewerber und Leistungsdaten, um Chancen aufzuzeigen — Trendverschiebungen, Mitbewerber-Lücken und Wiederverwendungswinkel, die du sonst verpassen würdest."
+    },
+    {
+      "title": "Multi-Touch-Attribution",
+      "desc": "Anonyme Besuchersitzungen vom ersten Klick bis zur Conversion verfolgt. Sieh, welches Creative, welche Kampagne und welcher Kanal jeden Lead, jede Buchung und jeden Auftrag getrieben hat."
+    },
+    {
+      "title": "Angebots-Orchestrierung",
+      "desc": "Verknüpfe Produkte mit Kampagnen mit dynamischer Preisgestaltung — Prozentrabatt, Festpreis, Bundles. Steuere, wo und wann Angebote auf all deinen Marketing-Oberflächen erscheinen."
+    }
+  ],
+  "scenario": "Dein Mitbewerber hat gerade die Preise für Notfall-Sanitärdienste erhöht. HABOS zeigt eine KI-Chance: \"Notdienst-Preislücke — Mitbewerber durchschnittlich 195 €/Einsatz, du bist bei 150 €. Empfehlung: auf 175 € erhöhen und eine '24/7-Notdienst'-Kampagne starten.\" Du klickst auf \"Kampagne erstellen\" — sie ist mit den Chancendaten vorausgefüllt, mit deinem Notdienst-Produkt verknüpft und bereit zur Veröffentlichung.",
+  "techItems": [
+    "Strategie-Verankerung",
+    "9-Dashboard-Kommandozentrale",
+    "Multi-Touch-Attribution",
+    "KI-Chancenbewertung",
+    "Geschlossener Umsatzkreislauf"
+  ],
+  "cta": {
+    "heading": "Andere Marketing-Tools verfolgen Kampagnen. HABOS verbindet Kampagnen mit Umsatz.",
+    "button": "Warteliste beitreten"
+  }
+}

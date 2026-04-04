@@ -1,0 +1,56 @@
+{
+  "category": "Filosofía",
+  "title": "Asesores que discrepan",
+  "tagline": "Todos los demás productos de IA prometen consenso. HABOS promete conflicto productivo. Porque las mejores decisiones surgen de escuchar el argumento que usted no quería oír.",
+  "heroPlaceholder": "Ilustración principal",
+  "section1": {
+    "heading": "El problema del sí-máquina",
+    "body1": "La mayoría de los asistentes de IA son aduladores. Haga una mala pregunta, obtenga una respuesta entusiasta. Proponga una estrategia defectuosa, obtenga puntos de apoyo. La IA está de acuerdo con usted porque está optimizada para ser útil, y la utilidad se ha confundido con la concordancia.",
+    "body2": "Eso está bien para redactar correos. Es peligroso para tomar decisiones empresariales. Un fundador que solo escucha «gran idea» es un fundador que choca contra las paredes."
+  },
+  "section2": {
+    "heading": "El Consejo Estratégico",
+    "body": "HABOS no le da una perspectiva de IA. Le da varias — cada una con un mandato diferente, una tolerancia al riesgo diferente y un conjunto de prioridades diferente. Lo llamamos el Consejo Estratégico."
+  },
+  "advisors": [
+    {
+      "name": "El Operador",
+      "desc": "Enfocado en la ejecución, los plazos y las restricciones de recursos. Pregunta: «¿Podemos realmente hacer esto con lo que tenemos?»"
+    },
+    {
+      "name": "El Estratega",
+      "desc": "Enfocado en el posicionamiento a largo plazo, la dinámica del mercado y la ventaja competitiva. Pregunta: «¿Deberíamos hacer esto en absoluto?»"
+    },
+    {
+      "name": "El Contrario",
+      "desc": "Deliberadamente argumenta la posición opuesta. Prueba las suposiciones. Pregunta: «¿Y si está equivocado en esto?»"
+    },
+    {
+      "name": "La Voz del Cliente",
+      "desc": "Representa la perspectiva de sus clientes basándose en datos del CRM, comentarios e historial de conversaciones. Pregunta: «¿Qué querrían realmente sus clientes?»"
+    }
+  ],
+  "councilPlaceholder": "Visualización del debate del Consejo",
+  "section3": {
+    "heading": "Desacuerdo estructurado",
+    "body1": "Cuando lleva una decisión al Consejo — «¿Deberíamos expandirnos al mercado de Bergen?» o «¿Deberíamos contratar a un segundo técnico?» — no obtiene una respuesta. Obtiene un debate estructurado. Cada asesor presenta su caso, responde a los demás y expone riesgos que los otros no mencionaron.",
+    "body2": "El resultado no es una recomendación. Es un informe de decisión: los argumentos más sólidos a favor y en contra, las incertidumbres clave, los datos más relevantes y las preguntas que debe responder antes de comprometerse. Usted toma la decisión. El Consejo se asegura de que haya escuchado todo primero."
+  },
+  "section4": {
+    "heading": "Por qué esto es más difícil de lo que parece",
+    "body1": "Crear una IA que discuta consigo misma es genuinamente difícil. Requiere dar a cada asesor un marco de razonamiento distinto, evitar que colapsen en un acuerdo, fundamentar sus argumentos en sus datos empresariales reales y presentar el desacuerdo de una manera útil en lugar de confusa.",
+    "body2": "La mayoría de las empresas de IA no lo intentan porque el consenso es más fácil de lanzar y de comercializar. Pero el consenso también es menos valioso. El punto de tener asesores es que ven cosas que usted no ve, incluidas cosas que no quiere ver."
+  },
+  "section5": {
+    "heading": "Calibrado para su empresa",
+    "body1": "El Consejo no es genérico. El Operador conoce la capacidad real de su equipo porque lee sus datos de recursos. El Estratega conoce su panorama competitivo porque lee su investigación de mercado. La Voz del Cliente conoce las preocupaciones reales de sus clientes porque lee su CRM y los tickets de soporte.",
+    "body2": "Después de seis meses, los argumentos del Consejo se basan en patrones de su negocio específico, no en marcos teóricos de MBA."
+  },
+  "quote": "«Lo más peligroso que puede hacer una IA es decirle lo que quiere oír. Lo más valioso que puede hacer es decirle lo que necesita oír.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Su voz, no la nuestra",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Memoria que se acumula"
+  }
+}

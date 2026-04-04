@@ -1,0 +1,66 @@
+{
+  "badge": "Em Breve",
+  "hero": {
+    "title": "Relatórios por Voz",
+    "description": "Crie relatórios falando. Faça uma inspeção de local descrevendo suas observações — a IA gera um PDF formatado instantaneamente."
+  },
+  "intro": "Relatórios tradicionais exigem sentar, abrir um formulário e digitar as respostas. O HABOS oferece quatro modos de preenchimento: uma entrevista por voz em tempo real onde a IA faz as perguntas campo a campo, um modo de ditado onde uma única nota de voz preenche todos os campos silenciosamente, um chatbot de texto que percorre cada campo conversacionalmente e a entrada manual tradicional como alternativa. Faça upload de um PDF ou imagem e a Visão do GPT-4 extrai rótulos de campos, tipos e padrões de validação para gerar automaticamente um esquema tipado.",
+  "problem": {
+    "title": "O Problema da Escrita de Relatórios",
+    "body": "Para trabalhadores de campo, enfermeiros, inspetores e muitos profissionais, escrever relatórios em touchscreens ou computadores consome muito tempo. É lento, tedioso e as pessoas frequentemente omitem detalhes porque digitar é trabalhoso demais. Os Relatórios por Voz mudam tudo isso."
+  },
+  "features": [
+    {
+      "title": "Apenas Fale",
+      "desc": "Abra o VOIS, toque em gravar e fale sobre suas observações. Sem digitação, sem formulários, sem caixas de seleção. A IA ouve, estrutura e formata tudo automaticamente."
+    },
+    {
+      "title": "Formatação Instantânea",
+      "desc": "A IA gera um relatório devidamente formatado — títulos, seções, marcadores, resumos. Exporte como PDF, Word ou qualquer formato que precisar. Está pronto para envio imediato."
+    },
+    {
+      "title": "10x Mais Rápido",
+      "desc": "As pessoas falam 3 a 4 vezes mais rápido do que digitam. Somando a formatação por IA, são 10 vezes mais economia de tempo. O que antes levava 30 minutos agora leva 3."
+    },
+    {
+      "title": "Informações Mais Ricas",
+      "desc": "Quando o registro é tão fácil, as pessoas incluem mais detalhes. Você obtém dados melhores, mais contexto e comunicação mais clara — tudo porque falar é natural."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfeito Para",
+    "items": [
+      {
+        "title": "Trabalhadores de Campo",
+        "desc": "Inspeções de local, relatórios de segurança, registros de manutenção"
+      },
+      {
+        "title": "Saúde",
+        "desc": "Anotações de enfermagem, observações de pacientes, passagem de plantão"
+      },
+      {
+        "title": "Vendas e Atendimento",
+        "desc": "Reuniões com clientes, chamadas de serviço, notas de acompanhamento"
+      }
+    ]
+  },
+  "example": {
+    "title": "Exemplo: Inspeção de Canteiro de Obras",
+    "steps": [
+      "Você chega ao local com seu celular ou relógio. Toque em gravar no VOIS.",
+      "\"Inspeção de local, Edifício 3, 15 de março. Condições climáticas: limpo, 18 graus. Fundação parece sólida — sem rachaduras visíveis. Instalação elétrica preliminar está 80% concluída, no prazo. Problema de encanamento na Unidade 204 — vazamento sob a pia, precisa de reparo antes da inspeção. Dutos de climatização instalados, aguardando conexões finais...\"",
+      "Você anda e fala por 5 minutos, cobrindo tudo o que vê.",
+      "Pare de gravar. A IA gera um relatório de inspeção formatado com seções, marcadores e um resumo. O problema de encanamento é sinalizado como urgente.",
+      "Exporte PDF. Envie por e-mail ao gerente de projeto. Pronto. Tempo total: 6 minutos."
+    ]
+  },
+  "integration": {
+    "title": "Alimenta a IA de Operações",
+    "body": "Os Relatórios por Voz não servem apenas para economizar tempo — eles alimentam dados críticos na IA de Operações. Quando sua equipe envia relatórios de voz detalhados, a IA de Operações pode identificar padrões, detectar gargalos e alertá-lo sobre problemas antes que escalem. É a base da gestão inteligente de operações."
+  },
+  "status": {
+    "title": "Atualmente em Desenvolvimento",
+    "body": "Os Relatórios por Voz estão construídos e funcionando no nosso ambiente de desenvolvimento. Estamos refinando os modelos de formatação e as opções de exportação para diferentes setores.",
+    "note": "Previsão de disponibilidade em até 6 meses para assinantes do VOIS para Empresas."
+  }
+}

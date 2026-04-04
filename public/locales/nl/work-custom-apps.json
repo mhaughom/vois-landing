@@ -1,0 +1,74 @@
+{
+  "badge": "Aangepaste apps",
+  "hero": {
+    "title": "Beschrijf het.\nVOIS bouwt het.",
+    "description": "Maak je eigen mini-apps met één zin. AI genereert het schema, het dashboard en de spraakroutering — jouw bedrijf krijgt tools die geen leverancier ooit voor je zou bouwen."
+  },
+  "heroPills": [
+    "Aanmaken in natuurlijke taal",
+    "AI-schemageneratie",
+    "Automatische dashboards"
+  ],
+  "demo": {
+    "steps": [
+      {
+        "label": "Jij beschrijft",
+        "prompt": "\"Ik wil een app om apparaatinspecties bij te houden\""
+      },
+      {
+        "label": "AI genereert schema",
+        "fields": [
+          { "field": "Apparaat", "type": "Tekst" },
+          { "field": "Locatie", "type": "Locatie" },
+          { "field": "Staat", "type": "Selectie" },
+          { "field": "Foto", "type": "Afbeelding" },
+          { "field": "Volgende servicedatum", "type": "Datum" }
+        ]
+      },
+      {
+        "label": "Direct dashboard",
+        "entries": [
+          { "equip": "Unit 3 — Compressor", "status": "Goed" },
+          { "equip": "Unit 7 — HVAC", "status": "Matig" },
+          { "equip": "Unit 12 — Generator", "status": "Reparatie nodig" }
+        ],
+        "legend": [
+          "Goed",
+          "Matig",
+          "Reparatie nodig"
+        ]
+      }
+    ],
+    "annotation": "Van één zin naar een werkende app. Geen code. Geen wachten."
+  },
+  "benefitCards": [
+    {
+      "title": "Spraakgestuurd data-invoer",
+      "body": "Zeg 'unit 3 geïnspecteerd, compressor vertoont slijtage' en het wordt automatisch naar je Apparaatinspecties-app gerouteerd. Sleutelwoorden worden geleerd op basis van je schema."
+    },
+    {
+      "title": "AI-gestuurde velden",
+      "body": "Sommige velden vullen zichzelf. Een 'AI-aanbeveling'-veld in je inspectie-app kan 'Plan compressorkoppeling vervanging binnen 6 maanden' genereren op basis van je notities."
+    },
+    {
+      "title": "Directe dashboards",
+      "body": "Elke aangepaste app krijgt standaard grafieken, filters en AI-inzichten. Zie trends in je data zonder iets te bouwen."
+    }
+  ],
+  "scenario": {
+    "heading": "Praktijkscenario",
+    "body": "Je schoonmaakbedrijf moet locatiekwaliteitsscores bijhouden. Je zegt \"maak een app voor locatiekwaliteitsaudits.\" VOIS genereert velden voor locatie, auditor, score, foto's en notities. Een AI-veld genereert automatisch verbeteringsuggesties. Binnen een minuut heb je een kwaliteitsvolgsysteem dat spraaknotities vanuit het veld direct in gestructureerde records verwerkt."
+  },
+  "techItems": [
+    "Aanmaken in natuurlijke taal",
+    "AI-schemageneratie",
+    "Spraakintentieroutering",
+    "Automatische dashboards",
+    "AI-generatievelden",
+    "Marketplace-deling"
+  ],
+  "cta": {
+    "tagline": "Jouw bedrijf is uniek. Je tools zouden dat ook moeten zijn.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

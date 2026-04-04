@@ -1,0 +1,85 @@
+{
+  "badge": "Gestione Percorsi",
+  "hero": {
+    "title": "Percorsi che Si Costruiscono da Soli.",
+    "description": "Assegna lavori a un tecnico e HABOS genera automaticamente il loro percorso per la giornata — fermate geocodificate, ordine ottimizzato e navigazione con un tocco verso Google Maps."
+  },
+  "body": "Quando assegni una visita di lavoro a un tecnico, il loro percorso gestito si aggiorna automaticamente con fermate geocodificate da Mapbox. Modifica manualmente e si scollega per evitare sovrascritture automatiche. Ogni percorso cattura waypoint GPS a intervalli di cinque secondi, con la distanza di Haversine calcolata lato server per una fatturazione accurata del chilometraggio. I lavoratori sul campo segnano le fermate come completate o saltate dal telefono — l'ufficio vede i progressi in tempo reale senza una singola telefonata.",
+  "routeCard": {
+    "heading": "Mike Torres — Percorso Mercoledì",
+    "subheading": "5 fermate · 76 km stimati",
+    "navigate": "Naviga",
+    "footnote": "Fermate geocodificate automaticamente via Mapbox. Trascina per riordinare. Tocca 'Naviga' per indicazioni punto per punto."
+  },
+  "stops": [
+    {
+      "name": "Residenza Henderson",
+      "time": "9:00",
+      "task": "Installazione scaldabagno",
+      "statusLabel": "Completato"
+    },
+    {
+      "name": "Ufficio Baker",
+      "time": "11:00",
+      "task": "Manutenzione HVAC",
+      "statusLabel": "Completato"
+    },
+    {
+      "name": "Casa Wilson",
+      "time": "13:00",
+      "task": "Riparazione idraulica",
+      "statusLabel": "In corso"
+    },
+    {
+      "name": "Appartamento Garcia",
+      "time": "15:00",
+      "task": "Ispezione elettrica",
+      "statusLabel": "In attesa"
+    },
+    {
+      "name": "Proprietà Johnson",
+      "time": "16:30",
+      "task": "Perdita di emergenza",
+      "statusLabel": "Aggiunto oggi"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Sincronizzazione automatica dal dispatch",
+      "desc": "Quando assegni una visita di lavoro a un tecnico, il loro percorso gestito si aggiorna automaticamente. Modifica manualmente e si scollega — nessuna sovrascrittura accidentale."
+    },
+    {
+      "title": "Tracciamento stato fermate",
+      "desc": "I lavoratori sul campo segnano le fermate come completate o saltate dal telefono. L'ufficio vede i progressi in tempo reale senza chiamare."
+    },
+    {
+      "title": "Tracciamento GPS chilometraggio",
+      "desc": "Ogni percorso cattura waypoint GPS (intervalli di 5 sec). Distanza di Haversine calcolata lato server. Chilometraggio accurato per fatturazione e rimborso."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Senza HABOS",
+      "description": "Mattina: stampa lista lavori. Inserisci manualmente gli indirizzi in Google Maps uno alla volta. Spera che l'ordine abbia senso. Chiama l'ufficio per i cambiamenti. Registra il chilometraggio su carta.",
+      "outcome": "~30 min sprecati al giorno"
+    },
+    "with": {
+      "label": "Con HABOS",
+      "description": "Mattina: apri l'app. Il percorso è pronto con tutte le fermate, ordine ottimizzato e navigazione con un tocco. Segna le fermate fatte man mano che vai. Chilometraggio registrato automaticamente.",
+      "outcome": "0 min di pianificazione"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Geocodifica + indicazioni Mapbox",
+      "Sincronizzazione automatica percorso gestito",
+      "Waypoint GPS ogni 5s",
+      "Distanza di Haversine",
+      "Link diretto Google Maps"
+    ]
+  },
+  "cta": {
+    "heading": "Gli altri strumenti ti fanno pianificare i percorsi. HABOS li pianifica per te.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

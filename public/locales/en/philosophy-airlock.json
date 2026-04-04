@@ -1,0 +1,76 @@
+{
+  "category": "Philosophy",
+  "title": "The Airlock",
+  "tagline": "AI proposes. You decide.",
+  "heroAlt": "The Airlock",
+  "section1": {
+    "heading": "The problem nobody talks about",
+    "body1": "The most dangerous thing about AI is not that it gets things wrong. It's that it acts before you can check. A sales bot offers a 40% discount that violates margin policy. A booking system double-schedules because it optimized for density without understanding drive time. These aren't hypotheticals.",
+    "body2": "Only 6% of enterprises say they fully trust autonomous AI agents. The other 94% are right to be cautious. We built the opposite: every action the AI takes passes through what we call the Airlock — a mandatory preview where you see exactly what's about to happen before it happens."
+  },
+  "section2": {
+    "heading": "The comparison"
+  },
+  "comparison": [
+    { "action": "Email sending", "auto": "Sent immediately. CEO finds a typo after 200 people read it.", "airlock": "Draft appears as a card. You fix the typo, tap send." },
+    { "action": "Calendar changes", "auto": "Double-booked Tuesday — didn't check your personal calendar.", "airlock": "Preview shows the conflict. You pick the right slot." },
+    { "action": "Task creation", "auto": "14 tasks from one meeting. 6 are duplicates.", "airlock": "Proposed list. You merge two, delete one, approve the rest." },
+    { "action": "Customer comms", "auto": "Replied with a coupon you don't offer anymore.", "airlock": "Reply appears as preview. You adjust the offer, then send." }
+  ],
+  "tableHeaders": {
+    "action": "Action",
+    "auto": "Fully Autonomous",
+    "airlock": "The Airlock"
+  },
+  "section3": {
+    "heading": "Not a UI pattern. A security protocol.",
+    "body": "Every write action generates an HMAC-SHA256 signed confirmation token binding the user, the exact action, and the precise arguments — down to individual characters in an email draft. Tokens expire in 10 minutes. If anything changes between preview and confirmation, the token invalidates. The AI cannot modify the action after showing it to you. What you approved is exactly what gets executed."
+  },
+  "quote": "\"The pause is not a limitation. It's the reason you'll trust this with your business.\"",
+  "section4": {
+    "heading": "Your data. Your infrastructure. Your rules.",
+    "body": "Trust isn't just about what the AI does — it's about where your data lives. HABOS runs wherever you need it: our cloud, your servers, or fully air-gapped with zero internet dependency. The same platform, the same features, wherever your data needs to be."
+  },
+  "deploymentOptions": [
+    {
+      "title": "Cloud",
+      "body": "Railway for compute, Supabase for database, and the major hyperscalers for LLM. Production-ready from day one.",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "On-Prem",
+      "body": "Deploy the full backend at your location. Run Qwen models on standard Mac hardware for local AI — no GPU cluster required.",
+      "badges": ["Qwen models", "Mac compatible", "Self-hosted DB"]
+    },
+    {
+      "title": "Air-Gapped Datacenter",
+      "body": "For maximum isolation, deploy a local datacenter with models like Kimi K2. Full AI capabilities with zero internet dependency.",
+      "badges": ["Kimi K2", "Air-gapped", "Zero egress"]
+    }
+  ],
+  "section5": {
+    "heading": "Security at every layer"
+  },
+  "securityItems": [
+    {
+      "title": "Cryptographic approval tokens",
+      "body": "Every AI action is signed and tamper-proof."
+    },
+    {
+      "title": "Row-level security on every table",
+      "body": "Users only see data they're authorized to access."
+    },
+    {
+      "title": "Per-run budget tracking",
+      "body": "AI spend is tracked and capped per agent, per task."
+    },
+    {
+      "title": "Full audit trail",
+      "body": "Every action, every decision, permanently logged."
+    }
+  ],
+  "nav": {
+    "nextLabel": "Next",
+    "nextTitle": "Everything in One Place"
+  }
+}

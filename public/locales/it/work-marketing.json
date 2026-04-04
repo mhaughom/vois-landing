@@ -1,0 +1,65 @@
+{
+  "badge": "Hub Marketing",
+  "hero": {
+    "title": "Dalla Strategia ai Ricavi. Una Piattaforma.",
+    "description": "Definisci la voce del tuo brand e il posizionamento una volta. Ogni campagna, creativo e opportunità si ancora automaticamente alla tua strategia. Traccia l'attribuzione dal primo clic alla trattativa chiusa."
+  },
+  "body": "Definisci la voce del tuo brand, il posizionamento, gli ICP target e i punti di prova una volta — ogni campagna, asset creativo e opportunità si ancora automaticamente al tuo profilo strategico. Il sistema analizza continuamente il tuo mercato, i concorrenti e i dati di performance per far emergere opportunità che altrimenti perderesti: divari di prezzo, cambiamenti di tendenza e angolazioni di riutilizzo. Le sessioni di visitatori anonimi vengono tracciate dal primo clic alla conversione, così puoi vedere quale creativo, campagna e canale ha generato ogni lead, prenotazione e ordine.",
+  "dashboard": {
+    "activeCampaigns": {
+      "label": "Campagne Attive",
+      "count": "3",
+      "campaigns": ["Promo HVAC Primaverile", "Servizi di Emergenza", "Programma Referral"]
+    },
+    "attribution": {
+      "label": "Attribuzione Pipeline",
+      "revenue": "$127K ricavi tracciati",
+      "channels": [
+        { "name": "Sito web 45%" },
+        { "name": "Email 30%" },
+        { "name": "Social 25%" }
+      ]
+    },
+    "opportunities": {
+      "label": "Opportunità AI",
+      "items": [
+        { "tag": "Divario", "text": "Divario con concorrente: posizionamento risposta emergenze" },
+        { "tag": "Tendenza", "text": "Domanda integrazione smart home +40%" }
+      ]
+    },
+    "creative": {
+      "label": "Pipeline Creativa",
+      "summary": "12 asset in revisione",
+      "approved": "8 approvati",
+      "pending": "3 in attesa",
+      "revision": "1 revisione"
+    },
+    "caption": "9 dashboard in una: strategia, campagne, trasmissioni, funnel, asset di prova, creatività, calendario e analisi ROI."
+  },
+  "benefits": [
+    {
+      "title": "Scoperta opportunità AI",
+      "desc": "Il sistema analizza il tuo mercato, i concorrenti e i dati di performance per far emergere opportunità — cambiamenti di tendenza, divari con i concorrenti e angolazioni di riutilizzo che altrimenti perderesti."
+    },
+    {
+      "title": "Attribuzione multi-touch",
+      "desc": "Sessioni di visitatori anonimi tracciate dal primo clic alla conversione. Vedi quale creativo, campagna e canale ha generato ogni lead, prenotazione e ordine."
+    },
+    {
+      "title": "Orchestrazione offerte",
+      "desc": "Collega prodotti alle campagne con prezzi dinamici — sconto percentuale, prezzo fisso, bundle. Controlla dove e quando le offerte appaiono su tutte le tue superfici di marketing."
+    }
+  ],
+  "scenario": "Il tuo concorrente ha appena aumentato i prezzi per i servizi idraulici di emergenza. HABOS segnala un'opportunità AI: \"Divario prezzi servizio emergenza — i concorrenti fanno in media $195/chiamata, tu sei a $150. Raccomandazione: aumenta a $175 e lancia una campagna 'Emergenza 24/7'.\" Clicchi su \"Crea Campagna\" — è pre-compilata con i dati dell'opportunità, collegata al tuo prodotto di servizio emergenza e pronta per la pubblicazione.",
+  "techItems": [
+    "Ancoraggio strategia",
+    "Centro di comando a 9 dashboard",
+    "Attribuzione multi-touch",
+    "Punteggio opportunità AI",
+    "Ricavi closed-loop"
+  ],
+  "cta": {
+    "heading": "Gli altri strumenti di marketing tracciano le campagne. HABOS collega le campagne ai ricavi.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

@@ -1,6 +1,7 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Mic, Calendar, ListTodo, Mail, Headphones, BarChart3,
   FileBarChart, Bot, Search, User, Briefcase, Users, Building2,
@@ -15,6 +16,7 @@ import {
   GraduationCap, Dumbbell,
 } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 // Helper function to scroll to a section
 export const scrollToSection = (sectionId: string) => {
@@ -44,108 +46,11 @@ type MenuCategory = {
   sections: MenuSection[];
 };
 
-// ── HABOS menu data (Work / business platform) ────────────────────────────
-
-const habosMenuData: MenuCategory[] = [
-  {
-    label: 'Product',
-    sections: [
-      {
-        items: [
-          { icon: MessageSquare, color: '#3b82f6', label: 'Communication', desc: 'Email, Messenger, Phone, Support Tickets', href: '/work/communication' },
-          { icon: Calendar, color: '#8b5cf6', label: 'Scheduling & Bookings', desc: 'Calendar, Bookings, Scheduling Links', href: '/work/scheduling' },
-          { icon: Truck, color: '#f59e0b', label: 'Jobs & Operations', desc: 'Dispatch, Routes, Projects, Tasks, Time Tracking', href: '/work/jobs-operations' },
-          { icon: CreditCard, color: '#22c55e', label: 'Sales & Payments', desc: 'CRM, Products, Invoicing, Payments', href: '/work/sales-payments' },
-          { icon: Mic, color: '#ef4444', label: 'Voice & AI', desc: 'Voice Notes, Meeting Notes, Assistant, Playbooks', href: '/work/voice-ai' },
-          { icon: Globe, color: '#06b6d4', label: 'Website & Marketing', desc: 'Website Builder, Social, Email Campaigns', href: '/work/website-marketing' },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Solutions',
-    sections: [
-      {
-        items: [
-          { icon: Wrench, color: '#f59e0b', label: 'Service Businesses', desc: 'Plumbers to consultants to therapists', href: '/solutions/service-businesses' },
-          { icon: ShoppingCart, color: '#22c55e', label: 'Product Businesses', desc: 'Shops to e-commerce to manufacturers', href: '/solutions/product-businesses' },
-          { icon: Palette, color: '#ec4899', label: 'Creative Businesses', desc: 'Agencies to photographers to studios', href: '/solutions/creative-businesses' },
-          { icon: MapPin, color: '#ef4444', label: 'Field Operations', desc: 'Construction to delivery to property mgmt', href: '/solutions/field-operations' },
-          { icon: Users, color: '#3b82f6', label: 'Teams & Startups', desc: 'Building a company with 2-50 people', href: '/solutions/teams-startups' },
-          { icon: User, color: '#8b5cf6', label: 'Solo Founders', desc: 'Freelancers to one-person companies', href: '/solutions/solo-founders' },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Philosophy',
-    sections: [
-      {
-        title: 'Intelligence You Control',
-        items: [
-          { icon: Shield, color: '#22c55e', label: 'Security First', desc: 'AI with limits. Your limits.', href: '/philosophy/the-airlock' },
-          { icon: Bot, color: '#8b5cf6', label: 'One Assistant', desc: 'Ask anything, from anywhere', href: '/philosophy/one-assistant' },
-          { icon: Brain, color: '#ec4899', label: 'Capture Your Brain', desc: 'Catch ideas before they fade', href: '/philosophy/capture-your-brain' },
-        ],
-      },
-      {
-        title: 'Fast by Design',
-        items: [
-          { icon: Zap, color: '#ef4444', label: 'Suggestions, Not Menus', desc: 'Read. Tap. Done.', href: '/philosophy/suggestions-not-menus' },
-          { icon: LayoutGrid, color: '#3b82f6', label: 'Two Interfaces', desc: 'Screens for you, APIs for agents', href: '/philosophy/two-interfaces' },
-          { icon: Mic, color: '#06b6d4', label: 'Speed of Thought', desc: 'Voice in, tap out', href: '/philosophy/speed-of-thought' },
-          { icon: Watch, color: '#f59e0b', label: 'Always Within Reach', desc: 'Watch, phone, lock screen', href: '/philosophy/always-within-reach' },
-        ],
-      },
-      {
-        title: 'Built for Your Business',
-        items: [
-          { icon: Sparkles, color: '#a855f7', label: 'Everything in One Place', desc: 'One login, every tool', href: '/philosophy/everything-in-one-place' },
-          { icon: Users, color: '#f97316', label: 'Built for Teams', desc: 'Same truth, different lenses', href: '/philosophy/built-for-teams' },
-          { icon: Wrench, color: '#8b5cf6', label: 'Your Software, Your Way', desc: 'Flexible by design', href: '/philosophy/your-software-your-way' },
-        ],
-      },
-    ],
-  },
-];
-
-// ── VOIS menu data (Personal / consumer product) ──────────────────────────
-
-const voisMenuData: MenuCategory[] = [
-  {
-    label: 'Features',
-    sections: [
-      {
-        items: [
-          { icon: Mic, label: 'Voice Capture', desc: 'Talk, we handle the rest', href: '#' },
-          { icon: Brain, label: 'AI Assistant', desc: 'Your personal AI partner', href: '#' },
-          { icon: Calendar, label: 'Calendar', desc: 'Auto-fill focus blocks', href: '#' },
-          { icon: ListTodo, label: 'Tasks', desc: 'AI prioritization', href: '#' },
-          { icon: Watch, label: 'Watch', desc: 'Full AI on your wrist', href: '#' },
-          { icon: Sparkles, label: 'Custom Apps', desc: 'Build your own spaces', href: '#' },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Resources',
-    sections: [
-      {
-        items: [
-          { icon: Briefcase, label: 'HABOS for Work', desc: 'The full business platform', href: 'https://habos.ai' },
-          { icon: LifeBuoy, label: 'Support', desc: 'Get help from our team', href: '/support' },
-          { icon: Shield, label: 'Privacy Policy', desc: 'How we protect your data', href: '/Privacy' },
-          { icon: ScrollText, label: 'Terms of Service', desc: 'Our service agreement', href: '/Terms' },
-        ],
-      },
-    ],
-  },
-];
-
 // ── Product cluster sub-pages ──────────────────────────────────────────────
 // When a cluster is selected, these pages appear in a secondary nav bar
 
-const PRODUCT_CLUSTERS: Record<string, { label: string; href: string }[]> = {
+type ClusterConfig = { overview: string; pages: { label: string; href: string }[] };
+const PRODUCT_CLUSTERS: Record<string, ClusterConfig> = {
   'Communication': {
     overview: '/work/communication',
     pages: [
@@ -283,6 +188,23 @@ function detectCluster(path: string): string | null {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlist, onResetDemo, isDemoActive }) => {
+  const { t } = useTranslation('navbar');
+
+  // Helpers for translating PRODUCT_CLUSTERS labels
+  const clusterPageLabel = (href: string) =>
+    t('clusterPages.' + href.replace('/work/', ''), { defaultValue: href.replace('/work/', '') });
+  const clusterGroupLabel = (name: string) => {
+    const keyMap: Record<string, string> = {
+      'Communication': 'communication',
+      'Scheduling & Bookings': 'schedulingBookings',
+      'Jobs & Operations': 'jobsOperations',
+      'Sales & Payments': 'salesPayments',
+      'Voice & AI': 'voiceAi',
+      'Website & Marketing': 'websiteMarketing',
+    };
+    return t('clusterGroupNames.' + (keyMap[name] ?? name), { defaultValue: name });
+  };
+
   const location = useLocation();
   const navigate = useNavigate();
   const skipEntrance = navHasAnimated;
@@ -300,8 +222,103 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
   const [pillsOverlap, setPillsOverlap] = useState(false);
 
   const brand = brandConfig[variant];
-  const menuData = habosMenuData;
   const isVois = variant === 'vois';
+
+  const habosMenuData = useMemo<MenuCategory[]>(() => [
+    {
+      label: t('habos.product'),
+      sections: [
+        {
+          items: [
+            { icon: MessageSquare, color: '#3b82f6', label: t('habos.communication.label'), desc: t('habos.communication.desc'), href: '/work/communication' },
+            { icon: Calendar, color: '#8b5cf6', label: t('habos.scheduling.label'), desc: t('habos.scheduling.desc'), href: '/work/scheduling' },
+            { icon: Truck, color: '#f59e0b', label: t('habos.jobsOperations.label'), desc: t('habos.jobsOperations.desc'), href: '/work/jobs-operations' },
+            { icon: CreditCard, color: '#22c55e', label: t('habos.salesPayments.label'), desc: t('habos.salesPayments.desc'), href: '/work/sales-payments' },
+            { icon: Mic, color: '#ef4444', label: t('habos.voiceAi.label'), desc: t('habos.voiceAi.desc'), href: '/work/voice-ai' },
+            { icon: Globe, color: '#06b6d4', label: t('habos.websiteMarketing.label'), desc: t('habos.websiteMarketing.desc'), href: '/work/website-marketing' },
+          ],
+        },
+      ],
+    },
+    {
+      label: t('habos.solutions'),
+      sections: [
+        {
+          items: [
+            { icon: Wrench, color: '#f59e0b', label: t('habos.serviceBusinesses.label'), desc: t('habos.serviceBusinesses.desc'), href: '/solutions/service-businesses' },
+            { icon: ShoppingCart, color: '#22c55e', label: t('habos.productBusinesses.label'), desc: t('habos.productBusinesses.desc'), href: '/solutions/product-businesses' },
+            { icon: Palette, color: '#ec4899', label: t('habos.creativeBusinesses.label'), desc: t('habos.creativeBusinesses.desc'), href: '/solutions/creative-businesses' },
+            { icon: MapPin, color: '#ef4444', label: t('habos.fieldOperations.label'), desc: t('habos.fieldOperations.desc'), href: '/solutions/field-operations' },
+            { icon: Users, color: '#3b82f6', label: t('habos.teamsStartups.label'), desc: t('habos.teamsStartups.desc'), href: '/solutions/teams-startups' },
+            { icon: User, color: '#8b5cf6', label: t('habos.soloFounders.label'), desc: t('habos.soloFounders.desc'), href: '/solutions/solo-founders' },
+          ],
+        },
+      ],
+    },
+    {
+      label: t('habos.philosophy'),
+      sections: [
+        {
+          title: t('habos.intelligenceYouControl'),
+          items: [
+            { icon: Shield, color: '#22c55e', label: t('habos.securityFirst.label'), desc: t('habos.securityFirst.desc'), href: '/philosophy/the-airlock' },
+            { icon: Bot, color: '#8b5cf6', label: t('habos.oneAssistant.label'), desc: t('habos.oneAssistant.desc'), href: '/philosophy/one-assistant' },
+            { icon: Brain, color: '#ec4899', label: t('habos.captureYourBrain.label'), desc: t('habos.captureYourBrain.desc'), href: '/philosophy/capture-your-brain' },
+          ],
+        },
+        {
+          title: t('habos.fastByDesign'),
+          items: [
+            { icon: Zap, color: '#ef4444', label: t('habos.suggestionsNotMenus.label'), desc: t('habos.suggestionsNotMenus.desc'), href: '/philosophy/suggestions-not-menus' },
+            { icon: LayoutGrid, color: '#3b82f6', label: t('habos.twoInterfaces.label'), desc: t('habos.twoInterfaces.desc'), href: '/philosophy/two-interfaces' },
+            { icon: Mic, color: '#06b6d4', label: t('habos.speedOfThought.label'), desc: t('habos.speedOfThought.desc'), href: '/philosophy/speed-of-thought' },
+            { icon: Watch, color: '#f59e0b', label: t('habos.alwaysWithinReach.label'), desc: t('habos.alwaysWithinReach.desc'), href: '/philosophy/always-within-reach' },
+          ],
+        },
+        {
+          title: t('habos.builtForYourBusiness'),
+          items: [
+            { icon: Sparkles, color: '#a855f7', label: t('habos.everythingInOnePlace.label'), desc: t('habos.everythingInOnePlace.desc'), href: '/philosophy/everything-in-one-place' },
+            { icon: Users, color: '#f97316', label: t('habos.builtForTeams.label'), desc: t('habos.builtForTeams.desc'), href: '/philosophy/built-for-teams' },
+            { icon: Wrench, color: '#8b5cf6', label: t('habos.yourSoftwareYourWay.label'), desc: t('habos.yourSoftwareYourWay.desc'), href: '/philosophy/your-software-your-way' },
+          ],
+        },
+      ],
+    },
+  ], [t]);
+
+  const voisMenuData = useMemo<MenuCategory[]>(() => [
+    {
+      label: t('vois.features'),
+      sections: [
+        {
+          items: [
+            { icon: Mic, label: t('vois.voiceCapture.label'), desc: t('vois.voiceCapture.desc'), href: '#' },
+            { icon: Brain, label: t('vois.aiAssistant.label'), desc: t('vois.aiAssistant.desc'), href: '#' },
+            { icon: Calendar, label: t('vois.calendar.label'), desc: t('vois.calendar.desc'), href: '#' },
+            { icon: ListTodo, label: t('vois.tasks.label'), desc: t('vois.tasks.desc'), href: '#' },
+            { icon: Watch, label: t('vois.watch.label'), desc: t('vois.watch.desc'), href: '#' },
+            { icon: Sparkles, label: t('vois.customApps.label'), desc: t('vois.customApps.desc'), href: '#' },
+          ],
+        },
+      ],
+    },
+    {
+      label: t('vois.resources'),
+      sections: [
+        {
+          items: [
+            { icon: Briefcase, label: t('vois.habosForWork.label'), desc: t('vois.habosForWork.desc'), href: 'https://habos.ai' },
+            { icon: LifeBuoy, label: t('vois.support.label'), desc: t('vois.support.desc'), href: '/support' },
+            { icon: Shield, label: t('vois.privacyPolicy.label'), desc: t('vois.privacyPolicy.desc'), href: '/Privacy' },
+            { icon: ScrollText, label: t('vois.termsOfService.label'), desc: t('vois.termsOfService.desc'), href: '/Terms' },
+          ],
+        },
+      ],
+    },
+  ], [t]);
+
+  const menuData = habosMenuData;
 
   // Keep cluster in sync when URL changes (for in-app navigation without remount)
   useEffect(() => {
@@ -385,10 +402,10 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               whileTap={{ scale: 0.98 }}
               className="flex items-center gap-2.5 sm:gap-4 bg-white/80 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-slate-100 shadow-lg"
             >
-              <img src={brand.logo} alt={brand.name} className="h-6 w-6 sm:h-9 sm:w-9" />
+              <img src={brand.logo} alt={t(`brand.${variant}.name`)} className="h-6 w-6 sm:h-9 sm:w-9" />
               <div className="flex flex-col">
-                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{brand.name}</span>
-                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{brand.tagline}</span>
+                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{t(`brand.${variant}.name`)}</span>
+                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{t(`brand.${variant}.tagline`)}</span>
               </div>
             </motion.div>
           </button>
@@ -398,10 +415,10 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               whileHover={{ scale: 1.02 }}
               className="flex items-center gap-2.5 sm:gap-4 bg-white/80 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-slate-100 shadow-lg"
             >
-              <img src={brand.logo} alt={brand.name} className="h-6 w-6 sm:h-9 sm:w-9" />
+              <img src={brand.logo} alt={t(`brand.${variant}.name`)} className="h-6 w-6 sm:h-9 sm:w-9" />
               <div className="flex flex-col">
-                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{brand.name}</span>
-                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{brand.tagline}</span>
+                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{t(`brand.${variant}.name`)}</span>
+                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{t(`brand.${variant}.tagline`)}</span>
               </div>
             </motion.div>
           </Link>
@@ -415,7 +432,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               href="https://habos.ai"
               className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50/80 transition-all duration-150 rounded-full"
             >
-              VOIS for Work
+              {t('vois.workLabel')}
             </a>
             <div className="w-px h-5 bg-slate-200/60 mx-1" />
             <motion.button
@@ -424,7 +441,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               whileTap={{ scale: 0.97 }}
               className="px-5 py-2 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
             >
-              Try Now
+              {t('vois.tryNow')}
             </motion.button>
           </div>
         ) : (
@@ -481,7 +498,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
-                    <span className="relative z-10">{page.label}</span>
+                    <span className="relative z-10">{clusterPageLabel(page.href)}</span>
                   </Link>
                 );
               })}
@@ -490,7 +507,9 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
         </div>
         )}
 
-        {/* ── Right: dropdowns + CTA ─────────────────────────────── */}
+        {/* ── Right: language switcher + dropdowns + CTA ─────────── */}
+        <div className="flex items-center gap-3">
+        <LanguageSwitcher navPill className="pointer-events-auto hidden md:block" />
         <div ref={rightPillRef} className="pointer-events-auto hidden md:flex items-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg pl-1.5 pr-1.5 py-1">
 
             {/* Dropdown nav items — hidden when overlapping, unless force-expanded */}
@@ -545,7 +564,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                           className="grid grid-cols-1 gap-y-0.5 p-4"
                         >
                           {category.sections.flatMap(s => s.items).map((item) => {
-                            const isCluster = category.label === 'Product' && !!PRODUCT_CLUSTERS[item.label];
+                            const isCluster = category.label === t('habos.product') && !!PRODUCT_CLUSTERS[item.label];
                             return (
                             <motion.a
                               key={item.label}
@@ -603,7 +622,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               whileTap={{ scale: 0.97 }}
               className="px-5 py-2 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
             >
-              {brand.ctaLabel}
+              {t('habos.ctaLabel')}
             </motion.button>
             <motion.a
               href="/login"
@@ -612,8 +631,9 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               className="ml-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap shadow-sm"
               style={{ backgroundColor: '#6681a5', color: '#ffffff' }}
             >
-              Beta Login
+              {t('habos.betaLogin')}
             </motion.a>
+        </div>
         </div>
         </>
         )}
@@ -677,7 +697,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                       : 'bg-slate-100 text-slate-600 active:bg-slate-200'
                   }`}
                 >
-                  {page.label}
+                  {clusterPageLabel(page.href)}
                 </Link>
               );
             })}
@@ -687,8 +707,10 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
 
       {/* ── Mega dropdown (outside nav to avoid transform containment) ── */}
       <AnimatePresence>
-        {menuData.map(category =>
-          category.sections.length > 3 && activeDropdown === category.label ? (
+        {menuData.map(category => {
+          if (!(category.sections.length > 3 && activeDropdown === category.label)) return null;
+          const megaClusters = category.sections.map((s, i) => ({ title: s.title ?? '', indices: [i] }));
+          return (
             <div
               key={category.label}
               className="fixed pt-3 z-50 pointer-events-auto"
@@ -769,8 +791,8 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                 </motion.div>
               </motion.div>
             </div>
-          ) : null
-        )}
+          );
+        })}
       </AnimatePresence>
 
       {/* ── Mobile menu overlay ─────────────────────────────────────── */}
@@ -815,7 +837,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                         className="overflow-hidden"
                       >
                         <div className="pb-4">
-                          {category.label === 'Product' ? (
+                          {category.label === t('habos.product') ? (
                             /* Product: show clusters with nested sub-pages */
                             Object.entries(PRODUCT_CLUSTERS).map(([clusterName, cluster]) => (
                               <div key={clusterName} className="mb-1">
@@ -824,7 +846,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                   onClick={() => setMobileClusterExpanded(mobileClusterExpanded === clusterName ? null : clusterName)}
                                   className="w-full flex items-center justify-between px-2 py-3 rounded-xl active:bg-slate-50 transition-colors"
                                 >
-                                  <span className="text-sm font-semibold text-slate-800">{clusterName}</span>
+                                  <span className="text-sm font-semibold text-slate-800">{clusterGroupLabel(clusterName)}</span>
                                   <ChevronDown
                                     size={14}
                                     className={`text-slate-400 transition-transform duration-200 ${
@@ -853,7 +875,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                               : 'text-slate-600 active:bg-slate-50'
                                           }`}
                                         >
-                                          Overview
+                                          {t('mobile.overview')}
                                         </Link>
                                         {/* Sub-page links */}
                                         {cluster.pages.map((page) => (
@@ -923,7 +945,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-3.5 rounded-full text-sm font-semibold bg-slate-900 text-white shadow-lg"
                 >
-                  {brand.ctaLabel}
+                  {t('habos.ctaLabel')}
                 </motion.button>
                 <Link
                   to="/login"
@@ -931,7 +953,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                   className="w-full py-3.5 rounded-full text-sm font-medium text-center"
                   style={{ backgroundColor: '#6681a5', color: '#ffffff' }}
                 >
-                  Beta Login
+                  {t('habos.betaLogin')}
                 </Link>
               </div>
             </div>

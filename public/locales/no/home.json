@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "Den digitale assistenten som rydder tankene dine.",
+    "subheadline": "Fang alt. Organiser ingenting.",
+    "definition": "OPPGAVER  ·  KALENDER  ·  IDÉER  ·  LISTER  ·  EGENDEFINERTE APPER",
+    "cta": "Be om tilgang",
+    "trustText": "Ingenting endres uten din godkjenning.",
+    "watchVideo": "Se video",
+    "endVideo": "Avslutt video",
+    "joinWaitlist": "Bli med på venteliste",
+    "tryAgain": "Prøv igjen"
+  },
+  "problem": {
+    "title": "Den universelle løgnen",
+    "body": [
+      "Vi bærer alle en skjult byrde. Klokken er 14. Du er på vei til neste møte. I hodet jonglerer du en handleliste, en banebrytende idé til et prosjekt, en bekymring for en e-post du sendte, og det faktum at du ikke har drukket nok vann i dag.",
+      "Du kunne stoppet, tatt opp telefonen, låst opp den, åpnet tre forskjellige apper og skrevet alt ned. Men det gjør du ikke. Du sier den universelle løgnen: «Jeg husker det nok.»",
+      "(Det gjør du ikke). Og den mentale støyen blir med deg og stjeler fokuset ditt."
+    ]
+  },
+  "solution": {
+    "title": "En annen refleks",
+    "body": "Nå, forestill deg en annen refleks. I stedet for å bære den byrden, trykker du bare på knappen på klokken (eller telefonen). Du velger ikke ord nøye. Du ser ikke på en skjerm. Du snakker bare."
+  },
+  "demo": {
+    "input": "«Ok, minn meg på å ringe Sara om kontrakten på tirsdag. Jeg er også veldig overveldet av husrenovasjonen, støyen er for mye. Og jeg løp nettopp 5 km på 25 minutter, det føltes bra.»",
+    "caption": "Det høres rotete ut. Det høres menneskelig ut. Det høres ut som deg. Vois lytter til støyen. Men den lagrer signalet."
+  },
+  "adapt": {
+    "title": "Ditt liv, dine bokser",
+    "body": "Trenger du å spore hodepinene dine? Meditasjonsstreken? Barnets morsomme sitater? Bare beskriv det. Vois bygger et egendefinert arbeidsrom for det umiddelbart. Du bygger ikke systemet. Du lever bare i det."
+  },
+  "privacy": {
+    "title": "Ditt sinn, din kontroll",
+    "body": "Vois organiserer tankene dine lokalt og sikkert. Ingenting blir endelig uten din godkjenning. Ingenting deles. Du er den eneste med nøkkelen.",
+    "localFirst": "Lokalt først",
+    "encryptedSync": "Kryptert synkronisering",
+    "privacyIllustrationAlt": "Personvern og kontroll",
+    "enterpriseTitle": "Bedriftssikkerhet i verdensklasse",
+    "enterpriseBody": "Dataene dine er beskyttet av den samme infrastrukturen som verdens største selskaper stoler på. Vi bruker bransjeleдende tjenester for pålitelighet og sikkerhet.",
+    "securityIllustrationAlt": "Bedriftssikkerhet",
+    "awsServers": "AWS-servere",
+    "supabase": "Supabase",
+    "soc2": "SOC 2-sertifisert"
+  },
+  "footer": {
+    "headline": "Et klart sinn. Et strukturert liv.",
+    "subheadline": "Slutt å gjøre det administrative arbeidet i din egen tilværelse. Gi kaoset til Vois. Behold klarheten selv.",
+    "cta": "Start betaen",
+    "tagline": "Rydd tankene dine.",
+    "colProduct": "Produkt",
+    "colSupport": "Support",
+    "colLegal": "Juridisk",
+    "colSocial": "Sosialt",
+    "linkLogin": "Logg inn",
+    "linkDownloadIphone": "Last ned for iPhone",
+    "linkDownloadWatch": "Last ned for Apple Watch",
+    "linkDownloadMac": "Last ned for Mac",
+    "linkHabos": "HABOS for bedrifter",
+    "linkHelpFaq": "Hjelp og FAQ",
+    "linkContactUs": "Kontakt oss",
+    "linkSetupGuide": "Oppsettsveiledning",
+    "linkPrivacyPolicy": "Personvernpolicy",
+    "linkTerms": "Tjenestevilkår",
+    "linkRefund": "Refundpolicy",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "Livet venter ikke på notatappen din.",
+    "p1": "På vei inn i møtet. I dusjen. Halvveis ut døren.",
+    "p2": "En invitasjon. En oppgave. En tanke du ikke har råd til å miste.",
+    "p3": "Du sier til deg selv: «Jeg husker det nok.»",
+    "p4": "(Det gjør du ikke.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "Hent frem i lydens hastighet.",
+    "bodyBefore": "Spør naturlig og få ",
+    "bodyHighlight": "umiddelbare svar",
+    "bodyAfter": ". Din stemmeassistent finner nøyaktig det du trenger fra alt du har fanget."
+  },
+  "faq": {
+    "title": "Vanlige spørsmål",
+    "items": [
+      {
+        "question": "Hva er forskjellen mellom Personlig og Jobb?",
+        "answer": "Personlig er for hverdagslivet — å fange oppgaver, idéer, påminnelser og notater. Jobb legger til møtetranskripsjon, handlingspunkter, samarbeidsverktøy for team og prioritert support."
+      },
+      {
+        "question": "Er stemmedataene mine private?",
+        "answer": "Ja. Vi bruker en lokal-første-arkitektur. Opptakene dine behandles sikkert, og vi bruker ikke dine personlige tanker til å trene offentlige modeller. Hjernen din er din."
+      },
+      {
+        "question": "Kan jeg bytte abonnement eller avbestille når som helst?",
+        "answer": "Absolutt. Du kan oppgradere, nedgradere eller avbestille abonnementet ditt når som helst. Hvis du avbestiller, beholder du tilgangen til slutten av den gjeldende faktureringsperioden."
+      },
+      {
+        "question": "Hva om det ikke fungerer for meg?",
+        "answer": "Vi tilbyr 30 dagers pengene-tilbake-garanti. Hvis Vois ikke hjelper deg å rydde tankene dine i den første måneden, send oss en e-post for full refusjon."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Velg din plan",
+    "subtitle": "Start gratis. Oppgrader når du er klar.",
+    "billingMonthly": "Månedlig",
+    "billingAnnual": "Årlig",
+    "saveLabel": "Spar opptil 40 %",
+    "freePlanTitle": "Gratis",
+    "freePlanDescription": "Prøv det, ingen betalingskort nødvendig",
+    "freePlanPeriod": "for alltid",
+    "freePlanCta": "Last ned gratis",
+    "personalPlanTitle": "Personlig",
+    "personalPlanBadge": "Populær",
+    "personalPlanDescription": "For organisering av hverdagslivet",
+    "personalPlanPeriod": "/mnd",
+    "personalPlanCta": "Bli med på venteliste",
+    "personalPlanNote": "Avbestill når som helst. 30 dagers pengene-tilbake-garanti.",
+    "workPlanTitle": "Jobb",
+    "workPlanDescription": "For fagfolk og team",
+    "workPlanPeriod": "/mnd",
+    "workPlanCta": "Bli med på venteliste",
+    "workPlanNote": "Avbestill når som helst. 30 dagers pengene-tilbake-garanti."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "category": "Filosofia",
+  "title": "Neuvonantajat, jotka ovat eri mieltä",
+  "tagline": "Jokainen muu tekoälytuote lupaa yksimielisyyttä. HABOS lupaa tuottavaa erimielisyyttä. Koska parhaat päätökset syntyvät kuulemalla argumentti, jota et halunnut kuulla.",
+  "heroPlaceholder": "Hero-kuva",
+  "section1": {
+    "heading": "Kyllä-koneen ongelma",
+    "body1": "Useimmat tekoälyassistentit ovat mielistellijöitä. Esitä huono kysymys, saat innokkaan vastauksen. Ehdota virheellistä strategiaa, saat tukevia luettelomerkkejä. Tekoäly on samaa mieltä kanssasi, koska se on optimoitu olemaan hyödyllinen, ja hyödyllisyys on sekoitettu sopimiseen.",
+    "body2": "Se käy sähköpostien kirjoittamiseen. Se on vaarallista liiketoimintapäätöksiä tehtäessä. Perustaja, joka kuulee vain \"loistava idea\", on perustaja, joka kävelee seiniin."
+  },
+  "section2": {
+    "heading": "Strateginen neuvosto",
+    "body": "HABOS ei anna sinulle yhtä tekoälynäkökulmaa. Se antaa sinulle useita — jokainen erilaisella mandaatilla, erilaisella riskinottohalukkuudella ja erilaisilla prioriteeteilla. Kutsumme sitä strategiseksi neuvostoksi."
+  },
+  "advisors": [
+    {
+      "name": "Operatiivinen johtaja",
+      "desc": "Keskittyy toteuttamiseen, aikatauluihin ja resurssirajoituksiin. Kysyy: \"Voimmeko oikeasti tehdä tämän sillä mitä meillä on?\""
+    },
+    {
+      "name": "Strategi",
+      "desc": "Keskittyy pitkän aikavälin asemointiin, markkinadynamiikkaan ja kilpailuetuun. Kysyy: \"Pitäisikö meidän ylipäätään tehdä tämä?\""
+    },
+    {
+      "name": "Vastustaja",
+      "desc": "Tarkoituksella väittää vastakkaista kantaa. Testaa oletuksia. Kysyy: \"Entä jos olet väärässä tässä?\""
+    },
+    {
+      "name": "Asiakkaan ääni",
+      "desc": "Edustaa asiakkaidesi näkökulmaa CRM-datan, palautteen ja keskusteluhistorian perusteella. Kysyy: \"Mitä asiakkaasi oikeasti haluaisivat?\""
+    }
+  ],
+  "councilPlaceholder": "Neuvoston väittelyn visualisointi",
+  "section3": {
+    "heading": "Strukturoitu erimielisyys",
+    "body1": "Kun tuot päätöksen neuvostolle — \"Pitäisikö meidän laajentua Bergensiin?\" tai \"Pitäisikö meidän palkata toinen teknikko?\" — et saa yhtä vastausta. Saat strukturoidun väittelyn. Jokainen neuvonantaja esittää kantansa, vastaa toisille ja tuo esiin riskejä, joita muut eivät maininneet.",
+    "body2": "Tulos ei ole suositus. Se on päätöstiivistelmä: vahvimmat argumentit puolesta ja vastaan, keskeiset epävarmuudet, tärkeimmät datapisteet ja kysymykset, joihin sinun pitäisi vastata ennen sitoutumista. Sinä teet päätöksen. Neuvosto varmistaa, että olet kuullut kaiken ensin."
+  },
+  "section4": {
+    "heading": "Miksi tämä on vaikeampaa kuin miltä kuulostaa",
+    "body1": "Tekoälyn rakentaminen, joka väittelee itsensä kanssa, on aidosti haastavaa. Se edellyttää kunkin neuvonantajan antamista erillisellä päättelykehyksellä, niiden estämistä luisumasta yksimielisyyteen, niiden argumenttien perustan luomista todellisesta liiketoimintadatastasi ja erimielisyyden esittämistä tavalla, joka on hyödyllinen eikä hämmentävä.",
+    "body2": "Useimmat tekoälyyritykset eivät yritä sitä, koska yksimielisyys on helpompi toimittaa ja markkinoida. Mutta yksimielisyys on myös vähemmän arvokasta. Neuvonantajien koko pointti on se, että he näkevät asioita, joita sinä et näe — myös asioita, joita et halua nähdä."
+  },
+  "section5": {
+    "heading": "Kalibroitu liiketoimintaasi",
+    "body1": "Neuvosto ei ole geneerinen. Operatiivinen johtaja tietää tiimisi todellisen kapasiteetin, koska se lukee resurssidataasi. Strategi tietää kilpailutilanteesi, koska se lukee markkina-analyysiäsi. Asiakkaan ääni tietää asiakkaidesi todelliset huolet, koska se lukee CRM:äsi ja tukitickettejäsi.",
+    "body2": "Kuuden kuukauden jälkeen neuvoston argumentit perustuvat malleihin nimenomaisesta liiketoiminnastasi — ei teoreettisiin MBA-kehyksiin."
+  },
+  "quote": "\"Vaarallisin asia, jonka tekoäly voi tehdä, on kertoa sinulle mitä haluat kuulla. Arvokkain asia, jonka se voi tehdä, on kertoa sinulle mitä sinun täytyy kuulla.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Sinun äänesi, ei meidän",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Kertautuva muisti"
+  }
+}

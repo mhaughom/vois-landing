@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Oplossingen — Creatieve bedrijven",
+    "title": "Besteed je tijd aan creëren.\u00a0Niet aan administreren.",
+    "subtitle": "Klantbeheer, projectregistratie, voorstellen, facturering en teamcoördinatie — geregeld.",
+    "description": "Bureaus, studio's, fotografen, videografen, freelance schrijvers, eventplanners, architecten en elk bedrijf waar het werk creatief is maar alles eromheen een sleur is."
+  },
+  "body": {
+    "caseStudyLabel": "Casestudy",
+    "section1": {
+      "heading": "Hoe een bureau van 6 personen in Bergen 12 uur per week terugwon",
+      "p1": "Marte runt een digitaal bureau. Zes mensen. Branding, sociale media, webdesign. Haar klanten zijn middelgrote Noorse bedrijven die snelle communicatie en hoogwaardige creatieve output verwachten. Haar probleem was niet het creatieve werk. Het was alles eromheen."
+    },
+    "section2": {
+      "heading": "De situatie ervoor",
+      "p1": "Maandagochten begonnen met een statusvergadering van twee uur. Niet omdat het team traag was — maar omdat niemand kon zien waar een project stond zonder het te vragen. Asana had takenlijsten. Notion had vergadernotities. Toggl had uren. Het CRM had klantgegevens. Slack had de feitelijke gesprekken. Een volledig beeld van een project krijgen betekende vijf tools controleren.",
+      "p2": "Een klant zou om 23:00 uur reageren op een voorstel. Voordat Marte drie zinnen terug kon schrijven, moest ze het originele voorstel in Google Docs controleren, het budget in een spreadsheet en de beschikbaarheid van haar team in Asana. Vier tabbladen. Vijftien minuten. Voor een e-mail van drie zinnen.",
+      "p3": "Facturering was het ergste. Uren stonden in Toggl. Deliverables stonden in Asana. Contractvoorwaarden stonden in een e-mailbijlage van drie maanden geleden. De facturen waren bij benadering. Ze rekende te weinig aan of moest lastige gesprekken voeren.",
+      "p4": "En potentiële klanten? Wanneer iemand vroeg \"kun je voorbeelden sturen van vergelijkbaar werk?\" — het vinden van casestudies via Google Drive, Dropbox en oude e-mailthreads duurde vijfenveertig minuten. Ze beloofde ze einde van de dag te sturen en leverde twee dagen later."
+    },
+    "section3": {
+      "heading": "Het kantelpunt",
+      "p1": "Marte stapte over naar HABOS. Niet vanwege één functie, maar omdat ze het zat was een systeembeheerder te zijn in plaats van een creatief directeur.",
+      "p2": "Het eerste dat veranderde waren de klantgesprekken. HABOS genereert vóór elk gesprek een vergaderbriefing — eerdere notities, projectstatus, openstaande beslissingen. Tijdens het gesprek legt live transcriptie alles vast. Daarna: actiepunten automatisch geëxtraheerd, toegewezen aan de juiste mensen, gekoppeld aan het project. De klant krijgt binnen tien minuten een follow-up e-mail met een samenvatting van beslissingen, opgesteld in Martes stem.",
+      "highlight": {
+        "label": "Het moment dat haar overtuigde",
+        "voiceNote": "\"VOIS, zoek voor mij alles over projecten vergelijkbaar met de Andersson-aanvraag — sociale mediacampagnes voor voedselbedrijven, afgelopen twee jaar.\"",
+        "result": "Drie seconden. Twee casestudies, een voorstelsjabloon en een tijdlijn van een vergelijkbaar project. Alles gevonden in documenten, projectrecords, voorstellen en vergadertranscripties."
+      }
+    },
+    "section4": {
+      "heading": "De situatie erna",
+      "p1": "De maandagse statusvergadering is verdwenen. Vervangen door een dashboard-check van vijf minuten. Elk project toont zijn gezondheid, blokkades en volgende mijlpalen. De vergadering die het vervangt is vijfentwintig minuten van echte beslissingen.",
+      "p2": "Facturering duurt minuten, niet uren. Tijdregistratie is gekoppeld aan projecten. Deliverables worden afgevinkt in mijlpalen. Contractvoorwaarden staan in het CRM-record. De factuur wordt gegenereerd met de juiste regelitems, factureerbare uren en betalingstermijnen. Één tik om te versturen.",
+      "p3": "Voorstellen die vroeger een dag duurden, duren nu een uur. Beschrijf het project in een stemnotitie en HABOS stelt een voorstel op op basis van eerdere projectgegevens en prijzen.",
+      "p4": "Klanten merkten het verschil voor Martes team dat deed. Snellere reacties. Betere opvolging. Een klantportaal waar ze de projectvoortgang kunnen zien, deliverables kunnen goedkeuren en rechtstreeks met het team kunnen communiceren. Geen \"kun je me een update sturen?\"-e-mails meer."
+    },
+    "section5": {
+      "heading": "De resultaten",
+      "stats": [
+        ["12 uur", "bespaard per week op administratie"],
+        ["90%", "snellere doorlooptijd voorstellen"],
+        ["$200+", "maandelijks bespaard op tools"],
+        ["0", "verloren projectkennis"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"We brachten maandagochten door in een statusvergadering van 2 uur alleen maar om te achterhalen waar elk project stond. Nu controleren we het dashboard in 5 minuten en gaan we meteen aan het werk. De AI-vergadernotities alleen al bespaarden ons 6 uur per week — en onze klanten merkten dat we sneller reageren.\"",
+      "attribution": "— Marte, 34 · Digitaal bureau · 6 mensen · Bergen"
+    },
+    "cta": {
+      "heading": "Ga terug naar het werk waarvoor je dit bedrijf begon.",
+      "button": "Aanmelden voor wachtlijst"
+    }
+  }
+}

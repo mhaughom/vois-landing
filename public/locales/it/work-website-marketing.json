@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Sito Web e Marketing",
+  "hero": {
+    "title": "Il Tuo Brand, Amplificato dall'AI",
+    "description": "Crea siti web, produci contenuti e lancia campagne — tutto alimentato dai dati della tua azienda, non da template generici."
+  },
+  "items": [
+    {
+      "title": "Website Builder",
+      "desc": "Descrivi la tua attività, ottieni un sito web — l'AI scrive il testo, connette pagamenti e prenotazioni."
+    },
+    {
+      "title": "Creative Studio",
+      "desc": "Genera contenuti marketing che corrispondono al tuo brand dal contesto della tua azienda."
+    },
+    {
+      "title": "Marketing",
+      "desc": "Campagne email e SMS con testi scritti dall'AI e segmenti di pubblico intelligenti."
+    }
+  ]
+}

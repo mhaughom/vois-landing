@@ -1,0 +1,49 @@
+{
+  "badge": "Betalinger",
+  "hero": {
+    "title": "Kunden betaler. Du får betalt. Direkte.",
+    "description": "Stripe Connect Express indsætter betalinger direkte på din bankkonto. Ingen mellemmand, der holder dine penge. Ingen 30-dages udbetalingsforsinkelser."
+  },
+  "body": "HABOS provisionerer Stripe Connect Express-konti pr. arbejdsområde og muliggør direkte betalinger til virksomhedsejers bank. Kunden betaler på websitet, Stripe debiterer, platformen fratrækker et konfigurerbart programgebyr og resten indsættes direkte på ejerens bankkonto. Fulde og delvise refunderinger håndteres via Stripe med automatisk lagergenoprettelse. Dette er Shopifys model anvendt på en AI-native platform.",
+  "flowNodes": [
+    { "label": "Kunden betaler kr. 700" },
+    { "label": "Stripe behandler" },
+    { "label": "HABOS-gebyr: kr. 35" },
+    { "label": "Du modtager: kr. 665" }
+  ],
+  "flowCaption": "Konfigurerbart programgebyr (standard 5%). Omsætningsflow: Kunde → Stripe → HABOS tager gebyr → rest indsættes på din bank.",
+  "benefits": [
+    {
+      "title": "3-klik opsætning",
+      "desc": "Tilslut din Stripe-konto, gennemfør onboarding (virksomhedsoplysninger, bankinfo, skatte-ID), og du er live. Debiteringer aktiveret, udbetalinger aktiveret."
+    },
+    {
+      "title": "Alle betalingsmetoder",
+      "desc": "Betalingssessioner, fakturaer, betalingslinks, manuelle betalinger og refunderinger — alt via én integration. Fulde og delvise refunderinger med automatisk lagergenoprettelse."
+    },
+    {
+      "title": "Website → betaling → bank",
+      "desc": "Kunden køber på dit HABOS-website. Stripe debiterer kortet. Din del indsættes. Ordren spores. Ingen afstemning nødvendig."
+    }
+  ],
+  "pricing": {
+    "heading": "Sådan fungerer HABOS-prissætning",
+    "tiers": [
+      { "name": "Gratis", "credits": "1.000 AI-kreditter/md", "price": "kr. 0/md" },
+      { "name": "Personlig", "credits": "7.500 AI-kreditter/md", "price": "kr. 99/md" },
+      { "name": "Arbejde", "credits": "17.500 AI-kreditter/md", "price": "kr. 229/md" }
+    ],
+    "topUps": "Plus arbejdsområde-tilkøb (kr. 700–7.000) til teams, der har brug for mere AI-kapacitet."
+  },
+  "techItems": [
+    "Stripe Connect Express",
+    "Konfigurerbare gebyrer",
+    "Webhook-sync",
+    "Fuld + delvis refundering",
+    "RevenueCat til mobil"
+  ],
+  "cta": {
+    "heading": "Andre platforme holder dine penge. HABOS sender dem til din bank.",
+    "button": "Tilmeld venteliste"
+  }
+}

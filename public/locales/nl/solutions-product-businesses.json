@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Oplossingen — Productbedrijven",
+    "title": "Je hele winkel op één plek.",
+    "subtitle": "Producten, bestellingen, voorraad, website, marketing en klantenservice — zonder van app te wisselen.",
+    "description": "Online winkels, detailhandel, handgemaakte producten, voedselproducenten, groothandel, abonnementsdozen en iedereen die fysieke of digitale producten verkoopt."
+  },
+  "body": {
+    "section1": {
+      "heading": "Doe de berekening van je huidige stack",
+      "p1": "Shopify: $39/maand. Mailchimp: $20/maand. Later voor sociale media: $25/maand. Gorgias voor support: $60/maand. Een spreadsheet die je handmatig bijhoudt voor de 'echte' voorraadcijfers. Squarespace voor de website die je apart bijwerkt van je daadwerkelijke productcatalogus. Een plakbriefje dat je herinnert verpakkingsmateriaal te bestellen bij een leverancier wiens nummer in je telefooncontacten staat.",
+      "p2": "Dat is $144 per maand aan software — zonder rekening te houden met de tijd die je besteedt aan het verplaatsen van gegevens tussen alle tools."
+    },
+    "section2": {
+      "heading": "Waar de tijd heen gaat",
+      "p1": "Vier minuten om één \"waar is mijn bestelling?\"-e-mail te beantwoorden. Controleer Shopify voor de bestelling, de bezorgsite voor de tracking, stel de reply op in Gmail met het trackingnummer ingeplakt. Vermenigvuldig met twaalf klanten per dag. Dat zijn achtenveertig minuten voor een taak die door een AI kan worden afgehandeld die al de bestelstatus en het trackingnummer kent.",
+      "p2": "Een hele middag voor een actie. Je e-maillijst staat in Mailchimp. Je aankoopgeschiedenis staat in Shopify. Je sociale inhoud wordt beheerd via Later. Een campagne met 15% korting voor terugkerende klanten betekent het exporteren van gegevens uit één tool, het importeren in een andere en handmatig coördineren via een derde.",
+      "p3": "Een populair artikel raakt uitverkocht omdat de nabestellingsherinnering een e-mail was die je vorige week heeft begraven. Nu versneld bestellen tegen dubbele verzendkosten en ondertussen omzet mislopen."
+    },
+    "section3": {
+      "heading": "Wat er verandert met HABOS",
+      "p1": "Één dashboard. Bestellingen, voorraadniveaus en klantberichten in dezelfde weergave. Wanneer een bezorginquiry binnenkomt, heeft de AI al de bestelstatus en het trackingnummer — het stelt 's nachts de reply op. Je beoordeelt er drie in dertig seconden bij je ochtendkoffie.",
+      "p2": "Wanneer de voorraad laag wordt, markeert HABOS het drie dagen voor je het zou merken. Een inkooporder wordt opgesteld met je vaste leverancier op de vaste hoeveelheid. Je keurt het goed op je telefoon terwijl je naar de lunch loopt.",
+      "voiceNote": "\"VOIS, maak een campagne voor terugkerende klanten — 15% korting, e-mail en Instagram, volgende week.\"",
+      "voiceResult": "AI haalt terugkerende klanten op uit CRM. Stelt e-mailtekst op in jouw merkstem. Suggereert een Instagram-onderschrift met je bestverkochte productfoto. Je past de onderwerpregel aan, tikt op goedkeuren. Vijf minuten.",
+      "p3": "Je website wordt gegenereerd vanuit je daadwerkelijke productcatalogus. Verander een prijs, het wordt bijgewerkt op de site. Voeg een product toe, het verschijnt. Geen apart CMS te onderhouden. Geen synchronisatieproblemen. Geen \"de website zegt $24,99 maar het is nu eigenlijk $29,99.\""
+    },
+    "section4": {
+      "heading": "De nieuwe berekening",
+      "before": {
+        "label": "Ervoor",
+        "price": "$144+/mnd",
+        "note": "6 tools, geen van hen verbonden"
+      },
+      "after": {
+        "label": "Erna",
+        "price": "$35/mnd",
+        "note": "Alles, verbonden"
+      },
+      "stats": [
+        ["8 uur", "bespaard op support/week"],
+        ["5 uur", "bespaard op marketing/week"],
+        ["0", "uitverkocht door gemiste nabestellingen"],
+        ["30 sec", "om een bezorginquiry te beantwoorden"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Ik leefde tegelijkertijd in Shopify, Mailchimp en Google Spreadsheets. Nu controleer ik 's ochtends één dashboard en alles staat er. De AI beantwoordde 6 klant-e-mails terwijl ik bestellingen aan het inpakken was. Mijn retouren zijn gedaald omdat klanten direct antwoord krijgen in plaats van een dag te wachten.\"",
+      "attribution": "— Ingrid, 29 · Nordisch huidverzorgingsmerk · 2 deeltijdse medewerkers"
+    },
+    "cta": {
+      "heading": "Besteed morgen aan het maken van producten, niet aan het beheren van software.",
+      "button": "Aanmelden voor wachtlijst"
+    }
+  }
+}

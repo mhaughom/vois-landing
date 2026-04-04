@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 /* ─── Shared transition constant ──────────────────────────────────────── */
@@ -1423,7 +1424,7 @@ const WIconFinance = ({ c, h }: { c: string; h?: boolean }) => (
   </div>
 );
 
-type AppDef = { label: string; color: string; W: React.FC<{ c: string; h?: boolean }>; price: number; icon?: string };
+type AppDef = { label: string; color: string; W: React.FC<{ c: string; h?: boolean }>; price: number; icon?: string; video?: string; replaces?: string; desc?: string; href?: string };
 
 /* Simple placeholder widget for new apps without custom SVGs */
 const WPlaceholder = (letter: string) => {
@@ -1442,113 +1443,113 @@ const appCategories: AppCategory[] = [
   {
     category: 'Communication & Support',
     items: [
-      { label: 'Email', color: '#3b82f6', W: WIconEmail, price: 6 },
-      { label: 'Messenger', color: '#8b5cf6', W: WChat, price: 15, icon: '/icons/svg/messenger.svg' },
-      { label: 'Phone', color: '#22c55e', W: WIconPhone, price: 25 },
-      { label: 'Tickets', color: '#f59e0b', W: WTag, price: 20, icon: '/icons/svg/tickets.svg' },
-      { label: 'Client Portal', color: '#0ea5e9', W: WPlaceholder('CP'), price: 15 },
+      { label: 'Email', color: '#3b82f6', W: WIconEmail, price: 6, icon: '/icons/png-v2/email.png', video: '/icons/videos/email.webm', replaces: 'Gmail, Outlook, Zoho Mail', desc: 'Full email client with AI-powered reply drafts, threading, and voice email sessions', href: '/work/email' },
+      { label: 'Messenger', color: '#8b5cf6', W: WChat, price: 15, icon: '/icons/png-v2/messenger.png', video: '/icons/videos/messenger.webm', replaces: 'Slack, Teams, WhatsApp Business', desc: 'Real-time team chat with channels, DMs, and cross-module context', href: '/work/messenger' },
+      { label: 'Phone', color: '#22c55e', W: WIconPhone, price: 25, icon: '/icons/png-v2/phone.png', video: '/icons/videos/phone.webm', replaces: 'RingCentral, Dialpad, Aircall', desc: 'Business phone system with call routing, recording, and AI transcription', href: '/work/telephony' },
+      { label: 'Tickets', color: '#f59e0b', W: WTag, price: 20, icon: '/icons/png-v2/tickets.png', video: '/icons/videos/tickets.webm', replaces: 'Zendesk, Freshdesk, Intercom', desc: 'Customer support ticketing with SLA tracking and AI-suggested responses', href: '/work/tickets' },
+      { label: 'Client Portal', color: '#0ea5e9', W: WPlaceholder('CP'), price: 15, icon: '/icons/png-v2/client-portal.png', video: '/icons/videos/client-portal.webm', replaces: 'Custom portals, Copilot, SuiteDash', desc: 'Branded self-service portal for your clients to view projects and invoices' },
     ],
   },
   {
     category: 'Scheduling & Bookings',
     items: [
-      { label: 'Calendar', color: '#6366f1', W: WCalendar, price: 8, icon: '/icons/svg/calendar.svg' },
-      { label: 'Bookings', color: '#ec4899', W: WSlots, price: 25, icon: '/icons/svg/bookings.svg' },
-      { label: 'Scheduling Links', color: '#14b8a6', W: WLink, price: 10, icon: '/icons/svg/scheduling-links.svg' },
-      { label: 'Scheduling Engine', color: '#7c3aed', W: WPlaceholder('SE'), price: 15 },
-      { label: 'Now', color: '#ef4444', W: WPlaceholder('N'), price: 5 },
+      { label: 'Calendar', color: '#6366f1', W: WCalendar, price: 8, icon: '/icons/png-v2/calendar.png', video: '/icons/videos/calendar.webm', replaces: 'Google Calendar, Calendly, Cal.com', desc: 'Smart calendar with AI focus blocks that auto-fill with prioritized tasks', href: '/work/calendar' },
+      { label: 'Bookings', color: '#ec4899', W: WSlots, price: 25, icon: '/icons/png-v2/bookings.png', video: '/icons/videos/bookings.webm', replaces: 'Acuity, Square Appointments, Setmore', desc: 'Online booking with availability management and automatic reminders', href: '/work/bookings' },
+      { label: 'Scheduling Links', color: '#14b8a6', W: WLink, price: 10, icon: '/icons/png-v2/scheduling-links.png', video: '/icons/videos/scheduling-links.webm', replaces: 'Calendly, SavvyCal, TidyCal', desc: 'Shareable booking links with built-in availability and buffer times', href: '/work/scheduling-links' },
+      { label: 'Scheduling Engine', color: '#7c3aed', W: WPlaceholder('SE'), price: 15, icon: '/icons/png-v2/scheduling-engine.png', video: '/icons/videos/scheduling-engine.webm', replaces: 'Motion, Reclaim.ai, Clockwise', desc: 'AI-powered auto-scheduling that places tasks into optimal time blocks' },
+      { label: 'Now', color: '#ef4444', W: WPlaceholder('N'), price: 5, icon: '/icons/png-v2/now.png', video: '/icons/videos/now.webm', replaces: 'Toggl, custom dashboards', desc: 'Real-time view of what’s happening right now across your business' },
     ],
   },
   {
     category: 'Jobs & Field Work',
     items: [
-      { label: 'Dispatch', color: '#f97316', W: WMap, price: 40, icon: '/icons/svg/dispatch.svg' },
-      { label: 'Jobs', color: '#84cc16', W: WIconJobs, price: 30 },
-      { label: 'Routes', color: '#0ea5e9', W: WPath, price: 30, icon: '/icons/svg/routes.svg' },
-      { label: 'Team Map', color: '#d97706', W: WTeamBubbles, price: 10, icon: '/icons/svg/team-map.svg' },
-      { label: 'Driving Logs', color: '#64748b', W: WPlaceholder('DL'), price: 10 },
-      { label: 'Time Tracking', color: '#06b6d4', W: WTimer, price: 10, icon: '/icons/svg/time-tracking.svg' },
+      { label: 'Dispatch', color: '#f97316', W: WMap, price: 40, icon: '/icons/png-v2/dispatch.png', video: "/icons/videos/dispatch.webm", replaces: 'ServiceTitan, Housecall Pro, Jobber', desc: 'Drag-to-assign dispatch board with live crew locations and job status', href: '/work/dispatch' },
+      { label: 'Jobs', color: '#84cc16', W: WIconJobs, price: 30, icon: '/icons/png-v2/jobs.png', video: '/icons/videos/jobs.webm', replaces: 'Jobber, ServiceM8, FieldPulse', desc: 'Full job lifecycle management from quote to completion with field updates', href: '/work/jobs-operations' },
+      { label: 'Routes', color: '#0ea5e9', W: WPath, price: 30, icon: '/icons/png-v2/routes.png', video: '/icons/videos/routes.webm', replaces: 'Google Maps, Route4Me, OptimoRoute', desc: 'Multi-stop route optimization with real-time tracking and ETAs', href: '/work/routes' },
+      { label: 'Team Map', color: '#d97706', W: WTeamBubbles, price: 10, icon: '/icons/png-v2/team-map.png', video: '/icons/videos/team-map.webm', replaces: 'Life360 Business, Timeero', desc: 'Live map showing team member locations, job sites, and travel status', href: '/work/team-map' },
+      { label: 'Driving Logs', color: '#64748b', W: WPlaceholder('DL'), price: 10, icon: '/icons/png-v2/driving-logs.png', video: '/icons/videos/driving-logs.webm', replaces: 'Samsara, KeepTruckin, Motive', desc: 'Automatic drive logging with mileage tracking and compliance reporting' },
+      { label: 'Time Tracking', color: '#06b6d4', W: WTimer, price: 10, icon: '/icons/png-v2/time-tracking.png', video: '/icons/videos/time-tracking.webm', replaces: 'Toggl, Harvest, Clockify', desc: 'One-tap time tracking with project allocation and payroll integration', href: '/work/time-tracking' },
     ],
   },
   {
     category: 'Projects & Tasks',
     items: [
-      { label: 'Projects', color: '#a855f7', W: WKanban, price: 10, icon: '/icons/svg/projects.svg' },
-      { label: 'Tasks', color: '#ef4444', W: WChecks, price: 5, icon: '/icons/svg/tasks.svg' },
-      { label: 'Operations', color: '#64748b', W: WGauges, price: 25, icon: '/icons/svg/operations.svg' },
-      { label: 'Reports', color: '#3b82f6', W: WPieChart, price: 15, icon: '/icons/svg/reports.svg' },
-      { label: 'Playbooks', color: '#14b8a6', W: WPlaybook, price: 15, icon: '/icons/svg/playbooks.svg' },
+      { label: 'Projects', color: '#a855f7', W: WKanban, price: 10, icon: '/icons/png-v2/projects.png', video: '/icons/videos/projects.webm', replaces: 'Asana, Monday.com, Basecamp', desc: 'Kanban boards, timelines, and task dependencies for complex projects', href: '/work/projects' },
+      { label: 'Tasks', color: '#ef4444', W: WChecks, price: 5, icon: '/icons/png-v2/tasks.png', video: '/icons/videos/tasks.webm', replaces: 'Todoist, TickTick, Things 3', desc: 'Personal and team task management with AI-powered priority scoring', href: '/work/tasks' },
+      { label: 'Operations', color: '#64748b', W: WGauges, price: 25, icon: '/icons/png-v2/operations.png', video: '/icons/videos/operations.webm', replaces: 'ServiceTitan, Housecall Pro', desc: 'Health dashboard with compliance scoring and AI-generated corrective actions', href: '/work/operations' },
+      { label: 'Reports', color: '#3b82f6', W: WPieChart, price: 15, icon: '/icons/png-v2/reports.png', video: "/icons/videos/reports.webm", replaces: 'Power BI, Tableau, Google Data Studio', desc: 'Voice-first operational reports with auto-fill and health scoring', href: '/work/reports' },
+      { label: 'Playbooks', color: '#14b8a6', W: WPlaybook, price: 15, icon: '/icons/png-v2/playbooks.png', video: '/icons/videos/playbooks.webm', replaces: 'Trainual, Process Street, Notion', desc: 'Step-by-step SOPs your team follows — searchable by the AI assistant', href: '/work/playbooks' },
     ],
   },
   {
     category: 'Sales & CRM',
     items: [
-      { label: 'CRM', color: '#3b82f6', W: WPeople, price: 25, icon: '/icons/svg/crm.svg' },
-      { label: 'People', color: '#f97316', W: WPeopleGrid, price: 8, icon: '/icons/svg/people.svg' },
-      { label: 'Products', color: '#22c55e', W: WCard, price: 15, icon: '/icons/svg/products.svg' },
-      { label: 'Orders', color: '#f97316', W: WReceipt, price: 20, icon: '/icons/svg/orders.svg' },
-      { label: 'Funnels', color: '#f59e0b', W: WFunnel, price: 20, icon: '/icons/svg/funnels.svg' },
-      { label: 'Forms', color: '#14b8a6', W: WForm, price: 10, icon: '/icons/svg/forms.svg' },
+      { label: 'CRM', color: '#3b82f6', W: WPeople, price: 25, icon: '/icons/png-v2/crm.png', video: "/icons/videos/crm.webm", replaces: 'HubSpot, Salesforce, Pipedrive', desc: 'Contact and deal management with unified relationship timelines', href: '/work/crm' },
+      { label: 'People', color: '#f97316', W: WPeopleGrid, price: 8, icon: '/icons/png-v2/people.png', video: '/icons/videos/people.webm', replaces: 'Contacts app, FullContact', desc: 'Every interaction with a person across all channels in one view', href: '/work/people' },
+      { label: 'Products', color: '#22c55e', W: WCard, price: 15, icon: '/icons/png-v2/products.png', video: '/icons/videos/products.webm', replaces: 'Shopify, Square, Lightspeed', desc: 'Product catalog with variants, pricing tiers, and inventory tracking', href: '/work/products' },
+      { label: 'Orders', color: '#f97316', W: WReceipt, price: 20, icon: '/icons/png-v2/orders.png', video: '/icons/videos/orders.webm', replaces: 'Shopify, WooCommerce, Square', desc: 'Order processing with line items, fulfillment status, and payment tracking' },
+      { label: 'Funnels', color: '#f59e0b', W: WFunnel, price: 20, icon: '/icons/png-v2/funnels.png', video: '/icons/videos/funnels.webm', replaces: 'ClickFunnels, Leadpages, Unbounce', desc: 'Sales funnels with conversion tracking and A/B testing', href: '/work/funnels' },
+      { label: 'Forms', color: '#14b8a6', W: WForm, price: 10, icon: '/icons/png-v2/forms.png', video: '/icons/videos/forms.webm', replaces: 'Typeform, JotForm, Google Forms', desc: 'Custom forms with conditional logic that feed directly into your CRM', href: '/work/forms' },
     ],
   },
   {
     category: 'Money',
     items: [
-      { label: 'Finance', color: '#059669', W: WIconFinance, price: 25 },
-      { label: 'Invoicing', color: '#f59e0b', W: WDoc, price: 20, icon: '/icons/svg/invoicing.svg' },
-      { label: 'Payments', color: '#8b5cf6', W: WPayment, price: 15, icon: '/icons/svg/payments.svg' },
-      { label: 'Purchasing', color: '#b45309', W: WShipping, price: 15, icon: '/icons/svg/purchasing.svg' },
-      { label: 'Shopping', color: '#ec4899', W: WPlaceholder('$'), price: 15 },
+      { label: 'Finance', color: '#059669', W: WIconFinance, price: 25, icon: '/icons/png-v2/finance.png', video: "/icons/videos/finance.webm", replaces: 'QuickBooks, Xero, FreshBooks', desc: 'Revenue tracking, expense management, and financial dashboards', href: '/work/finance' },
+      { label: 'Invoicing', color: '#f59e0b', W: WDoc, price: 20, icon: '/icons/png-v2/invoicing.png', video: '/icons/videos/invoicing.webm', replaces: 'FreshBooks, Wave, Zoho Invoice', desc: 'Professional invoices with online payments and automatic reminders', href: '/work/finance' },
+      { label: 'Payments', color: '#8b5cf6', W: WPayment, price: 15, icon: '/icons/png-v2/payments.png', video: "/icons/videos/payments.webm", replaces: 'Stripe, Square, PayPal', desc: 'Accept payments via card, bank transfer, or payment links', href: '/work/payments' },
+      { label: 'Purchasing', color: '#b45309', W: WShipping, price: 15, icon: '/icons/png-v2/purchasing.png', video: "/icons/videos/purchasing.webm", replaces: 'Procurify, Coupa, manual POs', desc: 'Purchase orders, supplier management, and receiving workflows' },
+      { label: 'Shopping', color: '#ec4899', W: WPlaceholder('$'), price: 15, icon: '/icons/png-v2/shopping.png', video: '/icons/videos/shopping.webm', replaces: 'Shopify, WooCommerce', desc: 'Online storefront with product listings and checkout' },
     ],
   },
   {
     category: 'Voice & Capture',
     items: [
-      { label: 'Voice Notes', color: '#ef4444', W: WWave, price: 8, icon: '/icons/svg/voice-notes.svg' },
-      { label: 'Meeting Notes', color: '#6366f1', W: WMeetingNotes, price: 10, icon: '/icons/svg/meeting-notes.svg' },
-      { label: 'Journal', color: '#f59e0b', W: WPlaceholder('J'), price: 5 },
-      { label: 'Reader', color: '#0891b2', W: WPlaceholder('R'), price: 8 },
-      { label: 'Scraper', color: '#64748b', W: WPlaceholder('Sc'), price: 10 },
+      { label: 'Voice Notes', color: '#ef4444', W: WWave, price: 8, icon: '/icons/png-v2/voice-notes.png', video: '/icons/videos/voice-notes.webm', replaces: 'Otter.ai, Rev, Apple Voice Memos', desc: 'Record → transcribe → auto-route to tasks, events, and notes', href: '/work/voice-notes' },
+      { label: 'Meeting Notes', color: '#6366f1', W: WMeetingNotes, price: 10, icon: '/icons/png-v2/meeting-notes.png', video: '/icons/videos/meeting-notes.webm', replaces: 'Fireflies.ai, Otter.ai, Fellow', desc: 'AI meeting transcription with action items and decision tracking', href: '/work/meeting-notes' },
+      { label: 'Journal', color: '#f59e0b', W: WPlaceholder('J'), price: 5, icon: '/icons/png-v2/journal.png', video: '/icons/videos/journal.webm', replaces: 'Day One, Notion, Apple Notes', desc: 'Personal and business journaling with voice-to-text capture' },
+      { label: 'Reader', color: '#0891b2', W: WPlaceholder('R'), price: 8, icon: '/icons/png-v2/reader.png', video: '/icons/videos/reader.webm', replaces: 'Pocket, Instapaper, Readwise', desc: 'Save and read articles with AI summaries and highlights' },
+      { label: 'Scraper', color: '#64748b', W: WPlaceholder('Sc'), price: 10, icon: '/icons/png-v2/scraper.png', video: '/icons/videos/scraper.webm', replaces: 'Apify, Octoparse, manual research', desc: 'Extract structured data from websites into your business brain', href: '/work/scraper' },
     ],
   },
   {
     category: 'AI & Intelligence',
     items: [
-      { label: 'Assistant', color: '#a855f7', W: WAssistant, price: 20, icon: '/icons/svg/assistant.svg' },
-      { label: 'Brain', color: '#ec4899', W: WNodes, price: 10, icon: '/icons/svg/brain.svg' },
-      { label: 'Agents', color: '#7c3aed', W: WAgent, price: 20, icon: '/icons/svg/agents.svg' },
-      { label: 'Research', color: '#6366f1', W: WSearch, price: 15, icon: '/icons/svg/research.svg' },
-      { label: 'Strategy Analysis', color: '#0d9488', W: WStrategy, price: 30 },
-      { label: 'Knowledge Search', color: '#7c3aed', W: WKnowledge, price: 10 },
-      { label: 'AI Phone & SMS', color: '#16a34a', W: WAIPhone, price: 25 },
+      { label: 'Assistant', color: '#a855f7', W: WAssistant, price: 20, icon: '/icons/png-v2/assistant.png', video: '/icons/videos/assistant.webm', replaces: 'ChatGPT, Copilot, Gemini', desc: 'AI assistant that knows your entire business and takes action', href: '/work/assistant' },
+      { label: 'Brain', color: '#ec4899', W: WNodes, price: 10, icon: '/icons/png-v2/brain.png', video: "/icons/videos/brain.webm", replaces: 'Notion, Obsidian, Mem', desc: 'Semantic search across 19 data sources — find anything in seconds', href: '/work/brain' },
+      { label: 'Agents', color: '#7c3aed', W: WAgent, price: 20, icon: '/icons/png-v2/agents.png', video: "/icons/videos/agents.webm", replaces: 'Custom GPTs, Zapier AI, Make', desc: 'Autonomous AI agents that plan, execute, and report back', href: '/work/agents' },
+      { label: 'Research', color: '#6366f1', W: WSearch, price: 15, icon: '/icons/png-v2/research.png', video: "/icons/videos/research.webm", replaces: 'Perplexity, Google, manual research', desc: 'AI-powered web research with citations and source tracking', href: '/work/research' },
+      { label: 'Strategy Analysis', color: '#0d9488', W: WStrategy, price: 30, icon: '/icons/png-v2/strategy-analysis.png', video: '/icons/videos/strategy-analysis.webm', replaces: 'McKinsey tools, Excel models', desc: 'AI-driven strategy frameworks applied to your real business data' },
+      { label: 'Knowledge Search', color: '#7c3aed', W: WKnowledge, price: 10, icon: '/icons/png-v2/knowledge-search.png', video: '/icons/videos/knowledge-search.webm', replaces: 'Guru, Confluence search, Glean', desc: 'Instant answers from your company’s entire knowledge base' },
+      { label: 'AI Phone & SMS', color: '#16a34a', W: WAIPhone, price: 25, icon: '/icons/png-v2/ai-phone-sms.png', video: '/icons/videos/ai-phone-sms.webm', replaces: 'Bland.ai, Air.ai, OpenPhone', desc: 'AI handles inbound calls and SMS with natural conversation' },
     ],
   },
   {
     category: 'Team & Workspace',
     items: [
-      { label: 'Org Chart', color: '#8b5cf6', W: WTree, price: 5, icon: '/icons/svg/org-chart.svg' },
-      { label: 'Manager Dashboard', color: '#0ea5e9', W: WPlaceholder('MD'), price: 15 },
-      { label: 'Custom Apps', color: '#a855f7', W: WPuzzle, price: 10, icon: '/icons/svg/custom-apps.svg' },
-      { label: 'Automation', color: '#eab308', W: WAutomation, price: 20 },
-      { label: 'Watch', color: '#ef4444', W: WWatch, price: 5, icon: '/icons/svg/watch.svg' },
+      { label: 'Org Chart', color: '#8b5cf6', W: WTree, price: 5, icon: '/icons/png-v2/org-chart.png', video: '/icons/videos/org-chart.webm', replaces: 'Lucidchart, Pingboard, BambooHR', desc: 'Visual team hierarchy with roles, reporting lines, and permissions', href: '/work/org-chart' },
+      { label: 'Manager Dashboard', color: '#0ea5e9', W: WPlaceholder('MD'), price: 15, icon: '/icons/png-v2/manager-dashboard.png', video: '/icons/videos/manager-dashboard.webm', replaces: '15Five, Lattice, custom dashboards', desc: 'Team performance overview with workload and capacity metrics' },
+      { label: 'Custom Apps', color: '#a855f7', W: WPuzzle, price: 10, icon: '/icons/png-v2/custom-apps.png', video: "/icons/videos/custom-apps.webm", replaces: 'Retool, Budibase, AppSheet', desc: 'Build custom internal tools that plug into the HABOS data layer' },
+      { label: 'Automation', color: '#eab308', W: WAutomation, price: 20, icon: '/icons/png-v2/automation.png', video: '/icons/videos/automation.webm', replaces: 'Zapier, Make, n8n', desc: 'If-this-then-that workflows across all modules — no code required' },
+      { label: 'Watch', color: '#ef4444', W: WWatch, price: 5, icon: '/icons/png-v2/watch.png', video: '/icons/videos/watch.webm', replaces: 'Apple Watch apps, standalone', desc: 'Full AI assistant on your wrist with voice commands and action cards', href: '/work/watch' },
     ],
   },
   {
     category: 'Website & Marketing',
     items: [
-      { label: 'Website Builder', color: '#06b6d4', W: WBlocks, price: 20, icon: '/icons/svg/website-builder.svg' },
-      { label: 'Creative Studio', color: '#ec4899', W: WCreative, price: 15, icon: '/icons/svg/creative-studio.svg' },
-      { label: 'Marketing', color: '#f97316', W: WMegaphone, price: 30, icon: '/icons/svg/marketing.svg' },
-      { label: 'Social', color: '#e11d48', W: WSocial, price: 15, icon: '/icons/svg/social.svg' },
+      { label: 'Website Builder', color: '#06b6d4', W: WBlocks, price: 20, icon: '/icons/png-v2/website-builder.png', video: '/icons/videos/website-builder.webm', replaces: 'Wix, Squarespace, WordPress', desc: 'Drag-and-drop website builder with hosting and custom domains', href: '/work/website-builder' },
+      { label: 'Creative Studio', color: '#ec4899', W: WCreative, price: 15, icon: '/icons/png-v2/creative-studio.png', video: "/icons/videos/creative-studio.webm", replaces: 'Canva, Adobe Express, Figma', desc: 'Design social posts, flyers, and brand assets with AI assistance', href: '/work/creative-studio' },
+      { label: 'Marketing', color: '#f97316', W: WMegaphone, price: 30, icon: '/icons/png-v2/marketing.png', video: '/icons/videos/marketing.webm', replaces: 'Mailchimp, HubSpot, ActiveCampaign', desc: 'Email campaigns, automations, and audience segmentation', href: '/work/marketing' },
+      { label: 'Social', color: '#e11d48', W: WSocial, price: 15, icon: '/icons/png-v2/social.png', video: '/icons/videos/social.webm', replaces: 'Buffer, Hootsuite, Later', desc: 'Schedule and publish across social platforms from one dashboard', href: '/work/marketing' },
     ],
   },
   {
     category: 'Content & Files',
     items: [
-      { label: 'Documents', color: '#0891b2', W: WDocBlocks, price: 10, icon: '/icons/svg/documents.svg' },
-      { label: 'Slides', color: '#22c55e', W: WSlide, price: 12, icon: '/icons/svg/slides.svg' },
-      { label: 'Briefs', color: '#06b6d4', W: WBrief, price: 10, icon: '/icons/svg/briefs.svg' },
-      { label: 'Files', color: '#84cc16', W: WFiles, price: 8, icon: '/icons/svg/files.svg' },
+      { label: 'Documents', color: '#0891b2', W: WDocBlocks, price: 10, icon: '/icons/png-v2/documents.png', video: '/icons/videos/documents.webm', replaces: 'Google Docs, Notion, Dropbox Paper', desc: 'Collaborative documents with real-time editing and AI writing', href: '/work/briefs' },
+      { label: 'Slides', color: '#22c55e', W: WSlide, price: 12, icon: '/icons/png-v2/slides.png', video: "/icons/videos/slides.webm", replaces: 'PowerPoint, Google Slides, Pitch', desc: 'AI-generated presentations from your business data and notes', href: '/work/slides' },
+      { label: 'Briefs', color: '#06b6d4', W: WBrief, price: 10, icon: '/icons/png-v2/briefs.png', video: '/icons/videos/briefs.webm', replaces: 'Notion, Confluence, Google Docs', desc: 'Structured summaries with key points, decisions, and action items', href: '/work/briefs' },
+      { label: 'Files', color: '#84cc16', W: WFiles, price: 8, icon: '/icons/png-v2/files.png', video: "/icons/videos/files.webm", replaces: 'Google Drive, Dropbox, Box', desc: 'File storage and sharing with search and version history', href: '/work/files' },
     ],
   },
 ];
@@ -1784,6 +1785,7 @@ export const AppGridBox: React.FC = () => {
   const { t } = useTranslation('app-grid-box');
   const appLabels = t('apps', { returnObjects: true }) as Record<string, string>;
   const appLabel = (key: string) => appLabels[key] ?? key;
+  const navigate = useNavigate();
   const [absorbed, setAbsorbed] = useState<Set<string>>(new Set());
   const [absorbing, setAbsorbing] = useState<Set<string>>(new Set());
   const [descending, setDescending] = useState<Set<string>>(new Set());
@@ -1883,7 +1885,7 @@ export const AppGridBox: React.FC = () => {
               <motion.div
                 key={app.label}
                 ref={(el) => { if (el) cardRefs.current.set(app.label, el); }}
-                className="relative select-none w-[88px] sm:w-[100px]"
+                className="relative select-none w-[58px] sm:w-[68px]"
                 style={{
                   zIndex: flying ? (descending.has(app.label) ? 20 : 50) : 10,
                   visibility: gone ? 'hidden' : 'visible',
@@ -1907,11 +1909,43 @@ export const AppGridBox: React.FC = () => {
                   const r = e.currentTarget.getBoundingClientRect();
                   setHoverRect({ x: r.left + r.width / 2, y: r.top, w: r.width, h: r.height });
                   setHoveredApp(app);
+                  // Lazy video: inject on first hover, remove on leave
+                  if (app.video) {
+                    const container = e.currentTarget.querySelector('.icon-container');
+                    if (container && !container.querySelector('video')) {
+                      const vid = document.createElement('video');
+                      vid.src = app.video;
+                      vid.muted = true;
+                      vid.playsInline = true;
+                      vid.style.cssText = 'position:absolute;left:6px;right:6px;top:4px;bottom:16px;width:calc(100% - 12px);height:calc(100% - 20px);object-fit:contain;z-index:1;opacity:0;';
+                      container.appendChild(vid);
+                      // Hide PNG only after first frame is decoded
+                      const img = container.querySelector('img');
+                      vid.addEventListener('playing', () => {
+                        vid.style.opacity = '1';
+                        if (img) img.style.visibility = 'hidden';
+                      }, { once: true });
+                      vid.play().catch(() => {});
+                      let loops = 0;
+                      vid.addEventListener('ended', () => { loops++; if (loops < 2) { vid.currentTime = 0; vid.play().catch(() => {}); } });
+                    }
+                  }
                 }}
-                onMouseLeave={() => setHoveredApp(null)}
+                onMouseLeave={(e) => {
+                  setHoveredApp(null);
+                  // Remove lazy video
+                  const container = e.currentTarget.querySelector('.icon-container');
+                  if (container) {
+                    const vid = container.querySelector('video');
+                    if (vid) { vid.pause(); vid.remove(); }
+                    const img = container.querySelector('img');
+                    if (img) img.style.visibility = '';
+                  }
+                }}
+                onClick={() => { if (app.href) navigate(app.href); }}
               >
                 <div
-                  className="w-full aspect-square rounded-xl overflow-hidden border bg-white shadow-sm cursor-pointer transition-all group/card"
+                  className="w-full aspect-square rounded-xl overflow-hidden border bg-white shadow-sm cursor-pointer transition-all group/card hover:scale-105 hover:shadow-md"
                   style={{
                     borderColor: `${app.color}20`,
                     transition: 'transform 0.25s ease, box-shadow 0.25s ease',
@@ -1919,20 +1953,20 @@ export const AppGridBox: React.FC = () => {
                 >
                   {/* SVG illustration */}
                   {app.icon ? (
-                    <div className="w-full h-full flex items-center justify-center p-2 relative">
+                    <div className="icon-container w-full h-full flex items-center justify-center px-1.5 pt-1 pb-4 relative overflow-hidden">
+                      {/* Static PNG — hidden instantly when video plays */}
                       <img
                         src={app.icon}
                         alt={app.label}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover/card:scale-110"
+                        className="w-full h-full object-contain"
                         draggable={false}
                       />
+                      {/* Video — created on hover via JS, not in DOM */}
                       {/* Hover glow */}
                       <div
                         className="absolute inset-0 rounded-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none"
                         style={{ background: `radial-gradient(circle at 50% 45%, ${app.color}12 0%, transparent 70%)` }}
                       />
-                      {/* Per-icon hover overlays */}
-                      <HoverOverlay label={app.label} color={app.color} hovered={hoveredApp?.label === app.label} />
                     </div>
                   ) : (
                     <app.W c={app.color} h={hoveredApp?.label === app.label} />
@@ -1954,18 +1988,47 @@ export const AppGridBox: React.FC = () => {
         {/* Hover popup */}
         <AnimatePresence>
           {hoveredApp && hoverRect && (() => {
-            const popW = 400;
+            const popW = Math.min(480, Math.max(280, vw * 0.35));
             const vw = typeof window !== 'undefined' ? window.innerWidth : 1200;
-            let left = hoverRect.x - popW / 2;
-            left = Math.max(12, Math.min(left, vw - popW - 12));
-            const above = hoverRect.y - 16;
-            const placeAbove = above > 300;
-            const top = placeAbove ? undefined : hoverRect.y + hoverRect.h + 12;
-            const bottom = placeAbove ? (typeof window !== 'undefined' ? window.innerHeight - above : 400) : undefined;
+            const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
+            const spaceAbove = hoverRect.y - 16;
+            const spaceBelow = vh - (hoverRect.y + hoverRect.h + 16);
+            const spaceRight = vw - (hoverRect.x + hoverRect.w / 2 + 16);
+            const spaceLeft = hoverRect.x - hoverRect.w / 2 - 16;
+
+            // Prefer above/below, fall back to side
+            let top: number | undefined;
+            let bottom: number | undefined;
+            let left: number;
+            let initY = 0;
+
+            if (spaceAbove > 320) {
+              // Place above
+              bottom = vh - spaceAbove;
+              left = Math.max(12, Math.min(hoverRect.x - popW / 2, vw - popW - 12));
+              initY = 8;
+            } else if (spaceBelow > 320) {
+              // Place below
+              top = hoverRect.y + hoverRect.h + 12;
+              left = Math.max(12, Math.min(hoverRect.x - popW / 2, vw - popW - 12));
+              initY = -8;
+            } else if (spaceRight > popW + 20) {
+              // Place to the right
+              left = hoverRect.x + hoverRect.w / 2 + 16;
+              top = Math.max(12, Math.min(hoverRect.y - 60, vh - 400));
+              initY = 0;
+            } else {
+              // Place to the left
+              left = hoverRect.x - hoverRect.w / 2 - popW - 16;
+              left = Math.max(12, left);
+              top = Math.max(12, Math.min(hoverRect.y - 60, vh - 400));
+              initY = 0;
+            }
+
             return (
               <motion.div
                 key={hoveredApp.label}
-                initial={{ opacity: 0, y: placeAbove ? 8 : -8, scale: 0.97 }}
+                initial={{ opacity: 0, y: initY, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.18 }}
@@ -1973,22 +2036,26 @@ export const AppGridBox: React.FC = () => {
                 style={{ left, top, bottom, width: popW }}
               >
                 <div className="rounded-2xl border bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden" style={{ borderColor: `${hoveredApp.color}30` }}>
-                  <div className="px-5 pt-4 pb-3 border-b flex items-center gap-3" style={{ borderColor: `${hoveredApp.color}15` }}>
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${hoveredApp.color}12` }}>
-                      <hoveredApp.W c={hoveredApp.color} />
+                  {/* Header with icon, name, and replaces tags */}
+                  <div className="px-5 pt-4 pb-3 border-b" style={{ borderColor: `${hoveredApp.color}10` }}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="flex-1">
+                        <h3 className="text-base font-semibold text-slate-900">{hoveredApp.label}</h3>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900">{appLabel(hoveredApp.label)}</h3>
-                      <p className="text-xs text-slate-400">{t('standalone', { price: hoveredApp.price })}</p>
-                    </div>
+                    <p className="text-xs text-slate-400">{hoveredApp.replaces ? `Replaces: ${hoveredApp.replaces} — ` : ''}~${hoveredApp.price}/mo</p>
                   </div>
-                  <div className="px-5 py-5">
-                    <div className="space-y-2">
-                      <div className="h-2.5 rounded-full w-4/5" style={{ background: `${hoveredApp.color}12` }} />
-                      <div className="h-2.5 rounded-full w-full" style={{ background: `${hoveredApp.color}08` }} />
-                      <div className="h-2.5 rounded-full w-3/5" style={{ background: `${hoveredApp.color}08` }} />
+                  {/* Description + video preview space */}
+                  <div className="px-5 py-4">
+                    {hoveredApp.desc && (
+                      <p className="text-sm text-slate-600">{hoveredApp.desc}</p>
+                    )}
+                    {/* Video preview area — reserved space */}
+                    <div className="mt-3 aspect-video rounded-lg overflow-hidden" style={{ background: `${hoveredApp.color}06` }}>
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-xs text-slate-300 italic">Preview coming soon</span>
+                      </div>
                     </div>
-                    <p className="text-center text-xs text-slate-300 mt-4 italic">{t('previewComingSoon')}</p>
                   </div>
                 </div>
               </motion.div>

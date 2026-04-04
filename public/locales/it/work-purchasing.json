@@ -1,0 +1,62 @@
+{
+  "badge": "Acquisti",
+  "hero": {
+    "title": "Fornitori, Ordini e Scorte.\nConnessi.",
+    "description": "Gestisci fornitori, crea ordini di acquisto, ricevi merci e osserva i livelli delle scorte aggiustarsi automaticamente — niente fogli di calcolo, nessuna doppia inserzione."
+  },
+  "mockPO": {
+    "title": "OA #0042 — Nordic Supply Co",
+    "status": "In attesa di consegna",
+    "tableHeaders": {
+      "item": "Articolo",
+      "qty": "Qtà",
+      "unit": "Unità",
+      "total": "Totale"
+    },
+    "lineItems": [
+      { "product": "Raccordi flessibili x20", "qty": 20, "unit": "$17,00", "total": "$340" },
+      { "product": "Tubo in rame 15mm x50m", "qty": 50, "unit": "$17,80", "total": "$890" },
+      { "product": "Scatole sigillante x12", "qty": 12, "unit": "$13,00", "total": "$156" }
+    ],
+    "totalsRow": {
+      "total": "Totale: $1.386",
+      "lineCount": "3 voci"
+    },
+    "received": {
+      "heading": "Ricevuto (2 di 3)",
+      "items": [
+        { "product": "Raccordi flessibili x20", "checked": true },
+        { "product": "Tubo in rame 15mm x50m", "checked": true },
+        { "product": "Scatole sigillante x12", "checked": false }
+      ]
+    },
+    "annotation": "Gli ordini di acquisto si collegano direttamente al tuo catalogo prodotti. La ricezione aggiorna le scorte in tempo reale — anche per le consegne parziali."
+  },
+  "benefits": [
+    {
+      "title": "Rubrica fornitori",
+      "desc": "Traccia fornitori, dati di contatto, termini di pagamento e cronologia ordini. Sai chi consegna cosa e quando."
+    },
+    {
+      "title": "Ordini di acquisto",
+      "desc": "Crea OA da avvisi di scorte basse o richieste manuali. Le voci si collegano al tuo catalogo prodotti."
+    },
+    {
+      "title": "Ricezione e scorte",
+      "desc": "Segna gli articoli come ricevuti. I livelli delle scorte si aggiornano automaticamente. Le consegne parziali vengono tracciate."
+    }
+  ],
+  "scenario": "Il tuo magazzino segnala scorte basse di raccordi flessibili. VOIS crea una bozza OA al tuo fornitore preferito con le quantità e i prezzi giusti dal tuo ultimo ordine. Approvi con un tocco. Quando arriva la consegna, il tuo team segna gli articoli come ricevuti e l'inventario si aggiorna immediatamente.",
+  "techItems": [
+    "Gestione fornitori",
+    "Ordini di acquisto",
+    "Ricezione parziale",
+    "Aggiustamento automatico scorte",
+    "Tracciamento fatture",
+    "Avvisi scorte basse"
+  ],
+  "cta": {
+    "title": "Dal riordino al rifornimento.\nUn unico sistema.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

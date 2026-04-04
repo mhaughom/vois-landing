@@ -1,0 +1,65 @@
+{
+  "badge": "Markedsføringshub",
+  "hero": {
+    "title": "Fra strategi til inntekt. Én plattform.",
+    "description": "Definer merkevarestemme og posisjonering én gang. Hver kampanje, kreativ og mulighet forankres automatisk til strategien din. Spor attribusjon fra første klikk til avsluttet avtale."
+  },
+  "body": "Definer merkevarestemmen din, posisjonering, mål-ICPer og bevispoenger én gang – hver kampanje, kreativ ressurs og mulighet forankres automatisk til strategiprofilen din. Systemet analyserer kontinuerlig markedet, konkurrenter og ytelsesdata for å avdekke muligheter du ville gå glipp av: prisgap, trendskifter og gjenbruksvinkler. Anonyme besøkssesjoner spores fra første klikk til konvertering, slik at du kan se hvilken kreativ, kampanje og kanal som drev hvert lead, booking og bestilling.",
+  "dashboard": {
+    "activeCampaigns": {
+      "label": "Aktive kampanjer",
+      "count": "3",
+      "campaigns": ["Vår HVAC-kampanje", "Nødtjenester", "Anbefalingsprogram"]
+    },
+    "attribution": {
+      "label": "Pipeline-attribusjon",
+      "revenue": "kr 1 270 000 i inntekter sporet",
+      "channels": [
+        { "name": "Nettsted 45%" },
+        { "name": "E-post 30%" },
+        { "name": "Sosialt 25%" }
+      ]
+    },
+    "opportunities": {
+      "label": "AI-muligheter",
+      "items": [
+        { "tag": "Gap", "text": "Konkurrentgap: posisjonering av nødrespons" },
+        { "tag": "Trend", "text": "Etterspørsel etter smarthemintegrasjon +40%" }
+      ]
+    },
+    "creative": {
+      "label": "Kreativ pipeline",
+      "summary": "12 ressurser til gjennomgang",
+      "approved": "8 godkjent",
+      "pending": "3 ventende",
+      "revision": "1 revisjon"
+    },
+    "caption": "9 dashbord i ett: strategi, kampanjer, kringkastinger, trakter, bevisressurser, kreativ, kalender og ROI-analyse."
+  },
+  "benefits": [
+    {
+      "title": "AI-mulighetsoppdagelse",
+      "desc": "Systemet analyserer markedet, konkurrenter og ytelsesdata for å avdekke muligheter – trendskifter, konkurrentgap og gjenbruksvinkler du ellers ville gått glipp av."
+    },
+    {
+      "title": "Flerberøringsattribusjon",
+      "desc": "Anonyme besøkssesjoner spores fra første klikk til konvertering. Se hvilken kreativ, kampanje og kanal som drev hvert lead, booking og bestilling."
+    },
+    {
+      "title": "Tilbudsorkestrasjon",
+      "desc": "Koble produkter til kampanjer med dynamisk prising – prosentrabatt, fastpris, bunter. Kontroller hvor og når tilbud vises på tvers av alle markedsflater."
+    }
+  ],
+  "scenario": "Konkurrenten din har nettopp økt prisene på nødrørleggerarbeid. HABOS avdekker en AI-mulighet: «Gap i nødserviceprising – konkurrenter har i snitt kr 1 950/oppdrag, du er på kr 1 500. Anbefaling: øk til kr 1 750 og kjør en «24/7 Nød»-kampanje.» Du klikker «Opprett kampanje» – den er forhåndsutfylt med mulighetsdataene, koblet til nødservice-produktet ditt og klar til publisering.",
+  "techItems": [
+    "Strategiforankring",
+    "9-dashbord kommandosenter",
+    "Flerberøringsattribusjon",
+    "AI-mulighetsscoring",
+    "Lukket inntektsloop"
+  ],
+  "cta": {
+    "heading": "Andre markedsføringsverktøy sporer kampanjer. HABOS kobler kampanjer til inntekter.",
+    "button": "Bli med på ventelisten"
+  }
+}

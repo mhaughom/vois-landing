@@ -1,0 +1,69 @@
+{
+  "badge": "Visibilidade em Tempo Real",
+  "hero": {
+    "title": "Veja Toda a Sua Equipe. Em Tempo Real.",
+    "description": "Cada trabalhador de campo em um mapa ao vivo — codificado por cores por projeto, departamento ou operação. Saiba quem está dirigindo, quem está no local e quem está disponível."
+  },
+  "body": "Cada membro da equipe que registrou entrada aparece em um mapa ao vivo do Mapbox, atualizado a cada 30 segundos via Supabase Realtime. Quando a velocidade de um trabalhador excede 3 km/h, um distintivo âmbar de direção aparece no marcador — os gerentes sabem instantaneamente quem está entre trabalhos. Cinco modos de agrupamento permitem que você visualize por projeto, departamento, operações, nível organizacional ou todos ao mesmo tempo, cada um com uma paleta de cores determinística para que a mesma pessoa sempre receba a mesma cor.",
+  "groupTabs": ["Todos", "Projeto", "Departamento", "Operações"],
+  "pins": [
+    {
+      "name": "Mike T.",
+      "label": "No local — Henderson",
+      "speed": 0
+    },
+    {
+      "name": "Sarah L.",
+      "label": "A caminho — Wilson",
+      "sublabel": "(dirigindo)",
+      "speed": 45
+    },
+    {
+      "name": "James K.",
+      "label": "No local — Garcia",
+      "speed": 0
+    },
+    {
+      "name": "Lisa M.",
+      "label": "Disponível",
+      "sublabel": "Último: Escritório Baker",
+      "speed": 0
+    }
+  ],
+  "mapCaption": "Atualizado a cada ~30 segundos via Supabase Realtime. Distintivo de direção aparece quando a velocidade > 3 km/h.",
+  "benefits": {
+    "grouping": {
+      "title": "5 modos de agrupamento",
+      "description": "Visualize por Todos, Projeto, Departamento, Operações ou Nível Organizacional. Cada um com paleta de cores determinística — mesma pessoa, mesma cor, sempre."
+    },
+    "driving": {
+      "title": "Detecção de direção",
+      "description": "Quando a velocidade de um trabalhador excede 3 km/h, um distintivo âmbar de carro aparece no marcador. Os gerentes veem instantaneamente quem está entre trabalhos."
+    },
+    "route": {
+      "title": "Sobreposição de rota",
+      "description": "Alterne polilíneas de rota da API de Direções do Mapbox. Veja a rota planejada versus a localização real — detecte desvios ou atrasos imediatamente."
+    }
+  },
+  "scenario": {
+    "quote1": "O vazamento está piorando, alguém pode vir mais cedo?",
+    "narrative1": "Você abre o Mapa da Equipe, vê que o Mike está a 10 minutos e terminando seu trabalho atual. Você reatribui a emergência ao Mike no quadro de despacho. O celular dele é atualizado, o marcador no mapa muda para",
+    "quote2": "A caminho — Johnson,",
+    "narrative2": "e você diz ao cliente:",
+    "quote3": "O Mike estará aí em 15 minutos.",
+    "narrative3": "Sem suposições, sem telefonemas."
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox GL",
+      "Supabase Realtime",
+      "Atualização a cada ~30s",
+      "Waypoints de GPS",
+      "Paleta de cores determinística"
+    ]
+  },
+  "cta": {
+    "heading": "Outras ferramentas mostram onde os trabalhadores estavam. O HABOS mostra onde eles estão.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

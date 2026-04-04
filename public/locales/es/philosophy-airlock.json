@@ -1,0 +1,76 @@
+{
+  "category": "Filosofía",
+  "title": "La Esclusa",
+  "tagline": "La IA propone. Usted decide.",
+  "heroAlt": "La Esclusa",
+  "section1": {
+    "heading": "El problema del que nadie habla",
+    "body1": "Lo más peligroso de la IA no es que cometa errores. Es que actúa antes de que usted pueda verificar. Un bot de ventas ofrece un descuento del 40% que viola la política de márgenes. Un sistema de reservas hace doble programación porque optimizó la densidad sin considerar el tiempo de conducción. Esto no son hipótesis.",
+    "body2": "Solo el 6% de las empresas afirma confiar plenamente en los agentes de IA autónomos. El otro 94% tiene razón en ser cauteloso. Nosotros construimos lo contrario: cada acción que toma la IA pasa por lo que llamamos la Esclusa — una vista previa obligatoria donde usted ve exactamente lo que está a punto de suceder antes de que suceda."
+  },
+  "section2": {
+    "heading": "La comparación"
+  },
+  "comparison": [
+    { "action": "Envío de correo electrónico", "auto": "Enviado de inmediato. El CEO encuentra una errata después de que 200 personas lo leyeron.", "airlock": "El borrador aparece como una tarjeta. Corrige la errata y toca enviar." },
+    { "action": "Cambios en el calendario", "auto": "Doble reserva el martes — no verificó su calendario personal.", "airlock": "La vista previa muestra el conflicto. Usted elige el horario correcto." },
+    { "action": "Creación de tareas", "auto": "14 tareas de una reunión. 6 son duplicados.", "airlock": "Lista propuesta. Fusiona dos, elimina una, aprueba el resto." },
+    { "action": "Comunicación con clientes", "auto": "Responde con un cupón que ya no ofrece.", "airlock": "La respuesta aparece como vista previa. Ajusta la oferta y luego envía." }
+  ],
+  "tableHeaders": {
+    "action": "Acción",
+    "auto": "Totalmente autónomo",
+    "airlock": "La Esclusa"
+  },
+  "section3": {
+    "heading": "No es un patrón de interfaz. Es un protocolo de seguridad.",
+    "body": "Cada acción de escritura genera un token de confirmación firmado con HMAC-SHA256 que vincula al usuario, la acción exacta y los argumentos precisos — hasta los caracteres individuales de un borrador de correo. Los tokens vencen en 10 minutos. Si algo cambia entre la vista previa y la confirmación, el token se invalida. La IA no puede modificar la acción después de mostrársela. Lo que usted aprobó es exactamente lo que se ejecuta."
+  },
+  "quote": "«La pausa no es una limitación. Es la razón por la que confiará esto a su empresa.»",
+  "section4": {
+    "heading": "Sus datos. Su infraestructura. Sus reglas.",
+    "body": "La confianza no se trata solo de lo que hace la IA, sino de dónde viven sus datos. HABOS funciona donde usted lo necesite: en nuestra nube, en sus servidores o completamente aislado sin dependencia de internet. La misma plataforma, las mismas funciones, dondequiera que sus datos deban estar."
+  },
+  "deploymentOptions": [
+    {
+      "title": "Nube",
+      "body": "Railway para cómputo, Supabase para base de datos y los principales hiperescaladores para LLM. Listo para producción desde el primer día.",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "En local",
+      "body": "Implemente el backend completo en su ubicación. Ejecute modelos Qwen en hardware Mac estándar para IA local — no se requiere clúster de GPU.",
+      "badges": ["Modelos Qwen", "Compatible con Mac", "BD auto-alojada"]
+    },
+    {
+      "title": "Centro de datos aislado",
+      "body": "Para máximo aislamiento, implemente un centro de datos local con modelos como Kimi K2. Capacidades de IA completas sin dependencia de internet.",
+      "badges": ["Kimi K2", "Aislado", "Sin egreso"]
+    }
+  ],
+  "section5": {
+    "heading": "Seguridad en cada capa"
+  },
+  "securityItems": [
+    {
+      "title": "Tokens de aprobación criptográficos",
+      "body": "Cada acción de IA está firmada y es resistente a manipulaciones."
+    },
+    {
+      "title": "Seguridad a nivel de fila en cada tabla",
+      "body": "Los usuarios solo ven los datos para los que están autorizados."
+    },
+    {
+      "title": "Seguimiento de presupuesto por ejecución",
+      "body": "El gasto de IA se rastrea y se limita por agente y por tarea."
+    },
+    {
+      "title": "Registro de auditoría completo",
+      "body": "Cada acción, cada decisión, registrada permanentemente."
+    }
+  ],
+  "nav": {
+    "nextLabel": "Siguiente",
+    "nextTitle": "Todo en un solo lugar"
+  }
+}

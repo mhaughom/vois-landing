@@ -1,0 +1,29 @@
+{
+  "category": "Filosofi",
+  "title": "To grensesnitt, ett system",
+  "tagline": "Mennesker får skjermer. Agenter får API-er. Samme verktøy, samme data.",
+  "heroAlt": "Dobbelt grensesnitt — visuelle dashbord og strukturerte API-er",
+  "body1": "De fleste «AI-drevne» produkter faller i én av to feller. Første: fest en chatbot på eksisterende UI og få AI-en til å klikke knapper, navigere menyer og lese skjermer. Det brenner 15 000 tokens for å gjøre det et funksjonskall håndterer på 200. Når UI-en endres, brytes agenten. Andre: bygg AI-bare uten menneskegrensesnitt. Agenten er rask — men det er en svart boks. Den «håndterte» e-posten din, men du kan ikke se hva den sendte.",
+  "humanInterface": {
+    "label": "Menneskegrensesnitt",
+    "body": "Visuell ukesvisning. Fargekodede hendelser. Dra for å planlegge om. Romlig resonnering om tiden din."
+  },
+  "agentInterface": {
+    "label": "Agentgrensesnitt",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "Samme kalender. Samme hendelse. Samme tillatelser."
+  },
+  "comparison": "Agent gjennom web-UI: 15 000 tokens. Agent via funksjonskall: 200 tokens. 75x.",
+  "comparisonWebUI": "Agent gjennom web-UI:",
+  "comparisonWebUIStat": "15 000 tokens.",
+  "comparisonFunctionCall": "Agent via funksjonskall:",
+  "comparisonFunctionCallStat": "200 tokens.",
+  "comparisonMultiplier": "75x.",
+  "quote": "«Å få AI til å klikke knapper er som å få en pilot til å gå. Gi hver intelligens grensesnittet den fortjener.»",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Forslag, ikke menyer",
+    "nextLabel": "Neste",
+    "nextTitle": "Fang tankene dine"
+  }
+}

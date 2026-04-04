@@ -1,0 +1,62 @@
+{
+  "userTypes": ["شخصي", "عمل", "كلاهما"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "صديق/زميل",
+    "محرك بحث",
+    "YouTube",
+    "Reddit",
+    "أخرى"
+  ],
+  "useCases": [
+    "مهام شخصية وتذكيرات",
+    "اجتماعات العمل وملاحظاتها",
+    "أفكار وعصف ذهني",
+    "تسوق وقوائم",
+    "تتبع مخصص (صحة، عادات، إلخ)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "لماذا ستستخدم VOIS؟",
+    "subLabel": "اختر كل ما ينطبق",
+    "stepIndicator": "الخطوة 1 من 5"
+  },
+  "stepUserType": {
+    "heading": "كيف ستستخدم VOIS؟",
+    "subLabel": "اختر واحدة",
+    "stepIndicator": "الخطوة 2 من 5"
+  },
+  "stepDevices": {
+    "heading": "ما الأجهزة التي ستستخدمها؟",
+    "subLabel": "اختر كل ما ينطبق",
+    "stepIndicator": "الخطوة 3 من 5"
+  },
+  "stepReferral": {
+    "heading": "كيف سمعت عن VOIS؟",
+    "subLabel": "هذا يساعدنا على فهم مجتمعنا",
+    "stepIndicator": "الخطوة 4 من 5"
+  },
+  "stepEmail": {
+    "heading": "ما هو بريدك الإلكتروني؟",
+    "subLabel": "سنرسل لك وصولاً مبكراً عند الإطلاق",
+    "placeholder": "أدخل بريدك الإلكتروني",
+    "joining": "جارٍ الانضمام...",
+    "joinWaitlist": "انضم إلى قائمة الانتظار",
+    "stepIndicator": "الخطوة 4 من 5"
+  },
+  "stepSuccess": {
+    "heading": "أنت على القائمة!",
+    "willSendEmail": "سنرسل لك بريداً إلكترونياً على",
+    "whatsNext": "ما الذي سيحدث بعد ذلك؟",
+    "whatsNextBody": "سنطلق قريباً! ستكون من أوائل من يحصلون على وصول مبكر وتحديثات حصرية.",
+    "done": "تم"
+  },
+  "continue": "متابعة",
+  "errors": {
+    "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+    "emailExists": "هذا البريد الإلكتروني موجود بالفعل في قائمة الانتظار!",
+    "joinFailed": "فشل الانضمام إلى قائمة الانتظار"
+  }
+}

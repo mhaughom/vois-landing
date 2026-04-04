@@ -1,0 +1,44 @@
+{
+  "category": "Philosophie",
+  "title": "Votre logiciel, à votre façon",
+  "tagline": "Deux entreprises ne sont pas identiques. Votre système d'exploitation ne devrait pas prétendre qu'elles le sont.",
+  "body1": "La plupart des logiciels vous demandent de vous adapter à eux. Vous apprenez leur structure de menus, mémorisez leurs raccourcis et construisez des contournements pour les choses qu'ils font presque mais pas tout à fait. Avec le temps, vous arrêtez de remarquer à quel point votre processus est façonné par les limitations de l'outil plutôt que par vos besoins réels.",
+  "body2": "Nous construisons VOIS pour s'adapter dans l'autre sens.",
+  "quote1": "« Le meilleur outil est celui qui s'adapte à la main qui le tient. »",
+  "section1": {
+    "heading": "Des heures dédiées, dédiées à vous",
+    "body": "Au fur et à mesure que VOIS se développe, nous nous engageons à quelque chose de rare : des heures d'employés dédiées à votre entreprise. Pas une file d'assistance générique. Pas un chatbot. De vraies personnes de notre équipe, allouées pour comprendre vos workflows et faire travailler le logiciel plus dur pour vous. Que ce soit pour ajuster le comportement d'une fonctionnalité, construire une vue personnalisée ou câbler une intégration qui n'a de sens que pour votre secteur — nous ferons le travail."
+  },
+  "practiceLabel": "Ce que ça donne en pratique",
+  "practiceItems": [
+    {
+      "name": "Applications personnalisées",
+      "desc": "Créez ou demandez des applications qui vivent dans VOIS, adaptées à la façon dont votre équipe travaille réellement."
+    },
+    {
+      "name": "Personnalisation payante",
+      "desc": "Commissionnez des fonctionnalités, des workflows ou des intégrations construits spécifiquement pour votre entreprise."
+    },
+    {
+      "name": "Suggestions de fonctionnalités",
+      "desc": "Proposez des fonctionnalités qui ne s'appliquent qu'à vous — et voyez-les construites dans votre instance."
+    },
+    {
+      "name": "Plateforme ouverte",
+      "desc": "À mesure que nous mûrissons, nous ouvrirons le système pour que vous puissiez l'étendre vous-même ou amener vos propres développeurs."
+    }
+  ],
+  "section2": {
+    "heading": "Un logiciel qui évolue avec vous",
+    "body1": "Le playbook SaaS typique consiste à construire un produit et à le vendre à tout le monde de la même façon. Ça fonctionne pour les outils simples. Mais VOIS n'est pas un outil simple — c'est votre système d'exploitation. Et un système d'exploitation devrait refléter l'entreprise qu'il gère, pas l'inverse.",
+    "body2": "Une entreprise de paysagisme n'a pas besoin du même tableau de bord qu'une agence de design. Un consultant solo n'a pas besoin des mêmes workflows qu'une équipe terrain de 40 personnes. Au lieu de forcer tout le monde dans le même entonnoir, nous préférons vous donner les blocs de construction et le soutien pour assembler quelque chose qui est véritablement le vôtre."
+  },
+  "quote2": "« Nous ne voulons pas être le logiciel avec lequel vous vous contentez. Nous voulons être le logiciel que vous construiriez vous-même — si vous aviez le temps. »",
+  "body3": "C'est un engagement à long terme, pas une promesse du jour de lancement. Nous construisons maintenant la fondation pour que, lorsque nous l'ouvrons, chaque entreprise sur VOIS puisse le faire véritablement sien.",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Toujours à portée",
+    "nextLabel": "Suivant",
+    "nextTitle": "Le Sas de Sécurité"
+  }
+}

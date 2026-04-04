@@ -1,0 +1,230 @@
+{
+  "heroBusinesses": [
+    "Kreativagenturen",
+    "Klempner",
+    "Zahnarztpraxen",
+    "Beratungsunternehmen",
+    "Salons & Spas",
+    "Bauunternehmen",
+    "Immobilienmakler",
+    "Restaurants",
+    "Reinigungsunternehmen",
+    "Online-Shops",
+    "Hausverwalter"
+  ],
+  "heroVideo": {
+    "madeFor": "Entwickelt für alle Unternehmenstypen."
+  },
+  "heroStories": [
+    { "label": "Das Problem",       "headline": "Die Daten deines Unternehmens sind auf\nDutzende Tools verteilt." },
+    { "label": "Die Kosten",          "headline": "Mitarbeiter verbringen ihren Tag damit,\nDaten zu verschieben — statt Wert zu schaffen." },
+    { "label": "Der Wendepunkt","headline": "Je schneller du wächst,\ndesto schwerer bricht es auseinander." },
+    { "label": "Die Lösung",      "headline": "Deshalb haben wir eine Plattform\nfür alles gebaut." },
+    { "label": "HABOS",             "headline": "Deine Tools. Deine Daten.\nAlle als Einheit." },
+    { "label": "final",             "headline": "" }
+  ],
+  "heroHeadlines": [
+    { "label": "Weltweit erstes",        "bold": "Human-to-Agent",   "light": "Business Operating\nSystem" },
+    { "label": "Business in a Box",    "bold": "Business in a Box","light": "Alles was du brauchst" },
+    { "label": "All-in-One-Plattform",  "bold": "Deine gesamte Software","light": "Eine Plattform" },
+    { "label": "Ein Login, jedes Tool","bold": "Jedes Tool das du brauchst","light": "Hinter einem Login" },
+    { "label": "Stack ersetzen",   "bold": "Ein System",       "light": "Statt Dutzenden" },
+    { "label": "Software die denkt", "bold": "KI-native Software","light": "Von Grund auf gebaut" }
+  ],
+  "heroGlowLabel": "Weltweit erstes",
+  "heroSubtitle": "Deine gesamte Software, eine Plattform.\nStärke deine Mitarbeiter mit der KI-Unterstützung, die uns immer versprochen, aber nie geliefert wurde.",
+  "heroButtons": {
+    "joinWaitlist": "Warteliste beitreten",
+    "playVideo":    "Video abspielen",
+    "back":         "Zurück"
+  },
+  "animPhase": {
+    "dot":      "Ein Geist, der dein gesamtes Unternehmen kennenlernt.",
+    "split":    "Er verbindet alles, was du tust.",
+    "cube":     "Struktur bildet sich um dich herum — nicht umgekehrt.",
+    "hexMorph": "Jede Oberfläche ein Arbeitsbereich. Jede Aktion antizipiert.",
+    "idle":     "Klicke auf eine Seite, um sie zu erkunden."
+  },
+  "explore": {
+    "heading":     "Eine Plattform. Jedes Tool.",
+    "description": "Klicke auf eine Seite, um zu erkunden, was HABOS für dein Unternehmen tun kann."
+  },
+  "smartRouter": {
+    "statusDetected": "Smart Router — 2 Intents erkannt",
+    "statusRecording": "Aufnahme...",
+    "statusReady":     "Bereit",
+    "transcriptLabel": "Transkript",
+    "listening":       "Höre zu..."
+  },
+  "meetingNotes": {
+    "statusEnded":    "Meeting beendet — 3 Aktionspunkte",
+    "statusRecording":"Aufnahme — Team-Strategiemeeting",
+    "statusReady":    "Bereit",
+    "transcriptLabel":"Live-Transkript",
+    "actionsLabel":   "Aktionspunkte extrahiert"
+  },
+  "meetingLines": [
+    { "speaker": "Du",    "text": "Beginnen wir mit den Q1-Zahlen. Umsatz war 12% höher.",       "time": "0:15" },
+    { "speaker": "Sarah", "text": "Die Pipeline sieht stark aus, aber die Lieferzeiten bereiten mir Sorgen.", "time": "0:42" },
+    { "speaker": "Du",    "text": "Guter Punkt. Was wäre, wenn wir bei jedem Meilenstein eine Pufferwoche einbauen?", "time": "1:08" },
+    { "speaker": "KI",    "text": "Vorschlag: \"Was ist der Notfallplan, wenn Q2-Ziele verfehlt werden?\"",   "time": "1:15" }
+  ],
+  "meetingActions": [
+    { "text": "Aktualisierten Zeitplan bis Freitag an Sarah senden" },
+    { "text": "Folgegespräch mit dem Engineering-Leiter planen" },
+    { "text": "Risikoabschätzung für Q2-Vorstandsmeeting vorbereiten" }
+  ],
+  "agentPhilosophy": {
+    "badge":       "Agent-Philosophie",
+    "heading":     "Jeder Mitarbeiter bekommt einen Super-Agenten.",
+    "description": "Ein autonomer KI-Partner mit Zugang zu denselben Daten, Kontext und Berechtigungen wie die Person, der er dient. Er zeigt die wertvollsten Informationen, entwirft Antworten, schlägt Zeitpläne vor und markiert Risiken — handelt aber nie allein.",
+    "footer":      "KI-Stärke, menschliche Kontrolle. Jeder Entwurf überprüft. Jede Aktion genehmigt. Jede Entscheidung die deine."
+  },
+  "agentTabs": [
+    {
+      "title": "KI-Assistent",
+      "desc":  "Chatte mit vollständigem Geschäftskontext. Dein Agent denkt gleichzeitig über Projekte, E-Mails, Kalender, CRM und Gespräche nach — zieht aus jeder Datenbank, auf die du Zugriff hast."
+    },
+    {
+      "title": "Smart Router",
+      "desc":  "Sprich natürlich — der Agent wandelt deine Sprache in strukturierte Aktionen um. Nachfassaktionen werden zu Aufgaben, Besprechungen landen im Kalender und jeder Intent wird an den richtigen Ort geleitet."
+    },
+    {
+      "title": "Meeting-Notizen",
+      "desc":  "Live-Transkription, die Entscheidungen, Aktionspunkte und Nachfassaktionen beim Entstehen erfasst. Jedes Meeting erzeugt eine strukturierte Zusammenfassung — kein manuelles Protokollieren erforderlich."
+    }
+  ],
+  "replacesSection": {
+    "heading":     "Was HABOS ersetzt.",
+    "description": "Gemeinsamer Kontext macht jede Funktion intelligenter als jedes Einzeltool.",
+    "colCategory": "Kategorie",
+    "colReplaces": "Ersetzt",
+    "colAdvantage": "HABOS-Vorteil",
+    "mobileReplaces": "Ersetzt"
+  },
+  "replacements": [
+    { "tool": "Otter.ai / Fireflies",        "category": "Meeting-Notizen",        "vois": "Briefings vor jedem Meeting, Live-Transkription während, Aktionspunkte extrahiert und nach dem Meeting an die richtigen Personen weitergeleitet",                                      "group": "Produktivität" },
+    { "tool": "Todoist / Trello",            "category": "Aufgabenverwaltung",      "vois": "Deine wichtigsten Aufgaben kommen immer zuerst — aus Sprache, Meetings oder E-Mail erstellt mit integrierter intelligenter Planung",                                    "group": "Produktivität" },
+    { "tool": "Motion / Reclaim",            "category": "KI-Terminplanung",        "vois": "Dein Kalender füllt sich selbst mit fokussierten Arbeitsblöcken, nach Priorität und Frist geordnet — einfach genehmigen und loslegen",                                              "group": "Produktivität" },
+    { "tool": "Asana / Jira / Monday.com",  "category": "Projektverfolgung",     "vois": "Sieh, welche Projekte gut laufen und welche Aufmerksamkeit brauchen — ins Stocken geratene Arbeit und verpasste Fristen werden markiert, bevor sie eskalieren",                                 "group": "Produktivität" },
+    { "tool": "Google Docs / Notion",        "category": "Dokumente",            "vois": "Sprich es aus, erhalte ein Dokument zurück — KI zieht automatisch Kontext aus deinen Projekten und Daten",                                                           "group": "Produktivität" },
+    { "tool": "Trainual / Process Street",   "category": "Playbooks & SOPs",     "vois": "Lebendige Workflows, die dein Team Schritt für Schritt führen und dich warnen, wenn etwas falsch läuft",                                                          "group": "Produktivität" },
+    { "tool": "HubSpot / Salesforce",        "category": "CRM & Vertrieb",          "vois": "Kundenprofile automatisch aus jedem Gespräch, jeder E-Mail und jedem Meeting aufgebaut — mit KI-vorgeschlagenen nächsten Schritten",                                          "group": "Handel & Kunden" },
+    { "tool": "Shopify / WooCommerce",       "category": "Produkte & Aufträge",    "vois": "Produkte, Preise, Lagerbestand und buchbare Dienste — alle mit deiner Website und dem KI-Assistenten verbunden",                                                   "group": "Handel & Kunden" },
+    { "tool": "Calendly / Acuity",           "category": "Buchungen",             "vois": "Kunden buchen online, Aufträge werden automatisch erstellt, Zahlung wird erfasst — ein Schritt, keine manuelle Arbeit",                                                 "group": "Handel & Kunden" },
+    { "tool": "Mailchimp / ActiveCampaign",  "category": "Marketing & Funnels",  "vois": "E-Mail- und SMS-Kampagnen mit KI-geschriebenen Texten, intelligenten Zielgruppensegmenten und automatischen Nachfasssequenzen",                                               "group": "Handel & Kunden" },
+    { "tool": "Later / Hootsuite",           "category": "Social Media",         "vois": "Beiträge planen, KI-geschriebene Beschriftungen erhalten und verfolgen, was performt — verbunden mit deiner Marke und Inhaltsbibliothek",                                        "group": "Handel & Kunden" },
+    { "tool": "Canva / Adobe Express",       "category": "Kreativstudio",      "vois": "Marketinginhalte aus deinem Geschäftskontext generieren — Social-Media-Beiträge, Anzeigen und Visuals, die zu deiner Marke passen",                                          "group": "Handel & Kunden" },
+    { "tool": "Superhuman / Spark",          "category": "KI-E-Mail",             "vois": "Beantworte deinen Posteingang per Sprache, erhalte drei Antwortoptionen, die wie du klingen, und verliere keine Nachfassaktionen",                                            "group": "Kommunikation & Inhalte" },
+    { "tool": "Gmail / Outlook / Slack",     "category": "Unified Messaging",    "vois": "Jedes Gespräch mit einer Person — E-Mail, Chat, SMS — in einer Timeline mit KI-entworfenen Antworten",                                                         "group": "Kommunikation & Inhalte" },
+    { "tool": "Squarespace / Wix",           "category": "Website-Builder",      "vois": "Beschreibe dein Unternehmen und erhalte eine Website — KI schreibt den Text, verbindet deine Buchung und Zahlungen automatisch",                                       "group": "Kommunikation & Inhalte" },
+    { "tool": "PowerPoint / Google Slides",  "category": "Präsentationen",        "vois": "KI-generierte Folien-Decks, die echte Zahlen aus deinem Unternehmen ziehen — präsentationsfertig, nicht nur hübsche Vorlagen",                                      "group": "Kommunikation & Inhalte" },
+    { "tool": "Zapier / Make",               "category": "Prozessautomatisierung",   "vois": "Workflows, die überall auslösen — keine Drittanbieter-Tools, keine Verzögerungen, weil alles in einem System lebt",                                        "group": "Betrieb & Außendienst" },
+    { "tool": "ClickUp / Monday.com",        "category": "Betrieb",           "vois": "Werde benachrichtigt, wenn ein Prozess ins Hintertreffen gerät, bevor es zum Problem wird — mit vorgeschlagenen Lösungen, nicht nur Warnungen",                                     "group": "Betrieb & Außendienst" },
+    { "tool": "Zendesk / Freshdesk",         "category": "Support-Tickets",      "vois": "Tickets automatisch aus Formularen oder E-Mails erstellt, mit Prioritätsstufen, Timern und Eskalation zur richtigen Person",                                   "group": "Betrieb & Außendienst" },
+    { "tool": "ServiceTitan / Jobber",       "category": "Außendienst",     "vois": "Aufträge, Einsatz, Routen, Team-GPS, Zeiterfassung — eine 30-Sekunden-Sprachnotiz aus dem Fahrzeug ersetzt den ganzen Papierkram",                                      "group": "Betrieb & Außendienst" },
+    { "tool": "Routific / Circuit",          "category": "Routenplanung",       "vois": "Drag-and-Drop-Routenplanung mit intelligentem Haltepunktsortiering und Google-Maps-Links für dein Außendienstteam",                                               "group": "Betrieb & Außendienst" },
+    { "tool": "Google Forms / SurveyMonkey", "category": "Berichte",              "vois": "Fülle jeden Bericht per Sprache in 90 Sekunden aus — KI stellt die Fragen, du antwortest und der Bericht wird eingereicht",                                              "group": "Betrieb & Außendienst" },
+    { "tool": "QuickBooks / Xero",           "category": "Finanzen",              "vois": "Ausgaben per Sprache erfassen, Rechnungen und Zahlungen verfolgen, deinen Gewinn in Echtzeit sehen — verbunden mit Stripe",                                               "group": "Finanzen & Verwaltung" },
+    { "tool": "Procurify / Coupa",           "category": "Einkauf & Lieferanten","vois": "Bestellungen, Lieferantenverfolgung und Lagerverwaltung mit Teilzahlungsunterstützung und Rechnungsabgleich",                                              "group": "Finanzen & Verwaltung" },
+    { "tool": "Toggl / Clockify",            "category": "Zeiterfassung",        "vois": "Ein- und Ausstempeln vom Handy, fakturierbare Stunden pro Auftrag verfolgen und Zeiteinträge mit Einsatz und Lohnbuchhaltung verknüpfen",                                        "group": "Finanzen & Verwaltung" },
+    { "tool": "BambooHR / Gusto",            "category": "Team & Organigramm",     "vois": "Sieh deine gesamte Teamstruktur, verwalte Rollen und Zugänge und plane Änderungen — alles per Drag-and-Drop",                                                         "group": "Finanzen & Verwaltung" },
+    { "tool": "Typeform / JotForm",          "category": "Formulare",                "vois": "Erstelle jedes Formular, leite Einreichungen automatisch an CRM oder Tickets weiter und sende sofortige Bestätigungsantworten",                                              "group": "Finanzen & Verwaltung" },
+    { "tool": "Confluence / Guru",           "category": "Wissenssuche",     "vois": "Stelle eine Frage und erhalte die Antwort aus deinem gesamten Unternehmen — Sprachnotizen, E-Mails, Dokumente, Meetings, alles",                                 "group": "Finanzen & Verwaltung" },
+    { "tool": "Google Drive / Dropbox",      "category": "Dateien & Medien",        "vois": "Ein Ort für alle deine Dateien mit KI-Tagging, Volltext-Suche und einem Lesemodus, der Dokumente vorliest",                                             "group": "Finanzen & Verwaltung" },
+    { "tool": "Virtueller Executive-Assistent", "category": "Dein KI-Assistent",    "vois": "Kennt dein gesamtes Unternehmen, antizipiert was du brauchst und handelt über jedes Tool — per Sprache, Uhr, Telefon oder Posteingang",                                "group": "KI & Sprache" },
+    { "tool": "ChatGPT / Copilot",           "category": "KI-Chat",              "vois": "Eine KI, die deine tatsächlichen Geschäftsdaten kennt — nicht nur das Internet — und mit deiner Genehmigung handeln kann",                                          "group": "KI & Sprache" },
+    { "tool": "Custom Dev / Agentur",         "category": "KI-Agenten",            "vois": "KI-Mitarbeiter, die mehrstufige Aufgaben planen, deine Tools nutzen und vor wichtigen Aktionen um deine Genehmigung bitten",                                    "group": "KI & Sprache" },
+    { "tool": "Perplexity / SearchGPT",      "category": "KI-Recherche",          "vois": "Tiefe Web-Recherche mit zitierten Quellen — an spezialisierte KI delegiert und in deiner Wissensbasis gespeichert",                                                  "group": "KI & Sprache" },
+    { "tool": "Unternehmensberater",        "category": "Strategieanalyse",    "vois": "Analysiert deinen Umsatz, Kunden, Produkte und Mitbewerber — zeigt Chancen auf, die du sonst verpasst hättest",                                             "group": "KI & Sprache" },
+    { "tool": "Siri / Google Assistant",     "category": "Sprach-Intelligenz",   "vois": "Eine Sprachnotiz erstellt Aufgaben, Ereignisse, Lagerbestandsaktualisierungen und Nachrichten — automatisch an den richtigen Ort geleitet",                                     "group": "KI & Sprache" },
+    { "tool": "Apple-Watch-Apps",            "category": "Uhr-Assistent",      "vois": "Vollständiger KI-Assistent am Handgelenk — sprechen, Antworten erhalten, Aktionen genehmigen, alles ohne das Telefon herauszuholen",                                            "group": "KI & Sprache" },
+    { "tool": "Anrufbeantworter-Service",           "category": "KI-Telefon & SMS",       "vois": "Eine echte Telefonnummer, beantwortet von deiner KI — bucht Termine, beantwortet Fragen und verwaltet Nachrichten rund um die Uhr",                                          "group": "KI & Sprache" }
+  ],
+  "pricing": {
+    "heading":     "Einfache, transparente Preisgestaltung.",
+    "description": "Personal enthält den vollständigen Sprach-zu-Aktion-Loop. Work fügt die drei professionellen Säulen hinzu.",
+    "billingMonthly": "Monatlich",
+    "billingAnnual":  "Jährlich",
+    "saveLabel":      "Spare bis zu 40%",
+    "featureColHeader": "Funktion",
+    "personalColHeader": "Personal",
+    "workColHeader":     "Work",
+    "personal": {
+      "name":        "Personal",
+      "description": "Für die tägliche Lebensorganisation",
+      "priceAnnual": "6,67 €",
+      "priceMonthly":"14,99 €",
+      "perMonth":    "/Monat",
+      "cta":         "Kostenlose Testversion starten",
+      "guarantee":   "30-Tage-Geld-zurück-Garantie"
+    },
+    "work": {
+      "name":        "Work",
+      "description": "Für Profis & Teams",
+      "priceAnnual": "29 €",
+      "priceMonthly":"39 €",
+      "perMonth":    "/Monat",
+      "badge":       "Empfohlen",
+      "cta":         "Kostenlose Testversion starten",
+      "guarantee":   "30-Tage-Geld-zurück-Garantie"
+    }
+  },
+  "pricingFeatures": [
+    { "feature": "Spracherfassung & Smart Router" },
+    { "feature": "KI-Chat-Assistent" },
+    { "feature": "Aufgabenverwaltung mit KI-Bewertung" },
+    { "feature": "Kalender mit KI-Planung" },
+    { "feature": "Individuelle Apps & Marktplatz" },
+    { "feature": "Lebensbereiche & Automatisierungen" },
+    { "feature": "Live-Meeting-Transkription" },
+    { "feature": "Meeting-Briefings & Vorbereitung" },
+    { "feature": "Private KI-Notizen pro Teilnehmer" },
+    { "feature": "Projekte & Überwachung" },
+    { "feature": "Berichte & Arbeitsreviews" },
+    { "feature": "KI-Agenten & Recherche" },
+    { "feature": "E-Mail-Integration" },
+    { "feature": "Desktop-App (Live Guide)" }
+  ],
+  "cta": {
+    "heading":     "Fang an, mit deinem Arbeitstag zu sprechen.",
+    "description": "Eine Stimme. Ein Gehirn. Alles verbunden.",
+    "waitlistDescription": "Tritt der Warteliste für frühen Zugang zu HABOS für Work bei.",
+    "emailPlaceholder": "Gib deine Arbeits-E-Mail ein",
+    "submitButton":  "Frühen Zugang erhalten",
+    "noSpam":        "Kein Spam. Keine Kreditkarte. Nur Updates zu HABOS für Work.",
+    "successMessage":"Du bist auf der Liste! Wir melden uns bald."
+  },
+  "footer": {
+    "logoAlt": "HABOS",
+    "brandName": "HABOS",
+    "tagline": "Dein KI-Arbeitstag.",
+    "product": {
+      "heading":       "Produkt",
+      "login":         "Anmelden",
+      "pricing":       "Preise",
+      "platform":      "Plattform",
+      "voisPersonal":  "VOIS Personal"
+    },
+    "support": {
+      "heading":       "Support",
+      "helpFaq":       "Hilfe & FAQ",
+      "contactSales":  "Vertrieb kontaktieren",
+      "setupGuide":    "Einrichtungsanleitung"
+    },
+    "legal": {
+      "heading":       "Rechtliches",
+      "privacyPolicy": "Datenschutzrichtlinie",
+      "termsOfService":"Nutzungsbedingungen",
+      "refundPolicy":  "Rückerstattungsrichtlinie"
+    },
+    "social": {
+      "heading":   "Social Media",
+      "xTwitter":  "X / Twitter",
+      "instagram": "Instagram",
+      "tiktok":    "TikTok",
+      "facebook":  "Facebook"
+    },
+    "copyright": "© {{year}} Vois AI. Alle Rechte vorbehalten."
+  }
+}

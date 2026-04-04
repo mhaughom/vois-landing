@@ -1,0 +1,44 @@
+{
+  "category": "Filosofie",
+  "title": "Jouw software, op jouw manier",
+  "tagline": "Geen twee bedrijven zijn hetzelfde. Je besturingssysteem zou niet moeten doen alsof dat zo is.",
+  "body1": "De meeste software vraagt je je aan te passen. Je leert de menustructuur, memoriseert de snelkoppelingen en bouwt oplossingen voor de dingen die het bijna doet maar niet helemaal. Na verloop van tijd merk je niet meer hoeveel van je proces is gevormd door de beperkingen van het hulpmiddel in plaats van je werkelijke behoeften.",
+  "body2": "We bouwen VOIS om de andere kant op te buigen.",
+  "quote1": "\"Het beste hulpmiddel is het hulpmiddel dat past bij de hand die het vasthoudt.\"",
+  "section1": {
+    "heading": "Toegewijde uren, toegewijd aan jou",
+    "body": "Naarmate VOIS groeit, committeren we ons aan iets zeldzaams: toegewijde medewerkeruren voor jouw bedrijf. Geen generieke supportwachtrij. Geen chatbot. Echte mensen in ons team, ingezet om jouw workflows te begrijpen en de software harder voor jou te laten werken. Of dat nu gaat om het aanpassen van hoe een functie zich gedraagt, het bouwen van een aangepaste weergave of het aansluiten van een integratie die alleen voor jouw branche zinvol is — wij doen het werk."
+  },
+  "practiceLabel": "Hoe dit eruit ziet in de praktijk",
+  "practiceItems": [
+    {
+      "name": "Maatwerkpps",
+      "desc": "Bouw of verzoek apps die binnen VOIS leven, aangepast aan hoe jouw team werkelijk werkt."
+    },
+    {
+      "name": "Betaalde maatwerk",
+      "desc": "Functies, workflows of integraties in opdracht laten bouwen, specifiek voor jouw bedrijf."
+    },
+    {
+      "name": "Functiesuggesties",
+      "desc": "Functionaliteit voorstellen die alleen op jou van toepassing is — en het zien worden gebouwd in jouw instantie."
+    },
+    {
+      "name": "Open platform",
+      "desc": "Naarmate we volwassen worden, openen we het systeem zodat je het zelf kunt uitbreiden of je eigen ontwikkelaars kunt inbrengen."
+    }
+  ],
+  "section2": {
+    "heading": "Software die met je meegroeit",
+    "body1": "Het typische SaaS-draaiboek is om één product te bouwen en het op dezelfde manier aan iedereen te verkopen. Dat werkt voor eenvoudige tools. Maar VOIS is geen eenvoudige tool — het is jouw besturingssysteem. En een besturingssysteem zou het bedrijf moeten weerspiegelen dat het runt, niet andersom.",
+    "body2": "Een hovenier heeft niet hetzelfde dashboard nodig als een ontwerpbureau. Een solo-consultant heeft niet dezelfde workflows nodig als een buitendienstteam van 40 personen. In plaats van iedereen door dezelfde trechter te dwingen, geven we je liever de bouwstenen en de ondersteuning om iets samen te stellen dat werkelijk van jou is."
+  },
+  "quote2": "\"We willen niet de software zijn waar je genoegen mee neemt. We willen de software zijn die je zelf zou bouwen — als je de tijd had.\"",
+  "body3": "Dit is een langetermijnverbintenis, geen belofte op de lanceringdag. We bouwen nu het fundament zodat wanneer we het openstellen, elk bedrijf op VOIS het werkelijk van henzelf kan maken.",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Altijd binnen handbereik",
+    "nextLabel": "Volgende",
+    "nextTitle": "De luchtsluis"
+  }
+}

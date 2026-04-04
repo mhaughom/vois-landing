@@ -1,0 +1,71 @@
+{
+  "badge": "Pianificazione AI",
+  "hero": {
+    "title": "Di' 'Pianifica la Mia Giornata.'\nGuarda Come Si Riempie.",
+    "description": "HABOS analizza le tue attività, le priorità e le scadenze — poi propone un programma completo. Tu approvi prima che qualcosa si sposti."
+  },
+  "body": "Il calendario non si limita a mostrare il tuo programma — è un motore di pianificazione intelligente che inserisce automaticamente le attività nei blocchi di concentrazione. Ogni blocco ha un filtro di affinità: un blocco di concentrazione per un progetto si riempie solo con attività di quel progetto. Il motore di riempimento automatico usa un algoritmo greedy che rispetta l'ordine delle dipendenze tramite l'ordinamento topologico, così le attività precedenti sono sempre pianificate prima dei loro successori. Le voci sul percorso critico dei tuoi progetti vengono inserite per prime, automaticamente.",
+  "schedule": {
+    "dateLabel": "Mercoledì 26 Marzo",
+    "blocks": [
+      {
+        "time": "9:00 – 10:30",
+        "type": "Lavoro Profondo",
+        "tasks": "Proposta Henderson (percorso critico) + Revisione bozza contratto"
+      },
+      {
+        "time": "10:30 – 11:00",
+        "type": "Amministrazione",
+        "tasks": "Rispondi a 3 email segnalate + Approva fattura"
+      },
+      {
+        "time": "11:00 – 12:00",
+        "type": "Riunione",
+        "tasks": "Sincronizzazione team (brief generato automaticamente)"
+      },
+      {
+        "time": "13:00 – 14:30",
+        "type": "Progetto",
+        "tasks": "Ristrutturazione cucina — selezione piastrelle + chiamate fornitori"
+      },
+      {
+        "time": "14:30 – 15:00",
+        "type": "Operazioni",
+        "tasks": "Revisione report giornalieri + segnalazione anomalie"
+      }
+    ],
+    "caption": "Generato in 2 secondi. Ogni attività posizionata dal punteggio di priorità AI."
+  },
+  "benefits": {
+    "priority": {
+      "title": "Priorità a 7 fattori",
+      "description": "Ordine manuale, etichetta priorità, importanza AI, urgenza AI, scadenza, adattabilità al calendario, data di creazione. Le attività non vengono solo ordinate — vengono comprese."
+    },
+    "focusBlocks": {
+      "title": "Blocchi di concentrazione",
+      "description": "Lavoro profondo, amministrazione, progetto, personale — ogni blocco ha un filtro di affinità. Le attività sul percorso critico vengono sempre inserite per prime."
+    },
+    "dependency": {
+      "title": "Consapevole delle dipendenze",
+      "description": "L'ordinamento topologico garantisce che i predecessori siano pianificati prima dei successori. Il calendario rispetta la logica del tuo progetto."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Senza HABOS",
+    "withoutText": "Domenica sera: fissi il calendario vuoto. Cerchi di ricordare cosa è urgente. Blocchi manualmente il tempo per ogni attività. Vieni interrotto. Ripianifichi tutto.",
+    "withoutStat": "~45 min di pianificazione",
+    "withTitle": "Con HABOS",
+    "withText": "\"Pianifica la mia giornata.\" Rivedi il programma proposto. Trascina un blocco per aggiustarlo. Approva.",
+    "withStat": "~30 secondi"
+  },
+  "techStrip": [
+    "Algoritmo greedy di riempimento automatico",
+    "Ordinamento topologico delle dipendenze",
+    "Sincronizzazione BroadcastChannel",
+    "Calendari Google + Outlook + iOS"
+  ],
+  "closing": {
+    "tagline": "Motion pianifica automaticamente senza chiedere. HABOS propone — tu decidi.",
+    "cta": "Iscriviti alla lista d'attesa"
+  }
+}

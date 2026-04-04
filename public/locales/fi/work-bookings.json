@@ -1,0 +1,54 @@
+{
+  "badge": "Varaukset",
+  "hero": {
+    "title": "Nolla kaksoisvarausta.\nTaattu.",
+    "description": "Asiakas valitsee ajan, järjestelmä lukitsee sen atomisesti, luo tilauksen, päivittää CRM-yhteystiedot ja ilmoittaa tiimillesi — kaikki yhdessä transaktiossa."
+  },
+  "body": "PostgreSQL-neuvontolukot estävät kaksoísvaraukset jopa äärimmäisen samanaikaisen kuormituksen alla. Jos kaksi henkilöä klikkaa samaa aikaa samalla millisekunnilla, toinen voittaa — toinen näkee \"aika varattu\" välittömästi. Kun varaus vahvistuu, HABOS luo tai linkittää atomisesti CRM-asiakkaan, luo tilauksen rivi-nimikkeillä, vähentää varaston ja ilmoittaa nimetylle tiimin jäsenelle. Peruutus? Varasto palautuu ja tilaus päivittyy. Yksi transaktio, ei webhook-viiveitä, ei orpoja tietueita.",
+  "grid": {
+    "serviceTitle": "HVAC-huolto",
+    "serviceMeta": "60 min · 150 $",
+    "selectedPrefix": "Valittu:",
+    "confirmButton": "Vahvista varaus"
+  },
+  "confirmationSteps": [
+    "Varaus vahvistettu",
+    "Tilaus #1248 luotu",
+    "Sarah Henderson lisätty CRM:ään",
+    "Tiimi ilmoitettu"
+  ],
+  "advisoryLock": "PostgreSQL-neuvontolukot estävät kaksoísvaraukset jopa äärimmäisen samanaikaisen kuormituksen alla. Jos kaksi henkilöä klikkaa samaa aikaa samalla millisekunnilla, toinen voittaa — toinen näkee \"aika varattu\" välittömästi.",
+  "benefits": {
+    "bookOrder": {
+      "title": "Varaus → tilaus → CRM",
+      "body": "Yksi varaus luo kaiken: tilauksen rivi-nimikkeillä, CRM-yhteystiedon päivityksen, henkilöstöilmoituksen ja asiakkaalle lähetettävän vahvistussähköpostin. Nolla manuaalisia vaiheita."
+    },
+    "stock": {
+      "title": "Älykäs varastovaraus",
+      "body": "Varasto seurataan odottava → vahvistettu → valmis -virrassa. Ei ylivarauksia, ei manuaalisia varastotarkistuksia."
+    },
+    "api": {
+      "title": "Julkiset ja sisäiset API:t",
+      "body": "Henkilöstö varaa kojelaudalta. Asiakkaat varaavat verkkosivustoltasi tai aikataulutuslinkeistä. Sama atominen suoja, sama saatavuuspooli."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Ilman HABOS:ia",
+    "withoutText": "Asiakas lähettää sähköpostia varatakseen. Tarkistat kalenterisi. Vastaat saatavilla olevilla ajoilla. He valitsevat yhden. Luot tapaamisen, laskun ja lisäät heidät yhteystietoihin. 8 vaihetta, 3 sovellusta.",
+    "withoutStat": "~15 min per varaus",
+    "withTitle": "HABOS:lla",
+    "withText": "Asiakas valitsee ajan verkkosivustoltasi. Valmis. Tilaus, CRM-tietue, ilmoitus ja vahvistussähköposti tapahtuvat automaattisesti.",
+    "withStat": "~30 sekuntia (heidän aikansa, ei sinun)"
+  },
+  "techStrip": [
+    "PostgreSQL-neuvontolukot",
+    "Atominen aikasuoja",
+    "Automaattinen tilauksen luonti",
+    "Kestää kilpailuolosuhteet",
+    "Itsepäivityslinkit"
+  ],
+  "closing": {
+    "title": "Muut varaustyökalut ovat erillinen kalenteri.\nHABOS-varaukset on kytketty koko liiketoimintaasi.",
+    "cta": "Liity odotuslistalle"
+  }
+}

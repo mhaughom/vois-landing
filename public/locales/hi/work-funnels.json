@@ -1,0 +1,69 @@
+{
+  "badge": "मार्केटिंग ऑटोमेशन",
+  "hero": {
+    "title": "लीड अंदर आते हैं। राजस्व बाहर निकलता है।",
+    "description": "फॉर्म सबमिशन → AI-जनरेटेड nurture अनुक्रम → SMS और ईमेल → बुकिंग या बिक्री। मनोविज्ञान-समर्थित, consent-first, और जब लीड जवाब दे तो रुकने के लिए काफी स्मार्ट।"
+  },
+  "body": "जब फॉर्म सबमिशन आती है, लीड स्वचालित रूप से AI-जनरेटेड nurture अनुक्रमों में प्रवाहित होते हैं। सभी कंटेंट एक सिद्ध चार-चरण persuasion फ्रेमवर्क का पालन करता है: personalization, विशिष्ट संख्याओं के साथ authority, जोखिम reversal के साथ quantified ऑफर, और एक विशिष्ट call to action। फनल ऑटो-स्टॉप होते हैं जब लीड जवाब देता है, एक terminal CRM स्टेज पर पहुँचता है, या unsubscribe करता है — अत्यधिक संपर्क को रोकता है। ईमेल और SMS स्पष्ट consent द्वारा गेटेड हैं, STOP कीवर्ड के साथ वैश्विक रूप से रद्द।",
+  "sequence": {
+    "label": "Nurture अनुक्रम",
+    "step1": "फॉर्म सबमिट हुआ",
+    "step2": {
+      "label": "तुरंत: स्वागत SMS",
+      "message": "\"नमस्ते Sarah, हमारी HVAC सेवाओं के बारे में आपकी पूछताछ के लिए धन्यवाद! मैं Henderson से Mike हूँ...\""
+    },
+    "wait1": "2 घंटे प्रतीक्षा",
+    "step3": {
+      "label": "ईमेल: Authority + प्रमाण",
+      "message": "\"विषय: हमारे 94% ग्राहक ऊर्जा बिलों पर $200+ बचाते हैं...\""
+    },
+    "wait2": "1 दिन प्रतीक्षा",
+    "step4": {
+      "label": "SMS: ऑफर + CTA",
+      "message": "\"स्प्रिंग स्पेशल: $99 AC ट्यून-अप (नियमित $149)। शुक्रवार से पहले बुक करें → habos.app/s/henderson-ac\""
+    },
+    "autostop": {
+      "label": "ऑटो-स्टॉप",
+      "desc": "लीड ने जवाब दिया / बुक किया / जीता → अनुक्रम स्वचालित रूप से रुकता है"
+    },
+    "summary": "4-चरण persuasion फ्रेमवर्क: Personalization → Authority → Offer → CTA। 7 प्रीसेट रणनीतियाँ डिप्लॉय के लिए तैयार।",
+    "summaryFramework": "Personalization → Authority → Offer → CTA।"
+  },
+  "benefits": [
+    {
+      "title": "Consent-first",
+      "desc": "ईमेल और SMS स्पष्ट consent द्वारा गेटेड। STOP कीवर्ड वैश्विक रूप से रद्द। पहले ऑपरेशनल संदेश में कानूनी safe harbor — फॉलो-अप के लिए opt-in आवश्यक।"
+    },
+    {
+      "title": "स्मार्ट स्टॉप नियम",
+      "desc": "फनल ऑटो-स्टॉप होते हैं जब लीड जवाब देता है (SMS या ईमेल), एक terminal CRM स्टेज पर पहुँचता है (won/lost/booked), या unsubscribe करता है। कोई अत्यधिक संपर्क नहीं।"
+    },
+    {
+      "title": "7 रणनीतियाँ बिल्ट इन",
+      "desc": "Warm lead follow-up, cold B2B outreach, form nurture, booking reminders, reactivation, customer upsell, और custom। हर एक अपने use case के लिए fine-tuned।"
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "HABOS के बिना",
+      "text": "लीड फॉर्म भरता है। आप इसे 3 घंटे बाद देखते हैं। एक ईमेल ड्राफ्ट करते हैं। भेजते हैं। इंतजार करते हैं। मैन्युअल फॉलो अप करते हैं। 40% लीड भूल जाते हैं।",
+      "badge": "औसत प्रतिक्रिया समय: 3+ घंटे"
+    },
+    "with": {
+      "label": "HABOS के साथ",
+      "text": "लीड फॉर्म भरता है। तुरंत स्वागत SMS। 2 घंटे बाद Authority ईमेल। अगले दिन ऑफर। यदि वे जवाब देते हैं या बुक करते हैं — अनुक्रम रुकता है।",
+      "badge": "प्रतिक्रिया समय: तुरंत"
+    }
+  },
+  "techItems": [
+    "मनोविज्ञान-समर्थित संदेश",
+    "शांत घंटे + timezone",
+    "Inbound reply detection",
+    "CRM stage sync",
+    "Multi-step orchestration"
+  ],
+  "cta": {
+    "heading": "अन्य ऑटोमेशन टूल संदेश भेजते हैं। HABOS संबंध पोषित करता है।",
+    "button": "वेटलिस्ट में शामिल हों"
+  }
+}

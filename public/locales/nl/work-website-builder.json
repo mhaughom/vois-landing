@@ -1,0 +1,63 @@
+{
+  "badge": "AI Website Builder",
+  "hero": {
+    "title": "Beschrijf Uw Site. Die Bouwt Zichzelf.",
+    "description": "Vertel HABOS wat u nodig heeft. AI genereert een complete meertalige React-site met uw merk, producten, boekingen en formulieren — direct gepubliceerd op een live URL."
+  },
+  "body": "Voer de URL van een concurrent of referentiewebsite in. Browserautomatisering legt schermopnamen van volledige pagina's vast, extraheert DOM-inhoud, parseert CSS-ontwerptokens en detecteert logo's en afbeeldingen. Voor de AI begint te bouwen, injecteert HABOS tien lagen werkruimtecontext: merktokens, productcatalogus, boekingswidgets, winkelcomponenten, formulierinsluitsels, campagneoppervlakken en een activamanifest. Producten die in HABOS worden toegevoegd verschijnen automatisch op de website. Boekingen stromen door naar uw agenda. Formulierinzendingen worden doorgestuurd naar tickets of CRM-leads.",
+  "mockSite": {
+    "urlBar": "henderson-loodgieters.habos.site",
+    "brandName": "Henderson Loodgieters",
+    "navLinks": ["Diensten", "Over ons", "Contact"],
+    "bookButton": "Nu Boeken",
+    "tagline": "Erkend & Verzekerd Sinds 1985",
+    "services": [
+      { "name": "Noodreparatie" },
+      { "name": "Waterverwarmer" },
+      { "name": "Badkamerrenovatie" }
+    ]
+  },
+  "caption": {
+    "prefix": "Gegenereerd van: ",
+    "prompt": "Bouw een website voor een loodgietersbedrijf met onze diensten en een boekingswidget.",
+    "suffix": " Merkkleuren, producten en beschikbaarheid automatisch opgehaald uit uw werkruimte."
+  },
+  "benefits": [
+    {
+      "title": "Klonen & verbeteren",
+      "body": "Voer de URL van een concurrent in. HABOS legt schermopnamen vast, extraheert ontwerptokens en herbouwt het als een moderne React-app met uw branding en live commercewidgets."
+    },
+    {
+      "title": "10 verrijkingslagen",
+      "body": "Merktokens, productcatalogus, boekingswidgets, winkelcomponenten, formulierinsluitsels, campagneoppervlakken, activamanifest — allemaal geïnjecteerd voordat de AI begint te bouwen."
+    },
+    {
+      "title": "Terugzetten met één klik",
+      "body": "Maak onbeperkt versies. Bekijk een voorbeeld voor publicatie. Zet terug naar een eerdere versie. Uw live site loopt nooit risico."
+    }
+  ],
+  "widgetsLabel": "Live widgets die verbinding maken met uw backend",
+  "widgets": [
+    { "label": "Productcatalogus" },
+    { "label": "Boekingsagenda" },
+    { "label": "Winkelwagen" },
+    { "label": "Afrekenen" },
+    { "label": "Contactformulier" },
+    { "label": "Campagneaanbiedingen" }
+  ],
+  "scenario": {
+    "heading": "Hoe het in de praktijk werkt",
+    "body": "Een nieuwe klant meldt zich aan en voert de URL van zijn huidige website in. HABOS scrapt de site — legt ontwerp, inhoud, afbeeldingen en merktokens vast. In minder dan 2 minuten verschijnt een herbouwde versie met HABOS-commerce, boekingen en formulieren ingebouwd. Producten die in het dashboard worden toegevoegd, verschijnen automatisch op de website. Boekingen stromen door naar de agenda. Formulierinzendingen maken tickets aan. Één datalaag, overal."
+  },
+  "techItems": [
+    "VibeSDK op Cloudflare Workers",
+    "Meertalige React Router",
+    "Merktokeninjectie",
+    "Web component widgets",
+    "Aangepast domein ondersteuning"
+  ],
+  "cta": {
+    "heading": "Andere website builders werken met slepen en neerzetten. HABOS bouwt het voor u.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

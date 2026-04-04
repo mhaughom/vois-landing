@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "category": "Lösningar — Fältverksamhet",
+    "title": "Från fält till kontor på 30 sekunder.",
+    "subtitle": "Ett röstmeddelande på plats blir ett färdigt rapport, ett uppdaterat projekt och en skickad faktura — innan skåpbilen lämnar uppfarten.",
+    "description": "Bygg, leverans, fastighetsförvaltning, installation, besiktning, trädgårdsarbete, sol, skadedjursbekämpning och alla verksamheter där klyftan mellan fält och kontor är er största källa till slöseri."
+  },
+  "body": {
+    "section1": {
+      "heading": "Sex problem. Sex lösningar.",
+      "problem1": {
+        "problem": "Disponenten har en whiteboard och en telefon som aldrig slutar ringa. Ett jobb ombokades under natten via e-post. Ingen ser det. Tekniker 2 kör till fel adress. Fyrtio minuter bortkastade.",
+        "fix": "HABOS bearbetar ombokningsmejlet under natten. Jobbet är förflyttat. Kunden underrättad. Rutten omberäknad. Varje tekniker ser sin optimerade rutt på telefonen klockan 7. Inga samtal. Ingen whiteboard."
+      },
+      "problem2": {
+        "problem": "Teknikern är klar med ett jobb. Tar foton med sin privata telefon. Sms:ar kontoret \"Johnson klar, tog längre än väntat.\" Ingen strukturerad data. Foton sitter kvar på telefonen i veckor.",
+        "fixIntro": "Tryck på \"Slutför jobb\" i HABOS. Ta foton — sparas i jobbjournalen. Spela in ett trettio sekunder långt röstmeddelande:",
+        "voiceNote": "\"Installation klar. Fick byta monteringsfästet — använde en Hilti KB-TZ istället, 340 kronor. Kunden är nöjd, men listen på söderväggen behöver uppföljning nästa vecka.\"",
+        "fixResult": "Tolkat som: jobb avslutat, material loggat (340 NOK), uppföljningsbesök skapat, stämning positiv. Kontoret ser det i realtid."
+      },
+      "problem3": {
+        "problem": "Kunden ringer: \"Var är teknikern?\" Disponenten ringer teknikern — inget svar, de är på ett tak. Återringer kunden: \"De borde vara där snart.\" Kunden är frustrerad. Teknikern var fem minuter bort.",
+        "fix": "Disponenten tittar på teamets GPS-karta. Grön prick, två gator bort, beräknad ankomsttid fyra minuter. \"De är hos dig om ungefär fem minuter.\" Klart. Ingen telefonrundlöpning."
+      },
+      "problem4": {
+        "problem": "17:30. Projektledaren spenderar nittio minuter på att transkribera sms och anteckningar. Hälften av datan saknas. Tre foton skickades aldrig. Ett jobb har inget journal alls. Morgondagens schema byggs från minnet.",
+        "fix": "Varje jobb har en röstrapport, foton, tidsstämplar och använda delar. Morgondagens skick är byggt på AI-optimerad ruttplanering. Tre fakturor utkastade från avslutade jobb — granskade och skickade på tio minuter."
+      },
+      "problem5": {
+        "problem": "Rutter planeras på magkänsla. Besättning 1 kör kors och tvärs i staden. Besättning 3 kör förbi Besättning 2:s nästa jobb på väg till sitt eget. Du förlorar en timme om dagen på dålig ruttplanering.",
+        "fix": "HABOS tilldelar jobb efter kompetens, plats och tillgänglighet. Rutter beräknas automatiskt. Besättning 1 får norrasklingan, Besättning 2 stadskärnan, Besättning 3 söderut. 15–20 % mer effektivt än manuell schemaläggning."
+      },
+      "problem6": {
+        "problem": "Körtimmar loggas inte. Debiterbar tid uppskattas. Ingen vet vem som stämplade in var. Efterlevnad är en huvudvärk.",
+        "fix": "GPS-instämpning vid ankomst till arbetsplatsen. Utstämpling vid avresa. Körtimmar loggas automatiskt. Debiterbara timmar beräknas och kopplas till fakturering."
+      }
+    },
+    "section2": {
+      "heading": "Vad det kostar",
+      "p1": "ServiceTitan börjar på $145/månad. Jobber på $69. Lägg till Routific för ruttplanering, Toggl för tidsspårning och Dropbox för jobbfoton så är du väl förbi $250.",
+      "p2": "HABOS gör allt detta för $35 i månaden. Schemaläggning, ruttplanering, röstrapporter, GPS-spårning, tidsloggning, fakturering och en kundportal — i ett enda system."
+    },
+    "stats": [
+      ["2 tim/dag", "sparade på datainmatning"],
+      ["90 min/dag", "sparade på schemaläggning"],
+      ["15-20%", "effektivare rutter"],
+      ["0", "förlorade jobbjournaler"]
+    ],
+    "labels": {
+      "problem": "Problem",
+      "fix": "Lösning"
+    },
+    "testimonial": {
+      "quote": "\"Innan HABOS spenderade jag timmar varje kväll med att ringa tekniker för att ta reda på vad som hänt under dagen. Nu tittar jag på instrumentpanelen klockan 17 och varje jobb har en röstrapport med foton. Vi gick från 6 jobb om dagen till 7 eftersom ruttplaneringen är smartare och ingen slösar tid på pappersarbete.\"",
+      "attribution": "— Erik, 45 · Byggföretag · 12 fältarbetare · Stavanger"
+    },
+    "cta": {
+      "heading": "Stäng klyftan mellan ditt fält och ditt kontor — permanent.",
+      "button": "Gå med i väntelistan"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Løsninger — Kreative bedrifter",
+    "title": "Bruk tiden din på å skape.\u00a0Ikke administrere.",
+    "subtitle": "Klienthåndtering, prosjektsporing, tilbud, fakturering og teamkoordinering — tatt hånd om.",
+    "description": "Byråer, studioer, fotografer, videografer, frilansforfattere, eventplanleggere, arkitekter og enhver bedrift der arbeidet er kreativt, men alt rundt det er en slit."
+  },
+  "body": {
+    "caseStudyLabel": "Casestudie",
+    "section1": {
+      "heading": "Slik fikk et 6-personers byrå i Bergen tilbake 12 timer per uke",
+      "p1": "Marte driver et digitalt byrå. Seks personer. Merkevarebygging, sosiale medier, webdesign. Kundene er mellomstore norske selskaper som forventer rask kommunikasjon og høykvalitets kreativt arbeid. Problemet hennes var ikke det kreative arbeidet. Det var alt annet."
+    },
+    "section2": {
+      "heading": "Før",
+      "p1": "Mandagsmorgener startet med et to-timers statusmøte. Ikke fordi teamet var tregt — men fordi ingen kunne se hvor et prosjekt sto uten å spørre. Asana hadde oppgavelister. Notion hadde møtenotater. Toggl hadde timer. CRM-en hadde klientdetaljer. Slack hadde de faktiske samtalene. Å få et fullstendig bilde av et prosjekt krevde å sjekke fem verktøy.",
+      "p2": "En klient ville svare på et tilbud klokken 23. Før Marte kunne skrive tre setninger tilbake, måtte hun sjekke det opprinnelige tilbudet i Google Docs, budsjettet i et regneark og teamets tilgjengelighet i Asana. Fire faner. Femten minutter. For en tre-setningers e-post.",
+      "p3": "Fakturering var det verste. Timer var i Toggl. Leveranser var i Asana. Kontraktsbetingelser var i et e-postvedlegg fra tre måneder siden. Fakturaene endte opp som omtrentlige. Hun underfakturerte enten eller hadde vanskelige samtaler.",
+      "p4": "Og potensielle klienter? Når noen spurte «kan du sende eksempler på lignende arbeid?» — tok det førtifem minutter å finne casestudier på tvers av Google Drive, Dropbox og gamle e-posttråder. Hun lovet å sende innen slutten av dagen og leverte to dager senere."
+    },
+    "section3": {
+      "heading": "Vendepunktet",
+      "p1": "Marte byttet til HABOS. Ikke på grunn av en enkelt funksjon, men fordi hun var lei av å være systemadministrator i stedet for kreativ direktør.",
+      "p2": "Det første som endret seg var klientsamtaler. HABOS genererer et møtenotat før hver samtale — tidligere notater, prosjektstatus, utestående beslutninger. Under samtalen fanger sanntidstranskripsjon alt. Etterpå: handlingspunkter ekstrahert automatisk, tildelt til riktige folk, koblet til prosjektet. Klienten får en oppfølgings-e-post som oppsummerer beslutninger, utarbeidet i Martes stemme, innen ti minutter.",
+      "highlight": {
+        "label": "Øyeblikket som solgte henne",
+        "voiceNote": "«VOIS, finn alt fra prosjekter lignende Andersson-henvendelsen — kampanjer for sosiale medier for matmerker, de siste to årene.»",
+        "result": "Tre sekunder. To casestudier, en forslagmal og en tidslinje fra et sammenlignbart prosjekt. Alt funnet på tvers av dokumenter, prosjektposter, forslag og møtetranskripsjoner."
+      }
+    },
+    "section4": {
+      "heading": "Etter",
+      "p1": "Mandagens statusmøte er borte. Erstattet av en fem-minutters dashbordsjekk. Hvert prosjekt viser helse, blokkere og neste milepæler. Møtet som erstattet det er tjuefem minutter med faktiske beslutninger.",
+      "p2": "Fakturering tar minutter, ikke timer. Tidssporing er koblet til prosjekter. Leveranser er krysset av i milepæler. Kontraktsbetingelser bor i CRM-posten. Fakturaen genereres med korrekte linjelementer, fakturerbare timer og betalingsbetingelser. Ett trykk for å sende.",
+      "p3": "Forslag som pleide å ta en dag tar nå en time. Beskriv prosjektet i et stemmenotat, og HABOS utarbeider et forslag med data fra tidligere prosjekter og prissetting.",
+      "p4": "Klienter la merke til forskjellen før Martes team gjorde det. Raskere svar. Bedre oppfølging. En klientportal der de kan se prosjektfremdrift, godkjenne leveranser og melde direkte til teamet. Ingen «kan du sende meg en oppdatering?»-e-poster mer."
+    },
+    "section5": {
+      "heading": "Resultatene",
+      "stats": [
+        ["12 timer", "spart per uke på administrasjon"],
+        ["90 %", "raskere forslagsomstillingstid"],
+        ["$200+", "spart månedlig på verktøy"],
+        ["0", "tapt prosjektkunnskap"]
+      ]
+    },
+    "testimonial": {
+      "quote": "«Vi pleide å bruke mandagsmorgener i et 2-timers statusmøte bare for å finne ut hvor hvert prosjekt sto. Nå sjekker vi dashbordet på 5 minutter og går rett til arbeidet. AI-møtenotatene alene sparte oss 6 timer per uke — og kundene våre la merke til at vi svarer raskere.»",
+      "attribution": "— Marte, 34 · Digitalt byrå · 6 ansatte · Bergen"
+    },
+    "cta": {
+      "heading": "Kom tilbake til arbeidet du faktisk startet denne bedriften for å gjøre.",
+      "button": "Bli med på venteliste"
+    }
+  }
+}

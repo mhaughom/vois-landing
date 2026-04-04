@@ -1,0 +1,77 @@
+{
+  "badge": "Core Feature",
+  "hero": {
+    "title": "One Question. Nineteen Sources.\nOne Second.",
+    "description": "Ask anything about your business and get a cited answer before you finish your coffee."
+  },
+  "intro": "When you ask 'what did we discuss about the Johnson project?' \u2014 HABOS doesn't search one app. It searches meeting transcripts, project notes, email threads, CRM timeline, task comments, and chat messages simultaneously. A company using separate tools for each of these \u2014 Notion, HubSpot, Gmail, Slack, Asana \u2014 would need to search five products and mentally synthesize the results. HABOS returns a ranked, citation-backed answer in under a second.",
+  "sources": {
+    "label": "All searched simultaneously",
+    "items": [
+      "Voice recordings",
+      "Documents",
+      "Emails",
+      "Contacts",
+      "Chat messages",
+      "Playbooks",
+      "Products",
+      "Orders",
+      "Bookings",
+      "CRM records",
+      "Tickets",
+      "Form submissions",
+      "Jobs & visits",
+      "Routes",
+      "Websites",
+      "Social posts",
+      "Presentations",
+      "Project notes",
+      "Meeting transcripts"
+    ]
+  },
+  "comparison": {
+    "without": {
+      "title": "Without VOIS Brain",
+      "painPoints": [
+        "Search Gmail... nothing",
+        "Check Slack... maybe?",
+        "Open CRM... scroll scroll scroll",
+        "Ask a colleague... they're in a meeting",
+        "Give up and wing it"
+      ],
+      "footer": "~20 minutes. Partial answer."
+    },
+    "with": {
+      "title": "With VOIS Brain",
+      "query": "\u201cWhat did we discuss about the Johnson project?\u201d",
+      "foundLabel": "Found across 4 sources:",
+      "sources": "meeting transcript (Mar 12) \u00b7 email thread (Mar 15) \u00b7 CRM note (Mar 18) \u00b7 project update (Mar 20)",
+      "answer": "The Johnson kitchen renovation is on track with permits approved...",
+      "footer": "0.8 seconds. Full picture."
+    }
+  },
+  "techStats": [
+    "512-dim embeddings",
+    "HNSW vector indexes",
+    "Hybrid semantic + keyword",
+    "11 search functions"
+  ],
+  "scenarios": [
+    {
+      "question": "Where are we with the Henderson deal?",
+      "answer": "CRM pipeline, 3 email threads, last meeting notes"
+    },
+    {
+      "question": "What did Sarah say about the budget?",
+      "answer": "Voice recording transcript, project comment, Slack message"
+    },
+    {
+      "question": "Find everything about permit delays",
+      "answer": "2 project notes, 1 email chain, 1 form submission, 1 job log"
+    }
+  ],
+  "closing": {
+    "tagline": "Other platforms search one app at a time. VOIS searches your entire business at once.",
+    "cta": "Join Waitlist"
+  }
+}

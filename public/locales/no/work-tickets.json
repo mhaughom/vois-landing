@@ -1,0 +1,92 @@
+{
+  "badge": "Support og saker",
+  "hero": {
+    "title": "SLA-tidtakere. Automatisk eskalering.\nNull brudd.",
+    "description": "Alle saker får en SLA-nedtelling. Bruddadvarsel utløses 30 minutter før fristen. Hvis det brytes, omtildeles automatisk til neste tilgjengelige agent."
+  },
+  "body": "Alle saker får en SLA-nedtelling med konfigurerbare første-respons og løsningsmål etter prioritet. Visuelle tidtakere advarer 30 minutter før brudd. Hvis en sak bryter SLA-en, slår automatisk eskalering inn – omtildelt til neste tilgjengelige agent. Saker kan opprettes fra skjemaer, e-poster, talesamtaler, API eller manuell registrering med automatisk deduplisering. Kundee-poster vises som samtaletråder med interne notater kun synlig for agenter, og AI foreslår svar basert på kontekst.",
+  "queue": {
+    "header": "Aktiv kø",
+    "countLabel": "saker · 1 bruddadvarsel",
+    "tickets": [
+      {
+        "priority": "urgent",
+        "title": "Nødsituasjon: Johnson rørsprekk",
+        "assignee": "Mike T.",
+        "sla": "23 min igjen"
+      },
+      {
+        "priority": "high",
+        "title": "HVAC kjøler ikke – Baker kontor",
+        "assignee": "Sarah L.",
+        "sla": "2t 15 min igjen"
+      },
+      {
+        "priority": "normal",
+        "title": "Tilbudsforespørsel: badrenovering",
+        "assignee": "Ikke tildelt",
+        "sla": "7t igjen"
+      },
+      {
+        "priority": "normal",
+        "title": "Planlegg årlig inspeksjon",
+        "assignee": "Auto-tildelt",
+        "sla": "Løst på 1t 20 min",
+        "resolved": true
+      }
+    ],
+    "priorityLabels": {
+      "urgent": "Kritisk",
+      "high": "Høy",
+      "normal": "Normal"
+    },
+    "automation": {
+      "breach30": "30 minutter før brudd",
+      "breach30Action": "varslingsmelding",
+      "onBreach": "Ved brudd",
+      "onBreachAction": "omtildel automatisk til neste tilgjengelige",
+      "postResolution": "Etter løsning",
+      "postResolutionAction": "CSAT-undersøkelse sendt automatisk"
+    }
+  },
+  "benefits": {
+    "multiSource": {
+      "title": "Flerkildesopprettelse",
+      "desc": "Fra skjemaer, e-poster, talesamtaler, API eller manuell. Auto-dedup relaterte forespørsler."
+    },
+    "pipeline": {
+      "title": "Sak → handlingspipeline",
+      "desc": "Koble til prosjekter, feltjobber og oppgaver. Én sak kan spawne hele arbeidsflyter."
+    },
+    "csat": {
+      "title": "CSAT-innsamling",
+      "desc": "Auto-undersøkelse etter løsning for tilfredshetscoring og trendsporing."
+    }
+  },
+  "sourceIcons": {
+    "email": "E-post",
+    "voice": "Tale",
+    "webForm": "Nettskjema",
+    "voiceNote": "Talenotat",
+    "api": "API"
+  },
+  "beforeAfter": {
+    "beforeLabel": "Før",
+    "beforeText": "Kunden sender e-post. Du ser den 3 timer senere. Tildel den. Spor den i et regneark. Håp ingen mister den. SLA? Hva er SLA?",
+    "beforeStat": "Gjennomsnittlig respons: 3+ timer",
+    "afterLabel": "Etter",
+    "afterText": "Kunden sender e-post. Sak opprettes automatisk. SLA-tidtaker starter. Advarsel ved 30 min. Auto-eskalering ved brudd. CSAT-undersøkelse etter løsning.",
+    "afterStat": "Gjennomsnittlig respons: alltid innen SLA"
+  },
+  "techStrip": [
+    "SLA-håndhevelse",
+    "Automatisk eskalering",
+    "E-posttråding",
+    "AI-svarforslag",
+    "CSAT-undersøkelser"
+  ],
+  "closing": {
+    "title": "Andre saksverktøy sporer problemer.\nHABOS løser dem.",
+    "cta": "Bli med på ventelisten"
+  }
+}

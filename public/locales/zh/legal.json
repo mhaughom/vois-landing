@@ -1,0 +1,431 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "法律"
+  },
+  "sidebar": {
+    "documentsLabel": "法律文件",
+    "lastUpdatedLabel": "最后更新："
+  },
+  "mobile": {
+    "jumpToSection": "跳转至章节",
+    "tableOfContents": "目录"
+  },
+  "sections": {
+    "terms": "服务条款",
+    "refund": "退款政策",
+    "privacy": "隐私政策",
+    "eula": "最终用户许可协议（iOS）"
+  },
+  "footer": {
+    "description": "Vois 是一款人工智能语音笔记应用，帮助您轻松捕捉、整理并付诸行动。",
+    "companyInfoHeading": "公司信息",
+    "operatedBy": "Vois 由以下公司运营",
+    "orgNumber": "组织编号（Org.nr）：",
+    "orgValue": "936 920 594",
+    "address": "地址：",
+    "addressValue": "Alsvåg, Norway",
+    "contact": "联系方式：",
+    "contactEmail": "hello@tryvois.com",
+    "copyright": "Vois 版权所有。",
+    "madeIn": "骄傲地在挪威制造",
+    "gdpr": "符合 GDPR 规定",
+    "logoAlt": "Vois"
+  },
+  "terms": {
+    "title": "服务条款",
+    "subtitle": "使用 Vois 前，请仔细阅读以下条款。",
+    "s1": {
+      "title": "1. 条款接受",
+      "p1": "访问或使用 Vois（"本服务"），即表示您同意受本服务条款（"条款"）的约束。如您不同意本条款，请勿使用本服务。",
+      "p2": "Vois 由 VOIS AI AS（组织编号 936 920 594）运营，该公司在挪威注册。本条款构成您与 VOIS AI AS 之间具有法律约束力的协议。"
+    },
+    "s2": {
+      "title": "2. 服务说明",
+      "p1": "Vois 是一款人工智能语音笔记应用，帮助您捕捉、转录和整理思想。本服务包括：",
+      "features": [
+        "语音录制与人工智能转录",
+        "自动提取任务、事件和想法",
+        "通过人工智能对话与笔记互动",
+        "日历和提醒集成"
+      ]
+    },
+    "s3": {
+      "title": "3. 订阅",
+      "p1": "Vois 通过 Apple App Store 提供以下自动续费订阅套餐：",
+      "tableHeaders": ["订阅", "价格", "时长", "免费试用"],
+      "rows": [
+        ["个人月度版", "$14.99", "1个月（按月自动续费）", "无免费试用"],
+        ["个人年度版", "$79.99（约$6.67/月）", "1年（按年自动续费）", "3天免费试用"],
+        ["工作月度版", "$34.99", "1个月（按月自动续费）", "无免费试用"],
+        ["工作年度版", "$249.99（约$20.83/月）", "1年（按年自动续费）", "3天免费试用"]
+      ],
+      "freeTierNote": "Vois 还提供免费套餐，使用量有限（5条语音录音、5条聊天消息、1个自定义应用，每次录音最长3分钟），完全免费。",
+      "autoRenewal": {
+        "title": "自动续费条款",
+        "items": [
+          "购买确认时，费用将从您的 Apple ID 扣除（应用内购买）或通过 Stripe 扣除（网页购买）。",
+          "免费试用期（仅限年度套餐）从购买时开始。如您未在免费试用结束前取消，订阅将自动续费并收取相应费用。",
+          "订阅将自动续费，除非在当前周期结束前至少24小时取消。",
+          "您的账户将在当前周期结束前24小时内按所选套餐收取续费费用。",
+          "您可以随时在 Apple ID 账户设置中管理和取消订阅。"
+        ]
+      },
+      "refundLink": "退款政策",
+      "refundNote": "有关退款信息，请参阅我们的退款政策。",
+      "privacyLink": "隐私政策",
+      "eulaLink": "最终用户许可协议",
+      "moreDetailsNote": "更多详情，请参阅我们的隐私政策和最终用户许可协议。"
+    },
+    "s4": {
+      "title": "4. 用户责任",
+      "intro": "您同意：",
+      "items": [
+        "仅将本服务用于合法目的",
+        "不尝试对本服务进行逆向工程或利用",
+        "不使用本服务处理非法或有害内容",
+        "保管好您的账户凭据"
+      ]
+    },
+    "s5": {
+      "title": "5. 您的内容",
+      "p1": "您的内容归您所有。您保留对使用 Vois 创建的语音录音、转录文本和笔记的所有权利。我们不主张对您个人内容的所有权。",
+      "p2": "使用 Vois，即表示您授予我们有限许可，仅用于提供本服务（转录、人工智能分析、存储和同步）目的来处理您的内容。"
+    },
+    "s6": {
+      "title": "6. 人工智能生成内容",
+      "p1": "Vois 使用人工智能转录和分析您的录音。您承认：",
+      "items": [
+        "人工智能生成的转录可能包含错误",
+        "您有责任审查人工智能生成的内容",
+        "人工智能功能的提供不保证其准确性"
+      ]
+    },
+    "s7": {
+      "title": "7. 责任限制",
+      "p1": "在挪威法律允许的最大范围内，VOIS AI AS 不对任何间接、附带、特殊或后果性损害承担责任，包括数据或利润损失。"
+    },
+    "s8": {
+      "title": "8. 适用法律",
+      "p1": "本条款受挪威法律管辖。任何争议均受挪威法院的专属管辖。"
+    },
+    "s9": {
+      "title": "9. 条款变更",
+      "p1": "我们可能随时修改本条款。我们将通过应用或电子邮件通知您重大变更。变更后继续使用即视为接受。"
+    },
+    "s10": {
+      "title": "10. 联系方式",
+      "p1": "有任何问题？请联系我们：hello@tryvois.com"
+    }
+  },
+  "refund": {
+    "title": "退款政策",
+    "subtitle": "Vois 订阅的退款流程说明。",
+    "s1": {
+      "title": "App Store 购买",
+      "p1": "所有 Vois 订阅均通过 Apple App Store 处理。我们无法直接处理 App Store 购买的退款。",
+      "howToTitle": "申请退款的步骤：",
+      "steps": [
+        "访问 reportaproblem.apple.com",
+        "使用您的 Apple ID 登录",
+        "找到您的 Vois 购买记录",
+        "选择「申请退款」"
+      ],
+      "note": "所有退款决定均由 Apple 根据其条款做出。"
+    },
+    "s2": {
+      "title": "有问题？",
+      "p1": "请联系我们：hello@tryvois.com"
+    }
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "subtitle": "我们如何在 GDPR 框架下收集、使用和保护您的个人数据。",
+    "s1": {
+      "title": "1. 数据控制者",
+      "companyLabel": "公司：",
+      "companyValue": "VOIS AI AS",
+      "locationLabel": "所在地：",
+      "locationValue": "Alsvåg, Norway（欧洲经济区）",
+      "contactLabel": "联系方式：",
+      "contactEmail": "hello@tryvois.com",
+      "p1": "VOIS AI AS 是通过 Vois 应用和网站收集您个人数据的数据控制者。"
+    },
+    "s2": {
+      "title": "2. 我们收集的数据",
+      "accountHeading": "账户信息：",
+      "accountItems": [
+        "电子邮件地址（用于账户创建和通信）",
+        "姓名（可选，用于个性化）",
+        "支付信息（应用内购买通过 Apple 处理，网页购买通过 Stripe 处理；我们不存储银行卡信息）"
+      ],
+      "usageHeading": "使用数据：",
+      "usageItems": [
+        "应用使用分析（匿名化，仅在您同意后通过 PostHog 欧盟托管服务收集）",
+        "功能交互数据",
+        "错误日志和崩溃报告",
+        "设备标识符（未登录用户的匿名设备 ID）"
+      ],
+      "contentHeading": "内容数据：",
+      "contentItems": [
+        "语音录音和音频文件（用于转录处理）",
+        "转录文本、笔记和会议记录",
+        "发送给人工智能助理的聊天消息",
+        "从笔记中提取的日历事件和任务内容",
+        "上传的用于文字提取和分析的图片",
+        "人工智能生成的摘要、任务和邮件草稿"
+      ]
+    },
+    "s3": {
+      "title": "3. 人工智能训练政策",
+      "boxTitle": "您的数据不会用于人工智能训练",
+      "boxText": "我们不会使用您的私人语音笔记、转录文本或任何个人内容来训练人工智能模型。您的数据归您所有。我们的第三方人工智能提供商——Deepgram、OpenAI、Anthropic、Google、xAI 或 Perplexity——均不会将通过 VOIS 发送的数据用于模型训练。",
+      "p1": "当我们通过第三方人工智能服务处理您的数据时，数据将：",
+      "items": [
+        "通过加密 API 连接安全发送至相关提供商",
+        "实时处理并返回给您",
+        "不被任何人工智能提供商留存用于训练目的",
+        "受我们与各子处理商签订的数据处理协议约束",
+        "按照各提供商禁止使用客户数据进行训练的商业 API 条款处理"
+      ]
+    },
+    "s4": {
+      "title": "4. 本地优先架构",
+      "boxTitle": "隐私设计原则",
+      "boxIntro": "Vois 采用本地优先架构，这意味着：",
+      "items": [
+        "语音录音经过处理后安全存储在您的个人云数据库（Supabase）中。",
+        "音频文件被保留以支持播放和重新处理。您可以随时在应用中删除您的录音。",
+        "您的笔记和转录文本安全同步至您的账户，并保持加密状态。"
+      ]
+    },
+    "s5": {
+      "title": "5. 第三方人工智能服务",
+      "boxTitle": "人工智能数据共享披露",
+      "boxText": "VOIS 使用第三方人工智能服务提供核心应用功能。在与这些服务共享任何个人数据之前，我们将向您征求明确同意。以下是每个提供商接收哪些数据及其原因的详细说明。",
+      "dataSentHeading": "我们发送给人工智能服务的数据：",
+      "dataSentItems": [
+        "用于转录的语音录音和音频文件",
+        "用于任务提取、日历事件创建和摘要的转录文本",
+        "用于人工智能助理回复的聊天消息",
+        "用于实时生成会议记录的会议音频和转录",
+        "用于文字提取和分析的图片"
+      ],
+      "providersHeading": "接收您数据的服务：",
+      "providers": [
+        {
+          "name": "Deepgram, Inc.",
+          "dataReceived": "语音录音和音频数据。",
+          "purpose": "实时和录制音频的语音转文字，包括会议中的说话人识别。",
+          "policyLabel": "Deepgram 隐私政策",
+          "policyUrl": "https://deepgram.com/privacy"
+        },
+        {
+          "name": "OpenAI, L.L.C.",
+          "dataReceived": "转录文本、聊天消息、图片、会议记录和任务内容。",
+          "purpose": "文本分析、任务和事件提取、聊天助理回复、会议记录生成、邮件起草和图片分析。",
+          "policyLabel": "OpenAI 隐私政策",
+          "policyUrl": "https://openai.com/privacy"
+        },
+        {
+          "name": "Anthropic, PBC (Claude)",
+          "dataReceived": "聊天消息和转录文本。",
+          "purpose": "当 Claude 被选为活跃模型时，提供人工智能聊天助理回复。",
+          "policyLabel": "Anthropic 隐私政策",
+          "policyUrl": "https://www.anthropic.com/privacy"
+        },
+        {
+          "name": "Google LLC (Gemini)",
+          "dataReceived": "聊天消息和转录文本。",
+          "purpose": "当 Gemini 被选为活跃模型时，提供人工智能聊天助理回复。",
+          "policyLabel": "Google 隐私政策",
+          "policyUrl": "https://policies.google.com/privacy"
+        },
+        {
+          "name": "xAI Corp. (Grok)",
+          "dataReceived": "聊天消息和转录文本。",
+          "purpose": "当 Grok 被选为活跃模型时，提供人工智能聊天助理回复。",
+          "policyLabel": "xAI 隐私政策",
+          "policyUrl": "https://x.ai/legal/privacy-policy"
+        },
+        {
+          "name": "Perplexity AI, Inc.",
+          "dataReceived": "研究查询及来自笔记或任务的相关上下文。",
+          "purpose": "当您在人工智能代理中使用研究功能时，进行网络研究和信息检索。",
+          "policyLabel": "Perplexity 隐私政策",
+          "policyUrl": "https://www.perplexity.ai/privacy"
+        }
+      ],
+      "dataReceivedLabel": "接收数据：",
+      "purposeLabel": "用途：",
+      "protectionHeading": "我们如何与这些提供商保护您的数据：",
+      "protectionItems": [
+        "所有数据通过加密 API 连接（TLS/SSL）安全传输。",
+        "我们使用各提供商的官方商业 API，这意味着您的数据按照其商业数据处理条款处理，不会用于训练其人工智能模型。",
+        "以上所列的每个提供商在合同或政策上均须提供与本隐私政策中所述相同或等效的个人数据保护。"
+      ],
+      "choicesHeading": "您的选择：",
+      "choicesText": "在与第三方人工智能服务共享数据之前，我们将向您征求明确同意。您可以随时在应用设置的「人工智能数据共享」中撤销此同意。如果您拒绝人工智能同意，依赖第三方人工智能处理的功能（转录、聊天、会议记录、任务提取）将不可用，但您可以继续使用其他应用功能。"
+    },
+    "s6": {
+      "title": "6. 子处理商与基础设施",
+      "p1": "我们使用以下第三方服务来运营 Vois：",
+      "tableHeaders": ["服务", "用途", "所在地"],
+      "rows": [
+        ["Deepgram", "语音转录", "美国（欧盟数据处理协议）"],
+        ["OpenAI", "人工智能（文本分析、聊天、会议记录、图片分析）", "美国（欧盟数据处理协议）"],
+        ["Anthropic", "人工智能聊天助理（Claude）", "美国（欧盟数据处理协议）"],
+        ["Google", "人工智能聊天助理（Gemini）", "美国（欧盟数据处理协议）"],
+        ["xAI", "人工智能聊天助理（Grok）", "美国"],
+        ["Perplexity AI", "人工智能研究与信息检索", "美国"],
+        ["Supabase", "数据库、身份验证和文件存储", "欧盟（法兰克福）"],
+        ["Railway", "后端应用托管", "美国"],
+        ["Vercel", "网络应用托管与 CDN", "全球 CDN"],
+        ["Stripe", "支付处理（网页）", "美国（欧盟数据处理协议）"],
+        ["RevenueCat", "订阅管理", "美国（欧盟数据处理协议）"],
+        ["Apple", "App Store 支付及 Apple 登录", "美国（欧盟数据处理协议）"],
+        ["PostHog", "网站分析与会话录制（基于同意）", "欧盟（法兰克福）"]
+      ],
+      "footnote": "以上所列的所有子处理商和基础设施提供商均须在合同上提供与本隐私政策中所述相同或等效的个人数据保护。"
+    },
+    "s7": {
+      "title": "7. Cookie 与网站追踪",
+      "p1": "我们的网站（vois.app）使用以下技术：",
+      "necessaryHeading": "严格必要存储",
+      "necessaryItems": [
+        "您的 Cookie 同意偏好（存储在 localStorage 中）",
+        "已登录用户的身份验证令牌"
+      ],
+      "necessaryNote": "这些内容无需同意，因为它们对网站正常运行至关重要。",
+      "analyticsHeading": "分析（需要同意）",
+      "analyticsItems": [
+        "PostHog——用于网站分析和会话录制。数据托管在欧盟（法兰克福）。PostHog 仅在您通过 Cookie 横幅提供同意后才会激活。",
+        "收集的数据包括：页面浏览、点击、滚动深度、匿名会话录制（所有输入字段均已遮蔽）、设备类型和推荐来源。",
+        "数据不会与广告商共享，也不用于广告定向。"
+      ],
+      "cookieSettingsNote": "您可以随时通过我们网站页脚中的 Cookie 设置链接更改您的追踪偏好。"
+    },
+    "s8": {
+      "title": "8. 处理的法律依据（GDPR 第6条）",
+      "items": [
+        "合同履行：处理您请求的 Vois 服务所必需的数据处理。",
+        "合法利益：服务改进和安全监控（附有适当保障措施）。",
+        "同意：与第三方人工智能服务共享数据（您可以随时在设置中撤销人工智能同意）、通过 PostHog 进行的网站分析（您可以随时通过页脚中的 Cookie 设置链接管理您的 Cookie 偏好）以及营销通信（您可以随时撤销同意）。",
+        "法律义务：税务记录及遵守适用法律。"
+      ]
+    },
+    "s9": {
+      "title": "9. 您的权利（GDPR）",
+      "p1": "根据《通用数据保护条例》，您有权：",
+      "items": [
+        "访问权：请求获得您个人数据的副本",
+        "更正权：更正不准确的个人数据",
+        "删除权：请求删除您的数据（「被遗忘权」）",
+        "数据可携性权：以机器可读格式接收您的数据",
+        "限制权：限制我们处理您数据的方式",
+        "异议权：对基于合法利益的处理提出异议",
+        "撤销同意权：随时撤销同意"
+      ],
+      "contactNote": "如需行使这些权利，请联系我们：hello@tryvois.com。我们将在30天内回复。"
+    },
+    "s10": {
+      "title": "10. 数据保留",
+      "items": [
+        "活跃账户：数据在您的账户存续期间保留",
+        "已删除账户：数据在账户删除后30天内清除",
+        "财务记录：根据挪威法律要求保留7年"
+      ]
+    },
+    "s11": {
+      "title": "11. 数据安全",
+      "p1": "我们采取适当的技术和组织措施来保护您的数据：",
+      "items": [
+        "所有传输中的数据均使用 TLS/SSL 加密",
+        "静态数据使用 AES-256 加密",
+        "定期安全审计和渗透测试",
+        "员工访问控制和培训"
+      ]
+    },
+    "s12": {
+      "title": "12. 联系与投诉",
+      "p1": "如有隐私相关问题：",
+      "privacyContactLabel": "隐私联系：",
+      "privacyContactEmail": "hello@tryvois.com",
+      "p2": "如果您认为您的权利受到侵犯，您有权向以下机构提出投诉：",
+      "authorityName": "Datatilsynet（挪威数据保护局）",
+      "authorityWebsiteLabel": "网站：",
+      "authorityWebsiteUrl": "https://www.datatilsynet.no",
+      "authorityWebsiteDisplay": "www.datatilsynet.no"
+    }
+  },
+  "eula": {
+    "title": "最终用户许可协议（EULA）",
+    "subtitle": "在 iOS 设备上使用 Vois 的条款。",
+    "s1": {
+      "title": "1. Apple 授权应用",
+      "p1": "除本服务条款外，您在 iOS 设备上使用 Vois 还受 Apple 标准授权应用最终用户许可协议（EULA）的约束。",
+      "boxTitle": "Apple 标准 EULA",
+      "boxText": "如需查阅完整的 Apple EULA 条款，请访问：",
+      "eulaUrl": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+    },
+    "s2": {
+      "title": "2. 声明",
+      "intro": "您承认：",
+      "items": [
+        "本 EULA 仅在您与 VOIS AI AS 之间签订，不涉及 Apple Inc.。",
+        "VOIS AI AS 而非 Apple 对授权应用（Vois）及其内容独自负责。",
+        "Apple 没有义务为 Vois 提供任何维护或支持服务。",
+        "如果 Vois 未能符合任何适用保证，您可通知 Apple，Apple 将退还应用购买价格（如有）。在适用法律允许的最大范围内，Apple 对 Vois 不承担其他保证义务。",
+        "Apple 不负责处理您或第三方就 Vois 或您对 Vois 的持有和使用所提出的任何索赔。",
+        "Apple 及其子公司是本 EULA 的第三方受益人，在您接受本 EULA 后，Apple 有权作为第三方受益人对您执行本 EULA。"
+      ]
+    },
+    "s3": {
+      "title": "3. 知识产权",
+      "p1": "如果第三方声称 Vois 或您对 Vois 的持有和使用侵犯了该第三方的知识产权，VOIS AI AS 而非 Apple 将独自负责对任何此类知识产权侵权索赔进行调查、辩护、和解和解决。"
+    },
+    "s4": {
+      "title": "4. 法律合规",
+      "intro": "您声明并保证：",
+      "items": [
+        "您不位于受美国政府禁运的国家或地区。",
+        "您未被列入任何美国政府禁止或限制方名单。",
+        "您在使用 Vois 时将遵守所有适用的第三方协议条款。"
+      ]
+    },
+    "s5": {
+      "title": "5. 订阅套餐",
+      "p1": "Vois 通过 Apple App Store 管理以下自动续费订阅套餐：",
+      "tableHeaders": ["订阅", "价格", "时长", "免费试用"],
+      "rows": [
+        ["个人月度版", "$14.99", "1个月（按月自动续费）", "无免费试用"],
+        ["个人年度版", "$79.99（约$6.67/月）", "1年（按年自动续费）", "3天免费试用"],
+        ["工作月度版", "$34.99", "1个月（按月自动续费）", "无免费试用"],
+        ["工作年度版", "$249.99（约$20.83/月）", "1年（按年自动续费）", "3天免费试用"]
+      ],
+      "freeTierNote": "免费套餐也可免费使用，使用量有限（5条语音录音、5条聊天消息、1个自定义应用，每次录音最长3分钟）。",
+      "autoRenewal": {
+        "title": "自动续费与取消",
+        "items": [
+          "购买确认时，费用将从您的 Apple ID 扣除。",
+          "免费试用期从购买时开始。如果未在试用结束前取消，您的订阅将以列出的价格自动续费。",
+          "订阅将自动续费，除非在当前周期结束前至少24小时取消。",
+          "您可以随时在 Apple ID 账户设置中管理和取消订阅。"
+        ]
+      },
+      "termsLink": "服务条款",
+      "privacyLink": "隐私政策",
+      "fullDetailsNote": "如需完整详情，请参阅我们的服务条款和隐私政策。"
+    },
+    "s6": {
+      "title": "6. 联系信息",
+      "p1": "如有关于 iOS 应用或本 EULA 的任何问题或疑虑，请联系：",
+      "developerLabel": "开发者：",
+      "developerValue": "VOIS AI AS",
+      "emailLabel": "邮箱：",
+      "emailValue": "hello@tryvois.com",
+      "addressLabel": "地址：",
+      "addressValue": "Alsvåg, Norway"
+    }
+  }
+}

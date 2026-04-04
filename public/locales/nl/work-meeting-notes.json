@@ -1,0 +1,52 @@
+{
+  "badge": "Nu beschikbaar via VOIS for Work-abonnement",
+  "hero": {
+    "title": "Vergadernotities",
+    "description": "Live transcriptie met actiekaarten die verschijnen terwijl mensen spreken. Zie hoe je vergadering in realtime omgezet wordt naar gestructureerde notities."
+  },
+  "intro": "Live transcriptie met actiekaarten die verschijnen terwijl mensen spreken. Wanneer iemand zegt 'we moeten een follow-up plannen' of 'John, kun jij dit oppakken?' — verschijnen actiepunten inline in het document. HABOS identificeert wanneer taken aan jou worden toegewezen en markeert ze in je persoonlijke weergave. Deel vergadernotities via een beveiligde link — ontvangers zien het volledige transcript en de briefing zonder een account aan te maken. Die gedeelde link is ook een groeimiddel: het legt leads vast, demonstreert het product en converteert met gerichte aanbiedingen.",
+  "features": [
+    {
+      "title": "Live actiekaarten",
+      "description": "Wanneer iemand zegt \"we moeten een follow-up plannen\" of \"John, kun jij dit oppakken?\", verschijnen actiekaarten inline in het document. Wijs taken toe, stel herinneringen in of sla items op direct vanuit het live transcript."
+    },
+    {
+      "title": "Horloge-naar-computer overdracht",
+      "description": "Start de opname op je Apple Watch, geef dan naadloos over aan je Mac als je het live document wilt zien. De transcriptie gaat door zonder onderbreking, precies waar je gebleven was."
+    },
+    {
+      "title": "Persoonlijke actiepunten",
+      "description": "VOIS identificeert wanneer taken aan jou worden toegewezen en markeert ze in je persoonlijke weergave. Tik om ze direct aan je takenlijst toe te voegen of bewerk ze ter plekke. Het is magisch om je to-dos automatisch te zien invullen tijdens de vergadering."
+    },
+    {
+      "title": "Mond-tot-mondontwerp",
+      "description": "Wanneer collega's actiepunten in realtime op je scherm zien verschijnen tijdens vergaderingen, willen ze het ook. Deze functie is ontworpen om organisch te verspreiden — van individuele professionals naar kleine teams naar hele ondernemingen."
+    }
+  ],
+  "howItWorks": {
+    "title": "Hoe het werkt",
+    "steps": [
+      {
+        "title": "Start opname",
+        "description": "Tik op de opnameknop op je horloge of open VOIS op je Mac. Transcriptie begint direct."
+      },
+      {
+        "title": "Zie de magie",
+        "description": "Terwijl mensen spreken, verschijnen woorden op het scherm. Wanneer actiepunten worden genoemd, verschijnen AI-gegenereerde kaarten inline met suggesties voor vervolgstappen."
+      },
+      {
+        "title": "Handel op items",
+        "description": "Tik op kaarten om taken aan je lijst toe te voegen, follow-ups te plannen of belangrijke informatie op te slaan. Je persoonlijke items worden automatisch gemarkeerd."
+      },
+      {
+        "title": "Deel & exporteer",
+        "description": "Vergadering voorbij? Exporteer het volledige transcript met actiepunten, of deel specifieke secties met je team."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Klaar om je vergaderingen te transformeren?",
+    "description": "Vergadernotities zijn inbegrepen in het VOIS for Work-abonnement.",
+    "button": "Prijzen bekijken"
+  }
+}

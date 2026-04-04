@@ -1,0 +1,8 @@
+{
+  "introMessage": "Hi! I can help you explore HABOS. Ask about any feature — email, CRM, tasks, calendar — and I'll take you there.",
+  "header": "HABOS Chat",
+  "placeholder": "Ask about any feature...",
+  "openChatAriaLabel": "Open chat",
+  "closeChatAriaLabel": "Close chat",
+  "sendMessageAriaLabel": "Send message"
+}

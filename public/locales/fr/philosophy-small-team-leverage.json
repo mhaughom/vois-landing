@@ -1,0 +1,53 @@
+{
+  "category": "Philosophie",
+  "title": "Levier pour les petites équipes",
+  "tagline": "Vous ne devriez pas avoir besoin de 50 employés pour fonctionner comme une entreprise sérieuse. HABOS donne aux petites équipes l'infrastructure opérationnelle qui nécessitait autrefois des départements entiers.",
+  "heroPlaceholder": "Illustration principale",
+  "section1": {
+    "heading": "L'écart avec les grandes entreprises",
+    "body1": "Les logiciels d'entreprise ont été construits pour les grandes entreprises. Les plateformes CRM supposent que vous avez une équipe sales ops pour les configurer. Les outils de gestion de projet supposent que vous avez un PMO. Les plateformes opérationnelles supposent que vous avez des ingénieurs de processus. Même des outils « simples » comme les logiciels de planification supposent que quelqu'un a le temps de les configurer et de les maintenir.",
+    "body2": "Les petites entreprises — le plombier avec 5 techniciens, le cabinet de conseil avec 3 associés, le cabinet dentaire avec 8 employés — n'ont pas ces personnes. Elles ont tout le monde qui porte quatre chapeaux, qui change de contexte toute la journée et perd des informations dans les lacunes de leurs 12 applications différentes."
+  },
+  "section2": {
+    "heading": "Une seule plateforme. Pas de départements requis.",
+    "body1": "HABOS remplace l'ensemble de la pile. CRM, gestion de projet, suivi des tâches, calendrier, e-mail, documents, facturation, réservations, surveillance des opérations, gestion d'équipe, marketing et analytique — tout en une seule plateforme, tout partageant un seul cerveau, tout accessible par la voix.",
+    "body2": "Mais il ne s'agit pas seulement de consolidation. Il s'agit des choses qui deviennent possibles quand tout est connecté et que l'IA comble les lacunes là où vous n'avez pas de personnel."
+  },
+  "withoutLabel": "Sans HABOS",
+  "withoutItems": [
+    "Le technicien terrain finit une mission, conduit au bureau pour remplir les papiers",
+    "Le dirigeant vérifie 5 applications pour se préparer à un appel client",
+    "Une inspection manquée découverte quand l'auditeur arrive",
+    "Le renouvellement du contrat oublié jusqu'à ce que le client appelle pour annuler",
+    "20 minutes d'administration par mission terminée"
+  ],
+  "withLabel": "Avec HABOS",
+  "withItems": [
+    "Une note vocale de 30 secondes depuis la camionnette crée tous les enregistrements",
+    "Un briefing IA apparaît 7 minutes avant chaque réunion",
+    "La sentinelle alerte dès la deuxième inspection manquée",
+    "Rappel proactif 3 semaines avant l'expiration du contrat",
+    "40 secondes d'administration par mission terminée"
+  ],
+  "platformPlaceholder": "Capture d'écran de la vue d'ensemble de la plateforme",
+  "section3": {
+    "heading": "Le briefing matinal",
+    "body1": "Chaque matin, HABOS résume ce qui nécessite votre attention. Pas un tableau de bord que vous devez interpréter. Un briefing concis : trois choses importantes aujourd'hui, pourquoi elles comptent, ce que dit le playbook à faire, et une action en un tap pour approuver la réponse suggérée.",
+    "body2": "La santé des opérations est passée du vert au jaune ? Vous le savez avant votre équipe. Un contrat expire et personne n'a commencé le renouvellement ? Le système vous le dit, lie l'enregistrement CRM et propose de déclencher le workflow de renouvellement. Deux nouvelles réservations dans le même quartier ? Il suggère de les regrouper comme itinéraire pour économiser du temps de trajet.",
+    "body3": "Ce sont des choses qu'un responsable des opérations attraperait — si vous en aviez un. HABOS vous donne le responsable des opérations sans le poste."
+  },
+  "dashboardPlaceholder": "Capture d'écran du tableau de bord",
+  "section4": {
+    "heading": "Développez l'entreprise, pas la surcharge",
+    "body1": "Le parcours de croissance traditionnel d'une petite entreprise est : obtenir plus de travail, embaucher plus de personnes pour gérer le travail, embaucher plus de personnes pour gérer les personnes. Chaque employé ajoute une complexité opérationnelle — plus de coordination, plus de transitions, plus de choses qui tombent dans les failles.",
+    "body2": "HABOS change l'équation. Au lieu d'embaucher un administrateur pour gérer la planification, laissez l'IA le faire. Au lieu d'embaucher un coordinateur marketing, laissez la plateforme gérer vos campagnes. Au lieu d'embaucher un responsable des opérations pour suivre la conformité, laissez la sentinelle la surveiller 24h/24 et 7j/7.",
+    "body3": "Le résultat : une entreprise de 5 personnes qui fonctionne avec la sophistication et la fiabilité d'une entreprise 10 fois plus grande."
+  },
+  "quote": "« Pour le plombier de Bergen, le succès signifie : il parle dans son téléphone pendant 30 secondes et les bonnes choses se produisent dans six systèmes. Il entre dans les réunions préparé sans avoir fait de préparation. Les problèmes le trouvent avant qu'il ne les trouve. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "La mémoire qui se cumule",
+    "nextLabel": "Suivant",
+    "nextTitle": "Boostez votre équipe"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "Funcionalidade Principal",
+  "hero": {
+    "title": "Converse com Seu Negócio",
+    "description": "Faça uma pergunta, dê uma instrução ou apenas pense em voz alta\u00a0\u2014 o assistente cuida do resto em menos de 300ms."
+  },
+  "heroPills": ["Resposta em 300ms", "8 ferramentas integradas", "Voz + texto"],
+  "intro": "Quando você fala com o assistente do HABOS, ele já conhece seus projetos, seu calendário, sua equipe e suas conversas recentes. Não precisa que você explique o contexto \u2014 ele já tem. Pergunte 'como estão as contas a receber?' e ele consulta seus dados financeiros. Diga 'rascunhe um acompanhamento para a Sarah' e ele busca o último e-mail, suas notas no CRM e a tendência de sentimento dela. Então escreve o rascunho e aguarda sua aprovação antes de enviar. Uma conversa substitui cinco aplicativos e dez cliques.",
+  "mockConversation": {
+    "userMessage": "O que tem na minha agenda amanhã e rascunhe um e-mail de acompanhamento para a Sarah sobre o orçamento de reforma",
+    "assistantMessage": "Você tem 3 reuniões amanhã. A primeira é às 9\u00a0h com a equipe Henderson. Rascunhei um acompanhamento para a Sarah\u00a0\u2014 aqui está a prévia:",
+    "emailTo": "Para: sarah@...",
+    "emailSubject": "Assunto: Acompanhamento — Reforma da Cozinha",
+    "emailBody": "Olá, Sarah, apenas retomando o orçamento que discutimos...",
+    "footer": "Uma frase. Dois sistemas atualizados. Zero troca de aplicativos."
+  },
+  "savings": {
+    "title": "O que isso economiza para você",
+    "items": [
+      {
+        "stat": "45 min/dia",
+        "text": "Tempo médio economizado substituindo a troca de aplicativos por comandos de voz. Pergunte em vez de clicar."
+      },
+      {
+        "stat": "5 apps \u2192 1",
+        "text": "Calendário, e-mail, tarefas, CRM e busca \u2014 todos acessíveis em uma única conversa."
+      },
+      {
+        "stat": "0 formulários preenchidos",
+        "text": "Diga 'registre 3 horas no trabalho Henderson' e a folha de ponto, o projeto e o faturamento se atualizam sozinhos."
+      }
+    ]
+  },
+  "capabilities": [
+    "Buscar seus dados",
+    "Criar tarefas",
+    "Agendar eventos",
+    "Rascunhar e-mails",
+    "Verificar finanças",
+    "Gerenciar reservas",
+    "Realizar pesquisas",
+    "Preencher relatórios"
+  ],
+  "context": {
+    "title": "Sempre conhece seu contexto",
+    "description": "O assistente reconstrói seu contexto a cada sessão\u00a0\u2014 seu perfil, projetos ativos, eventos próximos, estrutura da equipe e dados disponíveis. Você nunca precisa explicar quem é ou no que está trabalhando.",
+    "items": [
+      "Seu calendário",
+      "Projetos ativos",
+      "Equipe e funções",
+      "Conversas recentes",
+      "Dados do negócio"
+    ]
+  },
+  "closing": {
+    "tagline": "Outros aplicativos dão um chatbot. O VOIS dá um parceiro de negócios.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

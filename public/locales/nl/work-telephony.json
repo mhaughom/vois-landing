@@ -1,0 +1,60 @@
+{
+  "badge": "AI Telefonie",
+  "hero": {
+    "title": "Een AI-receptionist.\nEen Echt Telefoonnummer.",
+    "description": "HABOS voorziet een toegewijd telefoonnummer voor uw bedrijf. AI beantwoordt oproepen, plant vergaderingen, maakt taken aan en verwijst door naar de juiste persoon — 24/7."
+  },
+  "body": "HABOS voorziet echte telefoonnummers — zowel zakelijke werkruimtelijnen via Telnyx als persoonlijke AI-assistent nummers via Twilio. Wanneer iemand belt, beantwoordt de AI-assistent met volledige toegang tot alle tools: agenda controleren, taken aanmaken, berichten sturen, contacten opzoeken. Risicovolle acties zoals boekingen of betalingen gebruiken SMS-gebaseerde goedkeuring — een viercijferige code die naar de gebruiker wordt gestuurd. Inkomende SMS naar het assistent-nummer start een conversationele AI-sessie met dezelfde volledige mogelijkheden.",
+  "callFlow": {
+    "steps": [
+      {
+        "label": "Inkomend gesprek: (555) 234-5678"
+      },
+      {
+        "label": "AI antwoordt: 'Henderson Loodgieters, waarmee kan ik u helpen?'"
+      },
+      {
+        "label": "Beller: 'Ik heb een lekkende pijp, kan er vandaag iemand langskomen?'"
+      },
+      {
+        "label": "AI controleert agenda → vindt beschikbaar slot om 14:00 uur"
+      },
+      {
+        "label": "AI: 'Ik kan vandaag om 14:00 uur een monteur inplannen. Schikt dat?'"
+      }
+    ],
+    "resultItems": {
+      "booking": "Boeking aangemaakt",
+      "ticket": "Ticket geopend",
+      "notify": "Mike op de hoogte gesteld",
+      "sms": "SMS-bevestiging verzonden"
+    },
+    "caption": "De AI heeft volledige toegang tot alle tools — agenda, CRM, tickets, boekingen. Het is geen IVR-menu. Het is een echte assistent."
+  },
+  "benefits": {
+    "sms": {
+      "title": "SMS-assistent",
+      "body": "Inkomende berichten starten een conversationele AI die schema's kan controleren, taken aanmaken en reageren — zonder dat een mens ook maar een vinger hoeft uit te steken."
+    },
+    "recording": {
+      "title": "Gespreksopname + transcriptie",
+      "body": "Elk gesprek opgeslagen met een volledig transcript, doorzoekbaar op spreker en trefwoord. Mis nooit meer een detail uit een klantgesprek."
+    },
+    "approval": {
+      "title": "4-cijferige goedkeuring",
+      "body": "Risicovolle acties zoals boekingen en betalingen gebruiken SMS-bevestigingscodes. AI kan handelen, maar mensen behouden de controle."
+    }
+  },
+  "scenario": "Het is zondag. Een pijp barst. De huiseigenaar belt uw bedrijfsnummer. AI beantwoordt, begrijpt 'noodgeval lekkage', controleert uw stand-byrooster en boekt de dichtstbijzijnde beschikbare monteur. De huiseigenaar ontvangt een SMS-bevestiging met de naam en de verwachte aankomsttijd van de monteur. U heeft uw telefoon niet aangeraakt.",
+  "techStrip": [
+    "Telnyx + Twilio",
+    "OpenAI Realtime V2",
+    "Volledige toegang tot tools",
+    "SMS-gebaseerde goedkeuring",
+    "Aangepaste IVR-routering"
+  ],
+  "closing": {
+    "title": "Andere telefoonsystemen spelen wachtmuziek.\nHABOS lost problemen op.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Navbar } from '../../components/Navbar';
 import {
@@ -21,44 +22,33 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
 });
 
-/* ── benefit cards data ────────────────────────────────────────────────── */
-
-const benefits = [
-  {
-    icon: Users,
-    title: 'Auto-CRM + tickets',
-    desc: 'Submissions auto-upsert CRM contacts (deduped by email) and create tickets with smart field mapping and routing rules.',
-  },
-  {
-    icon: GitBranch,
-    title: 'Conditional routing',
-    desc: 'If budget > $5K \u2192 create ticket priority: high. If service = HVAC \u2192 assign to Sarah. Rules run automatically on every submission.',
-  },
-  {
-    icon: Globe,
-    title: 'Website embedding',
-    desc: 'Embed on your HABOS site with transparent background and auto-height. Cross-origin resize messaging keeps it seamless.',
-  },
-];
-
-/* ── tech strip items ─────────────────────────────────────────────────── */
-
-const techItems = [
-  '21 field types',
-  '3 fill modes',
-  'Conditional routing',
-  'Auto-CRM upsert',
-  'View + conversion analytics',
-];
-
-/* ── mock form field data ─────────────────────────────────────────────── */
-
-const serviceOptions = ['Plumbing', 'HVAC', 'Electrical'];
-const budgetOptions = ['< $1K', '$1\u20135K', '$5K+'];
-
 /* ── component ─────────────────────────────────────────────────────────── */
 
 const Forms: React.FC = () => {
+  const { t } = useTranslation('work-forms');
+
+  const benefits = [
+    {
+      icon: Users,
+      title: t('benefits.crm.title'),
+      desc: t('benefits.crm.desc'),
+    },
+    {
+      icon: GitBranch,
+      title: t('benefits.routing.title'),
+      desc: t('benefits.routing.desc'),
+    },
+    {
+      icon: Globe,
+      title: t('benefits.embed.title'),
+      desc: t('benefits.embed.desc'),
+    },
+  ];
+
+  const techItems = t('techStrip', { returnObjects: true }) as string[];
+  const serviceOptions = t('mockForm.serviceOptions', { returnObjects: true }) as string[];
+  const budgetOptions = t('mockForm.budgetOptions', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -71,20 +61,24 @@ const Forms: React.FC = () => {
           <motion.section {...fadeUp()} className="max-w-3xl mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 text-cyan-700 rounded-full text-sm font-medium mb-6">
               <FormInput size={14} />
-              Form Builder
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
-              Build a Form.<br />
-              It Does the Rest.
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h1>
             <p className="text-xl text-slate-500 leading-relaxed max-w-2xl">
-              21 field types, drag-and-drop builder, and routing rules that auto-create tickets, CRM leads, and funnel enrollments on submission.
+              {t('hero.description')}
             </p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Forms support three fill modes: traditional click-and-type, AI-powered chat where customers describe their needs naturally, or voice input where they speak answers and AI transcribes. When a form is submitted, the routing engine evaluates conditional rules — &lsquo;if budget exceeds $50K, create a high-priority ticket.&rsquo; CRM contacts are auto-upserted by email, tickets are created with smart field mapping, leads flow into nurture funnels, and confirmation emails are sent — all in one atomic operation.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -93,9 +87,9 @@ const Forms: React.FC = () => {
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xl max-w-xl mx-auto">
               {/* Form header */}
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-slate-900">Request a Quote</h2>
+                <h2 className="text-lg font-semibold text-slate-900">{t('mockForm.title')}</h2>
                 <span className="px-3 py-1 bg-cyan-500/10 text-cyan-700 rounded-full text-xs font-medium">
-                  3 fill modes
+                  {t('mockForm.badge')}
                 </span>
               </div>
 
@@ -103,25 +97,25 @@ const Forms: React.FC = () => {
               <div className="space-y-4 mb-6">
                 {/* Full Name */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">{t('mockForm.fields.fullName')}</label>
                   <div className="w-full h-10 bg-slate-50 border border-slate-200 rounded-lg px-3 flex items-center">
-                    <span className="text-sm text-slate-400">John Henderson</span>
+                    <span className="text-sm text-slate-400">{t('mockForm.fields.fullNamePlaceholder')}</span>
                   </div>
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">{t('mockForm.fields.email')}</label>
                   <div className="w-full h-10 bg-slate-50 border border-slate-200 rounded-lg px-3 flex items-center">
-                    <span className="text-sm text-slate-400">john@example.com</span>
+                    <span className="text-sm text-slate-400">{t('mockForm.fields.emailPlaceholder')}</span>
                   </div>
                 </div>
 
                 {/* Service Needed — Dropdown */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Service Needed</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">{t('mockForm.fields.serviceNeeded')}</label>
                   <div className="w-full h-10 bg-slate-50 border border-slate-200 rounded-lg px-3 flex items-center justify-between">
-                    <span className="text-sm text-slate-400">Plumbing</span>
+                    <span className="text-sm text-slate-400">{t('mockForm.fields.servicePlaceholder')}</span>
                     <ChevronDown size={14} className="text-slate-400" />
                   </div>
                   <div className="flex gap-1.5 mt-1.5">
@@ -135,9 +129,9 @@ const Forms: React.FC = () => {
 
                 {/* Budget Range — Select */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Budget Range</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">{t('mockForm.fields.budgetRange')}</label>
                   <div className="w-full h-10 bg-slate-50 border border-slate-200 rounded-lg px-3 flex items-center justify-between">
-                    <span className="text-sm text-slate-400">$5K+</span>
+                    <span className="text-sm text-slate-400">{t('mockForm.fields.budgetPlaceholder')}</span>
                     <ChevronDown size={14} className="text-slate-400" />
                   </div>
                   <div className="flex gap-1.5 mt-1.5">
@@ -151,9 +145,9 @@ const Forms: React.FC = () => {
 
                 {/* Describe your project — Textarea */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Describe your project</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">{t('mockForm.fields.projectDescription')}</label>
                   <div className="w-full h-24 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
-                    <span className="text-sm text-slate-400">Bathroom renovation, full tear-out and rebuild...</span>
+                    <span className="text-sm text-slate-400">{t('mockForm.fields.projectPlaceholder')}</span>
                   </div>
                 </div>
               </div>
@@ -165,7 +159,7 @@ const Forms: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                   className="px-6 py-2.5 bg-cyan-600 text-white rounded-full text-sm font-semibold shadow-lg shadow-cyan-600/20 hover:bg-cyan-700 transition-colors"
                 >
-                  Submit
+                  {t('mockForm.submit')}
                 </motion.button>
 
                 <div className="flex items-center gap-3">
@@ -173,19 +167,19 @@ const Forms: React.FC = () => {
                     <div className="w-7 h-7 bg-slate-100 rounded-lg flex items-center justify-center" title="Form mode">
                       <Keyboard size={13} />
                     </div>
-                    <span className="text-[10px] font-medium">Form</span>
+                    <span className="text-[10px] font-medium">{t('mockForm.modes.form')}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-slate-400">
                     <div className="w-7 h-7 bg-slate-100 rounded-lg flex items-center justify-center" title="Chat mode">
                       <MessageSquare size={13} />
                     </div>
-                    <span className="text-[10px] font-medium">Chat</span>
+                    <span className="text-[10px] font-medium">{t('mockForm.modes.chat')}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-slate-400">
                     <div className="w-7 h-7 bg-slate-100 rounded-lg flex items-center justify-center" title="Voice mode">
                       <Mic size={13} />
                     </div>
-                    <span className="text-[10px] font-medium">Voice</span>
+                    <span className="text-[10px] font-medium">{t('mockForm.modes.voice')}</span>
                   </div>
                 </div>
               </div>
@@ -193,7 +187,7 @@ const Forms: React.FC = () => {
 
             {/* Caption below form */}
             <p className="text-sm text-slate-500 mt-6 leading-relaxed text-center max-w-lg mx-auto">
-              Customers can fill traditionally, talk to an AI chatbot, or speak their answers. Same form, three input modes.
+              {t('mockForm.caption')}
             </p>
           </motion.section>
 
@@ -221,14 +215,10 @@ const Forms: React.FC = () => {
           <motion.section {...fadeUp(0.35)} className="mb-20">
             <div className="bg-slate-950 rounded-3xl p-6 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-4">
-                Real scenario
+                {t('scenario.label')}
               </p>
               <p className="text-slate-300 leading-relaxed text-base md:text-lg">
-                A homeowner visits your website and fills out a quote request for a $8K bathroom renovation.
-                HABOS creates a high-priority ticket (budget &gt; $5K rule), upserts them in CRM, enrolls
-                them in the &ldquo;warm lead&rdquo; funnel, and sends a confirmation email &mdash; all before
-                you see the notification. When you open the ticket, their full CRM profile, project context,
-                and suggested response are already there.
+                {t('scenario.text')}
               </p>
             </div>
           </motion.section>
@@ -248,8 +238,12 @@ const Forms: React.FC = () => {
           {/* ━━━ 6. Closing CTA ━━━ */}
           <motion.section {...fadeUp(0.55)} className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-5 leading-tight">
-              Other form tools collect data.<br />
-              HABOS acts on it.
+              {t('closing.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h2>
             <a href="/#waitlist">
               <motion.button
@@ -257,7 +251,7 @@ const Forms: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="mt-4 px-8 py-3.5 bg-cyan-600 text-white rounded-full font-medium text-sm shadow-lg shadow-cyan-600/20 hover:bg-cyan-700 transition-colors"
               >
-                Join Waitlist
+                {t('closing.cta')}
               </motion.button>
             </a>
           </motion.section>

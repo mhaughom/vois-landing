@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, FileText, Send, Brain, Search, Database, Mail, Calendar, Users } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const ContextualChat: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
+  const { t } = useTranslation('contextual-chat');
   const [selectedModels, setSelectedModels] = useState<Array<'claude' | 'gpt' | 'gemini' | 'grok'>>(['claude']);
   const [visibleMessages, setVisibleMessages] = useState<number>(0);
   const [typingText, setTypingText] = useState<string>('');
@@ -232,7 +234,7 @@ export const ContextualChat: React.FC<{ compact?: boolean }> = ({ compact = fals
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Sparkles size={20} className="text-slate-700" />
-                    <span className="text-lg font-semibold text-slate-900">Vois Chat</span>
+                    <span className="text-lg font-semibold text-slate-900">{t('title')}</span>
                   </div>
                   <AnimatePresence>
                     {isMultiChat && (
@@ -242,7 +244,7 @@ export const ContextualChat: React.FC<{ compact?: boolean }> = ({ compact = fals
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="px-3 py-1 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 text-white text-xs font-bold"
                       >
-                        Multi-Chat
+                        {t('multiChat')}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -380,7 +382,7 @@ export const ContextualChat: React.FC<{ compact?: boolean }> = ({ compact = fals
                               <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
                                 <Brain size={14} className="text-indigo-500" />
                               </motion.div>
-                              <span className="font-medium text-slate-600">Thinking...</span>
+                              <span className="font-medium text-slate-600">{t('thinking')}</span>
                             </div>
                           ) : (
                             <div className="space-y-1.5">
@@ -503,7 +505,7 @@ export const ContextualChat: React.FC<{ compact?: boolean }> = ({ compact = fals
                           />
                         </>
                       ) : (
-                        <span className="text-slate-400">Ask anything...</span>
+                        <span className="text-slate-400">{t('placeholder')}</span>
                       )}
                     </div>
                   </div>

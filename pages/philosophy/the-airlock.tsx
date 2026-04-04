@@ -1,47 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Wifi, Server, WifiOff, ShieldCheck } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { useTranslation } from 'react-i18next';
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
-const comparison = [
-  { action: 'Email sending', auto: 'Sent immediately. CEO finds a typo after 200 people read it.', airlock: 'Draft appears as a card. You fix the typo, tap send.' },
-  { action: 'Calendar changes', auto: 'Double-booked Tuesday — didn\u2019t check your personal calendar.', airlock: 'Preview shows the conflict. You pick the right slot.' },
-  { action: 'Task creation', auto: '14 tasks from one meeting. 6 are duplicates.', airlock: 'Proposed list. You merge two, delete one, approve the rest.' },
-  { action: 'Customer comms', auto: 'Replied with a coupon you don\u2019t offer anymore.', airlock: 'Reply appears as preview. You adjust the offer, then send.' },
-];
-
 const TheAirlock: React.FC = () => {
+  const { t } = useTranslation('philosophy-airlock');
+  const comparison = t('comparison', { returnObjects: true }) as Array<{ action: string; auto: string; airlock: string }>;
+  const deploymentOptions = t('deploymentOptions', { returnObjects: true }) as Array<{ title: string; body: string; badges: string[] }>;
+  const securityItems = t('securityItems', { returnObjects: true }) as Array<{ title: string; body: string }>;
+
+  const securityColors = ['text-amber-500', 'text-emerald-500', 'text-blue-500', 'text-violet-500'];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      {/* Full-width cinematic hero image */}
-      <motion.img
-        src="/philosophy/the-airlock.jpg"
-        alt="The Airlock — AI proposes, you decide"
-        className="w-full h-[50vh] object-cover"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      />
-
-      <main className="pt-16 pb-24 px-6 md:px-12">
+      <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-3xl mx-auto">
           {/* Hero text */}
           <motion.div initial="hidden" animate="visible" variants={fade} transition={{ duration: 0.6 }}>
-            <p className="text-sm font-semibold text-blue-600 tracking-widest uppercase mb-4">Philosophy</p>
+            <p className="text-sm font-semibold text-blue-600 tracking-widest uppercase mb-4">{t('category')}</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-4 leading-tight">
-              The Airlock
+              {t('title')}
             </h1>
-            <p className="text-xl md:text-2xl text-slate-500 leading-relaxed mb-16">
-              AI proposes. You decide.
+            <p className="text-xl md:text-2xl text-slate-500 leading-relaxed mb-12">
+              {t('tagline')}
             </p>
           </motion.div>
+
+          <motion.img
+            src="/philosophy/the-airlock.jpg"
+            alt={t('heroAlt')}
+            className="w-full rounded-2xl mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          />
 
           <motion.div
             initial="hidden"
@@ -50,15 +50,11 @@ const TheAirlock: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="prose prose-slate prose-lg max-w-none"
           >
-            <h2 className="text-2xl font-serif text-slate-900 mt-0">The problem nobody talks about</h2>
-            <p>
-              The most dangerous thing about AI is not that it gets things wrong. It&rsquo;s that it acts before you can check. A sales bot offers a 40% discount that violates margin policy. A booking system double-schedules because it optimized for density without understanding drive time. These aren&rsquo;t hypotheticals.
-            </p>
-            <p>
-              Only 6% of enterprises say they fully trust autonomous AI agents. The other 94% are right to be cautious. We built the opposite: every action the AI takes passes through what we call the Airlock &mdash; a mandatory preview where you see exactly what&rsquo;s about to happen before it happens.
-            </p>
+            <h2 className="text-2xl font-serif text-slate-900 mt-0">{t('section1.heading')}</h2>
+            <p>{t('section1.body1')}</p>
+            <p>{t('section1.body2')}</p>
 
-            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">The comparison</h2>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">{t('section2.heading')}</h2>
 
             {/* Comparison table */}
             <div className="not-prose my-10">
@@ -66,9 +62,9 @@ const TheAirlock: React.FC = () => {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-slate-200">
-                      <th className="text-left py-3 pr-4 font-semibold text-slate-900">Action</th>
-                      <th className="text-left py-3 px-4 font-semibold text-red-600">Fully Autonomous</th>
-                      <th className="text-left py-3 pl-4 font-semibold text-emerald-600">The Airlock</th>
+                      <th className="text-left py-3 pr-4 font-semibold text-slate-900">{t('tableHeaders.action')}</th>
+                      <th className="text-left py-3 px-4 font-semibold text-red-600">{t('tableHeaders.auto')}</th>
+                      <th className="text-left py-3 pl-4 font-semibold text-emerald-600">{t('tableHeaders.airlock')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,14 +80,58 @@ const TheAirlock: React.FC = () => {
               </div>
             </div>
 
-            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">Not a UI pattern. A security protocol.</h2>
-            <p>
-              Every write action generates an HMAC-SHA256 signed confirmation token binding the user, the exact action, and the precise arguments &mdash; down to individual characters in an email draft. Tokens expire in 10 minutes. If anything changes between preview and confirmation, the token invalidates. The AI cannot modify the action after showing it to you. What you approved is exactly what gets executed.
-            </p>
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">{t('section3.heading')}</h2>
+            <p>{t('section3.body')}</p>
 
             <blockquote className="border-l-4 border-slate-900 pl-6 my-12 text-xl font-serif italic text-slate-700">
-              &ldquo;The pause is not a limitation. It&rsquo;s the reason you&rsquo;ll trust this with your business.&rdquo;
+              {t('quote')}
             </blockquote>
+
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">{t('section4.heading')}</h2>
+            <p>{t('section4.body')}</p>
+
+            {/* Deployment options */}
+            <div className="not-prose my-10 grid md:grid-cols-3 gap-5">
+              {deploymentOptions.map((opt, i) => {
+                const iconProps = { size: 18 };
+                const iconWrapperColors = ['bg-blue-100', 'bg-emerald-100', 'bg-violet-100'];
+                const iconColors = ['text-blue-600', 'text-emerald-600', 'text-violet-600'];
+                const icons = [
+                  <Wifi {...iconProps} className={iconColors[0]} />,
+                  <Server {...iconProps} className={iconColors[1]} />,
+                  <WifiOff {...iconProps} className={iconColors[2]} />,
+                ];
+                return (
+                  <div key={opt.title} className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                    <div className={`w-10 h-10 rounded-xl ${iconWrapperColors[i]} flex items-center justify-center mb-4`}>
+                      {icons[i]}
+                    </div>
+                    <h4 className="font-semibold text-slate-900 text-sm mb-2">{opt.title}</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed mb-3">{opt.body}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {opt.badges.map((badge) => (
+                        <span key={badge} className="text-[10px] px-2 py-1 rounded-full bg-slate-200 text-slate-600">{badge}</span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <h2 className="text-2xl font-serif text-slate-900 mt-14 mb-3">{t('section5.heading')}</h2>
+            <div className="not-prose my-6">
+              <div className="grid sm:grid-cols-2 gap-4">
+                {securityItems.map((item, i) => (
+                  <div key={item.title} className="flex items-start gap-3">
+                    <ShieldCheck size={16} className={`${securityColors[i]} mt-1 flex-shrink-0`} />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                      <p className="text-sm text-slate-500">{item.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Navigation */}
@@ -104,8 +144,8 @@ const TheAirlock: React.FC = () => {
           >
             <a href="/philosophy/everything-in-one-place" className="group flex items-center gap-3 text-right">
               <div>
-                <p className="text-sm text-slate-400 mb-1">Next</p>
-                <p className="text-xl font-serif text-slate-900 group-hover:text-blue-600 transition-colors">Everything in One Place</p>
+                <p className="text-sm text-slate-400 mb-1">{t('nav.nextLabel')}</p>
+                <p className="text-xl font-serif text-slate-900 group-hover:text-blue-600 transition-colors">{t('nav.nextTitle')}</p>
               </div>
               <ArrowRight size={20} className="text-slate-400 group-hover:text-blue-600 transition-colors" />
             </a>

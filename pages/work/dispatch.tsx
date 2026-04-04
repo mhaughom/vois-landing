@@ -18,6 +18,7 @@ import {
   Ticket,
   GripVertical,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -47,44 +48,6 @@ interface CrewLane {
   jobs: JobCard[];
 }
 
-/* ── data ──────────────────────────────────────────────────────────────── */
-
-const initialLanes: CrewLane[] = [
-  {
-    name: 'Mike T.',
-    statusLabel: 'On site',
-    statusColor: 'green',
-    jobs: [
-      { id: 'j1', title: 'Henderson Water Heater', time: '9:00 AM', status: 'completed' },
-      { id: 'j2', title: 'Baker HVAC Repair', time: '11:30 AM', status: 'in-progress' },
-    ],
-  },
-  {
-    name: 'Sarah L.',
-    statusLabel: 'En route',
-    statusColor: 'amber',
-    jobs: [
-      { id: 'j3', title: 'Wilson Plumbing', time: '10:00 AM', status: 'completed' },
-      { id: 'j4', title: 'Garcia Electrical', time: '1:00 PM', status: 'planned' },
-    ],
-  },
-  {
-    name: 'Unscheduled',
-    statusLabel: '',
-    statusColor: 'gray',
-    jobs: [
-      { id: 'j5', title: 'Emergency: Johnson Leak', status: 'emergency', priority: 'HIGH' },
-    ],
-  },
-];
-
-const statusMeta: Record<string, { border: string; icon: React.ReactNode; label: string }> = {
-  completed:    { border: 'border-l-green-500',  icon: <CheckCircle2 size={14} className="text-green-600" />, label: 'completed' },
-  'in-progress':{ border: 'border-l-blue-500',   icon: <span className="text-blue-600 text-xs">&#x1F535;</span>, label: 'in progress' },
-  planned:      { border: 'border-l-slate-300',   icon: <Clock size={14} className="text-slate-400" />, label: 'planned' },
-  emergency:    { border: 'border-l-red-500',     icon: <AlertTriangle size={14} className="text-red-500" />, label: '' },
-};
-
 /* ── sub-components ────────────────────────────────────────────────────── */
 
 const StatusBadge: React.FC<{ color: string; label: string }> = ({ color, label }) => {
@@ -101,7 +64,13 @@ const StatusBadge: React.FC<{ color: string; label: string }> = ({ color, label 
   );
 };
 
-const JobCardUI: React.FC<{ job: JobCard; draggable?: boolean }> = ({ job, draggable }) => {
+const JobCardUI: React.FC<{ job: JobCard; draggable?: boolean; statusLabels: Record<string, string> }> = ({ job, draggable, statusLabels }) => {
+  const statusMeta: Record<string, { border: string; icon: React.ReactNode; label: string }> = {
+    completed:    { border: 'border-l-green-500',  icon: <CheckCircle2 size={14} className="text-green-600" />, label: statusLabels.completed ?? 'completed' },
+    'in-progress':{ border: 'border-l-blue-500',   icon: <span className="text-blue-600 text-xs">&#x1F535;</span>, label: statusLabels.inProgress ?? 'in progress' },
+    planned:      { border: 'border-l-slate-300',   icon: <Clock size={14} className="text-slate-400" />, label: statusLabels.planned ?? 'planned' },
+    emergency:    { border: 'border-l-red-500',     icon: <AlertTriangle size={14} className="text-red-500" />, label: '' },
+  };
   const meta = statusMeta[job.status];
   return (
     <motion.div
@@ -121,7 +90,7 @@ const JobCardUI: React.FC<{ job: JobCard; draggable?: boolean }> = ({ job, dragg
           {meta.icon}
           {meta.label && <span>{meta.label}</span>}
           {job.priority && (
-            <span className="text-red-600 font-semibold">Priority: {job.priority}</span>
+            <span className="text-red-600 font-semibold">{statusLabels.priority ?? 'Priority:'} {job.priority}</span>
           )}
         </div>
       </div>
@@ -132,6 +101,45 @@ const JobCardUI: React.FC<{ job: JobCard; draggable?: boolean }> = ({ job, dragg
 /* ── page component ────────────────────────────────────────────────────── */
 
 const Dispatch: React.FC = () => {
+  const { t } = useTranslation('work-dispatch');
+
+  const techItems = t('techStrip.items', { returnObjects: true }) as string[];
+  const statusLabels = {
+    completed: t('statusLabels.completed'),
+    inProgress: t('statusLabels.inProgress'),
+    planned: t('statusLabels.planned'),
+    priority: t('statusLabels.priority'),
+  };
+
+  const initialLanes: CrewLane[] = [
+    {
+      name: t('lanes.mikeName'),
+      statusLabel: t('lanes.mikeStatus'),
+      statusColor: 'green',
+      jobs: [
+        { id: 'j1', title: t('jobs.hendersonWaterHeater'), time: '9:00 AM', status: 'completed' },
+        { id: 'j2', title: t('jobs.bakerHvac'), time: '11:30 AM', status: 'in-progress' },
+      ],
+    },
+    {
+      name: t('lanes.sarahName'),
+      statusLabel: t('lanes.sarahStatus'),
+      statusColor: 'amber',
+      jobs: [
+        { id: 'j3', title: t('jobs.wilsonPlumbing'), time: '10:00 AM', status: 'completed' },
+        { id: 'j4', title: t('jobs.garciaElectrical'), time: '1:00 PM', status: 'planned' },
+      ],
+    },
+    {
+      name: t('lanes.unscheduledName'),
+      statusLabel: '',
+      statusColor: 'gray',
+      jobs: [
+        { id: 'j5', title: t('jobs.emergencyJohnson'), status: 'emergency', priority: 'HIGH' },
+      ],
+    },
+  ];
+
   /* simple interactive state: allow "assigning" the emergency to Mike */
   const [lanes, setLanes] = useState(initialLanes);
   const [assigned, setAssigned] = useState(false);
@@ -146,6 +154,27 @@ const Dispatch: React.FC = () => {
       { ...prev[2], jobs: [] },
     ]);
   };
+
+  const benefitCards = [
+    {
+      icon: <Layers size={22} className="text-blue-600" />,
+      title: t('benefits.statusFlow.title'),
+      body: t('benefits.statusFlow.description'),
+      accent: 'bg-blue-50 border-blue-100',
+    },
+    {
+      icon: <Zap size={22} className="text-amber-600" />,
+      title: t('benefits.autoGenerated.title'),
+      body: t('benefits.autoGenerated.description'),
+      accent: 'bg-amber-50 border-amber-100',
+    },
+    {
+      icon: <Repeat size={22} className="text-emerald-600" />,
+      title: t('benefits.recurrence.title'),
+      body: t('benefits.recurrence.description'),
+      accent: 'bg-emerald-50 border-emerald-100',
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -164,7 +193,7 @@ const Dispatch: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-700 rounded-full text-sm font-medium mb-6">
-                Field Operations
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -173,9 +202,7 @@ const Dispatch: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]"
             >
-              Dispatch Board.<br />
-              Every Job. Every Tech.<br />
-              One View.
+              {t('hero.title')}
             </motion.h1>
 
             <motion.p
@@ -183,12 +210,11 @@ const Dispatch: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed"
             >
-              See who's where, what's next, and what's running behind — all on a single
-              day-of board with real-time status updates from the field.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16"><p className="text-lg text-slate-600 leading-relaxed">The dispatch system tracks field work through a seven-step state machine: planned, dispatched, en route, arrived, in progress, completed, invoiced. Every transition is logged with timestamp and location. Create a job type once — new jobs inherit duration, instructions, line items, and report templates. Orders and routes generate automatically. The recurrence engine handles weekly cleanings, monthly inspections, and yearly maintenance, auto-generating future visits up to 90 days out.</p></motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16"><p className="text-lg text-slate-600 leading-relaxed">{t('body')}</p></motion.div>
 
           {/* ── 2. Mock Dispatch Board ────────────────────────────────── */}
           <motion.section
@@ -210,17 +236,17 @@ const Dispatch: React.FC = () => {
                     {/* Job cards */}
                     <AnimatePresence mode="popLayout">
                       {lane.jobs.map((job) => (
-                        <JobCardUI key={job.id} job={job} draggable={job.status === 'emergency' && !assigned} />
+                        <JobCardUI key={job.id} job={job} draggable={job.status === 'emergency' && !assigned} statusLabels={statusLabels} />
                       ))}
                     </AnimatePresence>
 
-                    {lane.name === 'Unscheduled' && lane.jobs.length === 0 && (
+                    {lane.name === t('lanes.unscheduledName') && lane.jobs.length === 0 && (
                       <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="text-xs text-slate-400 text-center py-4"
                       >
-                        No unscheduled jobs
+                        {t('board.noUnscheduled')}
                       </motion.p>
                     )}
                   </div>
@@ -237,7 +263,7 @@ const Dispatch: React.FC = () => {
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-full shadow-sm hover:bg-blue-700 transition-colors"
                   >
                     <Truck size={16} />
-                    Drag the emergency job to Mike's queue
+                    {t('board.assignButton')}
                     <ArrowRight size={14} />
                   </motion.button>
                 ) : (
@@ -246,7 +272,7 @@ const Dispatch: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-sm text-blue-700 font-medium"
                   >
-                    Mike's phone buzzes with the new job, address, and instructions. Board updates in real-time.
+                    {t('board.assignedConfirmation')}
                   </motion.p>
                 )}
               </div>
@@ -261,26 +287,7 @@ const Dispatch: React.FC = () => {
             variants={stagger}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
           >
-            {[
-              {
-                icon: <Layers size={22} className="text-blue-600" />,
-                title: '7-step status flow',
-                body: 'Planned \u2192 dispatched \u2192 en route \u2192 arrived \u2192 in progress \u2192 completed \u2192 invoiced. Every transition logged with timestamp and location.',
-                accent: 'bg-blue-50 border-blue-100',
-              },
-              {
-                icon: <Zap size={22} className="text-amber-600" />,
-                title: 'Auto-generated everything',
-                body: 'Create a job type once \u2014 new jobs inherit duration, instructions, line items, and report templates. Orders and routes generate automatically.',
-                accent: 'bg-amber-50 border-amber-100',
-              },
-              {
-                icon: <Repeat size={22} className="text-emerald-600" />,
-                title: 'Recurrence engine',
-                body: 'Weekly cleanings, monthly inspections, yearly maintenance. Jobs auto-generate up to 90 days out. Never manually re-create repeating work.',
-                accent: 'bg-emerald-50 border-emerald-100',
-              },
-            ].map((card) => (
+            {benefitCards.map((card) => (
               <motion.div
                 key={card.title}
                 variants={fadeUp}
@@ -306,11 +313,7 @@ const Dispatch: React.FC = () => {
           >
             <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12">
               <p className="text-lg md:text-xl leading-relaxed text-slate-200">
-                It's 10:15 AM. An emergency call comes in — pipe burst at the Johnson property.
-                You open the dispatch board, see Mike finishes his current job at 11:30, and drag the
-                emergency to his queue. Mike's phone buzzes with the new job, address, and instructions.
-                He marks "en route" and the board updates in real-time. The office, the client, and the
-                field are all on the same page — without a single phone call.
+                {t('scenario')}
               </p>
             </div>
           </motion.section>
@@ -324,18 +327,15 @@ const Dispatch: React.FC = () => {
             className="mb-20"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-5 bg-slate-50 rounded-2xl">
-              {[
-                { icon: <Zap size={14} />, label: 'Real-time Supabase sync' },
-                { icon: <Camera size={14} />, label: 'Photo + signature capture' },
-                { icon: <FileText size={14} />, label: 'Job type templates' },
-                { icon: <Route size={14} />, label: 'Auto-order generation' },
-                { icon: <Ticket size={14} />, label: 'Ticket \u2192 job escalation' },
-              ].map((item) => (
-                <span key={item.label} className="flex items-center gap-1.5 text-sm text-slate-600">
-                  <span className="text-slate-400">{item.icon}</span>
-                  {item.label}
-                </span>
-              ))}
+              {techItems.map((item, i) => {
+                const icons = [<Zap size={14} />, <Camera size={14} />, <FileText size={14} />, <Route size={14} />, <Ticket size={14} />];
+                return (
+                  <span key={item} className="flex items-center gap-1.5 text-sm text-slate-600">
+                    <span className="text-slate-400">{icons[i]}</span>
+                    {item}
+                  </span>
+                );
+              })}
             </div>
           </motion.section>
 
@@ -348,8 +348,7 @@ const Dispatch: React.FC = () => {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4">
-              Other dispatch tools are a spreadsheet with a map.<br />
-              HABOS is a command center.
+              {t('cta.heading')}
             </h2>
 
             <a href="/#waitlist">
@@ -358,7 +357,7 @@ const Dispatch: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-md hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
                 <ArrowRight size={16} />
               </motion.button>
             </a>

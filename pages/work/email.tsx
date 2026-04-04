@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, MessageSquare, Zap } from 'lucide-react';
 import MailDemo from './features/MailDemo';
 import { Navbar } from '../../components/Navbar';
 
 const Email: React.FC = () => {
+  const { t } = useTranslation('work-email');
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -19,18 +22,17 @@ const Email: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium mb-6">
-              Voice Email
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Clear Your Inbox by Talking.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              Say "read my inbox" while driving. Dictate replies. AI generates 3 tone options per
-              email. Send the one you like.
+              {t('hero.description')}
             </p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16"><p className="text-lg text-slate-600 leading-relaxed">Say 'read my inbox' while driving. HABOS summarizes your most important emails, reads the urgent ones aloud, and generates three reply drafts in different tones — Short & Direct, Warm & Professional, and Executive. You say 'send the second one' and it's done. Every email also gets AI-extracted action items: deadlines become tasks, meeting requests become calendar events, and follow-ups get flagged — all without you typing a single word.</p></motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16"><p className="text-lg text-slate-600 leading-relaxed">{t('body')}</p></motion.div>
 
           {/* Interactive Demo */}
           <motion.div
@@ -56,7 +58,7 @@ const Email: React.FC = () => {
               {/* User bubble */}
               <div className="flex justify-end">
                 <div className="bg-sky-600 text-white rounded-2xl px-5 py-3 max-w-sm">
-                  <p className="text-sm">What's in my inbox?</p>
+                  <p className="text-sm">{t('conversation.userAsk')}</p>
                 </div>
               </div>
 
@@ -64,9 +66,7 @@ const Email: React.FC = () => {
               <div className="flex justify-start">
                 <div className="bg-white border border-slate-200 rounded-2xl px-5 py-3 max-w-sm">
                   <p className="text-sm text-slate-700">
-                    You have 5 new emails. The most important is from Sarah Henderson about
-                    the renovation timeline — she needs confirmation by end of day. Want me to
-                    read it?
+                    {t('conversation.aiSummary')}
                   </p>
                 </div>
               </div>
@@ -74,34 +74,31 @@ const Email: React.FC = () => {
               {/* User bubble */}
               <div className="flex justify-end">
                 <div className="bg-sky-600 text-white rounded-2xl px-5 py-3 max-w-sm">
-                  <p className="text-sm">Yes, and draft a reply</p>
+                  <p className="text-sm">{t('conversation.userReply')}</p>
                 </div>
               </div>
 
               {/* AI bubble with draft cards */}
               <div className="flex justify-start">
                 <div className="bg-white border border-slate-200 rounded-2xl px-5 py-3 max-w-sm">
-                  <p className="text-sm text-slate-700 mb-3">Here are 3 options:</p>
+                  <p className="text-sm text-slate-700 mb-3">{t('conversation.aiDraftsIntro')}</p>
                   <div className="space-y-2">
                     <div className="bg-white border border-slate-200 rounded-lg p-3">
-                      <p className="text-xs font-semibold text-slate-500 mb-1">Short & Direct</p>
+                      <p className="text-xs font-semibold text-slate-500 mb-1">{t('conversation.draft1.label')}</p>
                       <p className="text-sm text-slate-700">
-                        Hi Sarah, confirmed — we're on track for the March timeline. I'll send
-                        the updated schedule by tomorrow.
+                        {t('conversation.draft1.text')}
                       </p>
                     </div>
                     <div className="bg-white border border-sky-300 rounded-lg p-3 ring-1 ring-sky-200">
-                      <p className="text-xs font-semibold text-sky-600 mb-1">Warm & Professional</p>
+                      <p className="text-xs font-semibold text-sky-600 mb-1">{t('conversation.draft2.label')}</p>
                       <p className="text-sm text-slate-700">
-                        Hi Sarah, thanks for checking in. Happy to confirm we're on schedule.
-                        I'll have the detailed timeline over to you by tomorrow morning.
+                        {t('conversation.draft2.text')}
                       </p>
                     </div>
                     <div className="bg-white border border-slate-200 rounded-lg p-3">
-                      <p className="text-xs font-semibold text-slate-500 mb-1">Executive</p>
+                      <p className="text-xs font-semibold text-slate-500 mb-1">{t('conversation.draft3.label')}</p>
                       <p className="text-sm text-slate-700">
-                        Sarah — Confirmed for March. Updated schedule to follow tomorrow. Let me
-                        know if you need anything else.
+                        {t('conversation.draft3.text')}
                       </p>
                     </div>
                   </div>
@@ -111,13 +108,13 @@ const Email: React.FC = () => {
               {/* User bubble */}
               <div className="flex justify-end">
                 <div className="bg-sky-600 text-white rounded-2xl px-5 py-3 max-w-sm">
-                  <p className="text-sm">Send the second one</p>
+                  <p className="text-sm">{t('conversation.userSend')}</p>
                 </div>
               </div>
 
               {/* Confirmation text */}
               <p className="text-center text-sm text-slate-400 pt-2">
-                Email sent. Zero typing. Zero screen time.
+                {t('conversation.confirmation')}
               </p>
             </div>
           </motion.div>
@@ -134,11 +131,10 @@ const Email: React.FC = () => {
                 <Clock size={20} className="text-sky-600" />
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                30 emails &rarr; 5 minutes
+                {t('benefits.time.title')}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Voice mode reads the important ones, skips the noise, and lets you reply in
-                your natural voice. The commute becomes productive.
+                {t('benefits.time.description')}
               </p>
             </motion.div>
 
@@ -152,11 +148,10 @@ const Email: React.FC = () => {
                 <MessageSquare size={20} className="text-sky-600" />
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                3 tone options per reply
+                {t('benefits.tone.title')}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Short & Direct, Warm & Professional, Executive. Pick the one that fits, or
-                tell the AI to adjust. Your voice, polished.
+                {t('benefits.tone.description')}
               </p>
             </motion.div>
 
@@ -170,11 +165,10 @@ const Email: React.FC = () => {
                 <Zap size={20} className="text-sky-600" />
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                Actions extracted automatically
+                {t('benefits.actions.title')}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                When an email mentions a deadline, meeting, or task — action cards appear. Tap
-                to create without leaving your inbox.
+                {t('benefits.actions.description')}
               </p>
             </motion.div>
           </div>
@@ -187,10 +181,7 @@ const Email: React.FC = () => {
             className="bg-slate-900 text-white rounded-3xl p-8 mb-16"
           >
             <p className="text-lg md:text-xl leading-relaxed text-slate-200">
-              It's 7:45 AM. You're driving to the first job site. You say "read my inbox."
-              HABOS summarizes 5 emails, reads the urgent one from your client, and drafts a
-              reply in your tone. You say "send it." By the time you park, your inbox is clear
-              and your client has a response. You never touched your phone.
+              {t('scenario')}
             </p>
           </motion.div>
 
@@ -202,15 +193,15 @@ const Email: React.FC = () => {
             className="bg-sky-50 border border-sky-200 rounded-2xl px-8 py-4 mb-16"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              <span className="text-sm font-medium text-sky-700">Gmail</span>
+              <span className="text-sm font-medium text-sky-700">{t('integrations.gmail')}</span>
               <span className="text-sky-300">&middot;</span>
-              <span className="text-sm font-medium text-sky-700">Outlook</span>
+              <span className="text-sm font-medium text-sky-700">{t('integrations.outlook')}</span>
               <span className="text-sky-300">&middot;</span>
-              <span className="text-sm font-medium text-sky-700">Workspace email</span>
+              <span className="text-sm font-medium text-sky-700">{t('integrations.workspace')}</span>
               <span className="text-sky-300">&middot;</span>
-              <span className="text-sm font-medium text-sky-700">Unified inbox</span>
+              <span className="text-sm font-medium text-sky-700">{t('integrations.unified')}</span>
               <span className="text-sky-300">&middot;</span>
-              <span className="text-sm font-medium text-sky-700">Action items auto-extracted</span>
+              <span className="text-sm font-medium text-sky-700">{t('integrations.actions')}</span>
             </div>
           </motion.div>
 
@@ -222,7 +213,7 @@ const Email: React.FC = () => {
             className="text-center"
           >
             <p className="text-xl md:text-2xl font-serif text-slate-900 mb-8 max-w-2xl mx-auto">
-              Other email apps want you to type faster. HABOS lets you stop typing entirely.
+              {t('closing.tagline')}
             </p>
             <a href="/#waitlist">
               <motion.button
@@ -230,7 +221,7 @@ const Email: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-medium text-base shadow-lg hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('closing.cta')}
               </motion.button>
             </a>
           </motion.div>

@@ -1,0 +1,74 @@
+{
+  "badge": "Anpassade appar",
+  "hero": {
+    "title": "Beskriv det.\nVOIS bygger det.",
+    "description": "Skapa dina egna miniappar med en enda mening. AI genererar schemat, instrumentpanelen och röstdirigering — din verksamhet får verktyg som ingen leverantör någonsin skulle bygga åt dig."
+  },
+  "heroPills": [
+    "Skapande med naturligt språk",
+    "AI-schemagenerering",
+    "Automatiska instrumentpaneler"
+  ],
+  "demo": {
+    "steps": [
+      {
+        "label": "Du beskriver",
+        "prompt": "\"Jag vill ha en app för att spåra utrustningsinspektioner\""
+      },
+      {
+        "label": "AI genererar schema",
+        "fields": [
+          { "field": "Utrustning", "type": "Text" },
+          { "field": "Plats", "type": "Plats" },
+          { "field": "Skick", "type": "Välj" },
+          { "field": "Foto", "type": "Bild" },
+          { "field": "Nästa servicedatum", "type": "Datum" }
+        ]
+      },
+      {
+        "label": "Omedelbar instrumentpanel",
+        "entries": [
+          { "equip": "Enhet 3 — Kompressor", "status": "Bra" },
+          { "equip": "Enhet 7 — HVAC", "status": "Acceptabelt" },
+          { "equip": "Enhet 12 — Generator", "status": "Behöver reparation" }
+        ],
+        "legend": [
+          "Bra",
+          "Acceptabelt",
+          "Behöver reparation"
+        ]
+      }
+    ],
+    "annotation": "Från en mening till en fungerande app. Ingen kod. Inget väntande."
+  },
+  "benefitCards": [
+    {
+      "title": "Röstdirigerad data",
+      "body": "Säg 'inspekterade enhet 3, kompressor visar slitage' och det dirigeras till din utrustningsinspektionsapp automatiskt. Nyckelord lärs in från ditt schema."
+    },
+    {
+      "title": "AI-drivna fält",
+      "body": "Vissa fält fylls i själva. Ett 'AI-rekommendation'-fält i din inspektionsapp kan generera 'Schemalägg kompressorbyte inom 6 månader' från dina anteckningar."
+    },
+    {
+      "title": "Omedelbara instrumentpaneler",
+      "body": "Varje anpassad app får diagram, filter och AI-insikter direkt. Se trender i din data utan att bygga någonting."
+    }
+  ],
+  "scenario": {
+    "heading": "Verkligt scenario",
+    "body": "Ditt städföretag behöver spåra platskvalitetspoäng. Du säger \"skapa en app för platskvalitetsgranskningar.\" VOIS genererar fält för plats, granskare, poäng, foton och anteckningar. Ett AI-fält autogenererar förbättringsförslag. På en minut har du ett kvalitetsspårningssystem som dirigerar röstanteckningar från fältet direkt till strukturerade poster."
+  },
+  "techItems": [
+    "Skapande med naturligt språk",
+    "AI-schemagenerering",
+    "Röstavsiktsdirigering",
+    "Automatiska instrumentpaneler",
+    "AI-genereringsfält",
+    "Marknadsplatsdelning"
+  ],
+  "cta": {
+    "tagline": "Din verksamhet är unik. Dina verktyg borde vara det också.",
+    "button": "Gå med i väntelistan"
+  }
+}

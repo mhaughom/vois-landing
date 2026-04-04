@@ -1,0 +1,62 @@
+{
+  "badge": "Aangepaste domeinen",
+  "hero": {
+    "title": "Jouw domein. Jouw e-mail. Één instelling.",
+    "description": "Verbind je eigen domein, krijg werkruimte-e-mailadressen en automatische SSL — allemaal ondersteund door de enterprise-infrastructuur van Cloudflare."
+  },
+  "body": "Eén domeinaankoop geeft je een website, e-mailadressen voor je team en een compleet e-mailsysteem met bezorgbaarheidstracking, afhandelingvan bounces en klachten, en AI-antwoordsuggesties — alles beheerd vanuit één instellingenpagina. Cloudflare provisioneert automatisch SSL en aangepaste hostnamen. AWS SES verwerkt e-mailidentiteit met DKIM voor geverifieerde verzending. Inkomende e-mail wordt via ontvangstregels doorgestuurd naar het HABOS-mailsysteem, waar het wordt verwerkt, gegroepeerd en doorzoekbaar gemaakt.",
+  "mockCard": {
+    "domain": "hendersonplumbing.com",
+    "badges": {
+      "domain": "Domein",
+      "connected": "Verbonden",
+      "ssl": "SSL",
+      "sslActive": "Actief",
+      "email": "E-mail",
+      "emailConfigured": "Geconfigureerd"
+    },
+    "rows": [
+      { "label": "Website", "value": "hendersonplumbing.com" },
+      { "label": "E-mail", "value": "mike@hendersonplumbing.com" },
+      { "label": "Boeking", "value": "hendersonplumbing.com/book" }
+    ],
+    "annotation": "DNS-doorgifte is doorgaans binnen 5 minuten voltooid met Cloudflare."
+  },
+  "benefits": [
+    {
+      "title": "Domein + e-mail + SSL",
+      "desc": "Geen aparte domeinregistrar, e-mailprovider en SSL-certificaat. Alles geconfigureerd op één plek, één dashboard, één factuur."
+    },
+    {
+      "title": "Professionele e-mail",
+      "desc": "Stuur e-mails vanuit je domein — facturen, bevestigingen, marketing. Niet vanuit noreply@een-platform.com. Jouw merk, overal."
+    },
+    {
+      "title": "Enterprise-infrastructuur",
+      "desc": "Het wereldwijde edge-netwerk van Cloudflare serveert je site. Enterprise-grade DDoS-bescherming, CDN en SSL-certificaatbeheer inbegrepen."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "heading": "Zonder HABOS",
+      "text": "Domein kopen (€12/jaar). DNS instellen. SSL-certificaat aanvragen. E-mailhosting configureren (€6/mnd). Alles koppelen. Hopen dat het werkt. DNS-doorgifte debuggen.",
+      "badge": "3 diensten, 2+ uur installatie"
+    },
+    "with": {
+      "heading": "Met HABOS",
+      "text": "Voer je domein in. Voeg DNS-records toe. Klaar. E-mail, SSL en websiteroutering automatisch geconfigureerd.",
+      "badge": "1 dienst, 5 minuten"
+    }
+  },
+  "techItems": [
+    "Cloudflare Workers",
+    "Automatische SSL-provisioning",
+    "Werkruimte-e-mailroutering",
+    "DNS-verificatie",
+    "Wereldwijd CDN"
+  ],
+  "cta": {
+    "heading": "Andere platforms laten je 3 diensten beheren. HABOS regelt alles.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "category": "Filosofie",
+  "title": "Gebouwd voor teams, niet alleen voor jou",
+  "tagline": "Iedereen ziet wat voor hen relevant is. Iedereen deelt dezelfde waarheid.",
+  "heroAlt": "Teamcoördinatie via gedeelde intelligentie",
+  "body1": "Een project loopt 4 dagen vertraging op omdat iemand een vraag miste die begraven zat in een Slack-thread. De CEO vraagt \"wat is de status van het Henderson-project?\" en krijgt drie verschillende antwoorden — omdat iedereen zijn eigen versie van de waarheid bijhoudt. Persoonlijke AI lost dit allemaal niet op. Teaminfrastructuur wel.",
+  "rolesLabel": "Dezelfde gegevens, drie perspectieven",
+  "roles": [
+    {
+      "name": "Dispatcher",
+      "desc": "Routes, locaties van medewerkers, niet-toegewezen opdrachten. Sleep-naar-toewijzen-bord."
+    },
+    {
+      "name": "Buitendienstmedewerker",
+      "desc": "Volgende opdracht met route, klanthistorie, voltooiing met één tik."
+    },
+    {
+      "name": "CEO",
+      "desc": "Omzet, actieve projecten, gemarkeerde problemen. Wekelijkse AI-samenvatting."
+    }
+  ],
+  "body2": "De grootste belasting voor kleine bedrijven zijn niet de personeelskosten. Het is de communicatievertraging. Een beslissing van 5 minuten duurt 4 dagen vanwege e-mailketens, gemiste berichten en \"ik doe het als ik terug aan mijn bureau zit.\" Elke functie in VOIS is ontworpen om de tijd tussen \"iemand heeft een beslissing nodig\" en \"de beslissing is genomen\" te verkorten.",
+  "quote": "\"Een bedrijf beweegt niet op de snelheid van zijn snelste persoon. Het beweegt op de snelheid van zijn langzaamste overdracht.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Één assistent",
+    "nextLabel": "Volgende",
+    "nextTitle": "Suggesties, geen menu's"
+  }
+}

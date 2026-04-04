@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Jobber og drift",
+  "hero": {
+    "title": "Kjør driften med tale",
+    "description": "Send ut jobber, planlegg ruter, følg opp prosjekter, administrer oppgaver og logg tid – fra feltet eller kontoret, uten papirarbeid."
+  },
+  "items": [
+    {
+      "title": "Dispatch",
+      "desc": "Dagsbord med statusflyt, teamtildeling og kundevarsler."
+    },
+    {
+      "title": "Ruter",
+      "desc": "Smart stopp-rekkefølge med kartintegrasjon for teamet i feltet."
+    },
+    {
+      "title": "Prosjekter",
+      "desc": "Se hvilke prosjekter som trenger oppmerksomhet – stagnert arbeid flagges før det eskalerer."
+    },
+    {
+      "title": "Oppgaver",
+      "desc": "De viktigste oppgavene dine vises først, opprettet fra tale eller møter."
+    },
+    {
+      "title": "Tidssporing",
+      "desc": "Stemple inn fra mobil, spor fakturerbare timer per jobb, koble til lønnsregnskap."
+    }
+  ]
+}

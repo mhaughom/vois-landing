@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
@@ -19,44 +20,25 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
 });
 
-/* -- benefit cards data -------------------------------------------------- */
-
-const benefits = [
-  {
-    title: 'Domain + email + SSL',
-    desc: 'No separate domain registrar, email provider, and SSL certificate. Everything configured in one place, one dashboard, one bill.',
-  },
-  {
-    title: 'Professional email',
-    desc: 'Send emails from your domain \u2014 invoices, confirmations, marketing. Not from noreply@some-platform.com. Your brand, everywhere.',
-  },
-  {
-    title: 'Enterprise infrastructure',
-    desc: "Cloudflare\u2019s global edge network serves your site. Enterprise-grade DDoS protection, CDN, and SSL certificate management included.",
-  },
-] as const;
-
-/* -- tech strip items ---------------------------------------------------- */
-
-const techItems = [
-  'Cloudflare Workers',
-  'Auto SSL provisioning',
-  'Workspace email routing',
-  'DNS verification',
-  'Global CDN',
-] as const;
-
-/* -- domain setup rows --------------------------------------------------- */
-
-const domainRows = [
-  { label: 'Website', value: 'hendersonplumbing.com' },
-  { label: 'Email', value: 'mike@hendersonplumbing.com' },
-  { label: 'Booking', value: 'hendersonplumbing.com/book' },
-] as const;
+const benefitIcons = [Lock, Mail, Shield];
 
 /* -- component ----------------------------------------------------------- */
 
 const Domains: React.FC = () => {
+  const { t } = useTranslation('work-domains');
+
+  const benefits = t('benefits', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>;
+
+  const techItems = t('techItems', { returnObjects: true }) as string[];
+
+  const domainRows = t('mockCard.rows', { returnObjects: true }) as Array<{
+    label: string;
+    value: string;
+  }>;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -69,20 +51,19 @@ const Domains: React.FC = () => {
           <motion.section {...fadeUp()} className="max-w-3xl mx-auto text-center mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-500/10 text-slate-700 rounded-full text-sm font-medium mb-6">
               <Globe size={14} />
-              Custom Domains
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
-              Your Domain. Your Email.<br />One Setup.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
-              Connect your custom domain, get workspace email addresses, and automatic SSL &mdash;
-              all backed by Cloudflare&rsquo;s enterprise infrastructure.
+              {t('hero.description')}
             </p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">
             <p className="text-lg text-slate-600 leading-relaxed">
-              One domain purchase gives you a website, email addresses for your team, and a complete email system with deliverability tracking, bounce and complaint handling, and AI reply suggestions — all managed from one settings page. Cloudflare auto-provisions SSL and custom hostnames. AWS SES handles email identity with DKIM for authenticated sending. Inbound email routes through receipt rules to the HABOS mail system where it's parsed, threaded, and searchable.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -91,19 +72,19 @@ const Domains: React.FC = () => {
             <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl max-w-lg mx-auto">
               {/* Domain name */}
               <p className="font-mono text-lg text-slate-900 font-semibold mb-5">
-                hendersonplumbing.com
+                {t('mockCard.domain')}
               </p>
 
               {/* Status badges */}
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-semibold border border-green-200">
-                  Domain <Check size={12} /> Connected
+                  {t('mockCard.badges.domain')} <Check size={12} /> {t('mockCard.badges.connected')}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-semibold border border-green-200">
-                  SSL <Check size={12} /> Active
+                  {t('mockCard.badges.ssl')} <Check size={12} /> {t('mockCard.badges.sslActive')}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-semibold border border-green-200">
-                  Email <Check size={12} /> Configured
+                  {t('mockCard.badges.email')} <Check size={12} /> {t('mockCard.badges.emailConfigured')}
                 </span>
               </div>
 
@@ -129,7 +110,7 @@ const Domains: React.FC = () => {
 
               {/* Annotation */}
               <p className="text-xs text-slate-400 leading-relaxed">
-                DNS propagation typically completes in under 5 minutes with Cloudflare.
+                {t('mockCard.annotation')}
               </p>
             </div>
           </motion.section>
@@ -138,8 +119,7 @@ const Domains: React.FC = () => {
           <motion.section {...fadeUp(0.2)} className="mb-20">
             <div className="grid md:grid-cols-3 gap-5">
               {benefits.map((b, i) => {
-                const icons = [Lock, Mail, Shield];
-                const Icon = icons[i];
+                const Icon = benefitIcons[i];
                 return (
                   <div
                     key={b.title}
@@ -161,25 +141,23 @@ const Domains: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-5">
               {/* Without HABOS */}
               <div className="bg-slate-100 rounded-2xl p-6 md:p-8">
-                <h3 className="font-semibold text-slate-700 mb-4">Without HABOS</h3>
+                <h3 className="font-semibold text-slate-700 mb-4">{t('comparison.without.heading')}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                  Buy domain ($12/yr). Set up DNS. Get SSL cert. Configure email hosting ($6/mo).
-                  Point everything. Pray it works. Debug DNS propagation.
+                  {t('comparison.without.text')}
                 </p>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-200 text-slate-600 rounded-full text-xs font-semibold">
-                  3 services, 2+ hours setup
+                  {t('comparison.without.badge')}
                 </div>
               </div>
 
               {/* With HABOS */}
               <div className="bg-slate-50 rounded-2xl p-6 md:p-8 border border-slate-300">
-                <h3 className="font-semibold text-slate-900 mb-4">With HABOS</h3>
+                <h3 className="font-semibold text-slate-900 mb-4">{t('comparison.with.heading')}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Enter your domain. Add DNS records. Done. Email, SSL, and website routing
-                  configured automatically.
+                  {t('comparison.with.text')}
                 </p>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-200/60 text-slate-700 rounded-full text-xs font-semibold">
-                  1 service, 5 minutes
+                  {t('comparison.with.badge')}
                 </div>
               </div>
             </div>
@@ -200,8 +178,7 @@ const Domains: React.FC = () => {
           {/* 6. Closing CTA */}
           <motion.section {...fadeUp(0.5)} className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-5 leading-tight">
-              Other platforms make you manage 3 services.<br />
-              HABOS handles it all.
+              {t('cta.heading')}
             </h2>
             <a href="/#waitlist">
               <motion.button
@@ -209,7 +186,7 @@ const Domains: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="mt-4 inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 text-white rounded-full font-medium text-sm shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
                 <ArrowRight size={18} />
               </motion.button>
             </a>

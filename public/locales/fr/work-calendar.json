@@ -1,0 +1,71 @@
+{
+  "badge": "Planification IA",
+  "hero": {
+    "title": "Dites « Planifie ma journée. »\nRegardez-la se remplir.",
+    "description": "HABOS analyse vos tâches, priorités et délais — puis propose un planning complet. Vous approuvez avant que quoi que ce soit ne bouge."
+  },
+  "body": "Le calendrier ne se contente pas d'afficher votre emploi du temps — c'est un moteur de planification intelligent qui place automatiquement les tâches dans des blocs de concentration. Chaque bloc dispose d'un filtre d'affinité : un bloc de concentration sur un projet ne se remplit que de tâches appartenant à ce projet. Le moteur de remplissage automatique utilise un algorithme glouton qui respecte l'ordre des dépendances par tri topologique, de sorte que les tâches prédécesseurs sont toujours planifiées avant leurs dépendantes. Les éléments sur le chemin critique de vos projets s'insèrent en premier, automatiquement.",
+  "schedule": {
+    "dateLabel": "Mercredi 26 mars",
+    "blocks": [
+      {
+        "time": "9:00 – 10:30",
+        "type": "Travail en profondeur",
+        "tasks": "Proposition Henderson (chemin critique) + Révision du brouillon de contrat"
+      },
+      {
+        "time": "10:30 – 11:00",
+        "type": "Administration",
+        "tasks": "Répondre à 3 e-mails signalés + Approuver la facture"
+      },
+      {
+        "time": "11:00 – 12:00",
+        "type": "Réunion",
+        "tasks": "Synchronisation d'équipe (résumé généré automatiquement)"
+      },
+      {
+        "time": "13:00 – 14:30",
+        "type": "Projet",
+        "tasks": "Rénovation de cuisine — sélection des carrelages + appels fournisseurs"
+      },
+      {
+        "time": "14:30 – 15:00",
+        "type": "Opérations",
+        "tasks": "Révision des rapports quotidiens + signalement des anomalies"
+      }
+    ],
+    "caption": "Généré en 2 secondes. Chaque tâche placée par le score de priorité IA."
+  },
+  "benefits": {
+    "priority": {
+      "title": "Priorité à 7 facteurs",
+      "description": "Rang manuel, étiquette de priorité, importance IA, urgence IA, date d'échéance, adéquation calendrier, date de création. Les tâches ne sont pas seulement triées — elles sont comprises."
+    },
+    "focusBlocks": {
+      "title": "Blocs de concentration",
+      "description": "Travail en profondeur, administration, projet, personnel — chaque bloc a un filtre d'affinité. Les tâches sur le chemin critique s'insèrent toujours en premier."
+    },
+    "dependency": {
+      "title": "Conscient des dépendances",
+      "description": "Le tri topologique garantit que les prédécesseurs sont planifiés avant leurs dépendants. Le calendrier respecte la logique de votre projet."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Sans HABOS",
+    "withoutText": "Dimanche soir : regarder un calendrier vide. Essayer de se rappeler ce qui est urgent. Bloquer manuellement du temps pour chaque tâche. Être interrompu. Tout reprogrammer.",
+    "withoutStat": "~45 min de planification",
+    "withTitle": "Avec HABOS",
+    "withText": "« Planifie ma journée. » Réviser le planning proposé. Déplacer un bloc pour l'ajuster. Approuver.",
+    "withStat": "~30 secondes"
+  },
+  "techStrip": [
+    "Algorithme de remplissage automatique glouton",
+    "Tri topologique des dépendances",
+    "Synchronisation BroadcastChannel",
+    "Calendriers Google + Outlook + iOS"
+  ],
+  "closing": {
+    "tagline": "Motion planifie automatiquement sans demander. HABOS propose — vous décidez.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

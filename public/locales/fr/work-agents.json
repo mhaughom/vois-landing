@@ -1,0 +1,59 @@
+{
+  "badge": "Fonctionnalité clé",
+  "hero": {
+    "title": "Décrivez-le. L'agent fait le reste.",
+    "description": "Donnez une instruction complexe en langage naturel. Un agent autonome la planifie, l'exécute à travers votre entreprise et demande la permission avant tout ce qui est risqué."
+  },
+  "intro": "Ce n'est pas un chatbot avec des intégrations API. C'est un framework d'agents autonomes avec planification, portes d'approbation, suivi budgétaire, délégation et récupération après défaillance — opérant sur 87 modules professionnels avec sécurité au niveau des lignes. L'architecture est comparable aux moteurs de workflow d'entreprise comme ServiceNow ou Salesforce Flow, mais piloté par le langage naturel plutôt que par des organigrammes drag-and-drop. Les exécutions actives survivent même aux redémarrages du serveur.",
+  "pipeline": {
+    "steps": [
+      { "label": "Décrire" },
+      { "label": "Planifier" },
+      { "label": "Exécuter" },
+      { "label": "Approuver" },
+      { "label": "Terminé" }
+    ],
+    "footer": "L'agent fait une pause à « Approuver » pour tout ce qui est à haut risque. Vous avez toujours le dernier mot."
+  },
+  "scenario": {
+    "title": "Voyez-le en action",
+    "instructionLabel": "Votre instruction",
+    "instruction": "« Analysez notre chiffre d'affaires T1, trouvez les 3 produits les moins performants, et envoyez à l'équipe de direction un résumé par e-mail. »",
+    "agentLabel": "Ce que fait l'agent",
+    "steps": [
+      { "text": "Interroge le module Finance pour le CA T1 par produit" },
+      { "text": "Croise les données avec le catalogue Produits pour le contexte" },
+      { "text": "Identifie les 3 derniers : Widget Pro (-23 %), Forfait Basic (-18 %), Kit Starter (-12 %)" },
+      { "text": "Rédige un e-mail de synthèse avec des graphiques" },
+      { "text": "Fait une pause — vous montre le brouillon d'e-mail pour approbation" },
+      { "text": "Vous approuvez → E-mail envoyé à la direction" }
+    ]
+  },
+  "stats": {
+    "title": "Ce que ça signifie pour vous",
+    "items": [
+      {
+        "big": "Heures → Minutes",
+        "desc": "Des tâches qui prenaient une matinée entière se font maintenant en une seule phrase."
+      },
+      {
+        "big": "8 outils maîtres",
+        "desc": "Recherche, planification, e-mail, finance, réservations, recherche, tâches, rapports — tous à disposition de l'agent."
+      },
+      {
+        "big": "Délégation à 3 niveaux",
+        "desc": "Les agents peuvent générer des agents enfants avec des plafonds budgétaires. Travail complexe, entièrement suivi."
+      }
+    ]
+  },
+  "trustSignals": [
+    "Jetons d'approbation cryptographiques",
+    "Suivi budgétaire par exécution",
+    "Trace d'exécution complète",
+    "Survit aux redémarrages du serveur"
+  ],
+  "closing": {
+    "tagline": "D'autres plateformes automatisent de simples déclencheurs. Les agents VOIS pensent, planifient et exécutent.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

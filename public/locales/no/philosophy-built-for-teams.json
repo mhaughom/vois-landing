@@ -1,0 +1,30 @@
+{
+  "category": "Filosofi",
+  "title": "Bygget for team, ikke bare deg",
+  "tagline": "Alle ser det som er relevant for dem. Alle deler den samme sannheten.",
+  "heroAlt": "Teamkoordinering gjennom delt intelligens",
+  "body1": "Et prosjekt stagnerer i 4 dager fordi noen gikk glipp av et spørsmål begravet i en Slack-tråd. Administrerende direktør spør «hva er statusen på Henderson-prosjektet?» og får tre forskjellige svar — fordi alle opprettholder sin egen versjon av sannheten. Personlig AI løser ingenting av dette. Teaminfrastruktur gjør det.",
+  "rolesLabel": "Samme data, tre perspektiver",
+  "roles": [
+    {
+      "name": "Utsender",
+      "desc": "Ruter, teamlokasjoner, utildelte oppdrag. Dra-og-slipp-tavle."
+    },
+    {
+      "name": "Feltarbeider",
+      "desc": "Neste oppdrag med veibeskrivelse, kundehistorikk, ett-trykks fullføring."
+    },
+    {
+      "name": "Administrerende direktør",
+      "desc": "Inntekter, aktive prosjekter, flaggede problemer. Ukentlig AI-sammendrag."
+    }
+  ],
+  "body2": "Den største skatten på småbedrifter er ikke lønnskostnader. Det er kommunikasjonsforsinkelse. En 5-minutters beslutning tar 4 dager på grunn av e-postkjeder, tapte meldinger og «jeg tar det når jeg er tilbake på kontoret». Hver funksjon i VOIS er designet for å forkorte tiden mellom «noen trenger en beslutning» og «beslutningen er tatt».",
+  "quote": "«En bedrift beveger seg ikke i hastigheten til den raskeste personen. Den beveger seg i hastigheten til den tregeste overleveringen.»",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Én assistent",
+    "nextLabel": "Neste",
+    "nextTitle": "Forslag, ikke menyer"
+  }
+}

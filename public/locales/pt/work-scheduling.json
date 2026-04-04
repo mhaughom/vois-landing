@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Agendamento & Reservas",
+  "hero": {
+    "title": "Seu Calendário Funciona Sozinho",
+    "description": "Agendamento por IA, reservas online e links compartilháveis — conectados ao seu CRM e pagamentos para que nada caia no esquecimento."
+  },
+  "items": [
+    {
+      "title": "Calendário",
+      "desc": "Blocos de foco preenchidos automaticamente, reuniões preparadas com briefings de IA."
+    },
+    {
+      "title": "Reservas",
+      "desc": "Clientes agendam online, pedidos criados automaticamente, pagamento coletado em uma etapa."
+    },
+    {
+      "title": "Links de Agendamento",
+      "desc": "Páginas de agendamento compartilháveis com sincronização de disponibilidade e pagamentos via Stripe."
+    }
+  ]
+}

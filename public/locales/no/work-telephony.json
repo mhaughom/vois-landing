@@ -1,0 +1,60 @@
+{
+  "badge": "AI-telefoni",
+  "hero": {
+    "title": "En AI-resepsjonist.\nEt ekte telefonnummer.",
+    "description": "HABOS klargjør et dedikert telefonnummer for virksomheten din. AI besvarer samtaler, booker møter, oppretter oppgaver og triagerer til riktig person – 24/7."
+  },
+  "body": "HABOS klargjør ekte telefonnumre – både arbeidsplassens forretningslinjer via Telnyx og personlige AI-assistentnumre via Twilio. Når noen ringer, svarer AI-assistenten med full verktøytilgang: sjekke kalender, opprette oppgaver, sende meldinger, slå opp kontakter. Høy-risiko handlinger som booking eller betalinger bruker SMS-basert godkjenning – en firedelt kode sendt på SMS til brukeren. Innkommende SMS til assistentnummeret utløser en AI-samtalesøkt med de samme fulle mulighetene.",
+  "callFlow": {
+    "steps": [
+      {
+        "label": "Innkommende samtale: (555) 234-5678"
+      },
+      {
+        "label": "AI svarer: «Henderson Rørlegger, hvordan kan jeg hjelpe deg?»"
+      },
+      {
+        "label": "Ringer: «Jeg har et lekkende rør, kan noen komme i dag?»"
+      },
+      {
+        "label": "AI sjekker kalender → finner tidsluke kl. 14:00 tilgjengelig"
+      },
+      {
+        "label": "AI: «Jeg kan planlegge en tekniker kl. 14:00 i dag. Passer det?»"
+      }
+    ],
+    "resultItems": {
+      "booking": "Booking opprettet",
+      "ticket": "Sak åpnet",
+      "notify": "Mike varslet",
+      "sms": "SMS-bekreftelse sendt"
+    },
+    "caption": "AI har full verktøytilgang – kalender, CRM, saker, bookinger. Det er ikke en IVR-meny. Det er en faktisk assistent."
+  },
+  "benefits": {
+    "sms": {
+      "title": "SMS-assistent",
+      "body": "Innkommende tekstmeldinger utløser samtale-AI som kan sjekke planer, opprette oppgaver og svare – alt uten at et menneske løfter en finger."
+    },
+    "recording": {
+      "title": "Samtaleopptak + transkripsjon",
+      "body": "Alle samtaler lagres med full transkripsjon, søkbar etter taler og nøkkelord. Mist aldri en detalj fra en kundesamtale."
+    },
+    "approval": {
+      "title": "4-sifret godkjenning",
+      "body": "Høy-risiko handlinger som bookinger og betalinger bruker SMS-baserte bekreftelseskoder. AI kan handle, men mennesker forblir i kontroll."
+    }
+  },
+  "scenario": "Det er søndag. Et rør sprekker. Huseieren ringer bedriftsnummeret ditt. AI svarer, forstår «nødlekkasje», sjekker vaktplanen din og booker nærmeste tilgjengelige tekniker. Huseieren får en SMS-bekreftelse med teknikerens navn og estimert ankomsttid. Du berørte ikke telefonen.",
+  "techStrip": [
+    "Telnyx + Twilio",
+    "OpenAI Realtime V2",
+    "Full verktøytilgang",
+    "SMS-basert godkjenning",
+    "Tilpasset IVR-ruting"
+  ],
+  "closing": {
+    "title": "Andre telefonsystemer spiller ventemusikk.\nHABOS løser problemer.",
+    "cta": "Bli med på ventelisten"
+  }
+}

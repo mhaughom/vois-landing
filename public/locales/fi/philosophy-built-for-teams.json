@@ -1,0 +1,30 @@
+{
+  "category": "Filosofia",
+  "title": "Rakennettu tiimeille, ei vain sinulle",
+  "tagline": "Jokainen näkee sen, mikä on heille tärkeää. Jokainen jakaa saman totuuden.",
+  "heroAlt": "Tiimin koordinaatio jaetun älykkyyden kautta",
+  "body1": "Projekti pysähtyy neljäksi päiväksi, koska joku jätti huomaamatta Slack-viestiketjuun hautautuneen kysymyksen. Toimitusjohtaja kysyy \"mikä on Henderson-projektin tilanne?\" ja saa kolme eri vastausta — koska jokainen pitää oman totuusversioonsa. Henkilökohtainen tekoäly ei korjaa mitään tästä. Tiimi-infrastruktuuri korjaa.",
+  "rolesLabel": "Sama data, kolme näkökulmaa",
+  "roles": [
+    {
+      "name": "Lähettäjä",
+      "desc": "Reitit, tiimin sijainnit, osoittamattomat työt. Vedä-ja-pudota-taulu."
+    },
+    {
+      "name": "Kenttätyöntekijä",
+      "desc": "Seuraava työ ohjeineen, asiakashistoria, yksi napautus valmiiksi."
+    },
+    {
+      "name": "Toimitusjohtaja",
+      "desc": "Tuotto, aktiiviset projektit, merkityt ongelmat. Viikoittainen tekoälytiivistelmä."
+    }
+  ],
+  "body2": "Suurin vero pienille yrityksille ei ole työvoimakustannus. Se on viestinnän viive. Viiden minuutin päätös kestää neljä päivää sähköpostiketjujen, huomaamatta jääneiden viestien ja \"hoidan sen kun pääsen pöydälle\" -mentaliteetin takia. Jokainen VOISin ominaisuus on suunniteltu lyhentämään aikaa siitä kun \"joku tarvitsee päätöksen\" siihen kun \"päätös on tehty\".",
+  "quote": "\"Yritys ei liiku nopeimman henkilönsä tahdissa. Se liikkuu hitaimman kädensijan tahdissa.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Yksi assistentti",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Ehdotuksia, ei valikoita"
+  }
+}

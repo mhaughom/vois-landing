@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Lösungen — Kreativunternehmen",
+    "title": "Verbringen Sie Ihre Zeit mit Erschaffen.\u00a0Nicht mit Verwalten.",
+    "subtitle": "Kundenverwaltung, Projektverfolgung, Angebote, Rechnungsstellung und Teamkoordination – erledigt.",
+    "description": "Agenturen, Studios, Fotografen, Videografen, freiberufliche Autoren, Eventplaner, Architekten und jedes Unternehmen, bei dem die Arbeit kreativ ist, aber alles drum herum mühsam ist."
+  },
+  "body": {
+    "caseStudyLabel": "Fallstudie",
+    "section1": {
+      "heading": "Wie eine 6-köpfige Agentur in Bergen 12 Stunden pro Woche zurückgewann",
+      "p1": "Marte leitet eine Digitalagentur. Sechs Personen. Branding, Social Media, Webdesign. Ihre Kunden sind mittelgroße norwegische Unternehmen, die schnelle Kommunikation und hochwertige kreative Arbeit erwarten. Ihr Problem war nicht die kreative Arbeit. Es war alles andere."
+    },
+    "section2": {
+      "heading": "Das Vorher",
+      "p1": "Montage begannen mit einem zweistündigen Status-Meeting. Nicht weil das Team langsam war – weil niemand sehen konnte, wo ein Projekt stand, ohne zu fragen. Asana hatte Aufgabenlisten. Notion hatte Meetingnotizen. Toggl hatte Stunden. Das CRM hatte Kundendetails. Slack hatte die eigentlichen Gespräche. Ein vollständiges Bild eines Projekts zu bekommen bedeutete, fünf Tools zu prüfen.",
+      "p2": "Ein Kunde antwortete um 23 Uhr auf ein Angebot. Bevor Marte drei Sätze schreiben konnte, musste sie das ursprüngliche Angebot in Google Docs, das Budget in einer Tabelle und die Verfügbarkeit ihres Teams in Asana prüfen. Vier Tabs. Fünfzehn Minuten. Für eine Drei-Sätze-E-Mail.",
+      "p3": "Die Rechnungsstellung war das Schlimmste. Stunden waren in Toggl. Lieferables waren in Asana. Vertragsbedingungen waren in einem E-Mail-Anhang von vor drei Monaten. Die Rechnungen wurden ungefähr. Sie berechnete entweder zu wenig oder führte unangenehme Gespräche.",
+      "p4": "Und potenzielle Kunden? Wenn jemand fragte \"Können Sie Beispiele ähnlicher Arbeit senden?\" – das Suchen nach Fallstudien in Google Drive, Dropbox und alten E-Mail-Threads dauerte fünfundvierzig Minuten. Sie versprach, bis Tagesende zu senden, und lieferte zwei Tage später."
+    },
+    "section3": {
+      "heading": "Der Wendepunkt",
+      "p1": "Marte wechselte zu HABOS. Nicht wegen einer einzelnen Funktion, sondern weil sie es satt hatte, eine Systemadministratorin statt einer kreativen Direktorin zu sein.",
+      "p2": "Das Erste, was sich änderte, waren Kundengespräche. HABOS generiert vor jedem Gespräch ein Meeting-Briefing – frühere Notizen, Projektstatus, ausstehende Entscheidungen. Während des Gesprächs erfasst die Live-Transkription alles. Danach: Aktionspunkte automatisch extrahiert, den richtigen Personen zugewiesen, mit dem Projekt verknüpft. Der Kunde erhält eine Nachverfolgungsmails, die die Entscheidungen zusammenfasst, in Martes Stimme verfasst, innerhalb von zehn Minuten.",
+      "highlight": {
+        "label": "Der Moment, der sie überzeugte",
+        "voiceNote": "\"VOIS, finde mir alles aus Projekten ähnlich der Andersson-Anfrage – Social-Media-Kampagnen für Lebensmittelmarken, letzte zwei Jahre.\"",
+        "result": "Drei Sekunden. Zwei Fallstudien, eine Angebotsvorlage und ein Zeitplan aus einem vergleichbaren Projekt. Alles gefunden über Dokumente, Projektdatensätze, Angebote und Meetingtranskripte."
+      }
+    },
+    "section4": {
+      "heading": "Das Nachher",
+      "p1": "Das Montag-Status-Meeting ist verschwunden. Ersetzt durch eine fünfminütige Dashboard-Prüfung. Jedes Projekt zeigt seinen Gesundheitsstatus, Blocker und nächste Meilensteine. Das Meeting, das es ersetzte, dauert fünfundzwanzig Minuten mit tatsächlichen Entscheidungen.",
+      "p2": "Die Rechnungsstellung dauert Minuten, nicht Stunden. Die Zeiterfassung ist mit Projekten verknüpft. Lieferables werden in Meilensteinen abgehakt. Vertragsbedingungen leben im CRM-Datensatz. Die Rechnung generiert mit den korrekten Posten, abrechenbaren Stunden und Zahlungskonditionen. Ein Tippen zum Senden.",
+      "p3": "Angebote, die früher einen Tag dauerten, brauchen jetzt eine Stunde. Beschreiben Sie das Projekt in einer Sprachnotiz, und HABOS erstellt einen Angebotsentwurf, der aus vergangenen Projektdaten und Preisen zieht.",
+      "p4": "Kunden bemerkten den Unterschied, bevor Martes Team es tat. Schnellere Antworten. Bessere Nachverfolgung. Ein Kundenportal, in dem sie Projektfortschritt sehen, Lieferables genehmigen und direkt mit dem Team kommunizieren können. Keine \"Können Sie mir ein Update senden?\"-E-Mails mehr."
+    },
+    "section5": {
+      "heading": "Die Ergebnisse",
+      "stats": [
+        ["12 Std.", "pro Woche bei Verwaltung gespart"],
+        ["90 %", "schnellere Angebotsbearbeitung"],
+        ["200 €+", "monatlich bei Tools gespart"],
+        ["0", "verlorenes Projektwissen"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Wir verbrachten Montage morgens mit einem 2-stündigen Status-Meeting, nur um herauszufinden, wo jedes Projekt stand. Jetzt prüfen wir das Dashboard in 5 Minuten und beginnen sofort mit der Arbeit. Allein die KI-Meetingnotizen sparten uns 6 Stunden pro Woche – und unsere Kunden bemerkten, dass wir schneller antworten.\"",
+      "attribution": "— Marte, 34 · Digitalagentur · 6 Personen · Bergen"
+    },
+    "cta": {
+      "heading": "Kehren Sie zur Arbeit zurück, für die Sie dieses Unternehmen wirklich gegründet haben.",
+      "button": "Der Warteliste beitreten"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "category": "Filosofia",
+  "title": "Sulkutila",
+  "tagline": "Jokainen kilpailija menee täysin autonomiseksi tai täysin manuaaliseksi. HABOS on ainoa alusta, joka tekee tauosta ominaisuuden. Tekoäly ehdottaa. Sinä hyväksyt. Jokainen toiminto kulkee sulkutilan kautta — koodin valvoma, ei tekoälyn hyvän harkinnan.",
+  "heroPlaceholder": "Hero-kuva",
+  "section1": {
+    "heading": "Rautainen sääntö",
+    "body1": "Tekoäly ei voi kirjoittaa tietokantaan ilman, että käyttäjä näkee esikatselun ja hyväksyy sen nimenomaisesti. Tämä ei ole suositus. Ei hyvä käytäntö. Ei tekoälyohje, joka voidaan kiertää. Se on kova portti työkalureittittimessä, jota ei voi ohittaa — ei tekoäly, ei laajennus, ei kukaan muuttamatta lähdekoodia.",
+    "body2": "Kun sanot \"lähetä sähköposti Larssille\", tekoäly luonnostelee sen, näyttää sen sinulle ja odottaa. Kun sanot \"luo tehtävä\", tekoäly näyttää tehtäväkortin ja odottaa. Kun agentti suorittaa kymmenen vaiheen tutkimustehtävän ja haluaa tallentaa tulokset — se näyttää sinulle artefaktin ja odottaa. Aina."
+  },
+  "section2": {
+    "heading": "Kolme luottamustasoa"
+  },
+  "tiers": [
+    {
+      "tier": "Luku",
+      "desc": "Haku, listaus, tietojen hakeminen. Tekoäly voi vapaasti kerätä kontekstin antaakseen parempia vastauksia.",
+      "rule": "Suorita välittömästi. Hyväksyntää ei tarvita."
+    },
+    {
+      "tier": "Kirjoitus",
+      "desc": "Tehtävien luominen, tapahtumien aikatauluttaminen, tietueiden päivittäminen. Kaikki mikä muuttaa tilaa yrityksessäsi.",
+      "rule": "Esikatselu ensin. Näet tarkalleen mitä tapahtuisi. Hyväksy tai hylkää."
+    },
+    {
+      "tier": "Korkea riski",
+      "desc": "Sähköpostien lähettäminen, julkaiseminen Slackiin, taloudelliset muutokset. Toiminnot, jotka näkyvät järjestelmän ulkopuolisille henkilöille.",
+      "rule": "Esikatselu + lisähyväksyntä. Kestävä auditointitietue. Selviää palvelimen käynnistymisistä."
+    }
+  ],
+  "approvalFlowPlaceholder": "Hyväksyntäprosessin kaavio",
+  "section3": {
+    "heading": "Kryptografinen vahvistus",
+    "body": "Jokainen kirjoitustoiminto tuottaa vahvistustunnisteen — kryptografisen, 10 minuutin vanhentumisella, sidottuna tiettyyn käyttäjään ja tarkkaan argumentteihin. Jos mikään muuttuu esikatselun ja vahvistuksen välillä, uusi tunniste vaaditaan. Tekoäly ei voi muuttaa toimintoa esikatselun jälkeen. Mitä näit, se suoritetaan."
+  },
+  "section4": {
+    "heading": "Työtilan käytäntö",
+    "intro": "Ylläpitäjillä on lisäohjauksia, jotka ohittavat kaiken muun:",
+    "policies": [
+      "Estä tietyt työkalut kokonaan — ei tekoälyn sähköpostilähetystä tässä työtilassa",
+      "Vaadi lisähyväksyntää tietyille toimintotyypeille",
+      "Rajoita, mitä tekoälymalleja käytetään",
+      "Rajoita ajokohtaiset budjetit — agentti ei voi kuluttaa enemmän kuin olet valtuuttanut"
+    ],
+    "outro": "Kaikki koodin valvoma. Ei tekoälyn käskyttämistä käyttäytymään. Ei toivomista, että se seuraa ohjeita. Suorituskerroksen porttien kautta, joita tekoälyllä ei ole kykyä kiertää."
+  },
+  "approvalFlowScreenshotPlaceholder": "Hyväksyntäprosessin kuvakaappaus",
+  "section5": {
+    "heading": "Miksi tällä on merkitystä",
+    "body1": "Tekoälyteollisuus kilpailee kohti autonomiaa. Täysin autonomiset agentit, jotka toimivat puolestasi ilman kysymistä. Uskomme, että tämä on takaperin liiketoimintaohjelmistoille.",
+    "body2": "Yrityksen omistaja tarvitsee luottaa työkaluihinsa samalla tavalla kuin luottaa tiimiinsä: selkeän delegoinnin, näkyvät toiminnot ja mahdollisuuden sanoa ei. HABOS antaa sinulle supervoimat — ja pitää kätesi ohjausyksikössä."
+  },
+  "quote": "\"Paras tekoäly ei tee päätöksiä puolestasi. Se tekee sinut nopeammaksi tekemään päätöksiä itse.\"",
+  "nav": {
+    "nextLabel": "Seuraava",
+    "nextTitle": "Tietosyötön loppu"
+  }
+}

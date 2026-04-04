@@ -1,0 +1,54 @@
+{
+  "badge": "Correo por voz",
+  "hero": {
+    "title": "Vacíe su bandeja de entrada hablando.",
+    "description": "Diga «lee mi bandeja» mientras conduce. Dicte respuestas. La IA genera 3 opciones de tono por correo. Envíe la que prefiera."
+  },
+  "body": "Diga «lee mi bandeja» mientras conduce. HABOS resume sus correos más importantes, lee en voz alta los urgentes y genera tres borradores de respuesta en diferentes tonos — Breve y directo, Cálido y profesional, y Ejecutivo. Usted dice «envía el segundo» y listo. Cada correo también obtiene elementos de acción extraídos por IA: los plazos se convierten en tareas, las solicitudes de reunión en eventos de calendario y los seguimientos se marcan — todo sin escribir una sola palabra.",
+  "conversation": {
+    "userAsk": "¿Qué hay en mi bandeja?",
+    "aiSummary": "Tiene 5 correos nuevos. El más importante es de Sarah Henderson sobre el cronograma de la renovación — necesita confirmación antes del fin del día. ¿Quiere que lo lea?",
+    "userReply": "Sí, y redacta una respuesta",
+    "aiDraftsIntro": "Aquí hay 3 opciones:",
+    "draft1": {
+      "label": "Breve y directo",
+      "text": "Hola Sarah, confirmado — vamos según el cronograma de marzo. Le enviaré el horario actualizado mañana."
+    },
+    "draft2": {
+      "label": "Cálido y profesional",
+      "text": "Hola Sarah, gracias por ponerse en contacto. Me alegra confirmar que vamos según lo programado. Le enviaré el cronograma detallado mañana por la mañana."
+    },
+    "draft3": {
+      "label": "Ejecutivo",
+      "text": "Sarah — Confirmado para marzo. El cronograma actualizado llega mañana. Avíseme si necesita algo más."
+    },
+    "userSend": "Envía el segundo",
+    "confirmation": "Correo enviado. Sin escribir. Sin mirar pantalla."
+  },
+  "benefits": {
+    "time": {
+      "title": "30 correos → 5 minutos",
+      "description": "El modo de voz lee los importantes, omite el ruido y le permite responder con su voz natural. El trayecto se vuelve productivo."
+    },
+    "tone": {
+      "title": "3 opciones de tono por respuesta",
+      "description": "Breve y directo, Cálido y profesional, Ejecutivo. Elija el que mejor encaje o dígale a la IA que ajuste. Su voz, pulida."
+    },
+    "actions": {
+      "title": "Acciones extraídas automáticamente",
+      "description": "Cuando un correo menciona un plazo, una reunión o una tarea — aparecen tarjetas de acción. Toque para crear sin salir de su bandeja."
+    }
+  },
+  "scenario": "Son las 7:45 AM. Va conduciendo al primer sitio de trabajo. Dice «lee mi bandeja». HABOS resume 5 correos, lee el urgente de su cliente y redacta una respuesta en su tono. Usted dice «envíalo». Cuando aparque, su bandeja está vacía y su cliente tiene una respuesta. Nunca tocó su teléfono.",
+  "integrations": {
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "workspace": "Correo del espacio de trabajo",
+    "unified": "Bandeja unificada",
+    "actions": "Elementos de acción extraídos automáticamente"
+  },
+  "closing": {
+    "tagline": "Otras aplicaciones de correo quieren que escriba más rápido. HABOS le permite dejar de escribir por completo.",
+    "cta": "Unirse a la lista de espera"
+  }
+}

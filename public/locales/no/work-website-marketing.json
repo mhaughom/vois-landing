@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Nettsted og markedsføring",
+  "hero": {
+    "title": "Merkevaren din, forsterket av AI",
+    "description": "Bygg nettsteder, lag innhold og kjør kampanjer – alt drevet av forretningsdataene dine, ikke generiske maler."
+  },
+  "items": [
+    {
+      "title": "Nettstedsbygger",
+      "desc": "Beskriv virksomheten din, få et nettsted – AI skriver teksten, kobler betalinger og booking."
+    },
+    {
+      "title": "Kreativt studio",
+      "desc": "Generer markedsføringsinnhold som matcher merkevaren din fra forretningskonteksten din."
+    },
+    {
+      "title": "Markedsføring",
+      "desc": "E-post- og SMS-kampanjer med AI-skrevet tekst og smarte målgruppesegmenter."
+    }
+  ]
+}

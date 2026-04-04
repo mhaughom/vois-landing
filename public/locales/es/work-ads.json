@@ -1,0 +1,24 @@
+{
+  "backLink": "Volver a la plataforma",
+  "category": "Contenido y marketing",
+  "title": "Anuncios",
+  "description": "Ejecute campañas publicitarias impulsadas por sus datos empresariales. HABOS conecta su CRM, productos e historial de clientes para crear audiencias más inteligentes y medir el ROI real — no métricas de vanidad.",
+  "benefits": [
+    {
+      "title": "Campañas con IA segmentada",
+      "desc": "HABOS analiza su CRM, pedidos y datos de clientes para crear audiencias que realmente convierten — sin suposiciones."
+    },
+    {
+      "title": "Publicación en múltiples plataformas",
+      "desc": "Cree una vez, publique en Google, Meta, LinkedIn y TikTok. Asignación de presupuesto optimizada por IA en tiempo real."
+    },
+    {
+      "title": "Atribución que tiene sentido",
+      "desc": "Vea qué anuncio trajo a qué cliente, qué acuerdo, qué ingreso — conectado de principio a fin a través de su CRM."
+    },
+    {
+      "title": "Anuncios creados por voz",
+      "desc": "Describa su oferta por voz y obtenga textos publicitarios, visuales y sugerencias de segmentación generadas al instante."
+    }
+  ]
+}

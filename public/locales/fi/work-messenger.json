@@ -1,0 +1,71 @@
+{
+  "badge": "Yhtenäinen viestinvälitys",
+  "hero": {
+    "title": "Jokainen kanava. Yksi keskustelu.",
+    "description": "Sähköposti, Slack, Teams, SMS ja sisäinen chat yhdistettynä yhdeksi henkilökeskeiseksi aikajanaksi. Lopeta 5 sovelluksen tarkistaminen nähdäksesi kaikki viestit yhdeltä asiakkaalta."
+  },
+  "body": "Sen sijaan, että tarkistat neljää sovellusta nähdäksesi kaikki viestit asiakkaalta, jokainen viesti ilmestyy yhdeksi kronologiseksi virraksi — sähköposti, Slack, Teams, SMS, sisäinen chat — ankkuroituna yhdelle henkilölle. Jokainen saapuva viesti käy läpi tärkeyspisteytyksen ja toimintakohteiden poiminnan. Korkean tärkeysasteen viestit saavat poimitut faktat, tehtävät ja seurantaehdotukset. Tekoäly ymmärtää asiayhteyden eri kanavissa — Slack-viesti, joka viittaa sähköpostiketjuun, linkitetään samaan keskusteluun.",
+  "timeline": {
+    "contactName": "Sara Henderson",
+    "channelsActive": "3 kanavaa aktiivinen",
+    "messages": [
+      {
+        "channel": "sähköposti",
+        "subject": "Vs: Keittiöremontin aikataulu",
+        "time": "18. maalisk., 14:30",
+        "preview": "Hei Mike, vahvistan olevamme aikataulussa maaliskuun 25. aloituspäivän kanssa. Tiskitasot saapuvat torstaina."
+      },
+      {
+        "channel": "slack",
+        "subject": "#henderson-projekti",
+        "time": "19. maalisk., 9:15",
+        "preview": "Nopea kysymys — ovatko laattanäytteet tulleet? Asiakas haluaa vahvistaa kalanruotomallin ennen tilaamista."
+      },
+      {
+        "channel": "sms",
+        "time": "20. maalisk., 11:00",
+        "preview": "Luvat hyväksytty! 🎉"
+      },
+      {
+        "channel": "sähköposti",
+        "subject": "Vs: Päivitetty aikataulu",
+        "time": "21. maalisk., 15:45",
+        "preview": "Liitteenä päivitetty aikataulu lupaviiveellä. Uusi valmistuminen: 12. huhtikuuta."
+      }
+    ],
+    "caption": "Yksi henkilö, yksi aikajana, jokainen kanava. Vastaa samalla kanavalla tai vaihda — sinun valintasi."
+  },
+  "benefits": {
+    "classification": {
+      "title": "Tekoälyluokittelu",
+      "body": "Viestit pisteytetään automaattisesti tärkeyden mukaan toimintakohteiden poiminnalla. Kiireelliset nousevat esiin; melu odottaa."
+    },
+    "replies": {
+      "title": "Mukautuvat vastaukset",
+      "body": "Tekoäly sovittaa kirjoitustyylisi 3 äänivaihtoehdolla. Kuulosta sinulta sähköpostissa, Slackissa ja SMS:ssä — ilman uudelleenkirjoittamista."
+    },
+    "mailboxes": {
+      "title": "Jaetut postilaatikot",
+      "body": "Tiimin postilaatikot kuten tuki@yritys.com tehtävien siirroilla, seurannalla ja SLA-ajastimilla. Mikään ei liiku ohi."
+    }
+  },
+  "beforeAfter": {
+    "beforeLabel": "Ennen",
+    "beforeText": "Tarkista Gmail. Tarkista Slack. Tarkista Teams. Tarkista SMS. Kokoa yhteen mitä Sara sanoi 4 sovelluksessa.",
+    "beforeStat": "~15 min/päivä",
+    "afterLabel": "Jälkeen",
+    "afterText": "Avaa Saran keskustelu. Kaikki on siellä.",
+    "afterStat": "~30 sekuntia"
+  },
+  "techStrip": [
+    "Henkilökeskeinen ketjutus",
+    "Monikanavainen sommittelu",
+    "Tekoälyn tärkeyspisteytys",
+    "Toimintakohteiden poiminta",
+    "Reaaliaikainen synkronointi"
+  ],
+  "closing": {
+    "tagline": "Muut postilaatikot näyttävät viestejä. HABOS näyttää keskusteluja.",
+    "cta": "Liity odotuslistalle"
+  }
+}

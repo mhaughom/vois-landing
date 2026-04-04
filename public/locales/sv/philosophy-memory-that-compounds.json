@@ -1,0 +1,72 @@
+{
+  "category": "Filosofi",
+  "title": "Minne som förstärks",
+  "tagline": "Varje konversation gör nästa smartare. Ju längre du använder HABOS, desto mer förstår det ditt företag — och desto svårare är den förståelsen att replikera någon annanstans.",
+  "heroPlaceholder": "Hjälteillustration",
+  "section1": {
+    "heading": "Dag ett kontra dag 180",
+    "body1": "Dag ett är HABOS ett kapabelt verktyg. Det behandlar dina röstanteckningar, hanterar dina uppgifter, sköter din e-post. Det är snabbt och fungerar. Men det känner dig ännu inte.",
+    "body2": "Dag 180 vet systemet vilka kunder som beställer om på förutsägbara cykler. Det vet att dina onsdagseftermiddagsmöten alltid drar ut. Det vet att när du nämner \"Bergen-projektet\" menar du Fjordview Hotel-kontot. Det känner din skrivstil, dina beslutsmönster, dina driftsrytmer.",
+    "body3": "Den ackumulerade förståelsen är inte en funktion du kan installera. Det är intelligens som tjänades in — konversation för konversation, beslut för beslut."
+  },
+  "section2": {
+    "heading": "Vad som förstärks"
+  },
+  "periods": [
+    {
+      "period": "Vecka 1",
+      "items": [
+        "Grundläggande röstrouting fungerar",
+        "E-postutkast är generiska men funktionella",
+        "Brain-sökning täcker vad du matat in"
+      ]
+    },
+    {
+      "period": "Månad 1",
+      "items": [
+        "Skrivstil är kalibrerad för varje teammedlem",
+        "Mötesbriefingar hämtar relevant historik",
+        "Smart Router-noggrannhet förbättras från dina korrigeringar"
+      ]
+    },
+    {
+      "period": "Månad 3",
+      "items": [
+        "Proaktiva varningar baserade på mönster det observerat",
+        "Strategiska rådet förankrat i dina faktiska affärsdata",
+        "Tvärkälle-kopplingar som människor skulle missa"
+      ]
+    },
+    {
+      "period": "Månad 6+",
+      "items": [
+        "Förutsäger ombestellningstiming, affärsstagelduration, säsongsmönster",
+        "Fångar operativ drift innan det blir ett problem",
+        "Institutionell kunskap som överlever personalomsättning"
+      ]
+    }
+  ],
+  "curvePlaceholder": "Kurvdiagram för förstärkt intelligens",
+  "section3": {
+    "heading": "Vallgraven du bygger genom att använda det",
+    "body1": "De flesta programvaror har noll byteskostnad utöver dataexporten. Ditt projekthanteringsverktyg blir inte smartare ju längre du använder det. Ditt CRM lär sig inte dina försäljningsmönster. Din kalender förutser inte dina schemaläggningspreferenser.",
+    "body2": "HABOS är annorlunda eftersom intelligenslagret förstärks. Efter sex månader är systemets förståelse av ditt företag genuint unik — byggd från dina konversationer, dina beslut, dina mönster, dina korrigeringar. Den förståelsen kan inte exporteras som en CSV-fil. Den finns inte i någon enskild databastabell. Den är distribuerad över inbäddningar, stilprofiler, routingsmodeller och beteendemönster."
+  },
+  "section4": {
+    "heading": "Institutionellt minne som inte slutar",
+    "body1": "När en nyckelmedarbetare slutar tar de med sig sin kunskap. Klientpreferenserna de memorerat, processerna de uppfunnit, relationerna de byggt — allt borta.",
+    "body2": "HABOS fångar den institutionella kunskapen när den skapas. Varje röstanteckning, varje möte, varje klientinteraktion matar Hjärnan. När någon ny börjar ärver de inte bara data utan förståelse — AI:n kan briefa dem om klienthistorik, förklara varför vissa beslut fattades och lyfta fram de spelböcker som den tidigare personen utvecklade."
+  },
+  "section5": {
+    "heading": "En fördel, inte en fälla",
+    "body1": "Vi bygger inte inlåsning genom datahållning som gisslan. Dina data är alltid exporterbara. Du äger dem. Men intelligensen — mönstren, förutsägelserna, den kontextuella förståelsen — det är ränta på ränta på den tid du investerat. Det gör varje månad mer värdefull än den förra.",
+    "body2": "Frågan för en potentiell kund är inte \"Vad kostar HABOS per månad?\" Det är \"Vad är sex månaders sammansatt affärsintelligens värt?\""
+  },
+  "quote": "\"Dina data kan kopieras. Din förståelse kan inte det. Varje dag du använder HABOS vidgas klyftan mellan dem.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Rådgivare som inte håller med",
+    "nextLabel": "Nästa",
+    "nextTitle": "Hävstång för litet team"
+  }
+}

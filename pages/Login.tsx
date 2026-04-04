@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const WEB_APP_URL = import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com';
 
@@ -11,6 +12,8 @@ const WEB_APP_URL = import.meta.env.VITE_WEB_APP_URL || 'https://app.tryvois.com
  * and land on the dashboard.
  */
 export const Login = () => {
+  const { t } = useTranslation('login');
+
   useEffect(() => {
     window.location.href = `${WEB_APP_URL}/login`;
   }, []);
@@ -24,9 +27,9 @@ export const Login = () => {
       <div className="absolute inset-0 bg-[#FAFAFA]" />
       <div className="relative text-center">
         <div className="mx-auto mb-4">
-          <img src="/Logo/vois-logo.svg" alt="Vois" className="h-12 w-12" />
+          <img src="/Logo/vois-logo.svg" alt={t('logoAlt')} className="h-12 w-12" />
         </div>
-        <p className="text-slate-500 text-sm">Redirecting to login...</p>
+        <p className="text-slate-500 text-sm">{t('redirecting')}</p>
       </div>
     </div>
   );

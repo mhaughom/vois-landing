@@ -1,0 +1,49 @@
+{
+  "badge": "Betalinger",
+  "hero": {
+    "title": "Kunden betaler. Du blir betalt. Direkte.",
+    "description": "Stripe Connect Express setter inn betalinger rett til bankkontoen din. Ingen mellommann som holder pengene dine. Ingen 30-dagers utbetalingsforsinkelser."
+  },
+  "body": "HABOS klargjør Stripe Connect Express-kontoer per arbeidsrom, noe som muliggjør direkte betalinger til bedriftseierens bank. Kunden betaler på nettstedet, Stripe belaster, plattformen trekker en konfigurerbar applikasjonsavgift, og resten settes direkte inn på eierens bankkonto. Fullstendige og delvise refusjoner håndteres gjennom Stripe med automatisk lagergjenoppretting. Dette er Shopifys modell anvendt på en AI-innebygd plattform.",
+  "flowNodes": [
+    { "label": "Kunden betaler kr 1 000" },
+    { "label": "Stripe behandler" },
+    { "label": "HABOS-avgift: kr 50" },
+    { "label": "Du mottar: kr 950" }
+  ],
+  "flowCaption": "Konfigurerbar applikasjonsavgift (standard 5%). Inntektsflyt: Kunde → Stripe → HABOS tar avgift → resten settes inn på banken din.",
+  "benefits": [
+    {
+      "title": "3-klikks oppsett",
+      "desc": "Koble til Stripe-kontoen din, fullfør onboarding (forretningsdetaljer, bankinfo, skattenummer) og du er live. Belastninger aktivert, utbetalinger aktivert."
+    },
+    {
+      "title": "Alle betalingsmåter",
+      "desc": "Kasse-sesjoner, fakturaer, betalingslenker, manuelle betalinger og refusjoner – alle gjennom én integrasjon. Fulle og delvise refusjoner med automatisk lagergjenoppretting."
+    },
+    {
+      "title": "Nettsted → betaling → bank",
+      "desc": "Kunden kjøper på HABOS-nettstedet ditt. Stripe belaster kortet deres. Din andel settes inn. Bestillingen spores. Ingen avstemning nødvendig."
+    }
+  ],
+  "pricing": {
+    "heading": "Slik fungerer HABOS-prisingen",
+    "tiers": [
+      { "name": "Gratis", "credits": "1K AI-kreditter/mnd", "price": "kr 0/mnd" },
+      { "name": "Personal", "credits": "7,5K AI-kreditter/mnd", "price": "kr 150/mnd" },
+      { "name": "Work", "credits": "17,5K AI-kreditter/mnd", "price": "kr 350/mnd" }
+    ],
+    "topUps": "Pluss arbeidsrom-påfyll (kr 1 000–10 000) for team som trenger mer AI-kapasitet."
+  },
+  "techItems": [
+    "Stripe Connect Express",
+    "Konfigurerbare avgifter",
+    "Webhook-synkronisering",
+    "Full + delvis refusjon",
+    "RevenueCat for mobil"
+  ],
+  "cta": {
+    "heading": "Andre plattformer holder pengene dine. HABOS sender dem til banken din.",
+    "button": "Bli med på ventelisten"
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "features": {
+    "yourAssistant": {
+      "headline": "Eine KI, die dein gesamtes Unternehmen kennt.",
+      "body": "VOIS lernt deine Prozesse, Präferenzen, Geschichte und den Kontext. Sie beantwortet nicht nur Fragen — sie antizipiert Bedürfnisse, entwirft Antworten und handelt in deinem Namen über alle Tools hinweg.",
+      "closingLine": "Andere Assistenten brauchen Anweisungen. VOIS weiß es bereits."
+    },
+    "yourSuperAssistant": {
+      "headline": "Sprache, Uhr, Posteingang, Gedächtnis — ein Gehirn.",
+      "body": "Sprich in deine Uhr, diktiere im Auto, leite eine E-Mail weiter oder hinterlasse eine Notiz. Jede Eingabe landet in einem intelligenten System, das alles weiterleitet, priorisiert und merkt.",
+      "closingLine": "Ein Gehirn. Jede Oberfläche."
+    },
+    "yourDay": {
+      "headline": "Jeden Morgen, für dich geplant.",
+      "body": "VOIS überprüft nachts deine Aufgaben, deinen Kalender, Fristen und Prioritäten. Jeden Morgen erhältst du einen vorgeschlagenen Tagesplan mit thematischen Zeitblöcken, Vorbereitungsnotizen für Meetings und markierten Punkten, die Aufmerksamkeit erfordern.",
+      "closingLine": "Dein Tag sollte nicht mit Entscheidungen beginnen. Er sollte mit einem Plan beginnen."
+    },
+    "meetings": {
+      "headline": "Vorbereitet. Transkribiert. Umgesetzt.",
+      "body": "Personalisierte Briefings vor jedem Meeting. Live-Transkription mit Sprecher-Diarisierung währenddessen. Aktionspunkte werden danach extrahiert und den richtigen Projekten und Personen zugewiesen.",
+      "closingLine": "Andere Tools transkribieren. VOIS bereitet vor, erfasst und handelt."
+    },
+    "projects": {
+      "headline": "Erkenne, was dich braucht, bevor es stockt.",
+      "body": "KI-Gesundheits-Scoring überwacht Aufgabenerfüllung, Aktivitätsmuster und den Zeitplan-Fortschritt. Wenn ein Projekt still wird oder ein Meilenstein verschoben wird, meldet VOIS das proaktiv und schlägt nächste Schritte vor.",
+      "closingLine": "Dashboards zeigen, was passiert ist. VOIS sagt dir, was als nächstes zu tun ist."
+    },
+    "operations": {
+      "headline": "Dein Unternehmen überwacht sich selbst.",
+      "body": "VOIS beobachtet KPIs, Workflows und wiederkehrende Prozesse. Wenn etwas vom Normalzustand abweicht — eine verspätete Lieferung, ein verfehltes SLA, eine Budgetüberschreitung — informiert es dich mit Kontext und empfohlener Maßnahme.",
+      "closingLine": "Hör auf, Brände zu löschen. Fang an, sie zu verhindern."
+    },
+    "clients": {
+      "headline": "Jede Beziehung, voller Kontext.",
+      "body": "VOIS erstellt detaillierte Profile aus jeder Interaktion — Meetings, E-Mails, Notizen, Aufgaben. Vor jedem Gespräch siehst du die vollständige Geschichte, Stimmungstrends und KI-vorgeschlagene Gesprächspunkte.",
+      "closingLine": "Dein CRM sollte keine Datenbank sein. Es sollte ein Gedächtnis sein."
+    },
+    "documents": {
+      "headline": "Besprich es. Erhalte ein Dokument zurück.",
+      "body": "Beschreibe, was du brauchst — ein Projektbriefing, ein Angebot, ein Wochenupdate — und VOIS erstellt ein strukturiertes Dokument aus deiner Stimme und zieht Kontext aus deinen Projekten und Daten.",
+      "closingLine": "Hör auf, auf leere Seiten zu starren. Fang an zu reden."
+    },
+    "finance": {
+      "headline": "Jeden Euro, eine Ansicht.",
+      "body": "Einnahmen, Ausgaben, Rechnungen und Prognosen vereint in einem einzigen KI-gestützten Dashboard. VOIS kategorisiert Transaktionen, meldet Anomalien und beantwortet Fragen zu deinen Zahlen in natürlicher Sprache.",
+      "closingLine": "Deine Bücher sollten sich selbst erklären."
+    },
+    "website": {
+      "headline": "Deine Website, von KI erstellt.",
+      "body": "Beschreibe dein Unternehmen und VOIS generiert eine vollständige Website — Texte, Layout, Bilder, SEO. Aktualisiere sie per Sprachbefehl. Verbinde Formulare, Buchungen und Zahlungen ohne eine Zeile Code.",
+      "closingLine": "Deine Website sollte keinen Entwickler brauchen."
+    },
+    "aiAgents": {
+      "headline": "Deine ersten zehn Mitarbeiter brauchen kein Gehalt.",
+      "body": "Baue dein KI-Team in einem Organigramm auf. Weise Agenten Rollen zu — Rechercheur, Texter, Analyst, Operations. Jeder hat Verantwortlichkeiten, Tools, Budgets und Berichtslinien. Sie planen, bevor sie handeln, und pausieren zur Genehmigung.",
+      "closingLine": "ChatGPT beantwortet Fragen. VOIS-Agenten erfüllen Aufträge."
+    },
+    "reports": {
+      "headline": "Diktiere deinen Bericht in 90 Sekunden.",
+      "body": "Lade eine Vorlage hoch und VOIS extrahiert jedes Feld. Fülle den gesamten Bericht per Sprache aus — die KI interviewt dich Feld für Feld und füllt vor, was sie bereits aus deinen Daten weiß.",
+      "closingLine": "Zehn Fragen. Fertig."
+    },
+    "yourTeam": {
+      "headline": "Jeder Mitarbeiter, ein Super-Assistent.",
+      "body": "Gib jedem Teammitglied seinen eigenen KI-Assistenten, der Unternehmenskontext, Prozesse und Geschichte kennt. Onboarding, Tagesplanung, Wissensabfrage und Aufgabenverwaltung — personalisiert pro Rolle.",
+      "closingLine": "Skaliere deine besten Praktiken auf jeden Platz."
+    },
+    "playbooks": {
+      "headline": "Deine SOPs, lebendig und durchgesetzt.",
+      "body": "Verwandle Standardarbeitsanweisungen in lebendige Workflows. VOIS überwacht die Einhaltung, führt Teammitglieder durch jeden Schritt und meldet Abweichungen, bevor sie zu Problemen werden.",
+      "closingLine": "SOPs sollten nicht in Ordnern leben. Sie sollten sich selbst ausführen."
+    },
+    "fieldToOffice": {
+      "headline": "Die Informationslücke, beseitigt.",
+      "body": "Ein Techniker beendet einen Auftrag und spricht ein 30-Sekunden-Update. Das Büro sieht es sofort — strukturiert, abgelegt und mit dem richtigen Projekt, Kunden und Rechnung verknüpft. Keine Anrufe, keine Dateneingabe.",
+      "closingLine": "Das Feld ist nie wieder einen Tag im Rückstand."
+    },
+    "theAirlock": {
+      "headline": "KI-Macht. Menschliche Kontrolle.",
+      "body": "Jede KI-Aktion läuft durch die Airlock — eine Vorschaukarte mit kryptografischer Bestätigung. Die KI schlägt vor, du prüfst das genaue Ergebnis, dann genehmigst du. Nichts wird gesendet, erstellt oder geändert ohne deine ausdrückliche Freigabe.",
+      "closingLine": "Vertrauen ist keine Einstellung. Es ist eine Architektur."
+    },
+    "yourMemory": {
+      "headline": "Frag alles, was du je gesagt oder gelesen hast.",
+      "body": "Suche über alle 19 Datenquellen hinweg — Sprachaufnahmen, E-Mails, Dokumente, Meeting-Transkripte, CRM-Notizen — mit semantischer Suche. VOIS findet die Antwort, auch wenn du dich nicht mehr erinnerst, in welcher App sie war.",
+      "closingLine": "Dein zweites Gehirn, mit perfektem Gedächtnis."
+    },
+    "growthEngine": {
+      "headline": "Teile eine Meeting-Notiz. Gewinne einen Kunden.",
+      "body": "Geteilte Meeting-Notizen werden zum Wachstumskanal. Empfänger sehen deine Unternehmensvorschau, erhalten ein Promo-Angebot und melden sich in einem Workspace an, der mit ihren eigenen Unternehmensdaten vorbelegt ist.",
+      "closingLine": "Dein Produkt verkauft sich selbst durch die Arbeit, die es erledigt."
+    }
+  },
+  "panels": {
+    "yourAssistant": {
+      "badge": "Vollständige Übersicht",
+      "heading": "Es kennt dein Unternehmen bereits.",
+      "description": "Lernt deine Prozesse, Präferenzen und Geschichte. Antizipiert, was du brauchst, bevor du fragst.",
+      "tags": ["E-Mails", "Meetings", "Projekte", "CRM", "Docs", "Sprache"],
+      "stat": "19",
+      "statLabel": "Datenquellen",
+      "statSub": "parallel durchsucht",
+      "statMore": "13 weitere",
+      "statDesc": "Sprache, E-Mail, CRM,\nDocs, Chat, Projekte,\nund {{count}} mehr.",
+      "quote": "Andere Assistenten brauchen Anweisungen.\nVOIS weiß es bereits."
+    },
+    "yourSuperAssistant": {
+      "badge": "Eingaben",
+      "voiceLabel": "Sprache",
+      "voiceDesc": "natürlich sprechen",
+      "watchLabel": "Uhr",
+      "watchDesc": "Handgelenk tippen",
+      "emailLabel": "E-Mail",
+      "emailDesc": "weiterleiten",
+      "chatLabel": "Chat",
+      "chatDesc": "tippen oder schreiben",
+      "slackLabel": "Slack",
+      "slackDesc": "befehlen",
+      "quote": "Ein Gehirn.\nJede Oberfläche.",
+      "mainBadge": "Jede Oberfläche, ein Gehirn",
+      "heading": "Sprechen, tippen, antippen, weiterleiten.\nAlles landet an einem Ort.",
+      "description": "Jede Eingabe wird weitergeleitet, priorisiert und gemerkt — egal welches Gerät du verwendet hast.",
+      "devices": ["Uhr", "Telefon", "Desktop", "Posteingang"]
+    },
+    "yourDay": {
+      "badge": "Morgen-Briefing",
+      "heading": "Dein Tag, geplant\nbevor du aufwachst.",
+      "description": "VOIS überprüft nachts Aufgaben, Kalender und Fristen. Du wachst mit einem vorgeschlagenen Tagesplan auf.",
+      "stat": "7 Uhr",
+      "statLabel": "dein Plan ist fertig",
+      "statSub": "erstellt während du schliefst",
+      "statNote": "Null Entscheidungen nötig",
+      "statDesc": "Zeitblöcke, Vorbereitungsnotizen,\nund markierte Prioritäten.",
+      "quote": "Dein Tag sollte mit einem Plan beginnen, nicht mit Entscheidungen."
+    },
+    "meetings": {
+      "badge": "Der vollständige Zyklus",
+      "heading": "Vorbereitet. Transkribiert.\nUmgesetzt.",
+      "beforeLabel": "Vorher",
+      "beforeDesc": "personalisiertes Briefing",
+      "duringLabel": "Währenddessen",
+      "duringDesc": "Live-Transkription",
+      "afterLabel": "Danach",
+      "afterDesc": "Aktionspunkte weitergeleitet",
+      "step1": "Vorbereitung",
+      "step1Sub": "Auto-Briefing",
+      "step2": "Erfassen",
+      "step2Sub": "Transkribieren",
+      "step3": "Handeln",
+      "step3Sub": "Aufgaben weiterleiten",
+      "quote": "Andere Tools transkribieren.\nVOIS bereitet vor, erfasst\nund handelt.",
+      "stat": "0",
+      "statLabel": "manuelle Nachverfolgungen",
+      "statSub": "Aktionen automatisch den Projekten zugewiesen"
+    },
+    "projects": {
+      "healthBadge": "Status",
+      "statusOnTrack": "Im Plan",
+      "statusAtRisk": "Gefährdet",
+      "statusStalled": "Gestockt",
+      "pctOnTrack": "82%",
+      "pctAtRisk": "14%",
+      "pctStalled": "4%",
+      "badge": "Proaktiv, nicht reaktiv",
+      "heading": "Erkenne, was dich braucht,\nbevor es stockt.",
+      "description": "KI überwacht Erfüllung, Aktivität und Zeitpläne. Wenn ein Projekt still wird, meldet VOIS es und schlägt nächste Schritte vor.",
+      "signals": ["Stockende Aufgaben", "Verpasste Meilensteine", "Aktivitätsrückgänge", "Zeitplan-Abweichung"],
+      "quote": "Dashboards zeigen, was passiert ist.\nVOIS sagt dir, was als nächstes zu tun ist."
+    },
+    "operations": {
+      "badge": "Immer wachsam",
+      "heading": "Dein Unternehmen\nüberwacht sich selbst.",
+      "description": "KPIs, Workflows, wiederkehrende Prozesse. Wenn etwas abweicht, erhältst du Kontext und eine empfohlene Lösung.",
+      "trigger1": "Verspätete Lieferung",
+      "action1": "Kunden automatisch benachrichtigen",
+      "trigger2": "Verfehltes SLA",
+      "action2": "An Teamleiter eskalieren",
+      "trigger3": "Budgetüberschreitung",
+      "action3": "Zur Überprüfung markieren",
+      "stat": "24/7",
+      "statLabel": "Überwachung",
+      "statSub": "ohne menschliche Ressourcen",
+      "quote": "Hör auf, Brände zu löschen.\nFang an, sie zu verhindern."
+    },
+    "clients": {
+      "badge": "Vollständiges CRM",
+      "heading": "Jede Beziehung,\nvollständige Erinnerung.",
+      "description": "Detaillierte Profile aus jeder Interaktion. Vor jedem Anruf siehst du die vollständige Geschichte und KI-vorgeschlagene Gesprächspunkte.",
+      "lastContactKey": "Letzter Kontakt",
+      "lastContactVal": "Vor 3 Tagen — E-Mail",
+      "sentimentKey": "Stimmung",
+      "sentimentVal": "Positiv, engagiert",
+      "openItemsKey": "Offene Punkte",
+      "openItemsVal": "2 Angebote ausstehend",
+      "nextStepKey": "Nächster Schritt",
+      "nextStepVal": "Preisgestaltung nachverfolgen",
+      "callBadge": "Vor jedem Anruf",
+      "callDesc": "Geschichte, Stimmung,\noffene Punkte, Gesprächspunkte\n— automatisch vorbereitet.",
+      "callDescHighlight": "automatisch vorbereitet",
+      "quote": "Dein CRM sollte ein Gedächtnis sein, keine Datenbank."
+    },
+    "documents": {
+      "stat": "Sprache",
+      "statLabel": "zu Dokument",
+      "types": ["Briefings", "Angebote", "Berichte", "Updates"],
+      "quote": "Hör auf, auf leere Seiten zu starren. Fang an zu reden.",
+      "badge": "Sprechen, nicht tippen",
+      "heading": "Beschreibe, was du brauchst.\nErhalte ein fertiges Dokument.",
+      "description": "VOIS zieht Kontext aus deinen Projekten und erstellt strukturierte Dokumente aus deiner Stimme.",
+      "step1": "Sprechen",
+      "step1Sub": "beschreiben",
+      "step2": "KI",
+      "step2Sub": "entwirft",
+      "step3": "Fertig",
+      "step3Sub": "formatiert"
+    },
+    "finance": {
+      "badge": "Finanzintelligenz",
+      "heading": "Jeden Euro,\neine Ansicht.",
+      "description": "Einnahmen, Ausgaben, Rechnungen und Prognosen in einem KI-Dashboard. Stelle Fragen in normaler Sprache.",
+      "revenueLabel": "Einnahmen",
+      "revenueVal": "$48,2K",
+      "expensesLabel": "Ausgaben",
+      "expensesVal": "$31,7K",
+      "netLabel": "Netto",
+      "netVal": "$16,5K",
+      "quote": "Deine Bücher sollten sich selbst erklären.",
+      "queryBadge": "Alles fragen",
+      "query1": "\"Wie viel haben wir für Marketing ausgegeben?\"",
+      "query2": "\"Überfällige Rechnungen anzeigen\"",
+      "query3": "\"Umsatztrend der letzten 6 Monate\""
+    },
+    "website": {
+      "badge": "KI-erstellte Websites",
+      "heading": "Beschreibe dein Unternehmen.\nErhalte eine Website.",
+      "description": "Texte, Layout, Bilder, SEO — generiert. Per Sprache aktualisieren. Formulare, Buchungen und Zahlungen verbinden.",
+      "features": ["Texte & SEO", "Layout", "Formulare", "Buchungen", "Zahlungen", "Analytik"],
+      "quote": "Deine Website sollte keinen Entwickler brauchen.",
+      "stat": "0",
+      "statLabel": "Zeilen Code",
+      "statSub": "per Sprache aktualisiert, immer live"
+    },
+    "aiAgents": {
+      "badge": "Dein KI-Organigramm",
+      "heading": "Deine ersten zehn Mitarbeiter\nbrauchen kein Gehalt.",
+      "description": "Erstelle Agenten in einem Organigramm. Jeder hat Verantwortlichkeiten, Tools, Budgets und Berichtslinien.",
+      "role1": "Rechercheur",
+      "role1Desc": "Web-Scraping, Analyse",
+      "role2": "Texter",
+      "role2Desc": "Inhalte, Angebote",
+      "role3": "Analyst",
+      "role3Desc": "Daten, Prognosen",
+      "role4": "Operations",
+      "role4Desc": "Planung, Weiterleitung",
+      "loopBadge": "Der Kreislauf",
+      "loopSteps": ["Planen", "Handeln", "Pausieren", "Liefern"],
+      "loopNote": "Immer unter Kontrolle",
+      "loopDesc": "Agenten planen, bevor sie handeln,\nund pausieren für deine Genehmigung.",
+      "quote": "ChatGPT beantwortet Fragen.\nVOIS-Agenten erfüllen Aufträge."
+    },
+    "reports": {
+      "badge": "Berichte, neu gedacht",
+      "heading": "Ruf deinen Assistenten an.\nBeschreibe, was passiert ist.\nErhalte einen fertigen Bericht.",
+      "subHeading": "Keine Formulare. Kein Laptop. Nur ein Anruf.",
+      "description": "Lade eine beliebige Vorlage hoch und VOIS extrahiert jedes Feld. Dann per Sprache ausfüllen — die KI interviewt dich und füllt vor, was sie bereits weiß.",
+      "step1": "Hochladen",
+      "step1Sub": "Vorlage",
+      "step2": "Anrufen",
+      "step2Sub": "deine KI",
+      "step3": "Fertig",
+      "step3Sub": "Bericht eingereicht",
+      "stat": "90s",
+      "statLabel": "Ø Berichtszeit",
+      "statSub": "vs. 30 Min. traditionell",
+      "statSpeedNote": "10x schneller",
+      "statDesc": "Menschen sprechen 3–4x schneller\nals sie tippen. Plus KI-\nFormatierung =",
+      "voiceBadge": "Sprache zuerst",
+      "voiceHeading": "KI fragt. Du antwortest.\n10 Fragen. Fertig.",
+      "phoneLabel": "Telefonanruf",
+      "phoneDesc": "ruf deinen Assistenten an",
+      "interviewLabel": "Interview",
+      "interviewDesc": "KI geht Felder durch",
+      "dictationLabel": "Diktat",
+      "dictationDesc": "eine Sprachnotiz füllt alles aus",
+      "chatLabel": "Chat",
+      "chatDesc": "konversationelle Texteingabe"
+    },
+    "yourTeam": {
+      "badge": "Rollen-spezifische KI",
+      "heading": "Jeder Platz bekommt\neinen Super-Assistenten.",
+      "description": "Unternehmenskontext, Prozesse und Geschichte — personalisiert pro Rolle.",
+      "stat": "1:1",
+      "statLabel": "KI pro Mitarbeiter",
+      "statSub": "auf ihre Rolle zugeschnitten",
+      "statNote": "persönlicher Assistent",
+      "statDesc": "Kein geteilter Chatbot.\nEiner, der ihren Job kennt.",
+      "perks": ["Onboarding-Leitfaden", "Tagesplaner", "Wissensabfrage", "Aufgabenmanager", "Prozess-Coach", "Meeting-Vorbereitung"],
+      "perksBadge": "Was jeder Mitarbeiter bekommt"
+    },
+    "playbooks": {
+      "badge": "Lebendige SOPs",
+      "heading": "Deine Playbooks\nführen sich selbst aus.",
+      "description": "Verfahren in Workflows umwandeln, die Einhaltung überwachen, jeden Schritt begleiten und Abweichungen melden.",
+      "step1": "Schritt 1",
+      "step1Desc": "Teammitglied führen",
+      "step2": "Schritt 2",
+      "step2Desc": "Einhaltung prüfen",
+      "step3": "Schritt 3",
+      "step3Desc": "Abweichung melden",
+      "quote": "SOPs sollten nicht in Ordnern leben. Sie sollten sich selbst ausführen.",
+      "complianceBadge": "Compliance-Score",
+      "stat": "97%",
+      "statSub": "Ø über aktive Playbooks",
+      "statNote": "bevor",
+      "statDesc": "Echtzeit-Überwachung.\nAbweichungen erkannt,\nbevor sie Probleme werden."
+    },
+    "fieldToOffice": {
+      "badge": "Die Lücke schließen",
+      "heading": "Feldupdate in 30s.\nDas Büro sieht es sofort.",
+      "description": "Techniker spricht eine Sprachnotiz. Sie wird strukturiert, abgelegt und mit dem richtigen Projekt, Kunden und Rechnung verknüpft.",
+      "step1": "Sprechen",
+      "step1Sub": "vor Ort",
+      "step2": "KI",
+      "step2Sub": "strukturiert",
+      "step3": "Büro",
+      "step3Sub": "sieht es",
+      "stat": "30s",
+      "statLabel": "Sprachnotiz ersetzt",
+      "statSub": "20 Min. Papierkram",
+      "linksBadge": "Automatisch verknüpft mit",
+      "links": ["Projekt", "Kunde", "Rechnung", "Zeitplan"],
+      "quote": "Das Feld ist nie wieder\neinen Tag im Rückstand."
+    },
+    "theAirlock": {
+      "badge": "KI-Sicherheitsebene",
+      "heading": "KI-Macht.\nMenschliche Kontrolle.",
+      "description": "Jede KI-Aktion läuft durch eine Vorschaukarte. Du siehst das genaue Ergebnis, dann genehmigst du. Nichts passiert ohne deine Freigabe.",
+      "step1": "KI",
+      "step1Sub": "schlägt vor",
+      "step2": "Du",
+      "step2Sub": "prüfst",
+      "step3": "Genehmigen",
+      "step3Sub": "oder ablehnen",
+      "stat": "100%",
+      "statLabel": "menschlich genehmigt",
+      "statSub": "jede Aktion, jedes Mal",
+      "ironRuleBadge": "Die eiserne Regel",
+      "ironRuleHeading": "KI schlägt vor. Du prüfst.\nDu genehmigst. Immer.",
+      "quote": "Vertrauen ist keine Einstellung.\nEs ist eine Architektur."
+    },
+    "yourMemory": {
+      "badge": "Semantische Suche",
+      "heading": "Frag alles,\nwas du je gesagt hast.",
+      "description": "Suche nach Bedeutung, nicht nach Schlüsselwörtern. VOIS findet Antworten über alle Quellen hinweg.",
+      "stat": "19",
+      "statLabel": "Quellen indexiert",
+      "statMore": "+ 13 weitere",
+      "statSources": "Sprache · E-Mail · Docs\nCRM · Chat · Notizen",
+      "queryBadge": "Beispiel-Abfragen",
+      "query1": "\"Was hat Sarah über das Budget gesagt?\"",
+      "query2": "\"Alles über Genehmigungsverzögerungen finden\"",
+      "query3": "\"Wie ist der Stand bei Henderson?\"",
+      "quote": "Dein zweites Gehirn,\nmit perfektem Gedächtnis."
+    },
+    "growthEngine": {
+      "badge": "Viraler Kreislauf",
+      "heading": "Teile eine Meeting-Notiz.\nGewinne einen Kunden.",
+      "description": "Empfänger sehen dein Unternehmen, erhalten eine Promo und melden sich mit ihren eigenen Daten vorbelegt an.",
+      "stat": "90%",
+      "statLabel": "Rabatt für Empfehlungen",
+      "statHighlight": "ihre eigenen Daten",
+      "statDesc": "Empfohlene Anmeldungen erhalten\neinen Workspace vorbelegt\nmit",
+      "flyWheelBadge": "Das Schwungrad",
+      "flyWheelSteps": ["Teilen", "Entdecken", "Anmelden", "Teilen"],
+      "flyWheelDesc": "Dein Produkt verkauft sich selbst\ndurch die Arbeit, die es erledigt.",
+      "quote": "Jede Meeting-Notiz\nist ein Wachstumskanal."
+    }
+  }
+}

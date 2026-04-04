@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
@@ -19,90 +20,44 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
 });
 
-const mediaItems = [
-  {
-    type: 'image' as const,
-    color: 'bg-blue-100',
-    icon: null,
-    filename: 'product-photo-01.jpg',
-    tag: 'Product \u00b7 Water heater',
-    ai: 'AI: Tankless unit, stainless steel, residential',
-  },
-  {
-    type: 'image' as const,
-    color: 'bg-green-100',
-    icon: null,
-    filename: 'team-photo.jpg',
-    tag: 'Team \u00b7 4 people detected',
-    ai: 'AI: Office setting, branded uniforms',
-  },
-  {
-    type: 'document' as const,
-    color: '',
-    icon: FileText,
-    filename: 'invoice-march.pdf',
-    tag: 'Document \u00b7 OCR extracted',
-    ai: 'AI: Henderson Plumbing, $4,250, March 2026',
-  },
-  {
-    type: 'video' as const,
-    color: '',
-    icon: Video,
-    filename: 'job-walkthrough.mp4',
-    tag: 'Video \u00b7 Transcribed',
-    ai: 'AI: 3min walkthrough, bathroom renovation',
-  },
-  {
-    type: 'audio' as const,
-    color: '',
-    icon: Music,
-    filename: 'client-call.m4a',
-    tag: 'Audio \u00b7 Transcribed',
-    ai: 'AI: Sarah Henderson, permit discussion',
-  },
-  {
-    type: 'image' as const,
-    color: 'bg-amber-100',
-    icon: null,
-    filename: 'logo.svg',
-    tag: 'Logo \u00b7 Brand asset',
-    ai: 'AI: Primary logo, dark variant',
-  },
-] as const;
-
-const benefits = [
-  {
-    icon: Eye,
-    title: 'AI vision analysis',
-    desc: 'GPT-4o-mini detects products, people, colors, and text in images. Documents get OCR. Video and audio get transcription.',
-  },
-  {
-    icon: FolderSync,
-    title: 'One library everywhere',
-    desc: 'Same media picker used across Products, Social, Marketing, Websites, Presentations. No duplication.',
-  },
-  {
-    icon: Search,
-    title: 'Semantic search',
-    desc: 'Text chunked into 512-dim embeddings. Find media by meaning, not just metadata.',
-  },
-] as const;
-
-const techItems = [
-  'GPT-4o-mini vision',
-  'Sharp WebP thumbnails',
-  '512-dim embeddings',
-  'SHA-256 dedup',
-  'Auto role inference',
-] as const;
-
 const iconColorMap = {
   document: 'bg-rose-50 text-rose-500',
   video: 'bg-violet-50 text-violet-500',
   audio: 'bg-teal-50 text-teal-500',
 } as const;
 
+const mediaTypeConfig = [
+  { type: 'image' as const, color: 'bg-blue-100', icon: null },
+  { type: 'image' as const, color: 'bg-green-100', icon: null },
+  { type: 'document' as const, color: '', icon: FileText },
+  { type: 'video' as const, color: '', icon: Video },
+  { type: 'audio' as const, color: '', icon: Music },
+  { type: 'image' as const, color: 'bg-amber-100', icon: null },
+] as const;
+
+const benefitIcons = [Eye, FolderSync, Search] as const;
+
 const Files: React.FC = () => {
+  const { t } = useTranslation('work-files');
+
+  const mediaItems = (t('mediaItems', { returnObjects: true }) as Array<{
+    filename: string;
+    tag: string;
+    ai: string;
+  }>).map((item, i) => ({
+    ...item,
+    type: mediaTypeConfig[i].type,
+    color: mediaTypeConfig[i].color,
+    icon: mediaTypeConfig[i].icon,
+  }));
+
+  const benefits = (t('benefits', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>).map((b, i) => ({ ...b, icon: benefitIcons[i] }));
+
+  const techItems = t('techItems', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -114,20 +69,21 @@ const Files: React.FC = () => {
           {/* 1. Hero */}
           <motion.section {...fadeUp()} className="max-w-3xl mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-500/10 text-slate-700 rounded-full text-sm font-medium mb-6">
-              Media Library
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
-              Upload It.<br />AI Understands It.
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+              ))}
             </h1>
             <p className="text-xl text-slate-500 leading-relaxed max-w-2xl">
-              Drop images, video, documents, or audio. AI extracts products, people,
-              text, and meaning &mdash; then makes it searchable by content, not just filename.
+              {t('hero.description')}
             </p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Drag-drop images, video, documents, or audio — Sharp auto-generates WebP thumbnails and GPT-4o-mini enriches everything asynchronously. Vision analysis extracts products, people, locations, colors, and visible text from images. Documents get OCR. Video and audio get transcription and summarization. Extracted text is chunked into 512-dimensional embeddings so you can search by meaning — &lsquo;sauna product photo&rsquo; or &lsquo;Henderson invoice&rsquo; — not just filename. One media library shared across Products, Social, Marketing, Websites, and Presentations.
+              {t('intro')}
             </p>
           </motion.div>
 
@@ -182,9 +138,7 @@ const Files: React.FC = () => {
 
               {/* Annotation below grid */}
               <p className="text-sm text-slate-500 text-center max-w-2xl mx-auto mt-6 leading-relaxed">
-                Search by meaning: &ldquo;sauna product photo&rdquo; or &ldquo;Henderson
-                invoice&rdquo; &mdash; not just filename. One library shared by Products,
-                Social, Marketing, Websites, and Presentations.
+                {t('grid.annotation')}
               </p>
             </div>
           </motion.section>
@@ -222,8 +176,9 @@ const Files: React.FC = () => {
           {/* 5. Closing CTA */}
           <motion.section {...fadeUp(0.4)} className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-5 leading-tight">
-              Other file managers store files.<br />
-              HABOS understands them.
+              {t('cta.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+              ))}
             </h2>
             <a href="/#waitlist">
               <motion.button
@@ -231,7 +186,7 @@ const Files: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="mt-4 inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 text-white rounded-full font-medium text-sm shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
                 <ArrowRight size={18} />
               </motion.button>
             </a>

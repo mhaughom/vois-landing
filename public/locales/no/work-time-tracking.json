@@ -1,0 +1,50 @@
+{
+  "badge": "Tid og lønn",
+  "hero": {
+    "title": "Stemple inn. Vi ordner regnestykket.",
+    "description": "GPS-verifisert tidssporing med automatisk overtidsberegning, pausesporing og lønnsklar fakturering – ingen timelister, ingen regneark."
+  },
+  "body": "Stedsporing aktiveres kun under en arbeidsøkt – ingen økt betyr ingen GPS-tilgang. Personvern som standard. Systemet fanger GPS-punkter, beregner vanlige versus overtidstimer per kalenderdag og utløser asynkrone ledervarsler når daglige terskler overskrides. Ved månedsslutt er alle teammedlemmers timer allerede beregnet, overtid splittet ut og faktureringsbeløp beregnet med konfigurerbare time- og overtidssatser. Eksporter til lønnsregnskap med ett klikk.",
+  "timecard": {
+    "heading": "Mike Torres — Denne uken",
+    "summary": "36,5 t vanlig · 4,5 t overtid",
+    "days": [
+      { "day": "Man", "range": "07:00 → 15:30", "hours": "8,0 t", "badge": "Vanlig" },
+      { "day": "Tir", "range": "06:45 → 16:15", "hours": "9,0 t", "badge": "1,0 OT" },
+      { "day": "Ons", "range": "07:00 → 17:00", "hours": "9,5 t", "badge": "1,5 OT" },
+      { "day": "Tor", "range": "07:15 → 15:45", "hours": "8,0 t", "badge": "Vanlig" },
+      { "day": "Fre", "range": "07:00 → 13:30", "hours": "6,5 t", "badge": "Halv dag" }
+    ],
+    "totalLine": "Total: 41,0 t | Vanlig: 36,5 × kr 450/t = kr 16 425 | OT: 4,5 × kr 675/t = kr 3 037,50 | Total: kr 19 462,50",
+    "footnote": "Overtid beregnet automatisk per kalenderdag. Leder varsles når daglig terskel overskrides."
+  },
+  "benefits": {
+    "gps": {
+      "title": "Personvern-første GPS",
+      "description": "Stedsporing aktiveres kun under en arbeidsøkt. Ingen økt = ingen GPS-tilgang. Arbeidere kontrollerer når de spores."
+    },
+    "pause": {
+      "title": "Pause/fortsett",
+      "description": "Registrer pauser innen en økt. Systemet beregner vanlig vs. pauset tid automatisk. Ingen manuelle trekk nødvendig."
+    },
+    "alerts": {
+      "title": "Ledervarsler",
+      "description": "Utstempeling utløser asynkron overtidssjekk. Hvis daglige timer overstiger terskelen (standard 8 t), varsles lederen via organisasjonskarthierarkiet."
+    }
+  },
+  "scenario": "Slutten av måneden. I stedet for å samle inn papirtimelister, rette regnefeil og kryss-referere med joblogger – åpner du HABOS. Alle teammedlemmers timer er allerede beregnet, overtid splittet ut, faktureringsbeløp beregnet. Eksporter til lønnsregnskap med ett klikk. Det er 4 timers administrativt arbeid, borte.",
+  "scenarioHighlight": "Det er 4 timers administrativt arbeid, borte.",
+  "techStrip": {
+    "items": [
+      "GPS-gatede sesjoner",
+      "Haversine kilometerberegning",
+      "Overtidsberegning per dag",
+      "1,5× standard OT-sats",
+      "Lønnsklar eksport"
+    ]
+  },
+  "cta": {
+    "heading": "Andre tidssporere får regnskapsføreren til å gråte. HABOS gjør lønn smertefritt.",
+    "button": "Bli med på ventelisten"
+  }
+}

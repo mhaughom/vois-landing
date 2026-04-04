@@ -1,0 +1,29 @@
+{
+  "category": "Filosofía",
+  "title": "Dos interfaces, un sistema",
+  "tagline": "Los humanos obtienen pantallas. Los agentes obtienen APIs. Las mismas herramientas, los mismos datos.",
+  "heroAlt": "Interfaces duales — paneles visuales y APIs estructuradas",
+  "body1": "La mayoría de los productos «potenciados por IA» caen en una de dos trampas. Primera: añadir un chatbot a la interfaz existente y hacer que la IA haga clic en botones, navegue por menús y lea pantallas. Gasta 15.000 tokens en lo que una llamada a función maneja en 200. Cuando la interfaz cambia, el agente se rompe. Segunda: construir solo para IA sin interfaz humana. El agente es rápido — pero es una caja negra. «Gestionó» su correo, pero no puede ver lo que envió.",
+  "humanInterface": {
+    "label": "Interfaz humana",
+    "body": "Vista semanal visual. Eventos codificados por colores. Arrastre para reprogramar. Razonamiento espacial sobre su tiempo."
+  },
+  "agentInterface": {
+    "label": "Interfaz del agente",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "El mismo calendario. El mismo evento. Los mismos permisos."
+  },
+  "comparison": "Agente a través de interfaz web: 15.000 tokens. Agente a través de llamada a función: 200 tokens. 75 veces.",
+  "comparisonWebUI": "Agente a través de interfaz web:",
+  "comparisonWebUIStat": "15.000 tokens.",
+  "comparisonFunctionCall": "Agente a través de llamada a función:",
+  "comparisonFunctionCallStat": "200 tokens.",
+  "comparisonMultiplier": "75 veces.",
+  "quote": "«Hacer que la IA haga clic en botones es como hacer caminar a un piloto. Dé a cada inteligencia la interfaz que merece.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Sugerencias, no menús",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Capture su mente"
+  }
+}

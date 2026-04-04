@@ -1,0 +1,59 @@
+{
+  "badge": "Handel",
+  "hero": {
+    "title": "Producten, orders en betalingen. Alles verbonden.",
+    "description": "Diensten, fysieke goederen, pakketten en abonnementen — allemaal met voorraad op variantniveau, geautomatiseerde prijzen en ingebouwde Stripe-checkout."
+  },
+  "body": "Vier producttypen in één systeem: diensten, fysieke goederen, pakketten en abonnementen — allemaal met voorraadregistratie op variantniveau, laagvoorraaalmeldingen en automatische aftrekking. Zet elk product om in een boekbare afspraak met configureerbare duur, capaciteit, uren en werkdagen. Integreer een winkelwagen of boekingsagenda direct in je website — geen apart platform nodig. Serverside regelitemberekening voorkomt fraude aan de clientzijde via alle kanalen.",
+  "productTypes": [
+    { "label": "Diensten", "desc": "Uurlijkse of vaste prijzen" },
+    { "label": "Fysieke goederen", "desc": "Voorraad op variantniveau" },
+    { "label": "Pakketten", "desc": "Meerdere items bundelen" },
+    { "label": "Abonnementen", "desc": "Terugkerende facturering" }
+  ],
+  "catalogCaption": "Één catalogussysteem verwerkt alle vier. Zet elk product om in een boekbare afspraak of een website-widget.",
+  "orderSteps": ["Offerte", "In behandeling", "Bevestigd", "In uitvoering", "Voltooid"],
+  "order": {
+    "heading": "Order #1247 — Henderson Keukenrenovatie",
+    "tableHeaders": {
+      "product": "Product",
+      "qty": "Aantal",
+      "unit": "Eenheid",
+      "total": "Totaal"
+    },
+    "lineItems": [
+      { "product": "Maatkasten (walnoot)", "qty": "1", "unit": "€2.400", "total": "€2.400" },
+      { "product": "Werkblad — quartz 150cm", "qty": "2", "unit": "€650", "total": "€1.300" },
+      { "product": "Montagearbeid (4 uur)", "qty": "1", "unit": "€550", "total": "€550" }
+    ],
+    "subtotal": "Subtotaal: €4.250",
+    "paymentConfirmed": "Stripe-betaling: ✓ Bevestigd",
+    "deposit": "Aanbetaling: €1.000 betaald"
+  },
+  "orderCaption": "Orders worden automatisch gegenereerd vanuit boekingen, websiteaankopen of handmatig aanmaken. Regelitems serverside berekend — geen fraude aan clientzijde.",
+  "benefits": [
+    {
+      "title": "Voorraad liegt nooit",
+      "desc": "Voorraad op variantniveau trekt af bij orderbevestiging. Laagvoorraaalmeldingen worden automatisch getriggerd. Terugbetalingen herstellen de voorraad."
+    },
+    {
+      "title": "Stripe in 3 klikken",
+      "desc": "Afrekensessies, facturen, betaallinks en terugbetalingen — allemaal via Stripe Connect. Geld gaat naar je bank, niet naar een tussenpersoon."
+    },
+    {
+      "title": "Website → order → CRM",
+      "desc": "Klant koopt op je HABOS-website. Order aangemaakt. CRM-contact bijgewerkt. Bon verzonden. Nul handmatige gegevensinvoer."
+    }
+  ],
+  "techItems": [
+    "4 producttypen",
+    "Voorraad op variantniveau",
+    "Stripe Connect Express",
+    "Serverside regelitems",
+    "Boeking ↔ order synchronisatie"
+  ],
+  "cta": {
+    "heading": "Andere handelstools zijn een apart platform. HABOS-handel is ingebouwd in alles.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

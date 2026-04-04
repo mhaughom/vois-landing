@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "category": "Løsninger — Team og startups",
+    "title": "Én plattform for hele bedriften din.",
+    "subtitle": "Erstatt de 10 appene du adopterte én om gangen med ett arbeidsrom som faktisk fungerer sammen.",
+    "description": "Tech-startups, voksende byråer, profesjonelle tjenestefirmaer og ethvert selskap med 2–50 personer som drukner i verktøy."
+  },
+  "body": {
+    "section1": {
+      "heading": "Tell abonnementene dine",
+      "p1": "Slack for chat. Asana for oppgaver. Notion for dokumenter. Google Workspace for e-post og kalender. HubSpot for CRM. Calendly for planlegging. Zapier for å lime dem sammen. Loom for asynkron video. Kanskje Toggl for tidssporing. Kanskje Intercom for support.",
+      "p2": "En 9-personers startup som betaler per sete for alle disse ser på $4 200 per måned. Mer enn de fleste kontorleier. Og ingen av disse verktøyene snakker med hverandre uten at Zapier holder dem sammen med limbånd."
+    },
+    "appTable": {
+      "colApp": "App",
+      "colCost": "Kostnad",
+      "colReplaces": "HABOS erstatter med",
+      "footerLabel": "HABOS — alt ovenfor, koblet",
+      "footerPrice": "$35",
+      "footerPriceSuffix": "/bruker/mnd",
+      "apps": [
+        { "name": "Slack", "cost": "$12/bruker/mnd", "replaces": "Kommunikasjon" },
+        { "name": "Asana", "cost": "$11/bruker/mnd", "replaces": "Prosjekter og oppgaver" },
+        { "name": "Notion", "cost": "$10/bruker/mnd", "replaces": "Dokumenter og hjerne" },
+        { "name": "Google Workspace", "cost": "$12/bruker/mnd", "replaces": "Kalender, dokumenter, e-post" },
+        { "name": "HubSpot", "cost": "$45/mnd", "replaces": "CRM" },
+        { "name": "Calendly", "cost": "$12/mnd", "replaces": "Planlegging" },
+        { "name": "Zapier", "cost": "$20/mnd", "replaces": "Automatiseringer" },
+        { "name": "Loom", "cost": "$13/bruker/mnd", "replaces": "Stemme + møtenotater" }
+      ]
+    },
+    "section2": {
+      "heading": "Men pengene er ikke det virkelige problemet",
+      "p1": "Den virkelige kostnaden er fragmentering. Administrerende direktør bruker 45 minutter hver morgen på å skanne Slack, Gmail, Asana og CRM-en bare for å finne ut hva som skjer. Tre meldinger trenger svar, og konteksten for hver av dem lever i et annet verktøy.",
+      "p2": "Det ukentlige teammøtet er 45 minutter langt, og halvparten av det er statusoppdateringer — alle rapporterer hva de jobber med fordi det ikke er noen delt visning. Den andre halvparten genererer handlingspunkter som noen skriver på en tavle. To er glemt innen klokken 14.",
+      "p3": "En ny ansatt tar uker å bli produktiv — ikke fordi arbeidet er vanskelig, men fordi de trenger tilgang til ti verktøy og må lære hvilken sannhetskilde de skal sjekke for hvilken type informasjon.",
+      "p4": "Og når administrerende direktør spør «hva er statusen på Henderson-dealen?» — sjekker tre personer tre verktøy og gir tre forskjellige svar."
+    },
+    "section3": {
+      "heading": "Hva én plattform endrer",
+      "briefingLabel": "Mandagsmorgenbriefingen",
+      "briefing": "«3 oppgaver forfalt — 2 venter på Henderson-kontraktsgjennomgang. 2 e-poster trenger din beslutning. Inntekter denne uken er 12 % over prognosen. Ett teammedlem flagget en blokkering i går klokken 18.»",
+      "briefingNote": "Fem minutter. Fullt bilde. Null appbytte.",
+      "p1": "Teammøter faller fra 45 minutter til 25. En forhandsbriefing auto-genereres fra faktiske prosjektdata. Sanntidstranskripsjon fanger alt. Handlingspunkter ekstraheres og tildeles basert på rolle og arbeidsmengde. Ingen bruker tid på statusoppdateringer — dashbordet viser allerede alt.",
+      "p2": "Nye ansatte får én innlogging og et rollespecifikt dashbord fra dag én. Når de spør VOIS «hva er den vanlige prosessen for å onboarde en ny klient?» — finner den spillboken, de tre siste klient-onboarding-prosjektene og et møtereferat der teamet diskuterte forbedringer. Ett spørsmål, ett svar, full kontekst.",
+      "p3": "Når administrerende direktør spør om Henderson-dealen, finnes det én CRM-post med én sannhet: deal-stadiet, siste kommunikasjon, prosjektgjennomføring, utestående faktura og en AI-vurdering — «i risiko, klienten har ikke bekreftet prissetting, ring i dag.»",
+      "p4": "Fem AI-rådgivere — Økonomi, Strategi, Drift, Markedsføring, Salg — tilbyr perspektiver som bevisst er uenige. Fordi reelle forretningsbeslutninger har avveininger, og konsensus fra en enkelt AI er bare et selvsikkert gjett."
+    },
+    "stats": [
+      ["$300–500", "spart månedlig i SaaS"],
+      ["5 timer/uke", "spart per person"],
+      ["3 timer/uke", "spart på møter"],
+      ["Dager", "til onboarding (ikke uker)"]
+    ],
+    "testimonial": {
+      "quote": "«Vi betalte mer for programvareabonnementer enn kontorleien. Slack, Notion, Asana, HubSpot, Calendly, Toggl, Google Workspace, Zapier — $4 200 per måned. HABOS erstattet alle for $315. Men den egentlige gevinsten er ikke pengene — det er at når jeg stiller et spørsmål om en klient, får jeg ett svar i stedet for tre.»",
+      "attribution": "— Anders, 31 · Medgrunder · 9-personers SaaS-startup · Oslo"
+    },
+    "cta": {
+      "heading": "Én plattform for hele teamet ditt. Endelig.",
+      "button": "Bli med på venteliste"
+    }
+  }
+}

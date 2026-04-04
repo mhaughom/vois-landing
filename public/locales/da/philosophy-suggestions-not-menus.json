@@ -1,0 +1,24 @@
+{
+  "category": "Filosofi",
+  "title": "Forslag, ikke menuer",
+  "tagline": "Læs. Tryk. Færdig.",
+  "heroAlt": "Forslagskort der erstatter komplekse menuer",
+  "body1": "En virksomhedsejer stirrer på en opgavetavle og prøver at finde ud af, hvad der er vigtigt lige nu. En sælger læser en e-mail og tænker \"Jeg bør oprette en opfølgning\" — men gør det ikke, fordi det kræver at skifte apps, finde det rigtige projekt, udfylde seks felter. Tanken dør i hullet mellem at erkende, hvad der skal gøres, og faktisk gøre det.",
+  "body2Prefix": "E-mail om ombooking ankommer.",
+  "body2Body": "VOIS læser den og præsenterer tre trykkelige muligheder: flyt til fredag kl. 10 (plads er ledig), skub til næste uge (3 ledige pladser vist), eller afslå og foreslå et opkald i stedet. Ét tryk. Møde flyttet, kalendere opdateret, bekræftelse sendt.",
+  "body3Prefix": "Møde slutter.",
+  "body3Body": "VOIS udtrækker fire handlingspunkter fra transkriptionen. Hvert vises som et kort — ansvarlig foreslået fra, hvem der sagde hvad, forfaldsdato udledt fra samtalen, projekt automatisk linket. Gennemgå på 30 sekunder, juster én ansvarlig, tryk bekræft. Fire opgaver oprettet, fire personer underrettet, nul formularer udfyldt.",
+  "comparisonTraditional": "Traditionelt:",
+  "comparisonTraditionalStat": "3 minutter pr. handling.",
+  "comparisonSuggestions": "Forslag:",
+  "comparisonSuggestionsStat": "5 sekunder.",
+  "comparisonResult": "På tværs af 20 daglige handlinger er det",
+  "comparisonResultStat": "60 minutter tilbage.",
+  "quote": "\"Du burde ikke behøve at betjene din erhvervssoftware. Den burde betjene sig selv og bede om din vurdering.\"",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Bygget til teams",
+    "nextLabel": "Næste",
+    "nextTitle": "To grænseflader, ét system"
+  }
+}

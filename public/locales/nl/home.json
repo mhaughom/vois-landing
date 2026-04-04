@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "De uitvoerend assistent die je hoofd leegmaakt.",
+    "subheadline": "Leg alles vast. Organiseer niets.",
+    "definition": "TAKEN  ·  AGENDA  ·  IDEEËN  ·  LIJSTEN  ·  MAATWERKPPS",
+    "cta": "Toegang aanvragen",
+    "trustText": "Niets verandert zonder jouw goedkeuring.",
+    "watchVideo": "Video bekijken",
+    "endVideo": "Video beëindigen",
+    "joinWaitlist": "Aanmelden voor wachtlijst",
+    "tryAgain": "Opnieuw proberen"
+  },
+  "problem": {
+    "title": "De Universele Leugen",
+    "body": [
+      "We dragen allemaal een verborgen last. Het is 14:00 uur. Je loopt naar je volgende vergadering. In je hoofd ben je tegelijk bezig met een boodschappenlijstje, een doorbraakidee voor een project, zorgen over een e-mail die je hebt gestuurd, en het feit dat je vandaag nog niet genoeg water hebt gedronken.",
+      "Je kunt stoppen, je telefoon pakken, die ontgrendelen, drie verschillende apps openen en alles intypen. Maar je doet het niet. Je zegt de Universele Leugen: \"Dat onthoud ik wel.\"",
+      "(Dat doe je niet). En die mentale rommel blijft bij je, en steelt je focus."
+    ]
+  },
+  "solution": {
+    "title": "Een Andere Reflex",
+    "body": "Stel je nu een andere reflex voor. In plaats van die last te dragen, druk je gewoon op de knop van je horloge (of telefoon). Je zoekt niet naar de juiste woorden. Je kijkt niet naar een scherm. Je spreekt gewoon."
+  },
+  "demo": {
+    "input": "\"Oké, herinner me eraan Sarah te bellen over het contract op dinsdag. Ik voel me ook echt overweldigd door de huisrenovatie, het lawaai is te veel. Oh, en ik heb net 5 km gelopen in 25 minuten, ik voel me goed.\"",
+    "caption": "Het klinkt rommelig. Het klinkt menselijk. Het klinkt als jij. Vois luistert naar het lawaai. Maar het bewaart het signaal."
+  },
+  "adapt": {
+    "title": "Jouw Leven, Jouw Vakjes",
+    "body": "Wil je je hoofdpijn bijhouden? Je meditatiestreaks? De grappige uitspraken van je kind? Beschrijf het gewoon. Vois bouwt er meteen een maatwerk-Ruimte voor. Jij bouwt het systeem niet. Je leeft er gewoon in."
+  },
+  "privacy": {
+    "title": "Jouw Gedachten, Jouw Controle",
+    "body": "Vois organiseert je gedachten lokaal en veilig. Niets wordt definitief totdat jij het goedkeurt. Niets wordt gedeeld. Jij bent de enige met de sleutel.",
+    "localFirst": "Lokaal Eerst",
+    "encryptedSync": "Versleutelde Synchronisatie",
+    "privacyIllustrationAlt": "Privacy en controle",
+    "enterpriseTitle": "Bedrijfsklasse Beveiliging",
+    "enterpriseBody": "Je gegevens zijn beschermd door dezelfde infrastructuur die wordt vertrouwd door 's werelds grootste bedrijven. We gebruiken toonaangevende diensten voor betrouwbaarheid en veiligheid.",
+    "securityIllustrationAlt": "Bedrijfsbeveiliging",
+    "awsServers": "AWS-servers",
+    "supabase": "Supabase",
+    "soc2": "SOC 2-gecertificeerd"
+  },
+  "footer": {
+    "headline": "Een helder hoofd. Een gestructureerd leven.",
+    "subheadline": "Stop met het administratieve werk van je eigen bestaan. Geef de chaos aan Vois. Houd de helderheid voor jezelf.",
+    "cta": "Start de bèta",
+    "tagline": "Maak je hoofd leeg.",
+    "colProduct": "Product",
+    "colSupport": "Ondersteuning",
+    "colLegal": "Juridisch",
+    "colSocial": "Sociaal",
+    "linkLogin": "Inloggen",
+    "linkDownloadIphone": "Downloaden voor iPhone",
+    "linkDownloadWatch": "Downloaden voor Watch",
+    "linkDownloadMac": "Downloaden voor Mac",
+    "linkHabos": "HABOS voor bedrijven",
+    "linkHelpFaq": "Help & FAQ",
+    "linkContactUs": "Contact opnemen",
+    "linkSetupGuide": "Installatiegids",
+    "linkPrivacyPolicy": "Privacybeleid",
+    "linkTerms": "Servicevoorwaarden",
+    "linkRefund": "Restitutiebeleid",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "Het leven wacht niet op je notitie-app.",
+    "p1": "Op weg naar de vergadering. Onder de douche. Met één been buiten de deur.",
+    "p2": "Een uitnodiging. Een taak. Een gedachte die je niet kunt missen.",
+    "p3": "Je zegt tegen jezelf: \"Dat onthoud ik wel.\"",
+    "p4": "(Dat doe je niet.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "Terughalen op de snelheid van het geluid.",
+    "bodyBefore": "Vraag op een natuurlijke manier en krijg ",
+    "bodyHighlight": "directe antwoorden",
+    "bodyAfter": ". Je stemassistent vindt precies wat je nodig hebt uit alles wat je hebt vastgelegd."
+  },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "items": [
+      {
+        "question": "Wat is het verschil tussen Persoonlijk en Werk?",
+        "answer": "Persoonlijk is voor het dagelijks leven — taken, ideeën, herinneringen en notities vastleggen. Werk voegt vergaderingsverslagen, actiepunten, tools voor teamsamenwerking en prioriteitsondersteuning toe."
+      },
+      {
+        "question": "Zijn mijn spraakgegevens privé?",
+        "answer": "Ja. We gebruiken een lokaal-eerst-architectuur. Je opnames worden veilig verwerkt en we gebruiken je persoonlijke gedachten niet om onze publieke modellen te trainen. Jouw brein is van jou."
+      },
+      {
+        "question": "Kan ik op elk moment van abonnement wisselen of opzeggen?",
+        "answer": "Absoluut. Je kunt je abonnement op elk moment upgraden, downgraden of opzeggen. Als je opzegt, behoud je toegang tot het einde van je huidige factureringsperiode."
+      },
+      {
+        "question": "Wat als het niet voor mij werkt?",
+        "answer": "We bieden een 30 dagen geld-terug-garantie. Als Vois je hoofd in de eerste maand niet helpt leegmaken, mail ons voor volledige terugbetaling."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Kies je abonnement",
+    "subtitle": "Begin gratis. Upgrade wanneer je er klaar voor bent.",
+    "billingMonthly": "Maandelijks",
+    "billingAnnual": "Jaarlijks",
+    "saveLabel": "Bespaar tot 40%",
+    "freePlanTitle": "Gratis",
+    "freePlanDescription": "Probeer het uit, geen creditcard vereist",
+    "freePlanPeriod": "voor altijd",
+    "freePlanCta": "Gratis downloaden",
+    "personalPlanTitle": "Persoonlijk",
+    "personalPlanBadge": "Populair",
+    "personalPlanDescription": "Voor dagelijkse levensorganisatie",
+    "personalPlanPeriod": "/maand",
+    "personalPlanCta": "Aanmelden voor wachtlijst",
+    "personalPlanNote": "Altijd opzegbaar. 30 dagen geld-terug-garantie.",
+    "workPlanTitle": "Werk",
+    "workPlanDescription": "Voor professionals & teams",
+    "workPlanPeriod": "/maand",
+    "workPlanCta": "Aanmelden voor wachtlijst",
+    "workPlanNote": "Altijd opzegbaar. 30 dagen geld-terug-garantie."
+  }
+}

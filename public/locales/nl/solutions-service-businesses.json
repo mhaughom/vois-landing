@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Oplossingen — Dienstverlenende bedrijven",
+    "title": "Run je dienstverlenende bedrijf met je stem.",
+    "subtitle": "Van de werklocatie tot de factuur — zonder het toetsenbord aan te raken.",
+    "description": "Loodgieters, elektriciens, schoonmakers, consultants, therapeuten, accountants, coaches en iedereen die tijd, expertise of arbeid verkoopt."
+  },
+  "story": {
+    "dayLabel": "Lars zijn dinsdag",
+    "section1": {
+      "heading": "7:30 — Koffie en het plan",
+      "p1": "Lars is een hoofdloodgieter in Tromsø. Vier medewerkers. Vóór HABOS begonnen ochtenden met het controleren van Google Agenda, een spreadsheet met opdrachtdetails en WhatsApp voor last-minute annuleringen. Vandaag opent hij één app. Zijn schema staat er, met klantgeschiedenis, adressen en notities voor elke opdracht. Een klant heeft 's nachts via e-mail verzet — de AI heeft de afspraak al verplaatst, de route aangepast en een bevestiging opgesteld. Lars tikt op \"bevestigen\" terwijl zijn koffie nog te heet is om van te drinken."
+    },
+    "section2": {
+      "heading": "11:45 — De bus",
+      "p1": "Lars heeft net een afsluitklep vervangen bij het huis van de Jansens. Vóór HABOS was dit moment een zwart gat — hij stuurde zichzelf een bericht \"Jansen — klep vervangen, nieuwe fitting bestellen\" en came er nooit toe om het goed te factureren. Nu heft hij zijn pols op:",
+      "voiceNote": "\"VOIS, klus Jansen klaar. Afsluitklep en aanvoerleiding vervangen. Grohe mengkraan bestellen bij Backer, 3.200 kroon. Offerte 4.800 geïnstalleerd.\"",
+      "voiceResult": "Twintig seconden. Opdrachtrapport ingediend. CRM bijgewerkt. Inkooporder opgesteld. Offerte klaar voor beoordeling.",
+      "p2": "Hij loopt naar de bus. Dat is het. Het systeem heeft zijn stem geparsed in gestructureerde gegevens — gebruikte onderdelen, kosten, follow-ups, klantsentiment — en elk stuk naar de juiste plek gerouteerd. Geen typen. Geen laptop. Geen \"ik doe het vanavond.\""
+    },
+    "section3": {
+      "heading": "15:20 — Op de weg",
+      "p1": "Lars rijdt. Een nieuwe aanvraag arriveert in het gedeelde postvak IN — een woningeigenaar vraagt over een badkamerrenovatie. Vóór HABOS zou deze e-mail uren onbeantwoord blijven. Om 17:00 uur zou de prospect bij iemand anders hebben geboekt. Onderzoek toont dat 78% van de klanten kiest voor het eerste bedrijf dat reageert.",
+      "p2": "In de plaats beoordeelt de AI de aanvraag, classificeert het als een nieuwe lead en stelt een reply op in Lars zijn stem. Bij een rood licht verschijnt een melding: \"Nieuwe lead — badkamerrenovatie. Reply klaar.\" Lars werpt een blik op het concept: \"Bedankt voor je bericht. Ik kom graag kijken. Ik heb beschikbaarheid vanaf half mei — zou een sitebezoek op de 15e of 16e werken?\" Hij tikt verzenden. Twee minuten. De prospect is onder de indruk. Lars zijn concurrent heeft de e-mail nog niet geopend."
+    },
+    "section4": {
+      "heading": "21:15 — De bank",
+      "p1": "Vóór HABOS was dit het administratie-uur. Factureren uit het hoofd. Zes e-mails beantwoorden. Het CRM bijwerken dat hij in februari is gestopt bij te houden. Morgen plannen. Twee uur onbetaald werk, elke avond.",
+      "p2": "Vanavond kijkt Lars televisie. De factuur voor de Jansen-klus was opgesteld op basis van zijn stemnotitie, om 18:00 uur op zijn telefoon beoordeeld en met één tik verstuurd. Vier e-mails zijn afgehandeld via meldingskaarten tussen de opdrachten door. Het schema van morgen staat klaar. De inkooporder voor de Grohe-mengkraan wacht op bevestiging van de leverancier.",
+      "p3": "Zijn avond is voor zijn gezin."
+    },
+    "section5": {
+      "heading": "Waar Lars vroeger voor betaalde",
+      "p1": "Vóór HABOS had Lars Calendly voor boekingen, Fiken voor boekhouding, een half bijgehouden HubSpot CRM, Todoist voor taken, Gmail voor klant-e-mails, WhatsApp voor berichten en was hij Jobber aan het bekijken voor dispatch. Gecombineerd: meer dan $300 per maand aan abonnementen, de meeste halfgebruikt.",
+      "p2": "HABOS vervangt ze allemaal. Planning met Stripe-betalingen en preventie van dubbele boekingen. Financiën met stemopname van uitgaven en Noorse compliance. CRM dat zichzelf opbouwt uit gesprekken. Taken geëxtraheerd uit stemnotities. Een unified postvak IN met AI-replies in zijn stem. Dispatch en routeplanning. Één platform. $35 per maand."
+    },
+    "section6": {
+      "heading": "Wat er veranderde voor zijn bedrijf",
+      "p1": "Administratie daalde van veertien uur per week naar vier. Gemiddelde reactietijd op nieuwe aanvragen ging van vier uur naar vijf minuten. Vorige maand boekte zijn team acht opdrachten van e-mailaanvragen die ze eerder zouden hebben verloren — omdat HABOS reageerde terwijl ze nog op ladders stonden.",
+      "p2": "Nul vergeten facturen. Nul verloren leads door trage reactie. Nul avonden achter een laptop."
+    },
+    "testimonial": {
+      "quote": "\"Ik bracht elke avond door met facturen en e-mails. Nu praat ik na elke klus met mijn horloge en alles is klaar voor het eten. Vorige maand boekten we 8 opdrachten die we zouden hebben verloren — omdat HABOS in 2 minuten reageerde terwijl ik nog op een ladder stond.\"",
+      "attribution": "— Lars, 41 · Hoofdloodgieter · 4 medewerkers · Tromsø"
+    },
+    "cta": {
+      "heading": "Je laatste avond van onbetaalde administratie begint nu.",
+      "button": "Aanmelden voor wachtlijst"
+    }
+  }
+}

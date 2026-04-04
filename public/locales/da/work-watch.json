@@ -1,0 +1,64 @@
+{
+  "badge": "Kernefunktion",
+  "hero": {
+    "title": "Hele din virksomhed.\nPå dit håndled.",
+    "description": "Ikke et notifikationsspejl. En fuld AI-assistent med tale, værktøjer og sub-300 ms-respons."
+  },
+  "intro": "En feltmedarbejder med uret kan diktere et 30-sekunders talenotat mellem jobs. Smart Router behandler det til opgaver, begivenheder og noter. De åbner aldrig deres telefon. Data strømmer ind i det samlede system og er øjeblikkeligt synligt for kontorholdene på web-dashboardet. Tre NECP-compliancesretteleer forhindrer watchOS i at afbryde forbindelsen — løser den 35-sekunders timeout, der plager alle andre ur-AI-apps.",
+  "stats": [
+    {
+      "number": "<300 ms",
+      "label": "Tale-til-tale responstid. Hurtigere end at tage telefonen frem."
+    },
+    {
+      "number": "8 Værktøjer",
+      "label": "Opret opgaver, tjek kalender, søg data, udkast e-mails — alt fra dit håndled."
+    },
+    {
+      "number": "0 Apps Åbnet",
+      "label": "Dikter en 30-sekunders opdatering mellem jobs. Den bliver automatisk til opgaver, begivenheder og noter."
+    }
+  ],
+  "timeline": {
+    "title": "En morgen i feltet",
+    "entries": [
+      {
+        "time": "7:45",
+        "text": "Kører til første job. Løft håndledet: \"Hvad har jeg i skemaet i dag?\" Uret læser 4 aftaler op."
+      },
+      {
+        "time": "9:15",
+        "text": "Mellem jobs. \"Lige afsluttet Henderson-vanvarmeren, brugte to flexforbindere, tog 3 timer.\" Uret opretter jobpost, opdaterer lager, logger tid."
+      },
+      {
+        "time": "11:00",
+        "text": "På stedet. \"Mind mig om at bestille flere flexforbindere og følge op med Sarah om renoveringen.\" To opgaver oprettet, nul tastning."
+      },
+      {
+        "time": "12:30",
+        "text": "Frokostpause. Skifter til teksttilstand i en stille restaurant. Skriver: \"Hvordan ser tilgodehavenderne ud denne måned?\" Får et fuldt finansresumé."
+      }
+    ]
+  },
+  "features": {
+    "suggestionCards": {
+      "title": "Forslagskort",
+      "description": "Efter hvert udveksling vises handlingskort på urets skærm. \"Opret opgave: Følg op med Sarah\" eller \"Planlæg: Stedbesøg tirsdag 14:00\". Tryk for at bekræfte, swipe for at afvise. Intet lille tastatur nødvendigt."
+    },
+    "seamlessHandoff": {
+      "title": "Problemfri overdragelse",
+      "description": "Start en samtale på dit ur, fortsæt den på din telefon eller Mac. Talenoter optaget på uret strømmer gennem Smart Router — kontorholdene ser opdateringer i realtid uden at du rører din telefon."
+    }
+  },
+  "techPills": [
+    "WebSocket-relæ",
+    "OpenAI Realtime V2",
+    "NECP-compliant (ingen 35 sek. timeout)",
+    "37 Swift-filer",
+    "Dual-tilstand: tale + tekst"
+  ],
+  "closing": {
+    "tagline": "Andre ur-apps viser notifikationer. VOIS sætter hele din virksomhed på dit håndled.",
+    "cta": "Tilmeld venteliste"
+  }
+}

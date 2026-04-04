@@ -1,0 +1,59 @@
+{
+  "badge": "Documents",
+  "hero": {
+    "title_part1": "Rédigez une fois.",
+    "title_part2": "Retrouvez pour toujours",
+    "description": "Un éditeur de texte enrichi avec des modèles, une recherche plein texte et une rédaction assistée par IA qui s'appuie sur l'ensemble de votre espace de travail."
+  },
+  "demoSection": {
+    "heading": "Rédigez et retrouvez en un seul endroit",
+    "editorTitle": "Hôtel Fjordview — Proposition de maintenance",
+    "aiAssist": "Assistance IA",
+    "searchQuery": "contrat de maintenance",
+    "searchResults": "3 résultats",
+    "results": [
+      {
+        "title": "Hôtel Fjordview — Proposition de maintenance",
+        "snippet": "...contrat de maintenance annuel couvrant CVC, plomberie et électricité..."
+      },
+      {
+        "title": "Bilan de service T1 — Fjordview",
+        "snippet": "...renouvellement du contrat prévu le 15 avril. Le périmètre de maintenance actuel comprend..."
+      },
+      {
+        "title": "Grille tarifaire fournisseurs 2026",
+        "snippet": "...palier contrat de maintenance standard : 45 000 NOK/mois..."
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "Éditeur enrichi",
+      "desc": "Mise en forme complète avec titres, listes, tableaux, images et contenus intégrés. Basé sur TipTap — rapide et familier."
+    },
+    {
+      "title": "Modèles",
+      "desc": "Démarrez avec des modèles éprouvés pour les propositions, les procédures opérationnelles, les ordres du jour et les contrats. Personnalisez une fois, réutilisez partout."
+    },
+    {
+      "title": "Recherche plein texte",
+      "desc": "Chaque mot est indexé. Recherchez dans tous les documents instantanément. Les résultats affichent le contexte et mettent en surbrillance les correspondances."
+    }
+  ],
+  "scenario": {
+    "body": "Vous avez besoin d'une proposition de maintenance pour l'hôtel Fjordview. Au lieu de partir de zéro, vous choisissez le modèle « Proposition de service ». L'IA prérenseigne les informations client depuis le CRM, les résultats d'inspection récents depuis vos rapports, et la tarification depuis votre catalogue produits. Vous modifiez deux phrases et envoyez.",
+    "closing": "De la page blanche à la proposition envoyée en moins de deux minutes."
+  },
+  "techItems": [
+    "Éditeur TipTap",
+    "Système de modèles",
+    "Recherche plein texte",
+    "Rédaction assistée par IA",
+    "Liaison aux projets",
+    "Consultable dans le Brain"
+  ],
+  "cta": {
+    "tagline": "Des documents qui connaissent votre activité.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

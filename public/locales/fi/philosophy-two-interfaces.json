@@ -1,0 +1,29 @@
+{
+  "category": "Filosofia",
+  "title": "Kaksi käyttöliittymää, yksi järjestelmä",
+  "tagline": "Ihmiset saavat näytöt. Agentit saavat API:t. Samat työkalut, sama data.",
+  "heroAlt": "Kaksi käyttöliittymää — visuaaliset kojelaudat ja strukturoidut API:t",
+  "body1": "Useimmat \"tekoälypohjaiset\" tuotteet lankeavat yhteen kahdesta ansasta. Ensin: lisää chatbotti olemassa olevaan käyttöliittymään ja saa tekoäly napsauttelemaan painikkeita, navigoimaan valikoita, lukemaan näyttöjä. Se polttaa 15 000 tokenia tekemään sen, minkä funktiokutsu hoitaa 200:lla. Kun käyttöliittymä muuttuu, agentti hajoaa. Toiseksi: rakenna vain tekoäly ilman ihmiskäyttöliittymää. Agentti on nopea — mutta se on musta laatikko. Se \"hoiti\" sähköpostisi, mutta et näe mitä se lähetti.",
+  "humanInterface": {
+    "label": "Ihmiskäyttöliittymä",
+    "body": "Visuaalinen viikkonäkymä. Värikoodatut tapahtumat. Vedä uudelleenaikatauluttamiseen. Spatiaaliset havainnot aikaasi."
+  },
+  "agentInterface": {
+    "label": "Agentin käyttöliittymä",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "Sama kalenteri. Sama tapahtuma. Samat oikeudet."
+  },
+  "comparison": "Agentti verkkokäyttöliittymän kautta: 15 000 tokenia. Agentti funktiokutsun kautta: 200 tokenia. 75x.",
+  "comparisonWebUI": "Agentti verkkokäyttöliittymän kautta:",
+  "comparisonWebUIStat": "15 000 tokenia.",
+  "comparisonFunctionCall": "Agentti funktiokutsun kautta:",
+  "comparisonFunctionCallStat": "200 tokenia.",
+  "comparisonMultiplier": "75x.",
+  "quote": "\"Tekoälyn saaminen napsauttelemaan painikkeita on kuin pilottia laitetaan kävelemään. Anna kullekin älykkäydelle sen ansaitsema käyttöliittymä.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Ehdotuksia, ei valikoita",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Tallenna aivosi"
+  }
+}

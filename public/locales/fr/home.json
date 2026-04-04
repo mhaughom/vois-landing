@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "L'assistant exécutif qui libère votre esprit.",
+    "subheadline": "Capturez tout. N'organisez rien.",
+    "definition": "TÂCHES  ·  CALENDRIER  ·  IDÉES  ·  LISTES  ·  APPLICATIONS PERSONNALISÉES",
+    "cta": "Demander l'accès",
+    "trustText": "Rien ne change sans votre approbation.",
+    "watchVideo": "Regarder la vidéo",
+    "endVideo": "Terminer la vidéo",
+    "joinWaitlist": "Rejoindre la liste d'attente",
+    "tryAgain": "Réessayer"
+  },
+  "problem": {
+    "title": "Le Mensonge Universel",
+    "body": [
+      "Nous portons tous un poids caché. Il est 14h00. Vous marchez vers votre prochaine réunion. Dans votre tête, vous jonglezavec une liste de courses, une idée révolutionnaire pour un projet, une inquiétude à propos d'un e-mail que vous avez envoyé, et le fait que vous n'avez pas assez bu d'eau aujourd'hui.",
+      "Vous pourriez vous arrêter, sortir votre téléphone, le déverrouiller, ouvrir trois applications différentes et tout noter. Mais vous ne le faites pas. Vous dites le Mensonge Universel : « Je vais juste m'en souvenir. »",
+      "(Vous n'y arriverez pas). Et ce désordre mental reste avec vous, volant votre concentration."
+    ]
+  },
+  "solution": {
+    "title": "Un Réflexe Différent",
+    "body": "Imaginez maintenant un réflexe différent. Au lieu de porter ce poids, vous appuyez simplement sur le bouton de votre montre (ou téléphone). Vous ne cherchez pas vos mots. Vous ne regardez pas un écran. Vous parlez, tout simplement."
+  },
+  "demo": {
+    "input": "« D'accord, rappelle-moi d'appeler Sarah à propos du contrat mardi. En plus, je me sens vraiment submergé par la rénovation de la maison, le bruit est trop intense. Oh, et je viens de courir 5 km en 25 minutes, je me sens bien. »",
+    "caption": "Ça paraît désordonné. Ça semble humain. Ça vous ressemble. Vois écoute le bruit. Mais il sauvegarde le signal."
+  },
+  "adapt": {
+    "title": "Votre Vie, Vos Espaces",
+    "body": "Besoin de suivre vos maux de tête ? Vos séries de méditation ? Les citations drôles de votre enfant ? Décrivez-le simplement. Vois crée un Espace personnalisé instantanément. Vous ne construisez pas le système. Vous y vivez, tout simplement."
+  },
+  "privacy": {
+    "title": "Votre Esprit, Votre Contrôle",
+    "body": "Vois organise vos pensées localement et en toute sécurité. Rien n'est finalisé sans votre approbation. Rien n'est partagé. Vous êtes le seul à posséder la clé.",
+    "localFirst": "Local d'abord",
+    "encryptedSync": "Synchronisation chiffrée",
+    "privacyIllustrationAlt": "Confidentialité et contrôle",
+    "enterpriseTitle": "Sécurité de niveau entreprise",
+    "enterpriseBody": "Vos données sont protégées par la même infrastructure de confiance que les plus grandes entreprises mondiales. Nous utilisons des services leaders du secteur pour la fiabilité et la sécurité.",
+    "securityIllustrationAlt": "Sécurité entreprise",
+    "awsServers": "Serveurs AWS",
+    "supabase": "Supabase",
+    "soc2": "Conforme SOC 2"
+  },
+  "footer": {
+    "headline": "Un esprit clair. Une vie structurée.",
+    "subheadline": "Arrêtez de faire le travail administratif de votre propre existence. Confiez le chaos à Vois. Gardez la clarté pour vous-même.",
+    "cta": "Commencer la bêta",
+    "tagline": "Libérez votre esprit.",
+    "colProduct": "Produit",
+    "colSupport": "Assistance",
+    "colLegal": "Mentions légales",
+    "colSocial": "Réseaux sociaux",
+    "linkLogin": "Connexion",
+    "linkDownloadIphone": "Télécharger pour iPhone",
+    "linkDownloadWatch": "Télécharger pour la montre",
+    "linkDownloadMac": "Télécharger pour Mac",
+    "linkHabos": "HABOS pour les entreprises",
+    "linkHelpFaq": "Aide & FAQ",
+    "linkContactUs": "Nous contacter",
+    "linkSetupGuide": "Guide de configuration",
+    "linkPrivacyPolicy": "Politique de confidentialité",
+    "linkTerms": "Conditions d'utilisation",
+    "linkRefund": "Politique de remboursement",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "La vie n'attend pas votre application de notes.",
+    "p1": "Entrant en réunion. Sous la douche. À mi-chemin vers la sortie.",
+    "p2": "Une invitation. Une tâche. Une pensée que vous ne pouvez pas vous permettre de perdre.",
+    "p3": "Vous vous dites : « Je vais juste m'en souvenir. »",
+    "p4": "(Vous n'y arriverez pas.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "Retrouvez à la vitesse du son.",
+    "bodyBefore": "Demandez naturellement et obtenez des ",
+    "bodyHighlight": "réponses instantanées",
+    "bodyAfter": ". Votre assistant vocal trouve exactement ce dont vous avez besoin parmi tout ce que vous avez capturé."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Quelle est la différence entre Personnel et Professionnel ?",
+        "answer": "Personnel est conçu pour la vie quotidienne — capturer des tâches, des idées, des rappels et des notes. Professionnel ajoute la transcription de réunions, les points d'action, les outils de collaboration d'équipe et une assistance prioritaire."
+      },
+      {
+        "question": "Mes données vocales sont-elles privées ?",
+        "answer": "Oui. Nous utilisons une architecture local-first. Vos enregistrements sont traités en toute sécurité et nous n'utilisons pas vos pensées personnelles pour entraîner nos modèles publics. Votre cerveau vous appartient."
+      },
+      {
+        "question": "Puis-je changer de forfait ou annuler à tout moment ?",
+        "answer": "Absolument. Vous pouvez passer à un forfait supérieur, inférieur, ou annuler votre abonnement à tout moment. Si vous annulez, vous conservez l'accès jusqu'à la fin de votre période de facturation en cours."
+      },
+      {
+        "question": "Et si ça ne fonctionne pas pour moi ?",
+        "answer": "Nous offrons une garantie de remboursement de 30 jours. Si Vois ne vous aide pas à libérer votre esprit au cours du premier mois, envoyez-nous un e-mail pour un remboursement intégral."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Choisissez votre forfait",
+    "subtitle": "Commencez gratuitement. Passez à un forfait supérieur quand vous êtes prêt.",
+    "billingMonthly": "Mensuel",
+    "billingAnnual": "Annuel",
+    "saveLabel": "Économisez jusqu'à 40 %",
+    "freePlanTitle": "Gratuit",
+    "freePlanDescription": "Essayez, sans carte requise",
+    "freePlanPeriod": "pour toujours",
+    "freePlanCta": "Télécharger gratuitement",
+    "personalPlanTitle": "Personnel",
+    "personalPlanBadge": "Populaire",
+    "personalPlanDescription": "Pour l'organisation de la vie quotidienne",
+    "personalPlanPeriod": "/mois",
+    "personalPlanCta": "Rejoindre la liste d'attente",
+    "personalPlanNote": "Annulable à tout moment. Garantie de remboursement sous 30 jours.",
+    "workPlanTitle": "Professionnel",
+    "workPlanDescription": "Pour les professionnels et les équipes",
+    "workPlanPeriod": "/mois",
+    "workPlanCta": "Rejoindre la liste d'attente",
+    "workPlanNote": "Annulable à tout moment. Garantie de remboursement sous 30 jours."
+  }
+}

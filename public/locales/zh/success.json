@@ -1,0 +1,14 @@
+{
+  "headline": "欢迎使用 VOIS。",
+  "subtitle": "您的订阅已激活，让我们开始吧。",
+  "nextStepsHeading": "接下来会发生什么",
+  "steps": [
+    "查看邮件中的收据",
+    "从 App Store 下载 VOIS",
+    "用您的邮箱登录以激活"
+  ],
+  "downloadButton": "在 App Store 下载",
+  "discordButton": "加入 Discord 社区",
+  "backToHome": "返回首页",
+  "logoAlt": "Vois"
+}

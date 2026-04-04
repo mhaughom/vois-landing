@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Support"
+  },
+  "hero": {
+    "heading": "Hvordan kan vi hjælpe?",
+    "description": "Vi er her for at hjælpe dig med at få mest muligt ud af Vois. Find svar nedenfor, eller kontakt os direkte."
+  },
+  "contact": {
+    "heading": "Kontakt os",
+    "email": {
+      "label": "E-mailsupport",
+      "address": "hello@tryvois.com",
+      "note": "For alle henvendelser og supportanmodninger"
+    },
+    "responseTime": {
+      "label": "Svartid",
+      "value": "Inden for 24 timer",
+      "note": "Mandag til fredag"
+    }
+  },
+  "faq": {
+    "heading": "Ofte stillede spørgsmål",
+    "items": [
+      {
+        "question": "Hvad er Vois?",
+        "answer": "Vois er en AI-drevet stemmenoter-app, der hjælper dig med at fange, organisere og handle på dine tanker. Tilgængelig på iPhone, Apple Watch og Mac."
+      },
+      {
+        "question": "Hvilke enheder understøtter Vois?",
+        "answer": "Vois er tilgængelig på iPhone, Apple Watch og Mac. Du kan downloade den fra Apple App Store. Dine data synkroniseres problemfrit på tværs af alle dine enheder."
+      },
+      {
+        "question": "Hvordan fungerer fakturering?",
+        "answer": "Vois tilbyder abonnementsplaner faktureret månedligt eller årligt. Du kan administrere dit abonnement via App Store på din Apple-enhed. Alle betalinger behandles sikkert via Apple."
+      },
+      {
+        "question": "Hvordan opsiger jeg mit abonnement?",
+        "answer": "Du kan opsige dit abonnement når som helst via App Store. Gå til Indstillinger > Apple ID > Abonnementer på din iPhone, find Vois, og tryk på Opsig. Du beholder adgang til slutningen af din nuværende faktureringsperiode."
+      },
+      {
+        "question": "Kan jeg få refusion?",
+        "answer": "Ja, vi tilbyder 30 dages pengene-tilbage-garanti. Hvis du ikke er tilfreds, kontakt os på <email>hello@tryvois.com</email> eller se vores fulde <refund>Refusionspolitik</refund>."
+      },
+      {
+        "question": "Er mine data sikre?",
+        "answer": "Dit privatliv og datasikkerhed er vores højeste prioritet. Vi er fuldt GDPR-kompatible og bruger kryptering til at beskytte dine data. Læs vores <privacy>Privatlivspolitik</privacy> for alle detaljer."
+      },
+      {
+        "question": "Hvordan rapporterer jeg en fejl eller anmoder om en funktion?",
+        "answer": "Vi vil meget gerne høre fra dig! Send os en e-mail på <email>hello@tryvois.com</email> med en beskrivelse af problemet eller din idé til en funktion, så vender vi tilbage til dig."
+      }
+    ]
+  },
+  "company": {
+    "heading": "Virksomhedsoplysninger",
+    "companyLabel": "Virksomhed",
+    "companyValue": "VOIS AI AS",
+    "orgLabel": "Org.nr.",
+    "orgValue": "936 920 594",
+    "locationLabel": "Beliggenhed",
+    "locationValue": "Alsvåg, Norway",
+    "emailLabel": "E-mail",
+    "emailValue": "hello@tryvois.com",
+    "websiteLabel": "Hjemmeside",
+    "websiteValue": "tryvois.com"
+  },
+  "footer": {
+    "copyright": "Vois AI. Alle rettigheder forbeholdes.",
+    "privacyPolicy": "Privatlivspolitik",
+    "termsOfService": "Vilkår for brug"
+  }
+}

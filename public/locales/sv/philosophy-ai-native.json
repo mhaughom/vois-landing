@@ -1,0 +1,47 @@
+{
+  "category": "Filosofi",
+  "title": "Slutet på datainmatning",
+  "tagline": "Varje affärsverktyg du använder idag skapades innan AI existerade. HABOS skapades inte. Du kommer känna skillnaden från dag ett — formulären, fälten, kopieringen och klistringen mellan appar — det är förbi.",
+  "heroPlaceholder": "Hjälteillustration",
+  "section1": {
+    "heading": "Påklistrade-problemet",
+    "body1": "De flesta programvaruföretag tog produkter byggda under två decennier och lade till en AI-chatbot i hörnet. Chatboten kan svara på frågor om data den aldrig var utformad för att komma åt, föreslå åtgärder den inte har befogenhet att genomföra, och söka i system som aldrig var avsedda att dela kontext.",
+    "body2": "Resultatet är ett intelligent fernissa på en i grunden ointelligent arkitektur. AI:n sitter bredvid programvaran. Den lever inte inuti den."
+  },
+  "section2": {
+    "heading": "Byggt med intelligens som grund",
+    "body": "HABOS skapades från dag ett med AI som ett strukturellt element, inte en funktion. De tre kärnsystem som driver plattformen — den smarta routern, hjärnan och agentorkestratorn — är alla AI-nativa. De lindar inte befintlig programvara i en chatbot. De är programvaran."
+  },
+  "systems": [
+    {
+      "title": "Den smarta routern",
+      "desc": "En motor för klassificering av röstintent som tar en enda 30-sekunders inspelning och extraherar flera strukturerade affärsåtgärder — uppgifter, kalenderhändelser, CRM-uppdateringar, lageranpassningar — allt på en gång. Inte tal-till-text. Tal-till-förståelse."
+    },
+    {
+      "title": "Hjärnan",
+      "desc": "Ett enhetligt semantiskt söklager över 19 datakällor, sökt parallellt. När du ställer en fråga söker HABOS igenom dina möten, e-post, CRM, projekt, röstanteckningar, dokument och spelböcker simultant — och förstår mening, inte bara nyckelord."
+    },
+    {
+      "title": "Agentorkestratorn",
+      "desc": "En autonom planerings- och exekveringsmotor som kan bryta ner komplexa uppgifter i steg, utföra verktyg, pausa för ditt godkännande vid allt högrisk och återuppta — även efter serveromstarter. Inte en chatbot med plugins. En komplett tillståndsmaskin med budgetspårning och felåterhämtning."
+    }
+  ],
+  "architecturePlaceholder": "Arkitekturdiagram",
+  "section3": {
+    "heading": "Vad AI-nativt faktiskt innebär i praktiken",
+    "body1": "Det innebär att en rörmokare avslutar ett jobb, talar i 30 sekunder i sin telefon, och systemet skapar jobbposten, uppdaterar lagret, genererar fakturan, meddelar kontoret och loggar arbetstiden. Hela kedjan fungerar eftersom varje modul delar en AI-driven hjärna — inte för att någon kopplade ihop 6 API:er.",
+    "body2": "Det innebär att när AI:n förbereder dig för ett möte hämtar den från ditt CRM, orderhistorik, mötestransskript, röstanteckningar, e-post, spelböcker och öppna ärenden — i ett pass. Inte för att den sökte i 7 separata appar. Eftersom all den datan finns på ett ställe och utformades för att resoneras över."
+  },
+  "section4": {
+    "heading": "Den sammansatta effekten",
+    "body1": "En AI-nativ plattform blir smartare ju längre du använder den. Efter sex månader vet systemet vilka kunder som beställer om på förutsägbara cykler, vilka verksamheter som konsekvent driver, vilka teammedlemmar som är överutnyttjade och vad den genomsnittliga tid-till-avslut är för olika affärstyper.",
+    "body2": "Den ackumulerade organisatoriska intelligensen är vallgraven. Data kan exporteras. Förståelsen kan inte det."
+  },
+  "quote": "\"AI bör inte vara något du går till. Det bör vara något som redan finns — invävt i hur programvaran tänker, agerar och förutser.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Luftslussen",
+    "nextLabel": "Nästa",
+    "nextTitle": "En hjärna"
+  }
+}

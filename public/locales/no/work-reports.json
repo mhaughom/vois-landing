@@ -1,0 +1,66 @@
+{
+  "badge": "Kommer snart",
+  "hero": {
+    "title": "Talerapporter",
+    "description": "Snakk rapporter til eksistens. Gå gjennom en stedsinspeksjon mens du snakker observasjonene dine – AI genererer en formatert PDF umiddelbart."
+  },
+  "intro": "Tradisjonelle rapporter krever å sette seg ned, åpne et skjema og skrive svar. HABOS tilbyr fire utfyllingsmodi: et sanntids taleintervju der AI stiller spørsmål felt for felt, en dikteringsmodus der ett enkelt talenotat fyller alle felt stille, en tekstchatbot som går gjennom hvert felt i samtaleform og tradisjonell manuell input som reserveløsning. Last opp en PDF eller et bilde og GPT-4 Vision trekker ut feltetiketter, typer og valideringsmønstre for å generere et typet skjema automatisk.",
+  "problem": {
+    "title": "Rapportskrivingsproblemet",
+    "body": "For feltarbeidere, sykepleiere, inspektører og mange fagfolk er det å skrive rapporter på berøringsskjermer eller datamaskiner et enormt tidssløseri. Det er sakte, kjedelig og folk utelater ofte detaljer fordi det er for tungvint å skrive. Talerapporter endrer alt."
+  },
+  "features": [
+    {
+      "title": "Bare snakk",
+      "desc": "Åpne VOIS, trykk ta opp og snakk gjennom observasjonene dine. Ingen skriving, ingen skjemaer, ingen avkrysningsbokser. AI lytter, strukturerer og formaterer alt automatisk."
+    },
+    {
+      "title": "Øyeblikkelig formatering",
+      "desc": "AI genererer en ordentlig formatert rapport – overskrifter, avsnitt, punktlister, sammendrag. Eksporter som PDF, Word eller ethvert format du trenger. Den er klar til å sendes umiddelbart."
+    },
+    {
+      "title": "10x raskere",
+      "desc": "Folk snakker 3–4x raskere enn de skriver. Legg til AI-formatering og du ser på 10x tidsbesparelser. Det som pleide å ta 30 minutter tar nå 3."
+    },
+    {
+      "title": "Rikere informasjon",
+      "desc": "Når rapportering er så enkelt, inkluderer folk mer detaljer. Du får bedre data, mer kontekst og klarere kommunikasjon – alt fordi å snakke er uanstrengt."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfekt for",
+    "items": [
+      {
+        "title": "Feltarbeidere",
+        "desc": "Stedsinspeksjoner, sikkerhetsrapporter, vedlikeholdslogger"
+      },
+      {
+        "title": "Helsevesen",
+        "desc": "Sykepleiernotater, pasientobservasjoner, vaktoverleveringer"
+      },
+      {
+        "title": "Salg og service",
+        "desc": "Kundemøter, serviceoppdrag, oppfølgingsnotater"
+      }
+    ]
+  },
+  "example": {
+    "title": "Eksempel: Inspeksjon av byggeplass",
+    "steps": [
+      "Du ankommer stedet med telefonen eller klokken. Trykk ta opp i VOIS.",
+      "«Stedsinspeksjon, Bygg 3, 15. mars. Værforhold: klart, 18 grader. Grunnmuren ser solid ut – ingen synlige sprekker. Elektrisk grovinstallasjon er 80% fullført, i rute. Rørleggerproblemer i leilighet 204 – lekkasje under vasken, trenger reparasjon før inspeksjon. HVAC-kanaler installert, venter på sluttilkoblinger...»",
+      "Du går og snakker i 5 minutter og dekker alt du ser.",
+      "Stopp opptak. AI genererer en formatert inspeksjonsrapport med avsnitt, punktlister og et sammendrag. Rørleggerproblemet flagges som kritisk.",
+      "Eksporter PDF. Send e-post til prosjektleder. Ferdig. Total tid: 6 minutter."
+    ]
+  },
+  "integration": {
+    "title": "Driver Drifts-AI",
+    "body": "Talerapporter handler ikke bare om å spare tid – det mater kritiske data inn i Drifts-AI. Når teamet ditt sender inn detaljerte talerapporter, kan Drifts-AI identifisere mønstre, avdekke flaskehalser og varsle deg om problemer før de eskalerer. Det er grunnlaget for intelligent driftsstyring."
+  },
+  "status": {
+    "title": "For øyeblikket under utvikling",
+    "body": "Talerapporter er bygget og fungerer i utviklingsmiljøet vårt. Vi finjusterer formateringsmaler og eksportalternativer for ulike bransjer.",
+    "note": "Forventes å være tilgjengelig innen 6 måneder for VOIS for Work-abonnenter."
+  }
+}

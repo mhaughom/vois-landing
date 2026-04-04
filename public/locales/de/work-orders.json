@@ -1,0 +1,52 @@
+{
+  "badge": "Auftragsverwaltung",
+  "hero": {
+    "title": "Vom Angebot bis zur Bezahlung. Jeder Schritt verfolgt.",
+    "description": "Vollständiges Lifecycle-Auftragsmanagement mit Positionen, Zahlungsverfolgung und automatischen Lagerbestandsanpassungen — damit nichts durchs Raster fällt."
+  },
+  "intro": "Aufträge in VOIS sind der zentrale Datensatz, der CRM-Kunden, Produkte mit Varianten und Lagerbestand verbindet. Wenn eine Buchung abgeschlossen oder ein Auftrag fertiggestellt wird, wird automatisch ein Auftrag mit den richtigen Positionen und Preisen erstellt. Der Zahlungsstatus fließt von unbezahlt über teilweise bezahlt bis bezahlt bis erstattet — immer sichtbar, immer aktuell. Jede Position zieht in Echtzeit vom Produktlagerbestand ab und eliminiert manuelle Bestandszählungen vollständig.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovation", "amount": "12.500 €", "status": "Bezahlt ✓" },
+    { "id": "#1248", "client": "Baker HVAC Service", "amount": "3.200 €", "status": "Teilweise" },
+    { "id": "#1249", "client": "Wilson Notfall", "amount": "890 €", "status": "Unbezahlt" }
+  ],
+  "lineItems": {
+    "heading": "Positionen — Auftrag #1247 · Henderson Renovation",
+    "items": [
+      { "item": "Feinsteinzeug Bodenfliese (600x600)", "qty": 48, "unit": "85,00 €", "total": "4.080 €" },
+      { "item": "Fliesenkleber (25-kg-Sack)", "qty": 12, "unit": "32,00 €", "total": "384 €" },
+      { "item": "Arbeit — Fliesenlegung (Std.)", "qty": 24, "unit": "95,00 €", "total": "2.280 €" },
+      { "item": "Fußbodenheizungs-Set", "qty": 1, "unit": "1.850,00 €", "total": "1.850 €" }
+    ],
+    "total": "Gesamt: 12.500 €",
+    "annotation": "Aufträge automatisch aus Buchungen und Jobs erstellt. Positionen werden aus deinem Produktkatalog mit Variantenunterstützung gezogen."
+  },
+  "benefitCards": [
+    {
+      "title": "Automatisch aus Buchungen erstellt",
+      "desc": "Wenn eine Buchung abgeschlossen wird, wird der Auftrag automatisch mit korrekten Positionen und Preisen generiert. Keine doppelte Dateneingabe, keine verpassten Posten."
+    },
+    {
+      "title": "Live-Bestandsanpassungen",
+      "desc": "Jede Auftragsposition zieht in Echtzeit vom Produktlagerbestand ab. Keine manuellen Bestandszählungen. Nachbestellungsbenachrichtigungen werden ausgelöst, bevor der Vorrat ausgeht."
+    },
+    {
+      "title": "Zahlungs-Lifecycle",
+      "desc": "Unbezahlt → teilweise → bezahlt → erstattet verfolgen. Jede Statusänderung wird protokolliert und automatisch mit deiner Buchhaltungsplattform verbunden."
+    }
+  ],
+  "scenario": "Ein Klempner schließt einen Auftrag ab. Auf der Rückfahrt sagt er VOIS, welche Teile er verwendet hat — zwei Kugelventile, einen Flexschlauch und drei Stunden Arbeit.",
+  "scenarioHighlight": "VOIS erstellt automatisch den Auftrag mit den richtigen Positionen, zieht die Teile vom Lagerbestand ab, verknüpft den Auftrag mit dem CRM-Kunden und bereitet die Rechnung vor — bevor er wieder im Büro ist.",
+  "techItems": [
+    "Auto-Bestandsabzug",
+    "Positionsvarianten",
+    "Zahlungs-Lifecycle",
+    "CRM-Kundenverknüpfung",
+    "Buchungs-zu-Auftrags-Pipeline",
+    "Spracherfasste Aufträge"
+  ],
+  "cta": {
+    "title": "Höre auf, Papierkram zu jagen.\nLass Aufträge sich selbst erstellen.",
+    "button": "Warteliste beitreten"
+  }
+}

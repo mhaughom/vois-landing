@@ -1,0 +1,44 @@
+{
+  "category": "Filosofie",
+  "title": "Alles op één plek",
+  "tagline": "Één login. Elk hulpmiddel. Gedeelde context.",
+  "heroAlt": "Alles op één plek — uniform bedrijfsplatform",
+  "section1": {
+    "heading": "De SaaS-belasting",
+    "body1": "Het gemiddelde kleine bedrijf gebruikt 8 tot 12 softwaretools. Elk met zijn eigen login, gegevensmodel, factureringscyclus en leercurve. Geen van hen communiceert van nature met elkaar. De bedrijfseigenaar wordt de integratielaag — handmatig gegevens kopiëren tussen apps en een derde tool betalen om twee anderen te laten doen alsof ze samenwerken.",
+    "body2": "De abonnementskosten zijn niet eens de echte belasting. Het is de cognitieve belasting. Het contextschakelen. De \"welke tool heeft de nieuwste versie?\"-vraag. De onboardingbelasting wanneer elke nieuwe medewerker 10 accounts nodig heeft. De Zapier-workflow die stilletjes kapot gaat op een zaterdagochtend."
+  },
+  "section2": {
+    "heading": "Één stemnotitie, zes updates",
+    "quote": "\"Keuken renovatie Henderson is klaar. Duurde 4 uur, de resterende tegels uit de voorraad gebruikt. Klant was tevreden — wil een offerte voor de badkamer.\"",
+    "intro": "Van die ene stemnotitie werkt VOIS bij:",
+    "updates": [
+      "Projectstatus → voltooid",
+      "Tijdregistratie → 4 uur gelogd en afgesloten",
+      "Factuur → concept gegenereerd op basis van projectomvang",
+      "Klantmelding → voltooiings-e-mail in de wachtrij",
+      "CRM-tijdlijn → bijgewerkt met voltooiing + nieuwe interesse",
+      "Nieuwe kans → badkamerofferte toegevoegd aan de pijplijn"
+    ],
+    "outro": "Zes 'modules' bijgewerkt vanuit één invoer — omdat ze dezelfde database delen, niet zes API's aan elkaar gekoppeld met hoop."
+  },
+  "costComparison": {
+    "separateTitle": "10 afzonderlijke tools",
+    "separatePrice": "$350+",
+    "separatePricePer": "/mnd",
+    "separateDetail1": "10 logins · 5+ Zapier-workflows",
+    "separateDetail2": "~3 uur om een nieuwe medewerker in te werken",
+    "voisTitle": "VOIS",
+    "voisPrice": "$35",
+    "voisPricePer": "/mnd",
+    "voisDetail1": "1 login · 0 integraties te onderhouden",
+    "voisDetail2": "~5 minuten om een nieuwe medewerker in te werken"
+  },
+  "quote": "\"Integratie is een toegeving dat je tools niet samenwerken. Wij bouwden één tool die dat wel doet.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "De luchtsluis",
+    "nextLabel": "Volgende",
+    "nextTitle": "Één assistent"
+  }
+}

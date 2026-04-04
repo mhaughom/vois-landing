@@ -1,0 +1,52 @@
+{
+  "badge": "Pesquisa por IA",
+  "hero": {
+    "title": "Faça uma Pergunta.\nReceba um Relatório Citado.",
+    "description": "O HABOS delega pesquisas profundas ao Perplexity AI, refina a pergunta com prompts de esclarecimento e entrega um resumo executivo estruturado \u2014 depois incorpora tudo no seu Brain para recuperação futura."
+  },
+  "intro": "Fale uma pergunta no seu celular \u2014 o HABOS a classifica automaticamente como uma intenção de pesquisa e inicia uma investigação profunda. Antes de executar uma pesquisa custosa, a IA faz duas perguntas de esclarecimento direcionadas para delimitar o escopo. Em seguida, o modelo sonar-pro do Perplexity executa de forma assíncrona, entregando um resumo executivo estruturado com descobertas principais, citações e perguntas de acompanhamento. A pesquisa concluída é dividida e incorporada no seu Brain, de forma que apareça em buscas futuras e conversas com a IA para sempre.",
+  "flow": {
+    "label": "Como funciona",
+    "userQuestion": "Qual é o panorama competitivo de ferramentas de agendamento por IA em serviços de campo?",
+    "clarifyIntro": "Antes de pesquisar, duas perguntas rápidas:",
+    "clarifyQ1": "Você está focado no mercado dos EUA ou global?",
+    "clarifyQ2": "Porte da empresa: PME ou enterprise?",
+    "answerPills": ["Mercado dos EUA", "PME"],
+    "result": {
+      "label": "Resumo Executivo",
+      "title": "Panorama Competitivo: Agendamento por IA em Serviços de Campo",
+      "findings": [
+        "A ServiceTitan domina o enterprise com 42% de participação de mercado, mas sua oferta para PME é limitada e cara a $89/usuário/mês.",
+        "Jobber e Housecall Pro competem em simplicidade para PME, mas nenhuma oferece agendamento nativo em IA — ambas adicionam automação básica.",
+        "Os entrantes com foco em IA (FieldPulse, Zuper) estão ganhando força, crescendo 3x ao ano na faixa de $10 a $30/usuário, sinalizando forte demanda de PMEs por agendamento inteligente."
+      ],
+      "citations": "12 citações",
+      "embeddedLabel": "Incorporado no Brain"
+    }
+  },
+  "benefitCards": [
+    {
+      "title": "Voz para pesquisa",
+      "body": "Diga \"pesquise preços de concorrentes no nosso setor\" durante uma nota de voz. O HABOS detecta a intenção de pesquisa e inicia a análise automaticamente."
+    },
+    {
+      "title": "Sempre no seu Brain",
+      "body": "A pesquisa concluída é dividida, incorporada (vetores de 512 dimensões) e pesquisável para sempre. Pergunte sobre ela meses depois \u2014 o Brain se lembra."
+    },
+    {
+      "title": "Contexto vinculado a projetos",
+      "body": "Vincule pesquisas a projetos. Pesquisas futuras sobre o mesmo tema incorporam descobertas anteriores para uma análise mais rica e não repetitiva."
+    }
+  ],
+  "techStrip": [
+    "Perplexity sonar-pro",
+    "Perguntas de esclarecimento por IA",
+    "Resultados incorporados via RAG",
+    "Contexto entre projetos",
+    "Acompanhamentos em chat persistente"
+  ],
+  "closing": {
+    "title": "Outras ferramentas oferecem uma barra de busca.\nO HABOS oferece uma equipe de pesquisa.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

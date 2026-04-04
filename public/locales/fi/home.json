@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "Henkilökohtainen tekoälyassistentti, joka tyhjentää mielesi.",
+    "subheadline": "Tallenna kaikki. Järjestele ei mitään.",
+    "definition": "TEHTÄVÄT  ·  KALENTERI  ·  IDEAT  ·  LISTAT  ·  OMAT SOVELLUKSET",
+    "cta": "Pyydä pääsyä",
+    "trustText": "Mikään ei muutu ilman hyväksyntääsi.",
+    "watchVideo": "Katso video",
+    "endVideo": "Lopeta video",
+    "joinWaitlist": "Liity odotuslistalle",
+    "tryAgain": "Yritä uudelleen"
+  },
+  "problem": {
+    "title": "Yleinen valhe",
+    "body": [
+      "Kannamme kaikki piilotaakkaa. Kello on 14. Kävelet seuraavaan kokoukseesi. Päässäsi pyörii kauppalista, läpimurtoidea projektiin, huoli lähettämästäsi sähköpostista ja tieto siitä, ettet ole juonut tarpeeksi vettä tänään.",
+      "Voisit pysähtyä, kaivaa puhelimen esiin, avata sen, avata kolme eri sovellusta ja kirjoittaa kaiken muistiin. Mutta et tee niin. Sanot yleisen valheen: \"Muistan kyllä.\"",
+      "(Et muista). Ja tuo henkinen sotkeus pysyy mukanasi, varastaen keskittymisesi."
+    ]
+  },
+  "solution": {
+    "title": "Erilainen refleksi",
+    "body": "Kuvittele nyt erilainen refleksi. Sen sijaan että kantaisit taakkaa, painat vain kellon nappia (tai puhelinta). Et hiomaan sanojasi. Et katso näyttöä. Vain puhut."
+  },
+  "demo": {
+    "input": "\"Selvä, muistuta minua soittamaan Saralle sopimuksesta tiistaina. Lisäksi, kodin remontti tuntuu todella ylivoimaiselta, melu on liikaa. Ja juuri juoksin 5 km 25 minuutissa – hyvältä tuntuu.\"",
+    "caption": "Se kuulostaa sekavalta. Se kuulostaa inhimilliseltä. Se kuulostaa sinulta. Vois kuuntelee melun. Mutta tallentaa signaalin."
+  },
+  "adapt": {
+    "title": "Sinun elämäsi, sinun lokerikosi",
+    "body": "Haluatko seurata päänsärkyjäsi? Meditaatioputkiasi? Lapsesi hauskoja lausahduksia? Kuvaile se vain. Vois rakentaa sille välittömästi oman tilan. Et rakenna järjestelmää. Vain elät siinä."
+  },
+  "privacy": {
+    "title": "Sinun mielesi, sinun hallintasi",
+    "body": "Vois järjestää ajatuksesi paikallisesti ja turvallisesti. Mitään ei vahvisteta ennen kuin hyväksyt sen. Mitään ei jaeta. Sinulla on ainoa avain.",
+    "localFirst": "Paikallinen ensin",
+    "encryptedSync": "Salattu synkronointi",
+    "privacyIllustrationAlt": "Yksityisyys ja hallinta",
+    "enterpriseTitle": "Yritystason tietoturva",
+    "enterpriseBody": "Tietosi on suojattu samalla infrastruktuurilla, johon maailman suurimmat yritykset luottavat. Käytämme alan johtavia palveluja luotettavuuden ja tietoturvan takaamiseksi.",
+    "securityIllustrationAlt": "Yritystason tietoturva",
+    "awsServers": "AWS-palvelimet",
+    "supabase": "Supabase",
+    "soc2": "SOC 2 -yhteensopiva"
+  },
+  "footer": {
+    "headline": "Kirkas mieli. Järjestyksessä oleva elämä.",
+    "subheadline": "Lopeta oman olemassaolosi hallinnollinen työ. Anna kaaos Voisille. Pidä selkeys itsellesi.",
+    "cta": "Aloita beta",
+    "tagline": "Tyhjennä mielesi.",
+    "colProduct": "Tuote",
+    "colSupport": "Tuki",
+    "colLegal": "Juridiikka",
+    "colSocial": "Sosiaalinen media",
+    "linkLogin": "Kirjaudu sisään",
+    "linkDownloadIphone": "Lataa iPhonelle",
+    "linkDownloadWatch": "Lataa kellolle",
+    "linkDownloadMac": "Lataa Macille",
+    "linkHabos": "HABOS yrityksille",
+    "linkHelpFaq": "Ohje ja UKK",
+    "linkContactUs": "Ota yhteyttä",
+    "linkSetupGuide": "Asennusopas",
+    "linkPrivacyPolicy": "Tietosuojakäytäntö",
+    "linkTerms": "Palveluehdot",
+    "linkRefund": "Palautuskäytäntö",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "Elämä ei odota muistiinpanosovellustasi.",
+    "p1": "Astumassa kokoukseen. Suihkussa. Puolimatkassa ovelle.",
+    "p2": "Kutsu. Tehtävä. Ajatus, jota et varaa menettää.",
+    "p3": "Sanot itsellesi: \"Muistan kyllä.\"",
+    "p4": "(Et muista.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "Hae äänen nopeudella.",
+    "bodyBefore": "Kysy luonnollisesti ja saat ",
+    "bodyHighlight": "välittömät vastaukset",
+    "bodyAfter": ". Äänivuorovaikutuksesi löytää tarkalleen sen, mitä tarvitset kaikesta tallentamastasi."
+  },
+  "faq": {
+    "title": "Yleisiä kysymyksiä",
+    "items": [
+      {
+        "question": "Mitä eroa on Henkilökohtaisella ja Työ-versiolla?",
+        "answer": "Henkilökohtainen on arkielämää varten — tehtävien, ideoiden, muistutusten ja muistiinpanojen tallentamiseen. Työ lisää kokousten litteroinnin, toimintapisteiden, tiimien yhteistyötyökalujen ja prioriteettituen."
+      },
+      {
+        "question": "Onko äänidatani yksityistä?",
+        "answer": "Kyllä. Käytämme paikallista arkkitehtuuria. Äänitallenteesi käsitellään turvallisesti, emmekä käytä henkilökohtaisia ajatuksiasi julkisten malliemme kouluttamiseen. Aivosi ovat sinun."
+      },
+      {
+        "question": "Voinko vaihtaa suunnitelmia tai peruuttaa milloin tahansa?",
+        "answer": "Ehdottomasti. Voit päivittää, alentaa tai peruuttaa tilauksesi milloin tahansa. Jos peruutat, säilytät pääsyn nykyisen laskutusjakson loppuun saakka."
+      },
+      {
+        "question": "Entä jos se ei toimi minulle?",
+        "answer": "Tarjoamme 30 päivän rahat takaisin -takuun. Jos Vois ei auta sinua tyhjentämään mieltäsi ensimmäisen kuukauden aikana, lähetä meille sähköpostia täydestä hyvityksestä."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Valitse suunnitelmasi",
+    "subtitle": "Aloita ilmaiseksi. Päivitä, kun olet valmis.",
+    "billingMonthly": "Kuukausittain",
+    "billingAnnual": "Vuosittain",
+    "saveLabel": "Säästä jopa 40 %",
+    "freePlanTitle": "Ilmainen",
+    "freePlanDescription": "Kokeile, ei vaadi korttia",
+    "freePlanPeriod": "ikuisesti",
+    "freePlanCta": "Lataa ilmaiseksi",
+    "personalPlanTitle": "Henkilökohtainen",
+    "personalPlanBadge": "Suosittu",
+    "personalPlanDescription": "Arkielämän organisointiin",
+    "personalPlanPeriod": "/kk",
+    "personalPlanCta": "Liity odotuslistalle",
+    "personalPlanNote": "Peruuta milloin tahansa. 30 päivän rahat takaisin -takuu.",
+    "workPlanTitle": "Työ",
+    "workPlanDescription": "Ammattilaisille ja tiimeille",
+    "workPlanPeriod": "/kk",
+    "workPlanCta": "Liity odotuslistalle",
+    "workPlanNote": "Peruuta milloin tahansa. 30 päivän rahat takaisin -takuu."
+  }
+}

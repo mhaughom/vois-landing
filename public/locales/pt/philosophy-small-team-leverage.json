@@ -1,0 +1,53 @@
+{
+  "category": "Filosofia",
+  "title": "Alavancagem para Pequenas Equipes",
+  "tagline": "Você não deveria precisar de 50 funcionários para operar como uma empresa séria. O HABOS dá a pequenas equipes a infraestrutura operacional que antes exigia departamentos inteiros.",
+  "heroPlaceholder": "Ilustração principal",
+  "section1": {
+    "heading": "A lacuna corporativa",
+    "body1": "O software corporativo foi construído para corporações. As plataformas de CRM presumem que você tem uma equipe de operações de vendas para configurá-las. As ferramentas de gestão de projetos presumem que você tem um PMO. As plataformas de operações presumem que você tem engenheiros de processos. Mesmo ferramentas \"simples\" como software de agendamento presumem que alguém tem tempo para configurar e manter.",
+    "body2": "As pequenas empresas — o encanador com 5 técnicos, a consultoria com 3 sócios, o consultório odontológico com 8 funcionários — não têm essas pessoas. Elas têm todos acumulando quatro funções, alternando contextos o dia todo e perdendo informações nas lacunas entre seus 12 aplicativos diferentes."
+  },
+  "section2": {
+    "heading": "Uma plataforma. Sem departamentos necessários.",
+    "body1": "O HABOS substitui toda a pilha. CRM, gestão de projetos, rastreamento de tarefas, calendário, e-mail, documentos, faturamento, reservas, monitoramento de operações, gestão de equipe, marketing e análise — tudo em uma plataforma, todos compartilhando um único cérebro, todos acessíveis por voz.",
+    "body2": "Mas não se trata apenas de consolidação. É sobre as coisas que se tornam possíveis quando tudo está conectado e a IA preenche as lacunas onde você não tem pessoas."
+  },
+  "withoutLabel": "Sem o HABOS",
+  "withoutItems": [
+    "O técnico de campo termina o trabalho, dirige até o escritório para preencher papelada",
+    "O proprietário verifica 5 aplicativos para se preparar para uma ligação com cliente",
+    "Inspeção perdida descoberta quando o auditor chega",
+    "Renovação de contrato esquecida até o cliente ligar para cancelar",
+    "20 minutos de administrativo por trabalho concluído"
+  ],
+  "withLabel": "Com o HABOS",
+  "withItems": [
+    "Nota de voz de 30 segundos da van cria todos os registros",
+    "Resumo de IA aparece 7 minutos antes de cada reunião",
+    "Watchdog alerta na segunda inspeção perdida",
+    "Lembrete proativo 3 semanas antes do contrato expirar",
+    "40 segundos de administrativo por trabalho concluído"
+  ],
+  "platformPlaceholder": "Captura de tela da visão geral da plataforma",
+  "section3": {
+    "heading": "O resumo matinal",
+    "body1": "Toda manhã, o HABOS resume o que precisa da sua atenção. Não um painel que você precisa interpretar. Um resumo conciso: três coisas que importam hoje, por que importam, o que o playbook diz para fazer e uma ação de um toque para aprovar a resposta sugerida.",
+    "body2": "A saúde das operações caiu de verde para amarelo? Você sabe antes da sua equipe. Um contrato está expirando e ninguém começou a renovação? O sistema te avisa, vincula o registro do CRM e se oferece para acionar o fluxo de renovação. Duas novas reservas estão no mesmo bairro? Sugere emparelhá-las como rota para economizar tempo de deslocamento.",
+    "body3": "Essas são coisas que um gerente de operações detectaria — se você tivesse um. O HABOS dá a você o gerente de operações sem aumentar o quadro."
+  },
+  "dashboardPlaceholder": "Captura de tela do painel",
+  "section4": {
+    "heading": "Cresça o negócio, não a sobrecarga",
+    "body1": "O caminho de crescimento tradicional para uma pequena empresa é: conseguir mais trabalho, contratar mais pessoas para lidar com o trabalho, contratar mais pessoas para gerenciar as pessoas. Cada funcionário adiciona complexidade operacional — mais coordenação, mais repassess, mais coisas caindo pelas rachaduras.",
+    "body2": "O HABOS muda a equação. Em vez de contratar um administrativo para lidar com agendamento, deixe a IA fazê-lo. Em vez de contratar um coordenador de marketing, deixe a plataforma rodar suas campanhas. Em vez de contratar um gerente de operações para rastrear conformidade, deixe o Watchdog monitorar 24/7.",
+    "body3": "O resultado: uma empresa de 5 pessoas que opera com a sofisticação e confiabilidade de uma 10 vezes maior."
+  },
+  "quote": "\"Para o encanador em Bergen, sucesso significa: ele fala ao celular por 30 segundos e as coisas certas acontecem em seis sistemas. Ele entra em reuniões preparado sem fazer nenhuma preparação. Os problemas o encontram antes de ele encontrar os problemas.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Memória que se Acumula",
+    "nextLabel": "Próximo",
+    "nextTitle": "Potencialize Sua Equipe"
+  }
+}

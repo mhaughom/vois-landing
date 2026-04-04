@@ -1,0 +1,64 @@
+{
+  "badge": "Funcionalidade Principal",
+  "hero": {
+    "title": "Todo o Seu Negócio.\nNo Seu Pulso.",
+    "description": "Não é um espelho de notificações. É um assistente de IA completo com voz, ferramentas e respostas em menos de 300ms."
+  },
+  "intro": "Um trabalhador de campo usando o relógio pode ditar uma nota de voz de 30 segundos entre os trabalhos. O Smart Router a processa em tarefas, eventos e notas. Ele nunca abre o celular. Os dados fluem para o sistema unificado e ficam imediatamente visíveis para a equipe do escritório no painel web. Três correções de conformidade NECP evitam que o watchOS encerre a conexão \u2014 resolvendo o timeout de 35 segundos que atormenta todos os outros aplicativos de IA para relógio.",
+  "stats": [
+    {
+      "number": "<300ms",
+      "label": "Tempo de resposta de fala para fala. Mais rápido do que tirar o celular do bolso."
+    },
+    {
+      "number": "8 Ferramentas",
+      "label": "Crie tarefas, verifique o calendário, busque dados, elabore e-mails \u2014 tudo do seu pulso."
+    },
+    {
+      "number": "0 Aplicativos Abertos",
+      "label": "Dite uma atualização de 30 segundos entre os trabalhos. Ela vira tarefas, eventos e notas automaticamente."
+    }
+  ],
+  "timeline": {
+    "title": "Uma Manhã no Campo",
+    "entries": [
+      {
+        "time": "7h45",
+        "text": "Dirigindo para o primeiro trabalho. Levante o pulso: \"Qual é minha agenda hoje?\" O relógio lê de volta 4 compromissos."
+      },
+      {
+        "time": "9h15",
+        "text": "Entre trabalhos. \"Acabei de instalar o aquecedor de água da Henderson, usei dois conectores flexíveis, levei 3 horas.\" O relógio cria o registro do trabalho, atualiza o estoque, registra o tempo."
+      },
+      {
+        "time": "11h00",
+        "text": "No local. \"Me lembre de pedir mais conectores flexíveis e fazer o acompanhamento com a Sarah sobre a reforma.\" Duas tarefas criadas, zero digitação."
+      },
+      {
+        "time": "12h30",
+        "text": "Intervalo para almoço. Muda para modo de texto em restaurante silencioso. Digita: \"Como estão os recebíveis este mês?\" Recebe um resumo financeiro completo."
+      }
+    ]
+  },
+  "features": {
+    "suggestionCards": {
+      "title": "Cartões de Sugestão",
+      "description": "Após cada troca, cartões de ação aparecem na face do relógio. \u201cCriar tarefa: Acompanhamento com Sarah\u201d ou \u201cAgendar: Visita ao local terça 14h\u201d. Toque para confirmar, deslize para dispensar. Sem teclado minúsculo necessário."
+    },
+    "seamlessHandoff": {
+      "title": "Transferência Perfeita",
+      "description": "Inicie uma conversa no seu relógio, continue no celular ou Mac. Notas de voz gravadas no relógio fluem pelo Smart Router \u2014 a equipe do escritório vê as atualizações em tempo real sem você tocar no celular."
+    }
+  },
+  "techPills": [
+    "Relay via WebSocket",
+    "OpenAI Realtime V2",
+    "Conforme NECP (sem timeout de 35s)",
+    "37 arquivos Swift",
+    "Modo duplo: voz + texto"
+  ],
+  "closing": {
+    "tagline": "Outros aplicativos de relógio mostram notificações. O VOIS coloca todo o seu negócio no seu pulso.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

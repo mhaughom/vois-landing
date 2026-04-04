@@ -1,0 +1,56 @@
+{
+  "category": "Filosofi",
+  "title": "Rådgivare som inte håller med",
+  "tagline": "Varje annan AI-produkt lovar konsensus. HABOS lovar produktiv konflikt. Eftersom de bästa besluten kommer av att höra argumentet du inte ville höra.",
+  "heroPlaceholder": "Hjälteillustration",
+  "section1": {
+    "heading": "Ja-maskin-problemet",
+    "body1": "De flesta AI-assistenter är sycofanter. Ställ en dålig fråga, få ett entusiastiskt svar. Föreslå en bristfällig strategi, få understödjande punktlistor. AI:n håller med dig eftersom den är optimerad för att vara hjälpsam, och hjälpsamhet har förväxlats med instämmande.",
+    "body2": "Det fungerar bra för att skriva e-post. Det är farligt för att fatta affärsbeslut. En grundare som bara hör \"bra idé\" är en grundare som går rakt in i väggar."
+  },
+  "section2": {
+    "heading": "Det strategiska rådet",
+    "body": "HABOS ger dig inte ett AI-perspektiv. Det ger dig flera — var och en med ett annat uppdrag, en annan risktolerans och en annan uppsättning prioriteringar. Vi kallar det Strategiska rådet."
+  },
+  "advisors": [
+    {
+      "name": "Operatören",
+      "desc": "Fokuserad på genomförande, tidsramar och resursbegränsningar. Frågar: \"Kan vi faktiskt göra detta med vad vi har?\""
+    },
+    {
+      "name": "Strategen",
+      "desc": "Fokuserad på långsiktig positionering, marknadsdynamik och konkurrensfördelar. Frågar: \"Bör vi överhuvudtaget göra detta?\""
+    },
+    {
+      "name": "Kontrarianen",
+      "desc": "Argumenterar avsiktligt för den motsatta positionen. Stresstestare antaganden. Frågar: \"Vad händer om du har fel om detta?\""
+    },
+    {
+      "name": "Kundrösten",
+      "desc": "Representerar dina kunders perspektiv baserat på CRM-data, feedback och konversationshistorik. Frågar: \"Vad skulle dina kunder faktiskt vilja?\""
+    }
+  ],
+  "councilPlaceholder": "Visualisering av rådsdebatt",
+  "section3": {
+    "heading": "Strukturerat meningsskiljaktighet",
+    "body1": "När du tar ett beslut till rådet — \"Ska vi expandera till Bergens marknad?\" eller \"Ska vi anställa en andra tekniker?\" — får du inte ett svar. Du får en strukturerad debatt. Varje rådgivare presenterar sitt fall, svarar på de andras och lyfter fram risker som de andra inte nämnde.",
+    "body2": "Resultatet är inte en rekommendation. Det är ett beslutsunderlag: de starkaste argumenten för och emot, de viktigaste osäkerheterna, de datapunkter som betyder mest och de frågor du bör besvara innan du bestämmer dig. Du fattar beslutet. Rådet ser till att du har hört allt först."
+  },
+  "section4": {
+    "heading": "Varför detta är svårare än det låter",
+    "body1": "Att bygga AI som argumenterar med sig själv är genuint svårt. Det kräver att man ger varje rådgivare ett distinkt resonemansramverk, förhindrar att de kollapsar till instämmande, förankrar deras argument i dina faktiska affärsdata och presenterar oenigheten på ett sätt som är användbart snarare än förvirrande.",
+    "body2": "De flesta AI-företag försöker inte detta eftersom konsensus är lättare att leverera och marknadsföra. Men konsensus är också mindre värdefullt. Hela poängen med att ha rådgivare är att de ser saker du inte ser — inklusive saker du inte vill se."
+  },
+  "section5": {
+    "heading": "Kalibrerat för ditt företag",
+    "body1": "Rådet är inte generiskt. Operatören känner till ditt teams faktiska kapacitet eftersom den läser dina resursdata. Strategen känner till din konkurrenslandskap eftersom den läser din marknadsundersökning. Kundrösten känner till dina kunders verkliga bekymmer eftersom den läser ditt CRM och supportärenden.",
+    "body2": "Efter sex månader är rådets argument förankrade i mönster från ditt specifika företag — inte teoretiska MBA-ramverk."
+  },
+  "quote": "\"Det farligaste en AI kan göra är att berätta vad du vill höra. Det mest värdefulla den kan göra är att berätta vad du behöver höra.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Din röst, inte vår",
+    "nextLabel": "Nästa",
+    "nextTitle": "Minne som förstärks"
+  }
+}

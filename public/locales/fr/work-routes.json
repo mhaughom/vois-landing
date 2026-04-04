@@ -1,0 +1,85 @@
+{
+  "badge": "Gestion des itinéraires",
+  "hero": {
+    "title": "Des itinéraires qui se construisent d'eux-mêmes.",
+    "description": "Assignez des missions à un technicien et HABOS génère automatiquement son itinéraire pour la journée — arrêts géocodés, ordre optimisé et navigation en un clic vers Google Maps."
+  },
+  "body": "Quand vous assignez une visite de mission à un technicien, son itinéraire géré se met à jour automatiquement avec des arrêts géocodés via Mapbox. Modifiez manuellement et il se détache pour éviter les écrasements automatisés. Chaque itinéraire capture des points GPS à intervalles de cinq secondes, avec la distance de Haversine calculée côté serveur pour une facturation kilométrique précise. Les travailleurs terrain marquent les arrêts comme terminés ou ignorés depuis leur téléphone — le bureau voit l'avancement en temps réel sans un seul appel téléphonique.",
+  "routeCard": {
+    "heading": "Mike Torres — Itinéraire du mercredi",
+    "subheading": "5 arrêts · 75 km estimés",
+    "navigate": "Naviguer",
+    "footnote": "Arrêts géocodés automatiquement via Mapbox. Faites glisser pour réorganiser. Appuyez sur « Naviguer » pour la navigation guidée."
+  },
+  "stops": [
+    {
+      "name": "Résidence Henderson",
+      "time": "9h00",
+      "task": "Installation chauffe-eau",
+      "statusLabel": "Terminé"
+    },
+    {
+      "name": "Bureaux Baker",
+      "time": "11h00",
+      "task": "Maintenance CVC",
+      "statusLabel": "Terminé"
+    },
+    {
+      "name": "Domicile Wilson",
+      "time": "13h00",
+      "task": "Réparation plomberie",
+      "statusLabel": "En cours"
+    },
+    {
+      "name": "Appartement Garcia",
+      "time": "15h00",
+      "task": "Inspection électrique",
+      "statusLabel": "En attente"
+    },
+    {
+      "name": "Propriété Johnson",
+      "time": "16h30",
+      "task": "Fuite d'urgence",
+      "statusLabel": "Ajouté aujourd'hui"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Synchronisation automatique depuis le dispatch",
+      "desc": "Quand vous assignez une visite de mission à un technicien, son itinéraire géré se met à jour automatiquement. Modifiez manuellement et il se détache — aucun écrasement accidentel."
+    },
+    {
+      "title": "Suivi du statut des arrêts",
+      "desc": "Les travailleurs terrain marquent les arrêts comme terminés ou ignorés depuis leur téléphone. Le bureau voit l'avancement en temps réel sans appeler."
+    },
+    {
+      "title": "Suivi GPS kilométrique",
+      "desc": "Chaque itinéraire capture des points GPS (intervalles de 5 s). Distance de Haversine calculée côté serveur. Kilométrage précis pour la facturation et le remboursement."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Sans HABOS",
+      "description": "Matin : imprimer la liste des missions. Saisir manuellement les adresses dans Google Maps une par une. Espérer que l'ordre a du sens. Appeler le bureau pour les modifications. Consigner le kilométrage sur papier.",
+      "outcome": "~30 min perdues par jour"
+    },
+    "with": {
+      "label": "Avec HABOS",
+      "description": "Matin : ouvrir l'application. L'itinéraire est prêt avec tous les arrêts, dans l'ordre optimisé, et la navigation en un clic. Marquez les arrêts comme terminés au fur et à mesure. Kilométrage enregistré automatiquement.",
+      "outcome": "0 min de planification"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Géocodage + directions Mapbox",
+      "Synchronisation automatique d'itinéraire géré",
+      "Points GPS toutes les 5 s",
+      "Distance de Haversine",
+      "Lien profond Google Maps"
+    ]
+  },
+  "cta": {
+    "heading": "Les autres outils vous font planifier les itinéraires. HABOS les planifie pour vous.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

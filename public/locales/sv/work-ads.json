@@ -1,0 +1,24 @@
+{
+  "backLink": "Tillbaka till plattformen",
+  "category": "Innehåll & marknadsföring",
+  "title": "Annonser",
+  "description": "Kör annonskampanjer drivna av din affärsdata. HABOS kopplar samman ditt CRM, produkter och kundhistorik för att bygga smartare målgrupper och mäta verklig ROI — inte fåfänga mätvärden.",
+  "benefits": [
+    {
+      "title": "AI-riktade kampanjer",
+      "desc": "HABOS analyserar ditt CRM, ordrar och kunddata för att bygga målgrupper som faktiskt konverterar — ingen gissning."
+    },
+    {
+      "title": "Publicering på flera plattformar",
+      "desc": "Skapa en gång, publicera till Google, Meta, LinkedIn och TikTok. Budgetallokering optimerad av AI i realtid."
+    },
+    {
+      "title": "Attribution som ger mening",
+      "desc": "Se vilken annons som gav vilken kund, vilken affär, vilka intäkter — kopplat från början till slut genom ditt CRM."
+    },
+    {
+      "title": "Röstkapade annonser",
+      "desc": "Beskriv ditt erbjudande med rösten och få annonstext, visuellt material och målinriktningsförslag genererat direkt."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "category": "Filosofi",
+  "title": "Liten-team-løftestang",
+  "tagline": "Du burde ikke trenge 50 ansatte for å operere som et seriøst selskap. HABOS gir småteam den operative infrastrukturen som pleide å kreve hele avdelinger.",
+  "heroPlaceholder": "Illustrasjon",
+  "section1": {
+    "heading": "Bedriftsgapet",
+    "body1": "Bedriftsprogramvare ble bygget for bedrifter. CRM-plattformer antar at du har et salgsdriftsteam til å konfigurere dem. Prosjektstyringsverktøy antar at du har en PMO. Operasjonsplattformer antar at du har prosessingeniører. Selv «enkle» verktøy som planleggingsprogramvare antar at noen har tid til å sette dem opp og vedlikeholde dem.",
+    "body2": "Småbedrifter — rørleggeren med 5 teknikere, konsulentfirmaet med 3 partnere, tannlegepraksisen med 8 ansatte — har ikke disse folkene. De har alle som bærer fire hatter, kontekstswitcher hele dagen og mister informasjon i gapene mellom de 12 forskjellige appene."
+  },
+  "section2": {
+    "heading": "Én plattform. Ingen avdelinger nødvendig.",
+    "body1": "HABOS erstatter hele stakken. CRM, prosjektstyring, oppgavesporing, kalender, e-post, dokumenter, fakturering, bestillinger, operasjonsovervåking, teamledelse, markedsføring og analyse — alt på én plattform, alle deler én hjerne, alle tilgjengelig via stemme.",
+    "body2": "Men det handler ikke bare om konsolidering. Det handler om tingene som blir mulige når alt er koblet og AI fyller hullene der du ikke har folk."
+  },
+  "withoutLabel": "Uten HABOS",
+  "withoutItems": [
+    "Felttekniker er ferdig med oppdrag, kjører til kontoret for å fylle papirarbeid",
+    "Eier sjekker 5 apper for å forberede seg til en klientsamtale",
+    "Tapt inspeksjon oppdaget når revisoren ankommer",
+    "Kontraktsfornyelse glemt til klienten ringer for å avslutte",
+    "20 minutter administrasjon per fullført oppdrag"
+  ],
+  "withLabel": "Med HABOS",
+  "withItems": [
+    "30-sekunders stemmenotat fra bilen oppretter alle poster",
+    "AI-briefing vises 7 minutter før hvert møte",
+    "Vaktfunksjon varsler ved andre tapte inspeksjon",
+    "Proaktiv påminnelse 3 uker før kontrakten utløper",
+    "40 sekunder administrasjon per fullført oppdrag"
+  ],
+  "platformPlaceholder": "Skjermbilde av plattformoversikt",
+  "section3": {
+    "heading": "Morgenbriefingen",
+    "body1": "Hver morgen oppsummerer HABOS hva som trenger din oppmerksomhet. Ikke et dashbord du må tolke. En kortfattet briefing: tre ting som er viktige i dag, hvorfor de er viktige, hva spillboken sier å gjøre og ett-trykks handling for å godkjenne det foreslåtte svaret.",
+    "body2": "Operasjonshelse falt fra grønt til gult? Du vet det før teamet ditt gjør det. En kontrakt utløper og ingen har startet fornyelsen? Systemet forteller deg det, lenker til CRM-posten og tilbyr å utløse fornyelsesarbeidsflyten. To nye bestillinger er i samme nabolag? Det foreslår å parre dem som en rute for å spare reisetid.",
+    "body3": "Dette er ting en driftsleder ville fange opp — hvis du hadde en. HABOS gir deg driftslederen uten å ansette."
+  },
+  "dashboardPlaceholder": "Skjermbilde av dashbord",
+  "section4": {
+    "heading": "Voks bedriften, ikke overheaden",
+    "body1": "Den tradisjonelle vekstveien for en småbedrift er: få mer arbeid, ansett flere folk til å håndtere arbeidet, ansett flere folk til å lede folkene. Hver ansatt legger til operasjonell kompleksitet — mer koordinering, flere overleveringer, flere ting som faller gjennom sprekker.",
+    "body2": "HABOS endrer ligningen. I stedet for å ansette en administrator for å håndtere planlegging, la AI-en gjøre det. I stedet for å ansette en markedsføringskoordinator, la plattformen kjøre kampanjene dine. I stedet for å ansette en driftsleder for å spore samsvar, la Vaktfunksjonen overvåke det 24/7.",
+    "body3": "Resultatet: et 5-personers selskap som opererer med sofistikering og pålitelighet til ett 10 ganger dets størrelse."
+  },
+  "quote": "«For rørleggeren i Bergen betyr suksess: han snakker inn i telefonen i 30 sekunder og de rette tingene skjer på tvers av seks systemer. Han går inn i møter forberedt uten å ha gjort noen forberedelse. Problemer finner ham før han finner dem.»",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Minne som vokser",
+    "nextLabel": "Neste",
+    "nextTitle": "Supercharge teamet ditt"
+  }
+}

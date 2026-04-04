@@ -1,0 +1,75 @@
+{
+  "badge": "Smart Router",
+  "hero": {
+    "title": "En inspelning.\nFyra system uppdaterade.",
+    "description": "Prata i 30 sekunder om din dag. HABOS identifierar varje avsikt och dirigerar var och en till rätt plats."
+  },
+  "heroPills": ["11 avsiktstyper", "< 3 sek bearbetning", "Ordnivåmappning"],
+  "intro": "Det här är inte tal-till-text följt av formulärifyllning. Det här är tal till förståelse till flersystems-orkestrering. Den närmaste analogin är en mänsklig chefsassistent som lyssnar på din ramblade uppdatering och skapar fyra olika poster i fyra olika system \u2014 förutom att HABOS gör det på under tre sekunder. Systemet förstår till och med varaktighet: en tvåminuters inspelning som nämner 'möte' klassificeras som schemaläggning. En femtonminuters inspelning som nämner 'möte' klassificeras som mötesanteckningar.",
+  "demo": {
+    "transcript": "\u201cPåminn mig om att följa upp med Sarah om köksofferten, schemalägg ett platsbesök nästa tisdag klockan 14, vi använde tre kartonger kakel från lagret och berätta för Mike att tillstånden kom igenom.\u201d",
+    "cards": [
+      {
+        "label": "Uppgift skapad",
+        "detail": "Följ upp med Sarah \u2014 Köksrenovering"
+      },
+      {
+        "label": "Händelse schemalagd",
+        "detail": "Platsbesök \u2014 Tisdag 14:00"
+      },
+      {
+        "label": "Lager uppdaterat",
+        "detail": "Kakel \u2014 3 kartonger avdragna"
+      },
+      {
+        "label": "Meddelande utkasdat",
+        "detail": "Till Mike: Tillstånden kom igenom"
+      }
+    ],
+    "footer": "Allt från en mening. Noll appbyte."
+  },
+  "benefitCards": [
+    {
+      "title": "15 min \u2192 30 sek",
+      "body": "Morgonuppdateringen som brukade innebära att öppna 4 appar och skriva in i var och en? Prata bara."
+    },
+    {
+      "title": "Noll missade poster",
+      "body": "Förtroendepoängsättning fångar lågcertifieringsavsikter och dirigerar dem till en inkorg för din granskning."
+    },
+    {
+      "title": "Fungerar överallt",
+      "body": "Spela in på din telefon, klocka eller Mac. Smart Router bearbetar identiskt på varje enhet."
+    }
+  ],
+  "confidence": {
+    "title": "Hur förtroende fungerar",
+    "rows": [
+      {
+        "range": "\u2265 85%",
+        "label": "Autoskapad",
+        "detail": "Högt förtroende-poster går direkt till sin destination."
+      },
+      {
+        "range": "50\u201384%",
+        "label": "Inkorgsgranskning",
+        "detail": "Medelmåttigt förtroende-poster väntar på att du bekräftar."
+      },
+      {
+        "range": "< 50%",
+        "label": "Hjärndump",
+        "detail": "Lågt förtroende-poster sparas som anteckningar. Ingenting går förlorat."
+      }
+    ]
+  },
+  "techStrip": [
+    "Deepgram Nova-3 transkribering",
+    "Varaktighetsmedveten dirigering",
+    "Ordnivåindexmappning",
+    "11 avsiktstyper"
+  ],
+  "closing": {
+    "tagline": "Andra appar låter dig spela in röstmemon. HABOS förstår dem.",
+    "cta": "Gå med i väntelistan"
+  }
+}

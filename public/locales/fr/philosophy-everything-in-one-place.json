@@ -1,0 +1,44 @@
+{
+  "category": "Philosophie",
+  "title": "Tout au même endroit",
+  "tagline": "Un seul identifiant. Chaque outil. Contexte partagé.",
+  "heroAlt": "Tout au même endroit — plateforme professionnelle unifiée",
+  "section1": {
+    "heading": "La taxe SaaS",
+    "body1": "La petite entreprise moyenne utilise 8 à 12 outils logiciels. Chacun avec son propre identifiant, son modèle de données, son cycle de facturation et sa courbe d'apprentissage. Aucun ne communique nativement avec les autres. Le dirigeant devient la couche d'intégration — copiant manuellement les données entre les applications et payant un troisième outil pour faire semblant que deux autres coopèrent.",
+    "body2": "Le coût des abonnements n'est même pas la vraie taxe. C'est la taxe cognitive. Le changement de contexte. La question « quelle application a la dernière version ? ». La taxe d'intégration quand chaque nouvelle recrue a besoin de 10 comptes. Le workflow Zapier qui échoue silencieusement un samedi."
+  },
+  "section2": {
+    "heading": "Une note vocale, six mises à jour",
+    "quote": "« La rénovation de la cuisine Henderson est terminée. Ça a pris 4 heures, j'ai utilisé le reste du carrelage en stock. Le client était satisfait — il veut un devis pour la salle de bain ensuite. »",
+    "intro": "De cette unique note vocale, VOIS met à jour :",
+    "updates": [
+      "Statut du projet → terminé",
+      "Suivi du temps → 4 heures enregistrées et clôturées",
+      "Facture → brouillon généré à partir de la portée du projet",
+      "Notification client → e-mail de complétion mis en file d'attente",
+      "Chronologie CRM → mise à jour avec complétion + nouvel intérêt",
+      "Nouvelle opportunité → devis salle de bain ajouté au pipeline"
+    ],
+    "outro": "Six « modules » mis à jour à partir d'une seule saisie — parce qu'ils partagent la même base de données, pas six APIs assemblées avec de l'espoir."
+  },
+  "costComparison": {
+    "separateTitle": "10 outils séparés",
+    "separatePrice": "350 $+",
+    "separatePricePer": "/mois",
+    "separateDetail1": "10 identifiants · 5+ workflows Zapier",
+    "separateDetail2": "~3 heures pour intégrer un nouvel employé",
+    "voisTitle": "VOIS",
+    "voisPrice": "35 $",
+    "voisPricePer": "/mois",
+    "voisDetail1": "1 identifiant · 0 intégration à maintenir",
+    "voisDetail2": "~5 minutes pour intégrer un nouvel employé"
+  },
+  "quote": "« L'intégration est un aveu que vos outils ne fonctionnent pas ensemble. Nous avons construit un seul outil qui le fait. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Le Sas de Sécurité",
+    "nextLabel": "Suivant",
+    "nextTitle": "Un seul assistant"
+  }
+}

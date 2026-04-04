@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Car, MapPin, Eye, Route, Users, Gauge } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { useTranslation } from 'react-i18next';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -24,53 +25,6 @@ interface MapPin_ {
   top: string;
   left: string;
 }
-
-const pins: MapPin_[] = [
-  {
-    name: 'Mike T.',
-    status: 'on-site',
-    label: 'On site — Henderson',
-    speed: 0,
-    color: 'bg-emerald-400',
-    dotBg: '#34d399',
-    top: '22%',
-    left: '28%',
-  },
-  {
-    name: 'Sarah L.',
-    status: 'driving',
-    label: 'En route — Wilson',
-    sublabel: '(driving)',
-    speed: 45,
-    color: 'bg-amber-400',
-    dotBg: '#fbbf24',
-    top: '48%',
-    left: '62%',
-  },
-  {
-    name: 'James K.',
-    status: 'on-site',
-    label: 'On site — Garcia',
-    speed: 0,
-    color: 'bg-emerald-400',
-    dotBg: '#34d399',
-    top: '65%',
-    left: '35%',
-  },
-  {
-    name: 'Lisa M.',
-    status: 'available',
-    label: 'Available',
-    sublabel: 'Last: Baker Office',
-    speed: 0,
-    color: 'bg-sky-400',
-    dotBg: '#38bdf8',
-    top: '38%',
-    left: '78%',
-  },
-];
-
-const groupTabs = ['All', 'Project', 'Department', 'Operations'] as const;
 
 /* ── Faux road network (purely decorative SVG lines) ──────────────────── */
 
@@ -96,8 +50,39 @@ const RoadNetwork = () => (
 
 /* ── Component ────────────────────────────────────────────────────────── */
 
+const pinPositions = [
+  { status: 'on-site' as PinStatus, color: 'bg-emerald-400', dotBg: '#34d399', top: '22%', left: '28%' },
+  { status: 'driving' as PinStatus, color: 'bg-amber-400', dotBg: '#fbbf24', top: '48%', left: '62%' },
+  { status: 'on-site' as PinStatus, color: 'bg-emerald-400', dotBg: '#34d399', top: '65%', left: '35%' },
+  { status: 'available' as PinStatus, color: 'bg-sky-400', dotBg: '#38bdf8', top: '38%', left: '78%' },
+];
+
 const TeamMap: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<typeof groupTabs[number]>('All');
+  const { t } = useTranslation('work-team-map');
+
+  const groupTabs = t('groupTabs', { returnObjects: true }) as string[];
+  const [activeTab, setActiveTab] = useState<string>(groupTabs[0] ?? 'All');
+
+  const pinsData = t('pins', { returnObjects: true }) as Array<{
+    name: string;
+    label: string;
+    sublabel?: string;
+    speed: number;
+  }>;
+
+  const pins: MapPin_[] = pinsData.map((p, i) => ({
+    name: p.name,
+    status: pinPositions[i]?.status ?? 'available',
+    label: p.label,
+    sublabel: p.sublabel,
+    speed: p.speed,
+    color: pinPositions[i]?.color ?? 'bg-slate-400',
+    dotBg: pinPositions[i]?.dotBg ?? '#94a3b8',
+    top: pinPositions[i]?.top ?? '50%',
+    left: pinPositions[i]?.left ?? '50%',
+  }));
+
+  const techItems = t('techStrip.items', { returnObjects: true }) as string[];
 
   return (
     <div className="min-h-screen bg-white">
@@ -111,20 +96,19 @@ const TeamMap: React.FC = () => {
           <motion.section {...fadeUp()} className="text-center max-w-3xl mx-auto mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-sky-500/10 text-sky-700 rounded-full text-sm font-medium mb-6">
               <Eye size={14} />
-              Real-Time Visibility
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
-              See Your Entire Team.<br />In Real Time.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
-              Every field worker on a live map — color-coded by project, department, or operation.
-              Know who's driving, who's on-site, and who's available.
+              {t('hero.description')}
             </p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16">
             <p className="text-lg text-slate-600 leading-relaxed text-center">
-              Every clocked-in team member appears on a live Mapbox map, updated every 30 seconds via Supabase Realtime. When a worker's speed exceeds 3 km/h, an amber driving badge appears on their pin — managers instantly know who's between jobs. Five grouping modes let you view by project, department, operations, org level, or everyone at once, each with a deterministic color palette so the same person always gets the same color.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -207,7 +191,7 @@ const TeamMap: React.FC = () => {
 
               {/* Caption */}
               <p className="text-xs text-slate-400 text-center mt-5">
-                Updated every ~30 seconds via Supabase Realtime. Driving badge appears when speed &gt; 3 km/h.
+                {t('mapCaption')}
               </p>
             </div>
           </motion.section>
@@ -221,11 +205,10 @@ const TeamMap: React.FC = () => {
                   <div className="w-9 h-9 bg-sky-100 rounded-lg flex items-center justify-center">
                     <Users size={18} className="text-sky-600" />
                   </div>
-                  <h3 className="font-semibold text-slate-900">5 grouping modes</h3>
+                  <h3 className="font-semibold text-slate-900">{t('benefits.grouping.title')}</h3>
                 </div>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  View by All, Project, Department, Operations, or Org Level. Each with
-                  deterministic color palette — same person, same color, every time.
+                  {t('benefits.grouping.description')}
                 </p>
               </div>
 
@@ -235,11 +218,10 @@ const TeamMap: React.FC = () => {
                   <div className="w-9 h-9 bg-sky-100 rounded-lg flex items-center justify-center">
                     <Gauge size={18} className="text-sky-600" />
                   </div>
-                  <h3 className="font-semibold text-slate-900">Driving detection</h3>
+                  <h3 className="font-semibold text-slate-900">{t('benefits.driving.title')}</h3>
                 </div>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  When a worker's speed exceeds 3 km/h, an amber car badge appears on their pin.
-                  Managers instantly see who's between jobs.
+                  {t('benefits.driving.description')}
                 </p>
               </div>
 
@@ -249,11 +231,10 @@ const TeamMap: React.FC = () => {
                   <div className="w-9 h-9 bg-sky-100 rounded-lg flex items-center justify-center">
                     <Route size={18} className="text-sky-600" />
                   </div>
-                  <h3 className="font-semibold text-slate-900">Route overlay</h3>
+                  <h3 className="font-semibold text-slate-900">{t('benefits.route.title')}</h3>
                 </div>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Toggle route polylines from Mapbox Directions API. See the planned route vs
-                  actual location — spot deviations or delays immediately.
+                  {t('benefits.route.description')}
                 </p>
               </div>
             </div>
@@ -263,11 +244,7 @@ const TeamMap: React.FC = () => {
           <motion.section {...fadeUp(0.35)} className="mb-20">
             <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-10">
               <p className="text-lg md:text-xl leading-relaxed text-slate-300">
-                A client calls: <span className="text-white font-medium">&ldquo;The leak is getting worse, can someone come sooner?&rdquo;</span> You
-                open Team Map, see Mike is 10 minutes away and finishing his current job. You
-                reassign the emergency to Mike from the dispatch board. His phone updates, the map
-                pin changes to <span className="text-white font-medium">&ldquo;En route — Johnson,&rdquo;</span> and you tell the
-                client: <span className="text-white font-medium">&ldquo;Mike will be there in 15 minutes.&rdquo;</span> No guessing, no phone tag.
+                A client calls: <span className="text-white font-medium">&ldquo;{t('scenario.quote1')}&rdquo;</span> {t('scenario.narrative1')} <span className="text-white font-medium">&ldquo;{t('scenario.quote2')}&rdquo;</span> {t('scenario.narrative2')} <span className="text-white font-medium">&ldquo;{t('scenario.quote3')}&rdquo;</span> {t('scenario.narrative3')}
               </p>
             </div>
           </motion.section>
@@ -275,23 +252,19 @@ const TeamMap: React.FC = () => {
           {/* ━━━ 5. Tech strip ━━━ */}
           <motion.section {...fadeUp(0.4)} className="mb-20">
             <div className="bg-sky-50 border border-sky-200 rounded-2xl px-8 py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sky-700 text-sm font-medium">
-              <span>Mapbox GL</span>
-              <span className="text-sky-300">&middot;</span>
-              <span>Supabase Realtime</span>
-              <span className="text-sky-300">&middot;</span>
-              <span>~30s refresh</span>
-              <span className="text-sky-300">&middot;</span>
-              <span>GPS waypoints</span>
-              <span className="text-sky-300">&middot;</span>
-              <span>Deterministic color palette</span>
+              {techItems.map((item, i) => (
+                <React.Fragment key={item}>
+                  {i > 0 && <span className="text-sky-300">&middot;</span>}
+                  <span>{item}</span>
+                </React.Fragment>
+              ))}
             </div>
           </motion.section>
 
           {/* ━━━ 6. Closing ━━━ */}
           <motion.section {...fadeUp(0.45)} className="text-center max-w-2xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-6 leading-snug">
-              Other tools show you where workers <em>were</em>.<br />
-              HABOS shows you where they <em>are</em>.
+              {t('cta.heading')}
             </h2>
             <a href="/work">
               <motion.button
@@ -299,7 +272,7 @@ const TeamMap: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="px-8 py-3.5 rounded-full text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm"
               >
-                Join Waitlist
+                {t('cta.button')}
               </motion.button>
             </a>
           </motion.section>

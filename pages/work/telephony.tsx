@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Navbar } from '../../components/Navbar';
 import {
@@ -38,45 +39,34 @@ const stepStagger = {
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
-/* ── call flow data ───────────────────────────────────────────────────── */
-
-interface CallStep {
-  icon: React.ReactNode;
-  label: string;
-  speaker?: 'system' | 'ai' | 'caller';
-}
-
-const callSteps: CallStep[] = [
-  {
-    icon: <PhoneIncoming size={15} className="text-emerald-600" />,
-    label: 'Incoming call: (555) 234-5678',
-    speaker: 'system',
-  },
-  {
-    icon: <Cpu size={15} className="text-emerald-600" />,
-    label: "AI answers: 'Henderson Plumbing, how can I help you?'",
-    speaker: 'ai',
-  },
-  {
-    icon: <Phone size={15} className="text-slate-500" />,
-    label: "Caller: 'I have a leaking pipe, can someone come today?'",
-    speaker: 'caller',
-  },
-  {
-    icon: <Calendar size={15} className="text-emerald-600" />,
-    label: 'AI checks calendar \u2192 finds 2:00 PM slot available',
-    speaker: 'ai',
-  },
-  {
-    icon: <Cpu size={15} className="text-emerald-600" />,
-    label: "AI: 'I can schedule a technician at 2:00 PM today. Would that work?'",
-    speaker: 'ai',
-  },
-];
-
 /* ── page component ────────────────────────────────────────────────────── */
 
 const Telephony: React.FC = () => {
+  const { t } = useTranslation('work-telephony');
+
+  interface CallStep {
+    label: string;
+  }
+
+  const callSteps = t('callFlow.steps', { returnObjects: true }) as CallStep[];
+  const techStrip = t('techStrip', { returnObjects: true }) as string[];
+
+  const callStepIcons = [
+    <PhoneIncoming size={15} className="text-emerald-600" />,
+    <Cpu size={15} className="text-emerald-600" />,
+    <Phone size={15} className="text-slate-500" />,
+    <Calendar size={15} className="text-emerald-600" />,
+    <Cpu size={15} className="text-emerald-600" />,
+  ];
+
+  const techStripIcons = [
+    <Radio size={14} />,
+    <Zap size={14} />,
+    <Cpu size={14} />,
+    <Lock size={14} />,
+    <Search size={14} />,
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -94,7 +84,7 @@ const Telephony: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-emerald-500/10 text-emerald-700 rounded-full text-sm font-medium mb-6">
-                AI Telephony
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -103,8 +93,12 @@ const Telephony: React.FC = () => {
               transition={{ duration: 0.6, ease: easeOutExpo }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]"
             >
-              An AI Receptionist.<br />
-              A Real Phone Number.
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </motion.h1>
 
             <motion.p
@@ -112,14 +106,13 @@ const Telephony: React.FC = () => {
               transition={{ duration: 0.6, ease: easeOutExpo }}
               className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed"
             >
-              HABOS provisions a dedicated phone number for your business. AI answers
-              calls, books meetings, creates tasks, and triages to the right person — 24/7.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              HABOS provisions real phone numbers — both workspace business lines via Telnyx and personal AI assistant numbers via Twilio. When someone calls, the AI assistant answers with full tool access: check calendar, create tasks, send messages, look up contacts. High-risk actions like booking or payments use SMS-based approval — a four-digit code texted to the user. Inbound SMS to the assistant number triggers a conversational AI session with the same full capabilities.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -144,7 +137,7 @@ const Telephony: React.FC = () => {
                       transition={{ duration: 0.45, ease: easeOutExpo }}
                       className="bg-white rounded-lg p-3 border border-slate-100 flex items-start gap-3"
                     >
-                      <div className="flex-shrink-0 mt-0.5">{step.icon}</div>
+                      <div className="flex-shrink-0 mt-0.5">{callStepIcons[i]}</div>
                       <p className="text-sm text-slate-700 leading-snug">{step.label}</p>
                     </motion.div>
                     {i < callSteps.length - 1 && (
@@ -168,19 +161,19 @@ const Telephony: React.FC = () => {
                 >
                   <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
                     <span className="flex items-center gap-1.5">
-                      <Calendar size={14} /> Booking created
+                      <Calendar size={14} /> {t('callFlow.resultItems.booking')}
                     </span>
                     <span className="text-emerald-300">&middot;</span>
                     <span className="flex items-center gap-1.5">
-                      <Ticket size={14} /> Ticket opened
+                      <Ticket size={14} /> {t('callFlow.resultItems.ticket')}
                     </span>
                     <span className="text-emerald-300">&middot;</span>
                     <span className="flex items-center gap-1.5">
-                      <Bell size={14} /> Mike notified
+                      <Bell size={14} /> {t('callFlow.resultItems.notify')}
                     </span>
                     <span className="text-emerald-300">&middot;</span>
                     <span className="flex items-center gap-1.5">
-                      <Send size={14} /> SMS confirmation sent
+                      <Send size={14} /> {t('callFlow.resultItems.sms')}
                     </span>
                   </div>
                 </motion.div>
@@ -188,7 +181,7 @@ const Telephony: React.FC = () => {
 
               {/* Explanation */}
               <p className="text-sm text-slate-500 mt-6 leading-relaxed text-center max-w-xl mx-auto">
-                The AI has full tool access — calendar, CRM, tickets, bookings. It's not an IVR menu. It's an actual assistant.
+                {t('callFlow.caption')}
               </p>
             </div>
           </motion.section>
@@ -204,20 +197,20 @@ const Telephony: React.FC = () => {
             {[
               {
                 icon: <MessageSquare size={22} className="text-emerald-600" />,
-                title: 'SMS assistant',
-                body: 'Inbound texts trigger conversational AI that can check schedules, create tasks, and respond — all without a human lifting a finger.',
+                title: t('benefits.sms.title'),
+                body: t('benefits.sms.body'),
                 accent: 'bg-emerald-50 border-emerald-100',
               },
               {
                 icon: <FileAudio size={22} className="text-blue-600" />,
-                title: 'Call recording + transcription',
-                body: 'Every call stored with a full transcript, searchable by speaker and keyword. Never lose a detail from a customer conversation.',
+                title: t('benefits.recording.title'),
+                body: t('benefits.recording.body'),
                 accent: 'bg-blue-50 border-blue-100',
               },
               {
                 icon: <ShieldCheck size={22} className="text-amber-600" />,
-                title: '4-digit approval',
-                body: 'High-risk actions like bookings and payments use SMS-based confirmation codes. AI can act, but humans stay in control.',
+                title: t('benefits.approval.title'),
+                body: t('benefits.approval.body'),
                 accent: 'bg-amber-50 border-amber-100',
               },
             ].map((card) => (
@@ -246,10 +239,7 @@ const Telephony: React.FC = () => {
           >
             <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12">
               <p className="text-lg md:text-xl leading-relaxed text-slate-200">
-                It's Sunday. A pipe bursts. The homeowner calls your business number.
-                AI answers, understands "emergency leak," checks your on-call schedule,
-                and books the nearest available tech. The homeowner gets an SMS confirmation
-                with the tech's name and ETA. You didn't touch your phone.
+                {t('scenario')}
               </p>
             </div>
           </motion.section>
@@ -263,16 +253,10 @@ const Telephony: React.FC = () => {
             className="mb-20"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-5 bg-slate-50 rounded-2xl">
-              {[
-                { icon: <Radio size={14} />, label: 'Telnyx + Twilio' },
-                { icon: <Zap size={14} />, label: 'OpenAI Realtime V2' },
-                { icon: <Cpu size={14} />, label: 'Full tool access' },
-                { icon: <Lock size={14} />, label: 'SMS-based approval' },
-                { icon: <Search size={14} />, label: 'Custom IVR routing' },
-              ].map((item) => (
-                <span key={item.label} className="flex items-center gap-1.5 text-sm text-slate-600">
-                  <span className="text-slate-400">{item.icon}</span>
-                  {item.label}
+              {techStrip.map((label, i) => (
+                <span key={label} className="flex items-center gap-1.5 text-sm text-slate-600">
+                  <span className="text-slate-400">{techStripIcons[i]}</span>
+                  {label}
                 </span>
               ))}
             </div>
@@ -287,8 +271,12 @@ const Telephony: React.FC = () => {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4">
-              Other phone systems play hold music.<br />
-              HABOS solves problems.
+              {t('closing.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h2>
 
             <a href="/#waitlist">
@@ -297,7 +285,7 @@ const Telephony: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-md hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('closing.cta')}
                 <ArrowRight size={16} />
               </motion.button>
             </a>

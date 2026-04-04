@@ -1,0 +1,63 @@
+{
+  "category": "Filosofia",
+  "title": "Tehosta tiimiäsi",
+  "tagline": "HABOS ei ole tässä korvaamaan työntekijöitäsi — se on tässä tekemään jokaisesta heistä huomattavasti kyvykkäämmän. Parhaat tiimit eivät ole pienempiä. Ne ovat vahvistettuja.",
+  "heroPlaceholder": "Hero-kuva",
+  "section1": {
+    "heading": "Yksi agentti per työntekijä",
+    "body1": "Jokainen tiimin jäsen saa oman tekoälyassistentin — ei jaetun chatbotin, vaan henkilökohtaisen agentin, joka tuntee heidän roolinsa, projektinsa, kirjoitustyylinsä ja historiansa. Teknikon agentilla on tietoa HVAC-järjestelmistä ja tarkastusprotokollista. Toimistopäällikön agentilla on tietoa aikatauluristiriidoista ja asiakasmieltymyksistä. Perustajan agentilla on tietoa kaikesta.",
+    "body2": "Tässä ei ole kyse siitä, että kaikille annetaan sama työkalu. Kyse on siitä, että kaikille annetaan oikea copilotti heidän työtavalleen."
+  },
+  "section2": {
+    "heading": "Sama kokous, erilainen älykkyys",
+    "body1": "Kun tiimisi istuu samassa kokouksessa, HABOS tuottaa erilaiset tekoälymuistiinpanot kullekin henkilölle heidän roolinsa, vastuunsa ja projektiensa perusteella. Nuori kehittäjä ja varatoimitusjohtaja näkevät täysin erilaiset ehdotetut kysymykset. Myyntijohtaja saa putkistoon liittyvät seurantatehtävät. Projektipäällikkö saa aikatauluriskit korostettuna.",
+    "body2": "Kokouksen päättyessä jokainen henkilö saa toimintapisteet rajattuna heidän toimialaansa — ennalta osoitettu, ennalta päivätty ja linkitettynä oikeaan projektiin. Kenenkään ei tarvitse selvittää \"mitä tämä tarkoitti minulle?\" Tekoäly tietää jo."
+  },
+  "roles": [
+    {
+      "role": "Kenttäteknikko",
+      "before": "Käyttää 20 minuuttia per työ paperitöihin. Unohtaa kirjata seurannat. Päivittää CRM:n kaksi päivää myöhässä.",
+      "after": "Puhuu 30 sekuntia. Järjestelmä luo työtietueen, päivittää varaston, merkitsee seurannan ja kirjaa kaiken. He ajavat jo seuraavalle työlle."
+    },
+    {
+      "role": "Toimistopäällikkö",
+      "before": "Vaihtaa 8 sovelluksen välillä koko päivän. Tarkistaa manuaalisesti, kuka on saatavilla. Välittää sähköpostit oikeille henkilöille.",
+      "after": "Saa aamutiivistelmän siitä, mitä tarvitsee huomiota. Tekoäly hoitaa aikatauluristiriidat, reitittää viestit ja tuo esiin asiat, jotka oikeasti tarvitsevat ihmisen päätöksen."
+    },
+    {
+      "role": "Myyntijohtaja",
+      "before": "Unohtaa seurata. Kävelee kokouksiin ilman valmistautumista. Menettää kauppavaiheiden seurannan yli 30 asiakkaan kanssa.",
+      "after": "Saa tekoälyn tuottaman tiivistelmän ennen jokaista puhelua. CRM on aina ajantasainen, koska äänimuistiinpanot päivittävät sen automaattisesti. Varantuneet kaupat merkitään automaattisesti."
+    },
+    {
+      "role": "Perustaja",
+      "before": "Hukkuu toiminnallisiin yksityiskohtiin. Ei näe strategista kuvaa. Tekee päätöksiä puutteellisella tiedolla.",
+      "after": "Saa strategisen neuvoston — kilpailevat tekoälynäkökulmat kasvupäätöksiin. Aamutiivistelmät tuovat esiin tiimienvälisiä malleja. Ongelmat löytävät hänet ennen kuin hän löytää ongelmat."
+    }
+  ],
+  "beforeLabel": "Ennen",
+  "withHabosLabel": "HABOSin kanssa",
+  "teamVisualPlaceholder": "Tiimin vahvistamisen visuaali",
+  "section3": {
+    "heading": "Sähköpostit, jotka kuulostavat sinulta",
+    "body1": "Kun tekoäly luonnostelee vastauksen, se vastaa kirjoitustyyliäsi — ei geneeristä yritystyyliä. HABOS rakentaa profiilin aiemmista viesteistäsi: muodollisuustaso, lauseen pituus, emojien käyttö, miten allekirjoitat. Myyntijohtajan luonnokset kuulostavat myyntijohtajalta. Perustajan luonnokset kuulostavat perustajalta.",
+    "body2": "Kolme vastausvaihtoehtoa ilmestyy — Lyhyt ja suora, Lämmin ja ammattimainen, Johtotaso — jokainen äänesi mukainen. Valitset yhden, muokkaat lauseen jos haluat ja lähetät. Se, mikä aiemmin kesti viisi minuuttia tuijottaen tyhjää kirjoitusikkunaa, kestää kymmenen sekuntia."
+  },
+  "section4": {
+    "heading": "Rakenne, joka sopeutuu siihen, miten ihmiset oikeasti työskentelevät",
+    "body1": "Kaikki eivät työskentele samalla tavalla. Jotkut ihmiset ovat kurinalaisia tehtävälistojensa kanssa. Toiset ajattelevat äänimuistiinpanoilla ja hajautetuilla ideoilla. Jotkut menestyvät strukturoiduilla aikatauluilla. Toiset tarvitsevat joustavuutta.",
+    "body2": "HABOS ei pakota yhtä työnkulkua. Äänipainotteinen tallennus kohtaa ihmiset siellä missä he ovat. Tekoäly järjestää kaaoksen jälkeenpäin — muuttaen ramppailevat äänimuistiinpanot strukturoiduiksi toiminnoiksi, tuoden oikean tiedon oikeaan aikaan ja hellästi valvoen tärkeitä prosesseja ilman mikrohallintaa niissä, jotka eivät sitä tarvitse."
+  },
+  "section5": {
+    "heading": "Kerroin, ei korvaaja",
+    "body1": "Tekoälyteollisuus rakastaa puhua töiden korvaamisesta. Uskomme, että tämä ohittaa pointin. Loistava työntekijä tekoälyavustuksella ei tule korvattavaksi — heistä tulee korvaamattomia. Teknikko, joka voi tehdä 8 työtä päivässä 5:n sijaan. Myyntijohtaja, joka ei koskaan unohda seurantaa. Toimistopäällikkö, joka havaitsee ongelmat ennen kuin ne eskaloituvat.",
+    "body2": "HABOS tekee tiimisi ihmisistä parhaan version itsestään työssä. Se ei ole ominaisuus. Se on koko pointti."
+  },
+  "quote": "\"Lupaus ei koskaan ollut 'tekoäly tekee työsi'. Lupaus on 'tekoäly tekee sinusta poikkeuksellisen työssäsi'.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Pienen tiimin vipuvaikutus",
+    "backLabel": "Takaisin",
+    "backTitle": "HABOSiin"
+  }
+}

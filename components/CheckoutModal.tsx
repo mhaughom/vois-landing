@@ -4,6 +4,7 @@ import {
   X, Sparkles, Calendar, ListTodo, ShoppingCart, Lightbulb,
   Heart, Wallet, Target, Users, ChevronLeft, Watch, Smartphone,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Analytics } from '../lib/analytics';
 import { PLANS } from '../lib/tiers';
 
@@ -11,25 +12,7 @@ const CHECKOUT_API = import.meta.env.VITE_API_URL || 'https://voisbackend-produc
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-const QUIZ_CATEGORIES = [
-  { id: 'calendar', label: 'Events & Calendar', icon: Calendar,     bg: 'bg-blue-500/10',   border: 'border-blue-500/30',   text: 'text-blue-400'   },
-  { id: 'tasks',    label: 'Tasks & To-dos',    icon: ListTodo,     bg: 'bg-green-500/10',  border: 'border-green-500/30',  text: 'text-green-400'  },
-  { id: 'shopping', label: 'Shopping & Lists',   icon: ShoppingCart, bg: 'bg-purple-500/10', border: 'border-purple-500/30', text: 'text-purple-400' },
-  { id: 'ideas',    label: 'Ideas & Notes',      icon: Lightbulb,    bg: 'bg-yellow-500/10', border: 'border-yellow-500/30', text: 'text-yellow-400' },
-  { id: 'health',   label: 'Health & Wellness',   icon: Heart,        bg: 'bg-red-500/10',    border: 'border-red-500/30',    text: 'text-red-400'    },
-  { id: 'finance',  label: 'Finance & Budget',    icon: Wallet,       bg: 'bg-cyan-500/10',   border: 'border-cyan-500/30',   text: 'text-cyan-400'   },
-  { id: 'goals',    label: 'Goals & Habits',      icon: Target,       bg: 'bg-orange-500/10', border: 'border-orange-500/30', text: 'text-orange-400' },
-  { id: 'social',   label: 'People & Social',     icon: Users,        bg: 'bg-pink-500/10',   border: 'border-pink-500/30',   text: 'text-pink-400'   },
-];
-
-const QUIZ_DEVICES = [
-  { id: 'watch', label: 'Apple Watch', desc: 'Capture on your wrist' },
-  { id: 'phone', label: 'iPhone',      desc: 'Always in your pocket' },
-  { id: 'both',  label: 'Both',        desc: 'The full experience'   },
-];
-
-// Plan details sourced from lib/tiers.ts
-
+// Animation config — not user-visible, stays at module level
 const stepTransition = {
   initial: { opacity: 0, x: 30 },
   animate: { opacity: 1, x: 0 },
@@ -44,6 +27,26 @@ interface CheckoutModalProps {
 }
 
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, selectedPlan }) => {
+  const { t } = useTranslation('checkout-modal');
+
+  // Build category and device data inside the component so labels are translated
+  const QUIZ_CATEGORIES = [
+    { id: 'calendar', label: (t('quizCategories', { returnObjects: true }) as string[])[0], icon: Calendar,     bg: 'bg-blue-500/10',   border: 'border-blue-500/30',   text: 'text-blue-400'   },
+    { id: 'tasks',    label: (t('quizCategories', { returnObjects: true }) as string[])[1], icon: ListTodo,     bg: 'bg-green-500/10',  border: 'border-green-500/30',  text: 'text-green-400'  },
+    { id: 'shopping', label: (t('quizCategories', { returnObjects: true }) as string[])[2], icon: ShoppingCart, bg: 'bg-purple-500/10', border: 'border-purple-500/30', text: 'text-purple-400' },
+    { id: 'ideas',    label: (t('quizCategories', { returnObjects: true }) as string[])[3], icon: Lightbulb,    bg: 'bg-yellow-500/10', border: 'border-yellow-500/30', text: 'text-yellow-400' },
+    { id: 'health',   label: (t('quizCategories', { returnObjects: true }) as string[])[4], icon: Heart,        bg: 'bg-red-500/10',    border: 'border-red-500/30',    text: 'text-red-400'    },
+    { id: 'finance',  label: (t('quizCategories', { returnObjects: true }) as string[])[5], icon: Wallet,       bg: 'bg-cyan-500/10',   border: 'border-cyan-500/30',   text: 'text-cyan-400'   },
+    { id: 'goals',    label: (t('quizCategories', { returnObjects: true }) as string[])[6], icon: Target,       bg: 'bg-orange-500/10', border: 'border-orange-500/30', text: 'text-orange-400' },
+    { id: 'social',   label: (t('quizCategories', { returnObjects: true }) as string[])[7], icon: Users,        bg: 'bg-pink-500/10',   border: 'border-pink-500/30',   text: 'text-pink-400'   },
+  ];
+
+  const QUIZ_DEVICES = [
+    { id: 'watch', label: t('quizDevices.watch.label'), desc: t('quizDevices.watch.desc') },
+    { id: 'phone', label: t('quizDevices.phone.label'), desc: t('quizDevices.phone.desc') },
+    { id: 'both',  label: t('quizDevices.both.label'),  desc: t('quizDevices.both.desc')  },
+  ];
+
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [selectedDevices, setSelectedDevices] = useState<Set<string>>(new Set());
@@ -98,11 +101,11 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
     setError(null);
 
     if (!email.trim()) {
-      setError('Please enter your email address.');
+      setError(t('errors.emailRequired'));
       return;
     }
     if (!isValidEmail(email)) {
-      setError('Please enter a valid email address.');
+      setError(t('errors.emailInvalid'));
       return;
     }
 
@@ -116,13 +119,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
       });
 
       if (response.status === 429) {
-        const msg = 'Too many attempts. Please wait a moment and try again.';
+        const msg = t('errors.tooManyAttempts');
         setError(msg);
         Analytics.errorOccurred(msg, 'checkout');
         return;
       }
       if (response.status === 503) {
-        const msg = 'Checkout is temporarily unavailable. Please try again later.';
+        const msg = t('errors.unavailable');
         setError(msg);
         Analytics.errorOccurred(msg, 'checkout');
         return;
@@ -136,7 +139,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
       Analytics.checkoutRedirectToStripe();
       window.location.href = data.url;
     } catch {
-      const msg = 'Something went wrong. Please try again.';
+      const msg = t('errors.generic');
       setError(msg);
       Analytics.errorOccurred(msg, 'checkout');
     } finally {
@@ -207,9 +210,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                 {/* ── STEP 1: What would you save? ── */}
                 {step === 1 && (
                   <motion.div key="step1" {...stepTransition}>
-                    <h2 className="text-2xl font-serif text-white mb-2">What would you save?</h2>
+                    <h2 className="text-2xl font-serif text-white mb-2">{t('step1.heading')}</h2>
                     <p className="text-slate-400 text-sm mb-5">
-                      Pick everything that clutters your mind.
+                      {t('step1.subLabel')}
                     </p>
 
                     <div className="grid grid-cols-2 gap-2.5 mb-6">
@@ -250,7 +253,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                       whileTap={{ scale: selectedCategories.size > 0 ? 0.98 : 1 }}
                       className="w-full bg-white text-slate-950 py-4 rounded-full text-lg font-semibold hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                     >
-                      Continue
+                      {t('continue')}
                     </motion.button>
                   </motion.div>
                 )}
@@ -263,12 +266,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                       className="flex items-center gap-1 text-slate-500 hover:text-slate-300 text-sm mb-4 transition-colors"
                     >
                       <ChevronLeft size={16} />
-                      Back
+                      {t('back')}
                     </button>
 
-                    <h2 className="text-2xl font-serif text-white mb-2">How would you view it?</h2>
+                    <h2 className="text-2xl font-serif text-white mb-2">{t('step2.heading')}</h2>
                     <p className="text-slate-400 text-sm mb-6">
-                      Pick your preferred device.
+                      {t('step2.subLabel')}
                     </p>
 
                     <div className="space-y-3 mb-6">
@@ -340,7 +343,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                       whileTap={{ scale: selectedDevices.size > 0 ? 0.98 : 1 }}
                       className="w-full bg-white text-slate-950 py-4 rounded-full text-lg font-semibold hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                     >
-                      Continue
+                      {t('continue')}
                     </motion.button>
                   </motion.div>
                 )}
@@ -354,7 +357,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                       className="flex items-center gap-1 text-slate-500 hover:text-slate-300 text-sm mb-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <ChevronLeft size={16} />
-                      Back
+                      {t('back')}
                     </button>
 
                     {/* Plan badge */}
@@ -365,10 +368,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
 
                     {/* Title */}
                     <h2 className="text-2xl font-serif text-white mb-2">
-                      Start Your Subscription
+                      {t('step3.heading')}
                     </h2>
                     <p className="text-slate-400 text-sm mb-2">
-                      Enter your email to continue to checkout.
+                      {t('step3.subLabel')}
                     </p>
 
                     {/* Price summary */}
@@ -378,21 +381,21 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                          selectedPlan === 'work_annual' ? '$20.83' :
                          plan.price}
                       </span>
-                      <span className="text-slate-500 text-sm">/month</span>
+                      <span className="text-slate-500 text-sm">{t('step3.perMonth')}</span>
                     </div>
 
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
                         <label htmlFor="checkout-email" className="block text-sm font-medium text-slate-300 mb-2">
-                          Email
+                          {t('step3.emailLabel')}
                         </label>
                         <input
                           id="checkout-email"
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="you@company.com"
+                          placeholder={t('step3.emailPlaceholder')}
                           className="w-full px-5 py-3.5 bg-slate-900/50 border border-slate-700 rounded-full text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all"
                           disabled={isLoading}
                         />
@@ -431,12 +434,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, s
                             className="w-5 h-5 border-2 border-slate-300 border-t-slate-900 rounded-full"
                           />
                         ) : (
-                          'Continue to Pay'
+                          t('step3.continueToPay')
                         )}
                       </motion.button>
 
                       <p className="text-center text-slate-500 text-xs mt-3">
-                        Cancel anytime. 30-day money-back guarantee.
+                        {t('step3.guarantee')}
                       </p>
                     </form>
                   </motion.div>

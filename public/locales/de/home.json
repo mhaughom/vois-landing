@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "Der KI-Assistent, der Ihren Kopf befreit.",
+    "subheadline": "Alles erfassen. Nichts organisieren.",
+    "definition": "AUFGABEN  ·  KALENDER  ·  IDEEN  ·  LISTEN  ·  EIGENE APPS",
+    "cta": "Zugang anfordern",
+    "trustText": "Nichts ändert sich ohne Ihre Genehmigung.",
+    "watchVideo": "Video ansehen",
+    "endVideo": "Video beenden",
+    "joinWaitlist": "Warteliste beitreten",
+    "tryAgain": "Erneut versuchen"
+  },
+  "problem": {
+    "title": "Die universelle Lüge",
+    "body": [
+      "Wir alle tragen eine verborgene Last. Es ist 14:00 Uhr. Sie gehen zu Ihrem nächsten Meeting. In Ihrem Kopf jonglieren Sie einen Einkaufszettel, eine bahnbrechende Idee für ein Projekt, eine Sorge über eine E-Mail, die Sie gesendet haben, und die Tatsache, dass Sie heute nicht genug Wasser getrunken haben.",
+      "Sie könnten anhalten, Ihr Telefon herausziehen, es entsperren, drei verschiedene Apps öffnen und alles aufschreiben. Aber Sie tun es nicht. Sie sagen die universelle Lüge: \"Ich werde das einfach behalten.\"",
+      "(Das werden Sie nicht). Und dieses mentale Chaos bleibt bei Ihnen und raubt Ihnen den Fokus."
+    ]
+  },
+  "solution": {
+    "title": "Ein anderer Reflex",
+    "body": "Stellen Sie sich nun einen anderen Reflex vor. Anstatt diese Last zu tragen, drücken Sie einfach den Knopf an Ihrer Uhr (oder Ihrem Telefon). Sie wählen Ihre Worte nicht sorgfältig aus. Sie schauen nicht auf einen Bildschirm. Sie sprechen einfach."
+  },
+  "demo": {
+    "input": "\"Okay, erinnere mich daran, Sarah am Dienstag wegen des Vertrags anzurufen. Außerdem fühle ich mich wirklich überfordert von der Hausrenovierung, der Lärm ist zu viel. Ach ja, und ich bin gerade 5 km in 25 Minuten gelaufen, fühle mich gut.\"",
+    "caption": "Es klingt unordentlich. Es klingt menschlich. Es klingt wie Sie. Vois hört das Rauschen. Aber es speichert das Signal."
+  },
+  "adapt": {
+    "title": "Ihr Leben, Ihre Bereiche",
+    "body": "Möchten Sie Ihre Kopfschmerzen verfolgen? Ihre Meditationsserien? Die witzigen Zitate Ihres Kindes? Beschreiben Sie es einfach. Vois erstellt sofort einen benutzerdefinierten Bereich dafür. Sie bauen das System nicht. Sie leben einfach darin."
+  },
+  "privacy": {
+    "title": "Ihr Geist, Ihre Kontrolle",
+    "body": "Vois organisiert Ihre Gedanken lokal und sicher. Nichts wird abgeschlossen, bis Sie es genehmigen. Nichts wird geteilt. Sie sind die einzige Person mit dem Schlüssel.",
+    "localFirst": "Lokal zuerst",
+    "encryptedSync": "Verschlüsselte Synchronisierung",
+    "privacyIllustrationAlt": "Datenschutz und Kontrolle",
+    "enterpriseTitle": "Sicherheit auf Unternehmensebene",
+    "enterpriseBody": "Ihre Daten sind durch dieselbe Infrastruktur geschützt, der die größten Unternehmen der Welt vertrauen. Wir nutzen branchenführende Dienste für Zuverlässigkeit und Sicherheit.",
+    "securityIllustrationAlt": "Unternehmenssicherheit",
+    "awsServers": "AWS-Server",
+    "supabase": "Supabase",
+    "soc2": "SOC 2-konform"
+  },
+  "footer": {
+    "headline": "Ein klarer Geist. Ein strukturiertes Leben.",
+    "subheadline": "Hören Sie auf, die administrative Arbeit Ihrer eigenen Existenz zu erledigen. Geben Sie das Chaos an Vois. Behalten Sie die Klarheit für sich.",
+    "cta": "Beta starten",
+    "tagline": "Befreien Sie Ihren Geist.",
+    "colProduct": "Produkt",
+    "colSupport": "Support",
+    "colLegal": "Rechtliches",
+    "colSocial": "Soziales",
+    "linkLogin": "Anmelden",
+    "linkDownloadIphone": "Für iPhone herunterladen",
+    "linkDownloadWatch": "Für Watch herunterladen",
+    "linkDownloadMac": "Für Mac herunterladen",
+    "linkHabos": "HABOS für Unternehmen",
+    "linkHelpFaq": "Hilfe & FAQ",
+    "linkContactUs": "Kontakt",
+    "linkSetupGuide": "Einrichtungsanleitung",
+    "linkPrivacyPolicy": "Datenschutzrichtlinie",
+    "linkTerms": "Nutzungsbedingungen",
+    "linkRefund": "Rückerstattungsrichtlinie",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "Das Leben wartet nicht auf Ihre Notizen-App.",
+    "p1": "Im Meeting. Unter der Dusche. Halb aus der Tür.",
+    "p2": "Eine Einladung. Eine Aufgabe. Ein Gedanke, den Sie sich nicht leisten können zu verlieren.",
+    "p3": "Sie sagen sich: \"Ich werde das einfach behalten.\"",
+    "p4": "(Das werden Sie nicht.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "Abrufen mit der Geschwindigkeit des Schalls.",
+    "bodyBefore": "Fragen Sie natürlich und erhalten Sie ",
+    "bodyHighlight": "sofortige Antworten",
+    "bodyAfter": ". Ihr Sprachassistent findet genau das, was Sie aus allem benötigen, was Sie erfasst haben."
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "items": [
+      {
+        "question": "Was ist der Unterschied zwischen Persönlich und Arbeit?",
+        "answer": "Persönlich ist für den Alltag – das Erfassen von Aufgaben, Ideen, Erinnerungen und Notizen. Arbeit fügt Besprechungstranskription, Aktionspunkte, Teamkollaborationstools und Prioritätssupport hinzu."
+      },
+      {
+        "question": "Sind meine Sprachdaten privat?",
+        "answer": "Ja. Wir verwenden eine Local-First-Architektur. Ihre Aufnahmen werden sicher verarbeitet, und wir verwenden Ihre persönlichen Gedanken nicht, um unsere öffentlichen Modelle zu trainieren. Ihr Gehirn gehört Ihnen."
+      },
+      {
+        "question": "Kann ich jederzeit den Plan wechseln oder kündigen?",
+        "answer": "Absolut. Sie können Ihr Abonnement jederzeit upgraden, downgraden oder kündigen. Wenn Sie kündigen, behalten Sie den Zugang bis zum Ende Ihres aktuellen Abrechnungszeitraums."
+      },
+      {
+        "question": "Was passiert, wenn es für mich nicht funktioniert?",
+        "answer": "Wir bieten eine 30-Tage-Geld-zurück-Garantie. Wenn Vois Ihnen nicht hilft, Ihren Kopf im ersten Monat zu befreien, senden Sie uns eine E-Mail für eine vollständige Rückerstattung."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Wählen Sie Ihren Plan",
+    "subtitle": "Kostenlos starten. Upgraden, wenn Sie bereit sind.",
+    "billingMonthly": "Monatlich",
+    "billingAnnual": "Jährlich",
+    "saveLabel": "Bis zu 40 % sparen",
+    "freePlanTitle": "Kostenlos",
+    "freePlanDescription": "Ausprobieren, keine Kreditkarte erforderlich",
+    "freePlanPeriod": "dauerhaft",
+    "freePlanCta": "Kostenlos herunterladen",
+    "personalPlanTitle": "Persönlich",
+    "personalPlanBadge": "Beliebt",
+    "personalPlanDescription": "Für die Organisation des Alltags",
+    "personalPlanPeriod": "/Monat",
+    "personalPlanCta": "Warteliste beitreten",
+    "personalPlanNote": "Jederzeit kündbar. 30-Tage-Geld-zurück-Garantie.",
+    "workPlanTitle": "Arbeit",
+    "workPlanDescription": "Für Profis und Teams",
+    "workPlanPeriod": "/Monat",
+    "workPlanCta": "Warteliste beitreten",
+    "workPlanNote": "Jederzeit kündbar. 30-Tage-Geld-zurück-Garantie."
+  }
+}

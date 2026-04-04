@@ -1,0 +1,52 @@
+{
+  "badge": "Saatavilla nyt VOIS for Work -suunnitelmalla",
+  "hero": {
+    "title": "Kokousmuistiinpanot",
+    "description": "Reaaliaikainen litterointi toimintakorteilla, jotka ilmestyvät kun ihmiset puhuvat. Katso kokouksesi muuttuvan jäsennellyiksi muistiinpanoiksi reaaliajassa."
+  },
+  "intro": "Reaaliaikainen litterointi toimintakorteilla, jotka ilmestyvät kun ihmiset puhuvat. Kun joku sanoo \"meidän täytyy aikatauluttaa seuranta\" tai \"John, voitko hoitaa tämän?\" — toimintakohteet nousevat esiin dokumentissa sisäisesti. HABOS tunnistaa kun tehtävät on osoitettu sinulle ja korostaa ne henkilökohtaisessa näkymässäsi. Jaa kokousmuistiinpanot suojatun linkin kautta — vastaanottajat näkevät täydellisen litteraatin ja yhteenvedon ilman tilin luomista. Tuo jaettu linkki on myös kasvumoottori: se kerää liidejä, esittelee tuotetta ja konvertoi kohdennetuilla tarjouksilla.",
+  "features": [
+    {
+      "title": "Reaaliaikaiset toimintakortit",
+      "description": "Kun joku sanoo \"meidän täytyy aikatauluttaa seuranta\" tai \"John, voitko hoitaa tämän?\", toimintakortit ilmestyvät dokumentissa sisäisesti. Nimeä tehtäviä, aseta muistutuksia tai tallenna kohteita suoraan livenä litteraatista."
+    },
+    {
+      "title": "Kellon siirto tietokoneelle",
+      "description": "Aloita nauhoitus Apple Watchillasi, siirrä sitten saumattomasti Macillesi kun haluat nähdä livedokumentin. Litterointi jatkuu keskeytymättä täsmälleen siitä, mihin jäit."
+    },
+    {
+      "title": "Henkilökohtaiset toimintakohteet",
+      "description": "VOIS tunnistaa kun tehtäviä osoitetaan sinulle ja korostaa ne henkilökohtaisessa näkymässäsi. Napauta lisätäksesi ne suoraan tehtävälistallesi tai muokataksesi niitä paikan päällä. On maagista katsoa to-do-listasi täyttyvän automaattisesti kokouksen aikana."
+    },
+    {
+      "title": "Suusanallinen leviäminen",
+      "description": "Kun kollegat näkevät toimintakohteiden ilmestyvän reaaliajassa ruudullesi kokouksissa, he haluavat sen myös. Tämä ominaisuus on suunniteltu leviämään orgaanisesti — yksittäisiltä ammattilaisilta pienille tiimeille koko yrityksiin."
+    }
+  ],
+  "howItWorks": {
+    "title": "Kuinka se toimii",
+    "steps": [
+      {
+        "title": "Aloita nauhoitus",
+        "description": "Napauta nauhoituspainiketta kellossasi tai avaa VOIS Macillasi. Litterointi alkaa välittömästi."
+      },
+      {
+        "title": "Katso taikaa",
+        "description": "Kun ihmiset puhuvat, sanat ilmestyvät ruudulle. Kun toimintakohteita mainitaan, tekoälyn luomat kortit ponnahtavat esiin sisäisesti ehdottaen seuraavia vaiheita."
+      },
+      {
+        "title": "Toimi kohteilla",
+        "description": "Napauta kortteja lisätäksesi tehtäviä listalleesi, aikatauluttaaksesi seurantoja tai tallentaaksesi tärkeitä tietoja. Henkilökohtaiset kohteet korostetaan automaattisesti."
+      },
+      {
+        "title": "Jaa ja vie",
+        "description": "Kokous ohi? Vie täydellinen litteraatti toimintakohteineen tai jaa tiettyjä osioita tiimillesi."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Valmis muuttamaan kokouksesi?",
+    "description": "Kokousmuistiinpanot sisältyvät VOIS for Work -suunnitelmaan.",
+    "button": "Katso hinnoittelu"
+  }
+}

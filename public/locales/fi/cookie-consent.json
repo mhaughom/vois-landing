@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "title": "Arvostamme yksityisyyttäsi",
+    "description": "Käytämme analytiikkaa ymmärtääksemme, miten kävijät käyttävät sivustoamme, jotta voimme parantaa käyttökokemusta. Tietoja ei käytetä mainontaan.",
+    "privacyPolicy": "Tietosuojakäytäntö",
+    "rejectAllAriaLabel": "Hylkää kaikki evästeet",
+    "acceptAll": "Hyväksy kaikki",
+    "rejectAll": "Hylkää kaikki",
+    "manage": "Hallinnoi",
+    "necessary": "Välttämättömät",
+    "necessaryDescription": "Vaaditaan sivuston toimintaan. Ei voi poistaa käytöstä.",
+    "analytics": "Analytiikka",
+    "analyticsDescription": "Auttaa meitä ymmärtämään käyttömalleja PostHogin kautta (EU-palvelimet). Ei mainosseurantaa.",
+    "analyticsToggleAriaLabel": "Vaihda analytiikkaseuranta",
+    "savePreferences": "Tallenna asetukset"
+  },
+  "settings": {
+    "triggerLabel": "Evästeasetukset",
+    "modalTitle": "Evästeasetukset",
+    "description": "Hallinnoi, mitkä evästeet ja seurantateknologiat ovat aktiivisia.",
+    "privacyPolicy": "Tietosuojakäytäntö",
+    "necessary": "Välttämättömät",
+    "necessaryDescription": "Vaaditaan sivuston toimintaan.",
+    "analytics": "Analytiikka",
+    "analyticsDescription": "PostHog-analytiikka (EU-palvelimet). Ei mainosseurantaa.",
+    "analyticsToggleAriaLabel": "Vaihda analytiikka",
+    "savePreferences": "Tallenna asetukset",
+    "cancel": "Peruuta"
+  }
+}

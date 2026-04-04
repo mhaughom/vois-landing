@@ -1,0 +1,49 @@
+{
+  "badge": "支付",
+  "hero": {
+    "title": "客户付款。你收到钱。直接到账。",
+    "description": "Stripe Connect Express 将付款直接存入你的银行账户。没有中间人持有你的资金。没有 30 天的提现延迟。"
+  },
+  "body": "HABOS 为每个工作区配置 Stripe Connect Express 账户，使付款可以直接存入业务所有者的银行。客户在网站上付款，Stripe 收费，平台扣除可配置的应用费，余额直接存入所有者的银行账户。完整和部分退款通过 Stripe 处理，并自动恢复库存。这是 Shopify 的模式，应用于 AI 原生平台。",
+  "flowNodes": [
+    { "label": "客户支付 $100" },
+    { "label": "Stripe 处理" },
+    { "label": "HABOS 费用：$5" },
+    { "label": "你收到：$95" }
+  ],
+  "flowCaption": "可配置的应用费（默认 5%）。收入流向：客户 → Stripe → HABOS 收取费用 → 余额存入你的银行。",
+  "benefits": [
+    {
+      "title": "3 步设置",
+      "desc": "连接你的 Stripe 账户，完成入驻（业务详情、银行信息、税号），然后上线。已启用收费，已启用提现。"
+    },
+    {
+      "title": "每种付款方式",
+      "desc": "结账会话、发票、付款链接、手动付款和退款——全部通过一个集成。完整和部分退款，自动恢复库存。"
+    },
+    {
+      "title": "网站 → 付款 → 银行",
+      "desc": "客户在你的 HABOS 网站购买。Stripe 收取他们的卡费。你的份额存入。订单被追踪。无需对账。"
+    }
+  ],
+  "pricing": {
+    "heading": "HABOS 定价方式",
+    "tiers": [
+      { "name": "免费版", "credits": "每月 1K AI 额度", "price": "$0/月" },
+      { "name": "个人版", "credits": "每月 7.5K AI 额度", "price": "$14.99/月" },
+      { "name": "工作版", "credits": "每月 17.5K AI 额度", "price": "$34.99/月" }
+    ],
+    "topUps": "另外为需要更多 AI 容量的团队提供工作区追加（$100–$1K）。"
+  },
+  "techItems": [
+    "Stripe Connect Express",
+    "可配置费用",
+    "Webhook 同步",
+    "完整 + 部分退款",
+    "RevenueCat 移动端"
+  ],
+  "cta": {
+    "heading": "其他平台持有你的资金。HABOS 将钱发到你的银行。",
+    "button": "加入等待名单"
+  }
+}

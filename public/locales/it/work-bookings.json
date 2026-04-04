@@ -1,0 +1,54 @@
+{
+  "badge": "Prenotazioni",
+  "hero": {
+    "title": "Zero Doppie Prenotazioni.\nGarantito.",
+    "description": "Il cliente sceglie uno slot, il sistema lo blocca atomicamente, crea l'ordine, aggiorna il contatto CRM e notifica il team — tutto in una singola transazione."
+  },
+  "body": "I lock advisory di PostgreSQL impediscono le doppie prenotazioni anche sotto un carico concorrente estremo. Se due persone cliccano lo stesso slot nello stesso millisecondo, una vince — l'altra vede istantaneamente «slot non disponibile». Quando una prenotazione viene confermata, HABOS crea o collega atomicamente un cliente CRM, genera un ordine con le voci, scalda le scorte e notifica il membro del team assegnato. Cancellazione? Le scorte vengono ripristinate e l'ordine aggiornato. Una singola transazione, nessun ritardo webhook, nessun record orfano.",
+  "grid": {
+    "serviceTitle": "Manutenzione HVAC",
+    "serviceMeta": "60 min · €150",
+    "selectedPrefix": "Selezionato:",
+    "confirmButton": "Conferma Prenotazione"
+  },
+  "confirmationSteps": [
+    "Prenotazione confermata",
+    "Ordine #1248 creato",
+    "Sarah Henderson aggiunta al CRM",
+    "Team notificato"
+  ],
+  "advisoryLock": "I lock advisory di PostgreSQL impediscono le doppie prenotazioni anche sotto un carico concorrente estremo. Se due persone cliccano lo stesso slot nello stesso millisecondo, una vince — l'altra vede istantaneamente «slot non disponibile».",
+  "benefits": {
+    "bookOrder": {
+      "title": "Prenotazione → ordine → CRM",
+      "body": "Una prenotazione crea tutto: ordine con voci, aggiornamento del contatto CRM, notifica al personale ed email di conferma al cliente. Zero passaggi manuali."
+    },
+    "stock": {
+      "title": "Prenotazione scorte intelligente",
+      "body": "Inventario tracciato nel flusso in sospeso → confermato → completato. Nessuna vendita eccessiva, nessun controllo manuale delle scorte."
+    },
+    "api": {
+      "title": "API pubblica + interna",
+      "body": "Il personale prenota dalla dashboard. I clienti prenotano dal tuo sito web o dai link di pianificazione. Stessa protezione atomica, stesso pool di disponibilità."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Senza HABOS",
+    "withoutText": "Il cliente manda un'email per prenotare. Controlli il calendario. Rispondi con gli orari disponibili. Sceglie. Crei l'appuntamento, la fattura e li aggiungi ai contatti. 8 passaggi, 3 app.",
+    "withoutStat": "~15 min per prenotazione",
+    "withTitle": "Con HABOS",
+    "withText": "Il cliente sceglie uno slot sul tuo sito web. Fatto. Ordine, voce CRM, notifica ed email di conferma avvengono automaticamente.",
+    "withStat": "~30 secondi (il loro tempo, non il tuo)"
+  },
+  "techStrip": [
+    "Lock advisory PostgreSQL",
+    "Protezione atomica degli slot",
+    "Creazione ordini automatica",
+    "Sicuro contro le race condition",
+    "Link di auto-cancellazione"
+  ],
+  "closing": {
+    "title": "Gli altri strumenti di prenotazione sono un calendario separato.\nLe prenotazioni HABOS sono collegate all'intera tua azienda.",
+    "cta": "Unisciti alla Lista d'Attesa"
+  }
+}

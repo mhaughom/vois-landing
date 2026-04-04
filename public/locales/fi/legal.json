@@ -1,0 +1,431 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Juridiikka"
+  },
+  "sidebar": {
+    "documentsLabel": "Juridiset asiakirjat",
+    "lastUpdatedLabel": "Viimeksi päivitetty:"
+  },
+  "mobile": {
+    "jumpToSection": "Siirry osioon",
+    "tableOfContents": "Sisällysluettelo"
+  },
+  "sections": {
+    "terms": "Palveluehdot",
+    "refund": "Palautuskäytäntö",
+    "privacy": "Tietosuojakäytäntö",
+    "eula": "EULA (iOS)"
+  },
+  "footer": {
+    "description": "Vois on tekoälypohjainen äänimuistiinpanosovellus, joka auttaa sinua tallentamaan, järjestämään ja toimimaan ajatustesi pohjalta vaivattomasti.",
+    "companyInfoHeading": "Yritystiedot",
+    "operatedBy": "Voisin operoi",
+    "orgNumber": "Y-tunnus (Org.nr):",
+    "orgValue": "936 920 594",
+    "address": "Osoite:",
+    "addressValue": "Alsvåg, Norway",
+    "contact": "Yhteystiedot:",
+    "contactEmail": "hello@tryvois.com",
+    "copyright": "Vois. Kaikki oikeudet pidätetään.",
+    "madeIn": "Ylpeästi valmistettu Norjassa",
+    "gdpr": "GDPR-yhteensopiva",
+    "logoAlt": "Vois"
+  },
+  "terms": {
+    "title": "Palveluehdot",
+    "subtitle": "Lue nämä ehdot huolellisesti ennen Voisin käyttämistä.",
+    "s1": {
+      "title": "1. Ehtojen hyväksyminen",
+      "p1": "Käyttämällä tai käyttämällä Voisia (\"Palvelu\") sitoudut näihin palveluehtoihin (\"Ehdot\"). Jos et hyväksy näitä ehtoja, älä käytä Palvelua.",
+      "p2": "Voisia operoi VOIS AI AS (Y-tunnus 936 920 594), Norjaan rekisteröity yritys. Nämä ehdot muodostavat oikeudellisesti sitovan sopimuksen sinun ja VOIS AI AS:n välillä."
+    },
+    "s2": {
+      "title": "2. Palvelun kuvaus",
+      "p1": "Vois on tekoälypohjainen äänimuistiinpanosovellus, joka auttaa sinua tallentamaan, litteroimaan ja järjestämään ajatuksesi. Palvelu sisältää:",
+      "features": [
+        "Äänitys ja tekoälyn litterointi",
+        "Tehtävien, tapahtumien ja ideoiden automaattinen poiminta",
+        "Tekoälypohjainen chat muistiinpanojen kanssa vuorovaikuttamiseen",
+        "Kalenteri- ja muistutusintegraatio"
+      ]
+    },
+    "s3": {
+      "title": "3. Tilaukset",
+      "p1": "Vois tarjoaa seuraavat automaattisesti uusiutuvat tilaussuunnitelmat Apple App Storen kautta:",
+      "tableHeaders": ["Tilaus", "Hinta", "Kesto", "Ilmainen kokeilu"],
+      "rows": [
+        ["Henkilökohtainen kuukausittain", "$14,99", "1 kuukausi (uusiutuu kuukausittain)", "Ei ilmaista kokeilua"],
+        ["Henkilökohtainen vuosittain", "$79,99 (n. $6,67/kk)", "1 vuosi (uusiutuu vuosittain)", "3 päivän ilmainen kokeilu"],
+        ["Työ kuukausittain", "$34,99", "1 kuukausi (uusiutuu kuukausittain)", "Ei ilmaista kokeilua"],
+        ["Työ vuosittain", "$249,99 (n. $20,83/kk)", "1 vuosi (uusiutuu vuosittain)", "3 päivän ilmainen kokeilu"]
+      ],
+      "freeTierNote": "Vois tarjoaa myös ilmaisen tason rajoitetulla käytöllä (5 äänimuistiinpanoa, 5 chat-viestiä, 1 oma sovellus ja enintään 3 minuuttia per tallennus) maksutta.",
+      "autoRenewal": {
+        "title": "Automaattisen uusimisen ehdot",
+        "items": [
+          "Maksu veloitetaan Apple ID:ltäsi oston vahvistamishetkellä (sovellussisäiset ostot) tai Stripen kautta (verkkostosta tehdyt ostot).",
+          "Ilmaiset kokeilujaksot (saatavilla vain vuosisuunnitelmissa) alkavat ostamishetkellä. Jos et peruuta ennen ilmaisen kokeilun päättymistä, tilauksesi uusiutuu automaattisesti ja sinulta veloitetaan tilauksen hinta.",
+          "Tilaukset uusiutuvat automaattisesti, elleivät ne ole peruutettu vähintään 24 tuntia ennen nykyisen kauden päättymistä.",
+          "Tilisi veloitetaan uusimisesta 24 tunnin kuluessa ennen nykyisen kauden päättymistä valitun suunnitelmasi hinnalla.",
+          "Voit hallita ja peruuttaa tilauksia Apple ID -tiliasetuksista milloin tahansa."
+        ]
+      },
+      "refundLink": "Palautuskäytäntö",
+      "refundNote": "Katso palautuskäytäntömme palautuksia koskevista tiedoista.",
+      "privacyLink": "Tietosuojakäytäntö",
+      "eulaLink": "EULA",
+      "moreDetailsNote": "Lisätietoja löydät tietosuojakäytännöstämme ja EULAsta."
+    },
+    "s4": {
+      "title": "4. Käyttäjän vastuut",
+      "intro": "Sitoudut:",
+      "items": [
+        "Käyttämään Palvelua vain laillisiin tarkoituksiin",
+        "Olemaan yrittämättä kääntää tai hyödyntää Palvelua",
+        "Olemaan käyttämättä Palvelua laittoman tai haitallisen sisällön käsittelyyn",
+        "Pitämään tilisi tunnistetiedot turvassa"
+      ]
+    },
+    "s5": {
+      "title": "5. Sisältösi",
+      "p1": "Sisältösi pysyy sinun. Pidät kaikki oikeudet äänitallenteisiin, litterointeihin ja muistiinpanoihin, jotka luot Voisin avulla. Emme vaadi omistusoikeutta henkilökohtaiseen sisältöösi.",
+      "p2": "Käyttämällä Voisia myönnät meille rajoitetun lisenssin käsitellä sisältöäsi ainoastaan Palvelun tarjoamiseksi (litterointi, tekoälyanalyysi, tallennus ja synkronointi)."
+    },
+    "s6": {
+      "title": "6. Tekoälyn tuottama sisältö",
+      "p1": "Vois käyttää tekoälyä tallenteidesi litterointiin ja analysointiin. Tunnustat, että:",
+      "items": [
+        "Tekoälyn tuottamat litteroinnit saattavat sisältää virheitä",
+        "Olet vastuussa tekoälyn tuottaman sisällön tarkistamisesta",
+        "Tekoälyominaisuudet tarjotaan ilman tarkkuustakuita"
+      ]
+    },
+    "s7": {
+      "title": "7. Vastuunrajoitus",
+      "p1": "Norjan lain sallimassa enimmäismäärässä VOIS AI AS ei ole vastuussa mistään epäsuorista, satunnaisista, erityisistä tai välillisistä vahingoista, mukaan lukien tietojen tai tuottojen menetys."
+    },
+    "s8": {
+      "title": "8. Sovellettava laki",
+      "p1": "Nämä ehdot ovat Norjan lainsäädännön alaisia. Kaikki riidat kuuluvat Norjan tuomioistuinten yksinomaiseen toimivaltaan."
+    },
+    "s9": {
+      "title": "9. Ehtojen muutokset",
+      "p1": "Voimme muuttaa näitä ehtoja milloin tahansa. Ilmoitamme olennaisista muutoksista sovelluksen tai sähköpostin kautta. Jatkaminen muutosten jälkeen merkitsee hyväksyntää."
+    },
+    "s10": {
+      "title": "10. Yhteystiedot",
+      "p1": "Kysymyksiä? Ota yhteyttä osoitteessa hello@tryvois.com"
+    }
+  },
+  "refund": {
+    "title": "Palautuskäytäntö",
+    "subtitle": "Miten palautukset toimivat Voisin tilauksille.",
+    "s1": {
+      "title": "App Store -ostokset",
+      "p1": "Kaikki Voisin tilaukset käsitellään Apple App Storen kautta. Emme voi käsitellä palautuksia suoraan App Store -ostoille.",
+      "howToTitle": "Palautuksen pyytämiseksi:",
+      "steps": [
+        "Vieraile osoitteessa reportaproblem.apple.com",
+        "Kirjaudu sisään Apple ID:lläsi",
+        "Etsi Vois-ostoksesi",
+        "Valitse \"Pyydä palautusta\""
+      ],
+      "note": "Kaikki palautuspäätökset tekee Apple heidän ehtojensa mukaisesti."
+    },
+    "s2": {
+      "title": "Kysymyksiä?",
+      "p1": "Ota yhteyttä osoitteessa hello@tryvois.com"
+    }
+  },
+  "privacy": {
+    "title": "Tietosuojakäytäntö",
+    "subtitle": "Miten keräämme, käytämme ja suojaamme henkilökohtaisia tietojasi GDPR:n mukaisesti.",
+    "s1": {
+      "title": "1. Rekisterinpitäjä",
+      "companyLabel": "Yritys:",
+      "companyValue": "VOIS AI AS",
+      "locationLabel": "Sijainti:",
+      "locationValue": "Alsvåg, Norway (ETA)",
+      "contactLabel": "Yhteystiedot:",
+      "contactEmail": "hello@tryvois.com",
+      "p1": "VOIS AI AS on rekisterinpitäjä, joka vastaa Vois-sovelluksen ja verkkosivuston kautta kerätyistä henkilökohtaisista tiedoistasi."
+    },
+    "s2": {
+      "title": "2. Keräämämme tiedot",
+      "accountHeading": "Tilitiedot:",
+      "accountItems": [
+        "Sähköpostiosoite (tilin luomiseen ja viestintään)",
+        "Nimi (valinnainen, personointia varten)",
+        "Maksutiedot (Applen käsittelemät sovellussisäisissä ostoissa ja Stripen verkkostosta tehdyissä ostoissa; emme tallenna korttitietoja)"
+      ],
+      "usageHeading": "Käyttötiedot:",
+      "usageItems": [
+        "Sovelluksen käyttöanalytiikka (anonymisoitu, kerätty vain suostumuksellasi PostHogin kautta, EU-palvelimet)",
+        "Ominaisuuksien vuorovaikutustiedot",
+        "Virhelokit ja kaatumisraportit",
+        "Laitetunnisteet (anonyymi laitetunnus kirjautumattomille käyttäjille)"
+      ],
+      "contentHeading": "Sisältötiedot:",
+      "contentItems": [
+        "Äänitallenteet ja äänitiedostot (käsitelty litterointia varten)",
+        "Litteroitu teksti, muistiinpanot ja kokouslitteroinnit",
+        "Tekoälyassistenteille lähetetyt chat-viestit",
+        "Muistiinpanoista poimitut kalenteritapahtumat ja tehtävien sisältö",
+        "Tekstinpoimintaan ja analysointiin ladatut kuvat",
+        "Tekoälyn tuottamat yhteenvedot, tehtävät ja sähköpostiluonnokset"
+      ]
+    },
+    "s3": {
+      "title": "3. Tekoälykoulutuskäytäntö",
+      "boxTitle": "Tietojasi EI käytetä tekoälykoulutukseen",
+      "boxText": "Emme käytä yksityisiä äänimuistiinpanojasi, litterointejasi tai henkilökohtaista sisältöäsi tekoälymallien kouluttamiseen. Tietosi pysyvät omaisuutenasi. Yksikään kolmannen osapuolen tekoälyntarjoajistamme — Deepgram, OpenAI, Anthropic, Google, xAI tai Perplexity — ei käytä VOISin kautta lähettämiäsi tietoja mallien kouluttamiseen.",
+      "p1": "Käsitellessämme tietojasi kolmansien osapuolten tekoälypalveluiden kautta ne:",
+      "items": [
+        "Lähetetään turvallisesti salattujen API-yhteyksien kautta asianomaiselle palveluntarjoajalle",
+        "Käsitellään ja palautetaan sinulle reaaliajassa",
+        "Eivät jää minkään tekoälyntarjoajan haltuun koulutusta varten",
+        "Ovat tietojenkäsittelysopimuksiemme alaisia kunkin alihankintakumppanin kanssa",
+        "Käsitellään kunkin tarjoajan kaupallisten API-ehtojen mukaisesti, jotka kieltävät asiakastietojen käyttämisen kouluttamiseen"
+      ]
+    },
+    "s4": {
+      "title": "4. Paikallinen arkkitehtuuri",
+      "boxTitle": "Yksityisyys suunnittelun lähtökohtana",
+      "boxIntro": "Vois käyttää paikallista arkkitehtuuria. Tämä tarkoittaa:",
+      "items": [
+        "Äänitallenteet käsitellään ja tallennetaan turvallisesti henkilökohtaiseen pilvitietokantaasi (Supabase).",
+        "Äänitiedostot säilytetään toistamisen ja uudelleenkäsittelyn mahdollistamiseksi. Voit poistaa tallenteesi milloin tahansa sovelluksesta.",
+        "Muistiinpanosi ja litteroinnit synkronoidaan turvallisesti tiliisi mutta pysyvät salattuina."
+      ]
+    },
+    "s5": {
+      "title": "5. Kolmansien osapuolten tekoälypalvelut",
+      "boxTitle": "Tekoälytietojen jakamisen tiedote",
+      "boxText": "VOIS käyttää kolmansien osapuolten tekoälypalveluja sovelluksen ydintoimintojen tarjoamiseen. Sinulta pyydetään nimenomainen suostumus ennen kuin henkilökohtaisia tietoja jaetaan näiden palvelujen kanssa. Alla on yksityiskohtainen erittely siitä, mitä tietoja kukin palveluntarjoaja vastaanottaa ja miksi.",
+      "dataSentHeading": "Tekoälypalveluille lähettämämme tiedot:",
+      "dataSentItems": [
+        "Äänitallenteet ja äänitiedostot litterointia varten",
+        "Litteroitu teksti tehtävien poimintaan, kalenteritapahtumien luomiseen ja yhteenvetoihin",
+        "Chat-viestit tekoälyassistentin vastauksia varten",
+        "Kokousaudio ja litteroinnit live-muistiinpanojen tuottamiseen",
+        "Kuvat tekstinpoimintaan ja analysointiin"
+      ],
+      "providersHeading": "Palvelut, jotka vastaanottavat tietojasi:",
+      "providers": [
+        {
+          "name": "Deepgram, Inc.",
+          "dataReceived": "Äänitallenteet ja äänidata.",
+          "purpose": "Reaaliaikainen ja tallennettu puheentunnistus, mukaan lukien puhujan tunnistus kokouksissa.",
+          "policyLabel": "Deepgramin tietosuojakäytäntö",
+          "policyUrl": "https://deepgram.com/privacy"
+        },
+        {
+          "name": "OpenAI, L.L.C.",
+          "dataReceived": "Litteroitu teksti, chat-viestit, kuvat, kokouslitteroinnit ja tehtävien sisältö.",
+          "purpose": "Tekstianalyysi, tehtävien ja tapahtumien poiminta, chat-assistentin vastaukset, kokousmuistiinpanojen tuottaminen, sähköpostiluonnokset ja kuva-analyysi.",
+          "policyLabel": "OpenAI:n tietosuojakäytäntö",
+          "policyUrl": "https://openai.com/privacy"
+        },
+        {
+          "name": "Anthropic, PBC (Claude)",
+          "dataReceived": "Chat-viestit ja litteroitu teksti.",
+          "purpose": "Tekoäly-chat-assistentin vastaukset, kun Claude on valittu aktiiviseksi malliksi.",
+          "policyLabel": "Anthropicin tietosuojakäytäntö",
+          "policyUrl": "https://www.anthropic.com/privacy"
+        },
+        {
+          "name": "Google LLC (Gemini)",
+          "dataReceived": "Chat-viestit ja litteroitu teksti.",
+          "purpose": "Tekoäly-chat-assistentin vastaukset, kun Gemini on valittu aktiiviseksi malliksi.",
+          "policyLabel": "Googlen tietosuojakäytäntö",
+          "policyUrl": "https://policies.google.com/privacy"
+        },
+        {
+          "name": "xAI Corp. (Grok)",
+          "dataReceived": "Chat-viestit ja litteroitu teksti.",
+          "purpose": "Tekoäly-chat-assistentin vastaukset, kun Grok on valittu aktiiviseksi malliksi.",
+          "policyLabel": "xAI:n tietosuojakäytäntö",
+          "policyUrl": "https://x.ai/legal/privacy-policy"
+        },
+        {
+          "name": "Perplexity AI, Inc.",
+          "dataReceived": "Tutkimuskyselyt ja niihin liittyvä konteksti muistiinpanoista tai tehtävistä.",
+          "purpose": "Verkkohaku ja tiedonhaku, kun käytät tekoälyagentin Tutkimus-ominaisuutta.",
+          "policyLabel": "Perplexityn tietosuojakäytäntö",
+          "policyUrl": "https://www.perplexity.ai/privacy"
+        }
+      ],
+      "dataReceivedLabel": "Vastaanotetut tiedot:",
+      "purposeLabel": "Tarkoitus:",
+      "protectionHeading": "Miten suojaamme tietojasi näiden palveluntarjoajien kanssa:",
+      "protectionItems": [
+        "Kaikki tiedot siirretään turvallisesti salattujen API-yhteyksien kautta (TLS/SSL).",
+        "Käytämme kunkin palveluntarjoajan virallista kaupallista API:a, mikä tarkoittaa, että tietosi käsitellään heidän kaupallisten tietojenkäsittelyehtojensa mukaisesti, eikä niitä käytetä tekoälymallien kouluttamiseen.",
+        "Kukin yllä mainittu palveluntarjoaja on sopimuksellisesti tai käytännöllisesti velvoitettu tarjoamaan henkilökohtaisille tiedoillesi saman tai vastaavan suojan kuin tässä tietosuojakäytännössä on kuvattu."
+      ],
+      "choicesHeading": "Valintasi:",
+      "choicesText": "Sinulta pyydetään nimenomainen suostumus ennen kuin tietoja jaetaan kolmansien osapuolten tekoälypalveluille. Voit peruuttaa tämän suostumuksen milloin tahansa sovelluksen Asetuksissa kohdassa \"Tekoälytietojen jakaminen\". Jos kieltäydyt tekoälyluvasta, kolmansien osapuolten tekoälykäsittelyyn (litterointi, chat, kokousmuistiinpanot, tehtävien poiminta) perustuvat ominaisuudet eivät ole käytettävissä, mutta voit jatkaa muiden sovelluksen ominaisuuksien käyttöä."
+    },
+    "s6": {
+      "title": "6. Alihankintakumppanit ja infrastruktuuri",
+      "p1": "Käytämme seuraavia kolmansien osapuolten palveluja Voisin operoimiseen:",
+      "tableHeaders": ["Palvelu", "Tarkoitus", "Sijainti"],
+      "rows": [
+        ["Deepgram", "Puheentunnistus", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["OpenAI", "Tekoälyälykkyys (tekstianalyysi, chat, kokousmuistiinpanot, kuva-analyysi)", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["Anthropic", "Tekoäly-chat-assistentti (Claude)", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["Google", "Tekoäly-chat-assistentti (Gemini)", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["xAI", "Tekoäly-chat-assistentti (Grok)", "USA"],
+        ["Perplexity AI", "Tekoälytutkimus ja tiedonhaku", "USA"],
+        ["Supabase", "Tietokanta, todennus ja tiedostovarasto", "EU (Frankfurt)"],
+        ["Railway", "Taustajärjestelmän sovellusisäntä", "USA"],
+        ["Vercel", "Verkkosovelluksen isäntä ja CDN", "Globaali CDN"],
+        ["Stripe", "Maksujen käsittely (verkko)", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["RevenueCat", "Tilausten hallinta", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["Apple", "App Store -maksut ja Kirjaudu Applella -palvelu", "USA (EU:n tietojenkäsittelysopimus)"],
+        ["PostHog", "Verkkosivuston analytiikka ja istuntotallennus (suostumuspohjainen)", "EU (Frankfurt)"]
+      ],
+      "footnote": "Kaikki yllä mainitut alihankintakumppanit ja infrastruktuurin tarjoajat ovat sopimuksellisesti velvoitettuja tarjoamaan henkilökohtaisille tiedoillesi saman tai vastaavan suojan kuin tässä tietosuojakäytännössä on kuvattu."
+    },
+    "s7": {
+      "title": "7. Evästeet ja verkkosivuston seuranta",
+      "p1": "Verkkosivustomme (vois.app) käyttää seuraavia teknologioita:",
+      "necessaryHeading": "Ehdottoman välttämätön tallennus",
+      "necessaryItems": [
+        "Evästeasetuksesi (tallennettu localStorageen)",
+        "Kirjautuneiden käyttäjien todennustunnisteet"
+      ],
+      "necessaryNote": "Nämä eivät vaadi suostumusta, koska ne ovat välttämättömiä verkkosivuston toiminnalle.",
+      "analyticsHeading": "Analytiikka (suostumus vaaditaan)",
+      "analyticsItems": [
+        "PostHog — Käytetään verkkosivuston analytiikkaan ja istuntotallenukseen. Tiedot isännöidään EU:ssa (Frankfurt). PostHog aktivoidaan vasta sen jälkeen, kun olet antanut suostumuksesi evästepalkkimme kautta.",
+        "Kerätyt tiedot sisältävät: sivunäkymät, napsautukset, vierityssyvyyden, anonymisoidut istuntotallenteet (kaikki syöttökentät peitetty), laitetyyppi ja viittauslähde.",
+        "Tietoja ei jaeta mainostajille eikä käytetä mainostamiseen."
+      ],
+      "cookieSettingsNote": "Voit muuttaa seurantaasetuksiasi milloin tahansa verkkosivustomme alatunnisteessa olevan Evästeasetukset-linkin kautta."
+    },
+    "s8": {
+      "title": "8. Käsittelyn oikeusperuste (GDPR 6 artikla)",
+      "items": [
+        "Sopimuksen täyttäminen: Käsittely, joka on tarpeen pyytämäsi Vois-palvelun tarjoamiseksi.",
+        "Oikeutettu etu: Palvelun parantaminen ja turvallisuuden seuranta (asianmukaisilla suojatoimenpiteillä).",
+        "Suostumus: Tietojen jakaminen kolmansien osapuolten tekoälypalveluille (voit peruuttaa tekoälysuostumuksen milloin tahansa Asetuksissa), verkkosivuston analytiikka PostHogin kautta (voit hallita evästeasetuksiasi milloin tahansa alatunnisteessamme olevan Evästeasetukset-linkin kautta) ja markkinointiviestintä (voit peruuttaa suostumuksesi milloin tahansa).",
+        "Lakisääteinen velvoite: Verokirjanpito ja sovellettavien lakien noudattaminen."
+      ]
+    },
+    "s9": {
+      "title": "9. Oikeutesi (GDPR)",
+      "p1": "Yleisen tietosuoja-asetuksen nojalla sinulla on oikeus:",
+      "items": [
+        "Pääsy: Pyytää kopio henkilökohtaisista tiedoistasi",
+        "Oikaisu: Korjata virheelliset henkilökohtaiset tiedot",
+        "Poistaminen: Pyytää tietojesi poistamista (\"oikeus tulla unohdetuksi\")",
+        "Siirrettävyys: Saada tietosi koneluettavassa muodossa",
+        "Rajoittaminen: Rajoittaa tietojesi käsittelyä",
+        "Vastustaminen: Vastustaa oikeutettuun etuun perustuvaa käsittelyä",
+        "Suostumuksen peruuttaminen: Peruuttaa suostumus milloin tahansa"
+      ],
+      "contactNote": "Näiden oikeuksien käyttämiseksi ota yhteyttä osoitteessa hello@tryvois.com. Vastaamme 30 päivän kuluessa."
+    },
+    "s10": {
+      "title": "10. Tietojen säilyttäminen",
+      "items": [
+        "Aktiiviset tilit: Tiedot säilytetään tilin olemassaolon ajan",
+        "Poistetut tilit: Tiedot poistetaan 30 päivän kuluessa tilin poistamisesta",
+        "Taloustiedot: Säilytetään 7 vuotta Norjan lain edellyttämällä tavalla"
+      ]
+    },
+    "s11": {
+      "title": "11. Tietoturva",
+      "p1": "Toteutamme asianmukaiset tekniset ja organisatoriset toimenpiteet tietojesi suojaamiseksi:",
+      "items": [
+        "TLS/SSL-salaus kaikille siirrettäville tiedoille",
+        "AES-256-salaus tiedoille levossa",
+        "Säännölliset tietoturvatarkastukset ja tunkeutumistestaukset",
+        "Työntekijöiden pääsynhallinta ja koulutus"
+      ]
+    },
+    "s12": {
+      "title": "12. Yhteystiedot ja valitukset",
+      "p1": "Tietosuojaan liittyviin tiedusteluihin:",
+      "privacyContactLabel": "Tietosuojayhteyspiste:",
+      "privacyContactEmail": "hello@tryvois.com",
+      "p2": "Jos uskot oikeuksiasi loukatun, sinulla on oikeus tehdä kantelu:",
+      "authorityName": "Datatilsynet (Norjan tietosuojaviranomainen)",
+      "authorityWebsiteLabel": "Verkkosivusto:",
+      "authorityWebsiteUrl": "https://www.datatilsynet.no",
+      "authorityWebsiteDisplay": "www.datatilsynet.no"
+    }
+  },
+  "eula": {
+    "title": "Loppukäyttäjän lisenssisopimus (EULA)",
+    "subtitle": "Ehdot Voisin käyttämiselle iOS-laitteilla.",
+    "s1": {
+      "title": "1. Applen lisensoima sovellus",
+      "p1": "Voisin käyttöä iOS-laitteilla säätelevät Applen standardin mukainen loppukäyttäjän lisenssisopimus (EULA) sekä nämä palveluehdot.",
+      "boxTitle": "Applen standardimuotoinen EULA",
+      "boxText": "Täydelliset Applen EULA-ehdot löydät osoitteesta:",
+      "eulaUrl": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+    },
+    "s2": {
+      "title": "2. Vahvistukset",
+      "intro": "Vahvistat, että:",
+      "items": [
+        "Tämä EULA on tehty sinun ja VOIS AI AS:n välillä, ei sinun ja Apple Inc:n välillä.",
+        "VOIS AI AS, ei Apple, on yksinomaan vastuussa lisensoitavasta sovelluksesta (Vois) ja sen sisällöstä.",
+        "Applella ei ole velvollisuutta tarjota huolto- tai tukipalveluja Voisille.",
+        "Jos Vois ei vastaa sovellettavaa takuuta, voit ilmoittaa asiasta Applelle, ja Apple palauttaa sovelluksen ostohinnan (jos sellainen on). Sovellettavan lain sallimassa enimmäismäärässä Applella ei ole muita takuuvelvoitteita Voisin suhteen.",
+        "Apple ei ole vastuussa mistään sinun tai kolmansien osapuolten vaatimuksista, jotka koskevat Voisia tai Voisin hallussapitoa ja käyttöä.",
+        "Apple ja sen tytäryhtiöt ovat tämän EULAn kolmannen osapuolen edunsaajia, ja hyväksymisesi jälkeen Applella on oikeus panna tämä EULA täytäntöön sinua vastaan kolmannen osapuolen edunsaajana."
+      ]
+    },
+    "s3": {
+      "title": "3. Immateriaalioikeudet",
+      "p1": "Jos kolmas osapuoli väittää, että Vois tai sen hallussapito ja käyttö loukkaa kyseisen kolmannen osapuolen immateriaalioikeuksia, VOIS AI AS, ei Apple, on yksinomaan vastuussa tällaisen immateriaalioikeusloukkausväitteen tutkinnasta, puolustamisesta, sovinnosta ja ratkaisemisesta."
+    },
+    "s4": {
+      "title": "4. Lainsäädännön noudattaminen",
+      "intro": "Vakuutat ja takaat, että:",
+      "items": [
+        "Et sijaitse maassa, johon Yhdysvaltain hallituksen embargo kohdistuu.",
+        "Et ole Yhdysvaltain hallituksen kiellettyjen tai rajoitettujen osapuolten listalla.",
+        "Noudatat kaikkia sovellettavia kolmansien osapuolten sopimusehtoja Voisin käyttämisessä."
+      ]
+    },
+    "s5": {
+      "title": "5. Tilaussuunnitelmat",
+      "p1": "Vois tarjoaa seuraavat automaattisesti uusiutuvat tilaussuunnitelmat, jotka hallinnoidaan Apple App Storen kautta:",
+      "tableHeaders": ["Tilaus", "Hinta", "Kesto", "Ilmainen kokeilu"],
+      "rows": [
+        ["Henkilökohtainen kuukausittain", "$14,99", "1 kuukausi (uusiutuu kuukausittain)", "Ei ilmaista kokeilua"],
+        ["Henkilökohtainen vuosittain", "$79,99 (n. $6,67/kk)", "1 vuosi (uusiutuu vuosittain)", "3 päivän ilmainen kokeilu"],
+        ["Työ kuukausittain", "$34,99", "1 kuukausi (uusiutuu kuukausittain)", "Ei ilmaista kokeilua"],
+        ["Työ vuosittain", "$249,99 (n. $20,83/kk)", "1 vuosi (uusiutuu vuosittain)", "3 päivän ilmainen kokeilu"]
+      ],
+      "freeTierNote": "Ilmainen taso on myös saatavilla maksutta rajoitetulla käytöllä (5 äänimuistiinpanoa, 5 chat-viestiä, 1 oma sovellus, enintään 3 minuuttia per tallennus).",
+      "autoRenewal": {
+        "title": "Automaattinen uusiminen ja peruuttaminen",
+        "items": [
+          "Maksu veloitetaan Apple ID:ltäsi oston vahvistamishetkellä.",
+          "Ilmaiset kokeilujaksot alkavat ostamishetkellä. Jos tilaus ei ole peruutettu ennen kokeilun päättymistä, se uusiutuu automaattisesti ilmoitetulla hinnalla.",
+          "Tilaukset uusiutuvat automaattisesti, elleivät ne ole peruutettu vähintään 24 tuntia ennen nykyisen kauden päättymistä.",
+          "Voit hallita ja peruuttaa tilauksia milloin tahansa Apple ID -tiliasetuksista."
+        ]
+      },
+      "termsLink": "Palveluehdot",
+      "privacyLink": "Tietosuojakäytäntö",
+      "fullDetailsNote": "Täydelliset tiedot löydät palveluehdoistamme ja tietosuojakäytännöstämme."
+    },
+    "s6": {
+      "title": "6. Yhteystiedot",
+      "p1": "Kaikissa iOS-sovellukseen tai tähän EULAan liittyvissä kysymyksissä ota yhteyttä:",
+      "developerLabel": "Kehittäjä:",
+      "developerValue": "VOIS AI AS",
+      "emailLabel": "Sähköposti:",
+      "emailValue": "hello@tryvois.com",
+      "addressLabel": "Osoite:",
+      "addressValue": "Alsvåg, Norway"
+    }
+  }
+}

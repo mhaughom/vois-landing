@@ -1,0 +1,71 @@
+{
+  "badge": "Unified Messenger",
+  "hero": {
+    "title": "Every Channel. One Conversation.",
+    "description": "Email, Slack, Teams, SMS, and internal chat merged into a single person-centric timeline. Stop checking 5 apps to see all messages from one client."
+  },
+  "body": "Instead of checking four apps to see all messages from a client, every message appears in one chronological stream — email, Slack, Teams, SMS, internal chat — anchored to a single person. Every inbound message runs through importance scoring and action item extraction. High-importance messages get extracted facts, tasks, and follow-up suggestions. The AI understands context across transports — a Slack message referencing an email thread is linked to the same conversation.",
+  "timeline": {
+    "contactName": "Sarah Henderson",
+    "channelsActive": "3 channels active",
+    "messages": [
+      {
+        "channel": "email",
+        "subject": "Re: Kitchen renovation timeline",
+        "time": "Mar 18, 2:30 PM",
+        "preview": "Hi Mike, confirming we're on track for the March 25 start date. Countertops arrive Thursday."
+      },
+      {
+        "channel": "slack",
+        "subject": "#henderson-project",
+        "time": "Mar 19, 9:15 AM",
+        "preview": "Quick Q — are the tile samples in? Client wants to confirm the herringbone pattern before we order."
+      },
+      {
+        "channel": "sms",
+        "time": "Mar 20, 11:00 AM",
+        "preview": "Permits approved! 🎉"
+      },
+      {
+        "channel": "email",
+        "subject": "Re: Updated timeline",
+        "time": "Mar 21, 3:45 PM",
+        "preview": "Attached the revised schedule with the permit delay factored in. New completion: April 12."
+      }
+    ],
+    "caption": "One person, one timeline, every channel. Reply via the same channel or switch — your choice."
+  },
+  "benefits": {
+    "classification": {
+      "title": "AI Classification",
+      "body": "Messages auto-scored by importance with action item extraction. The urgent surfaces; the noise waits."
+    },
+    "replies": {
+      "title": "Adaptive Replies",
+      "body": "AI matches your writing style across 3 tone variants. Sound like you on email, Slack, and SMS — without rewriting."
+    },
+    "mailboxes": {
+      "title": "Shared Mailboxes",
+      "body": "Team inboxes like support@company.com with assignment, tracking, and SLA timers. Nothing falls through."
+    }
+  },
+  "beforeAfter": {
+    "beforeLabel": "Before",
+    "beforeText": "Check Gmail. Check Slack. Check Teams. Check SMS. Piece together what Sarah said across 4 apps.",
+    "beforeStat": "~15 min/day",
+    "afterLabel": "After",
+    "afterText": "Open Sarah's conversation. Everything's there.",
+    "afterStat": "~30 seconds"
+  },
+  "techStrip": [
+    "Person-centric threading",
+    "Multi-transport composition",
+    "AI importance scoring",
+    "Action item extraction",
+    "Realtime sync"
+  ],
+  "closing": {
+    "tagline": "Other inboxes show you messages. HABOS shows you conversations.",
+    "cta": "Join Waitlist"
+  }
+}

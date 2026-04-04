@@ -1,0 +1,71 @@
+{
+  "badge": "Samlad meddelandehantering",
+  "hero": {
+    "title": "Varje kanal. En konversation.",
+    "description": "Mejl, Slack, Teams, SMS och intern chatt sammanfogade i en enda personcentrerad tidslinje. Sluta kontrollera 5 appar för att se alla meddelanden från en kund."
+  },
+  "body": "I stället för att kontrollera fyra appar för att se alla meddelanden från en klient visas varje meddelande i en kronologisk ström — mejl, Slack, Teams, SMS, intern chatt — förankrad till en enda person. Varje inkommande meddelande körs genom viktighetsbedömning och extraktion av åtgärdspunkter. Meddelanden med hög vikt får extraherade fakta, uppgifter och uppföljningsförslag. AI förstår kontext över transportkanaler — ett Slack-meddelande som refererar en mejltråd kopplas till samma konversation.",
+  "timeline": {
+    "contactName": "Sarah Henderson",
+    "channelsActive": "3 kanaler aktiva",
+    "messages": [
+      {
+        "channel": "email",
+        "subject": "Sv: Köksrenoveringstidslinje",
+        "time": "18 mar, 14:30",
+        "preview": "Hej Mike, bekräftar att vi är på rätt spår för startdatum 25 mars. Bänkskivorna anländer torsdag."
+      },
+      {
+        "channel": "slack",
+        "subject": "#henderson-project",
+        "time": "19 mar, 09:15",
+        "preview": "Snabb fråga — är kakelproven inne? Kunden vill bekräfta sillbensmönstret innan vi beställer."
+      },
+      {
+        "channel": "sms",
+        "time": "20 mar, 11:00",
+        "preview": "Tillstånd godkänt! 🎉"
+      },
+      {
+        "channel": "email",
+        "subject": "Sv: Uppdaterad tidslinje",
+        "time": "21 mar, 15:45",
+        "preview": "Bifogar det reviderade schemat med tillståndsförseningens påverkan. Nytt slutdatum: 12 april."
+      }
+    ],
+    "caption": "En person, en tidslinje, varje kanal. Svara via samma kanal eller byt — ditt val."
+  },
+  "benefits": {
+    "classification": {
+      "title": "AI-klassificering",
+      "body": "Meddelanden automatpoängsätts efter vikt med extraktion av åtgärdspunkter. Det brådskande lyfts fram; bruset väntar."
+    },
+    "replies": {
+      "title": "Anpassningsbara svar",
+      "body": "AI matchar din skrivstil i 3 tonvarianter. Låt som du på mejl, Slack och SMS — utan att skriva om."
+    },
+    "mailboxes": {
+      "title": "Delade postlådor",
+      "body": "Teaminkorgnar som support@foretag.com med tilldelning, spårning och SLA-timers. Inget faller igenom."
+    }
+  },
+  "beforeAfter": {
+    "beforeLabel": "Tidigare",
+    "beforeText": "Kontrollera Gmail. Kontrollera Slack. Kontrollera Teams. Kontrollera SMS. Pussla ihop vad Sarah sa i 4 appar.",
+    "beforeStat": "~15 min/dag",
+    "afterLabel": "Efter",
+    "afterText": "Öppna Sarahs konversation. Allt finns där.",
+    "afterStat": "~30 sekunder"
+  },
+  "techStrip": [
+    "Personcentrerad trådning",
+    "Komposition för flera transportkanaler",
+    "AI-viktighetsbedömning",
+    "Extraktion av åtgärdspunkter",
+    "Realtidssynk"
+  ],
+  "closing": {
+    "tagline": "Andra inkorgar visar dig meddelanden. HABOS visar dig konversationer.",
+    "cta": "Gå med i väntelistan"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Lösungen — Dienstleistungsunternehmen",
+    "title": "Führen Sie Ihr Dienstleistungsunternehmen mit Ihrer Stimme.",
+    "subtitle": "Von der Baustelle bis zur Rechnung – ohne eine Tastatur zu berühren.",
+    "description": "Klempner, Elektriker, Reinigungskräfte, Berater, Therapeuten, Buchhalter, Coaches und alle, die Zeit, Expertise oder Arbeitskraft verkaufen."
+  },
+  "story": {
+    "dayLabel": "Lars' Dienstag",
+    "section1": {
+      "heading": "7:30 Uhr — Kaffee und der Plan",
+      "p1": "Lars ist Meisterklempner in Tromsø. Vier Mitarbeiter. Vor HABOS bedeuteten Morgende, Google Kalender, eine Tabelle mit Auftragsdetails und WhatsApp auf Last-Minute-Stornierungen zu prüfen. Heute öffnet er eine App. Sein Zeitplan ist da, mit Kundenhistorie, Adressen und Notizen für jeden Auftrag. Ein Kunde hat über Nacht per E-Mail umgeplant – die KI hat den Termin bereits verschoben, die Route angepasst und eine Bestätigung entworfen. Lars tippt auf \"Bestätigen\", während sein Kaffee noch zu heiß zum Trinken ist."
+    },
+    "section2": {
+      "heading": "11:45 Uhr — Der Van",
+      "p1": "Lars hat gerade ein Absperrventil bei Familie Johnson ersetzt. Vor HABOS war dieser Moment ein schwarzes Loch – er würde sich selbst \"Johnson – Ventil ersetzt, Fitting bestellen\" SMSen und nie zur ordentlichen Rechnungsstellung kommen. Jetzt hebt er sein Handgelenk:",
+      "voiceNote": "\"VOIS, Johnson-Auftrag erledigt. Absperrventil und Zuleitung ersetzt. Muss einen Grohe-Mischwasserhahn von Backer bestellen, 3.200 Kronen. Angebot für 4.800 installiert.\"",
+      "voiceResult": "Zwanzig Sekunden. Auftragsbericht eingereicht. CRM aktualisiert. Bestellanfrage entworfen. Angebot zur Überprüfung bereit.",
+      "p2": "Er geht zum Van. Das war es. Das System hat seine Sprache in strukturierte Daten geparst – verwendete Teile, Kosten, Nachverfolgungen, Kundenstimmung – und jedes Teil an den richtigen Ort geleitet. Kein Tippen. Kein Laptop. Kein \"Ich erledige das heute Abend.\""
+    },
+    "section3": {
+      "heading": "15:20 Uhr — Unterwegs",
+      "p1": "Lars fährt. Eine neue Anfrage landet im gemeinsamen Posteingang – ein Hauseigentümer fragt nach einer Badsanierung. Vor HABOS würde diese E-Mail stundenlang unbeantwortet bleiben. Um 17 Uhr hätte der Interessent jemand anderen gebucht. Studien zeigen, dass 78 % der Kunden mit dem ersten Unternehmen gehen, das antwortet.",
+      "p2": "Stattdessen bewertet die KI die Anfrage, klassifiziert sie als neuen Lead und erstellt eine Antwort in Lars' Stimme. An einer roten Ampel erscheint eine Benachrichtigung: \"Neuer Lead – Badsanierung. Antwort bereit.\" Lars wirft einen Blick auf den Entwurf: \"Vielen Dank für Ihre Anfrage. Ich schaue mir das gerne an. Ich habe Verfügbarkeit ab Mitte Mai – würde ein Vor-Ort-Termin am 15. oder 16. passen?\" Er tippt auf Senden. Zwei Minuten. Der Interessent ist beeindruckt. Lars' Mitbewerber hat die E-Mail noch nicht geöffnet."
+    },
+    "section4": {
+      "heading": "21:15 Uhr — Die Couch",
+      "p1": "Vor HABOS war das die Verwaltungsstunde. Rechnungsstellung aus dem Gedächtnis. Sechs E-Mails beantworten. Das CRM aktualisieren, das er im Februar aufgehört hatte zu pflegen. Morgen planen. Zwei Stunden unbezahlte Arbeit, jeden Abend.",
+      "p2": "Heute Abend sieht Lars fern. Die Rechnung für den Johnson-Auftrag wurde aus seiner Sprachnotiz erstellt, um 18 Uhr auf seinem Telefon überprüft und mit einem Tippen gesendet. Vier E-Mails wurden durch Benachrichtigungskarten zwischen Aufträgen bearbeitet. Der Zeitplan für morgen ist festgelegt. Die Bestellanfrage für den Grohe-Mischventil wartet auf Lieferantenbestätigung.",
+      "p3": "Sein Abend gehört seiner Familie."
+    },
+    "section5": {
+      "heading": "Wofür Lars früher bezahlte",
+      "p1": "Vor HABOS hatte Lars Calendly für Buchungen, Fiken für Buchhaltung, ein halb gepflegtes HubSpot-CRM, Todoist für Aufgaben, Gmail für Kundenmails, WhatsApp für Nachrichten und sah sich Jobber für die Disposition an. Zusammen: über 300 $ pro Monat an Abonnements, die meisten davon wenig genutzt.",
+      "p2": "HABOS ersetzt alles. Terminplanung mit Stripe-Zahlungen und Doppelbuchungsschutz. Finanzen mit Sprach-Ausgabenerfassung und norwegischer Compliance. CRM, das sich aus Gesprächen selbst aufbaut. Aufgaben aus Sprachnotizen extrahiert. Ein einheitlicher Posteingang mit KI-Antworten in seiner Stimme. Disposition und Routenplanung. Eine Plattform. 35 $ pro Monat."
+    },
+    "section6": {
+      "heading": "Was sich für sein Unternehmen verändert hat",
+      "p1": "Die Verwaltung sank von vierzehn Stunden pro Woche auf vier. Die durchschnittliche Antwortzeit auf neue Anfragen ging von vier Stunden auf fünf Minuten zurück. Letzten Monat buchte sein Team acht Aufträge aus E-Mail-Anfragen, die sie vorher verloren hätten – weil HABOS antwortete, während sie noch auf Leitern standen.",
+      "p2": "Null vergessene Rechnungen. Null verlorene Leads durch langsame Reaktion. Null Abende am Laptop."
+    },
+    "testimonial": {
+      "quote": "\"Früher verbrachte ich jeden Abend mit Rechnungen und E-Mails. Jetzt spreche ich nach jedem Auftrag mit meiner Uhr und alles ist bis zum Abendessen erledigt. Letzten Monat buchten wir 8 Aufträge, die wir verloren hätten – weil HABOS in 2 Minuten antwortete, während ich noch auf einer Leiter stand.\"",
+      "attribution": "— Lars, 41 · Meisterklempner · 4 Mitarbeiter · Tromsø"
+    },
+    "cta": {
+      "heading": "Ihr letzter Abend mit unbezahlter Verwaltung beginnt jetzt.",
+      "button": "Der Warteliste beitreten"
+    }
+  }
+}

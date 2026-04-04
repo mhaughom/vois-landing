@@ -1,0 +1,64 @@
+{
+  "badge": "Social Media",
+  "hero": {
+    "title_part1": "Cleverer posten.",
+    "title_part2": "Nicht öfter.",
+    "description": "Verwalte deine Instagram-Beiträge mit KI-generierten Beschriftungen, visueller Planung und Performance-Metriken — alles von derselben Plattform, auf der auch deine Geschäftsdaten leben."
+  },
+  "feedManager": {
+    "label": "Social-Feed-Manager",
+    "aiCaptionBadge": "KI-Beschriftung",
+    "postCards": [
+      {
+        "day": "Mo",
+        "time": "9 Uhr",
+        "caption": "Neues Projekt abgeschlossen — wische, um das Vorher & Nachher zu sehen...",
+        "aiGenerated": true
+      },
+      {
+        "day": "Mi",
+        "time": "14 Uhr",
+        "caption": "Hinter den Kulissen in unserem Workshop diese Woche...",
+        "aiGenerated": false
+      },
+      {
+        "day": "Fr",
+        "time": "11 Uhr",
+        "caption": "Schönes Wochenende! Hier ein Vorgeschmack auf das, was als nächstes kommt...",
+        "aiGenerated": false
+      }
+    ],
+    "metrics": [
+      { "label": "Reichweite", "value": "2.400" },
+      { "label": "Engagement", "value": "340" },
+      { "label": "Follower", "value": "+28" }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "KI-Beschriftungen",
+      "desc": "Beschreibe den Beitrag in einfacher Sprache. VOIS schreibt eine Beschriftung, die zu deiner Markenstimme passt, fügt Hashtags hinzu und schlägt die beste Posting-Zeit vor."
+    },
+    {
+      "title": "Visueller Planer",
+      "desc": "Sieh deinen Inhaltskalender auf einen Blick. Beiträge zum Umplanen ziehen. Vorschau, wie dein Raster vor der Veröffentlichung aussehen wird."
+    },
+    {
+      "title": "Performance-Metriken",
+      "desc": "Reichweite, Engagement und Follower-Wachstum verfolgen. Sieh, welche Inhaltstypen am besten abschneiden, ohne VOIS zu verlassen."
+    }
+  ],
+  "scenario": "Du machst ein Foto einer fertigen Küchenrenovierung. Du sagst \"poste das mit einer Beschriftung zur Transformation.\" VOIS generiert drei Beschriftungsoptionen, schlägt vor, Donnerstag um 11 Uhr basierend auf deiner Engagement-Geschichte zu posten, und plant es ein. Du genehmigst aus dem Auto.",
+  "techItems": [
+    "Instagram-Integration",
+    "KI-Beschriftungs-Generierung",
+    "Post-Planung",
+    "Engagement-Metriken",
+    "Markenstimmen-Abstimmung",
+    "Inhaltskalender"
+  ],
+  "cta": {
+    "title": "Deine Social-Media-Präsenz,\nangetrieben von deinen Geschäftsdaten.",
+    "button": "Warteliste beitreten"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "category": "Filosofi",
+  "title": "Tankens hastighet",
+  "tagline": "Din snabbaste inmatning är din röst. Din snabbaste utmatning är ett tryck.",
+  "heroAlt": "Tankens hastighet",
+  "speedLines": {
+    "typing": "Skrivande: 40 ord/min.",
+    "speaking": "Talande: 150 ord/min.",
+    "reading": "Läsande: 250 ord/min.",
+    "tapping": "Tryckning: omedelbar."
+  },
+  "body1": "Ett 30-minuters möte producerar tio beslut. Sedan spenderar någon 45 minuter på att skriva in dessa beslut i ett projekthanteringsverktyg. Hjärnan verkar i tankens hastighet. Programvaran verkar i skrivandets hastighet. Den obalansen kostar timmar varje dag.",
+  "body2": "Ta ett e-postsvar. Läsa tre AI-genererade varianter: 10 sekunder. Trycka skicka på rätt en: 0,1 sekunder. Totalt: 10,1 sekunder. Skriva från grunden: 3–5 minuter. Det är 20 gånger snabbare. Över 20 e-postmeddelanden per dag är det skillnaden mellan en timme och fyra minuter.",
+  "quote": "\"Vi snabbade inte upp skrivandet. Vi eliminerade behovet av det.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Fånga din hjärna",
+    "nextLabel": "Nästa",
+    "nextTitle": "Alltid inom räckhåll"
+  }
+}

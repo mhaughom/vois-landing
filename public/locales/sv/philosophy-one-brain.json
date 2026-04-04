@@ -1,0 +1,48 @@
+{
+  "category": "Filosofi",
+  "title": "En hjärna",
+  "tagline": "Utan detta låter \"vi gör allt\" som Zoho. Med detta låter det som sammansatt intelligens. CRM:et vet om röstanteckningen. Röstanteckningen vet om kalendern. Varje funktion är smartare än den kunde vara ensam.",
+  "heroPlaceholder": "Hjälteillustration",
+  "sources": [
+    "Röstinspelningar", "Dokument", "E-posttrådar", "Kontakter",
+    "Chatthistorik", "Spelböcker och SOPs", "Produkter", "Beställningar",
+    "Bokningar", "CRM-klienter", "Supportärenden", "Formulärsinlämningar",
+    "Jobb och besök", "Rutter", "Webbplatser", "Sociala inlägg",
+    "Presentationer", "Projekt", "Kalenderhändelser"
+  ],
+  "sourcesLabel": "19 källor. En sökning.",
+  "section1": {
+    "heading": "Fragmenteringsskatten",
+    "body1": "I en traditionell verktygsstack vet inte din kalender om dina uppgifter. Dina mötesanteckningar matar inte din projektspårare. Dina röstmemon ligger obearbetade. Din e-post är en ö. Ditt CRM har ingen aning om vad som sades på möten.",
+    "body2": "Varje gång du byter app för att hitta sammanhang betalar du en skatt — i tid, i uppmärksamhet och i beslut fattade utan hela bilden. Den genomsnittlige kunskapsarbetaren byter mellan appar 1 200 gånger per dag. Det är inte produktivitet. Det är friktion maskerad som arbete."
+  },
+  "section2": {
+    "heading": "En databas. Delad förståelse.",
+    "body1": "HABOS lagrar allt i ett enhetligt datalager. En SQL-förfrågan kan koppla ihop CRM-kontakter med mötestransskript, orderrader med supportärenden, kalenderhändelser med uppgiftsberoenden, e-posttrådar med projektmilstolpar och röstanteckningstranskript med spelbok-SOPs.",
+    "body2": "Det innebär att när AI:n förbereder dig för ett möte kollar den inte bara din kalender. Den hämtar klientens köphistorik, deras öppna ärenden, vad som diskuterades på de tre senaste mötena, vad din säljspelbok säger att göra i det här affärsstadiet och en röstanteckning du spelade in när du gick med hunden där du nämnde deras VD."
+  },
+  "dataFlowPlaceholder": "Dataflödesdiagram",
+  "brainSearchPlaceholder": "Brain-sökvisualisering",
+  "section3": {
+    "heading": "Hur det ser ut i praktiken",
+    "query": "\"Vad händer med Nordic Fishing?\"",
+    "body": "Inom tre sekunder får du: deras CRM-status (förhandlingsstadiet), deras tre senaste beställningar (47 000 kr totalt), det öppna supportärendet om leveranstiming, vad Lars sa om expansion på det senaste mötet, och en påminnelse om att kontraktsförnyelsen kommer i april. Varje informationsdel länkas tillbaka till sin källa. Du öppnade inte fem olika appar."
+  },
+  "section4": {
+    "heading": "Semantisk, inte bara nyckelord",
+    "body1": "Hjärnan använder 512-dimensionella vektorinbäddningar över varje datakälla. Sökning på \"intäktsprognoser\" hittar en röstanteckning med titeln \"Q3 finansiell utsikt\". Sökning på \"det HVAC-ting Jonas nämnde\" hittar mötestransskriptet där han pratade om kompressorslitage på Fjordview Hotel.",
+    "body2": "Alla 19 källor söks parallellt. Typisk latens: under en sekund för en fullständig sökning på alla plattformar. AI:n matchar inte bara nyckelord — den förstår dina data semantiskt."
+  },
+  "section5": {
+    "heading": "Vallgraven som fördjupas",
+    "body1": "Konkurrenter kan flytta data mellan appar. De kan bygga API-bryggor och synkpipelines. Vad de inte kan replikera är delad förståelse — förmågan för varje del av systemet att resonera över varje annan del, för att allt utformades för att leva tillsammans.",
+    "body2": "Ju längre ditt team använder HABOS, desto kraftfullare blir detta. Efter sex månader känner AI:n till mönster som ingen människa kunde spåra i så många system: vilka kunder som beställer om förutsägbart, vilka verksamheter som konsekvent driver, vilka spelböcker som aldrig följs."
+  },
+  "quote": "\"Andra plattformar kan synkronisera dina data. Bara en plattform kan tänka över dem.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Slutet på datainmatning",
+    "nextLabel": "Nästa",
+    "nextTitle": "Din röst, inte vår"
+  }
+}

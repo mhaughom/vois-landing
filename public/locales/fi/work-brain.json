@@ -1,0 +1,77 @@
+{
+  "badge": "Ydinominaisuus",
+  "hero": {
+    "title": "Yksi kysymys. Yhdeksäntoista lähdettä.\nYksi sekunti.",
+    "description": "Kysy mitä tahansa liiketoiminnastasi ja saa viittauksin varustettu vastaus ennen kuin kahvisi on juotavan lämpöistä."
+  },
+  "intro": "Kun kysyt \"mitä käsittelimme Johnson-projektista?\" — HABOS ei hae yhdestä sovelluksesta. Se hakee samanaikaisesti kokoustallenteista, projektimerkinnöistä, sähköpostiketjuista, CRM-aikajanalta, tehtäväkommenteista ja chat-viesteistä. Yritys, joka käyttää erillisiä työkaluja jokaiseen — Notion, HubSpot, Gmail, Slack, Asana — joutuisi hakemaan viidestä tuotteesta ja kokoamaan tulokset henkisesti. HABOS palauttaa järjestetyn, viittauksin varustetun vastauksen alle sekunnissa.",
+  "sources": {
+    "label": "Kaikki haetaan samanaikaisesti",
+    "items": [
+      "Äänitallenteet",
+      "Dokumentit",
+      "Sähköpostit",
+      "Yhteystiedot",
+      "Chat-viestit",
+      "Toimintaohjeet",
+      "Tuotteet",
+      "Tilaukset",
+      "Varaukset",
+      "CRM-tietueet",
+      "Tiketit",
+      "Lomakevastaukset",
+      "Työt ja vierailut",
+      "Reitit",
+      "Verkkosivustot",
+      "Somepostaukset",
+      "Esitykset",
+      "Projektimerkinnät",
+      "Kokoustalleneet"
+    ]
+  },
+  "comparison": {
+    "without": {
+      "title": "Ilman VOIS Brain -toimintoa",
+      "painPoints": [
+        "Hae Gmailista... ei mitään",
+        "Tarkista Slack... ehkä?",
+        "Avaa CRM... vieritä vieritä vieritä",
+        "Kysy kollegalta... hän on kokouksessa",
+        "Luovuta ja improvisoi"
+      ],
+      "footer": "~20 minuuttia. Osittainen vastaus."
+    },
+    "with": {
+      "title": "VOIS Brain -toiminnolla",
+      "query": "\u201cMitä käsittelimme Johnson-projektista?\u201d",
+      "foundLabel": "Löydetty 4 lähteestä:",
+      "sources": "kokousallenteen (12. maalisk.) · sähköpostiketju (15. maalisk.) · CRM-muistiinpano (18. maalisk.) · projektipäivitys (20. maalisk.)",
+      "answer": "Johnssonin keittiöremontti on aikataulussa hyväksyttyjen lupien kanssa...",
+      "footer": "0,8 sekuntia. Täydellinen kuva."
+    }
+  },
+  "techStats": [
+    "512-ulotteiset upotukset",
+    "HNSW-vektori-indeksit",
+    "Hybridisemanttiinen + avainsanahaku",
+    "11 hakufunktiota"
+  ],
+  "scenarios": [
+    {
+      "question": "Missä olemme Henderson-kaupan kanssa?",
+      "answer": "CRM-putki, 3 sähköpostiketjua, viimeisimmät kokousmuistiinpanot"
+    },
+    {
+      "question": "Mitä Sara sanoi budjetista?",
+      "answer": "Äänitallenteen litteraatti, projektikommentti, Slack-viesti"
+    },
+    {
+      "question": "Löydä kaikki lupahidastuksista",
+      "answer": "2 projektimerkintää, 1 sähköpostiketju, 1 lomakevastaus, 1 työloki"
+    }
+  ],
+  "closing": {
+    "tagline": "Muut alustat hakevat yhdestä sovelluksesta kerrallaan. VOIS hakee koko liiketoiminnastasi kerralla.",
+    "cta": "Liity odotuslistalle"
+  }
+}

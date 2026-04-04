@@ -1,0 +1,379 @@
+{
+  "features": {
+    "yourAssistant": {
+      "headline": "An AI that knows your entire business.",
+      "body": "VOIS learns your processes, preferences, history, and context. It doesn't just answer questions — it anticipates needs, drafts responses, and acts on your behalf across every tool you use.",
+      "closingLine": "Other assistants need instructions. VOIS already knows."
+    },
+    "yourSuperAssistant": {
+      "headline": "Voice, watch, inbox, memory — one brain.",
+      "body": "Speak to your watch, dictate in the car, forward an email, or drop a note. Every input lands in one intelligent system that routes, prioritizes, and remembers everything.",
+      "closingLine": "One brain. Every interface."
+    },
+    "yourDay": {
+      "headline": "Every morning, planned for you.",
+      "body": "VOIS reviews your tasks, calendar, deadlines, and priorities overnight. Each morning you get a proposed schedule with themed time blocks, prep notes for meetings, and flagged items that need attention.",
+      "closingLine": "Your day shouldn't start with decisions. It should start with a plan."
+    },
+    "meetings": {
+      "headline": "Prepared. Transcribed. Acted on.",
+      "body": "Personalized briefings before every meeting. Live transcription with speaker diarization during. Action items extracted and routed to the right projects and people after.",
+      "closingLine": "Other tools transcribe. VOIS prepares, captures, and acts."
+    },
+    "projects": {
+      "headline": "Know what needs you before it stalls.",
+      "body": "AI health scoring monitors task completion, activity patterns, and timeline progress. When a project goes quiet or a milestone slips, VOIS flags it proactively and suggests next steps.",
+      "closingLine": "Dashboards show what happened. VOIS tells you what to do next."
+    },
+    "operations": {
+      "headline": "Your business monitors itself.",
+      "body": "VOIS watches KPIs, workflows, and recurring processes. When something deviates from normal — a delayed delivery, a missed SLA, a budget overrun — it alerts you with context and recommended action.",
+      "closingLine": "Stop firefighting. Start preventing."
+    },
+    "clients": {
+      "headline": "Every relationship, full context.",
+      "body": "VOIS builds rich profiles from every interaction — meetings, emails, notes, tasks. Before any conversation you see the full history, sentiment trends, and AI-suggested talking points.",
+      "closingLine": "Your CRM shouldn't be a database. It should be a memory."
+    },
+    "documents": {
+      "headline": "Talk it out. Get a document back.",
+      "body": "Describe what you need — a project brief, a proposal, a weekly update — and VOIS generates a structured document from your voice, pulling context from your projects and data.",
+      "closingLine": "Stop staring at blank pages. Start talking."
+    },
+    "finance": {
+      "headline": "Every dollar, one view.",
+      "body": "Revenue, expenses, invoices, and forecasts unified in a single AI-powered dashboard. VOIS categorizes transactions, flags anomalies, and answers natural-language questions about your numbers.",
+      "closingLine": "Your books should explain themselves."
+    },
+    "website": {
+      "headline": "Your site, built by AI.",
+      "body": "Describe your business and VOIS generates a complete website — copy, layout, images, SEO. Update it by voice. Connect forms, booking, and payments without touching code.",
+      "closingLine": "Your website shouldn't need a developer."
+    },
+    "aiAgents": {
+      "headline": "Your first ten hires don't need salaries.",
+      "body": "Build your AI team in an org chart. Assign agents to roles — researcher, writer, analyst, ops. Each has responsibilities, tools, budgets, and reporting lines. They plan before acting and pause for approval.",
+      "closingLine": "ChatGPT answers questions. VOIS agents complete missions."
+    },
+    "reports": {
+      "headline": "Speak your report in 90 seconds.",
+      "body": "Upload a template and VOIS extracts every field. Fill the entire report by voice — AI interviews you one field at a time and pre-fills what it already knows from your data.",
+      "closingLine": "Ten questions. Done."
+    },
+    "yourTeam": {
+      "headline": "Every employee, a super-assistant.",
+      "body": "Give every team member their own AI assistant that knows company context, processes, and history. Onboarding, daily planning, knowledge lookup, and task management — personalized per role.",
+      "closingLine": "Scale your best practices to every seat."
+    },
+    "playbooks": {
+      "headline": "Your SOPs, alive and enforced.",
+      "body": "Turn standard operating procedures into living workflows. VOIS monitors compliance, guides team members through each step, and flags deviations before they become problems.",
+      "closingLine": "SOPs shouldn't live in binders. They should run themselves."
+    },
+    "fieldToOffice": {
+      "headline": "The information gap, eliminated.",
+      "body": "A technician finishes a job and speaks a 30-second update. The office sees it instantly — structured, filed, and linked to the right project, client, and invoice. No phone calls, no data entry.",
+      "closingLine": "The field is never a day behind again."
+    },
+    "theAirlock": {
+      "headline": "AI power. Human control.",
+      "body": "Every AI action goes through the Airlock — a preview card with cryptographic confirmation. The AI proposes, you review the exact output, then approve. Nothing is sent, created, or modified without your explicit sign-off.",
+      "closingLine": "Trust isn't a setting. It's an architecture."
+    },
+    "yourMemory": {
+      "headline": "Ask anything you've ever said or read.",
+      "body": "Search across all 19 data sources — voice recordings, emails, documents, meeting transcripts, CRM notes — with semantic search. VOIS finds the answer even when you can't remember which app it was in.",
+      "closingLine": "Your second brain, with perfect recall."
+    },
+    "growthEngine": {
+      "headline": "Share a meeting note. Gain a customer.",
+      "body": "Shared meeting notes become a growth channel. Recipients see your company preview, get a promo offer, and sign up into a workspace pre-seeded from their own company data.",
+      "closingLine": "Your product sells itself through the work it does."
+    }
+  },
+  "panels": {
+    "yourAssistant": {
+      "badge": "Total awareness",
+      "heading": "It already knows your business.",
+      "description": "Learns your processes, preferences, and history. Anticipates what you need before you ask.",
+      "tags": ["Emails", "Meetings", "Projects", "CRM", "Docs", "Voice"],
+      "stat": "19",
+      "statLabel": "data sources",
+      "statSub": "searched in parallel",
+      "statMore": "13 more",
+      "statDesc": "Voice, email, CRM,\ndocs, chat, projects,\nand {{count}} more.",
+      "quote": "Other assistants need instructions.\nVOIS already knows."
+    },
+    "yourSuperAssistant": {
+      "badge": "Inputs",
+      "voiceLabel": "Voice",
+      "voiceDesc": "speak naturally",
+      "watchLabel": "Watch",
+      "watchDesc": "tap your wrist",
+      "emailLabel": "Email",
+      "emailDesc": "forward it",
+      "chatLabel": "Chat",
+      "chatDesc": "type or text",
+      "slackLabel": "Slack",
+      "slackDesc": "command it",
+      "quote": "One brain.\nEvery interface.",
+      "mainBadge": "Every surface, one brain",
+      "heading": "Speak, type, tap, forward.\nIt all lands in one place.",
+      "description": "Every input is routed, prioritized, and remembered — no matter which device you used.",
+      "devices": ["Watch", "Phone", "Desktop", "Inbox"]
+    },
+    "yourDay": {
+      "badge": "Morning brief",
+      "heading": "Your day, planned\nbefore you wake up.",
+      "description": "VOIS reviews tasks, calendar, and deadlines overnight. You wake to a proposed schedule.",
+      "stat": "7 AM",
+      "statLabel": "your plan is ready",
+      "statSub": "built while you slept",
+      "statNote": "Zero decisions needed",
+      "statDesc": "Time blocks, prep notes,\nand flagged priorities.",
+      "quote": "Your day should start with a plan, not decisions."
+    },
+    "meetings": {
+      "badge": "The full cycle",
+      "heading": "Prepared. Transcribed.\nActed on.",
+      "beforeLabel": "Before",
+      "beforeDesc": "personalized briefing",
+      "duringLabel": "During",
+      "duringDesc": "live transcription",
+      "afterLabel": "After",
+      "afterDesc": "action items routed",
+      "step1": "Prep",
+      "step1Sub": "auto-brief",
+      "step2": "Capture",
+      "step2Sub": "transcribe",
+      "step3": "Act",
+      "step3Sub": "route tasks",
+      "quote": "Other tools transcribe.\nVOIS prepares, captures,\nand acts.",
+      "stat": "0",
+      "statLabel": "manual follow-ups",
+      "statSub": "actions auto-routed to projects"
+    },
+    "projects": {
+      "healthBadge": "Health",
+      "statusOnTrack": "On track",
+      "statusAtRisk": "At risk",
+      "statusStalled": "Stalled",
+      "pctOnTrack": "82%",
+      "pctAtRisk": "14%",
+      "pctStalled": "4%",
+      "badge": "Proactive, not reactive",
+      "heading": "Know what needs you\nbefore it stalls.",
+      "description": "AI monitors completion, activity, and timelines. When a project goes quiet, VOIS flags it and suggests next steps.",
+      "signals": ["Stalled tasks", "Missed milestones", "Activity drops", "Timeline drift"],
+      "quote": "Dashboards show what happened.\nVOIS tells you what to do next."
+    },
+    "operations": {
+      "badge": "Always watching",
+      "heading": "Your business\nmonitors itself.",
+      "description": "KPIs, workflows, recurring processes. When something deviates, you get context and a recommended fix.",
+      "trigger1": "Delayed delivery",
+      "action1": "Auto-notify client",
+      "trigger2": "Missed SLA",
+      "action2": "Escalate to lead",
+      "trigger3": "Budget overrun",
+      "action3": "Flag for review",
+      "stat": "24/7",
+      "statLabel": "monitoring",
+      "statSub": "zero human bandwidth",
+      "quote": "Stop firefighting.\nStart preventing."
+    },
+    "clients": {
+      "badge": "Full context CRM",
+      "heading": "Every relationship,\ntotal recall.",
+      "description": "Rich profiles built from every interaction. Before any call, see full history and AI-suggested talking points.",
+      "lastContactKey": "Last contact",
+      "lastContactVal": "3 days ago — email",
+      "sentimentKey": "Sentiment",
+      "sentimentVal": "Positive, engaged",
+      "openItemsKey": "Open items",
+      "openItemsVal": "2 proposals pending",
+      "nextStepKey": "Next step",
+      "nextStepVal": "Follow up on pricing",
+      "callBadge": "Before every call",
+      "callDesc": "History, sentiment,\nopen items, talking\npoints — auto-prepared.",
+      "callDescHighlight": "auto-prepared",
+      "quote": "Your CRM should be a memory, not a database."
+    },
+    "documents": {
+      "stat": "Voice",
+      "statLabel": "to document",
+      "types": ["Briefs", "Proposals", "Reports", "Updates"],
+      "quote": "Stop staring at blank pages. Start talking.",
+      "badge": "Talk, don't type",
+      "heading": "Describe what you need.\nGet a finished document.",
+      "description": "VOIS pulls context from your projects and generates structured docs from your voice.",
+      "step1": "Speak",
+      "step1Sub": "describe it",
+      "step2": "AI",
+      "step2Sub": "drafts it",
+      "step3": "Done",
+      "step3Sub": "formatted"
+    },
+    "finance": {
+      "badge": "Financial intelligence",
+      "heading": "Every dollar,\none view.",
+      "description": "Revenue, expenses, invoices, and forecasts in one AI dashboard. Ask questions in plain language.",
+      "revenueLabel": "Revenue",
+      "revenueVal": "$48.2K",
+      "expensesLabel": "Expenses",
+      "expensesVal": "$31.7K",
+      "netLabel": "Net",
+      "netVal": "$16.5K",
+      "quote": "Your books should explain themselves.",
+      "queryBadge": "Ask anything",
+      "query1": "\"How much did we spend on marketing?\"",
+      "query2": "\"Show overdue invoices\"",
+      "query3": "\"Revenue trend last 6 months\""
+    },
+    "website": {
+      "badge": "AI-built sites",
+      "heading": "Describe your business.\nGet a website.",
+      "description": "Copy, layout, images, SEO — generated. Update by voice. Connect forms, booking, and payments.",
+      "features": ["Copy & SEO", "Layout", "Forms", "Booking", "Payments", "Analytics"],
+      "quote": "Your website shouldn't need a developer.",
+      "stat": "0",
+      "statLabel": "lines of code",
+      "statSub": "voice-updated, always live"
+    },
+    "aiAgents": {
+      "badge": "Your AI org chart",
+      "heading": "Your first ten hires\ndon't need salaries.",
+      "description": "Build agents in an org chart. Each has responsibilities, tools, budgets, and reporting lines.",
+      "role1": "Researcher",
+      "role1Desc": "Web scraping, analysis",
+      "role2": "Writer",
+      "role2Desc": "Content, proposals",
+      "role3": "Analyst",
+      "role3Desc": "Data, forecasts",
+      "role4": "Ops",
+      "role4Desc": "Scheduling, routing",
+      "loopBadge": "The loop",
+      "loopSteps": ["Plan", "Act", "Pause", "Deliver"],
+      "loopNote": "Always in control",
+      "loopDesc": "Agents plan before acting\nand pause for your approval.",
+      "quote": "ChatGPT answers questions.\nVOIS agents complete missions."
+    },
+    "reports": {
+      "badge": "Reports, reimagined",
+      "heading": "Call your assistant.\nDescribe what happened.\nGet a finished report.",
+      "subHeading": "No forms. No laptop. Just a phone call.",
+      "description": "Upload any template and VOIS extracts every field. Then fill it by voice — the AI interviews you and pre-fills what it already knows.",
+      "step1": "Upload",
+      "step1Sub": "template",
+      "step2": "Call",
+      "step2Sub": "your AI",
+      "step3": "Done",
+      "step3Sub": "report filed",
+      "stat": "90s",
+      "statLabel": "avg. report time",
+      "statSub": "vs 30 min traditional",
+      "statSpeedNote": "10x faster",
+      "statDesc": "People talk 3–4x faster\nthan they type. Add AI\nformatting =",
+      "voiceBadge": "Voice-first",
+      "voiceHeading": "AI asks. You answer.\n10 questions. Done.",
+      "phoneLabel": "Phone call",
+      "phoneDesc": "ring your assistant",
+      "interviewLabel": "Interview",
+      "interviewDesc": "AI walks through fields",
+      "dictationLabel": "Dictation",
+      "dictationDesc": "one voice note fills all",
+      "chatLabel": "Chat",
+      "chatDesc": "conversational text input"
+    },
+    "yourTeam": {
+      "badge": "Per-role AI",
+      "heading": "Every seat gets\na super-assistant.",
+      "description": "Company context, processes, and history — personalized per role.",
+      "stat": "1:1",
+      "statLabel": "AI per employee",
+      "statSub": "tailored to their role",
+      "statNote": "personal assistant",
+      "statDesc": "Not a shared chatbot.\nA that knows their job.",
+      "perks": ["Onboarding guide", "Daily planner", "Knowledge lookup", "Task manager", "Process coach", "Meeting prep"],
+      "perksBadge": "What each employee gets"
+    },
+    "playbooks": {
+      "badge": "Living SOPs",
+      "heading": "Your playbooks\nrun themselves.",
+      "description": "Turn procedures into workflows that monitor compliance, guide each step, and flag deviations.",
+      "step1": "Step 1",
+      "step1Desc": "Guide team member",
+      "step2": "Step 2",
+      "step2Desc": "Verify compliance",
+      "step3": "Step 3",
+      "step3Desc": "Flag deviation",
+      "quote": "SOPs shouldn't live in binders. They should run themselves.",
+      "complianceBadge": "Compliance score",
+      "stat": "97%",
+      "statSub": "avg. across active playbooks",
+      "statNote": "before",
+      "statDesc": "Real-time monitoring.\nDeviations caught\nthey become problems."
+    },
+    "fieldToOffice": {
+      "badge": "Bridge the gap",
+      "heading": "Field update in 30s.\nOffice sees it instantly.",
+      "description": "Technician speaks a voice note. It's structured, filed, and linked to the right project, client, and invoice.",
+      "step1": "Speak",
+      "step1Sub": "on site",
+      "step2": "AI",
+      "step2Sub": "structures",
+      "step3": "Office",
+      "step3Sub": "sees it",
+      "stat": "30s",
+      "statLabel": "voice note replaces",
+      "statSub": "20 min of paperwork",
+      "linksBadge": "Auto-linked to",
+      "links": ["Project", "Client", "Invoice", "Timeline"],
+      "quote": "The field is never\na day behind again."
+    },
+    "theAirlock": {
+      "badge": "AI safety layer",
+      "heading": "AI power.\nHuman control.",
+      "description": "Every AI action goes through a preview card. You see the exact output, then approve. Nothing happens without your sign-off.",
+      "step1": "AI",
+      "step1Sub": "proposes",
+      "step2": "You",
+      "step2Sub": "review",
+      "step3": "Approve",
+      "step3Sub": "or reject",
+      "stat": "100%",
+      "statLabel": "human-approved",
+      "statSub": "every action, every time",
+      "ironRuleBadge": "The iron rule",
+      "ironRuleHeading": "AI proposes. You review.\nYou approve. Always.",
+      "quote": "Trust isn't a setting.\nIt's an architecture."
+    },
+    "yourMemory": {
+      "badge": "Semantic search",
+      "heading": "Ask anything\nyou've ever said.",
+      "description": "Search by meaning, not keywords. VOIS finds answers across every source.",
+      "stat": "19",
+      "statLabel": "sources indexed",
+      "statMore": "+ 13 more",
+      "statSources": "Voice · Email · Docs\nCRM · Chat · Notes",
+      "queryBadge": "Example queries",
+      "query1": "\"What did Sarah say about the budget?\"",
+      "query2": "\"Find everything about permit delays\"",
+      "query3": "\"Where are we with Henderson?\"",
+      "quote": "Your second brain,\nwith perfect recall."
+    },
+    "growthEngine": {
+      "badge": "Viral loop",
+      "heading": "Share a meeting note.\nGain a customer.",
+      "description": "Recipients see your company, get a promo, and sign up pre-seeded with their own data.",
+      "stat": "90%",
+      "statLabel": "off for referrals",
+      "statHighlight": "their own data",
+      "statDesc": "Referred signups get\na workspace pre-seeded\nfrom",
+      "flyWheelBadge": "The flywheel",
+      "flyWheelSteps": ["Share", "Discover", "Sign up", "Share"],
+      "flyWheelDesc": "Your product sells itself\nthrough the work it does.",
+      "quote": "Every meeting note\nis a growth channel."
+    }
+  }
+}

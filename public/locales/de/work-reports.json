@@ -1,0 +1,66 @@
+{
+  "badge": "Demnächst verfügbar",
+  "hero": {
+    "title": "Sprachberichte",
+    "description": "Berichte durch Sprechen ins Leben rufen. Mache einen Standortspaziergang und spreche deine Beobachtungen — KI generiert sofort ein formatiertes PDF."
+  },
+  "intro": "Traditionelle Berichte erfordern das Hinsetzen, Öffnen eines Formulars und Tippen von Antworten. HABOS bietet vier Ausfüllmodi: ein Echtzeit-Sprachinterview, bei dem KI Fragen Feld für Feld stellt, einen Diktionsmodus, bei dem eine einzige Sprachnotiz alle Felder lautlos ausfüllt, ein Text-Chatbot, der jedes Feld gesprächsweise durchgeht, und traditionelle manuelle Eingabe als Fallback. Lade ein PDF oder Bild hoch und GPT-4 Vision extrahiert Feldbezeichnungen, Typen und Validierungsmuster, um automatisch ein typisiertes Schema zu generieren.",
+  "problem": {
+    "title": "Das Problem mit dem Berichtschreiben",
+    "body": "Für Außendienstmitarbeiter, Krankenschwestern, Inspektoren und viele Fachleute ist das Schreiben von Berichten auf Touchscreens oder Computern eine enorme Zeitverschwendung. Es ist langsam, mühsam und Leute lassen oft Details weg, weil Tippen zu umständlich ist. Sprachberichte ändern alles."
+  },
+  "features": [
+    {
+      "title": "Einfach sprechen",
+      "desc": "Öffne VOIS, tippe auf Aufnehmen und sprich deine Beobachtungen durch. Kein Tippen, keine Formulare, keine Kontrollkästchen. KI hört zu, strukturiert und formatiert alles automatisch."
+    },
+    {
+      "title": "Sofortige Formatierung",
+      "desc": "KI generiert einen ordentlich formatierten Bericht — Überschriften, Abschnitte, Aufzählungspunkte, Zusammenfassungen. Als PDF, Word oder jedes Format exportieren, das du brauchst. Er ist sofort zur Einreichung bereit."
+    },
+    {
+      "title": "10x schneller",
+      "desc": "Menschen sprechen 3-4x schneller als sie tippen. Mit KI-Formatierung schaut man auf 10-fache Zeitersparnis. Was früher 30 Minuten dauerte, dauert jetzt 3."
+    },
+    {
+      "title": "Reichhaltigere Informationen",
+      "desc": "Wenn Berichten so einfach ist, fügen Menschen mehr Details hinzu. Du erhältst bessere Daten, mehr Kontext und klarere Kommunikation — weil Sprechen mühelos ist."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfekt für",
+    "items": [
+      {
+        "title": "Außendienstmitarbeiter",
+        "desc": "Standortinspektionen, Sicherheitsberichte, Wartungsprotokolle"
+      },
+      {
+        "title": "Gesundheitswesen",
+        "desc": "Pflegenotizen, Patientenbeobachtungen, Schichtübergaben"
+      },
+      {
+        "title": "Vertrieb & Service",
+        "desc": "Kundengespräche, Serviceeinsätze, Nachfassnotizen"
+      }
+    ]
+  },
+  "example": {
+    "title": "Beispiel: Baustellen-Inspektion",
+    "steps": [
+      "Du kommst mit deinem Telefon oder deiner Uhr auf der Baustelle an. Tippe auf Aufnehmen in VOIS.",
+      "\"Standortinspektion, Gebäude 3, 15. März. Wetterbedingungen: klar, 18 Grad. Fundament sieht solide aus — keine Risse sichtbar. Elektrische Rohinstallation zu 80% abgeschlossen, im Zeitplan. Sanitärproblem in Einheit 204 — Leck unter dem Waschbecken, muss vor der Inspektion repariert werden. HVAC-Lüftungskanäle installiert, warten auf endgültige Verbindungen...\"",
+      "Du gehst und sprichst 5 Minuten lang, deckst alles ab, was du siehst.",
+      "Aufnahme stoppen. KI generiert einen formatierten Inspektionsbericht mit Abschnitten, Aufzählungspunkten und einer Zusammenfassung. Das Sanitärproblem wird als dringend markiert.",
+      "PDF exportieren. An Projektmanager mailen. Fertig. Gesamtzeit: 6 Minuten."
+    ]
+  },
+  "integration": {
+    "title": "Antreibt Operations-KI",
+    "body": "Sprachberichte geht es nicht nur ums Zeitsparen — sie speisen kritische Daten in die Operations-KI. Wenn dein Team detaillierte Sprachberichte einreicht, kann die Operations-KI Muster erkennen, Engpässe aufdecken und dich auf Probleme hinweisen, bevor sie eskalieren. Es ist die Grundlage des intelligenten Betriebsmanagements."
+  },
+  "status": {
+    "title": "Aktuell in Entwicklung",
+    "body": "Sprachberichte sind gebaut und funktionieren in unserer Entwicklungsumgebung. Wir verfeinern Formatierungsvorlagen und Exportoptionen für verschiedene Branchen.",
+    "note": "Voraussichtlich innerhalb von 6 Monaten für VOIS for Work-Abonnenten verfügbar."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "category": "Filosofi",
+  "title": "Hävstång för litet team",
+  "tagline": "Du borde inte behöva 50 anställda för att verka som ett seriöst företag. HABOS ger litet team den operativa infrastruktur som tidigare krävde hela avdelningar.",
+  "heroPlaceholder": "Hjälteillustration",
+  "section1": {
+    "heading": "Företagsgapet",
+    "body1": "Företagsprogramvara byggdes för företag. CRM-plattformar förutsätter att du har ett säljoperationsteam för att konfigurera dem. Projekthanteringsverktyg förutsätter att du har ett PMO. Driftsplattformar förutsätter att du har processingenjörer. Även \"enkla\" verktyg som bokningsprogramvara förutsätter att någon har tid att sätta upp och underhålla det.",
+    "body2": "Småföretag — rörmokaren med 5 tekniker, konsultfirman med 3 partners, tandläkarpraktiken med 8 anställda — har inte dessa personer. De har alla som bär fyra hattar, byter kontext hela dagen och tappar information i luckorna mellan sina 12 olika appar."
+  },
+  "section2": {
+    "heading": "En plattform. Inga avdelningar krävs.",
+    "body1": "HABOS ersätter hela stacken. CRM, projekthantering, uppgiftsspårning, kalender, e-post, dokument, fakturering, bokningar, driftsövervakning, teamhantering, marknadsföring och analys — allt i en plattform, alla delar en hjärna, alla tillgängliga via röst.",
+    "body2": "Men det handlar inte bara om konsolidering. Det handlar om de saker som blir möjliga när allt är sammankopplat och AI fyller luckorna där du inte har folk."
+  },
+  "withoutLabel": "Utan HABOS",
+  "withoutItems": [
+    "Fälttekniker avslutar jobb, kör till kontoret för att fylla i papper",
+    "Ägare kontrollerar 5 appar för att förbereda sig för ett kundsamtal",
+    "Missad inspektion upptäcks när revisorn anländer",
+    "Kontraktsförnyelse glömd tills klienten ringer för att avsluta",
+    "20 minuters administration per avslutat jobb"
+  ],
+  "withLabel": "Med HABOS",
+  "withItems": [
+    "30 sekunders röstanteckning från skåpbilen skapar alla poster",
+    "AI-briefing visas 7 minuter före varje möte",
+    "Bevakningshund varnar vid den andra missade inspektionen",
+    "Proaktiv påminnelse 3 veckor innan kontraktet löper ut",
+    "40 sekunders administration per avslutat jobb"
+  ],
+  "platformPlaceholder": "Skärmbild av plattformsöversikt",
+  "section3": {
+    "heading": "Morgonbriefingen",
+    "body1": "Varje morgon sammanfattar HABOS vad som behöver din uppmärksamhet. Inte en instrumentpanel du måste tolka. En kortfattad briefing: tre saker som är viktiga idag, varför de är viktiga, vad spelböckerna säger att göra och en enklicksåtgärd för att godkänna det föreslagna svaret.",
+    "body2": "Drifthälsan sjönk från grön till gul? Du vet det innan ditt team gör det. Ett kontrakt håller på att löpa ut och ingen har börjat förnyelsen? Systemet berättar för dig, länkar CRM-posten och erbjuder att starta förnyelsarbetsflödet. Två nya bokningar är i samma grannskap? Det föreslår att para ihop dem som en rutt för att spara restid.",
+    "body3": "Det här är saker som en driftsansvarig skulle fånga upp — om du hade en. HABOS ger dig driftsansvarig utan headcount."
+  },
+  "dashboardPlaceholder": "Instrumentpanelskärmbild",
+  "section4": {
+    "heading": "Väx verksamheten, inte overhead",
+    "body1": "Den traditionella tillväxtvägen för ett litet företag är: få mer arbete, anställ fler för att hantera arbetet, anställ fler för att hantera personalen. Varje anställd tillför operativ komplexitet — mer koordinering, fler överlämningar, fler saker som faller igenom sprickorna.",
+    "body2": "HABOS ändrar ekvationen. Istället för att anställa en administratör för schemaläggning, låt AI:n göra det. Istället för att anställa en marknadsföringskoordinator, låt plattformen köra dina kampanjer. Istället för att anställa en driftsansvarig för att spåra efterlevnad, låt Bevakningshunden övervaka det 24/7.",
+    "body3": "Resultatet: ett 5-personers företag som verkar med sofistikering och tillförlitlighet hos ett som är 10 gånger dess storlek."
+  },
+  "quote": "\"För rörmokaren i Bergen innebär framgång: han talar i sin telefon i 30 sekunder och rätt saker händer i sex system. Han går in i möten förberedda utan att göra några förberedelser. Problem hittar honom innan han hittar dem.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Minne som förstärks",
+    "nextLabel": "Nästa",
+    "nextTitle": "Förstärk ditt team"
+  }
+}

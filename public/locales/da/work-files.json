@@ -1,0 +1,68 @@
+{
+  "badge": "Mediebibliotek",
+  "hero": {
+    "title": "Upload det.\nAI forstår det.",
+    "description": "Slip billeder, video, dokumenter eller lyd ind. AI udtrækker produkter, personer, tekst og betydning — og gør det søgbart på indhold, ikke kun filnavn."
+  },
+  "intro": "Træk-og-slip billeder, video, dokumenter eller lyd — Sharp auto-genererer WebP-thumbnails og GPT-4o-mini beriger alt asynkront. Visionsanalyse udtrækker produkter, personer, steder, farver og synlig tekst fra billeder. Dokumenter OCR-behandles. Video og lyd transskriberes og opsummeres. Udtrukket tekst opdeles i 512-dimensionale embeddings, så du kan søge efter mening — 'sauna produktfoto' eller 'Henderson faktura' — ikke bare filnavn. Ét mediebibliotek delt på tværs af Produkter, Social, Marketing, Websites og Præsentationer.",
+  "grid": {
+    "annotation": "Søg efter mening: \"sauna produktfoto\" eller \"Henderson faktura\" — ikke bare filnavn. Ét bibliotek delt af Produkter, Social, Marketing, Websites og Præsentationer."
+  },
+  "mediaItems": [
+    {
+      "filename": "produktfoto-01.jpg",
+      "tag": "Produkt · Vandvarmer",
+      "ai": "AI: Tankløs enhed, rustfrit stål, bolig"
+    },
+    {
+      "filename": "teamfoto.jpg",
+      "tag": "Team · 4 personer registreret",
+      "ai": "AI: Kontormiljø, brandede uniformer"
+    },
+    {
+      "filename": "faktura-marts.pdf",
+      "tag": "Dokument · OCR udtrukket",
+      "ai": "AI: Henderson VVS, kr. 29.750, marts 2026"
+    },
+    {
+      "filename": "job-gennemgang.mp4",
+      "tag": "Video · Transskriberet",
+      "ai": "AI: 3 min gennemgang, badeværelsesrenovering"
+    },
+    {
+      "filename": "klientopkald.m4a",
+      "tag": "Lyd · Transskriberet",
+      "ai": "AI: Sarah Henderson, diskussion om byggetilladelse"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logo · Brandaktiv",
+      "ai": "AI: Primært logo, mørk variant"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "AI-visionsanalyse",
+      "desc": "GPT-4o-mini registrerer produkter, personer, farver og tekst i billeder. Dokumenter OCR-behandles. Video og lyd transskriberes."
+    },
+    {
+      "title": "Ét bibliotek overalt",
+      "desc": "Samme mediepicker bruges på tværs af Produkter, Social, Marketing, Websites, Præsentationer. Ingen dublering."
+    },
+    {
+      "title": "Semantisk søgning",
+      "desc": "Tekst opdelt i 512-dim embeddings. Find medier efter betydning, ikke bare metadata."
+    }
+  ],
+  "techItems": [
+    "GPT-4o-mini vision",
+    "Sharp WebP-thumbnails",
+    "512-dim embeddings",
+    "SHA-256-deduplicering",
+    "Auto rolleinferens"
+  ],
+  "cta": {
+    "title": "Andre filhåndteringssystemer gemmer filer.\nHABOS forstår dem.",
+    "button": "Tilmeld venteliste"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Einrichtungsanleitung"
+  },
+  "hero": {
+    "heading": "Richten Sie VOIS auf Ihren Geräten ein",
+    "description": "Fügen Sie VOIS zu Ihrem Apple Watch-Zifferblatt und dem iPhone-Sperrbildschirm hinzu, um sofortige Aufnahmen mit einem Tippen zu ermöglichen."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "Schritt 1: VOIS auf Ihrer Watch installieren"
+    },
+    "step2": {
+      "heading": "Schritt 2: VOIS zu Ihrem Zifferblatt hinzufügen"
+    },
+    "installSteps": [
+      { "number": 1, "text": "Öffnen Sie die Watch-App auf Ihrem iPhone" },
+      { "number": 2, "text": "Scrollen Sie nach unten zu \"Verfügbare Apps\"" },
+      { "number": 3, "text": "Tippen Sie auf Installieren neben VOIS" }
+    ],
+    "faceSteps": [
+      "Halten Sie Ihr Zifferblatt gedrückt",
+      "Tippen Sie auf \"Bearbeiten\"",
+      "Tippen Sie auf einen Komplikationsplatz",
+      "Wählen Sie VOIS"
+    ],
+    "availableAppsLabel": "Verfügbare Apps",
+    "installButton": "INSTALLIEREN"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone-Sperrbildschirm",
+    "step": {
+      "heading": "VOIS-Widget zu Ihrem Sperrbildschirm hinzufügen"
+    },
+    "steps": [
+      "Halten Sie Ihren Sperrbildschirm gedrückt",
+      "Tippen Sie auf Anpassen",
+      "Tippen Sie auf + Widgets hinzufügen",
+      "Wählen Sie VOIS"
+    ]
+  }
+}

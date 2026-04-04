@@ -1,0 +1,71 @@
+{
+  "badge": "AI-planning",
+  "hero": {
+    "title": "Zeg 'Plan mijn dag.'\nZie hem vullen.",
+    "description": "HABOS analyseert je taken, prioriteiten en deadlines — en stelt vervolgens een volledig schema voor. Jij keurt goed voor er iets beweegt."
+  },
+  "body": "De agenda toont niet alleen je schema — het is een intelligent planningssysteem dat taken automatisch in focusblokken plaatst. Elk blok heeft een affiniteitsfilter: een projectfocusblok vult zich alleen met taken van dat project. Het automatische vulalgoritme gebruikt een greedy-algoritme dat de afhankelijkheidsvolgorde respecteert via topologische sortering, zodat voorlooptaken altijd voor hun afhankelijke taken worden gepland. Kritieke-pad-items uit je projecten komen als eerste, automatisch.",
+  "schedule": {
+    "dateLabel": "Woensdag 26 maart",
+    "blocks": [
+      {
+        "time": "9:00 – 10:30",
+        "type": "Diep Werk",
+        "tasks": "Henderson-voorstel (kritiek pad) + Contractconcept beoordelen"
+      },
+      {
+        "time": "10:30 – 11:00",
+        "type": "Administratie",
+        "tasks": "3 gemarkeerde e-mails beantwoorden + Factuur goedkeuren"
+      },
+      {
+        "time": "11:00 – 12:00",
+        "type": "Vergadering",
+        "tasks": "Team-sync (briefing automatisch gegenereerd)"
+      },
+      {
+        "time": "13:00 – 14:30",
+        "type": "Project",
+        "tasks": "Keukenrenovatie — tegelkeuze + leveranciersgesprekken"
+      },
+      {
+        "time": "14:30 – 15:00",
+        "type": "Operaties",
+        "tasks": "Dagelijkse rapporten beoordelen + anomalieën markeren"
+      }
+    ],
+    "caption": "Gegenereerd in 2 seconden. Elke taak geplaatst op AI-prioriteitsscore."
+  },
+  "benefits": {
+    "priority": {
+      "title": "7-factor prioriteit",
+      "description": "Handmatige rang, prioriteitslabel, AI-belang, AI-urgentie, vervaldatum, agendafit, aanmaakdatum. Taken worden niet alleen gesorteerd — ze worden begrepen."
+    },
+    "focusBlocks": {
+      "title": "Focusblokken",
+      "description": "Diep werk, administratie, project, persoonlijk — elk blok heeft een affiniteitsfilter. Kritieke-pad-taken komen altijd als eerste."
+    },
+    "dependency": {
+      "title": "Afhankelijkheidsbewust",
+      "description": "Topologische sortering zorgt ervoor dat voorlooptaken voor afhankelijke taken worden gepland. De agenda respecteert de logica van je project."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Zonder HABOS",
+    "withoutText": "Zondagavond: staren naar een lege agenda. Proberen te herinneren wat urgent is. Handmatig tijd blokkeren voor elke taak. Onderbroken worden. Alles herverdelen.",
+    "withoutStat": "~45 min plannen",
+    "withTitle": "Met HABOS",
+    "withText": "\"Plan mijn dag.\" Bekijk het voorgestelde schema. Sleep één blok om aan te passen. Goedkeuren.",
+    "withStat": "~30 seconden"
+  },
+  "techStrip": [
+    "Greedy automatisch vulalgoritme",
+    "Topologische afhankelijkheidssortering",
+    "BroadcastChannel-synchronisatie",
+    "Google + Outlook + iOS-agenda's"
+  ],
+  "closing": {
+    "tagline": "Motion plant automatisch zonder te vragen. HABOS stelt voor — jij beslist.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

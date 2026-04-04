@@ -1,0 +1,66 @@
+{
+  "badge": "Bientôt disponible",
+  "hero": {
+    "title": "Rapports vocaux",
+    "description": "Créez des rapports en parlant. Parcourez une inspection de site en énonçant vos observations — l'IA génère un PDF formaté instantanément."
+  },
+  "intro": "Les rapports traditionnels nécessitent de s'asseoir, d'ouvrir un formulaire et de taper les réponses. HABOS propose quatre modes de remplissage : une interview vocale en temps réel où l'IA pose les questions champ par champ, un mode dictée où une seule note vocale remplit tous les champs silencieusement, un chatbot textuel qui parcourt chaque champ de manière conversationnelle, et la saisie manuelle traditionnelle en secours. Importez un PDF ou une image et GPT-4 Vision extrait les libellés des champs, les types et les modèles de validation pour générer automatiquement un schéma typé.",
+  "problem": {
+    "title": "Le problème de la rédaction de rapports",
+    "body": "Pour les travailleurs terrain, les infirmières, les inspecteurs et de nombreux professionnels, rédiger des rapports sur des écrans tactiles ou des ordinateurs est un énorme gouffre de temps. C'est lent, fastidieux, et les gens omettent souvent des détails parce que la saisie est trop laborieuse. Les rapports vocaux changent tout."
+  },
+  "features": [
+    {
+      "title": "Parlez simplement",
+      "desc": "Ouvrez VOIS, appuyez sur enregistrer et décrivez vos observations. Pas de frappe, pas de formulaires, pas de cases à cocher. L'IA écoute, structure et formate tout automatiquement."
+    },
+    {
+      "title": "Mise en forme instantanée",
+      "desc": "L'IA génère un rapport correctement formaté — titres, sections, listes à puces, résumés. Exportez en PDF, Word ou tout format dont vous avez besoin. Prêt à soumettre immédiatement."
+    },
+    {
+      "title": "10 fois plus rapide",
+      "desc": "Les gens parlent 3 à 4 fois plus vite qu'ils ne tapent. Ajoutez la mise en forme IA et vous obtenez un gain de temps de 10 fois. Ce qui prenait 30 minutes en prend maintenant 3."
+    },
+    {
+      "title": "Informations plus riches",
+      "desc": "Quand le rapport est aussi simple, les gens incluent plus de détails. Vous obtenez de meilleures données, plus de contexte et une communication plus claire — tout simplement parce que parler est naturel."
+    }
+  ],
+  "useCases": {
+    "heading": "Idéal pour",
+    "items": [
+      {
+        "title": "Travailleurs terrain",
+        "desc": "Inspections de sites, rapports de sécurité, journaux de maintenance"
+      },
+      {
+        "title": "Santé",
+        "desc": "Notes infirmières, observations patients, transmissions de poste"
+      },
+      {
+        "title": "Ventes & Service",
+        "desc": "Réunions clients, appels de service, notes de suivi"
+      }
+    ]
+  },
+  "example": {
+    "title": "Exemple : Inspection de chantier de construction",
+    "steps": [
+      "Vous arrivez sur le chantier avec votre téléphone ou votre montre. Appuyez sur enregistrer dans VOIS.",
+      "« Inspection de chantier, Bâtiment 3, 15 mars. Conditions météo : clair, 18 degrés. Fondations solides — aucune fissure visible. Passage électrique à 80 % d'avancement, dans les délais. Problème de plomberie au Logement 204 — fuite sous l'évier, à réparer avant inspection. Gaines CVC installées, en attente des raccordements finaux... »",
+      "Vous marchez et parlez pendant 5 minutes, couvrant tout ce que vous observez.",
+      "Arrêtez l'enregistrement. L'IA génère un rapport d'inspection formaté avec sections, listes à puces et résumé. Le problème de plomberie est signalé comme urgent.",
+      "Exportez le PDF. Envoyez par e-mail au chef de projet. Terminé. Temps total : 6 minutes."
+    ]
+  },
+  "integration": {
+    "title": "Alimente l'IA opérationnelle",
+    "body": "Les rapports vocaux ne visent pas seulement à gagner du temps — ils alimentent des données critiques dans l'IA opérationnelle. Quand votre équipe soumet des rapports vocaux détaillés, l'IA opérationnelle peut identifier des tendances, repérer des goulets d'étranglement et vous alerter sur des problèmes avant qu'ils ne s'aggravent. C'est le fondement d'une gestion opérationnelle intelligente."
+  },
+  "status": {
+    "title": "Actuellement en développement",
+    "body": "Les rapports vocaux sont construits et fonctionnels dans notre environnement de développement. Nous affinons les modèles de mise en forme et les options d'export pour différents secteurs.",
+    "note": "Devrait être disponible dans les 6 mois pour les abonnés VOIS for Work."
+  }
+}

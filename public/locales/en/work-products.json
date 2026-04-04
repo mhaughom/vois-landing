@@ -1,0 +1,59 @@
+{
+  "badge": "Commerce",
+  "hero": {
+    "title": "Products, Orders, and Payments. All Connected.",
+    "description": "Services, physical goods, packages, and subscriptions — all with variant-level inventory, automated pricing, and Stripe checkout built in."
+  },
+  "body": "Four product types in one system: services, physical goods, packages, and subscriptions — all with variant-level stock tracking, low-stock alerts, and automatic deductions. Turn any product into a bookable appointment with configurable duration, capacity, hours, and business days. Embed a shopping cart or booking calendar directly into your website — no separate platform needed. Server-side line item calculation prevents client-side fraud across all channels.",
+  "productTypes": [
+    { "label": "Services", "desc": "Hourly or fixed pricing" },
+    { "label": "Physical Goods", "desc": "Variant-level stock" },
+    { "label": "Packages", "desc": "Bundle multiple items" },
+    { "label": "Subscriptions", "desc": "Recurring billing" }
+  ],
+  "catalogCaption": "One catalog system handles all four. Turn any product into a bookable appointment or a website widget.",
+  "orderSteps": ["Quote", "Pending", "Confirmed", "In Progress", "Completed"],
+  "order": {
+    "heading": "Order #1247 — Henderson Kitchen Renovation",
+    "tableHeaders": {
+      "product": "Product",
+      "qty": "Qty",
+      "unit": "Unit",
+      "total": "Total"
+    },
+    "lineItems": [
+      { "product": "Custom cabinetry (walnut)", "qty": "1", "unit": "$2,400", "total": "$2,400" },
+      { "product": "Countertop — quartz 60\"", "qty": "2", "unit": "$650", "total": "$1,300" },
+      { "product": "Installation labor (4 hr)", "qty": "1", "unit": "$550", "total": "$550" }
+    ],
+    "subtotal": "Subtotal: $4,250",
+    "paymentConfirmed": "Stripe Payment: ✓ Confirmed",
+    "deposit": "Deposit: $1,000 paid"
+  },
+  "orderCaption": "Orders auto-generate from bookings, website purchases, or manual creation. Line items calculated server-side — no client-side fraud.",
+  "benefits": [
+    {
+      "title": "Stock never lies",
+      "desc": "Variant-level inventory deducts on order confirmation. Low-stock alerts fire automatically. Refunds restore stock."
+    },
+    {
+      "title": "Stripe in 3 clicks",
+      "desc": "Checkout sessions, invoices, payment links, and refunds — all through Stripe Connect. Money goes to your bank, not a middleman."
+    },
+    {
+      "title": "Website → order → CRM",
+      "desc": "Customer buys on your HABOS website. Order created. CRM contact upserted. Receipt sent. Zero manual data entry."
+    }
+  ],
+  "techItems": [
+    "4 product types",
+    "Variant-level stock",
+    "Stripe Connect Express",
+    "Server-side line items",
+    "Booking ↔ order sync"
+  ],
+  "cta": {
+    "heading": "Other commerce tools are a separate platform. HABOS commerce is built into everything.",
+    "button": "Join Waitlist"
+  }
+}

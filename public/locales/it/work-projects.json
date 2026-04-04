@@ -1,0 +1,72 @@
+{
+  "badge": "Intelligence Progetto AI",
+  "hero": {
+    "title": "Sappi Sempre Cosa Blocca i Progressi.",
+    "description": "HABOS analizza continuamente ogni attività, dipendenza e scadenza per far emergere il percorso critico. Vedi i colli di bottiglia prima che diventino problemi."
+  },
+  "body": "Il sistema di progetto usa l'analisi AI per identificare continuamente il percorso critico. GPT-4o esamina tutti gli elementi del piano, le dipendenze e lo stato attuale, poi identifica colli di bottiglia e catene di blocco. Gli elementi del percorso critico ricevono automaticamente una priorità più alta nel motore di pianificazione — quando i blocchi di concentrazione si riempiono, le attività del percorso critico vengono inserite per prime. Le dipendenze applicano l'ordinamento topologico, così le attività precedenti sono sempre pianificate prima dei successori.",
+  "criticalPath": {
+    "heading": "Henderson Kitchen Renovation — Percorso Critico",
+    "items": {
+      "permitsApproved": {
+        "title": "Permessi approvati",
+        "date": "Completato il 20 mar"
+      },
+      "plumbingRoughIn": {
+        "title": "Impianto idraulico grezzo",
+        "date": "Completato il 23 mar"
+      },
+      "tileSelection": {
+        "title": "Selezione piastrelle",
+        "status": "BLOCCANTE — in attesa della consegna dei campioni (prevista 28 mar)"
+      },
+      "tileInstallation": {
+        "title": "Posa piastrelle",
+        "blockedBy": "Bloccato da: Selezione piastrelle"
+      },
+      "finalInspection": {
+        "title": "Ispezione finale",
+        "blockedBy": "Bloccato da: Posa piastrelle"
+      }
+    },
+    "note": "L'AI ha identificato \"Selezione piastrelle\" come collo di bottiglia 3 giorni prima che il team se ne accorgesse. Gli elementi del percorso critico vengono promossi automaticamente alla massima priorità nel tuo programma."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Colli di bottiglia trovati automaticamente",
+      "description": "L'AI esamina tutti gli elementi del piano, le dipendenze e lo stato. Imposta critical_rank sugli elementi che formano la catena di blocco — e il tuo calendario li prioritizza immediatamente."
+    },
+    "dependencies": {
+      "title": "Dipendenze applicate",
+      "description": "Se un predecessore non è completo, l'attività dipendente viene contrassegnata come bloccata e non può essere avviata. Mai più lavorare sulla cosa sbagliata."
+    },
+    "connected": {
+      "title": "Ogni fonte connessa",
+      "description": "Email, riunioni, note vocali e documenti vengono automaticamente taggati ai progetti. Chiedi 'perché questo è in ritardo?' e ottieni una risposta reale."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Senza HABOS",
+      "description": "Standup del lunedì: \"Ci sono blocchi?\" Silenzio. Giovedì: \"Perché non sono state posate le piastrelle?\" \"Oh, i campioni non sono mai arrivati.\" Tre giorni persi.",
+      "badge": "Collo di bottiglia scoperto: 3 giorni dopo"
+    },
+    "with": {
+      "heading": "Con HABOS",
+      "description": "Martedì mattina: notifica — \"La selezione piastrelle è ora il collo di bottiglia del percorso critico. La consegna del campione è a 2 giorni. Raccomandazione: escalation con il fornitore.\" Azione intrapresa lo stesso giorno.",
+      "badge": "Collo di bottiglia segnalato: 3 giorni prima"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Analisi percorso critico GPT-4o",
+      "Ordinamento topologico dipendenze",
+      "Elevazione priorità automatica",
+      "Tagging dati cross-modulo"
+    ]
+  },
+  "cta": {
+    "heading": "Gli altri strumenti di progetto ti mostrano le attività. HABOS ti mostra ciò che conta.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

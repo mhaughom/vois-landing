@@ -1,0 +1,64 @@
+{
+  "badge": "AI-scorede oppgaver",
+  "hero": {
+    "title": "Du fanger. AI prioriterer.",
+    "description": "Opprett oppgaver med tale, fra møter eller fra e-post. Alle oppgaver får en AI-beregnet score som mater direkte inn i planen din."
+  },
+  "body": "Alle oppgaver får to AI-beregnede scorer: viktighet (hvor mye det betyr for målene dine) og hastegrad (hvor tidssensitivt det er). AI veier frister, prosjekthelse, avhengigheter, domenekontekst og dine personlige mønstre. Høy-scorede oppgaver planlegges først når AI planlegger dagen din. Lav-scorende støy holdes unna fokustiden din. Oppgaver flommer inn fra talenotater, møtetranskripsjoner, e-poster og agentutdata – du fanger, HABOS prioriterer.",
+  "tasks": [
+    {
+      "title": "Ferdigstill Henderson-tilbudet",
+      "source": "fra prosjekt"
+    },
+    {
+      "title": "Svar på Sarahs e-post om flisutvalget",
+      "source": "fra e-post"
+    },
+    {
+      "title": "Gjennomgå ukentlig driftsrapport",
+      "source": "fra møte"
+    },
+    {
+      "title": "Oppdater teamorganisasjonskartet",
+      "source": "fra talenotat"
+    }
+  ],
+  "taskList": {
+    "note": "Oppgaver scores av AI som veier frister, prosjektkontekst, avhengigheter og dine mønstre. Høye scorer → planlagt først."
+  },
+  "sources": {
+    "heading": "Hvor oppgaver kommer fra",
+    "labels": ["Talenotater", "Møter", "E-post", "AI-agenter"],
+    "destinationLabel": "AI-prioritetskø"
+  },
+  "benefits": {
+    "capture": {
+      "title": "30 sek til å fange",
+      "description": "Si «minn meg på å følge opp med Henderson om tilbudet innen fredag.» Ferdig. Tittel, forfallsdato, prosjekt og tildelt uttrukket."
+    },
+    "sorting": {
+      "title": "0 manuell sortering",
+      "description": "Slutt å bruke 20 minutter hver morgen på å sortere oppgavelisten. AI-scorer oppdateres etter hvert som kontekst endres – frister nærmer seg, avhengigheter fullføres, prosjekthelse skifter."
+    },
+    "meeting": {
+      "title": "Møte → oppgaver automatisk",
+      "description": "Når noen sier «John, kan du ta hånd om flisbestillingen?» i et møte, vises en oppgave i Johns kø. Ingen trenger å huske å skrive det ned."
+    }
+  },
+  "scoring": {
+    "label": "Scoringsoversikt",
+    "factors": [
+      "Manuell rangering",
+      "Prioritetsetikett",
+      "AI-viktighet",
+      "AI-hastegrad",
+      "Forfallsdato",
+      "Kalenderpassning",
+      "Opprettelsesdato"
+    ]
+  },
+  "cta": {
+    "heading": "Andre oppgaveapper lar deg sortere. HABOS sorterer for deg.",
+    "button": "Bli med på ventelisten"
+  }
+}

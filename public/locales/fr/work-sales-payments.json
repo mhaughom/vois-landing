@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Ventes & Paiements",
+  "hero": {
+    "title": "Du premier contact à la facture payée",
+    "description": "CRM, produits, facturation et paiements dans un seul flux — construit depuis vos conversations, pas depuis la saisie manuelle."
+  },
+  "items": [
+    {
+      "title": "CRM",
+      "desc": "Profils clients construits automatiquement depuis chaque interaction avec des prochaines étapes suggérées par IA."
+    },
+    {
+      "title": "Produits",
+      "desc": "Produits, prix, inventaire et services réservables connectés à votre site web."
+    },
+    {
+      "title": "Facturation",
+      "desc": "Suivez les créances, les dettes et le bénéfice en temps réel."
+    },
+    {
+      "title": "Paiements",
+      "desc": "Paiements propulsés par Stripe avec virements bancaires directs."
+    }
+  ]
+}

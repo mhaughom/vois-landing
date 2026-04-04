@@ -1,0 +1,59 @@
+{
+  "badge": "Funzionalità Principale",
+  "hero": {
+    "title": "Parla con la Tua Azienda",
+    "description": "Fai una domanda, dai un'istruzione o pensa ad alta voce — l'assistente gestisce il resto in meno di 300ms."
+  },
+  "heroPills": ["Risposta in 300ms", "8 strumenti integrati", "Voce + testo"],
+  "intro": "Quando parli con l'assistente HABOS, conosce già i tuoi progetti, il tuo calendario, il tuo team e le tue conversazioni recenti. Non hai bisogno di spiegare il contesto — ce l'ha già. Chiedi «come stanno i crediti da incassare?» e interroga i tuoi dati finanziari. Di' «bozza un messaggio di follow-up a Sarah» e recupera l'ultimo thread email, le note CRM e l'andamento del suo umore. Poi scrive la bozza e aspetta la tua approvazione prima di inviare. Una conversazione sostituisce cinque app e dieci clic.",
+  "mockConversation": {
+    "userMessage": "Cosa ho in calendario domani e prepara un'email di follow-up a Sarah sul preventivo per la ristrutturazione",
+    "assistantMessage": "Hai 3 riunioni domani. La prima è alle 9 con il team Henderson. Ho preparato un follow-up per Sarah — ecco un'anteprima:",
+    "emailTo": "A: sarah@...",
+    "emailSubject": "Oggetto: Follow-up Ristrutturazione Cucina",
+    "emailBody": "Ciao Sarah, ti contatto per fare il punto sul preventivo che abbiamo discusso...",
+    "footer": "Una frase. Due sistemi aggiornati. Nessun cambio di app."
+  },
+  "savings": {
+    "title": "Quanto ti fa risparmiare",
+    "items": [
+      {
+        "stat": "45 min/giorno",
+        "text": "Tempo medio risparmiato sostituendo il cambio di app con i comandi vocali. Chiedi invece di cliccare."
+      },
+      {
+        "stat": "5 app → 1",
+        "text": "Calendario, email, attività, CRM e ricerca — tutto accessibile in una singola conversazione."
+      },
+      {
+        "stat": "0 moduli compilati",
+        "text": "Di' «registra 3 ore sul progetto Henderson» e il foglio ore, il progetto e la fatturazione si aggiornano da soli."
+      }
+    ]
+  },
+  "capabilities": [
+    "Cerca nei tuoi dati",
+    "Crea attività",
+    "Pianifica eventi",
+    "Redigi email",
+    "Controlla le finanze",
+    "Gestisci prenotazioni",
+    "Esegui ricerche",
+    "Compila report"
+  ],
+  "context": {
+    "title": "Conosce sempre il tuo contesto",
+    "description": "L'assistente ricostruisce il proprio contesto ad ogni sessione — il tuo profilo, i progetti attivi, gli eventi imminenti, la struttura del team e i dati disponibili. Non devi mai spiegare chi sei o su cosa stai lavorando.",
+    "items": [
+      "Il tuo calendario",
+      "Progetti attivi",
+      "Team e ruoli",
+      "Conversazioni recenti",
+      "Dati aziendali"
+    ]
+  },
+  "closing": {
+    "tagline": "Le altre app ti danno un chatbot. VOIS ti dà un partner aziendale.",
+    "cta": "Unisciti alla Lista d'Attesa"
+  }
+}

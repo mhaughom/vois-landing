@@ -1,0 +1,15 @@
+{
+  "panelLabels": ["日历", "数据库", "发票", "邮件", "分析", "任务", "聊天", "网站", "文档"],
+  "widgetLabels": {
+    "Calendar": "日历",
+    "CRM": "CRM",
+    "Website": "网站",
+    "Notes": "笔记",
+    "Email": "邮件",
+    "Tasks": "任务",
+    "Analytics": "分析",
+    "Documents": "文档",
+    "Chat": "聊天",
+    "Invoices": "发票"
+  }
+}

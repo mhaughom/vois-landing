@@ -1,0 +1,54 @@
+{
+  "badge": "Röstmejl",
+  "hero": {
+    "title": "Töm inkorgen genom att prata.",
+    "description": "Säg \"läs min inkorg\" under körning. Diktera svar. AI genererar 3 toningsalternativ per mejl. Skicka det du gillar."
+  },
+  "body": "Säg 'läs min inkorg' under körning. HABOS sammanfattar dina viktigaste mejl, läser de brådskande högt och genererar tre svarsutkast med olika toner — Kort & direkt, Varm & professionell och Chef. Du säger 'skicka det andra' och det är klart. Varje mejl får också AI-extraherade åtgärdspunkter: deadlines blir uppgifter, mötesförfrågningar blir kalenderhändelser och uppföljningar flaggas — allt utan att du skriver ett enda ord.",
+  "conversation": {
+    "userAsk": "Vad finns det i min inkorg?",
+    "aiSummary": "Du har 5 nya mejl. Det viktigaste är från Sarah Henderson angående renoveringstidslinjen — hon behöver bekräftelse senast idag. Vill du att jag läser det?",
+    "userReply": "Ja, och utkasta ett svar",
+    "aiDraftsIntro": "Här är 3 alternativ:",
+    "draft1": {
+      "label": "Kort & direkt",
+      "text": "Hej Sarah, bekräftat — vi är på rätt spår för mars-tidslinjen. Jag skickar det uppdaterade schemat imorgon."
+    },
+    "draft2": {
+      "label": "Varm & professionell",
+      "text": "Hej Sarah, tack för att du hör av dig. Glad att bekräfta att vi är på schema. Jag skickar den detaljerade tidslinjen till dig imorgon bitti."
+    },
+    "draft3": {
+      "label": "Chef",
+      "text": "Sarah — Bekräftat för mars. Uppdaterat schema följer imorgon. Hör av dig om du behöver något annat."
+    },
+    "userSend": "Skicka det andra",
+    "confirmation": "Mejl skickat. Noll skrivande. Noll skärmtid."
+  },
+  "benefits": {
+    "time": {
+      "title": "30 mejl → 5 minuter",
+      "description": "Röstläget läser de viktiga, hoppar över bruset och låter dig svara med din naturliga röst. Pendlingen blir produktiv."
+    },
+    "tone": {
+      "title": "3 tonsalternativ per svar",
+      "description": "Kort & direkt, Varm & professionell, Chef. Välj den som passar, eller be AI att justera. Din röst, polerad."
+    },
+    "actions": {
+      "title": "Åtgärder extraheras automatiskt",
+      "description": "När ett mejl nämner en deadline, möte eller uppgift — dyker åtgärdskort upp. Tryck för att skapa utan att lämna inkorgen."
+    }
+  },
+  "scenario": "Det är 07:45. Du kör till den första arbetsplatsen. Du säger \"läs min inkorg.\" HABOS sammanfattar 5 mejl, läser det brådskande från din kund och utkasdar ett svar i din ton. Du säger \"skicka det.\" Innan du parkerar är din inkorg ren och din kund har ett svar. Du rörde aldrig telefonen.",
+  "integrations": {
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "workspace": "Arbetsplatsmejl",
+    "unified": "Samlad inkorg",
+    "actions": "Åtgärdspunkter automatextraherade"
+  },
+  "closing": {
+    "tagline": "Andra mejlappar vill att du ska skriva snabbare. HABOS låter dig sluta skriva helt.",
+    "cta": "Gå med i väntelistan"
+  }
+}

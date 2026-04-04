@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Lösungen — Solo-Gründer",
+    "title": "Ihr erster Mitarbeiter kostet 35\u00a0$/Monat.",
+    "subtitle": "Freiberufler, unabhängige Berater, Einzelhandwerker, Ein-Personen-Agenturen, Coaches, Solo-Anwälte und alle, die gleichzeitig CEO, Vertriebsmitarbeiter, Buchhalter, Marketingverantwortlicher und Kundenservice-Mitarbeiter sind."
+  },
+  "body": {
+    "salutation": "Lieber Solo-Gründer,",
+    "p1": "Wir wissen, wie Ihre Morgende aussehen. Der Wecker klingelt um 6:45 Uhr und bevor Ihre Füße den Boden berühren, prüfen Sie E-Mails. Vierzehn Nachrichten über Nacht. Drei brauchen Antworten. Zwei sind Rechnungen, die Sie letzte Woche hätten senden sollen. Eine ist ein Interessent, dem Sie seit Tagen nachfolgen wollten. Sie fühlen sich rückständig, bevor Sie aus dem Bett sind.",
+    "p2": "Wir wissen über das Verhältnis. Ein dreißigminütiges Kundengespräch erzeugt fünfzehn Minuten Verwaltung danach – Notizen eintippen, Aufgaben erstellen, eine Zusammenfassung mailen. Die Hälfte Ihres Arbeitslebens wird für Arbeit über die Arbeit statt für die Arbeit selbst aufgewendet.",
+    "p3": "Wir wissen über 14 Uhr. Sie sollten abrechenbare Kundenarbeit erledigen, aber Sie haben die letzte Stunde mit \"Business\" verbracht – einer Rechnung, vier E-Mails, einem Website-Update, einem LinkedIn-Post, einem umgeplanten Meeting. Nichts davon ist abrechenbar. Nichts davon ist der Grund, warum Sie angefangen haben.",
+    "p4": "Und wir wissen über Sonntagabende. Die Tabellen-CRM. Die überfälligen Rechnungen. Die Nachfassmails, die Sie aufgeschoben haben. Zwei Stunden unbezahlter Arbeit an Ihrem freien Tag. Jede einzelne Woche.",
+    "divider": "Hier ist, was sich ändert.",
+    "briefing": {
+      "label": "6:45 Uhr — Ihre Uhr",
+      "text": "\"2 Rechnungen überfällig – Mahnmails entworfen. 1 neuer Interessent – Antwort zur Überprüfung bereit. Heute: 10 Uhr Sarah Chen (Briefing vorbereitet – letzte Meetingnotizen, offener Saldo, Projektstatus), 14 Uhr Discovery Call (Unternehmensrecherche über Nacht abgeschlossen). 3 Aufgaben fällig.\"",
+      "note": "Sie tippen auf Senden bei den Rechnungen und genehmigen die Interessentenantwort, bevor Sie aus dem Bett steigen."
+    },
+    "p5": "Ihr 9-Uhr-Kundengespräch? Sie hören einfach zu und reden. HABOS erfasst das Transkript, zieht drei Aktionspunkte heraus und erstellt eine Nachfass-E-Mail an den Kunden. Sie überprüfen es auf Ihrem Telefon, ändern einen Satz, tippen auf Senden. Gesamtverwaltung: neunzig Sekunden.",
+    "p6": "Um 14 Uhr erledigen Sie abrechenbare Arbeit. Die Rechnung wurde heute Morgen gesendet – aus Ihren Projektmeilensteinen und dem Stundensatz erstellt. Die vier E-Mails wurden zwischen Meetings durch Benachrichtigungskarten bearbeitet – drei waren KI-erstellte Antworten, die Sie mit einem Tippen genehmigten, eine war eine Terminierungsanfrage, die die KI durch Prüfung Ihres Kalenders auflöste. Der LinkedIn-Inhalt wurde aus den Einblicken des heutigen Morgen-Meetings erstellt.",
+    "p7": "Sie haben heute keine \"Verwaltung erledigt\". Sie ist um Sie herum passiert.",
+    "p8": "Sonntagabend? Sie sehen einen Film. Das CRM pflegt sich selbst aus Ihren E-Mails und Anrufen. Überfällige Rechnungen schickten sanfte Erinnerungen. Nachfassmails sind entworfen und für Montagmorgen in der Warteschlange. Ihr Kalender, Aufgaben und Projektfristen sind in einem System, das weiß, was als Nächstes kommt.",
+    "p9": "Sonntagabende gehören Ihnen wieder.",
+    "emotional": {
+      "line1": "Das Einsamste am alleinigen Führen eines Unternehmens ist nicht die Arbeit – es ist, niemanden zum Delegieren zu haben, niemanden, der Sie erinnert, niemanden, der die Bälle auffängt, die Sie fallen lassen.",
+      "line2": "VOIS ersetzt keine menschliche Verbindung. Aber es ersetzt die menschliche Verwaltungsarbeit, die Sie von der Arbeit abhält, die Sie lieben, und dem Leben, für das Sie dieses Unternehmen gegründet haben."
+    },
+    "section2": {
+      "heading": "Was VOIS ersetzt",
+      "p1": "Sie haben wahrscheinlich eine Version dieses Stacks: ChatGPT zum Nachdenken, Calendly für Buchungen, Wave oder QuickBooks für Rechnungsstellung, Gmail für alles, Notion oder Trello für Aufgaben, Mailchimp für den gelegentlichen E-Mail-Blast, und Ihr eigenes Gedächtnis, um zu verfolgen, wem Sie eine Nachverfolgung schulden.",
+      "p2": "HABOS ersetzt alles mit einem einzigen KI-Assistenten, der Ihr Unternehmen tatsächlich kennt – Ihre Kunden, Ihre Projekte, Ihren Zeitplan, Ihre Preise, Ihre Stimme. ChatGPT kennt das Internet. VOIS kennt Sie.",
+      "p3": "Es baut Ihr CRM aus Gesprächen auf, sodass Sie nie wieder eine Tabelle aktualisieren. Es erstellt E-Mails in Ihrer Stimme und wartet auf Ihre Genehmigung. Es verfolgt Verpflichtungen, die Sie in Meetings eingehen, und erinnert Sie, bevor Sie vergessen. Es gibt Ihnen fünf KI-Berater – Finanzen, Strategie, Betrieb, Marketing, Vertrieb – die absichtlich nicht einer Meinung sind, weil Solo nicht bedeutet, jede Entscheidung allein zu treffen.",
+      "p4": "Und es läuft auf Ihrer Apple Watch, damit Sie Ihren Tag prüfen, eine E-Mail genehmigen oder eine Idee zwischen Meetings, beim Spaziergang oder im Aufzug erfassen können.",
+      "p5": "Alles für 35 $ pro Monat."
+    },
+    "stats": [
+      ["15 Std.", "pro Woche befreit"],
+      ["300 $+", "monatlich gespart"],
+      ["0", "verpasste Nachverfolgungen"],
+      ["0", "Sonntagsverwaltungs-Sessions"]
+    ],
+    "testimonial": {
+      "quote": "\"Früher verbrachte ich jeden Sonntagabend mit Verwaltung, die ich in die Arbeitswoche nicht einplanen konnte. Jetzt erledigt VOIS meine Rechnungsstellung, meine Nachverfolgungen und meine Terminplanung, während ich Kundenarbeit mache. Die KI-Berater sind überraschend nützlich – letzten Monat schlug der Strategie-Berater vor, mich auf eine Nische zu konzentrieren, die ich nicht in Betracht gezogen hatte. Ich gewann zwei neue Kunden daraus. Zum ersten Mal in sechs Jahren Beratung fühle ich mich wie ich habe ein Team.\"",
+      "attribution": "— Camilla, 42 · Unabhängige Unternehmensberaterin · Oslo"
+    },
+    "cta": {
+      "heading": "Stellen Sie Ihren ersten Mitarbeiter für 35 $/Monat ein.",
+      "button": "Der Warteliste beitreten"
+    }
+  }
+}

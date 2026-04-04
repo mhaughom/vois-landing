@@ -1,0 +1,24 @@
+{
+  "category": "Philosophie",
+  "title": "Vorschläge, keine Menüs",
+  "tagline": "Lesen. Tippen. Fertig.",
+  "heroAlt": "Vorschlagskarten ersetzen komplexe Menüs",
+  "body1": "Ein Geschäftsinhaber starrt auf ein Aufgaben-Board und versucht herauszufinden, was gerade wichtig ist. Ein Vertriebsmitarbeiter liest eine E-Mail und denkt \"Ich sollte eine Nachfassung erstellen\" – aber tut es nicht, weil das bedeutet, Apps zu wechseln, das richtige Projekt zu finden, sechs Felder auszufüllen. Der Gedanke stirbt in der Lücke zwischen dem Erkennen, was getan werden muss, und dem tatsächlichen Tun.",
+  "body2Prefix": "Eine E-Mail-Anfrage zur Neuterminierung trifft ein.",
+  "body2Body": "VOIS liest sie und zeigt drei tippbare Optionen: auf Freitag 10 Uhr verschieben (Slot ist frei), auf nächste Woche verschieben (3 freie Slots angezeigt), oder ablehnen und stattdessen einen Anruf vorschlagen. Ein Tippen. Meeting verschoben, Kalender aktualisiert, Bestätigung gesendet.",
+  "body3Prefix": "Meeting endet.",
+  "body3Body": "VOIS extrahiert vier Aktionspunkte aus dem Transkript. Jeder erscheint als Karte – Zugeordnete Person basierend auf wer was gesagt hat vorgeschlagen, Fälligkeitsdatum aus dem Gespräch abgeleitet, Projekt automatisch verknüpft. In 30 Sekunden prüfen, einen Zugewiesenen anpassen, auf Bestätigen tippen. Vier Aufgaben erstellt, vier Personen benachrichtigt, keine Formulare ausgefüllt.",
+  "comparisonTraditional": "Traditionell:",
+  "comparisonTraditionalStat": "3 Minuten pro Aktion.",
+  "comparisonSuggestions": "Vorschläge:",
+  "comparisonSuggestionsStat": "5 Sekunden.",
+  "comparisonResult": "Bei 20 täglichen Aktionen sind das",
+  "comparisonResultStat": "60 Minuten zurück.",
+  "quote": "\"Sie sollten Ihre Unternehmenssoftware nicht bedienen müssen. Sie sollte sich selbst bedienen und nach Ihrem Urteil fragen.\"",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Für Teams gebaut",
+    "nextLabel": "Weiter",
+    "nextTitle": "Zwei Schnittstellen, ein System"
+  }
+}

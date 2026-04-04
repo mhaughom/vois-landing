@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "सेटअप गाइड"
+  },
+  "hero": {
+    "heading": "अपने डिवाइसों पर VOIS सेटअप करें",
+    "description": "तत्काल one-tap रिकॉर्डिंग के लिए VOIS को अपने Apple Watch face और iPhone lock screen पर जोड़ें।"
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "चरण 1: अपनी Watch पर VOIS इंस्टॉल करें"
+    },
+    "step2": {
+      "heading": "चरण 2: VOIS को अपने watch face पर जोड़ें"
+    },
+    "installSteps": [
+      { "number": 1, "text": "अपने iPhone पर Watch ऐप खोलें" },
+      { "number": 2, "text": "\"उपलब्ध ऐप्स\" तक स्क्रॉल करें" },
+      { "number": 3, "text": "VOIS के बगल में Install पर टैप करें" }
+    ],
+    "faceSteps": [
+      "अपने watch face को देर तक दबाएं",
+      "\"Edit\" पर टैप करें",
+      "एक complication slot पर टैप करें",
+      "VOIS चुनें"
+    ],
+    "availableAppsLabel": "उपलब्ध ऐप्स",
+    "installButton": "इंस्टॉल करें"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone Lock Screen",
+    "step": {
+      "heading": "अपने lock screen पर VOIS widget जोड़ें"
+    },
+    "steps": [
+      "अपने lock screen को देर तक दबाएं",
+      "Customize पर टैप करें",
+      "+ Add Widgets पर टैप करें",
+      "VOIS चुनें"
+    ]
+  }
+}

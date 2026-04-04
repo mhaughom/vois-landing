@@ -1,0 +1,54 @@
+{
+  "badge": "E-mail vocal",
+  "hero": {
+    "title": "Videz votre boîte de réception en parlant.",
+    "description": "Dites « lis ma boîte de réception » en conduisant. Dictez des réponses. L'IA génère 3 options de ton par e-mail. Envoyez celle qui vous convient."
+  },
+  "body": "Dites « lis ma boîte de réception » en conduisant. HABOS résume vos e-mails les plus importants, lit les urgents à voix haute et génère trois brouillons de réponse dans des tons différents — Court & Direct, Chaleureux & Professionnel, et Exécutif. Vous dites « envoie le deuxième » et c'est fait. Chaque e-mail reçoit également des actions extraites par IA : les délais deviennent des tâches, les demandes de réunion deviennent des événements de calendrier, et les relances sont signalées — tout cela sans taper un seul mot.",
+  "conversation": {
+    "userAsk": "Qu'est-ce qu'il y a dans ma boîte de réception ?",
+    "aiSummary": "Vous avez 5 nouveaux e-mails. Le plus important est de Sarah Henderson concernant le calendrier de rénovation — elle a besoin d'une confirmation avant la fin de la journée. Voulez-vous que je le lise ?",
+    "userReply": "Oui, et rédige une réponse",
+    "aiDraftsIntro": "Voici 3 options :",
+    "draft1": {
+      "label": "Court & Direct",
+      "text": "Bonjour Sarah, confirmé — nous sommes dans les délais pour le calendrier de mars. Je vous enverrai le planning mis à jour demain."
+    },
+    "draft2": {
+      "label": "Chaleureux & Professionnel",
+      "text": "Bonjour Sarah, merci de votre suivi. Je suis heureux de confirmer que nous sommes dans les délais. Je vous transmettrai le calendrier détaillé demain matin."
+    },
+    "draft3": {
+      "label": "Exécutif",
+      "text": "Sarah — Confirmé pour mars. Planning mis à jour à suivre demain. N'hésitez pas si vous avez besoin d'autre chose."
+    },
+    "userSend": "Envoie le deuxième",
+    "confirmation": "E-mail envoyé. Zéro frappe. Zéro temps d'écran."
+  },
+  "benefits": {
+    "time": {
+      "title": "30 e-mails → 5 minutes",
+      "description": "Le mode vocal lit les importants, passe les moins urgents, et vous permet de répondre dans votre voix naturelle. Le trajet devient productif."
+    },
+    "tone": {
+      "title": "3 options de ton par réponse",
+      "description": "Court & Direct, Chaleureux & Professionnel, Exécutif. Choisissez celui qui convient, ou demandez à l'IA d'ajuster. Votre voix, soignée."
+    },
+    "actions": {
+      "title": "Actions extraites automatiquement",
+      "description": "Quand un e-mail mentionne une échéance, une réunion ou une tâche, des fiches d'action apparaissent. Appuyez pour créer sans quitter votre boîte de réception."
+    }
+  },
+  "scenario": "Il est 7 h 45. Vous roulez vers le premier chantier. Vous dites « lis ma boîte de réception. » HABOS résume 5 e-mails, lit l'urgent de votre client et rédige une réponse dans votre ton. Vous dites « envoie-le. » Le temps de vous garer, votre boîte est vide et votre client a une réponse. Vous n'avez jamais touché votre téléphone.",
+  "integrations": {
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "workspace": "E-mail workspace",
+    "unified": "Boîte de réception unifiée",
+    "actions": "Actions extraites automatiquement"
+  },
+  "closing": {
+    "tagline": "Les autres applications d'e-mail veulent que vous tapiez plus vite. HABOS vous permet d'arrêter de taper entièrement.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

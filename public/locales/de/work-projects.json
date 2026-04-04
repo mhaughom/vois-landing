@@ -1,0 +1,72 @@
+{
+  "badge": "KI-Projektintelligenz",
+  "hero": {
+    "title": "Immer wissen, was den Fortschritt blockiert.",
+    "description": "HABOS analysiert kontinuierlich jede Aufgabe, Abhängigkeit und Frist, um den kritischen Pfad aufzuzeigen. Du siehst Engpässe, bevor sie zu Problemen werden."
+  },
+  "body": "Das Projektsystem nutzt KI-Analyse, um kontinuierlich den kritischen Pfad zu identifizieren. GPT-4o untersucht alle Planpositionen, Abhängigkeiten und den aktuellen Status, identifiziert dann Engpässe und blockierende Ketten. Kritische-Pfad-Elemente erhalten automatisch höhere Priorität in der Planungs-Engine — wenn Fokusblöcke gefüllt werden, werden kritische Pfad-Aufgaben zuerst eingeplant. Abhängigkeiten erzwingen topologische Reihenfolge, sodass Vorgängeraufgaben immer vor ihren Nachfolgern geplant werden.",
+  "criticalPath": {
+    "heading": "Henderson Küchenrenovierung — Kritischer Pfad",
+    "items": {
+      "permitsApproved": {
+        "title": "Genehmigungen erteilt",
+        "date": "Abgeschlossen am 20. März"
+      },
+      "plumbingRoughIn": {
+        "title": "Sanitär-Rohinstallation",
+        "date": "Abgeschlossen am 23. März"
+      },
+      "tileSelection": {
+        "title": "Fliesenauswahl",
+        "status": "BLOCKIERT — wartet auf Musterlieferung (fällig am 28. März)"
+      },
+      "tileInstallation": {
+        "title": "Flieseninstallation",
+        "blockedBy": "Blockiert von: Fliesenauswahl"
+      },
+      "finalInspection": {
+        "title": "Abschlussprüfung",
+        "blockedBy": "Blockiert von: Flieseninstallation"
+      }
+    },
+    "note": "KI identifizierte \"Fliesenauswahl\" als Engpass 3 Tage bevor das Team es bemerkte. Kritische-Pfad-Elemente werden automatisch auf höchste Priorität in deinem Zeitplan gesetzt."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Engpässe automatisch gefunden",
+      "description": "KI untersucht alle Planpositionen, Abhängigkeiten und Status. Sie setzt critical_rank auf Elemente, die die blockierende Kette bilden — und dein Kalender priorisiert sie sofort."
+    },
+    "dependencies": {
+      "title": "Abhängigkeiten durchgesetzt",
+      "description": "Wenn ein Vorgänger nicht abgeschlossen ist, wird die abhängige Aufgabe als blockiert markiert und kann nicht gestartet werden. Kein Arbeiten an der falschen Sache mehr."
+    },
+    "connected": {
+      "title": "Jede Quelle verbunden",
+      "description": "E-Mails, Meetings, Sprachnotizen und Dokumente werden automatisch mit Projekten verknüpft. Frage \"warum ist das im Rückstand?\" und erhalte eine echte Antwort."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Ohne HABOS",
+      "description": "Montag-Standup: \"Irgendwelche Blockaden?\" Stille. Donnerstag: \"Warum sind die Fliesen nicht installiert?\" \"Oh, die Muster sind nie angekommen.\" Drei Tage verloren.",
+      "badge": "Engpass entdeckt: 3 Tage zu spät"
+    },
+    "with": {
+      "heading": "Mit HABOS",
+      "description": "Dienstagmorgen: Benachrichtigung — \"Fliesenauswahl ist jetzt der kritische Pfad-Engpass. Musterlieferung ist 2 Tage entfernt. Empfehlung: beim Lieferanten eskalieren.\" Maßnahme noch am selben Tag.",
+      "badge": "Engpass markiert: 3 Tage früher"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "GPT-4o kritische Pfad-Analyse",
+      "Topologische Abhängigkeitssortierung",
+      "Auto-Prioritätserhöhung",
+      "Modulübergreifendes Daten-Tagging"
+    ]
+  },
+  "cta": {
+    "heading": "Andere Projekttools zeigen dir Aufgaben. HABOS zeigt dir, was wichtig ist.",
+    "button": "Warteliste beitreten"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Support"
+  },
+  "hero": {
+    "heading": "Wie können wir helfen?",
+    "description": "Wir helfen Ihnen, das Beste aus Vois herauszuholen. Finden Sie unten Antworten oder wenden Sie sich direkt an uns."
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "email": {
+      "label": "E-Mail-Support",
+      "address": "hello@tryvois.com",
+      "note": "Für alle Anfragen und Supportanfragen"
+    },
+    "responseTime": {
+      "label": "Antwortzeit",
+      "value": "Innerhalb von 24 Stunden",
+      "note": "Montag bis Freitag"
+    }
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "question": "Was ist Vois?",
+        "answer": "Vois ist eine KI-gestützte Sprachnotizan-App, die Ihnen hilft, Ihre Gedanken zu erfassen, zu organisieren und darauf zu reagieren. Verfügbar auf iPhone, Apple Watch und Mac."
+      },
+      {
+        "question": "Welche Geräte unterstützt Vois?",
+        "answer": "Vois ist auf iPhone, Apple Watch und Mac verfügbar. Sie können es aus dem Apple App Store herunterladen. Ihre Daten werden nahtlos auf allen Ihren Geräten synchronisiert."
+      },
+      {
+        "question": "Wie funktioniert die Abrechnung?",
+        "answer": "Vois bietet Abonnementpläne, die monatlich oder jährlich abgerechnet werden. Sie können Ihr Abonnement über den App Store auf Ihrem Apple-Gerät verwalten. Alle Zahlungen werden sicher über Apple abgewickelt."
+      },
+      {
+        "question": "Wie kündige ich mein Abonnement?",
+        "answer": "Sie können Ihr Abonnement jederzeit über den App Store kündigen. Gehen Sie auf Ihrem iPhone zu Einstellungen > Apple ID > Abonnements, suchen Sie Vois und tippen Sie auf Kündigen. Sie haben weiterhin Zugang bis zum Ende Ihres aktuellen Abrechnungszeitraums."
+      },
+      {
+        "question": "Kann ich eine Rückerstattung erhalten?",
+        "answer": "Ja, wir bieten eine 30-Tage-Geld-zurück-Garantie. Wenn Sie nicht zufrieden sind, kontaktieren Sie uns unter <email>hello@tryvois.com</email> oder lesen Sie unsere vollständige <refund>Rückerstattungsrichtlinie</refund>."
+      },
+      {
+        "question": "Sind meine Daten sicher?",
+        "answer": "Ihre Privatsphäre und Datensicherheit haben für uns höchste Priorität. Wir sind vollständig DSGVO-konform und verwenden Verschlüsselung zum Schutz Ihrer Daten. Lesen Sie unsere <privacy>Datenschutzrichtlinie</privacy> für alle Details."
+      },
+      {
+        "question": "Wie melde ich einen Fehler oder fordere eine Funktion an?",
+        "answer": "Wir freuen uns über Ihr Feedback! Senden Sie uns eine E-Mail an <email>hello@tryvois.com</email> mit einer Beschreibung des Problems oder Ihrer Funktionsidee, und wir werden uns bei Ihnen melden."
+      }
+    ]
+  },
+  "company": {
+    "heading": "Unternehmensinformationen",
+    "companyLabel": "Unternehmen",
+    "companyValue": "VOIS AI AS",
+    "orgLabel": "Org.-Nummer",
+    "orgValue": "936 920 594",
+    "locationLabel": "Standort",
+    "locationValue": "Alsvåg, Norway",
+    "emailLabel": "E-Mail",
+    "emailValue": "hello@tryvois.com",
+    "websiteLabel": "Website",
+    "websiteValue": "tryvois.com"
+  },
+  "footer": {
+    "copyright": "Vois AI. Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen"
+  }
+}

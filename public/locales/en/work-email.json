@@ -1,0 +1,54 @@
+{
+  "badge": "Voice Email",
+  "hero": {
+    "title": "Clear Your Inbox by Talking.",
+    "description": "Say \"read my inbox\" while driving. Dictate replies. AI generates 3 tone options per email. Send the one you like."
+  },
+  "body": "Say 'read my inbox' while driving. HABOS summarizes your most important emails, reads the urgent ones aloud, and generates three reply drafts in different tones — Short & Direct, Warm & Professional, and Executive. You say 'send the second one' and it's done. Every email also gets AI-extracted action items: deadlines become tasks, meeting requests become calendar events, and follow-ups get flagged — all without you typing a single word.",
+  "conversation": {
+    "userAsk": "What's in my inbox?",
+    "aiSummary": "You have 5 new emails. The most important is from Sarah Henderson about the renovation timeline — she needs confirmation by end of day. Want me to read it?",
+    "userReply": "Yes, and draft a reply",
+    "aiDraftsIntro": "Here are 3 options:",
+    "draft1": {
+      "label": "Short & Direct",
+      "text": "Hi Sarah, confirmed — we're on track for the March timeline. I'll send the updated schedule by tomorrow."
+    },
+    "draft2": {
+      "label": "Warm & Professional",
+      "text": "Hi Sarah, thanks for checking in. Happy to confirm we're on schedule. I'll have the detailed timeline over to you by tomorrow morning."
+    },
+    "draft3": {
+      "label": "Executive",
+      "text": "Sarah — Confirmed for March. Updated schedule to follow tomorrow. Let me know if you need anything else."
+    },
+    "userSend": "Send the second one",
+    "confirmation": "Email sent. Zero typing. Zero screen time."
+  },
+  "benefits": {
+    "time": {
+      "title": "30 emails → 5 minutes",
+      "description": "Voice mode reads the important ones, skips the noise, and lets you reply in your natural voice. The commute becomes productive."
+    },
+    "tone": {
+      "title": "3 tone options per reply",
+      "description": "Short & Direct, Warm & Professional, Executive. Pick the one that fits, or tell the AI to adjust. Your voice, polished."
+    },
+    "actions": {
+      "title": "Actions extracted automatically",
+      "description": "When an email mentions a deadline, meeting, or task — action cards appear. Tap to create without leaving your inbox."
+    }
+  },
+  "scenario": "It's 7:45 AM. You're driving to the first job site. You say \"read my inbox.\" HABOS summarizes 5 emails, reads the urgent one from your client, and drafts a reply in your tone. You say \"send it.\" By the time you park, your inbox is clear and your client has a response. You never touched your phone.",
+  "integrations": {
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "workspace": "Workspace email",
+    "unified": "Unified inbox",
+    "actions": "Action items auto-extracted"
+  },
+  "closing": {
+    "tagline": "Other email apps want you to type faster. HABOS lets you stop typing entirely.",
+    "cta": "Join Waitlist"
+  }
+}

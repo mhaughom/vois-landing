@@ -1,0 +1,24 @@
+{
+  "category": "Filosofie",
+  "title": "Suggesties, geen menu's",
+  "tagline": "Lezen. Tikken. Klaar.",
+  "heroAlt": "Suggestiekaarten die complexe menu's vervangen",
+  "body1": "Een bedrijfseigenaar staart naar een takenbord en probeert te bedenken wat er nu het meest toe doet. Een verkoper leest een e-mail en denkt \"ik moet een follow-up maken\" — maar doet het niet, want dat betekent van app wisselen, het juiste project vinden, zes velden invullen. De gedachte sterft in het gat tussen het herkennen van wat er gedaan moet worden en het daadwerkelijk doen.",
+  "body2Prefix": "Verzoek om vergadering te verzetten arriveert.",
+  "body2Body": "VOIS leest het en toont drie tikbare opties: verplaats naar vrijdag 10:00 uur (slot is vrij), verschuif naar volgende week (3 vrije slots getoond), of weiger en stel een gesprek voor in de plaats. Één tik. Vergadering verzet, agenda's bijgewerkt, bevestiging verstuurd.",
+  "body3Prefix": "Vergadering eindigt.",
+  "body3Body": "VOIS extraheert vier actiepunten uit de transcriptie. Elk verschijnt als een kaart — degene die is voorgesteld op basis van wie wat zei, vervaldatum afgeleid uit het gesprek, project automatisch gekoppeld. Beoordeel in 30 seconden, pas één persoon aan, tik bevestigen. Vier taken aangemaakt, vier mensen geïnformeerd, nul formulieren ingevuld.",
+  "comparisonTraditional": "Traditioneel:",
+  "comparisonTraditionalStat": "3 minuten per actie.",
+  "comparisonSuggestions": "Suggesties:",
+  "comparisonSuggestionsStat": "5 seconden.",
+  "comparisonResult": "Over 20 dagelijkse acties is dat",
+  "comparisonResultStat": "60 minuten terug.",
+  "quote": "\"Je zou je bedrijfssoftware niet hoeven te bedienen. Het zou zichzelf moeten bedienen en om jouw oordeel vragen.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Gebouwd voor teams",
+    "nextLabel": "Volgende",
+    "nextTitle": "Twee interfaces, één systeem"
+  }
+}

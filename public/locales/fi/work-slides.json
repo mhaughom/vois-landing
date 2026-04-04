@@ -1,0 +1,62 @@
+{
+  "badge": "Tekoälyesitykset",
+  "hero": {
+    "title_part1": "Kuvaile esityksesi.",
+    "title_part2": "Se rakentaa itsensä.",
+    "description": "Kerro HABOS:lle mitä tarvitset esittää. Tekoäly luo täydellisen diaesityksen käyttäen brändiäsi, dataasi ja tuotteitasi — live-kaavioilla, jotka päivittyvät automaattisesti."
+  },
+  "intro": "Esitysgeneraattori luo diaesityksiä työtilasi asiayhteydestä live-data-sitomisella. Ensin se luo ääriviivan analysoimalla kehottetta, hakemalla Brainista ja hakemalla projektikontekstista, tuoteluettelosta ja brändioppaasta. Sitten se rakentaa jokaisen dian rinnakkain — enintään viisi yhtäaikaisesti — layoutille ominaisilla lohkoilla: mittarit, kaaviot, taulukot ja kuvat. Tuloluvut haetaan Financesta. Tuoteruudukot haetaan luettelostasi. Kun taustadata muuttuu, esitys heijastaa sen.",
+  "slidePreview": {
+    "title": "Q1-tuloksen yhteenveto",
+    "metrics": [
+      { "change": "+18 %", "value": "127 000 $", "label": "Liikevaihto" },
+      { "change": "+12 %", "value": "89", "label": "Tilaukset" },
+      { "change": "-4 %", "value": "1 428 $", "label": "Keskim. tilaus" }
+    ],
+    "slideNumber": "Dia 3/12"
+  },
+  "caption": {
+    "prefix": "Luotu:",
+    "prompt": "\"Rakenna Q1-sijoittajapaivitys tulotrendeillä ja parhailla tuotteilla.\"",
+    "suffix": "Tuloluvut ovat live — ne päivittyvät kun datasi muuttuu."
+  },
+  "benefitCards": [
+    {
+      "title": "Kehotteesta diaesitykseen 60 sekunnissa",
+      "desc": "Kuvaile mitä tarvitset. Tekoäly luo ääriviivan, sitten rakentaa jokaisen dian rinnakkain. 12 kortin layoutia, brändietietoiset värit, oikeaa valokuvausta Unsplashilta."
+    },
+    {
+      "title": "Live-data-sitominen",
+      "desc": "Tulomittarit haetaan Financesta. Tuoteruudukot haetaan luettelostasi. Kun taustadata muuttuu, esitys päivittyy. Ei manuaalista kaavioiden uudelleenluontia."
+    },
+    {
+      "title": "Sinun brändisi, automaattisesti",
+      "desc": "Teemavärit, fontit ja logo haetaan työtilasi brändi-asetuksista. Jokainen diaesitys näyttää sinulta, ei mallilta."
+    }
+  ],
+  "layouts": {
+    "heading": "12 kortin layoutia, älykkäästi yhdistetty",
+    "items": [
+      "Otsikko", "Teksti + Kuva", "Mittariruudukko", "Kaaviokorostus", "Vertailu",
+      "Aikajana", "Lainaus", "3-sarake", "Luettelokohde korostettu", "Tuoteruudukko",
+      "Tiimiroster", "Toimintakutsu"
+    ]
+  },
+  "scenario": {
+    "part1": "Sijoittajakokouksesi on 2 tunnin päästä. Sen sijaan, että käytät 90 minuuttia diojen rakentamiseen, kirjoitat:",
+    "prompt": "\"Q1-sijoittajapaivitys — tulotrendit, parhaat tuotteet, asiakaskasvu ja ensi neljänneksen tiekartta.\"",
+    "part2": "HABOS hakee live-numerot Financesta, tuotteet luettelostasi ja kasvudatan CRM:stä. Sinulla on hiottu, brändietietoinen diaesitys 60 sekunnissa.",
+    "closing": "Tulokaavio on edelleen tarkka kun esität sen."
+  },
+  "techItems": [
+    "GPT-4o ääriviiva + rinnakkainen rakentaminen",
+    "Unsplash + Gemini kuvan luonti",
+    "12 pakotettua layoutia",
+    "Live-data-sitominen",
+    "Brändietietoinen teema"
+  ],
+  "cta": {
+    "tagline": "Muut diatyökalut antavat malleja. HABOS antaa valmiin diaesityksen.",
+    "button": "Liity odotuslistalle"
+  }
+}

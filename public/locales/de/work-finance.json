@@ -1,0 +1,58 @@
+{
+  "badge": "Finanzzentrale",
+  "hero": {
+    "title": "Geld rein. Geld raus. Eine Wahrheit.",
+    "description": "Forderungen aus deiner Buchhaltungsplattform, Betriebskosten aus HABOS, per Sprache erfasste Ausgaben aus dem Feld — alles in einem Dashboard abgeglichen."
+  },
+  "body": "Das Finanz-Modul bietet eine einheitliche Übersicht aller Geldflüsse im Unternehmen. Forderungen synchronisieren sich mit Rechnungsstatusverfolgung von deiner Buchhaltungsplattform — Entwurf, gesendet, teilweise bezahlt, bezahlt, überfällig. Ausgaben werden per Sprache erfasst: Sage 'Habe 45 € für Fliesenkleber im Baumarkt ausgegeben' und der Smart Router erstellt einen Ausgabeneintrag mit Händler, Betrag und Projektzuordnung. Monatliche Umsatz-Snapshots werden automatisch für Cashflow-Übersicht neu erstellt.",
+  "metrics": [
+    { "label": "Fakturiert", "value": "47.250 €" },
+    { "label": "Erhalten", "value": "38.100 €" },
+    { "label": "Ausstehend", "value": "9.150 €" },
+    { "label": "Überfällig", "value": "2.300 €" }
+  ],
+  "moneyIn": {
+    "heading": "Einnahmen",
+    "rows": [
+      { "client": "Henderson Reno", "amount": "12.500 €", "status": "Bezahlt" },
+      { "client": "Baker HVAC", "amount": "8.200 €", "status": "Ausstehend" },
+      { "client": "Wilson Sanitär", "amount": "2.300 €", "status": "Überfällig (14 Tage)" }
+    ]
+  },
+  "moneyOut": {
+    "heading": "Ausgaben",
+    "rows": [
+      { "item": "Fliesenmaterial", "amount": "1.850 €", "status": "Bezahlt" },
+      { "item": "Fahrzeugkraftstoff", "amount": "420 €", "status": "Per Sprache erfasst" },
+      { "item": "Subunternehmer", "amount": "3.200 €", "status": "Ausstehend" }
+    ]
+  },
+  "dashboardCaption": "Forderungen synchronisieren sich von deiner Buchhaltungsplattform. Ausgaben per Sprache, Beleg oder manuell erfasst. Monatliche Umsatz-Snapshots werden automatisch neu erstellt.",
+  "benefits": [
+    {
+      "title": "Sprach-Ausgabenerfassung",
+      "desc": "Sage \"180 € für Fliesen ausgegeben\" beim Fahren. HABOS erstellt den Ausgabeneintrag, ordnet automatisch den Händler zu und schlägt das Buchungskonto vor."
+    },
+    {
+      "title": "Rechnungsautomatisierung",
+      "desc": "Wandle HABOS-Aufträge und Zeiteinträge in Buchhaltungsrechnungen um. Intelligente Entitätsauflösung ordnet CRM-Kunden automatisch Buchhaltungskontakten zu."
+    },
+    {
+      "title": "Monatliche Snapshots",
+      "desc": "Fakturierte, erhaltene, ausstehende und überfällige Summen werden monatlich neu erstellt. Cashflow-Trends ohne Tabellenkalkulation einsehen."
+    }
+  ],
+  "scenario": "Ende des Monats. Dein Buchhalter fragt: \"Was ist der ausstehende Saldo und welche Kunden sind überfällig?\" Statt aus 3 Systemen zu exportieren und in Excel abzugleichen — öffnest du HABOS Finance. 9.150 € ausstehend, 2.300 € überfällig von Wilson Sanitär (14 Tage). Ein Bildschirm, echte Zahlen von deiner Buchhaltungsplattform, null Abstimmung.",
+  "scenarioHighlight": "9.150 € ausstehend, 2.300 € überfällig von Wilson Sanitär (14 Tage). Ein Bildschirm, echte Zahlen von deiner Buchhaltungsplattform, null Abstimmung.",
+  "techItems": [
+    "Buchhaltungsplattform-Sync",
+    "Entitätsauflösung",
+    "Idempotente Operationen",
+    "Sprach-Ausgabenerfassung",
+    "Monatliche Umsatz-Neuerstellung"
+  ],
+  "cta": {
+    "heading": "Andere Dashboards zeigen Schätzungen. HABOS zeigt Buchhaltungswahrheit.",
+    "button": "Warteliste beitreten"
+  }
+}

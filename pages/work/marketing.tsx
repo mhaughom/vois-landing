@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
@@ -17,39 +18,27 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
 });
 
-/* ── benefit cards data ────────────────────────────────────────────────── */
-
-const benefits = [
-  {
-    icon: Radar,
-    title: 'AI opportunity discovery',
-    desc: 'The system analyzes your market, competitors, and performance data to surface opportunities \u2014 trend shifts, competitor gaps, and reuse angles you\u2019d otherwise miss.',
-  },
-  {
-    icon: MousePointerClick,
-    title: 'Multi-touch attribution',
-    desc: 'Anonymous visitor sessions tracked from first click through conversion. See which creative, campaign, and channel drove every lead, booking, and order.',
-  },
-  {
-    icon: Tags,
-    title: 'Offer orchestration',
-    desc: 'Link products to campaigns with dynamic pricing \u2014 percent off, fixed price, bundles. Control where and when offers appear across all your marketing surfaces.',
-  },
-];
-
-/* ── tech strip items ──────────────────────────────────────────────────── */
-
-const techItems = [
-  'Strategy anchoring',
-  '9-dashboard command center',
-  'Multi-touch attribution',
-  'AI opportunity scoring',
-  'Closed-loop revenue',
-];
+const benefitIcons = [Radar, MousePointerClick, Tags];
 
 /* ── component ─────────────────────────────────────────────────────────── */
 
 const Marketing: React.FC = () => {
+  const { t } = useTranslation('work-marketing');
+
+  const benefits = t('benefits', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>;
+
+  const techItems = t('techItems', { returnObjects: true }) as string[];
+
+  const activeCampaigns = t('dashboard.activeCampaigns.campaigns', { returnObjects: true }) as string[];
+
+  const opportunityItems = t('dashboard.opportunities.items', { returnObjects: true }) as Array<{
+    tag: string;
+    text: string;
+  }>;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -62,22 +51,19 @@ const Marketing: React.FC = () => {
           <motion.section {...fadeUp()} className="max-w-3xl mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-500/10 text-rose-700 rounded-full text-sm font-medium mb-6">
               <Megaphone size={14} />
-              Marketing Hub
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]">
-              From Strategy to Revenue.<br />
-              One Platform.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 leading-relaxed max-w-2xl">
-              Define your brand voice and positioning once. Every campaign, creative, and
-              opportunity anchors to your strategy automatically. Track attribution from
-              first click to closed deal.
+              {t('hero.description')}
             </p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Define your brand voice, positioning, target ICPs, and proof points once — every campaign, creative asset, and opportunity automatically anchors to your strategy profile. The system continuously analyzes your market, competitors, and performance data to surface opportunities you'd miss: pricing gaps, trend shifts, and reuse angles. Anonymous visitor sessions are tracked from first click through conversion, so you can see which creative, campaign, and channel drove every lead, booking, and order.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -89,11 +75,11 @@ const Marketing: React.FC = () => {
                 {/* Top-left: Active Campaigns */}
                 <div className="bg-white rounded-2xl p-5 border border-rose-100/60">
                   <p className="text-xs font-semibold uppercase tracking-widest text-rose-600 mb-3">
-                    Active Campaigns
+                    {t('dashboard.activeCampaigns.label')}
                   </p>
-                  <p className="text-3xl font-bold text-slate-900 mb-3">3</p>
+                  <p className="text-3xl font-bold text-slate-900 mb-3">{t('dashboard.activeCampaigns.count')}</p>
                   <div className="space-y-1.5">
-                    {['Spring HVAC Promo', 'Emergency Services', 'Referral Program'].map((name) => (
+                    {activeCampaigns.map((name) => (
                       <div
                         key={name}
                         className="flex items-center gap-2 text-sm text-slate-600"
@@ -108,64 +94,60 @@ const Marketing: React.FC = () => {
                 {/* Top-right: Pipeline Attribution */}
                 <div className="bg-white rounded-2xl p-5 border border-rose-100/60">
                   <p className="text-xs font-semibold uppercase tracking-widest text-rose-600 mb-3">
-                    Pipeline Attribution
+                    {t('dashboard.attribution.label')}
                   </p>
-                  <p className="text-lg font-bold text-slate-900 mb-3">$127K revenue tracked</p>
+                  <p className="text-lg font-bold text-slate-900 mb-3">{t('dashboard.attribution.revenue')}</p>
                   <div className="w-full h-3 rounded-full overflow-hidden flex">
                     <div className="bg-rose-500 h-full" style={{ width: '45%' }} />
                     <div className="bg-rose-300 h-full" style={{ width: '30%' }} />
                     <div className="bg-rose-200 h-full" style={{ width: '25%' }} />
                   </div>
                   <div className="flex justify-between mt-2 text-[11px] text-slate-500">
-                    <span>Website 45%</span>
-                    <span>Email 30%</span>
-                    <span>Social 25%</span>
+                    <span>{t('dashboard.attribution.channels.0.name')}</span>
+                    <span>{t('dashboard.attribution.channels.1.name')}</span>
+                    <span>{t('dashboard.attribution.channels.2.name')}</span>
                   </div>
                 </div>
 
                 {/* Bottom-left: AI Opportunities */}
                 <div className="bg-white rounded-2xl p-5 border border-rose-100/60">
                   <p className="text-xs font-semibold uppercase tracking-widest text-rose-600 mb-3">
-                    AI Opportunities
+                    {t('dashboard.opportunities.label')}
                   </p>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <span className="shrink-0 mt-0.5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 rounded-full">
-                        Gap
-                      </span>
-                      <p className="text-sm text-slate-700 leading-snug">
-                        Competitor gap: emergency response positioning
-                      </p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="shrink-0 mt-0.5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide bg-emerald-100 text-emerald-700 rounded-full">
-                        Trend
-                      </span>
-                      <p className="text-sm text-slate-700 leading-snug">
-                        Smart home integration demand +40%
-                      </p>
-                    </div>
+                    {opportunityItems.map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <span className={`shrink-0 mt-0.5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded-full ${
+                          i === 0 ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'
+                        }`}>
+                          {item.tag}
+                        </span>
+                        <p className="text-sm text-slate-700 leading-snug">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
                 {/* Bottom-right: Creative Pipeline */}
                 <div className="bg-white rounded-2xl p-5 border border-rose-100/60">
                   <p className="text-xs font-semibold uppercase tracking-widest text-rose-600 mb-3">
-                    Creative Pipeline
+                    {t('dashboard.creative.label')}
                   </p>
-                  <p className="text-lg font-bold text-slate-900 mb-3">12 assets in review</p>
+                  <p className="text-lg font-bold text-slate-900 mb-3">{t('dashboard.creative.summary')}</p>
                   <div className="flex items-center gap-3 text-sm text-slate-600">
                     <span className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                      8 approved
+                      {t('dashboard.creative.approved')}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-amber-400" />
-                      3 pending
+                      {t('dashboard.creative.pending')}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-rose-400" />
-                      1 revision
+                      {t('dashboard.creative.revision')}
                     </span>
                   </div>
                 </div>
@@ -173,8 +155,7 @@ const Marketing: React.FC = () => {
               </div>
 
               <p className="text-sm text-slate-500 mt-6 leading-relaxed">
-                9 dashboards in one: strategy, campaigns, broadcasts, funnels, proof assets,
-                creative, calendar, and ROI analytics.
+                {t('dashboard.caption')}
               </p>
             </div>
           </motion.section>
@@ -182,20 +163,23 @@ const Marketing: React.FC = () => {
           {/* ━━━ 3. Three benefit cards ━━━ */}
           <motion.section {...fadeUp(0.25)} className="mb-20">
             <div className="grid md:grid-cols-3 gap-4">
-              {benefits.map((b) => (
-                <div
-                  key={b.title}
-                  className="bg-white border border-slate-200 rounded-2xl p-5"
-                >
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-9 h-9 bg-rose-100 rounded-lg flex items-center justify-center">
-                      <b.icon size={18} className="text-rose-600" />
+              {benefits.map((b, i) => {
+                const Icon = benefitIcons[i];
+                return (
+                  <div
+                    key={b.title}
+                    className="bg-white border border-slate-200 rounded-2xl p-5"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-9 h-9 bg-rose-100 rounded-lg flex items-center justify-center">
+                        <Icon size={18} className="text-rose-600" />
+                      </div>
+                      <h3 className="font-semibold text-slate-900">{b.title}</h3>
                     </div>
-                    <h3 className="font-semibold text-slate-900">{b.title}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
                   </div>
-                  <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </motion.section>
 
@@ -203,12 +187,7 @@ const Marketing: React.FC = () => {
           <motion.section {...fadeUp(0.35)} className="mb-20">
             <div className="bg-slate-900 rounded-3xl p-8 text-white">
               <p className="text-lg md:text-xl leading-relaxed text-slate-200">
-                Your competitor just raised prices on emergency plumbing. HABOS surfaces an
-                AI opportunity: &ldquo;Emergency service pricing gap&nbsp;&mdash; competitors
-                average $195/call, you&rsquo;re at $150. Recommend: increase to $175 and run
-                a &lsquo;24/7 Emergency&rsquo; campaign.&rdquo; You click &ldquo;Create
-                Campaign&rdquo;&nbsp;&mdash; it&rsquo;s pre-populated with the opportunity
-                data, linked to your emergency service product, and ready to publish.
+                {t('scenario')}
               </p>
             </div>
           </motion.section>
@@ -228,8 +207,7 @@ const Marketing: React.FC = () => {
           {/* ━━━ 6. Closing CTA ━━━ */}
           <motion.section {...fadeUp(0.55)} className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-5 leading-tight">
-              Other marketing tools track campaigns.<br />
-              HABOS connects campaigns to revenue.
+              {t('cta.heading')}
             </h2>
             <a href="/#waitlist">
               <motion.button
@@ -237,7 +215,7 @@ const Marketing: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="mt-4 px-8 py-3.5 bg-rose-600 text-white rounded-full font-medium text-sm shadow-lg shadow-rose-600/20 hover:bg-rose-700 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
               </motion.button>
             </a>
           </motion.section>

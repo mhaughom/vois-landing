@@ -1,0 +1,8 @@
+{
+  "introMessage": "您好！我可以帮助您探索 HABOS。询问任何功能——邮件、CRM、任务、日历——我将带您前往。",
+  "header": "HABOS 对话",
+  "placeholder": "询问任何功能...",
+  "openChatAriaLabel": "打开对话",
+  "closeChatAriaLabel": "关闭对话",
+  "sendMessageAriaLabel": "发送消息"
+}

@@ -1,0 +1,62 @@
+{
+  "badge": "Constructor de formularios",
+  "hero": {
+    "title": "Cree un formulario.\nHaga el resto.",
+    "description": "21 tipos de campos, constructor de arrastrar y soltar, y reglas de enrutamiento que crean automáticamente tickets, leads del CRM e inscripciones en embudos al enviar."
+  },
+  "body": "Los formularios admiten tres modos de relleno: tradicional con clic y escritura, chat con IA donde los clientes describen sus necesidades de forma natural, o entrada de voz donde hablan las respuestas y la IA las transcribe. Cuando se envía un formulario, el motor de enrutamiento evalúa reglas condicionales — «si el presupuesto supera $50K, cree un ticket de alta prioridad». Los contactos del CRM se actualizan automáticamente por correo, se crean tickets con mapeo inteligente de campos, los leads fluyen a embudos de nurturing y se envían correos de confirmación — todo en una operación atómica.",
+  "mockForm": {
+    "title": "Solicitar un presupuesto",
+    "badge": "3 modos de relleno",
+    "fields": {
+      "fullName": "Nombre completo",
+      "fullNamePlaceholder": "Juan García",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "juan@ejemplo.com",
+      "serviceNeeded": "Servicio necesario",
+      "servicePlaceholder": "Plomería",
+      "budgetRange": "Rango de presupuesto",
+      "budgetPlaceholder": "$5K+",
+      "projectDescription": "Describa su proyecto",
+      "projectPlaceholder": "Renovación de baño, demolición completa y reconstrucción..."
+    },
+    "serviceOptions": ["Plomería", "HVAC", "Electricidad"],
+    "budgetOptions": ["< $1K", "$1–5K", "$5K+"],
+    "submit": "Enviar",
+    "modes": {
+      "form": "Formulario",
+      "chat": "Chat",
+      "voice": "Voz"
+    },
+    "caption": "Los clientes pueden rellenar de forma tradicional, hablar con un chatbot de IA o dictar sus respuestas. El mismo formulario, tres modos de entrada."
+  },
+  "benefits": {
+    "crm": {
+      "title": "CRM automático + tickets",
+      "desc": "Los envíos actualizan automáticamente los contactos del CRM (deduplicados por correo) y crean tickets con mapeo inteligente de campos y reglas de enrutamiento."
+    },
+    "routing": {
+      "title": "Enrutamiento condicional",
+      "desc": "Si presupuesto > $5K → crear ticket prioridad: alta. Si servicio = HVAC → asignar a Sarah. Las reglas se ejecutan automáticamente en cada envío."
+    },
+    "embed": {
+      "title": "Incrustación en sitio web",
+      "desc": "Incruste en su sitio HABOS con fondo transparente y altura automática. La mensajería de cambio de tamaño entre orígenes lo mantiene fluido."
+    }
+  },
+  "scenario": {
+    "label": "Escenario real",
+    "text": "Un propietario visita su sitio web y rellena una solicitud de presupuesto para una renovación de baño de $8K. HABOS crea un ticket de alta prioridad (regla presupuesto > $5K), lo actualiza en el CRM, lo inscribe en el embudo de «lead cálido» y envía un correo de confirmación — todo antes de que usted vea la notificación. Cuando abre el ticket, su perfil completo del CRM, el contexto del proyecto y la respuesta sugerida ya están allí."
+  },
+  "techStrip": [
+    "21 tipos de campos",
+    "3 modos de relleno",
+    "Enrutamiento condicional",
+    "Actualización automática del CRM",
+    "Análisis de vistas y conversiones"
+  ],
+  "closing": {
+    "title": "Otras herramientas de formularios recopilan datos.\nHABOS actúa sobre ellos.",
+    "cta": "Unirse a la lista de espera"
+  }
+}

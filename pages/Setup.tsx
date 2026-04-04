@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -55,30 +56,6 @@ function StepNav({ step, total, onPrev, onNext }: { step: number; total: number;
     </div>
   );
 }
-
-// ═══════════════════════════════════════════════════════════════════════════
-// TEXT STRINGS
-// ═══════════════════════════════════════════════════════════════════════════
-
-const WATCH_INSTALL_STEPS = [
-  { number: 1, text: 'Open the Watch app on your iPhone' },
-  { number: 2, text: 'Scroll down to "Available Apps"' },
-  { number: 3, text: 'Tap Install next to VOIS' },
-];
-
-const WATCH_FACE_STEPS = [
-  'Long-press your watch face',
-  'Tap "Edit"',
-  'Tap a complication slot',
-  'Select VOIS',
-];
-
-const LOCK_SCREEN_STEPS = [
-  'Long-press your lock screen',
-  'Tap Customize',
-  'Tap + Add Widgets',
-  'Select VOIS',
-];
 
 // ═══════════════════════════════════════════════════════════════════════════
 // WATCH FACE WALKTHROUGH — Manual step-by-step
@@ -242,7 +219,7 @@ function WatchFaceWalkthrough({ step }: { step: number }) {
 // WATCH APP INSTALL MOCKUP
 // ═══════════════════════════════════════════════════════════════════════════
 
-function WatchAppMockup() {
+function WatchAppMockup({ availableAppsLabel, installButton }: { availableAppsLabel: string; installButton: string }) {
   return (
     <div className="bg-black rounded-2xl p-4 overflow-hidden">
       <div className="opacity-20 space-y-3.5 mb-3.5">
@@ -256,7 +233,7 @@ function WatchAppMockup() {
 
       <div className="h-px bg-[#38383A] mb-2.5" />
 
-      <p className="text-[13px] font-semibold text-[#FF9F0A] uppercase tracking-wider mb-2.5">Available Apps</p>
+      <p className="text-[13px] font-semibold text-[#FF9F0A] uppercase tracking-wider mb-2.5">{availableAppsLabel}</p>
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -269,7 +246,7 @@ function WatchAppMockup() {
         </div>
         <span className="flex-1 text-[16px] font-semibold text-white">VOIS</span>
         <span className="text-[13px] font-bold text-[#FF9F0A] border border-[#FF9F0A] rounded-full py-1 px-3.5 tracking-wide">
-          INSTALL
+          {installButton}
         </span>
       </motion.div>
     </div>
@@ -387,8 +364,13 @@ function LockScreenWalkthrough({ step }: { step: number }) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const Setup = () => {
+  const { t } = useTranslation('setup');
   const [watchFaceStep, setWatchFaceStep] = useState(0);
   const [lockScreenStep, setLockScreenStep] = useState(0);
+
+  const watchInstallSteps = t('watch.installSteps', { returnObjects: true }) as Array<{ number: number; text: string }>;
+  const watchFaceSteps = t('watch.faceSteps', { returnObjects: true }) as string[];
+  const lockScreenSteps = t('lockScreen.steps', { returnObjects: true }) as string[];
 
   return (
     <div
@@ -405,8 +387,8 @@ const Setup = () => {
             <ArrowLeft size={16} />
           </Link>
           <div className="flex items-center gap-2.5 bg-white/80 backdrop-blur-sm rounded-full pl-1.5 pr-4 py-1.5 border border-slate-100 shadow-sm">
-            <img src="/Logo/vois-logo.svg" alt="Vois" className="h-6 w-6" />
-            <span className="font-semibold text-sm text-slate-900">Setup Guide</span>
+            <img src="/Logo/vois-logo.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
+            <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
           </div>
         </div>
       </div>
@@ -420,10 +402,10 @@ const Setup = () => {
           className="text-center mb-16"
         >
           <h1 className="text-3xl md:text-4xl font-serif text-slate-900 mb-4">
-            Set up VOIS on your devices
+            {t('hero.heading')}
           </h1>
           <p className="text-slate-500 text-lg max-w-xl mx-auto">
-            Add VOIS to your Apple Watch face and iPhone lock screen for instant one-tap recording.
+            {t('hero.description')}
           </p>
         </motion.div>
 
@@ -434,17 +416,17 @@ const Setup = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-serif text-slate-900 mb-8">Apple Watch</h2>
+          <h2 className="text-2xl font-serif text-slate-900 mb-8">{t('watch.sectionHeading')}</h2>
 
           {/* Step 1: Install */}
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-100 p-6 md:p-10 mb-6">
             <h3 className="text-xl font-serif text-slate-900 mb-6">
-              Step 1: Install VOIS on your Watch
+              {t('watch.step1.heading')}
             </h3>
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div className="space-y-0">
-                {WATCH_INSTALL_STEPS.map((s, i) => (
-                  <div key={i} className={`flex items-start gap-4 py-4 ${i < WATCH_INSTALL_STEPS.length - 1 ? 'border-b border-slate-200' : ''}`}>
+                {watchInstallSteps.map((s, i) => (
+                  <div key={i} className={`flex items-start gap-4 py-4 ${i < watchInstallSteps.length - 1 ? 'border-b border-slate-200' : ''}`}>
                     <div className="w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
                       <span className="text-sm font-bold text-white" style={{ transform: 'scaleY(1.8)', display: 'inline-block' }}>{s.number}</span>
                     </div>
@@ -454,7 +436,10 @@ const Setup = () => {
               </div>
               <div className="flex justify-center">
                 <div className="w-full max-w-[280px]">
-                  <WatchAppMockup />
+                  <WatchAppMockup
+                    availableAppsLabel={t('watch.availableAppsLabel')}
+                    installButton={t('watch.installButton')}
+                  />
                 </div>
               </div>
             </div>
@@ -463,15 +448,15 @@ const Setup = () => {
           {/* Step 2: Add to watch face */}
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-100 p-6 md:p-10">
             <h3 className="text-xl font-serif text-slate-900 mb-6">
-              Step 2: Add VOIS to your watch face
+              {t('watch.step2.heading')}
             </h3>
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div className="space-y-0">
-                {WATCH_FACE_STEPS.map((text, i) => (
+                {watchFaceSteps.map((text, i) => (
                   <button
                     key={i}
                     onClick={() => setWatchFaceStep(i)}
-                    className={`flex items-start gap-4 py-4 w-full text-left transition-colors ${i < WATCH_FACE_STEPS.length - 1 ? 'border-b border-slate-200' : ''} ${watchFaceStep === i ? '' : 'opacity-40'}`}
+                    className={`flex items-start gap-4 py-4 w-full text-left transition-colors ${i < watchFaceSteps.length - 1 ? 'border-b border-slate-200' : ''} ${watchFaceStep === i ? '' : 'opacity-40'}`}
                   >
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${watchFaceStep === i ? 'bg-slate-900' : 'bg-slate-300'}`}>
                       <span className="text-sm font-bold text-white" style={{ transform: 'scaleY(1.8)', display: 'inline-block' }}>{i + 1}</span>
@@ -484,9 +469,9 @@ const Setup = () => {
                 <WatchFaceWalkthrough step={watchFaceStep} />
                 <StepNav
                   step={watchFaceStep}
-                  total={WATCH_FACE_STEPS.length}
+                  total={watchFaceSteps.length}
                   onPrev={() => setWatchFaceStep((s) => Math.max(0, s - 1))}
-                  onNext={() => setWatchFaceStep((s) => Math.min(WATCH_FACE_STEPS.length - 1, s + 1))}
+                  onNext={() => setWatchFaceStep((s) => Math.min(watchFaceSteps.length - 1, s + 1))}
                 />
               </div>
             </div>
@@ -499,19 +484,19 @@ const Setup = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
-          <h2 className="text-2xl font-serif text-slate-900 mb-8">iPhone Lock Screen</h2>
+          <h2 className="text-2xl font-serif text-slate-900 mb-8">{t('lockScreen.sectionHeading')}</h2>
 
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-100 p-6 md:p-10">
             <h3 className="text-xl font-serif text-slate-900 mb-6">
-              Add VOIS widget to your lock screen
+              {t('lockScreen.step.heading')}
             </h3>
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div className="space-y-0">
-                {LOCK_SCREEN_STEPS.map((text, i) => (
+                {lockScreenSteps.map((text, i) => (
                   <button
                     key={i}
                     onClick={() => setLockScreenStep(i)}
-                    className={`flex items-start gap-4 py-4 w-full text-left transition-colors ${i < LOCK_SCREEN_STEPS.length - 1 ? 'border-b border-slate-200' : ''} ${lockScreenStep === i ? '' : 'opacity-40'}`}
+                    className={`flex items-start gap-4 py-4 w-full text-left transition-colors ${i < lockScreenSteps.length - 1 ? 'border-b border-slate-200' : ''} ${lockScreenStep === i ? '' : 'opacity-40'}`}
                   >
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${lockScreenStep === i ? 'bg-slate-900' : 'bg-slate-300'}`}>
                       <span className="text-sm font-bold text-white" style={{ transform: 'scaleY(1.8)', display: 'inline-block' }}>{i + 1}</span>
@@ -524,9 +509,9 @@ const Setup = () => {
                 <LockScreenWalkthrough step={lockScreenStep} />
                 <StepNav
                   step={lockScreenStep}
-                  total={LOCK_SCREEN_STEPS.length}
+                  total={lockScreenSteps.length}
                   onPrev={() => setLockScreenStep((s) => Math.max(0, s - 1))}
-                  onNext={() => setLockScreenStep((s) => Math.min(LOCK_SCREEN_STEPS.length - 1, s + 1))}
+                  onNext={() => setLockScreenStep((s) => Math.min(lockScreenSteps.length - 1, s + 1))}
                 />
               </div>
             </div>

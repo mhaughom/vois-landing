@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, AlertCircle, CheckCircle, RefreshCw } from 'lucide-react';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -95,6 +96,7 @@ export const DemoSteps: React.FC<{
   allCardsVerified?: boolean;
   appOpened?: boolean;
 }> = ({ stage, onStopRecording, onReset, chatOpened, chatMessageCount = 0, allCardsVerified = false, appOpened = false }) => {
+  const { t } = useTranslation('try-now-demo');
   const isMobile = useIsMobile();
   const [currentSuggestion, setCurrentSuggestion] = useState(0);
   const [demoPhase, setDemoPhase] = useState<'steps' | 'question' | 'chat'>('steps');
@@ -264,7 +266,7 @@ export const DemoSteps: React.FC<{
                   onClick={onReset}
                   className="px-8 py-3 rounded-full text-base font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-200"
                 >
-                  Try Again
+                  {t('tryAgain')}
                 </motion.button>
               </motion.div>
             )}
@@ -360,13 +362,13 @@ export const DemoSteps: React.FC<{
                 <div className="flex items-center gap-2 sm:gap-3">
                   <span className={`font-serif text-lg sm:text-xl md:text-2xl ${hasSentTwoMessages ? 'text-slate-400' : 'text-slate-900'}`}>
                     <span className="text-slate-400 mr-2">2.</span>
-                    Ask anything about your notes
+                    {t('step2.title')}
                   </span>
                   {hasSentTwoMessages && <CheckCircle size={18} className="text-green-500 flex-shrink-0" />}
                 </div>
                 {!hasSentTwoMessages && (
                   <span className="text-slate-400 text-xs sm:text-sm sm:ml-7">
-                    Try the suggested prompts or type your own
+                    {t('step2.hint')}
                   </span>
                 )}
 
@@ -449,7 +451,7 @@ export const DemoSteps: React.FC<{
           }}
           className="text-slate-400 hover:text-slate-600 text-sm transition-colors cursor-pointer"
         >
-          Cancel
+          {t('cancel')}
         </button>
       )}
     </motion.div>
@@ -457,6 +459,7 @@ export const DemoSteps: React.FC<{
 };
 
 export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStopRecording, onStageChange, hasCompletedDemo }) => {
+  const { t } = useTranslation('try-now-demo');
   const [stage, setStageInternal] = useState<DemoStage>('idle');
   const [elapsedTime, setElapsedTime] = useState(0);
   const [currentTip, setCurrentTip] = useState(0);
@@ -1566,7 +1569,7 @@ export const TryNowDemo: React.FC<TryNowDemoProps> = ({ onStartRecording, onStop
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-slate-100 hover:bg-slate-200 text-slate-700 p-3 rounded-full transition-colors"
-              title="Try Again"
+              title={t('tryAgain')}
             >
               <RefreshCw size={18} />
             </motion.button>

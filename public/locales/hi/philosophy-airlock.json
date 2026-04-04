@@ -1,0 +1,76 @@
+{
+  "category": "दर्शन",
+  "title": "Airlock",
+  "tagline": "AI प्रस्ताव करता है। आप निर्णय करते हैं।",
+  "heroAlt": "Airlock",
+  "section1": {
+    "heading": "वह समस्या जिसके बारे में कोई बात नहीं करता",
+    "body1": "AI के बारे में सबसे खतरनाक बात यह नहीं है कि यह गलती करता है। यह है कि यह आपके जाँचने से पहले कार्य करता है। एक sales bot 40% छूट देता है जो margin policy का उल्लंघन करती है। एक booking system double-schedule करता है क्योंकि इसने drive time को समझे बिना density के लिए optimize किया। ये hypotheticals नहीं हैं।",
+    "body2": "केवल 6% उद्यम कहते हैं कि वे स्वायत्त AI agents पर पूरी तरह भरोसा करते हैं। बाकी 94% सतर्क रहने में सही हैं। हमने विपरीत बनाया: AI द्वारा की जाने वाली हर कार्रवाई उसी से गुज़रती है जिसे हम Airlock कहते हैं — एक अनिवार्य preview जहाँ आप देखते हैं कि घटित होने से पहले क्या होने वाला है।"
+  },
+  "section2": {
+    "heading": "तुलना"
+  },
+  "comparison": [
+    { "action": "ईमेल भेजना", "auto": "तुरंत भेजा गया। CEO को 200 लोगों के पढ़ने के बाद typo मिला।", "airlock": "Draft एक card के रूप में दिखाई देता है। आप typo ठीक करते हैं, send टैप करते हैं।" },
+    { "action": "कैलेंडर परिवर्तन", "auto": "मंगलवार double-book हुआ — आपका personal calendar नहीं जाँचा।", "airlock": "Preview conflict दिखाता है। आप सही slot चुनते हैं।" },
+    { "action": "टास्क निर्माण", "auto": "एक मीटिंग से 14 टास्क। 6 duplicates हैं।", "airlock": "प्रस्तावित सूची। आप दो merge करते हैं, एक हटाते हैं, बाकी approve करते हैं।" },
+    { "action": "ग्राहक संचार", "auto": "एक coupon के साथ reply किया जो आप अब offer नहीं करते।", "airlock": "Reply preview के रूप में दिखाई देता है। आप offer समायोजित करते हैं, फिर send करते हैं।" }
+  ],
+  "tableHeaders": {
+    "action": "कार्रवाई",
+    "auto": "पूरी तरह स्वायत्त",
+    "airlock": "Airlock"
+  },
+  "section3": {
+    "heading": "UI pattern नहीं। सुरक्षा प्रोटोकॉल।",
+    "body": "हर write action एक HMAC-SHA256 signed confirmation token जेनरेट करता है जो user, सटीक action, और सटीक arguments को बाँधता है — एक ईमेल draft में अलग-अलग characters तक। Tokens 10 मिनट में expire होते हैं। यदि preview और confirmation के बीच कुछ बदलता है, तो token invalidate हो जाता है। AI आपको दिखाने के बाद action modify नहीं कर सकता। जो आपने approve किया वही execute होता है।"
+  },
+  "quote": "\"रुकावट एक सीमा नहीं है। यही कारण है कि आप इस पर अपने व्यवसाय के साथ भरोसा करेंगे।\"",
+  "section4": {
+    "heading": "आपका डेटा। आपका infrastructure। आपके नियम।",
+    "body": "भरोसा सिर्फ इस बारे में नहीं है कि AI क्या करता है — यह इस बारे में भी है कि आपका डेटा कहाँ रहता है। HABOS जहाँ आपको ज़रूरत हो चलता है: हमारा cloud, आपके server, या पूरी तरह air-gapped बिना internet dependency के। वही platform, वही features, जहाँ भी आपका डेटा होना चाहिए।"
+  },
+  "deploymentOptions": [
+    {
+      "title": "Cloud",
+      "body": "Compute के लिए Railway, database के लिए Supabase, और LLM के लिए प्रमुख hyperscalers। पहले दिन से production-ready।",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "On-Prem",
+      "body": "अपने स्थान पर पूरा backend deploy करें। स्थानीय AI के लिए standard Mac hardware पर Qwen models चलाएं — कोई GPU cluster आवश्यक नहीं।",
+      "badges": ["Qwen models", "Mac compatible", "Self-hosted DB"]
+    },
+    {
+      "title": "Air-Gapped Datacenter",
+      "body": "अधिकतम isolation के लिए, Kimi K2 जैसे models के साथ एक स्थानीय datacenter deploy करें। बिना internet dependency के पूरी AI क्षमताएं।",
+      "badges": ["Kimi K2", "Air-gapped", "Zero egress"]
+    }
+  ],
+  "section5": {
+    "heading": "हर layer पर सुरक्षा"
+  },
+  "securityItems": [
+    {
+      "title": "Cryptographic approval tokens",
+      "body": "हर AI action signed और tamper-proof है।"
+    },
+    {
+      "title": "हर table पर Row-level security",
+      "body": "उपयोगकर्ता केवल वही डेटा देखते हैं जिसे देखने के वे अधिकृत हैं।"
+    },
+    {
+      "title": "Per-run budget tracking",
+      "body": "AI खर्च प्रति agent, प्रति टास्क tracked और capped है।"
+    },
+    {
+      "title": "पूर्ण audit trail",
+      "body": "हर action, हर निर्णय, स्थायी रूप से लॉग किया गया।"
+    }
+  ],
+  "nav": {
+    "nextLabel": "अगला",
+    "nextTitle": "सब कुछ एक जगह"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "badge": "Disponible dès maintenant avec le plan VOIS for Work",
+  "hero": {
+    "title": "Notes de réunion",
+    "description": "Transcription en direct avec des fiches d'action qui apparaissent au fur et à mesure que les gens parlent. Regardez votre réunion se transformer en notes structurées en temps réel."
+  },
+  "intro": "Transcription en direct avec des fiches d'action qui apparaissent au fur et à mesure que les gens parlent. Quand quelqu'un dit « on doit planifier un suivi » ou « John, tu peux t'en charger ? » — les points d'action s'affichent en ligne dans le document. HABOS identifie quand des tâches vous sont assignées et les met en surbrillance dans votre vue personnelle. Partagez les notes de réunion via un lien sécurisé — les destinataires voient la transcription complète et le briefing sans créer de compte. Ce lien partagé est aussi un moteur de croissance : il capture des leads, démontre le produit et convertit avec des offres ciblées.",
+  "features": [
+    {
+      "title": "Fiches d'action en direct",
+      "description": "Quand quelqu'un dit « on doit planifier un suivi » ou « John, tu peux t'en charger ? », des fiches d'action apparaissent en ligne dans le document. Assignez des tâches, définissez des rappels ou sauvegardez des éléments directement depuis la transcription en direct."
+    },
+    {
+      "title": "Transfert montre vers ordinateur",
+      "description": "Démarrez l'enregistrement sur votre Apple Watch, puis transférez-le sur votre Mac quand vous souhaitez voir le document en direct. La transcription continue sans interruption, reprenant exactement là où vous l'avez laissée."
+    },
+    {
+      "title": "Points d'action personnels",
+      "description": "VOIS identifie quand des tâches vous sont assignées et les met en surbrillance dans votre vue personnelle. Appuyez pour les ajouter directement à votre liste de tâches ou les modifier sur le moment. C'est magique de voir vos tâches se remplir automatiquement pendant la réunion."
+    },
+    {
+      "title": "Conception bouche-à-oreille",
+      "description": "Quand vos collègues voient les points d'action apparaître en temps réel sur votre écran pendant les réunions, ils voudront l'avoir aussi. Cette fonctionnalité est conçue pour se propager organiquement — des professionnels individuels aux petites équipes jusqu'aux grandes entreprises."
+    }
+  ],
+  "howItWorks": {
+    "title": "Comment ça fonctionne",
+    "steps": [
+      {
+        "title": "Démarrez l'enregistrement",
+        "description": "Appuyez sur le bouton d'enregistrement sur votre montre ou ouvrez VOIS sur votre Mac. La transcription commence immédiatement."
+      },
+      {
+        "title": "Regardez la magie opérer",
+        "description": "Au fur et à mesure que les gens parlent, les mots apparaissent à l'écran. Quand des points d'action sont mentionnés, des fiches générées par IA s'affichent en ligne avec des prochaines étapes suggérées."
+      },
+      {
+        "title": "Agissez sur les éléments",
+        "description": "Appuyez sur les fiches pour ajouter des tâches à votre liste, planifier des suivis ou sauvegarder des informations importantes. Vos éléments personnels sont automatiquement mis en surbrillance."
+      },
+      {
+        "title": "Partagez & exportez",
+        "description": "Réunion terminée ? Exportez la transcription complète avec les points d'action, ou partagez des sections spécifiques avec votre équipe."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Prêt à transformer vos réunions ?",
+    "description": "Notes de réunion est inclus dans le plan VOIS for Work.",
+    "button": "Voir les tarifs"
+  }
+}

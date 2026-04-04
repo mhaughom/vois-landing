@@ -1,0 +1,75 @@
+{
+  "badge": "Smart Router",
+  "hero": {
+    "title": "Én optagelse.\nFire systemer opdateret.",
+    "description": "Tal i 30 sekunder om din dag. HABOS registrerer alle hensigter og router hver til det rigtige sted."
+  },
+  "heroPills": ["11 hensigtstyper", "< 3 sek behandling", "Ordniveaukortlægning"],
+  "intro": "Dette er ikke tale-til-tekst efterfulgt af formularudfyldning. Dette er tale til forståelse til multi-system-orkestrering. Den tætteste analogi er en menneskelig lederassistent, der lytter til din rodede opdatering og opretter fire forskellige punkter i fire forskellige systemer — bortset fra at HABOS gør det på under tre sekunder. Systemet forstår endda varighed: en to-minutters optagelse, der nævner 'møde', klassificeres som planlægning. En femten-minutters optagelse, der nævner 'møde', klassificeres som mødenoter.",
+  "demo": {
+    "transcript": "\"Mind mig om at følge op med Sarah om køkkentilbuddet, planlæg et stedbesøg næste tirsdag kl. 14, vi brugte tre kasser fliser fra lageret, og fortæl Mike, at tilladelserne er kommet igennem.\"",
+    "cards": [
+      {
+        "label": "Opgave oprettet",
+        "detail": "Følg op med Sarah — Køkkenrenovering"
+      },
+      {
+        "label": "Begivenhed planlagt",
+        "detail": "Stedbesøg — Tirsdag 14:00"
+      },
+      {
+        "label": "Lager opdateret",
+        "detail": "Fliser — 3 kasser fratrukket"
+      },
+      {
+        "label": "Besked udkastet",
+        "detail": "Til Mike: Tilladelserne er kommet igennem"
+      }
+    ],
+    "footer": "Alt fra én sætning. Nul app-skift."
+  },
+  "benefitCards": [
+    {
+      "title": "15 min → 30 sek",
+      "body": "Morgendatteringen, der plejede at betyde åbning af 4 apps og tastning i hver? Tal bare."
+    },
+    {
+      "title": "Nul mistede punkter",
+      "body": "Konfidensscore fanger lavt-sikre hensigter og router dem til en indbakke til din gennemgang."
+    },
+    {
+      "title": "Virker overalt",
+      "body": "Optag på din telefon, ur eller Mac. Smart Router behandler identisk på alle enheder."
+    }
+  ],
+  "confidence": {
+    "title": "Sådan fungerer konfidens",
+    "rows": [
+      {
+        "range": "≥ 85%",
+        "label": "Auto-oprettet",
+        "detail": "Høj-konfidens elementer går direkte til deres destination."
+      },
+      {
+        "range": "50–84%",
+        "label": "Indbakkegennemgang",
+        "detail": "Mellemkonfidens elementer venter på, at du bekræfter."
+      },
+      {
+        "range": "< 50%",
+        "label": "Hjernedump",
+        "detail": "Lav-konfidens elementer gemmes som noter. Intet mistes."
+      }
+    ]
+  },
+  "techStrip": [
+    "Deepgram Nova-3 transskription",
+    "Varighed-bevidst routing",
+    "Ordniveauindekskortlægning",
+    "11 hensigtstyper"
+  ],
+  "closing": {
+    "tagline": "Andre apps lader dig optage talenoter. HABOS forstår dem.",
+    "cta": "Tilmeld venteliste"
+  }
+}

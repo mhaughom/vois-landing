@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Navbar } from '../../components/Navbar';
 import {
@@ -44,42 +45,43 @@ const CHANNEL = {
 
 type ChannelKey = keyof typeof CHANNEL;
 
-// ── Timeline message data ───────────────────────────────────────────────────
-
-const timelineMessages: {
-  channel: ChannelKey;
-  subject?: string;
-  time: string;
-  preview: string;
-}[] = [
-  {
-    channel: 'email',
-    subject: 'Re: Kitchen renovation timeline',
-    time: 'Mar 18, 2:30 PM',
-    preview: 'Hi Mike, confirming we\'re on track for the March 25 start date. Countertops arrive Thursday.',
-  },
-  {
-    channel: 'slack',
-    subject: '#henderson-project',
-    time: 'Mar 19, 9:15 AM',
-    preview: 'Quick Q — are the tile samples in? Client wants to confirm the herringbone pattern before we order.',
-  },
-  {
-    channel: 'sms',
-    time: 'Mar 20, 11:00 AM',
-    preview: 'Permits approved! 🎉',
-  },
-  {
-    channel: 'email',
-    subject: 'Re: Updated timeline',
-    time: 'Mar 21, 3:45 PM',
-    preview: 'Attached the revised schedule with the permit delay factored in. New completion: April 12.',
-  },
-];
-
 // ── Component ───────────────────────────────────────────────────────────────
 
 const Messenger: React.FC = () => {
+  const { t } = useTranslation('work-messenger');
+
+  interface TimelineMessage {
+    channel: ChannelKey;
+    subject?: string;
+    time: string;
+    preview: string;
+  }
+
+  const timelineMessages = t('timeline.messages', { returnObjects: true }) as TimelineMessage[];
+
+  const benefitCards = [
+    {
+      icon: Sparkles,
+      title: t('benefits.classification.title'),
+      body: t('benefits.classification.body'),
+      delay: 0.3,
+    },
+    {
+      icon: PenTool,
+      title: t('benefits.replies.title'),
+      body: t('benefits.replies.body'),
+      delay: 0.4,
+    },
+    {
+      icon: Users,
+      title: t('benefits.mailboxes.title'),
+      body: t('benefits.mailboxes.body'),
+      delay: 0.5,
+    },
+  ];
+
+  const techStrip = t('techStrip', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -96,20 +98,19 @@ const Messenger: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-violet-500/10 text-violet-700 rounded-full text-sm font-medium mb-6">
-              Unified Messenger
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Every Channel. One Conversation.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-              Email, Slack, Teams, SMS, and internal chat merged into a single person-centric
-              timeline. Stop checking 5 apps to see all messages from one client.
+              {t('hero.description')}
             </p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Instead of checking four apps to see all messages from a client, every message appears in one chronological stream — email, Slack, Teams, SMS, internal chat — anchored to a single person. Every inbound message runs through importance scoring and action item extraction. High-importance messages get extracted facts, tasks, and follow-up suggestions. The AI understands context across transports — a Slack message referencing an email thread is linked to the same conversation.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -123,8 +124,8 @@ const Messenger: React.FC = () => {
             {/* Contact header */}
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-slate-900">Sarah Henderson</h3>
-                <p className="text-sm text-slate-500">3 channels active</p>
+                <h3 className="text-lg font-semibold text-slate-900">{t('timeline.contactName')}</h3>
+                <p className="text-sm text-slate-500">{t('timeline.channelsActive')}</p>
               </div>
               <div className="flex -space-x-1">
                 {(['email', 'slack', 'sms'] as ChannelKey[]).map((ch) => (
@@ -176,32 +177,13 @@ const Messenger: React.FC = () => {
             </motion.div>
 
             <p className="text-center text-sm text-slate-400 mt-6">
-              One person, one timeline, every channel. Reply via the same channel or switch — your choice.
+              {t('timeline.caption')}
             </p>
           </motion.div>
 
           {/* ── 3. Three Benefit Cards ───────────────────────────────── */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {[
-              {
-                icon: Sparkles,
-                title: 'AI Classification',
-                body: 'Messages auto-scored by importance with action item extraction. The urgent surfaces; the noise waits.',
-                delay: 0.3,
-              },
-              {
-                icon: PenTool,
-                title: 'Adaptive Replies',
-                body: 'AI matches your writing style across 3 tone variants. Sound like you on email, Slack, and SMS — without rewriting.',
-                delay: 0.4,
-              },
-              {
-                icon: Users,
-                title: 'Shared Mailboxes',
-                body: 'Team inboxes like support@company.com with assignment, tracking, and SLA timers. Nothing falls through.',
-                delay: 0.5,
-              },
-            ].map((card) => (
+            {benefitCards.map((card) => (
               <motion.div
                 key={card.title}
                 custom={card.delay}
@@ -229,24 +211,23 @@ const Messenger: React.FC = () => {
             {/* Before */}
             <div className="bg-slate-100 rounded-2xl p-6">
               <span className="inline-block px-3 py-1 bg-slate-200 rounded-full text-xs font-semibold text-slate-500 mb-4 uppercase tracking-wider">
-                Before
+                {t('beforeAfter.beforeLabel')}
               </span>
               <p className="text-slate-700 leading-relaxed mb-4">
-                Check Gmail. Check Slack. Check Teams. Check SMS. Piece together what Sarah said
-                across 4 apps.
+                {t('beforeAfter.beforeText')}
               </p>
-              <p className="text-2xl font-semibold text-slate-900">~15 min/day</p>
+              <p className="text-2xl font-semibold text-slate-900">{t('beforeAfter.beforeStat')}</p>
             </div>
 
             {/* After */}
             <div className="bg-violet-50 border border-violet-200 rounded-2xl p-6">
               <span className="inline-block px-3 py-1 bg-violet-200 rounded-full text-xs font-semibold text-violet-700 mb-4 uppercase tracking-wider">
-                After
+                {t('beforeAfter.afterLabel')}
               </span>
               <p className="text-slate-700 leading-relaxed mb-4">
-                Open Sarah's conversation. Everything's there.
+                {t('beforeAfter.afterText')}
               </p>
-              <p className="text-2xl font-semibold text-violet-700">~30 seconds</p>
+              <p className="text-2xl font-semibold text-violet-700">{t('beforeAfter.afterStat')}</p>
             </div>
           </motion.div>
 
@@ -258,13 +239,7 @@ const Messenger: React.FC = () => {
             className="bg-violet-50 border border-violet-200 rounded-2xl px-8 py-4 mb-16"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {[
-                'Person-centric threading',
-                'Multi-transport composition',
-                'AI importance scoring',
-                'Action item extraction',
-                'Realtime sync',
-              ].map((item, i, arr) => (
+              {techStrip.map((item, i, arr) => (
                 <React.Fragment key={item}>
                   <span className="text-sm font-medium text-violet-700">{item}</span>
                   {i < arr.length - 1 && <span className="text-violet-300">&middot;</span>}
@@ -281,7 +256,7 @@ const Messenger: React.FC = () => {
             className="text-center"
           >
             <p className="text-xl md:text-2xl font-serif text-slate-900 mb-8 max-w-2xl mx-auto">
-              Other inboxes show you messages. HABOS shows you conversations.
+              {t('closing.tagline')}
             </p>
             <a href="/#waitlist">
               <motion.button
@@ -289,7 +264,7 @@ const Messenger: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-medium text-base shadow-lg hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('closing.cta')}
               </motion.button>
             </a>
           </motion.div>

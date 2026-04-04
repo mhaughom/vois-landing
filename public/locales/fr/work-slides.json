@@ -1,0 +1,62 @@
+{
+  "badge": "Présentations IA",
+  "hero": {
+    "title_part1": "Décrivez votre présentation.",
+    "title_part2": "Elle se construit d'elle-même.",
+    "description": "Dites à HABOS ce que vous devez présenter. L'IA génère un deck complet avec votre marque, vos données et vos produits — avec des graphiques en direct qui se mettent à jour automatiquement."
+  },
+  "intro": "Le générateur de présentations crée des decks depuis le contexte de votre espace de travail avec une liaison de données en direct. Il génère d'abord un plan en analysant votre prompt, en effectuant des recherches dans le Brain et en puisant dans le contexte du projet, le catalogue produits et le guide de marque. Puis il construit chaque diapositive en parallèle — jusqu'à cinq simultanément — avec des blocs spécifiques à la mise en page : métriques, graphiques, tableaux et images. Les chiffres de revenus proviennent de Finance. Les grilles de produits proviennent de votre catalogue. Quand les données sous-jacentes changent, la présentation le reflète.",
+  "slidePreview": {
+    "title": "Résumé revenus T1",
+    "metrics": [
+      { "change": "+18 %", "value": "127 000 $", "label": "Revenus" },
+      { "change": "+12 %", "value": "89", "label": "Commandes" },
+      { "change": "-4 %", "value": "1 428 $", "label": "Commande moy." }
+    ],
+    "slideNumber": "Diapositive 3 sur 12"
+  },
+  "caption": {
+    "prefix": "Généré depuis :",
+    "prompt": "« Créez une mise à jour T1 pour les investisseurs avec les tendances de revenus et les meilleurs produits. »",
+    "suffix": "Les chiffres de revenus sont en direct — ils se mettent à jour quand vos données changent."
+  },
+  "benefitCards": [
+    {
+      "title": "Prompt → deck en 60 secondes",
+      "desc": "Décrivez ce dont vous avez besoin. L'IA génère un plan, puis construit chaque diapositive en parallèle. 12 mises en page de cartes, couleurs adaptées à la marque, vraies photos depuis Unsplash."
+    },
+    {
+      "title": "Liaison de données en direct",
+      "desc": "Les métriques de revenus proviennent de Finance. Les grilles de produits proviennent de votre catalogue. Quand les données sous-jacentes changent, la présentation se met à jour. Pas de recréation manuelle de graphiques."
+    },
+    {
+      "title": "Votre marque, automatiquement",
+      "desc": "Les couleurs du thème, les polices et le logo sont extraits des paramètres de marque de votre espace de travail. Chaque deck ressemble au vôtre, pas à un modèle."
+    }
+  ],
+  "layouts": {
+    "heading": "12 mises en page de cartes, intelligemment mélangées",
+    "items": [
+      "Titre", "Texte + Image", "Grille de métriques", "Focus graphique", "Comparaison",
+      "Chronologie", "Citation", "3 colonnes", "Mise en valeur des puces", "Grille de produits",
+      "Équipe", "Appel à l'action"
+    ]
+  },
+  "scenario": {
+    "part1": "Votre réunion avec les investisseurs est dans 2 heures. Au lieu de passer 90 minutes à construire des diapositives, vous tapez :",
+    "prompt": "« Mise à jour T1 pour les investisseurs — tendances de revenus, meilleurs produits, croissance clientèle et feuille de route du prochain trimestre. »",
+    "part2": "HABOS extrait des chiffres en direct de Finance, des produits de votre catalogue et des données de croissance depuis le CRM. Vous avez un deck soigné et à votre image en 60 secondes.",
+    "closing": "Le graphique des revenus sera encore exact quand vous présenterez."
+  },
+  "techItems": [
+    "Plan GPT-4o + construction parallèle",
+    "Génération d'images Unsplash + Gemini",
+    "12 mises en page imposées",
+    "Liaison de données en direct",
+    "Thème adapté à la marque"
+  ],
+  "cta": {
+    "tagline": "Les autres outils de diapositives vous donnent des modèles. HABOS vous donne un deck fini.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

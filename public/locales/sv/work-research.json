@@ -1,0 +1,52 @@
+{
+  "badge": "AI-research",
+  "hero": {
+    "title": "Ställ en fråga.\nFå en citerad rapport.",
+    "description": "HABOS delegerar djup research till Perplexity AI, förfinar frågan med klargörande prompts och levererar en strukturerad chefsammanfattning \u2014 sedan bäddar den in allt i din Brain för framtida hämtning."
+  },
+  "intro": "Tala en fråga i telefonen \u2014 HABOS klassificerar den automatiskt som en forskningsavsikt och startar en djup utredning. Innan dyr research körs ställer AI två riktade klargörande frågor för att avgränsa omfånget. Sedan kör Perplexitys sonar-pro-modell asynkront och levererar en strukturerad chefsammanfattning med viktiga resultat, citat och uppföljningsfrågor. Den slutförda researchen delas upp och bäddas in i din Brain, så att den dyker upp i framtida sökningar och AI-konversationer för alltid.",
+  "flow": {
+    "label": "Hur det fungerar",
+    "userQuestion": "Hur ser konkurrentlandskapet ut för AI-schemaläggningsverktyg inom fältservice?",
+    "clarifyIntro": "Innan jag researchar, två snabba frågor:",
+    "clarifyQ1": "Fokuserar du på den svenska marknaden eller globalt?",
+    "clarifyQ2": "Företagsstorlek: SMB eller storföretag?",
+    "answerPills": ["Svensk marknad", "SMB"],
+    "result": {
+      "label": "Chefsammanfattning",
+      "title": "Konkurrentlandskap: AI-schemaläggning inom fältservice",
+      "findings": [
+        "ServiceTitan dominerar storföretag med 42% marknadsandel, men deras SMB-erbjudande är begränsat och överprisat på $89/användare/mån.",
+        "Jobber och Housecall Pro konkurrerar om enkelhet för SMB, men ingen erbjuder AI-inbyggd schemaläggning \u2014 båda klistrar på grundläggande automation.",
+        "AI-first-aktörer (FieldPulse, Zuper) vinner mark, växer 3x per år i intervallet $10–30/användare, vilket signalerar stark SMB-efterfrågan på intelligent schemaläggning."
+      ],
+      "citations": "12 citat",
+      "embeddedLabel": "Inbäddad i Brain"
+    }
+  },
+  "benefitCards": [
+    {
+      "title": "Röst till research",
+      "body": "Säg \"researcha konkurrentprissättning i vår bransch\" under en röstanteckning. HABOS identifierar forskningsavsikten och startar analysen automatiskt."
+    },
+    {
+      "title": "Alltid i din Brain",
+      "body": "Slutförd research delas upp, bäddas in (512-dim vektorer) och är sökbar för alltid. Fråga om det månader senare \u2014 Brain minns."
+    },
+    {
+      "title": "Projektlänkad kontext",
+      "body": "Koppla research till projekt. Framtida research om samma ämne hämtar tidigare resultat för rikare, icke-repetitiv analys."
+    }
+  ],
+  "techStrip": [
+    "Perplexity sonar-pro",
+    "AI-klargörande frågor",
+    "RAG-inbäddade resultat",
+    "Korsprojektkontext",
+    "Beständiga chatuppföljningar"
+  ],
+  "closing": {
+    "title": "Andra verktyg ger dig en sökruta.\nHABOS ger dig ett researchteam.",
+    "cta": "Gå med i väntelistan"
+  }
+}

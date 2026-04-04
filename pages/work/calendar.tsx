@@ -1,69 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Brain, Layers, GitBranch } from 'lucide-react';
 import CalendarDemo from './features/CalendarDemo';
 import { Navbar } from '../../components/Navbar';
-
-const scheduleBlocks = [
-  {
-    time: '9:00 – 10:30',
-    borderColor: 'border-blue-400',
-    type: 'Deep Work',
-    tasks: 'Henderson proposal (critical path) + Review contract draft',
-  },
-  {
-    time: '10:30 – 11:00',
-    borderColor: 'border-amber-400',
-    type: 'Admin',
-    tasks: 'Reply to 3 flagged emails + Approve invoice',
-  },
-  {
-    time: '11:00 – 12:00',
-    borderColor: 'border-red-400',
-    type: 'Meeting',
-    tasks: 'Team sync (brief auto-generated)',
-  },
-  {
-    time: '1:00 – 2:30',
-    borderColor: 'border-green-400',
-    type: 'Project',
-    tasks: 'Kitchen renovation — tile selection + vendor calls',
-  },
-  {
-    time: '2:30 – 3:00',
-    borderColor: 'border-purple-400',
-    type: 'Operations',
-    tasks: 'Review daily reports + flag anomalies',
-  },
-];
-
-const benefits = [
-  {
-    icon: Brain,
-    title: '7-factor priority',
-    description:
-      'Manual rank, priority label, AI importance, AI urgency, due date, calendar fit, creation date. Tasks aren\'t just sorted — they\'re understood.',
-  },
-  {
-    icon: Layers,
-    title: 'Focus blocks',
-    description:
-      'Deep work, admin, project, personal — each block has an affinity filter. Critical path tasks always slot first.',
-  },
-  {
-    icon: GitBranch,
-    title: 'Dependency-aware',
-    description:
-      'Topological sort ensures predecessors are scheduled before dependents. The calendar respects your project\'s logic.',
-  },
-];
-
-const techItems = [
-  'Greedy auto-fill algorithm',
-  'Topological dependency sort',
-  'BroadcastChannel sync',
-  'Google + Outlook + iOS calendars',
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -71,6 +11,54 @@ const fadeUp = {
 };
 
 const CalendarPage: React.FC = () => {
+  const { t } = useTranslation('work-calendar');
+
+  interface ScheduleBlock {
+    time: string;
+    type: string;
+    tasks: string;
+    borderColor?: string;
+  }
+
+  const scheduleBlocksRaw = t('schedule.blocks', { returnObjects: true }) as Array<{
+    time: string;
+    type: string;
+    tasks: string;
+  }>;
+
+  const borderColors = [
+    'border-blue-400',
+    'border-amber-400',
+    'border-red-400',
+    'border-green-400',
+    'border-purple-400',
+  ];
+
+  const scheduleBlocks: ScheduleBlock[] = scheduleBlocksRaw.map((b, i) => ({
+    ...b,
+    borderColor: borderColors[i] ?? 'border-slate-400',
+  }));
+
+  const benefits = [
+    {
+      icon: Brain,
+      title: t('benefits.priority.title'),
+      description: t('benefits.priority.description'),
+    },
+    {
+      icon: Layers,
+      title: t('benefits.focusBlocks.title'),
+      description: t('benefits.focusBlocks.description'),
+    },
+    {
+      icon: GitBranch,
+      title: t('benefits.dependency.title'),
+      description: t('benefits.dependency.description'),
+    },
+  ];
+
+  const techItems = t('techStrip', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -84,16 +72,18 @@ const CalendarPage: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-amber-500/10 text-amber-700 rounded-full text-sm font-medium mb-6">
-              AI Scheduling
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Say &lsquo;Plan My Day.&rsquo;
-              <br />
-              Watch It Fill.
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              HABOS analyzes your tasks, priorities, and deadlines &mdash; then proposes a full
-              schedule. You approve before anything moves.
+              {t('hero.description')}
             </p>
           </motion.div>
 
@@ -104,7 +94,7 @@ const CalendarPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto text-center mb-16">
-              The calendar doesn&rsquo;t just display your schedule &mdash; it&rsquo;s an intelligent scheduling engine that auto-places tasks into focus blocks. Each block has an affinity filter: a project focus block only fills with tasks from that project. The auto-fill engine uses a greedy algorithm that respects dependency order through topological sort, so predecessor tasks are always scheduled before their dependents. Critical path items from your projects slot in first, automatically.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -127,7 +117,7 @@ const CalendarPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-amber-50/50 rounded-3xl p-6 md:p-8 mb-16"
           >
-            <h2 className="font-semibold text-slate-900 text-lg mb-6">Wednesday, March 26</h2>
+            <h2 className="font-semibold text-slate-900 text-lg mb-6">{t('schedule.dateLabel')}</h2>
 
             <div className="space-y-2">
               {scheduleBlocks.map((block, i) => (
@@ -148,7 +138,7 @@ const CalendarPage: React.FC = () => {
             </div>
 
             <p className="text-center text-sm text-slate-400 mt-6">
-              Generated in 2 seconds. Every task placed by AI priority score.
+              {t('schedule.caption')}
             </p>
           </motion.div>
 
@@ -179,21 +169,19 @@ const CalendarPage: React.FC = () => {
             className="grid md:grid-cols-2 gap-4 mb-20"
           >
             <div className="bg-slate-100 rounded-2xl p-6 md:p-8">
-              <h3 className="font-semibold text-slate-900 mb-3">Without HABOS</h3>
+              <h3 className="font-semibold text-slate-900 mb-3">{t('beforeAfter.withoutTitle')}</h3>
               <p className="text-sm text-slate-500 leading-relaxed mb-4">
-                Sunday night: stare at empty calendar. Try to remember what&rsquo;s urgent. Manually
-                block time for each task. Get interrupted. Reschedule everything.
+                {t('beforeAfter.withoutText')}
               </p>
-              <p className="text-sm font-medium text-slate-400">~45 min of planning</p>
+              <p className="text-sm font-medium text-slate-400">{t('beforeAfter.withoutStat')}</p>
             </div>
 
             <div className="bg-amber-50 rounded-2xl p-6 md:p-8">
-              <h3 className="font-semibold text-slate-900 mb-3">With HABOS</h3>
+              <h3 className="font-semibold text-slate-900 mb-3">{t('beforeAfter.withTitle')}</h3>
               <p className="text-sm text-slate-500 leading-relaxed mb-4">
-                &ldquo;Plan my day.&rdquo; Review the proposed schedule. Drag one block to adjust.
-                Approve.
+                {t('beforeAfter.withText')}
               </p>
-              <p className="text-sm font-medium text-amber-600">~30 seconds</p>
+              <p className="text-sm font-medium text-amber-600">{t('beforeAfter.withStat')}</p>
             </div>
           </motion.div>
 
@@ -218,7 +206,7 @@ const CalendarPage: React.FC = () => {
             className="text-center"
           >
             <p className="text-lg text-slate-400 italic mb-8">
-              Motion auto-schedules without asking. HABOS proposes &mdash; you decide.
+              {t('closing.tagline')}
             </p>
             <a href="/#waitlist">
               <motion.button
@@ -226,7 +214,7 @@ const CalendarPage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow"
               >
-                Join Waitlist
+                {t('closing.cta')}
               </motion.button>
             </a>
           </motion.div>

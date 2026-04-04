@@ -1,0 +1,58 @@
+{
+  "category": "Philosophy",
+  "title": "The Airlock",
+  "tagline": "Every competitor goes fully autonomous or fully manual. HABOS is the only platform that makes the pause a feature. AI proposes. You approve. Every action passes through the Airlock — enforced by code, not by the AI's good judgment.",
+  "heroPlaceholder": "Hero illustration",
+  "section1": {
+    "heading": "The iron rule",
+    "body1": "The AI cannot write to the database without the user seeing a preview and explicitly approving. This is not a suggestion. Not a best practice. Not an AI instruction that can be jailbroken. It's a hard gate in the tool router that cannot be bypassed — not by the AI, not by a plugin, not by anyone without changing the source code.",
+    "body2": "When you say \"send an email to Lars,\" the AI drafts it, shows it to you, and waits. When you say \"create a task,\" the AI shows you the task card and waits. When an agent completes a ten-step research mission and wants to save the results — it shows you the artifact and waits. Always."
+  },
+  "section2": {
+    "heading": "Three tiers of trust"
+  },
+  "tiers": [
+    {
+      "tier": "Read",
+      "desc": "Searching, listing, looking up information. The AI can freely gather context to give you better answers.",
+      "rule": "Execute immediately. No approval needed."
+    },
+    {
+      "tier": "Write",
+      "desc": "Creating tasks, scheduling events, updating records. Anything that changes state in your business.",
+      "rule": "Preview first. You see exactly what would happen. Approve or dismiss."
+    },
+    {
+      "tier": "High-risk",
+      "desc": "Sending emails, posting to Slack, financial changes. Actions visible to people outside the system.",
+      "rule": "Preview + additional approval. Durable audit record. Survives server crashes."
+    }
+  ],
+  "approvalFlowPlaceholder": "Approval flow diagram",
+  "section3": {
+    "heading": "Cryptographic confirmation",
+    "body": "Every write action generates a confirmation token — cryptographic, with a 10-minute expiry, bound to the specific user and the exact arguments. If anything changes between preview and confirmation, a new token is required. The AI can't modify the action after showing you the preview. What you saw is what gets executed."
+  },
+  "section4": {
+    "heading": "Workspace-level policy",
+    "intro": "Admins have additional controls that override everything else:",
+    "policies": [
+      "Block specific tools entirely — no AI email sending for this workspace",
+      "Require additional approval for specific action types",
+      "Restrict which AI models are used",
+      "Cap per-run budgets — an agent can't spend more than you've authorized"
+    ],
+    "outro": "All enforced by code. Not by prompting the AI to behave. Not by hoping it follows instructions. By gates in the execution layer that the AI has no ability to circumvent."
+  },
+  "approvalFlowScreenshotPlaceholder": "Approval flow screenshot",
+  "section5": {
+    "heading": "Why this matters",
+    "body1": "The AI industry is racing toward autonomy. Fully autonomous agents that act on your behalf without asking. We believe this is backwards for business software.",
+    "body2": "A business owner needs to trust their tools the way they trust their team: with clear delegation, visible actions, and the ability to say no. HABOS gives you superpowers — and keeps your hands on the steering wheel."
+  },
+  "quote": "\"The best AI doesn't make decisions for you. It makes you faster at making decisions yourself.\"",
+  "nav": {
+    "nextLabel": "Next",
+    "nextTitle": "The End of Data Entry"
+  }
+}

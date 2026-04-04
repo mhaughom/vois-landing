@@ -1,0 +1,64 @@
+{
+  "badge": "Social Media",
+  "hero": {
+    "title_part1": "Posta in modo più intelligente.",
+    "title_part2": "Non più spesso.",
+    "description": "Gestisci i tuoi post Instagram con didascalie generate dall'AI, pianificazione visiva e metriche di performance — tutto dalla stessa piattaforma dove vivono i dati della tua azienda."
+  },
+  "feedManager": {
+    "label": "Gestore Feed Social",
+    "aiCaptionBadge": "Didascalia AI",
+    "postCards": [
+      {
+        "day": "Lun",
+        "time": "9:00",
+        "caption": "Nuovo progetto completato — scorri per vedere il prima e il dopo...",
+        "aiGenerated": true
+      },
+      {
+        "day": "Mer",
+        "time": "14:00",
+        "caption": "Dietro le quinte nel nostro laboratorio questa settimana...",
+        "aiGenerated": false
+      },
+      {
+        "day": "Ven",
+        "time": "11:00",
+        "caption": "Buon venerdì! Ecco uno sguardo a ciò che verrà...",
+        "aiGenerated": false
+      }
+    ],
+    "metrics": [
+      { "label": "Portata", "value": "2,4K" },
+      { "label": "Coinvolgimento", "value": "340" },
+      { "label": "Follower", "value": "+28" }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Didascalie AI",
+      "desc": "Descrivi il post in linguaggio semplice. VOIS scrive una didascalia che corrisponde alla voce del tuo brand, aggiunge hashtag e suggerisce il miglior orario di pubblicazione."
+    },
+    {
+      "title": "Pianificatore visivo",
+      "desc": "Vedi il tuo calendario contenuti a colpo d'occhio. Trascina i post per ripianificare. Visualizza l'anteprima di come apparirà la tua griglia prima di pubblicare."
+    },
+    {
+      "title": "Metriche di performance",
+      "desc": "Traccia portata, coinvolgimento e crescita dei follower. Vedi quali tipi di contenuto performano meglio senza lasciare VOIS."
+    }
+  ],
+  "scenario": "Scatti una foto di una ristrutturazione cucina completata. Di' \"posta questa con una didascalia sulla trasformazione\". VOIS genera tre opzioni di didascalia, suggerisce di postare giovedì alle 11 basandosi sulla tua cronologia di coinvolgimento e la pianifica. Approvi dall'auto.",
+  "techItems": [
+    "Integrazione Instagram",
+    "Generazione didascalie AI",
+    "Pianificazione post",
+    "Metriche coinvolgimento",
+    "Corrispondenza voce brand",
+    "Calendario contenuti"
+  ],
+  "cta": {
+    "title": "La tua presenza social,\nalimentata dai dati della tua azienda.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

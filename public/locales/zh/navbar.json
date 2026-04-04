@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "产品",
+    "solutions": "解决方案",
+    "philosophy": "产品理念",
+    "communication": {
+      "label": "通讯",
+      "desc": "邮件、即时消息、电话、支持工单"
+    },
+    "scheduling": {
+      "label": "日程与预约",
+      "desc": "日历、预约、排期链接"
+    },
+    "jobsOperations": {
+      "label": "工单与运营",
+      "desc": "派单、路线、项目、任务、工时追踪"
+    },
+    "salesPayments": {
+      "label": "销售与收款",
+      "desc": "CRM、产品、开票、收款"
+    },
+    "voiceAi": {
+      "label": "语音与人工智能",
+      "desc": "语音笔记、会议记录、助理、操作手册"
+    },
+    "websiteMarketing": {
+      "label": "网站与营销",
+      "desc": "网站构建器、社交媒体、邮件推广"
+    },
+    "serviceBusinesses": {
+      "label": "服务型企业",
+      "desc": "水管工到顾问到治疗师"
+    },
+    "productBusinesses": {
+      "label": "产品型企业",
+      "desc": "实体店到电商到制造商"
+    },
+    "creativeBusinesses": {
+      "label": "创意型企业",
+      "desc": "广告代理到摄影师到工作室"
+    },
+    "fieldOperations": {
+      "label": "外勤运营",
+      "desc": "建筑到配送到物业管理"
+    },
+    "teamsStartups": {
+      "label": "团队与初创",
+      "desc": "2到50人的成长型企业"
+    },
+    "soloFounders": {
+      "label": "独立创业者",
+      "desc": "自由职业者到个人公司"
+    },
+    "intelligenceYouControl": "您掌控的智能",
+    "securityFirst": {
+      "label": "安全优先",
+      "desc": "有边界的人工智能，您来划定。"
+    },
+    "oneAssistant": {
+      "label": "统一助理",
+      "desc": "随时随地，问任何问题"
+    },
+    "captureYourBrain": {
+      "label": "记录思维",
+      "desc": "在想法消逝前捕捉它"
+    },
+    "fastByDesign": "速度即设计",
+    "suggestionsNotMenus": {
+      "label": "建议而非菜单",
+      "desc": "阅读，点击，完成。"
+    },
+    "twoInterfaces": {
+      "label": "双界面",
+      "desc": "屏幕给人，接口给智能体"
+    },
+    "speedOfThought": {
+      "label": "思维速度",
+      "desc": "语音输入，点击输出"
+    },
+    "alwaysWithinReach": {
+      "label": "触手可及",
+      "desc": "手表、手机、锁屏"
+    },
+    "builtForYourBusiness": "为您的业务而生",
+    "everythingInOnePlace": {
+      "label": "一站式管理",
+      "desc": "一次登录，所有工具"
+    },
+    "builtForTeams": {
+      "label": "为团队而建",
+      "desc": "共同的数据，不同的视角"
+    },
+    "yourSoftwareYourWay": {
+      "label": "您的软件，您做主",
+      "desc": "灵活即设计"
+    },
+    "ctaLabel": "加入候补名单",
+    "betaLogin": "内测登录"
+  },
+  "vois": {
+    "features": "功能",
+    "resources": "资源",
+    "voiceCapture": {
+      "label": "语音捕捉",
+      "desc": "开口说，我们处理其余"
+    },
+    "aiAssistant": {
+      "label": "人工智能助理",
+      "desc": "您的专属人工智能伙伴"
+    },
+    "calendar": {
+      "label": "日历",
+      "desc": "自动填充专注时间块"
+    },
+    "tasks": {
+      "label": "任务",
+      "desc": "人工智能优先级排序"
+    },
+    "watch": {
+      "label": "手表",
+      "desc": "腕上的完整人工智能"
+    },
+    "customApps": {
+      "label": "自定义应用",
+      "desc": "打造您自己的专属空间"
+    },
+    "habosForWork": {
+      "label": "HABOS 企业版",
+      "desc": "完整的业务平台"
+    },
+    "support": {
+      "label": "支持",
+      "desc": "获取我们团队的帮助"
+    },
+    "privacyPolicy": {
+      "label": "隐私政策",
+      "desc": "我们如何保护您的数据"
+    },
+    "termsOfService": {
+      "label": "服务条款",
+      "desc": "我们的服务协议"
+    },
+    "ctaLabel": "加入候补名单",
+    "workLabel": "HABOS 企业版",
+    "tryNow": "立即试用",
+    "betaLogin": "内测登录"
+  },
+  "clusters": {
+    "communication": {
+      "email": "邮件",
+      "messenger": "即时消息",
+      "phone": "电话",
+      "supportTickets": "支持工单"
+    },
+    "schedulingBookings": {
+      "calendar": "日历",
+      "bookings": "预约",
+      "schedulingLinks": "排期链接"
+    },
+    "jobsOperations": {
+      "dispatch": "派单",
+      "routes": "路线",
+      "projects": "项目",
+      "tasks": "任务",
+      "timeTracking": "工时追踪"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "产品",
+      "invoicing": "开票",
+      "payments": "收款"
+    },
+    "voiceAi": {
+      "voiceNotes": "语音笔记",
+      "meetingNotes": "会议记录",
+      "assistant": "助理",
+      "playbooks": "操作手册"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "网站构建器",
+      "creativeStudio": "创意工作室",
+      "marketing": "营销"
+    }
+  },
+  "mobile": {
+    "overview": "概览"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "加入候补名单",
+      "workLabel": "HABOS 企业版",
+      "tagline": "由 HABOS 提供"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "加入候补名单",
+      "tagline": "人工智能赋能，人类掌控"
+    }
+  },
+  "clusterPages": {
+    "email": "邮件",
+    "messenger": "即时消息",
+    "telephony": "电话",
+    "tickets": "支持工单",
+    "calendar": "日历",
+    "bookings": "预约",
+    "scheduling-links": "排期链接",
+    "dispatch": "派单",
+    "routes": "路线",
+    "projects": "项目",
+    "tasks": "任务",
+    "time-tracking": "工时追踪",
+    "crm": "CRM",
+    "products": "产品",
+    "finance": "开票",
+    "payments": "收款",
+    "voice-notes": "语音笔记",
+    "meeting-notes": "会议记录",
+    "assistant": "助理",
+    "playbooks": "操作手册",
+    "website-builder": "网站构建器",
+    "creative-studio": "创意工作室",
+    "marketing": "营销"
+  },
+  "clusterGroupNames": {
+    "communication": "通讯",
+    "schedulingBookings": "日程与预约",
+    "jobsOperations": "工单与运营",
+    "salesPayments": "销售与收款",
+    "voiceAi": "语音与人工智能",
+    "websiteMarketing": "网站与营销"
+  }
+}

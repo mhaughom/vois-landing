@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
@@ -51,43 +52,28 @@ const SOURCE = {
 
 type SourceKey = keyof typeof SOURCE;
 
-// ── Timeline interaction data ───────────────────────────────────────────────
+const timelineSources: SourceKey[] = ['email', 'phone', 'chat', 'meeting', 'voice'];
 
-const timelineInteractions: {
-  source: SourceKey;
-  title: string;
-  detail: string;
-}[] = [
-  {
-    source: 'email',
-    title: 'Re: Kitchen timeline',
-    detail: 'Mar 21 — Confirmed revised schedule',
-  },
-  {
-    source: 'phone',
-    title: 'Voice call',
-    detail: 'Mar 20 — Discussed permit approval, positive sentiment',
-  },
-  {
-    source: 'chat',
-    title: 'Slack #henderson',
-    detail: 'Mar 19 — Asked about tile samples',
-  },
-  {
-    source: 'meeting',
-    title: 'Team sync',
-    detail: 'Mar 18 — 2 action items assigned to Sarah',
-  },
-  {
-    source: 'voice',
-    title: 'Voice note mention',
-    detail: "Mar 15 — 'Sarah needs the budget update by Friday'",
-  },
-];
+const benefitCardIcons = [Mic, Link2, RefreshCcw] as const;
+const benefitCardDelays = [0.3, 0.4, 0.5];
 
 // ── Component ───────────────────────────────────────────────────────────────
 
 const People: React.FC = () => {
+  const { t } = useTranslation('work-people');
+
+  const timelineItems = (t('timeline', { returnObjects: true }) as Array<{
+    title: string;
+    detail: string;
+  }>).map((item, i) => ({ ...item, source: timelineSources[i] }));
+
+  const benefitCards = (t('benefitCards', { returnObjects: true }) as Array<{
+    title: string;
+    body: string;
+  }>).map((card, i) => ({ ...card, icon: benefitCardIcons[i], delay: benefitCardDelays[i] }));
+
+  const techItems = t('techItems', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -104,20 +90,19 @@ const People: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-sky-500/10 text-sky-700 rounded-full text-sm font-medium mb-6">
-              People Directory
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Every Person. Every Interaction. One View.
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-              Voice recordings, emails, chats, meetings, CRM timeline — HABOS consolidates every
-              touchpoint with a person into a single relationship profile.
+              {t('hero.description')}
             </p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">
             <p className="text-lg text-slate-600 leading-relaxed">
-              The People directory builds itself from how you talk about people. Mention someone&apos;s name in a voice note and HABOS auto-creates or links them with context and sentiment analysis. The person hub aggregates every interaction: voice recordings where they&apos;re mentioned, email threads, chat conversations, meetings where they spoke, CRM timeline entries, and person-scoped AI sessions — all returned by a single database call. Common topics are AI-inferred, and sentiment trends are tracked across all channels.
+              {t('intro')}
             </p>
           </motion.div>
 
@@ -135,13 +120,13 @@ const People: React.FC = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 flex-wrap">
-                  <h3 className="text-lg font-semibold text-slate-900">Sarah Henderson</h3>
+                  <h3 className="text-lg font-semibold text-slate-900">{t('profile.name')}</h3>
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
                     <TrendingUp size={11} />
-                    Positive
+                    {t('profile.sentiment')}
                   </span>
                 </div>
-                <p className="text-sm text-slate-500">Decision Maker at Henderson Plumbing</p>
+                <p className="text-sm text-slate-500">{t('profile.role')}</p>
               </div>
             </div>
 
@@ -149,17 +134,17 @@ const People: React.FC = () => {
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-6 text-sm text-slate-600">
               <span className="flex items-center gap-1.5">
                 <Users size={14} className="text-sky-500" />
-                <span className="font-medium">47 interactions</span>
+                <span className="font-medium">{t('profile.interactions')}</span>
               </span>
               <span className="text-slate-300">&middot;</span>
               <span className="flex items-center gap-1.5">
                 <Clock size={14} className="text-sky-500" />
-                Last contact: 2 days ago
+                {t('profile.lastContact')}
               </span>
               <span className="text-slate-300">&middot;</span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 size={14} className="text-sky-500" />
-                3 open action items
+                {t('profile.actionItems')}
               </span>
             </div>
 
@@ -171,7 +156,7 @@ const People: React.FC = () => {
               viewport={{ once: true }}
               className="space-y-2"
             >
-              {timelineInteractions.map((item, i) => {
+              {timelineItems.map((item, i) => {
                 const src = SOURCE[item.source];
                 const Icon = src.icon;
                 return (
@@ -195,33 +180,13 @@ const People: React.FC = () => {
             </motion.div>
 
             <p className="text-center text-sm text-slate-400 mt-6">
-              The People directory builds itself from how you talk about people. Mention someone in
-              a voice note — they're auto-created with context.
+              {t('profile.annotation')}
             </p>
           </motion.div>
 
           {/* ── 3. Three Benefit Cards ───────────────────────────────── */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {[
-              {
-                icon: Mic,
-                title: 'Auto-created from voice',
-                body: "Mention someone's name during a recording or call, HABOS creates or links them in your directory with context and sentiment.",
-                delay: 0.3,
-              },
-              {
-                icon: Link2,
-                title: 'Multi-role linking',
-                body: "Same person can be 'Decision Maker' at Company A and 'Technical Lead' at Company B. Flexible role tracking across all CRM clients.",
-                delay: 0.4,
-              },
-              {
-                icon: RefreshCcw,
-                title: 'Reindex pipeline',
-                body: 'Bulk-process all recordings to find person mentions, create/dedup contacts, analyze sentiment, and extract common topics.',
-                delay: 0.5,
-              },
-            ].map((card) => (
+            {benefitCards.map((card) => (
               <motion.div
                 key={card.title}
                 custom={card.delay}
@@ -247,11 +212,7 @@ const People: React.FC = () => {
             className="bg-slate-900 text-white rounded-2xl p-6 md:p-8 mb-16"
           >
             <p className="text-base md:text-lg leading-relaxed text-slate-200">
-              You're about to call Sarah but can't remember where things stand. Open her profile —
-              see the email from Tuesday about the revised timeline, the Slack question about tile
-              samples, and a voice note from last week where you mentioned she needs the budget
-              update. Three open action items are listed. You're fully prepared in 10 seconds —
-              without searching a single app.
+              {t('scenario')}
             </p>
           </motion.div>
 
@@ -263,13 +224,7 @@ const People: React.FC = () => {
             className="bg-sky-50 border border-sky-200 rounded-2xl px-8 py-4 mb-16"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {[
-                'get_person_hub() RPC',
-                'Cross-channel sentiment',
-                'Voice mention detection',
-                'Auto dedup by name',
-                'CRM \u2194 People linking',
-              ].map((item, i, arr) => (
+              {techItems.map((item, i, arr) => (
                 <React.Fragment key={item}>
                   <span className="text-sm font-medium text-sky-700">{item}</span>
                   {i < arr.length - 1 && <span className="text-sky-300">&middot;</span>}
@@ -286,7 +241,7 @@ const People: React.FC = () => {
             className="text-center"
           >
             <p className="text-xl md:text-2xl font-serif text-slate-900 mb-8 max-w-2xl mx-auto">
-              Other apps track contacts. HABOS tracks relationships.
+              {t('cta.tagline')}
             </p>
             <a href="/#waitlist">
               <motion.button
@@ -294,7 +249,7 @@ const People: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-medium text-base shadow-lg hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
               </motion.button>
             </a>
           </motion.div>

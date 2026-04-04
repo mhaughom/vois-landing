@@ -1,0 +1,77 @@
+{
+  "badge": "Kärnfunktion",
+  "hero": {
+    "title": "En fråga. Nitton källor.\nEn sekund.",
+    "description": "Fråga vad som helst om din verksamhet och få ett citerat svar innan du druckit färdigt kaffet."
+  },
+  "intro": "När du frågar 'vad diskuterade vi om Johnson-projektet?' \u2014 söker HABOS inte i en app. Det söker i mötestransskript, projektanteckningar, mejltrådar, CRM-tidslinje, uppgiftskommentarer och chattmeddelanden samtidigt. Ett företag som använder separata verktyg för var och en av dessa \u2014 Notion, HubSpot, Gmail, Slack, Asana \u2014 skulle behöva söka i fem produkter och mentalt sammanfatta resultaten. HABOS returnerar ett rankat, citationsstött svar på under en sekund.",
+  "sources": {
+    "label": "Alla söks simultant",
+    "items": [
+      "Röstinspelningar",
+      "Dokument",
+      "Mejl",
+      "Kontakter",
+      "Chattmeddelanden",
+      "Playbooks",
+      "Produkter",
+      "Ordrar",
+      "Bokningar",
+      "CRM-poster",
+      "Ärenden",
+      "Formulärinlämningar",
+      "Jobb & besök",
+      "Rutter",
+      "Webbplatser",
+      "Sociala inlägg",
+      "Presentationer",
+      "Projektanteckningar",
+      "Mötestransskript"
+    ]
+  },
+  "comparison": {
+    "without": {
+      "title": "Utan VOIS Brain",
+      "painPoints": [
+        "Söker i Gmail... inget",
+        "Kollar Slack... kanske?",
+        "Öppnar CRM... scrollar scrollar scrollar",
+        "Frågar en kollega... de är i ett möte",
+        "Ger upp och improviserar"
+      ],
+      "footer": "~20 minuter. Ofullständigt svar."
+    },
+    "with": {
+      "title": "Med VOIS Brain",
+      "query": "\u201cVad diskuterade vi om Johnson-projektet?\u201d",
+      "foundLabel": "Hittades i 4 källor:",
+      "sources": "mötestransskript (12 mars) \u00b7 mejltråd (15 mars) \u00b7 CRM-anteckning (18 mars) \u00b7 projektuppdatering (20 mars)",
+      "answer": "Johnson-köksrenoveringen är på rätt spår med tillstånd godkända...",
+      "footer": "0,8 sekunder. Fullständig bild."
+    }
+  },
+  "techStats": [
+    "512-dim inbäddningar",
+    "HNSW vektorindex",
+    "Hybrid semantisk + nyckelord",
+    "11 sökfunktioner"
+  ],
+  "scenarios": [
+    {
+      "question": "Hur ligger vi till med Henderson-affären?",
+      "answer": "CRM-pipeline, 3 mejltrådar, senaste mötesanteckningar"
+    },
+    {
+      "question": "Vad sa Sarah om budgeten?",
+      "answer": "Röstinspelningstransskript, projektkommentar, Slack-meddelande"
+    },
+    {
+      "question": "Hitta allt om tillståndsförseningar",
+      "answer": "2 projektanteckningar, 1 mejlkedja, 1 formulärinlämning, 1 jobblogg"
+    }
+  ],
+  "closing": {
+    "tagline": "Andra plattformar söker i en app i taget. VOIS söker i hela din verksamhet på en gång.",
+    "cta": "Gå med i väntelistan"
+  }
+}

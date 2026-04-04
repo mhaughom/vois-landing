@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronRight, Shield, FileText, Lock, Smartphone, ArrowLeft, Menu, X } from 'lucide-react';
 
 // Legal section types
 type LegalSection = 'terms' | 'refund' | 'privacy' | 'eula';
-
-const sections: { id: LegalSection; title: string; icon: React.ReactNode }[] = [
-  { id: 'terms', title: 'Terms of Service', icon: <FileText size={18} /> },
-  { id: 'refund', title: 'Refund Policy', icon: <Shield size={18} /> },
-  { id: 'privacy', title: 'Privacy Policy', icon: <Lock size={18} /> },
-  { id: 'eula', title: 'EULA (iOS)', icon: <Smartphone size={18} /> },
-];
 
 // Last updated date
 const LAST_UPDATED = 'February 25, 2026';
@@ -21,10 +15,18 @@ interface LegalProps {
 }
 
 export const Legal = ({ defaultSection }: LegalProps) => {
+  const { t } = useTranslation('legal');
   const location = useLocation();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState<LegalSection>(defaultSection || 'terms');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const sections: { id: LegalSection; title: string; icon: React.ReactNode }[] = [
+    { id: 'terms', title: t('sections.terms'), icon: <FileText size={18} /> },
+    { id: 'refund', title: t('sections.refund'), icon: <Shield size={18} /> },
+    { id: 'privacy', title: t('sections.privacy'), icon: <Lock size={18} /> },
+    { id: 'eula', title: t('sections.eula'), icon: <Smartphone size={18} /> },
+  ];
 
   // Handle hash navigation (only if no defaultSection prop)
   useEffect(() => {
@@ -57,8 +59,8 @@ export const Legal = ({ defaultSection }: LegalProps) => {
                 <ArrowLeft size={16} />
               </Link>
               <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
-                <img src="/Logo/vois-logo.svg" alt="Vois" className="h-6 w-6" />
-                <span className="font-semibold text-sm text-slate-900">Legal</span>
+                <img src="/Logo/vois-logo.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
+                <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
               </div>
             </div>
 
@@ -75,12 +77,12 @@ export const Legal = ({ defaultSection }: LegalProps) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-12">
-          
+
           {/* Sidebar Navigation - Desktop */}
           <aside className="hidden lg:block">
             <nav className="sticky top-24 space-y-1">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 px-3">
-                Legal Documents
+                {t('sidebar.documentsLabel')}
               </p>
               {sections.map((section) => (
                 <button
@@ -96,10 +98,10 @@ export const Legal = ({ defaultSection }: LegalProps) => {
                   <span className="text-sm font-medium">{section.title}</span>
                 </button>
               ))}
-              
+
               <div className="pt-6 mt-6 border-t border-slate-200">
                 <p className="text-xs text-slate-400 px-3">
-                  Last updated: {LAST_UPDATED}
+                  {t('sidebar.lastUpdatedLabel')} {LAST_UPDATED}
                 </p>
               </div>
             </nav>
@@ -114,7 +116,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
               className="lg:hidden fixed inset-x-0 top-16 bg-white border-b border-slate-200 shadow-lg z-40 p-4"
             >
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-                Jump to Section
+                {t('mobile.jumpToSection')}
               </p>
               <div className="space-y-1">
                 {sections.map((section) => (
@@ -139,7 +141,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
           <div className="lg:hidden mb-8">
             <details className="group">
               <summary className="flex items-center justify-between cursor-pointer bg-slate-50 rounded-xl px-4 py-3">
-                <span className="font-medium text-slate-900">Table of Contents</span>
+                <span className="font-medium text-slate-900">{t('mobile.tableOfContents')}</span>
                 <ChevronRight size={18} className="text-slate-400 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="mt-2 space-y-1 px-2">
@@ -185,34 +187,33 @@ export const Legal = ({ defaultSection }: LegalProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src="/Logo/vois-logo.svg" alt="Vois" className="h-8 w-8" />
+                <img src="/Logo/vois-logo.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
                 <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
               </div>
               <p className="text-slate-600 text-sm leading-relaxed max-w-md">
-                Vois is an AI-powered voice notes application that helps you capture, 
-                organize, and act on your thoughts with ease.
+                {t('footer.description')}
               </p>
             </div>
-            
+
             <div className="md:text-right">
-              <h4 className="font-semibold text-slate-900 mb-3">Company Information</h4>
+              <h4 className="font-semibold text-slate-900 mb-3">{t('footer.companyInfoHeading')}</h4>
               <div className="text-sm text-slate-600 space-y-1">
-                <p>Vois is operated by <strong>VOIS AI AS</strong></p>
-                <p>Organization Number (Org.nr): <strong>936 920 594</strong></p>
-                <p>Address: <strong>Alsvåg, Norway</strong></p>
-                <p>Contact: <a href="mailto:hello@tryvois.com" className="text-slate-900 hover:underline">hello@tryvois.com</a></p>
+                <p>{t('footer.operatedBy')} <strong>VOIS AI AS</strong></p>
+                <p>{t('footer.orgNumber')} <strong>{t('footer.orgValue')}</strong></p>
+                <p>{t('footer.address')} <strong>{t('footer.addressValue')}</strong></p>
+                <p>{t('footer.contact')} <a href={`mailto:${t('footer.contactEmail')}`} className="text-slate-900 hover:underline">{t('footer.contactEmail')}</a></p>
               </div>
             </div>
           </div>
-          
+
           <div className="mt-8 pt-8 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} Vois. All rights reserved.
+              © {new Date().getFullYear()} {t('footer.copyright')}
             </p>
             <div className="flex items-center gap-4 text-xs text-slate-500">
-              <span>🇳🇴 Proudly made in Norway</span>
+              <span>🇳🇴 {t('footer.madeIn')}</span>
               <span>•</span>
-              <span>GDPR Compliant</span>
+              <span>{t('footer.gdpr')}</span>
             </div>
           </div>
         </div>
@@ -242,8 +243,8 @@ const SubSection = ({ title, children }: { title: string; children: React.ReactN
 
 const ImportantBox = ({ children, variant = 'info' }: { children: React.ReactNode; variant?: 'info' | 'warning' }) => (
   <div className={`p-4 rounded-xl border-l-4 ${
-    variant === 'warning' 
-      ? 'bg-amber-50 border-amber-400' 
+    variant === 'warning'
+      ? 'bg-amber-50 border-amber-400'
       : 'bg-blue-50 border-blue-400'
   }`}>
     <div className={`text-sm ${variant === 'warning' ? 'text-amber-800' : 'text-blue-800'}`}>
@@ -256,749 +257,480 @@ const ImportantBox = ({ children, variant = 'info' }: { children: React.ReactNod
 // TERMS OF SERVICE
 // ============================================
 
-const TermsOfService = () => (
-  <>
-    <SectionHeader
-      title="Terms of Service"
-      subtitle="Please read these terms carefully before using Vois."
-    />
+const TermsOfService = () => {
+  const { t } = useTranslation('legal');
+  const features = t('terms.s2.features', { returnObjects: true }) as string[];
+  const s3Rows = t('terms.s3.rows', { returnObjects: true }) as string[][];
+  const s3Headers = t('terms.s3.tableHeaders', { returnObjects: true }) as string[];
+  const s3AutoItems = t('terms.s3.autoRenewal.items', { returnObjects: true }) as string[];
+  const s4Items = t('terms.s4.items', { returnObjects: true }) as string[];
+  const s6Items = t('terms.s6.items', { returnObjects: true }) as string[];
 
-    <SubSection title="1. Acceptance of Terms">
-      <p>
-        By accessing or using Vois ("the Service"), you agree to be bound by these Terms of Service
-        ("Terms"). If you do not agree to these Terms, please do not use the Service.
-      </p>
-      <p>
-        Vois is operated by VOIS AI AS (Org.nr. 936 920 594), a company registered in Norway. These Terms
-        constitute a legally binding agreement between you and VOIS AI AS.
-      </p>
-    </SubSection>
+  return (
+    <>
+      <SectionHeader
+        title={t('terms.title')}
+        subtitle={t('terms.subtitle')}
+      />
 
-    <SubSection title="2. Description of Service">
-      <p>
-        Vois is an AI-powered voice notes app that helps you capture, transcribe, and organize your thoughts.
-        The Service includes:
-      </p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li>Voice recording and AI transcription</li>
-        <li>Automatic extraction of tasks, events, and ideas</li>
-        <li>AI-powered chat to interact with your notes</li>
-        <li>Calendar and reminder integration</li>
-      </ul>
-    </SubSection>
+      <SubSection title={t('terms.s1.title')}>
+        <p>{t('terms.s1.p1')}</p>
+        <p>{t('terms.s1.p2')}</p>
+      </SubSection>
 
-    <SubSection title="3. Subscriptions">
-      <p>
-        Vois offers the following auto-renewable subscription plans through the Apple App Store:
-      </p>
-
-      <div className="mt-6 overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-slate-100">
-              <th className="text-left p-3 border border-slate-200 font-semibold">Subscription</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Price</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Duration</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Free Trial</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Personal Monthly</strong></td>
-              <td className="p-3 border border-slate-200">$14.99</td>
-              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">No free trial</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Personal Annual</strong></td>
-              <td className="p-3 border border-slate-200">$79.99 (~$6.67/month)</td>
-              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Work Monthly</strong></td>
-              <td className="p-3 border border-slate-200">$34.99</td>
-              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">No free trial</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Work Annual</strong></td>
-              <td className="p-3 border border-slate-200">$249.99 (~$20.83/month)</td>
-              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p className="mt-4">
-        Vois also offers a <strong>Free</strong> tier with limited usage (5 voice recordings, 5 chat messages, 1 custom app, and up to 3 minutes per recording) at no cost.
-      </p>
-
-      <ImportantBox>
-        <p className="font-semibold mb-2">Auto-Renewal Terms</p>
-        <ul className="list-disc list-inside space-y-1 mt-2">
-          <li>Payment will be charged to your Apple ID at confirmation of purchase (in-app purchases) or via Stripe (web purchases).</li>
-          <li>Free trial periods (available on annual plans only) begin at the time of purchase. If you do not cancel before the free trial ends, your subscription will automatically renew and you will be charged the subscription price.</li>
-          <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period.</li>
-          <li>Your account will be charged for renewal within 24 hours prior to the end of the current period at the rate of your selected plan.</li>
-          <li>You can manage and cancel subscriptions in your Apple ID Account Settings at any time.</li>
+      <SubSection title={t('terms.s2.title')}>
+        <p>{t('terms.s2.p1')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+          {features.map((item, i) => <li key={i}>{item}</li>)}
         </ul>
-      </ImportantBox>
+      </SubSection>
 
-      <p className="mt-4">
-        See our <a href="/legal#refund" className="text-blue-600 hover:underline">Refund Policy</a> for information about refunds.
-      </p>
+      <SubSection title={t('terms.s3.title')}>
+        <p>{t('terms.s3.p1')}</p>
 
-      <p className="mt-2">
-        For more details, see our{' '}
-        <a href="/legal#privacy" className="text-blue-600 hover:underline">Privacy Policy</a> and{' '}
-        <a href="/legal#eula" className="text-blue-600 hover:underline">EULA</a>.
-      </p>
-    </SubSection>
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-slate-100">
+                {s3Headers.map((h, i) => (
+                  <th key={i} className="text-left p-3 border border-slate-200 font-semibold">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {s3Rows.map((row, i) => (
+                <tr key={i}>
+                  <td className="p-3 border border-slate-200"><strong>{row[0]}</strong></td>
+                  <td className="p-3 border border-slate-200">{row[1]}</td>
+                  <td className="p-3 border border-slate-200">{row[2]}</td>
+                  <td className="p-3 border border-slate-200">{row[3]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-    <SubSection title="4. User Responsibilities">
-      <p>You agree to:</p>
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Use the Service only for lawful purposes</li>
-        <li>Not attempt to reverse engineer or exploit the Service</li>
-        <li>Not use the Service to process illegal or harmful content</li>
-        <li>Keep your account credentials secure</li>
-      </ul>
-    </SubSection>
+        <p className="mt-4">
+          Vois also offers a <strong>Free</strong> tier with limited usage (5 voice recordings, 5 chat messages, 1 custom app, and up to 3 minutes per recording) at no cost.
+        </p>
 
-    <SubSection title="5. Your Content">
-      <p>
-        <strong>Your content remains yours.</strong> You retain all rights to the voice recordings,
-        transcripts, and notes you create using Vois. We do not claim ownership over your personal content.
-      </p>
-      <p className="mt-4">
-        By using Vois, you grant us a limited license to process your content solely to provide
-        the Service (transcription, AI analysis, storage, and sync).
-      </p>
-    </SubSection>
+        <ImportantBox>
+          <p className="font-semibold mb-2">{t('terms.s3.autoRenewal.title')}</p>
+          <ul className="list-disc list-inside space-y-1 mt-2">
+            {s3AutoItems.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </ImportantBox>
 
-    <SubSection title="6. AI-Generated Content">
-      <p>
-        Vois uses AI to transcribe and analyze your recordings. You acknowledge that:
-      </p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li>AI-generated transcriptions may contain errors</li>
-        <li>You are responsible for reviewing AI-generated content</li>
-        <li>AI features are provided without guarantees of accuracy</li>
-      </ul>
-    </SubSection>
+        <p className="mt-4">
+          See our <a href="/legal#refund" className="text-blue-600 hover:underline">{t('terms.s3.refundLink')}</a> for information about refunds.
+        </p>
 
-    <SubSection title="7. Limitation of Liability">
-      <p>
-        To the maximum extent permitted by Norwegian law, VOIS AI AS shall not be liable for any
-        indirect, incidental, special, or consequential damages, including loss of data or profits.
-      </p>
-    </SubSection>
+        <p className="mt-2">
+          For more details, see our{' '}
+          <a href="/legal#privacy" className="text-blue-600 hover:underline">{t('terms.s3.privacyLink')}</a> and{' '}
+          <a href="/legal#eula" className="text-blue-600 hover:underline">{t('terms.s3.eulaLink')}</a>.
+        </p>
+      </SubSection>
 
-    <SubSection title="8. Governing Law">
-      <p>
-        These Terms are governed by the laws of Norway. Any disputes shall be subject to the
-        exclusive jurisdiction of the courts of Norway.
-      </p>
-    </SubSection>
+      <SubSection title={t('terms.s4.title')}>
+        <p>{t('terms.s4.intro')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          {s4Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
 
-    <SubSection title="9. Changes to Terms">
-      <p>
-        We may modify these Terms at any time. We will notify you of material changes via the app
-        or email. Continued use after changes constitutes acceptance.
-      </p>
-    </SubSection>
+      <SubSection title={t('terms.s5.title')}>
+        <p>
+          <strong>Your content remains yours.</strong> {t('terms.s5.p1')}
+        </p>
+        <p className="mt-4">{t('terms.s5.p2')}</p>
+      </SubSection>
 
-    <SubSection title="10. Contact">
-      <p>
-        Questions? Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
-      </p>
-    </SubSection>
-  </>
-);
+      <SubSection title={t('terms.s6.title')}>
+        <p>{t('terms.s6.p1')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+          {s6Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
+
+      <SubSection title={t('terms.s7.title')}>
+        <p>{t('terms.s7.p1')}</p>
+      </SubSection>
+
+      <SubSection title={t('terms.s8.title')}>
+        <p>{t('terms.s8.p1')}</p>
+      </SubSection>
+
+      <SubSection title={t('terms.s9.title')}>
+        <p>{t('terms.s9.p1')}</p>
+      </SubSection>
+
+      <SubSection title={t('terms.s10.title')}>
+        <p>
+          Questions? Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
+        </p>
+      </SubSection>
+    </>
+  );
+};
 
 // ============================================
 // REFUND POLICY
 // ============================================
 
-const RefundPolicy = () => (
-  <>
-    <SectionHeader
-      title="Refund Policy"
-      subtitle="How refunds work for Vois subscriptions."
-    />
+const RefundPolicy = () => {
+  const { t } = useTranslation('legal');
+  const steps = t('refund.s1.steps', { returnObjects: true }) as string[];
 
-    <SubSection title="App Store Purchases">
-      <p>
-        All Vois subscriptions are processed through the Apple App Store. We cannot process
-        refunds directly for App Store purchases.
-      </p>
+  return (
+    <>
+      <SectionHeader
+        title={t('refund.title')}
+        subtitle={t('refund.subtitle')}
+      />
 
-      <div className="mt-6">
-        <h4 className="font-semibold text-slate-900 mb-3">To request a refund:</h4>
-        <ol className="list-decimal list-inside space-y-2 ml-4">
-          <li>
-            Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">reportaproblem.apple.com</a>
-          </li>
-          <li>Sign in with your Apple ID</li>
-          <li>Find your Vois purchase</li>
-          <li>Select "Request a refund"</li>
-        </ol>
-      </div>
+      <SubSection title={t('refund.s1.title')}>
+        <p>{t('refund.s1.p1')}</p>
 
-      <p className="mt-6 text-slate-600">
-        All refund decisions are made by Apple according to their terms.
-      </p>
-    </SubSection>
+        <div className="mt-6">
+          <h4 className="font-semibold text-slate-900 mb-3">{t('refund.s1.howToTitle')}</h4>
+          <ol className="list-decimal list-inside space-y-2 ml-4">
+            <li>
+              Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">reportaproblem.apple.com</a>
+            </li>
+            {steps.slice(1).map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
+        </div>
 
-    <SubSection title="Questions?">
-      <p>
-        Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
-      </p>
-    </SubSection>
-  </>
-);
+        <p className="mt-6 text-slate-600">{t('refund.s1.note')}</p>
+      </SubSection>
+
+      <SubSection title={t('refund.s2.title')}>
+        <p>
+          Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
+        </p>
+      </SubSection>
+    </>
+  );
+};
 
 // ============================================
 // PRIVACY POLICY
 // ============================================
 
-const PrivacyPolicy = () => (
-  <>
-    <SectionHeader 
-      title="Privacy Policy" 
-      subtitle="How we collect, use, and protect your personal data under GDPR."
-    />
+const PrivacyPolicy = () => {
+  const { t } = useTranslation('legal');
+  const accountItems = t('privacy.s2.accountItems', { returnObjects: true }) as string[];
+  const usageItems = t('privacy.s2.usageItems', { returnObjects: true }) as string[];
+  const contentItems = t('privacy.s2.contentItems', { returnObjects: true }) as string[];
+  const s3Items = t('privacy.s3.items', { returnObjects: true }) as string[];
+  const s4Items = t('privacy.s4.items', { returnObjects: true }) as string[];
+  const dataSentItems = t('privacy.s5.dataSentItems', { returnObjects: true }) as string[];
+  const providers = t('privacy.s5.providers', { returnObjects: true }) as Array<{ name: string; dataReceived: string; purpose: string; policyLabel: string; policyUrl: string }>;
+  const protectionItems = t('privacy.s5.protectionItems', { returnObjects: true }) as string[];
+  const s6Rows = t('privacy.s6.rows', { returnObjects: true }) as string[][];
+  const s6Headers = t('privacy.s6.tableHeaders', { returnObjects: true }) as string[];
+  const necessaryItems = t('privacy.s7.necessaryItems', { returnObjects: true }) as string[];
+  const analyticsItems = t('privacy.s7.analyticsItems', { returnObjects: true }) as string[];
+  const s8Items = t('privacy.s8.items', { returnObjects: true }) as string[];
+  const s9Items = t('privacy.s9.items', { returnObjects: true }) as string[];
+  const s10Items = t('privacy.s10.items', { returnObjects: true }) as string[];
+  const s11Items = t('privacy.s11.items', { returnObjects: true }) as string[];
 
-    <SubSection title="1. Data Controller">
-      <div className="p-4 bg-slate-50 rounded-xl">
-        <p><strong>Company:</strong> VOIS AI AS</p>
-        <p><strong>Location:</strong> Alsvåg, Norway (EEA)</p>
-        <p><strong>Contact:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
-      </div>
-      <p className="mt-4">
-        VOIS AI AS is the data controller responsible for your personal data 
-        collected through the Vois application and website.
-      </p>
-    </SubSection>
+  return (
+    <>
+      <SectionHeader
+        title={t('privacy.title')}
+        subtitle={t('privacy.subtitle')}
+      />
 
-    <SubSection title="2. Data We Collect">
-      <h4 className="font-semibold text-slate-900 mb-2">Account Information:</h4>
-      <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
-        <li>Email address (for account creation and communication)</li>
-        <li>Name (optional, for personalization)</li>
-        <li>Payment information (processed by Apple for in-app purchases and Stripe for web purchases; we do not store card details)</li>
-      </ul>
+      <SubSection title={t('privacy.s1.title')}>
+        <div className="p-4 bg-slate-50 rounded-xl">
+          <p><strong>{t('privacy.s1.companyLabel')}</strong> {t('privacy.s1.companyValue')}</p>
+          <p><strong>{t('privacy.s1.locationLabel')}</strong> {t('privacy.s1.locationValue')}</p>
+          <p><strong>{t('privacy.s1.contactLabel')}</strong> <a href={`mailto:${t('privacy.s1.contactEmail')}`} className="text-blue-600 hover:underline">{t('privacy.s1.contactEmail')}</a></p>
+        </div>
+        <p className="mt-4">{t('privacy.s1.p1')}</p>
+      </SubSection>
 
-      <h4 className="font-semibold text-slate-900 mb-2">Usage Data:</h4>
-      <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
-        <li>App usage analytics (anonymized, collected only with your consent via PostHog, EU-hosted)</li>
-        <li>Feature interaction data</li>
-        <li>Error logs and crash reports</li>
-        <li>Device identifiers (anonymous device ID for non-logged-in users)</li>
-      </ul>
-
-      <h4 className="font-semibold text-slate-900 mb-2">Content Data:</h4>
-      <ul className="list-disc list-inside space-y-1 ml-4">
-        <li>Voice recordings and audio files (processed for transcription)</li>
-        <li>Transcribed text, notes, and meeting transcripts</li>
-        <li>Chat messages sent to AI assistants</li>
-        <li>Calendar events and task content extracted from notes</li>
-        <li>Images uploaded for text extraction and analysis</li>
-        <li>AI-generated summaries, tasks, and email drafts</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="3. AI Training Policy">
-      <ImportantBox>
-        <p className="font-semibold mb-2">🔒 Your Data is NOT Used for AI Training</p>
-        <p>
-          We do <strong>NOT</strong> use your private voice notes, transcripts, or any personal 
-          content to train AI models. Your data remains your property. None of our third-party AI 
-          providers — Deepgram, OpenAI, Anthropic, Google, xAI, or Perplexity — use your data sent through 
-          VOIS for model training purposes.
-        </p>
-      </ImportantBox>
-      <p className="mt-4">
-        When we process your data through third-party AI services, it is:
-      </p>
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Sent securely via encrypted API connections to the relevant provider</li>
-        <li>Processed and returned to you in real time</li>
-        <li>Not retained by any AI provider for training purposes</li>
-        <li>Subject to our data processing agreements with each sub-processor</li>
-        <li>Handled under each provider's commercial API terms, which prohibit training on customer data</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="4. Local-First Architecture">
-      <ImportantBox>
-        <p className="font-semibold mb-2">📱 Privacy by Design</p>
-        <p>
-          Vois employs a <strong>local-first architecture</strong>. This means:
-        </p>
-        <ul className="list-disc list-inside space-y-1 mt-2">
-          <li>Voice recordings are processed and stored securely in your personal cloud database (Supabase).</li>
-          <li>Audio files are retained to enable playback and reprocessing. You can delete your recordings at any time from within the app.</li>
-          <li>Your notes and transcripts sync securely to your account but remain encrypted.</li>
+      <SubSection title={t('privacy.s2.title')}>
+        <h4 className="font-semibold text-slate-900 mb-2">{t('privacy.s2.accountHeading')}</h4>
+        <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
+          {accountItems.map((item, i) => <li key={i}>{item}</li>)}
         </ul>
-      </ImportantBox>
-    </SubSection>
 
-    <SubSection title="5. Third-Party AI Services">
-      <ImportantBox>
-        <p className="font-semibold mb-2">AI Data Sharing Disclosure</p>
-        <p>
-          VOIS uses third-party artificial intelligence services to provide core app functionality.
-          You are asked for <strong>explicit consent</strong> before any personal data is shared with
-          these services. Below is a detailed breakdown of what data each provider receives and why.
+        <h4 className="font-semibold text-slate-900 mb-2">{t('privacy.s2.usageHeading')}</h4>
+        <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
+          {usageItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+
+        <h4 className="font-semibold text-slate-900 mb-2">{t('privacy.s2.contentHeading')}</h4>
+        <ul className="list-disc list-inside space-y-1 ml-4">
+          {contentItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
+
+      <SubSection title={t('privacy.s3.title')}>
+        <ImportantBox>
+          <p className="font-semibold mb-2">🔒 {t('privacy.s3.boxTitle')}</p>
+          <p>{t('privacy.s3.boxText')}</p>
+        </ImportantBox>
+        <p className="mt-4">{t('privacy.s3.p1')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          {s3Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
+
+      <SubSection title={t('privacy.s4.title')}>
+        <ImportantBox>
+          <p className="font-semibold mb-2">📱 {t('privacy.s4.boxTitle')}</p>
+          <p>{t('privacy.s4.boxIntro')}</p>
+          <ul className="list-disc list-inside space-y-1 mt-2">
+            {s4Items.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </ImportantBox>
+      </SubSection>
+
+      <SubSection title={t('privacy.s5.title')}>
+        <ImportantBox>
+          <p className="font-semibold mb-2">{t('privacy.s5.boxTitle')}</p>
+          <p>{t('privacy.s5.boxText')}</p>
+        </ImportantBox>
+
+        <h4 className="font-semibold text-slate-900 mb-2 mt-6">{t('privacy.s5.dataSentHeading')}</h4>
+        <ul className="list-disc list-inside space-y-2 ml-4 mb-6">
+          {dataSentItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+
+        <h4 className="font-semibold text-slate-900 mb-3">{t('privacy.s5.providersHeading')}</h4>
+
+        <div className="space-y-4">
+          {providers.map((provider, i) => (
+            <div key={i} className="p-4 bg-slate-50 rounded-xl">
+              <p className="font-semibold text-slate-900">{provider.name}</p>
+              <p className="text-sm text-slate-600 mt-1">
+                <strong>{t('privacy.s5.dataReceivedLabel')}</strong> {provider.dataReceived}
+              </p>
+              <p className="text-sm text-slate-600 mt-1">
+                <strong>{t('privacy.s5.purposeLabel')}</strong> {provider.purpose}
+              </p>
+              <p className="text-sm text-slate-500 mt-1">
+                <a href={provider.policyUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{provider.policyLabel}</a>
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <h4 className="font-semibold text-slate-900 mb-2 mt-6">{t('privacy.s5.protectionHeading')}</h4>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          {protectionItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+
+        <h4 className="font-semibold text-slate-900 mb-2 mt-6">{t('privacy.s5.choicesHeading')}</h4>
+        <p>{t('privacy.s5.choicesText')}</p>
+      </SubSection>
+
+      <SubSection title={t('privacy.s6.title')}>
+        <p>{t('privacy.s6.p1')}</p>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-slate-100">
+                {s6Headers.map((h, i) => (
+                  <th key={i} className="text-left p-3 border border-slate-200 font-semibold">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {s6Rows.map((row, i) => (
+                <tr key={i}>
+                  <td className="p-3 border border-slate-200"><strong>{row[0]}</strong></td>
+                  <td className="p-3 border border-slate-200">{row[1]}</td>
+                  <td className="p-3 border border-slate-200">{row[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-slate-600">{t('privacy.s6.footnote')}</p>
+      </SubSection>
+
+      <SubSection title={t('privacy.s7.title')}>
+        <p>Our website (<a href="https://vois.app" className="text-blue-600 hover:underline">vois.app</a>) uses the following technologies:</p>
+
+        <h4 className="font-semibold text-slate-900 mb-2 mt-4">{t('privacy.s7.necessaryHeading')}</h4>
+        <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
+          {necessaryItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+        <p className="mb-4">{t('privacy.s7.necessaryNote')}</p>
+
+        <h4 className="font-semibold text-slate-900 mb-2">{t('privacy.s7.analyticsHeading')}</h4>
+        <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
+          {analyticsItems.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+
+        <p>You can change your tracking preferences at any time via the <strong>Cookie Settings</strong> link in our website footer.</p>
+      </SubSection>
+
+      <SubSection title={t('privacy.s8.title')}>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          {s8Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
+
+      <SubSection title={t('privacy.s9.title')}>
+        <p>{t('privacy.s9.p1')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+          {s9Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+        <p className="mt-4">
+          {t('privacy.s9.contactNote').split('hello@tryvois.com')[0]}
+          <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
+          {t('privacy.s9.contactNote').split('hello@tryvois.com')[1]}
         </p>
-      </ImportantBox>
+      </SubSection>
 
-      <h4 className="font-semibold text-slate-900 mb-2 mt-6">Data we send to AI services:</h4>
-      <ul className="list-disc list-inside space-y-2 ml-4 mb-6">
-        <li>Voice recordings and audio files for transcription</li>
-        <li>Transcribed text for task extraction, calendar event creation, and summaries</li>
-        <li>Chat messages for AI assistant responses</li>
-        <li>Meeting audio and transcripts for live note generation</li>
-        <li>Images for text extraction and analysis</li>
-      </ul>
+      <SubSection title={t('privacy.s10.title')}>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          {s10Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
 
-      <h4 className="font-semibold text-slate-900 mb-3">Services that receive your data:</h4>
+      <SubSection title={t('privacy.s11.title')}>
+        <p>{t('privacy.s11.p1')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+          {s11Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
 
-      <div className="space-y-4">
-        <div className="p-4 bg-slate-50 rounded-xl">
-          <p className="font-semibold text-slate-900">Deepgram, Inc.</p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Data received:</strong> Voice recordings and audio data.
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Purpose:</strong> Real-time and recorded speech-to-text transcription, including
-            speaker identification during meetings.
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            <a href="https://deepgram.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Deepgram Privacy Policy</a>
-          </p>
+      <SubSection title={t('privacy.s12.title')}>
+        <p>{t('privacy.s12.p1')}</p>
+        <div className="mt-4 p-4 bg-slate-50 rounded-xl">
+          <p><strong>{t('privacy.s12.privacyContactLabel')}</strong> <a href={`mailto:${t('privacy.s12.privacyContactEmail')}`} className="text-blue-600 hover:underline">{t('privacy.s12.privacyContactEmail')}</a></p>
         </div>
-
-        <div className="p-4 bg-slate-50 rounded-xl">
-          <p className="font-semibold text-slate-900">OpenAI, L.L.C.</p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Data received:</strong> Transcribed text, chat messages, images, meeting
-            transcripts, and task content.
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Purpose:</strong> Text analysis, task and event extraction, chat assistant
-            responses, meeting note generation, email drafting, and image analysis.
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            <a href="https://openai.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">OpenAI Privacy Policy</a>
-          </p>
+        <p className="mt-4">{t('privacy.s12.p2')}</p>
+        <div className="mt-2 p-4 bg-slate-50 rounded-xl">
+          <p><strong>{t('privacy.s12.authorityName')}</strong></p>
+          <p>{t('privacy.s12.authorityWebsiteLabel')} <a href={t('privacy.s12.authorityWebsiteUrl')} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{t('privacy.s12.authorityWebsiteDisplay')}</a></p>
         </div>
-
-        <div className="p-4 bg-slate-50 rounded-xl">
-          <p className="font-semibold text-slate-900">Anthropic, PBC (Claude)</p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Data received:</strong> Chat messages and transcribed text.
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Purpose:</strong> AI chat assistant responses when Claude is selected as the
-            active model.
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Anthropic Privacy Policy</a>
-          </p>
-        </div>
-
-        <div className="p-4 bg-slate-50 rounded-xl">
-          <p className="font-semibold text-slate-900">Google LLC (Gemini)</p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Data received:</strong> Chat messages and transcribed text.
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Purpose:</strong> AI chat assistant responses when Gemini is selected as the
-            active model.
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Google Privacy Policy</a>
-          </p>
-        </div>
-
-        <div className="p-4 bg-slate-50 rounded-xl">
-          <p className="font-semibold text-slate-900">xAI Corp. (Grok)</p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Data received:</strong> Chat messages and transcribed text.
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Purpose:</strong> AI chat assistant responses when Grok is selected as the
-            active model.
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            <a href="https://x.ai/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">xAI Privacy Policy</a>
-          </p>
-        </div>
-
-        <div className="p-4 bg-slate-50 rounded-xl">
-          <p className="font-semibold text-slate-900">Perplexity AI, Inc.</p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Data received:</strong> Research queries and related context from notes or tasks.
-          </p>
-          <p className="text-sm text-slate-600 mt-1">
-            <strong>Purpose:</strong> Web research and information retrieval when you use the
-            Research feature within the AI agent.
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            <a href="https://www.perplexity.ai/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Perplexity Privacy Policy</a>
-          </p>
-        </div>
-      </div>
-
-      <h4 className="font-semibold text-slate-900 mb-2 mt-6">How we protect your data with these providers:</h4>
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>All data is transmitted securely via encrypted API connections (TLS/SSL).</li>
-        <li>We use each provider's official commercial API, which means your data is processed under their commercial data processing terms and is <strong>not used to train their AI models</strong>.</li>
-        <li>Each provider listed above is contractually or by policy required to provide the <strong>same or equal protection</strong> of your personal data as described in this Privacy Policy.</li>
-      </ul>
-
-      <h4 className="font-semibold text-slate-900 mb-2 mt-6">Your choices:</h4>
-      <p>
-        You are asked for explicit consent before any data is shared with third-party AI services. 
-        You may <strong>revoke this consent at any time</strong> in the app's Settings under "AI Data Sharing." 
-        If you decline AI consent, features that rely on third-party AI processing (transcription, 
-        chat, meeting notes, task extraction) will be unavailable, but you may continue using other 
-        app features.
-      </p>
-    </SubSection>
-
-    <SubSection title="6. Sub-Processors & Infrastructure">
-      <p>We use the following third-party services to operate Vois:</p>
-      <div className="mt-4 overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-slate-100">
-              <th className="text-left p-3 border border-slate-200 font-semibold">Service</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Purpose</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Location</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Deepgram</strong></td>
-              <td className="p-3 border border-slate-200">Voice Transcription</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>OpenAI</strong></td>
-              <td className="p-3 border border-slate-200">AI Intelligence (Text Analysis, Chat, Meeting Notes, Image Analysis)</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Anthropic</strong></td>
-              <td className="p-3 border border-slate-200">AI Chat Assistant (Claude)</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Google</strong></td>
-              <td className="p-3 border border-slate-200">AI Chat Assistant (Gemini)</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>xAI</strong></td>
-              <td className="p-3 border border-slate-200">AI Chat Assistant (Grok)</td>
-              <td className="p-3 border border-slate-200">USA</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Perplexity AI</strong></td>
-              <td className="p-3 border border-slate-200">AI Research & Information Retrieval</td>
-              <td className="p-3 border border-slate-200">USA</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Supabase</strong></td>
-              <td className="p-3 border border-slate-200">Database, Authentication & File Storage</td>
-              <td className="p-3 border border-slate-200">EU (Frankfurt)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Railway</strong></td>
-              <td className="p-3 border border-slate-200">Backend Application Hosting</td>
-              <td className="p-3 border border-slate-200">USA</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Vercel</strong></td>
-              <td className="p-3 border border-slate-200">Web Application Hosting & CDN</td>
-              <td className="p-3 border border-slate-200">Global CDN</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Stripe</strong></td>
-              <td className="p-3 border border-slate-200">Payment Processing (Web)</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>RevenueCat</strong></td>
-              <td className="p-3 border border-slate-200">Subscription Management</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Apple</strong></td>
-              <td className="p-3 border border-slate-200">App Store Payments & Sign in with Apple</td>
-              <td className="p-3 border border-slate-200">USA (EU Data Processing Agreement)</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>PostHog</strong></td>
-              <td className="p-3 border border-slate-200">Website Analytics & Session Recording (consent-based)</td>
-              <td className="p-3 border border-slate-200">EU (Frankfurt)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p className="mt-4 text-sm text-slate-600">
-        All sub-processors and infrastructure providers listed above are contractually required to provide 
-        the same or equal protection of your personal data as described in this Privacy Policy.
-      </p>
-    </SubSection>
-
-    <SubSection title="7. Cookies & Website Tracking">
-      <p>Our website (<a href="https://vois.app" className="text-blue-600 hover:underline">vois.app</a>) uses the following technologies:</p>
-      
-      <h4 className="font-semibold text-slate-900 mb-2 mt-4">Strictly Necessary Storage</h4>
-      <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
-        <li>Your cookie consent preference (stored in localStorage)</li>
-        <li>Authentication tokens for logged-in users</li>
-      </ul>
-      <p className="mb-4">These do not require consent as they are essential for the website to function.</p>
-
-      <h4 className="font-semibold text-slate-900 mb-2">Analytics (Consent Required)</h4>
-      <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
-        <li><strong>PostHog</strong> — Used for website analytics and session recording. Data is hosted in the EU (Frankfurt). PostHog is only activated after you provide consent via our cookie banner.</li>
-        <li>Data collected includes: page views, clicks, scroll depth, anonymized session recordings (with all input fields masked), device type, and referral source.</li>
-        <li>No data is shared with advertisers or used for ad targeting.</li>
-      </ul>
-
-      <p>You can change your tracking preferences at any time via the <strong>Cookie Settings</strong> link in our website footer.</p>
-    </SubSection>
-
-    <SubSection title="8. Legal Basis for Processing (GDPR Article 6)">
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li><strong>Contract Performance:</strong> Processing necessary to provide the Vois service you requested.</li>
-        <li><strong>Legitimate Interest:</strong> Service improvements and security monitoring (with appropriate safeguards).</li>
-        <li><strong>Consent:</strong> Sharing data with third-party AI services (you can revoke AI consent at any time in Settings), website analytics via PostHog (you can manage your cookie preferences at any time via the Cookie Settings link in our footer), and marketing communications (you can withdraw consent at any time).</li>
-        <li><strong>Legal Obligation:</strong> Tax records and compliance with applicable laws.</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="9. Your Rights (GDPR)">
-      <p>Under the General Data Protection Regulation, you have the right to:</p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li><strong>Access:</strong> Request a copy of your personal data</li>
-        <li><strong>Rectification:</strong> Correct inaccurate personal data</li>
-        <li><strong>Erasure:</strong> Request deletion of your data ("Right to be Forgotten")</li>
-        <li><strong>Portability:</strong> Receive your data in a machine-readable format</li>
-        <li><strong>Restriction:</strong> Limit how we process your data</li>
-        <li><strong>Objection:</strong> Object to processing based on legitimate interests</li>
-        <li><strong>Withdraw Consent:</strong> Withdraw consent at any time</li>
-      </ul>
-      <p className="mt-4">
-        To exercise these rights, contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>. 
-        We will respond within 30 days.
-      </p>
-    </SubSection>
-
-    <SubSection title="10. Data Retention">
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Active accounts: Data retained for the duration of your account</li>
-        <li>Deleted accounts: Data erased within 30 days of account deletion</li>
-        <li>Financial records: Retained for 7 years as required by Norwegian law</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="11. Data Security">
-      <p>We implement appropriate technical and organizational measures to protect your data:</p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li>TLS/SSL encryption for all data in transit</li>
-        <li>AES-256 encryption for data at rest</li>
-        <li>Regular security audits and penetration testing</li>
-        <li>Employee access controls and training</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="12. Contact & Complaints">
-      <p>For privacy-related inquiries:</p>
-      <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Privacy Contact:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
-      </div>
-      <p className="mt-4">
-        If you believe your rights have been violated, you have the right to lodge a complaint with:
-      </p>
-      <div className="mt-2 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Datatilsynet (Norwegian Data Protection Authority)</strong></p>
-        <p>Website: <a href="https://www.datatilsynet.no" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.datatilsynet.no</a></p>
-      </div>
-    </SubSection>
-  </>
-);
+      </SubSection>
+    </>
+  );
+};
 
 // ============================================
 // EULA (Apple Requirement)
 // ============================================
 
-const EULA = () => (
-  <>
-    <SectionHeader 
-      title="End User License Agreement (EULA)" 
-      subtitle="Terms for using Vois on iOS devices."
-    />
+const EULA = () => {
+  const { t } = useTranslation('legal');
+  const s2Items = t('eula.s2.items', { returnObjects: true }) as string[];
+  const s4Items = t('eula.s4.items', { returnObjects: true }) as string[];
+  const s5Rows = t('eula.s5.rows', { returnObjects: true }) as string[][];
+  const s5Headers = t('eula.s5.tableHeaders', { returnObjects: true }) as string[];
+  const s5AutoItems = t('eula.s5.autoRenewal.items', { returnObjects: true }) as string[];
 
-    <SubSection title="1. Apple Licensed Application">
-      <p>
-        Your use of Vois on iOS devices is governed by the standard 
-        <strong> Apple Licensed Application End User License Agreement (EULA)</strong>, 
-        in addition to these Terms of Service.
-      </p>
-      
-      <ImportantBox>
-        <p className="font-semibold mb-2">📱 Apple Standard EULA</p>
+  return (
+    <>
+      <SectionHeader
+        title={t('eula.title')}
+        subtitle={t('eula.subtitle')}
+      />
+
+      <SubSection title={t('eula.s1.title')}>
         <p>
-          For the complete Apple EULA terms, please visit:
+          {t('eula.s1.p1').split('Apple Licensed Application End User License Agreement (EULA)')[0]}
+          <strong> Apple Licensed Application End User License Agreement (EULA)</strong>
+          {t('eula.s1.p1').split('Apple Licensed Application End User License Agreement (EULA)')[1]}
         </p>
-        <a 
-          href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-block mt-2 text-blue-600 hover:underline break-all"
-        >
-          https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
-        </a>
-      </ImportantBox>
-    </SubSection>
 
-    <SubSection title="2. Acknowledgements">
-      <p>You acknowledge that:</p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li>
-          This EULA is concluded between you and VOIS AI AS only, and not with Apple Inc.
-        </li>
-        <li>
-          VOIS AI AS, not Apple, is solely responsible for the Licensed Application 
-          (Vois) and its content.
-        </li>
-        <li>
-          Apple has no obligation to provide any maintenance or support services for Vois.
-        </li>
-        <li>
-          In the event of any failure of Vois to conform to any applicable warranty, you may notify 
-          Apple, and Apple will refund the purchase price (if any) for the app. To the maximum extent 
-          permitted by applicable law, Apple has no other warranty obligation with respect to Vois.
-        </li>
-        <li>
-          Apple is not responsible for addressing any claims by you or third parties relating to 
-          Vois or your possession and use of Vois.
-        </li>
-        <li>
-          Apple and its subsidiaries are third-party beneficiaries of this EULA, and upon your 
-          acceptance, Apple will have the right to enforce this EULA against you as a third-party 
-          beneficiary.
-        </li>
-      </ul>
-    </SubSection>
+        <ImportantBox>
+          <p className="font-semibold mb-2">📱 {t('eula.s1.boxTitle')}</p>
+          <p>{t('eula.s1.boxText')}</p>
+          <a
+            href={t('eula.s1.eulaUrl')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-2 text-blue-600 hover:underline break-all"
+          >
+            {t('eula.s1.eulaUrl')}
+          </a>
+        </ImportantBox>
+      </SubSection>
 
-    <SubSection title="3. Intellectual Property">
-      <p>
-        In the event of any third-party claim that Vois or your possession and use of Vois 
-        infringes that third party's intellectual property rights, VOIS AI AS, 
-        not Apple, will be solely responsible for the investigation, defense, settlement, 
-        and discharge of any such intellectual property infringement claim.
-      </p>
-    </SubSection>
-
-    <SubSection title="4. Legal Compliance">
-      <p>
-        You represent and warrant that:
-      </p>
-      <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
-        <li>You are not located in a country subject to a U.S. Government embargo.</li>
-        <li>You are not listed on any U.S. Government list of prohibited or restricted parties.</li>
-        <li>You will comply with all applicable third-party terms of agreement when using Vois.</li>
-      </ul>
-    </SubSection>
-
-    <SubSection title="5. Subscription Plans">
-      <p>
-        Vois offers the following auto-renewable subscription plans, managed through the Apple App Store:
-      </p>
-
-      <div className="mt-6 overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-slate-100">
-              <th className="text-left p-3 border border-slate-200 font-semibold">Subscription</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Price</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Duration</th>
-              <th className="text-left p-3 border border-slate-200 font-semibold">Free Trial</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Personal Monthly</strong></td>
-              <td className="p-3 border border-slate-200">$14.99</td>
-              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">No free trial</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Personal Annual</strong></td>
-              <td className="p-3 border border-slate-200">$79.99 (~$6.67/month)</td>
-              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Work Monthly</strong></td>
-              <td className="p-3 border border-slate-200">$34.99</td>
-              <td className="p-3 border border-slate-200">1 month (auto-renews monthly)</td>
-              <td className="p-3 border border-slate-200">No free trial</td>
-            </tr>
-            <tr>
-              <td className="p-3 border border-slate-200"><strong>Work Annual</strong></td>
-              <td className="p-3 border border-slate-200">$249.99 (~$20.83/month)</td>
-              <td className="p-3 border border-slate-200">1 year (auto-renews annually)</td>
-              <td className="p-3 border border-slate-200">3-day free trial</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p className="mt-4">
-        A <strong>Free</strong> tier is also available at no cost, with limited usage (5 voice recordings, 5 chat messages, 1 custom app, up to 3 minutes per recording).
-      </p>
-
-      <ImportantBox>
-        <p className="font-semibold mb-2">Auto-Renewal & Cancellation</p>
-        <ul className="list-disc list-inside space-y-1 mt-2">
-          <li>Payment is charged to your Apple ID at confirmation of purchase.</li>
-          <li>Free trial periods begin at the time of purchase. If not canceled before the trial ends, your subscription will auto-renew at the listed price.</li>
-          <li>Subscriptions auto-renew unless canceled at least 24 hours before the end of the current period.</li>
-          <li>You can manage and cancel subscriptions at any time in your Apple ID Account Settings.</li>
+      <SubSection title={t('eula.s2.title')}>
+        <p>{t('eula.s2.intro')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+          {s2Items.map((item, i) => <li key={i}>{item}</li>)}
         </ul>
-      </ImportantBox>
+      </SubSection>
 
-      <p className="mt-4">
-        For full details, see our{' '}
-        <a href="/legal#terms" className="text-blue-600 hover:underline">Terms of Service</a> and{' '}
-        <a href="/legal#privacy" className="text-blue-600 hover:underline">Privacy Policy</a>.
-      </p>
-    </SubSection>
+      <SubSection title={t('eula.s3.title')}>
+        <p>{t('eula.s3.p1')}</p>
+      </SubSection>
 
-    <SubSection title="6. Contact Information">
-      <p>
-        For any questions or concerns regarding the iOS application or this EULA, please contact:
-      </p>
-      <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p><strong>Developer:</strong> VOIS AI AS</p>
-        <p><strong>Email:</strong> <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a></p>
-        <p><strong>Address:</strong> Alsvåg, Norway</p>
-      </div>
-    </SubSection>
-  </>
-);
+      <SubSection title={t('eula.s4.title')}>
+        <p>{t('eula.s4.intro')}</p>
+        <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
+          {s4Items.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </SubSection>
+
+      <SubSection title={t('eula.s5.title')}>
+        <p>{t('eula.s5.p1')}</p>
+
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-slate-100">
+                {s5Headers.map((h, i) => (
+                  <th key={i} className="text-left p-3 border border-slate-200 font-semibold">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {s5Rows.map((row, i) => (
+                <tr key={i}>
+                  <td className="p-3 border border-slate-200"><strong>{row[0]}</strong></td>
+                  <td className="p-3 border border-slate-200">{row[1]}</td>
+                  <td className="p-3 border border-slate-200">{row[2]}</td>
+                  <td className="p-3 border border-slate-200">{row[3]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-4">
+          A <strong>Free</strong> tier is also available at no cost, with limited usage (5 voice recordings, 5 chat messages, 1 custom app, up to 3 minutes per recording).
+        </p>
+
+        <ImportantBox>
+          <p className="font-semibold mb-2">{t('eula.s5.autoRenewal.title')}</p>
+          <ul className="list-disc list-inside space-y-1 mt-2">
+            {s5AutoItems.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </ImportantBox>
+
+        <p className="mt-4">
+          For full details, see our{' '}
+          <a href="/legal#terms" className="text-blue-600 hover:underline">{t('eula.s5.termsLink')}</a> and{' '}
+          <a href="/legal#privacy" className="text-blue-600 hover:underline">{t('eula.s5.privacyLink')}</a>.
+        </p>
+      </SubSection>
+
+      <SubSection title={t('eula.s6.title')}>
+        <p>{t('eula.s6.p1')}</p>
+        <div className="mt-4 p-4 bg-slate-50 rounded-xl">
+          <p><strong>{t('eula.s6.developerLabel')}</strong> {t('eula.s6.developerValue')}</p>
+          <p><strong>{t('eula.s6.emailLabel')}</strong> <a href={`mailto:${t('eula.s6.emailValue')}`} className="text-blue-600 hover:underline">{t('eula.s6.emailValue')}</a></p>
+          <p><strong>{t('eula.s6.addressLabel')}</strong> {t('eula.s6.addressValue')}</p>
+        </div>
+      </SubSection>
+    </>
+  );
+};
 
 export default Legal;
-
-

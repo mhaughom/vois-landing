@@ -1,10 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, FileText, Mic, Clock, CheckSquare } from 'lucide-react';
 import ReportsDemo from './features/ReportsDemo';
 import { Navbar } from '../../components/Navbar';
 
+const featureIcons = [Mic, FileText, Clock, CheckSquare] as const;
+
 const Reports: React.FC = () => {
+  const { t } = useTranslation('work-reports');
+
+  const features = (t('features', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>).map((f, i) => ({ ...f, icon: featureIcons[i] }));
+
+  const useCaseItems = t('useCases.items', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>;
+
+  const exampleSteps = t('example.steps', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -19,20 +36,19 @@ const Reports: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-slate-200 text-slate-700 rounded-full text-sm font-medium mb-6">
-              Coming Soon
+              {t('badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6">
-              Voice Reports
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-8">
-              Talk reports into existence. Walk through a site inspection speaking your observations—
-              AI generates a formatted PDF instantly.
+              {t('hero.description')}
             </p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Traditional reports require sitting down, opening a form, and typing answers. HABOS offers four fill modes: a real-time voice interview where AI asks questions field by field, a dictation mode where a single voice note fills all fields silently, a text chatbot that walks through each field conversationally, and traditional manual input as fallback. Upload a PDF or image and GPT-4 Vision extracts field labels, types, and validation patterns to generate a typed schema automatically.
+              {t('intro')}
             </p>
           </motion.div>
 
@@ -56,118 +72,47 @@ const Reports: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-amber-50 border border-amber-200 rounded-2xl p-8 mb-16"
           >
-            <h3 className="text-xl font-semibold text-amber-900 mb-3 text-center">The Report Writing Problem</h3>
+            <h3 className="text-xl font-semibold text-amber-900 mb-3 text-center">{t('problem.title')}</h3>
             <p className="text-amber-800 leading-relaxed text-center">
-              For field workers, nurses, inspectors, and many professionals, writing reports on touchscreens
-              or computers is a <strong>massive time sink</strong>. It's slow, tedious, and people often
-              leave out details because typing is too cumbersome. Voice Reports changes everything.
+              {t('problem.body')}
             </p>
           </motion.div>
 
           {/* Key Features */}
           <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-4">
-                <Mic size={24} className="text-violet-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Just Talk</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Open VOIS, tap record, and talk through your observations. No typing, no forms,
-                no checkboxes. AI listens, structures, and formats everything automatically.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-4">
-                <FileText size={24} className="text-violet-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Instant Formatting</h3>
-              <p className="text-slate-600 leading-relaxed">
-                AI generates a properly formatted report—headings, sections, bullet points, summaries.
-                Export as PDF, Word, or any format you need. It's ready to submit immediately.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-4">
-                <Clock size={24} className="text-violet-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">10x Faster</h3>
-              <p className="text-slate-600 leading-relaxed">
-                People talk 3-4x faster than they type. Add in AI formatting and you're looking at
-                10x time savings. What used to take 30 minutes now takes 3.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
-            >
-              <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-4">
-                <CheckSquare size={24} className="text-violet-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Richer Information</h3>
-              <p className="text-slate-600 leading-relaxed">
-                When reporting is this easy, people include more detail. You get better data,
-                more context, and clearer communication—all because talking is effortless.
-              </p>
-            </motion.div>
+            {features.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm"
+              >
+                <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-4">
+                  <f.icon size={24} className="text-violet-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">{f.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{f.desc}</p>
+              </motion.div>
+            ))}
           </div>
 
           {/* Use Cases */}
           <div className="mb-20">
-            <h2 className="text-3xl font-serif text-slate-900 mb-8 text-center">Perfect For</h2>
+            <h2 className="text-3xl font-serif text-slate-900 mb-8 text-center">{t('useCases.heading')}</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="bg-slate-50 rounded-xl p-6 text-center"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">Field Workers</h4>
-                <p className="text-sm text-slate-600">
-                  Site inspections, safety reports, maintenance logs
-                </p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="bg-slate-50 rounded-xl p-6 text-center"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">Healthcare</h4>
-                <p className="text-sm text-slate-600">
-                  Nurse notes, patient observations, shift handoffs
-                </p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="bg-slate-50 rounded-xl p-6 text-center"
-              >
-                <h4 className="font-semibold text-slate-900 mb-2">Sales & Service</h4>
-                <p className="text-sm text-slate-600">
-                  Client meetings, service calls, follow-up notes
-                </p>
-              </motion.div>
+              {useCaseItems.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 + i * 0.1 }}
+                  className="bg-slate-50 rounded-xl p-6 text-center"
+                >
+                  <h4 className="font-semibold text-slate-900 mb-2">{item.title}</h4>
+                  <p className="text-sm text-slate-600">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
 
@@ -178,27 +123,13 @@ const Reports: React.FC = () => {
             transition={{ duration: 0.6, delay: 1.0 }}
             className="bg-slate-950 rounded-3xl p-10 md:p-14 text-white mb-20"
           >
-            <h2 className="text-3xl font-serif mb-6 text-center">Example: Construction Site Inspection</h2>
+            <h2 className="text-3xl font-serif mb-6 text-center">{t('example.title')}</h2>
             <div className="space-y-4 text-slate-300 text-lg leading-relaxed">
-              <p>
-                You arrive at the site with your phone or watch. Tap record in VOIS.
-              </p>
-              <p>
-                "Site inspection, Building 3, March 15th. Weather conditions: clear, 65 degrees.
-                Foundation looks solid—no cracks visible. Electrical rough-in is 80% complete,
-                on schedule. Plumbing issue in Unit 204—leak under the sink, needs repair before
-                inspection. HVAC ducts installed, awaiting final connections..."
-              </p>
-              <p>
-                You walk and talk for 5 minutes, covering everything you see.
-              </p>
-              <p>
-                Stop recording. AI generates a formatted inspection report with sections,
-                bullet points, and a summary. The plumbing issue is flagged as urgent.
-              </p>
-              <p className="text-white font-semibold pt-4">
-                Export PDF. Email to project manager. Done. Total time: 6 minutes.
-              </p>
+              {exampleSteps.map((step, i) => (
+                <p key={i} className={i === exampleSteps.length - 1 ? 'text-white font-semibold pt-4' : ''}>
+                  {step}
+                </p>
+              ))}
             </div>
           </motion.div>
 
@@ -210,13 +141,10 @@ const Reports: React.FC = () => {
             className="bg-indigo-50 border border-indigo-200 rounded-2xl p-10 mb-20"
           >
             <h3 className="text-2xl font-serif text-indigo-900 mb-4 text-center">
-              Powers Operations AI
+              {t('integration.title')}
             </h3>
             <p className="text-indigo-800 leading-relaxed text-center">
-              Voice Reports isn't just about saving time—it feeds critical data into Operations AI.
-              When your team submits detailed voice reports, Operations AI can identify patterns,
-              spot bottlenecks, and alert you to problems before they escalate. It's the foundation
-              of intelligent operations management.
+              {t('integration.body')}
             </p>
           </motion.div>
 
@@ -228,14 +156,13 @@ const Reports: React.FC = () => {
             className="text-center bg-slate-50 rounded-2xl p-10"
           >
             <h3 className="text-2xl font-serif text-slate-900 mb-4">
-              Currently in Development
+              {t('status.title')}
             </h3>
             <p className="text-slate-600 mb-2">
-              Voice Reports is built and working in our development environment. We're refining
-              formatting templates and export options for different industries.
+              {t('status.body')}
             </p>
             <p className="text-slate-500 text-sm">
-              Expected to be available within 6 months for VOIS for Work subscribers.
+              {t('status.note')}
             </p>
           </motion.div>
         </div>

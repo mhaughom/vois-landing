@@ -1,0 +1,65 @@
+{
+  "badge": "CRM & Vertrieb",
+  "hero": {
+    "title": "Jede Beziehung. Jedes Geschäft. Eine Ansicht.",
+    "description": "Verfolge Kunden vom ersten Kontakt bis zum Abschluss mit Drag-and-Drop-Pipeline, KI-generierter Strategie und automatischer Lifecycle-Progression."
+  },
+  "body": "Jede Interaktion mit einem Kunden über alle Kanäle fließt in eine gemeinsame Timeline — Sprachaufnahmen, E-Mails, Chats, Besprechungen, CRM-Einträge und personenbezogene KI-Sitzungen. Das Berater-Modul analysiert deine Pipeline in fünf Strategiedimensionen — Finanzen, Marketing, Vertrieb, Führung und Produkte — und generiert dann umsetzbare Chancen mit Aufwandsschätzungen und Bewertungen zur Übereinstimmung mit Geschäftszielen. Klicke auf 'Kampagne erstellen' für eine Chance und sie wird vorausgefüllt im Marketing-Bereich.",
+  "pipeline": {
+    "label": "Vertriebspipeline",
+    "caption": "Ziehe Deals zwischen Stufen. Wenn ein Deal auf \"Gewonnen\" steht, wird der Kunde automatisch zu aktiv befördert. KI generiert Strategievorschläge pro Stufe."
+  },
+  "columns": [
+    {
+      "stage": "Lead",
+      "deals": [
+        { "company": "Garcia Electric", "value": "12.000 €" },
+        { "company": "Wilson Plumbing", "value": "8.000 €" }
+      ]
+    },
+    {
+      "stage": "Angebot",
+      "deals": [
+        { "company": "Henderson Reno", "value": "45.000 €" }
+      ]
+    },
+    {
+      "stage": "Verhandlung",
+      "deals": [
+        { "company": "Baker HVAC", "value": "28.000 €" }
+      ]
+    },
+    {
+      "stage": "Gewonnen",
+      "deals": [
+        { "company": "Torres Landscaping", "value": "15.000 €" }
+      ]
+    }
+  ],
+  "benefits": [
+    {
+      "title": "360°-Kundenansicht",
+      "desc": "Ein Klick zeigt verknüpfte Projekte, Vorgänge, Berichte, E-Mails, Besprechungen und Dokumente. Jede Interaktion über jeden Kanal, pro Person."
+    },
+    {
+      "title": "Automatischer Lifecycle",
+      "desc": "Lead → Interessent → aktiv → abgewandert. Schließe einen Deal ab und der Kunde wechselt automatisch. Keine manuellen Statusänderungen."
+    },
+    {
+      "title": "KI-Vertriebsstrategie",
+      "desc": "Das Berater-Modul analysiert deine Pipeline, identifiziert Prioritätszielgruppen und generiert umsetzbare Chancen mit Aufwandsschätzungen."
+    }
+  ],
+  "scenario": "Du bereitest dich auf ein Gespräch mit Henderson vor. Öffne ihre CRM-Karte — sieh jeden E-Mail-Thread, jede Besprechungsnotiz, Sprachaufnahme und Projektaktualisierung in einer Timeline. Das KI-Briefing sagt dir, dass die Stimmung positiv ist, es einen offenen Aktionspunkt aus letzter Woche gibt und das Angebot 3.000 € unter dem genannten Budget liegt. Du gehst mit Kontext in das Gespräch, den kein Mitbewerber hat.",
+  "techItems": [
+    "Konfigurierbare Pipeline-Stufen",
+    "Multi-Rollen-Kontakte",
+    "Benutzerdefinierte Felder",
+    "CSV-Export",
+    "Marketing-Funnel-Sync"
+  ],
+  "cta": {
+    "heading": "Andere CRMs verfolgen Kontakte. HABOS verfolgt Beziehungen.",
+    "button": "Warteliste beitreten"
+  }
+}

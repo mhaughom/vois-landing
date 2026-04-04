@@ -1,0 +1,47 @@
+{
+  "category": "Philosophie",
+  "title": "Das Ende der Dateneingabe",
+  "tagline": "Jedes Geschäftstool, das Sie heute nutzen, wurde vor KI entwickelt. HABOS nicht. Sie werden den Unterschied vom ersten Tag an spüren – die Formulare, die Felder, das Kopieren und Einfügen zwischen Apps – das hat ein Ende.",
+  "heroPlaceholder": "Hero-Illustration",
+  "section1": {
+    "heading": "Das Nachrüstungsproblem",
+    "body1": "Die meisten Softwareunternehmen haben über zwei Jahrzehnte hinweg aufgebaute Produkte genommen und einen KI-Chatbot in die Ecke eingefügt. Der Chatbot kann Fragen zu Daten beantworten, für die er nie konzipiert wurde, Aktionen vorschlagen, für die er keine Befugnis hat, und über Systeme suchen, die nie dafür gedacht waren, Kontext zu teilen.",
+    "body2": "Das Ergebnis ist ein Deckmantel der Intelligenz über einer grundlegend unintelligenten Architektur. Die KI sitzt neben der Software. Sie lebt nicht in ihr."
+  },
+  "section2": {
+    "heading": "Mit Intelligenz als Fundament gebaut",
+    "body": "HABOS wurde von Anfang an mit KI als strukturelles Element entwickelt, nicht als Funktion. Die drei Kernsysteme, die die Plattform antreiben – der Smart Router, das Brain und der Agent-Orchestrator – sind alle KI-nativ. Sie hüllen bestehende Software nicht in einen Chatbot. Sie sind die Software."
+  },
+  "systems": [
+    {
+      "title": "Der Smart Router",
+      "desc": "Eine Sprach-Intent-Klassifikations-Engine, die eine einzelne 30-Sekunden-Aufnahme nimmt und mehrere strukturierte Geschäftsaktionen extrahiert – Aufgaben, Kalenderereignisse, CRM-Aktualisierungen, Inventaranpassungen – alles auf einmal. Nicht Sprache zu Text. Sprache zu Verständnis."
+    },
+    {
+      "title": "Das Brain",
+      "desc": "Eine einheitliche semantische Suchschicht über 19 Datenquellen, die parallel abgefragt werden. Wenn Sie eine Frage stellen, durchsucht HABOS gleichzeitig Ihre Meetings, E-Mails, CRM, Projekte, Sprachnotizen, Dokumente und Playbooks – und versteht Bedeutung, nicht nur Schlüsselwörter."
+    },
+    {
+      "title": "Der Agent-Orchestrator",
+      "desc": "Eine autonome Planungs- und Ausführungs-Engine, die komplexe Aufgaben in Schritte aufteilen, Tools ausführen, bei hochriskanten Aktionen auf Ihre Genehmigung warten und fortfahren kann – selbst nach Serverneustarts. Kein Chatbot mit Plugins. Eine vollständige Zustandsmaschine mit Budget-Tracking und Fehlerwiederherstellung."
+    }
+  ],
+  "architecturePlaceholder": "Architekturdiagramm",
+  "section3": {
+    "heading": "Was KI-nativ in der Praxis tatsächlich bedeutet",
+    "body1": "Es bedeutet, dass ein Klempner einen Auftrag abschließt, 30 Sekunden lang in sein Telefon spricht, und das System den Auftragsdatensatz erstellt, das Inventar aktualisiert, die Rechnung generiert, das Büro benachrichtigt und die Zeit protokolliert. Diese gesamte Kette funktioniert, weil jedes Modul ein KI-gestütztes Gehirn teilt – nicht weil jemand 6 APIs miteinander verbunden hat.",
+    "body2": "Es bedeutet, dass die KI, wenn sie Sie auf ein Meeting vorbereitet, aus Ihrem CRM, der Auftragshistorie, Meetingtranskripten, Sprachnotizen, E-Mails, Playbooks und offenen Tickets zieht – in einem Durchgang. Nicht weil sie 7 separate Apps durchsucht hat. Weil alle diese Daten an einem Ort leben und für eine KI-gestützte Analyse konzipiert wurden."
+  },
+  "section4": {
+    "heading": "Der Compounding-Effekt",
+    "body1": "Eine KI-native Plattform wird intelligenter, je länger Sie sie nutzen. Nach sechs Monaten weiß das System, welche Kunden in vorhersehbaren Zyklen nachbestellen, welche Vorgänge konsistent abweichen, welche Teammitglieder überlastet sind und wie lange die durchschnittliche Abschlusszeit bei verschiedenen Deal-Typen ist.",
+    "body2": "Dieses angesammelte organisationale Wissen ist der Burggraben. Die Daten können exportiert werden. Das Verständnis nicht."
+  },
+  "quote": "\"KI sollte nicht etwas sein, zu dem Sie gehen. Es sollte etwas sein, das bereits da ist – in die Art und Weise eingewoben, wie die Software denkt, handelt und antizipiert.\"",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Die Luftschleuse",
+    "nextLabel": "Weiter",
+    "nextTitle": "Ein Gehirn"
+  }
+}

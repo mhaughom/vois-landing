@@ -1,0 +1,29 @@
+{
+  "category": "Filosofia",
+  "title": "Due Interfacce, Un Sistema",
+  "tagline": "Gli umani ricevono schermi. Gli agenti ricevono API. Stessi strumenti, stessi dati.",
+  "heroAlt": "Interfacce duali — dashboard visivi e API strutturate",
+  "body1": "La maggior parte dei prodotti \"alimentati dall'AI\" cade in una di due trappole. Prima: aggiunge un chatbot all'interfaccia utente esistente e fa cliccare all'AI i pulsanti, navigare i menu, leggere gli schermi. Brucia 15.000 token per fare ciò che una chiamata di funzione gestisce in 200. Quando l'interfaccia cambia, l'agente si rompe. Seconda: costruisce solo AI senza interfaccia umana. L'agente è veloce — ma è una scatola nera. Ha \"gestito\" la tua email, ma non riesci a vedere cosa ha inviato.",
+  "humanInterface": {
+    "label": "Interfaccia umana",
+    "body": "Visualizzazione settimanale visiva. Eventi codificati per colore. Trascina per ripianificare. Ragionamento spaziale sul tuo tempo."
+  },
+  "agentInterface": {
+    "label": "Interfaccia agente",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "Stesso calendario. Stesso evento. Stesse autorizzazioni."
+  },
+  "comparison": "Agente tramite interfaccia web: 15.000 token. Agente tramite chiamata di funzione: 200 token. 75x.",
+  "comparisonWebUI": "Agente tramite interfaccia web:",
+  "comparisonWebUIStat": "15.000 token.",
+  "comparisonFunctionCall": "Agente tramite chiamata di funzione:",
+  "comparisonFunctionCallStat": "200 token.",
+  "comparisonMultiplier": "75x.",
+  "quote": "\"Far cliccare l'AI sui pulsanti è come far camminare un pilota. Dai a ciascuna intelligenza l'interfaccia che merita.\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Suggerimenti, Non Menu",
+    "nextLabel": "Successivo",
+    "nextTitle": "Cattura il Tuo Pensiero"
+  }
+}

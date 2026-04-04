@@ -1,0 +1,62 @@
+{
+  "badge": "AI-presentationer",
+  "hero": {
+    "title_part1": "Beskriv din presentation.",
+    "title_part2": "Den bygger sig själv.",
+    "description": "Berätta för HABOS vad du behöver presentera. AI genererar en komplett presentation med ditt varumärke, din data och dina produkter — med liveuppdaterade diagram."
+  },
+  "intro": "Presentationsgeneratorn skapar presentationer från din arbetsplatskontext med live-databindning. Först genererar den en disposition genom att analysera din prompt, söka i Brain och hämta från projektkontext, produktkatalog och varumärkesguide. Sedan bygger den varje bild parallellt — upp till fem simultant — med layoutspecifika block: mätvärden, diagram, tabeller och bilder. Intäktssiffror hämtas från Ekonomi. Produktrutnät hämtas från din katalog. När underliggande data ändras återspeglar presentationen det.",
+  "slidePreview": {
+    "title": "Q1 Intäktssammanfattning",
+    "metrics": [
+      { "change": "+18%", "value": "$127K", "label": "Intäkter" },
+      { "change": "+12%", "value": "89", "label": "Ordrar" },
+      { "change": "-4%", "value": "$1 428", "label": "Snittorder" }
+    ],
+    "slideNumber": "Bild 3 av 12"
+  },
+  "caption": {
+    "prefix": "Genererad från:",
+    "prompt": "\"Bygg en Q1-investeraruppdatering med intäktstrender och topprodukter.\"",
+    "suffix": "Intäktssiffrorna är live — de uppdateras när din data ändras."
+  },
+  "benefitCards": [
+    {
+      "title": "Prompt → presentation på 60 sekunder",
+      "desc": "Beskriv vad du behöver. AI genererar en disposition, sedan bygger varje bild parallellt. 12 kortlayouter, varumärkesmedvetna färger, verklig fotografering från Unsplash."
+    },
+    {
+      "title": "Live-databindning",
+      "desc": "Intäktsmätvärden hämtas från Ekonomi. Produktrutnät hämtas från din katalog. När underliggande data ändras uppdateras presentationen. Ingen manuell diagramrekreation."
+    },
+    {
+      "title": "Ditt varumärke, automatiskt",
+      "desc": "Temafärger, typsnitt och logotyp hämtas från dina arbetsplatsvarumärkesinställningar. Varje presentation ser ut som din, inte som en mall."
+    }
+  ],
+  "layouts": {
+    "heading": "12 kortlayouter, intelligent blandade",
+    "items": [
+      "Titel", "Text + Bild", "Mätvärdesrutnät", "Diagramfokus", "Jämförelse",
+      "Tidslinje", "Citat", "3-kolumner", "Punktmarkering", "Produktrutnät",
+      "Teamroster", "Uppmaning"
+    ]
+  },
+  "scenario": {
+    "part1": "Ditt investerarmöte är om 2 timmar. I stället för att spendera 90 minuter på att bygga bilder skriver du:",
+    "prompt": "\"Q1-investeraruppdatering — intäktstrender, topprodukter, kundtillväxt och nästa kvartals färdplan.\"",
+    "part2": "HABOS hämtar livesiffror från Ekonomi, produkter från din katalog och tillväxtdata från CRM. Du har en polerad, varumärkesenlig presentation på 60 sekunder.",
+    "closing": "Intäktsdiagrammet är fortfarande korrekt när du presenterar det."
+  },
+  "techItems": [
+    "GPT-4o disposition + parallell byggnad",
+    "Unsplash + Gemini bildgenerering",
+    "12 strikt tillämpade layouter",
+    "Live-databindning",
+    "Varumärkesmedveten tematisering"
+  ],
+  "cta": {
+    "tagline": "Andra bildverktyg ger dig mallar. HABOS ger dig en färdig presentation.",
+    "button": "Gå med i väntelistan"
+  }
+}

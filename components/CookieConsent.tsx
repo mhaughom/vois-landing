@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, Cookie, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { getConsent, setConsent, onConsentChange } from '../lib/consent';
 
 /**
@@ -18,6 +19,7 @@ import { getConsent, setConsent, onConsentChange } from '../lib/consent';
 // ── Main Banner ──────────────────────────────────────────────────────────────
 
 export const CookieConsent: React.FC = () => {
+  const { t } = useTranslation('cookie-consent');
   const [visible, setVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
@@ -67,20 +69,19 @@ export const CookieConsent: React.FC = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-semibold text-slate-900 mb-1">
-                    We value your privacy
+                    {t('banner.title')}
                   </h3>
                   <p className="text-sm text-slate-500 leading-relaxed">
-                    We use analytics to understand how visitors interact with our site so we can improve the experience.
-                    No data is used for advertising.{' '}
+                    {t('banner.description')}{' '}
                     <Link to="/Privacy" className="underline hover:text-slate-700 transition-colors">
-                      Privacy Policy
+                      {t('banner.privacyPolicy')}
                     </Link>
                   </p>
                 </div>
                 <button
                   onClick={handleRejectAll}
                   className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100"
-                  aria-label="Reject all cookies"
+                  aria-label={t('banner.rejectAllAriaLabel')}
                 >
                   <X size={16} />
                 </button>
@@ -92,19 +93,19 @@ export const CookieConsent: React.FC = () => {
                   onClick={handleAcceptAll}
                   className="px-5 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 active:scale-[0.98] transition-all"
                 >
-                  Accept All
+                  {t('banner.acceptAll')}
                 </button>
                 <button
                   onClick={handleRejectAll}
                   className="px-5 py-2.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 active:scale-[0.98] transition-all"
                 >
-                  Reject All
+                  {t('banner.rejectAll')}
                 </button>
                 <button
                   onClick={() => setShowDetails(!showDetails)}
                   className="px-4 py-2.5 text-slate-500 text-sm font-medium hover:text-slate-700 transition-colors flex items-center gap-1.5"
                 >
-                  Manage
+                  {t('banner.manage')}
                   <motion.span
                     animate={{ rotate: showDetails ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
@@ -131,8 +132,8 @@ export const CookieConsent: React.FC = () => {
                       {/* Necessary — always on */}
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-medium text-slate-900">Necessary</p>
-                          <p className="text-xs text-slate-400 mt-0.5">Required for the site to function. Cannot be disabled.</p>
+                          <p className="text-sm font-medium text-slate-900">{t('banner.necessary')}</p>
+                          <p className="text-xs text-slate-400 mt-0.5">{t('banner.necessaryDescription')}</p>
                         </div>
                         <div className="relative w-11 h-6 bg-slate-900 rounded-full cursor-not-allowed opacity-60">
                           <div className="absolute right-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-sm" />
@@ -142,9 +143,9 @@ export const CookieConsent: React.FC = () => {
                       {/* Analytics — toggleable */}
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm font-medium text-slate-900">Analytics</p>
+                          <p className="text-sm font-medium text-slate-900">{t('banner.analytics')}</p>
                           <p className="text-xs text-slate-400 mt-0.5">
-                            Helps us understand usage patterns via PostHog (EU-hosted). No ad tracking.
+                            {t('banner.analyticsDescription')}
                           </p>
                         </div>
                         <button
@@ -152,7 +153,7 @@ export const CookieConsent: React.FC = () => {
                           className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${analyticsEnabled ? 'bg-slate-900' : 'bg-slate-300'}`}
                           role="switch"
                           aria-checked={analyticsEnabled}
-                          aria-label="Toggle analytics tracking"
+                          aria-label={t('banner.analyticsToggleAriaLabel')}
                         >
                           <motion.div
                             className="absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm"
@@ -168,7 +169,7 @@ export const CookieConsent: React.FC = () => {
                       onClick={handleSavePreferences}
                       className="mt-5 px-5 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 active:scale-[0.98] transition-all"
                     >
-                      Save Preferences
+                      {t('banner.savePreferences')}
                     </button>
                   </div>
                 </motion.div>
@@ -188,6 +189,7 @@ export const CookieConsent: React.FC = () => {
  * Opens an inline modal-style panel.
  */
 export const CookieSettingsTrigger: React.FC = () => {
+  const { t } = useTranslation('cookie-consent');
   const [open, setOpen] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
 
@@ -215,7 +217,7 @@ export const CookieSettingsTrigger: React.FC = () => {
         onClick={() => setOpen(true)}
         className="text-slate-500 text-sm hover:text-slate-900 transition-colors text-left"
       >
-        Cookie Settings
+        {t('settings.triggerLabel')}
       </button>
 
       <AnimatePresence>
@@ -241,7 +243,7 @@ export const CookieSettingsTrigger: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-base font-semibold text-slate-900">Cookie Preferences</h3>
+                <h3 className="text-base font-semibold text-slate-900">{t('settings.modalTitle')}</h3>
                 <button
                   onClick={() => setOpen(false)}
                   className="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors rounded-full hover:bg-slate-100"
@@ -251,9 +253,9 @@ export const CookieSettingsTrigger: React.FC = () => {
               </div>
 
               <p className="text-sm text-slate-500 mb-5 leading-relaxed">
-                Control which cookies and tracking technologies are active.{' '}
+                {t('settings.description')}{' '}
                 <Link to="/Privacy" className="underline hover:text-slate-700" onClick={() => setOpen(false)}>
-                  Privacy Policy
+                  {t('settings.privacyPolicy')}
                 </Link>
               </p>
 
@@ -261,8 +263,8 @@ export const CookieSettingsTrigger: React.FC = () => {
                 {/* Necessary */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-900">Necessary</p>
-                    <p className="text-xs text-slate-400 mt-0.5">Required for the site to function.</p>
+                    <p className="text-sm font-medium text-slate-900">{t('settings.necessary')}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{t('settings.necessaryDescription')}</p>
                   </div>
                   <div className="relative w-11 h-6 bg-slate-900 rounded-full cursor-not-allowed opacity-60">
                     <div className="absolute right-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-sm" />
@@ -272,15 +274,15 @@ export const CookieSettingsTrigger: React.FC = () => {
                 {/* Analytics */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-900">Analytics</p>
-                    <p className="text-xs text-slate-400 mt-0.5">PostHog analytics (EU-hosted). No ad tracking.</p>
+                    <p className="text-sm font-medium text-slate-900">{t('settings.analytics')}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{t('settings.analyticsDescription')}</p>
                   </div>
                   <button
                     onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
                     className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${analyticsEnabled ? 'bg-slate-900' : 'bg-slate-300'}`}
                     role="switch"
                     aria-checked={analyticsEnabled}
-                    aria-label="Toggle analytics"
+                    aria-label={t('settings.analyticsToggleAriaLabel')}
                   >
                     <motion.div
                       className="absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm"
@@ -296,13 +298,13 @@ export const CookieSettingsTrigger: React.FC = () => {
                   onClick={handleSave}
                   className="flex-1 px-5 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 active:scale-[0.98] transition-all"
                 >
-                  Save Preferences
+                  {t('settings.savePreferences')}
                 </button>
                 <button
                   onClick={() => setOpen(false)}
                   className="px-5 py-2.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 active:scale-[0.98] transition-all"
                 >
-                  Cancel
+                  {t('settings.cancel')}
                 </button>
               </div>
             </motion.div>

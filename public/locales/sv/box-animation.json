@@ -1,0 +1,15 @@
+{
+  "panelLabels": ["Kalender", "Databas", "Fakturor", "E-post", "Analys", "Uppgifter", "Chatt", "Webbplats", "Dokument"],
+  "widgetLabels": {
+    "Calendar": "Kalender",
+    "CRM": "CRM",
+    "Website": "Webbplats",
+    "Notes": "Anteckningar",
+    "Email": "E-post",
+    "Tasks": "Uppgifter",
+    "Analytics": "Analys",
+    "Documents": "Dokument",
+    "Chat": "Chatt",
+    "Invoices": "Fakturor"
+  }
+}

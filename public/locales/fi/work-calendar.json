@@ -1,0 +1,71 @@
+{
+  "badge": "Tekoälyaikataulutus",
+  "hero": {
+    "title": "Sano \"Suunnittele päiväni.\"\nKatso sen täyttyvän.",
+    "description": "HABOS analysoi tehtäväsi, prioriteettisi ja määräaikasi — sitten ehdottaa täyttä aikataulua. Hyväksyt ennen kuin mitään siirretään."
+  },
+  "body": "Kalenteri ei vain näytä aikatauluasi — se on älykäs aikataulutusmoottori, joka sijoittaa tehtävät automaattisesti fokusjaksoihin. Jokaisella jaksolla on affiniteettifiltteri: projektin fokusjakso täytetään vain kyseisen projektin tehtävillä. Automaattinen täyttömoottori käyttää ahneellista algoritmia, joka kunnioittaa riippuvuusjärjestystä topologisen järjestämisen kautta, joten edeltäjätehtävät ajoitetaan aina ennen riippuvaisiaan. Kriittisen polun kohteet projekteistasi sijoitetaan ensin, automaattisesti.",
+  "schedule": {
+    "dateLabel": "Keskiviikko, 26. maaliskuuta",
+    "blocks": [
+      {
+        "time": "9:00 – 10:30",
+        "type": "Syvä työ",
+        "tasks": "Henderson-ehdotus (kriittinen polku) + Sopimuksen tarkistaminen"
+      },
+      {
+        "time": "10:30 – 11:00",
+        "type": "Hallinnointi",
+        "tasks": "Vastaa 3 merkittyyn sähköpostiin + Hyväksy lasku"
+      },
+      {
+        "time": "11:00 – 12:00",
+        "type": "Kokous",
+        "tasks": "Tiimisynkronointi (yhteenveto automaattisesti luotu)"
+      },
+      {
+        "time": "13:00 – 14:30",
+        "type": "Projekti",
+        "tasks": "Keittiöremontti — laattavalinta + toimittajapuhelut"
+      },
+      {
+        "time": "14:30 – 15:00",
+        "type": "Toiminnot",
+        "tasks": "Tarkista päiväraportit + merkitse poikkeamat"
+      }
+    ],
+    "caption": "Luotu 2 sekunnissa. Jokainen tehtävä sijoitettu tekoälyn prioriteettipisteytyksen mukaan."
+  },
+  "benefits": {
+    "priority": {
+      "title": "7-tekijäinen prioriteetti",
+      "description": "Manuaalinen järjestys, prioriteettimerkintä, tekoälyn tärkeys, tekoälyn kiireellisyys, eräpäivä, kalenterin soveltuvuus, luontipäivä. Tehtäviä ei vain järjestetä — ne ymmärretään."
+    },
+    "focusBlocks": {
+      "title": "Fokusajanjaksot",
+      "description": "Syvä työ, hallinnointi, projekti, henkilökohtainen — jokaisella jaksolla on affiniteettifiltteri. Kriittisen polun tehtävät sijoitetaan aina ensin."
+    },
+    "dependency": {
+      "title": "Riippuvuustietoinen",
+      "description": "Topologinen järjestäminen varmistaa, että edeltäjät ajoitetaan ennen riippuvaisiaan. Kalenteri kunnioittaa projektisi logiikkaa."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Ilman HABOS:ia",
+    "withoutText": "Sunnuntai-ilta: tuijota tyhjää kalenteria. Yritä muistaa mikä on kiireellistä. Varaa manuaalisesti aika jokaiselle tehtävälle. Häiriinny. Aikatauluta kaikki uudelleen.",
+    "withoutStat": "~45 min suunnittelua",
+    "withTitle": "HABOS:lla",
+    "withText": "\"Suunnittele päiväni.\" Tarkista ehdotettu aikataulu. Vedä yksi jakso paikalleen. Hyväksy.",
+    "withStat": "~30 sekuntia"
+  },
+  "techStrip": [
+    "Ahne automaattinen täyttöalgoritmi",
+    "Topologinen riippuvuusjärjestäminen",
+    "BroadcastChannel-synkronointi",
+    "Google + Outlook + iOS-kalenterit"
+  ],
+  "closing": {
+    "tagline": "Motion aikatauluttaa automaattisesti kysymättä. HABOS ehdottaa — sinä päätät.",
+    "cta": "Liity odotuslistalle"
+  }
+}

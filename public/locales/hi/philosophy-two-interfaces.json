@@ -1,0 +1,29 @@
+{
+  "category": "दर्शन",
+  "title": "दो इंटरफेस, एक सिस्टम",
+  "tagline": "मनुष्यों को screens मिलती हैं। Agents को APIs मिलते हैं। एक ही उपकरण, एक ही डेटा।",
+  "heroAlt": "Dual interfaces — visual dashboards और structured APIs",
+  "body1": "अधिकांश \"AI-powered\" products दो traps में से एक में पड़ते हैं। पहला: existing UI पर chatbot bolt करें और AI को buttons click करने, menus navigate करने, screens पढ़ने दें। यह वह करने के लिए 15,000 tokens जलाता है जो एक function call 200 में handle करता है। जब UI बदलता है, agent टूट जाता है। दूसरा: बिना human interface के केवल AI build करें। Agent तेज़ है — लेकिन यह एक black box है। इसने आपका ईमेल \"handle\" किया, लेकिन आप नहीं देख सकते कि क्या भेजा।",
+  "humanInterface": {
+    "label": "Human interface",
+    "body": "Visual week view। Color-coded events। Drag करके reschedule करें। आपके समय के बारे में Spatial reasoning।"
+  },
+  "agentInterface": {
+    "label": "Agent interface",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "एक ही calendar। एक ही event। एक ही permissions।"
+  },
+  "comparison": "Web UI के माध्यम से Agent: 15,000 tokens। Function call के माध्यम से Agent: 200 tokens। 75x।",
+  "comparisonWebUI": "Web UI के माध्यम से Agent:",
+  "comparisonWebUIStat": "15,000 tokens।",
+  "comparisonFunctionCall": "Function call के माध्यम से Agent:",
+  "comparisonFunctionCallStat": "200 tokens।",
+  "comparisonMultiplier": "75x।",
+  "quote": "\"AI को buttons click करवाना एक pilot को चलवाने जैसा है। हर intelligence को वह interface दें जिसकी वह हकदार है।\"",
+  "nav": {
+    "prevLabel": "पिछला",
+    "prevTitle": "सुझाव, मेनू नहीं",
+    "nextLabel": "अगला",
+    "nextTitle": "अपना दिमाग कैप्चर करें"
+  }
+}

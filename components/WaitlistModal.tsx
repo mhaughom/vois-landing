@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Check, Loader2, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { waitlistService, type WaitlistEntry } from '../lib/supabase';
 import { Analytics } from '../lib/analytics';
 
@@ -16,43 +17,20 @@ interface WaitlistModalProps {
 
 type Step = 'useCases' | 'userType' | 'devices' | 'referral' | 'email' | 'success';
 
-const USER_TYPES = [
-  'Personal',
-  'Work',
-  'Both'
-];
-
-const REFERRAL_SOURCES = [
-  'Twitter/X',
-  'Instagram',
-  'TikTok',
-  'Friend/colleague',
-  'Search engine',
-  'YouTube',
-  'Reddit',
-  'Other'
-];
-
-const USE_CASES = [
-  'Personal tasks & reminders',
-  'Work meetings & notes',
-  'Ideas & brainstorming',
-  'Shopping & lists',
-  'Custom tracking (health, habits, etc.)'
-];
-
-const DEVICES = [
-  'iPhone',
-  'Apple Watch',
-  'Mac'
-];
-
 export const WaitlistModal: React.FC<WaitlistModalProps> = ({
   isOpen,
   onClose,
   source = 'unknown',
   prefillData = {}
 }) => {
+  const { t } = useTranslation('waitlist-modal');
+
+  // Arrays moved inside component so they are translated at render time
+  const USER_TYPES = t('userTypes', { returnObjects: true }) as string[];
+  const REFERRAL_SOURCES = t('referralSources', { returnObjects: true }) as string[];
+  const USE_CASES = t('useCases', { returnObjects: true }) as string[];
+  const DEVICES = t('devices', { returnObjects: true }) as string[];
+
   const [step, setStep] = useState<Step>('useCases');
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState('');
@@ -174,7 +152,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     setError('');
 
     if (!isValidEmail(email)) {
-      setError('Please enter a valid email address');
+      setError(t('errors.emailInvalid'));
       return;
     }
 
@@ -186,7 +164,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     // Check if email already exists
     const exists = await waitlistService.checkIfEmailExists(email);
     if (exists) {
-      setError('This email is already on the waitlist!');
+      setError(t('errors.emailExists'));
       setIsSubmitting(false);
       return;
     }
@@ -228,7 +206,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
     if (result.success) {
       setStep('success');
     } else {
-      setError(result.error || 'Failed to join waitlist');
+      setError(result.error || t('errors.joinFailed'));
     }
 
     setIsSubmitting(false);
@@ -273,10 +251,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    What will you use VOIS for?
+                    {t('stepUseCases.heading')}
                   </h2>
                   <p className="text-slate-600 mb-6 text-sm">
-                    Select all that apply
+                    {t('stepUseCases.subLabel')}
                   </p>
 
                   <div className="space-y-3 mb-8">
@@ -311,12 +289,12 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     disabled={useCases.length === 0}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
-                    Continue
+                    {t('continue')}
                     <ChevronRight size={20} />
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 1 of 5
+                    {t('stepUseCases.stepIndicator')}
                   </p>
                 </motion.div>
               )}
@@ -331,10 +309,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    How will you use VOIS?
+                    {t('stepUserType.heading')}
                   </h2>
                   <p className="text-slate-600 mb-6 text-sm">
-                    Choose one
+                    {t('stepUserType.subLabel')}
                   </p>
 
                   <div className="space-y-3 mb-8">
@@ -362,12 +340,12 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     disabled={!userType}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg flex items-center justify-center gap-2"
                   >
-                    Continue
+                    {t('continue')}
                     <ChevronRight size={20} />
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 2 of 5
+                    {t('stepUserType.stepIndicator')}
                   </p>
                 </motion.div>
               )}
@@ -382,10 +360,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    Which devices will you use?
+                    {t('stepDevices.heading')}
                   </h2>
                   <p className="text-slate-600 mb-6 text-sm">
-                    Select all that apply
+                    {t('stepDevices.subLabel')}
                   </p>
 
                   <div className="space-y-3 mb-8">
@@ -420,12 +398,12 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     disabled={devices.length === 0}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
-                    Continue
+                    {t('continue')}
                     <ChevronRight size={20} />
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 3 of 5
+                    {t('stepDevices.stepIndicator')}
                   </p>
                 </motion.div>
               )}
@@ -440,10 +418,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    How did you hear about VOIS?
+                    {t('stepReferral.heading')}
                   </h2>
                   <p className="text-slate-600 mb-6 text-sm">
-                    This helps us understand our community
+                    {t('stepReferral.subLabel')}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-8">
@@ -471,17 +449,17 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     disabled={!referralSource}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold text-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 flex items-center justify-center gap-2"
                   >
-                    Continue
+                    {t('continue')}
                     <ChevronRight size={20} />
                   </button>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 4 of 5
+                    {t('stepReferral.stepIndicator')}
                   </p>
                 </motion.div>
               )}
 
-              {/* Step 4: Email */}
+              {/* Step 5: Email */}
               {step === 'email' && (
                 <motion.div
                   key="email"
@@ -495,10 +473,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </div>
 
                   <h2 className="text-2xl font-serif text-slate-900 mb-2">
-                    What's your email?
+                    {t('stepEmail.heading')}
                   </h2>
                   <p className="text-slate-600 mb-6 text-sm">
-                    We'll send you early access when we launch
+                    {t('stepEmail.subLabel')}
                   </p>
 
                   <form onSubmit={handleEmailSubmit}>
@@ -507,7 +485,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
+                        placeholder={t('stepEmail.placeholder')}
                         className="w-full px-5 py-4 rounded-2xl border-2 border-slate-200 focus:border-slate-900 focus:outline-none text-lg transition-all"
                         autoFocus
                       />
@@ -530,21 +508,21 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                       {isSubmitting ? (
                         <>
                           <Loader2 size={20} className="animate-spin" />
-                          Joining...
+                          {t('stepEmail.joining')}
                         </>
                       ) : (
-                        'Join Waitlist'
+                        t('stepEmail.joinWaitlist')
                       )}
                     </button>
                   </form>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
-                    Step 4 of 5
+                    {t('stepEmail.stepIndicator')}
                   </p>
                 </motion.div>
               )}
 
-              {/* Step 5: Success */}
+              {/* Step 6: Success */}
               {step === 'success' && (
                 <motion.div
                   key="success"
@@ -563,10 +541,10 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                   </motion.div>
 
                   <h2 className="text-3xl font-serif text-slate-900 mb-3">
-                    You're on the list!
+                    {t('stepSuccess.heading')}
                   </h2>
                   <p className="text-slate-600 mb-2">
-                    We'll send you an email at
+                    {t('stepSuccess.willSendEmail')}
                   </p>
                   <p className="text-slate-900 font-semibold mb-8">
                     {email}
@@ -574,8 +552,8 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
 
                   <div className="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-200">
                     <p className="text-sm text-slate-700 leading-relaxed">
-                      ✓ <strong>What's next?</strong><br/>
-                      We're launching soon! You'll be among the first to get early access and exclusive updates.
+                      ✓ <strong>{t('stepSuccess.whatsNext')}</strong><br/>
+                      {t('stepSuccess.whatsNextBody')}
                     </p>
                   </div>
 
@@ -583,7 +561,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({
                     onClick={handleClose}
                     className="w-full bg-slate-900 text-white py-4 rounded-2xl font-semibold hover:bg-slate-800 transition-all"
                   >
-                    Done
+                    {t('stepSuccess.done')}
                   </button>
                 </motion.div>
               )}

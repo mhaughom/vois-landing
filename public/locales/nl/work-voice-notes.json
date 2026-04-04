@@ -1,0 +1,75 @@
+{
+  "badge": "Slimme Router",
+  "hero": {
+    "title": "Één Opname.\nVier Systemen Bijgewerkt.",
+    "description": "Spreek 30 seconden over uw dag. HABOS detecteert elke intentie en stuurt elk onderdeel naar de juiste plek."
+  },
+  "heroPills": ["11 intentietypes", "< 3 sec verwerking", "Woordniveaukoppeling"],
+  "intro": "Dit is geen spraak-naar-tekst gevolgd door het invullen van een formulier. Dit is spraak naar begrip naar orkestratie van meerdere systemen. De dichtstbijzijnde vergelijking is een menselijke uitvoerend assistent die naar uw rommelige update luistert en vier verschillende items in vier verschillende systemen aanmaakt — behalve dat HABOS dit in minder dan drie seconden doet. Het systeem begrijpt zelfs duur: een opname van twee minuten met 'vergadering' wordt geclassificeerd als planning. Een opname van vijftien minuten met 'vergadering' wordt geclassificeerd als vergadernotities.",
+  "demo": {
+    "transcript": "\"Herinner me eraan om Sarah op te volgen over de keukenofferte, plan een bezoek ter plaatse voor aanstaande dinsdag om 14:00 uur, we hebben drie dozen tegels uit de voorraad gebruikt, en zeg Mike dat de vergunningen zijn goedgekeurd.\"",
+    "cards": [
+      {
+        "label": "Taak aangemaakt",
+        "detail": "Opvolging met Sarah — Keukenrenovatie"
+      },
+      {
+        "label": "Afspraak gepland",
+        "detail": "Bezoek ter plaatse — Dinsdag 14:00 uur"
+      },
+      {
+        "label": "Voorraad bijgewerkt",
+        "detail": "Tegels — 3 dozen afgetrokken"
+      },
+      {
+        "label": "Bericht opgesteld",
+        "detail": "Aan Mike: Vergunningen zijn goedgekeurd"
+      }
+    ],
+    "footer": "Alles uit één zin. Nul keer van app gewisseld."
+  },
+  "benefitCards": [
+    {
+      "title": "15 min → 30 sec",
+      "body": "De ochtendupdate waarvoor u vroeger 4 apps moest openen en in elk moest typen? Gewoon praten."
+    },
+    {
+      "title": "Nul gemiste items",
+      "body": "Vertrouwensscores vangen intenties met lage zekerheid op en sturen ze naar een inbox voor uw beoordeling."
+    },
+    {
+      "title": "Werkt overal",
+      "body": "Neem op op uw telefoon, horloge of Mac. De Slimme Router verwerkt identiek op elk apparaat."
+    }
+  ],
+  "confidence": {
+    "title": "Hoe vertrouwen werkt",
+    "rows": [
+      {
+        "range": "≥ 85%",
+        "label": "Automatisch aangemaakt",
+        "detail": "Items met hoge zekerheid gaan direct naar hun bestemming."
+      },
+      {
+        "range": "50–84%",
+        "label": "Inbox beoordeling",
+        "detail": "Items met gemiddelde zekerheid wachten op uw bevestiging."
+      },
+      {
+        "range": "< 50%",
+        "label": "Brain dump",
+        "detail": "Items met lage zekerheid worden opgeslagen als notities. Niets gaat verloren."
+      }
+    ]
+  },
+  "techStrip": [
+    "Deepgram Nova-3 transcriptie",
+    "Duursbewuste routering",
+    "Woordniveauindexkoppeling",
+    "11 intentietypes"
+  ],
+  "closing": {
+    "tagline": "Andere apps laten u spraakberichten opnemen. HABOS begrijpt ze.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

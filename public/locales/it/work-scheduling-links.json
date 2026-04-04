@@ -1,0 +1,49 @@
+{
+  "badge": "Link di Pianificazione",
+  "hero": {
+    "title": "Il Tuo Calendly.\nIntegrato.",
+    "description": "Crea link di prenotazione condivisibili che permettono a chiunque di pianificare del tempo con te — con generazione intelligente degli slot, tempo buffer e protezione dalle condizioni di gara."
+  },
+  "body": "Crea link di pianificazione illimitati — URL come habos.app/s/mathias-30min — dove gli ospiti prenotano senza attrito e senza necessità di account. La generazione intelligente degli slot considera durata, orari lavorativi, tempo buffer ed eventi calendario esistenti. Il padding pre e post riunione configurabile blocca automaticamente gli slot sovrapposti. Le ricontrolle lato server prevengono le doppie prenotazioni anche sotto richieste simultanee. Gli ospiti ricevono email di conferma con link di cancellazione con un clic.",
+  "mockCard": {
+    "name": "Mathias Haughom",
+    "meetingType": "Consulenza di 30 Minuti",
+    "url": "habos.app/s/mathias-30min",
+    "selectedTime": "Martedì 10:00",
+    "confirmButton": "Conferma Prenotazione",
+    "caption": "Condividi il link ovunque — firma email, sito web, bio social. Gli ospiti prenotano senza creare un account."
+  },
+  "benefits": {
+    "slotGeneration": {
+      "title": "Generazione intelligente degli slot",
+      "desc": "Durata, orari lavorativi, tempo buffer ed eventi calendario esistenti vengono tutti considerati. Vengono mostrati solo gli slot veramente disponibili — nessun botta e risposta."
+    },
+    "buffer": {
+      "title": "Buffer di 15 min integrato",
+      "desc": "Il padding pre e post riunione configurabile blocca automaticamente gli slot sovrapposti. Niente più chiamate back-to-back senza pausa."
+    },
+    "selfService": {
+      "title": "Self-service per gli ospiti",
+      "desc": "L'email di conferma include un link di cancellazione con un clic. Gli ospiti cancellano o ripianificano senza contattarti. Tu ricevi una notifica."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Senza HABOS",
+    "withoutText": "Paga $12/mese per Calendly. Copia la disponibilità dal tuo calendario. Spera che si sincronizzi. Aggiungi manualmente la prenotazione al tuo CRM. Invia la fattura separatamente.",
+    "withoutStat": "3 strumenti, $12/mese in più",
+    "withTitle": "Con HABOS",
+    "withText": "Crea un link di pianificazione. Condividilo. L'ospite prenota. Calendario, CRM, ordine e notifica si aggiornano automaticamente. Già incluso nel tuo piano.",
+    "withStat": "1 strumento, $0 in più"
+  },
+  "techStrip": [
+    "Generazione intelligente degli slot",
+    "Gestione tempo buffer",
+    "Protezione condizioni di gara",
+    "Link di auto-cancellazione",
+    "Integrazione prodotti"
+  ],
+  "closing": {
+    "title": "Gli altri strumenti di pianificazione sono un abbonamento separato.\nLa pianificazione HABOS è integrata.",
+    "cta": "Iscriviti alla lista d'attesa"
+  }
+}

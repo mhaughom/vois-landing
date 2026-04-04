@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Soluzioni — Fondatori Indipendenti",
+    "title": "Il tuo primo dipendente costa $35\u00a0al\u00a0mese.",
+    "subtitle": "Freelance, consulenti indipendenti, artigiani in proprio, agenzie mono-persona, coach, avvocati singoli e chiunque sia contemporaneamente CEO, commerciale, contabile, marketer e addetto al servizio clienti."
+  },
+  "body": {
+    "salutation": "Caro fondatore indipendente,",
+    "p1": "Sappiamo come sono le tue mattine. La sveglia suona alle 6:45 e prima che i piedi tocchino il pavimento stai già controllando le email. Quattordici messaggi durante la notte. Tre richiedono risposta. Due sono fatture che avresti dovuto inviare la settimana scorsa. Uno è un potenziale cliente a cui stai pensando di fare un follow-up da giorni. Ti senti in ritardo prima ancora di alzarti.",
+    "p2": "Conosciamo il rapporto. Una riunione con un cliente di trenta minuti genera quindici minuti di lavoro amministrativo dopo — digitare note, creare attività, inviare un riepilogo via email. Metà della tua vita lavorativa si passa a fare lavoro sul lavoro, invece del lavoro stesso.",
+    "p3": "Conosciamo le 14:00. Dovresti fare lavoro fatturabile per i clienti, ma hai passato l'ultima ora su \"affari\" — una fattura, quattro email, un aggiornamento del sito web, un post su LinkedIn, una riunione ripianificata. Niente di tutto questo è fatturabile. Niente di tutto questo è il motivo per cui hai iniziato.",
+    "p4": "E conosciamo le domeniche sera. Il CRM su foglio di calcolo. Le fatture scadute. Le email di follow-up che stai rimandando. Due ore di lavoro non retribuito nel tuo giorno libero. Ogni singola settimana.",
+    "divider": "Ecco cosa cambia.",
+    "briefing": {
+      "label": "6:45 — Il tuo watch",
+      "text": "\"2 fatture scadute — email di sollecito redatte. 1 nuovo potenziale cliente — risposta pronta per la revisione. Oggi: 10:00 Sarah Chen (briefing preparato — note dell'ultima riunione, saldo in sospeso, stato del progetto), 14:00 chiamata di scoperta (ricerca aziendale completata di notte). 3 attività in scadenza.\"",
+      "note": "Tocchi invia sulle fatture e approvi la risposta al potenziale cliente prima di alzarti."
+    },
+    "p5": "La tua riunione delle 9:00 con il cliente? Ti limiti ad ascoltare e parlare. HABOS cattura la trascrizione, estrae tre elementi di azione e redige un'email di follow-up al cliente. La revisioni sul telefono, cambi una frase, tocchi invia. Totale amministrazione: novanta secondi.",
+    "p6": "Alle 14:00 stai facendo lavoro fatturabile. La fattura è stata inviata questa mattina — redatta dalle milestone del progetto e dalla tariffa oraria. Le quattro email sono state gestite tra una riunione e l'altra attraverso schede di notifica — tre erano risposte redatte dall'AI che hai approvato con un tocco, una era una richiesta di pianificazione che l'AI ha risolto controllando il tuo calendario. Il contenuto LinkedIn è stato redatto dalle intuizioni della riunione di stamattina.",
+    "p7": "Non hai \"fatto amministrazione\" oggi. È accaduta intorno a te.",
+    "p8": "Domenica sera? Stai guardando un film. Il CRM si mantiene da solo dalle tue email e chiamate. Le fatture scadute hanno inviato gentili promemoria. Le email di follow-up sono state redatte e messe in coda per lunedì mattina. Il tuo calendario, le attività e le scadenze dei progetti sono in un unico sistema che sa cosa viene dopo.",
+    "p9": "Le domeniche sera sono di nuovo tue.",
+    "emotional": {
+      "line1": "La parte più solitaria di gestire un'azienda da soli non è il lavoro — è non avere nessuno a cui delegare, nessuno che ti ricordi, nessuno che catturi le cose che lasci cadere.",
+      "line2": "VOIS non sostituisce la connessione umana. Ma sostituisce il lavoro amministrativo umano che ti impedisce di fare il lavoro che ami e la vita per cui hai avviato questa attività."
+    },
+    "section2": {
+      "heading": "Cosa sostituisce VOIS",
+      "p1": "Probabilmente hai una versione di questo stack: ChatGPT per pensare, Calendly per le prenotazioni, Wave o QuickBooks per la fatturazione, Gmail per tutto, Notion o Trello per le attività, Mailchimp per l'occasionale email blast e la tua memoria per tenere traccia di chi hai in sospeso un follow-up.",
+      "p2": "HABOS li sostituisce tutti con un singolo assistente AI che conosce davvero la tua azienda — i tuoi clienti, i tuoi progetti, il tuo programma, i tuoi prezzi, la tua voce. ChatGPT conosce internet. VOIS conosce te.",
+      "p3": "Costruisce il tuo CRM dalle conversazioni in modo che tu non aggiorni mai più un foglio di calcolo. Redige le email nella tua voce e aspetta la tua approvazione. Tiene traccia degli impegni che prendi nelle riunioni e ti ricorda prima che tu li dimentichi. Ti dà cinque Consulenti AI — Finanza, Strategia, Operazioni, Marketing, Vendite — che non concordano di proposito, perché essere indipendente non deve significare prendere ogni decisione da solo.",
+      "p4": "E funziona sul tuo Apple Watch, così puoi controllare la giornata, approvare un'email o catturare un'idea tra una riunione e l'altra, durante una passeggiata, in ascensore.",
+      "p5": "Il tutto per $35 al mese."
+    },
+    "stats": [
+      ["15 ore", "liberate a settimana"],
+      ["$300+", "risparmiate al mese"],
+      ["0", "follow-up dimenticati"],
+      ["0", "sessioni amministrative domenicali"]
+    ],
+    "testimonial": {
+      "quote": "\"Trascorrevo ogni domenica sera a fare l'amministrazione che non riuscivo a infilare nella settimana lavorativa. Ora VOIS gestisce la mia fatturazione, i miei follow-up e la mia pianificazione mentre faccio lavoro per i clienti. I Consulenti AI sono sorprendentemente utili — il mese scorso il consulente di Strategia ha suggerito di concentrarmi su una nicchia che non avevo considerato. Ho acquisito due nuovi clienti grazie a ciò. Per la prima volta in sei anni di consulenza, mi sento come se avessi un team.\"",
+      "attribution": "— Camilla, 42 · Consulente di gestione indipendente · Oslo"
+    },
+    "cta": {
+      "heading": "Assumi il tuo primo dipendente per $35/mese.",
+      "button": "Unisciti alla lista d'attesa"
+    }
+  }
+}

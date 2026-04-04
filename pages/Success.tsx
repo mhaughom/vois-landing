@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Check, ExternalLink } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 
 const Success = () => {
+  const { t } = useTranslation('success');
   const [searchParams] = useSearchParams();
+  const steps = t('steps', { returnObjects: true }) as string[];
 
   useEffect(() => {
     Analytics.pageView('success');
@@ -40,26 +43,22 @@ const Success = () => {
               whileHover={{ scale: 1.05 }}
               className="cursor-pointer"
             >
-              <img src="/Logo/vois-logo.svg" alt="Vois" className="h-12 w-12" />
+              <img src="/Logo/vois-logo.svg" alt={t('logoAlt')} className="h-12 w-12" />
             </motion.div>
           </Link>
 
           {/* Headline */}
           <h1 className="text-2xl md:text-3xl font-serif text-slate-900 text-center mb-2">
-            Welcome to VOIS.
+            {t('headline')}
           </h1>
           <p className="text-slate-400 text-center text-sm mb-8">
-            Your subscription is active. Let's get started.
+            {t('subtitle')}
           </p>
 
           {/* Next Steps */}
           <div className="space-y-4 mb-8">
-            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider">What happens next</h3>
-            {[
-              'Check your email for your receipt',
-              'Download VOIS from the App Store',
-              'Sign in with your email to activate',
-            ].map((step, i) => (
+            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider">{t('nextStepsHeading')}</h3>
+            {steps.map((step, i) => (
               <div key={i} className="flex items-start gap-3 text-slate-600 text-sm">
                 <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check size={12} className="text-emerald-500" />
@@ -78,7 +77,7 @@ const Success = () => {
               onClick={() => Analytics.externalLinkClicked('app_store')}
               className="flex items-center justify-center gap-2 w-full bg-black text-white py-4 rounded-full text-base font-medium hover:bg-slate-900 transition-colors"
             >
-              Download on App Store
+              {t('downloadButton')}
               <ExternalLink size={16} />
             </a>
             <a
@@ -88,7 +87,7 @@ const Success = () => {
               onClick={() => Analytics.externalLinkClicked('discord')}
               className="flex items-center justify-center gap-2 w-full bg-white text-slate-900 py-4 rounded-full text-base font-medium border border-slate-200 hover:bg-slate-50 transition-colors"
             >
-              Join Discord Community
+              {t('discordButton')}
               <ExternalLink size={16} />
             </a>
           </div>
@@ -105,7 +104,7 @@ const Success = () => {
             to="/"
             className="text-slate-900 font-medium hover:underline underline-offset-4 transition-all"
           >
-            Back to Home
+            {t('backToHome')}
           </Link>
         </motion.p>
       </motion.div>

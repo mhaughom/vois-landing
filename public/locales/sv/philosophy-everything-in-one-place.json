@@ -1,0 +1,44 @@
+{
+  "category": "Filosofi",
+  "title": "Allt på ett ställe",
+  "tagline": "En inloggning. Varje verktyg. Delat sammanhang.",
+  "heroAlt": "Allt på ett ställe — enhetlig affärsplattform",
+  "section1": {
+    "heading": "SaaS-skatten",
+    "body1": "Det genomsnittliga småföretaget använder 8 till 12 programvaruverktyg. Vart och ett med sin egen inloggning, datamodell, faktureringscykel och inlärningskurva. Inget av dem kommunicerar med varandra nativt. Företagsägaren blir integrationsskiktet — kopierar data manuellt mellan appar och betalar ett tredje verktyg för att få två andra att låtsas samarbeta.",
+    "body2": "Prenumerationskostnaden är inte ens den verkliga skatten. Det är den kognitiva skatten. Kontextbytet. Frågan \"vilket verktyg har den senaste versionen?\". Onboardingsskatten när varje ny anställd behöver 10 konton. Zapier-arbetsflödet som tyst brister en lördag."
+  },
+  "section2": {
+    "heading": "Ett röstmemo, sex uppdateringar",
+    "quote": "\"Henderson köksrenovering är klar. Tog 4 timmar, använde resterande kakel från lagret. Klienten var nöjd — vill ha en offert för badrummet nästa.\"",
+    "intro": "Från det enda röstmemot uppdaterar VOIS:",
+    "updates": [
+      "Projektstatus → slutfört",
+      "Tidsspårning → 4 timmar loggade och stängda",
+      "Faktura → utkast genererat från projektomfång",
+      "Klientavisering → bekräftelsemejl i kö",
+      "CRM-tidslinje → uppdaterad med slutförande + nytt intresse",
+      "Ny möjlighet → badrumsoffert tillagd i pipeline"
+    ],
+    "outro": "Sex \"moduler\" uppdaterade från en input — för att de delar samma databas, inte sex API:er sammankopplade med hopp."
+  },
+  "costComparison": {
+    "separateTitle": "10 separata verktyg",
+    "separatePrice": "350+ kr",
+    "separatePricePer": "/mån",
+    "separateDetail1": "10 inloggningar · 5+ Zapier-arbetsflöden",
+    "separateDetail2": "~3 timmar att onboarda en ny anställd",
+    "voisTitle": "VOIS",
+    "voisPrice": "350 kr",
+    "voisPricePer": "/mån",
+    "voisDetail1": "1 inloggning · 0 integrationer att underhålla",
+    "voisDetail2": "~5 minuter att onboarda en ny anställd"
+  },
+  "quote": "\"Integration är ett medgivande att dina verktyg inte fungerar tillsammans. Vi byggde ett verktyg som gör det.\"",
+  "nav": {
+    "prevLabel": "Föregående",
+    "prevTitle": "Luftslussen",
+    "nextLabel": "Nästa",
+    "nextTitle": "En assistent"
+  }
+}

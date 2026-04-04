@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Planification & Réservations",
+  "hero": {
+    "title": "Votre calendrier se gère tout seul",
+    "description": "Planification IA, réservations en ligne et liens partageables — connectés à votre CRM et vos paiements pour que rien ne passe entre les mailles."
+  },
+  "items": [
+    {
+      "title": "Calendrier",
+      "desc": "Blocs de focus remplis automatiquement, réunions préparées avec des briefings IA."
+    },
+    {
+      "title": "Réservations",
+      "desc": "Les clients réservent en ligne, les commandes se créent automatiquement, le paiement est encaissé en une seule étape."
+    },
+    {
+      "title": "Liens de planification",
+      "desc": "Pages de réservation partageables avec synchronisation des disponibilités et paiements Stripe."
+    }
+  ]
+}

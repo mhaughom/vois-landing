@@ -1,0 +1,76 @@
+{
+  "category": "Filosofie",
+  "title": "De luchtsluis",
+  "tagline": "AI stelt voor. Jij beslist.",
+  "heroAlt": "De luchtsluis",
+  "section1": {
+    "heading": "Het probleem waar niemand over spreekt",
+    "body1": "Het gevaarlijkste aan AI is niet dat het dingen fout doet. Het is dat het handelt voordat je kunt controleren. Een verkoopbot biedt 40% korting die het margebeleid schendt. Een boekingssysteem dubbel-plant omdat het optimaliseerde voor dichtheid zonder rijtijd te begrijpen. Dit zijn geen hypothetische gevallen.",
+    "body2": "Slechts 6% van de ondernemingen zegt volledig vertrouwen te hebben in autonome AI-agents. De andere 94% heeft gelijk voorzichtig te zijn. Wij bouwden het tegenovergestelde: elke actie die de AI onderneemt, passeert wat wij de Luchtsluis noemen — een verplichte voorbeeldweergave waarbij je precies ziet wat er gaat gebeuren voordat het gebeurt."
+  },
+  "section2": {
+    "heading": "De vergelijking"
+  },
+  "comparison": [
+    { "action": "E-mail versturen", "auto": "Onmiddellijk verstuurd. CEO ontdekt een typefout nadat 200 mensen het hebben gelezen.", "airlock": "Concept verschijnt als kaart. Je corrigeert de typefout, tik verzenden." },
+    { "action": "Agendawijzigingen", "auto": "Dinsdag dubbel geboekt — je persoonlijke agenda niet gecontroleerd.", "airlock": "Voorbeeld toont het conflict. Je kiest het juiste tijdslot." },
+    { "action": "Taken aanmaken", "auto": "14 taken uit één vergadering. 6 zijn duplicaten.", "airlock": "Voorgestelde lijst. Je voegt twee samen, verwijdert één, keurt de rest goed." },
+    { "action": "Klantcommunicatie", "auto": "Antwoordde met een coupon die je niet meer aanbiedt.", "airlock": "Antwoord verschijnt als voorbeeld. Je past het aanbod aan, dan verstuur je." }
+  ],
+  "tableHeaders": {
+    "action": "Actie",
+    "auto": "Volledig autonoom",
+    "airlock": "De luchtsluis"
+  },
+  "section3": {
+    "heading": "Geen UI-patroon. Een beveiligingsprotocol.",
+    "body": "Elke schrijfactie genereert een HMAC-SHA256 ondertekend bevestigingstoken dat de gebruiker, de exacte actie en de precieze argumenten bindt — tot aan individuele tekens in een e-mailconcept. Tokens verlopen na 10 minuten. Als er iets verandert tussen voorbeeld en bevestiging, wordt het token ongeldig. De AI kan de actie niet wijzigen nadat hij hem aan je heeft getoond. Wat je hebt goedgekeurd, is precies wat wordt uitgevoerd."
+  },
+  "quote": "\"De pauze is geen beperking. Het is de reden waarom je dit met je bedrijf kunt vertrouwen.\"",
+  "section4": {
+    "heading": "Jouw gegevens. Jouw infrastructuur. Jouw regels.",
+    "body": "Vertrouwen gaat niet alleen over wat de AI doet — het gaat over waar je gegevens leven. HABOS draait waar jij het nodig hebt: onze cloud, jouw servers of volledig luchtafgeschermd zonder internetafhankelijkheid. Hetzelfde platform, dezelfde functies, waar je gegevens ook moeten zijn."
+  },
+  "deploymentOptions": [
+    {
+      "title": "Cloud",
+      "body": "Railway voor compute, Supabase voor database en de grote hyperscalers voor LLM. Productierijp vanaf dag één.",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "On-Premises",
+      "body": "Implementeer de volledige backend op jouw locatie. Draai Qwen-modellen op standaard Mac-hardware voor lokale AI — geen GPU-cluster vereist.",
+      "badges": ["Qwen-modellen", "Mac-compatibel", "Zelfgehoste DB"]
+    },
+    {
+      "title": "Luchtafgeschermd datacenter",
+      "body": "Voor maximale isolatie, implementeer een lokaal datacenter met modellen zoals Kimi K2. Volledige AI-mogelijkheden zonder internetafhankelijkheid.",
+      "badges": ["Kimi K2", "Luchtafgeschermd", "Nul egress"]
+    }
+  ],
+  "section5": {
+    "heading": "Beveiliging op elke laag"
+  },
+  "securityItems": [
+    {
+      "title": "Cryptografische goedkeuringstokens",
+      "body": "Elke AI-actie is ondertekend en manipulatiebestendig."
+    },
+    {
+      "title": "Rijniveau-beveiliging op elke tabel",
+      "body": "Gebruikers zien alleen gegevens waartoe ze gemachtigd zijn."
+    },
+    {
+      "title": "Budgetbewaking per run",
+      "body": "AI-uitgaven worden bijgehouden en beperkt per agent, per taak."
+    },
+    {
+      "title": "Volledige audittrail",
+      "body": "Elke actie, elke beslissing, permanent gelogd."
+    }
+  ],
+  "nav": {
+    "nextLabel": "Volgende",
+    "nextTitle": "Alles op één plek"
+  }
+}

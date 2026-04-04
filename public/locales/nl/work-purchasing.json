@@ -1,0 +1,62 @@
+{
+  "badge": "Inkoop",
+  "hero": {
+    "title": "Leveranciers, orders en voorraad.\nVerbonden.",
+    "description": "Beheer leveranciers, maak inkooporders aan, ontvang goederen en zie voorraadniveaus automatisch aanpassen — geen spreadsheets, geen dubbele invoer."
+  },
+  "mockPO": {
+    "title": "IO #0042 — Nordic Supply Co",
+    "status": "Wachten op levering",
+    "tableHeaders": {
+      "item": "Item",
+      "qty": "Aantal",
+      "unit": "Eenheid",
+      "total": "Totaal"
+    },
+    "lineItems": [
+      { "product": "Flexibele koppelingen x20", "qty": 20, "unit": "€17,00", "total": "€340" },
+      { "product": "Koperpijp 15mm x50m", "qty": 50, "unit": "€17,80", "total": "€890" },
+      { "product": "Afdichtingsdozen x12", "qty": 12, "unit": "€13,00", "total": "€156" }
+    ],
+    "totalsRow": {
+      "total": "Totaal: €1.386",
+      "lineCount": "3 regelitems"
+    },
+    "received": {
+      "heading": "Ontvangen (2 van 3)",
+      "items": [
+        { "product": "Flexibele koppelingen x20", "checked": true },
+        { "product": "Koperpijp 15mm x50m", "checked": true },
+        { "product": "Afdichtingsdozen x12", "checked": false }
+      ]
+    },
+    "annotation": "Inkooporders zijn direct gekoppeld aan je productcatalogus. Ontvangst werkt de voorraad realtime bij — ook bij gedeeltelijke leveringen."
+  },
+  "benefits": [
+    {
+      "title": "Leveranciersregister",
+      "desc": "Volg leveranciers, contactgegevens, betalingsvoorwaarden en bestelgeschiedenis. Weet wie wat levert en wanneer."
+    },
+    {
+      "title": "Inkooporders",
+      "desc": "Maak IO's aan vanuit laagvoorraaalmeldingen of handmatige aanvragen. Regelitems zijn gekoppeld aan je productcatalogus."
+    },
+    {
+      "title": "Ontvangst & voorraad",
+      "desc": "Markeer items als ontvangen. Voorraadniveaus worden automatisch bijgewerkt. Gedeeltelijke leveringen gevolgd."
+    }
+  ],
+  "scenario": "Je magazijn signaleert lage voorraad van flexibele koppelingen. VOIS maakt een concept-IO aan naar je voorkeursle leverancier met de juiste hoeveelheden en prijzen van je laatste bestelling. Jij keurt goed met één tik. Wanneer de levering aankomt, markeert je team items als ontvangen en wordt de voorraad direct bijgewerkt.",
+  "techItems": [
+    "Leveranciersbeheer",
+    "Inkooporders",
+    "Gedeeltelijke ontvangst",
+    "Automatische voorraadaanpassing",
+    "Factuurregistratie",
+    "Laagvoorraaalmeldingen"
+  ],
+  "cta": {
+    "title": "Van nabestelling tot aangevuld.\nEén systeem.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "badge": "AI Creative Studio",
+  "hero": {
+    "titlePart1": "Kampagnebrief ind.",
+    "titlePart2": "Scorede kreative ud.",
+    "description": "Beskriv, hvad du har brug for. AI genererer koncepter, renderer billeder baseret på dine rigtige produkter og scorer hver variant på 6 kvalitetsdimensioner. Sæt vinderne i drift."
+  },
+  "body": "Den kreative pipeline er deterministisk: kampagnekontekst ind, scorede kreative ud. AI genererer koncepter baseret på dine rigtige produktfotos, logoer og bevismateriale — ikke generiske stockbilleder. Hver variant scores på seks dimensioner: produkttrofasthed, brandtrofasthed, læsbarhed, autenticitet, placeringsegnethed og politikoverholdelse. Spor hvert genereret kreativt fra oprettelse til udrulning til klik til konvertering. Vid præcis, hvilke visuelle vinkler driver omsætning.",
+  "pipelineLabel": "Genereringspipeline",
+  "pipelineStages": [
+    { "label": "Brief", "count": "1" },
+    { "label": "3 koncepter", "count": "3" },
+    { "label": "12 varianter", "count": "12" },
+    { "label": "Top 4 scoret", "count": "4" }
+  ],
+  "creativeCards": [
+    { "channel": "Meta-annonce", "score": "8,7/10" },
+    { "channel": "Instagram", "score": "9,1/10" },
+    { "channel": "Website", "score": "7,3/10" },
+    { "channel": "Google-annonce", "score": "8,9/10" }
+  ],
+  "scoringCaption": "Hver variant scoret på: produkttrofasthed, brandtrofasthed, læsbarhed, autenticitet, placeringsegnethed og politikoverholdelse.",
+  "benefits": [
+    {
+      "title": "Forankret i dit brand",
+      "desc": "AI refererer til dine rigtige produktfotos, logoer og bevismateriale. Ikke generiske stockbilleder — billeder, der ligner din faktiske virksomhed."
+    },
+    {
+      "title": "4 kanaler, ét brief",
+      "desc": "Meta-annoncer, sociale opslag, websiteafsnit og præsentationsslides — alt genereret fra ét enkelt kampagnebrief. Tilpasset størrelse og format pr. platform."
+    },
+    {
+      "title": "Udforsk-tilstand",
+      "desc": "Fundet en vinder? Udforsk-tilstand genererer 10+ variationer af dit bedste koncept til A/B-test. Find den præcise vinkel, der konverterer."
+    }
+  ],
+  "scoring": {
+    "heading": "Kvalitetsscoringsdimensioner",
+    "dimensions": [
+      "Produkttrofasthed",
+      "Brandtrofasthed",
+      "Læsbarhed",
+      "Autenticitet",
+      "Placeringsegnethed",
+      "Politikoverholdelse"
+    ]
+  },
+  "scenario": "Du lancerer en forårs-HVAC-kampagne. Skriv: \"Generer kreative til vores forårs-AC-tune-up-tilbud — kr. 699 for eksisterende kunder.\" HABOS henter dine AC-servicefotos, brandfarver og kampagnetilbuddet. På 90 sekunder: 3 koncepter, 12 varianter på tværs af Meta, Instagram og dit website. Den topscorede variant har en kvalitetsvurdering på 9,1. Klik \"Sæt i drift\" — den er live på Meta og publiceret til dit websites kampagneflade.",
+  "techItems": [
+    "7-trins deterministisk pipeline",
+    "Flerkanal-output",
+    "6-dimensions scoring",
+    "Lukket-kredsløbs attribution",
+    "Studio + Udforsk-tilstande"
+  ],
+  "cta": {
+    "heading": "Andre værktøjer genererer generiske billeder. HABOS genererer scorede, brandklare kampagner.",
+    "button": "Tilmeld venteliste"
+  }
+}

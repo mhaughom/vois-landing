@@ -1,0 +1,49 @@
+{
+  "badge": "Zahlungen",
+  "hero": {
+    "title": "Kunde zahlt. Du wirst direkt bezahlt.",
+    "description": "Stripe Connect Express überweist Zahlungen direkt auf dein Bankkonto. Kein Zwischenhändler hält dein Geld. Keine 30-tägigen Auszahlungsverzögerungen."
+  },
+  "body": "HABOS stellt Stripe Connect Express-Konten pro Arbeitsbereich bereit und ermöglicht direkte Zahlungen auf das Bankkonto des Geschäftsinhabers. Der Kunde zahlt auf der Website, Stripe belastet die Karte, die Plattform zieht eine konfigurierbare Anwendungsgebühr ab und der Rest wird direkt auf das Bankkonto des Inhabers überwiesen. Vollständige und teilweise Rückerstattungen fließen durch Stripe mit automatischer Lagerbestandswiederherstellung. Dies ist Shopifys Modell angewendet auf eine KI-native Plattform.",
+  "flowNodes": [
+    { "label": "Kunde zahlt 100 €" },
+    { "label": "Stripe verarbeitet" },
+    { "label": "HABOS-Gebühr: 5 €" },
+    { "label": "Du erhältst: 95 €" }
+  ],
+  "flowCaption": "Konfigurierbare Anwendungsgebühr (Standard 5%). Umsatzfluss: Kunde → Stripe → HABOS zieht Gebühr ab → Rest auf dein Konto überwiesen.",
+  "benefits": [
+    {
+      "title": "3-Klick-Einrichtung",
+      "desc": "Verbinde dein Stripe-Konto, schließe das Onboarding ab (Geschäftsdaten, Bankdaten, Steuer-ID) und du bist live. Belastungen aktiviert, Auszahlungen aktiviert."
+    },
+    {
+      "title": "Jede Zahlungsmethode",
+      "desc": "Checkout-Sitzungen, Rechnungen, Zahlungslinks, manuelle Zahlungen und Rückerstattungen — alles über eine Integration. Vollständige und teilweise Rückerstattungen mit automatischer Lagerbestandswiederherstellung."
+    },
+    {
+      "title": "Website → Zahlung → Bank",
+      "desc": "Kunde kauft auf deiner HABOS-Website. Stripe belastet die Karte. Dein Anteil wird überwiesen. Der Auftrag wird verfolgt. Keine Abstimmung erforderlich."
+    }
+  ],
+  "pricing": {
+    "heading": "Wie HABOS-Preisgestaltung funktioniert",
+    "tiers": [
+      { "name": "Free", "credits": "1.000 KI-Credits/Monat", "price": "0 €/Monat" },
+      { "name": "Personal", "credits": "7.500 KI-Credits/Monat", "price": "14,99 €/Monat" },
+      { "name": "Work", "credits": "17.500 KI-Credits/Monat", "price": "34,99 €/Monat" }
+    ],
+    "topUps": "Plus Arbeitsbereich-Aufstockungen (100–1.000 €) für Teams, die mehr KI-Kapazität benötigen."
+  },
+  "techItems": [
+    "Stripe Connect Express",
+    "Konfigurierbare Gebühren",
+    "Webhook-Sync",
+    "Vollständige + teilweise Rückerstattungen",
+    "RevenueCat für Mobile"
+  ],
+  "cta": {
+    "heading": "Andere Plattformen halten dein Geld zurück. HABOS sendet es auf dein Konto.",
+    "button": "Warteliste beitreten"
+  }
+}

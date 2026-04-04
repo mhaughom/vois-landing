@@ -1,0 +1,8 @@
+{
+  "introMessage": "Hei! Voin auttaa sinua tutustumaan HABOSiin. Kysy mistä tahansa ominaisuudesta — sähköposti, CRM, tehtävät, kalenteri — ja vien sinut oikeaan paikkaan.",
+  "header": "HABOS-chat",
+  "placeholder": "Kysy mistä tahansa ominaisuudesta...",
+  "openChatAriaLabel": "Avaa chat",
+  "closeChatAriaLabel": "Sulje chat",
+  "sendMessageAriaLabel": "Lähetä viesti"
+}

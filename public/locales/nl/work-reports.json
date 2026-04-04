@@ -1,0 +1,66 @@
+{
+  "badge": "Binnenkort beschikbaar",
+  "hero": {
+    "title": "Spraakrapporten",
+    "description": "Praat rapporten in het bestaan. Loop door een locatie-inspectie terwijl je je observaties uitspreekt — AI genereert direct een opgemaakte PDF."
+  },
+  "intro": "Traditionele rapporten vereisen gaan zitten, een formulier openen en antwoorden typen. HABOS biedt vier invulmodi: een realtime spraakinterview waarbij AI veld voor veld vragen stelt, een dictaatmodus waarbij één spraaknotitie alle velden stil invult, een tekstchatbot die elk veld conversationeel doorloopt, en traditionele handmatige invoer als fallback. Upload een PDF of afbeelding en GPT-4 Vision extraheert veldlabels, typen en validatiepatronen om automatisch een getypt schema te genereren.",
+  "problem": {
+    "title": "Het rapportschrijfprobleem",
+    "body": "Voor veldwerkers, verpleegkundigen, inspecteurs en veel professionals is het schrijven van rapporten op aanraakschermen of computers een enorme tijdverspilling. Het is traag, vervelend en mensen laten vaak details weg omdat typen te omslachtig is. Spraakrapporten veranderen alles."
+  },
+  "features": [
+    {
+      "title": "Gewoon praten",
+      "desc": "Open VOIS, tik op opnemen en praat je observaties door. Geen typen, geen formulieren, geen selectievakjes. AI luistert, structureert en formatteert alles automatisch."
+    },
+    {
+      "title": "Direct opmaken",
+      "desc": "AI genereert een correct opgemaakt rapport — koppen, secties, opsommingstekens, samenvattingen. Exporteer als PDF, Word of elk gewenst formaat. Klaar om direct in te dienen."
+    },
+    {
+      "title": "10x sneller",
+      "desc": "Mensen praten 3-4x sneller dan ze typen. Tel de AI-opmaak mee en je kijkt naar 10x tijdsbesparing. Wat vroeger 30 minuten kostte, duurt nu 3."
+    },
+    {
+      "title": "Rijkere informatie",
+      "desc": "Wanneer rapporteren zo eenvoudig is, nemen mensen meer details op. Je krijgt betere data, meer context en duidelijkere communicatie — allemaal omdat praten moeiteloos is."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfect voor",
+    "items": [
+      {
+        "title": "Veldwerkers",
+        "desc": "Locatie-inspecties, veiligheidsrapporten, onderhoudslogboeken"
+      },
+      {
+        "title": "Gezondheidszorg",
+        "desc": "Verpleegkundigennotities, patiëntobservaties, dienststoverdrachten"
+      },
+      {
+        "title": "Sales & Service",
+        "desc": "Klantgesprekken, servicegesprekken, follow-upnotities"
+      }
+    ]
+  },
+  "example": {
+    "title": "Voorbeeld: Bouwplaatsinspectie",
+    "steps": [
+      "Je komt aan bij de locatie met je telefoon of horloge. Tik op opnemen in VOIS.",
+      "\"Locatie-inspectie, Gebouw 3, 15 maart. Weersomstandigheden: helder, 18 graden. Fundering ziet er solide uit — geen scheuren zichtbaar. Elektra-ruwbouw is 80% klaar, op schema. Loodgieterijprobleem in Unit 204 — lekkage onder de wastafel, vereist reparatie voor inspectie. HVAC-kanalen geïnstalleerd, wachten op eindaansluitingen...\"",
+      "Je loopt en praat 5 minuten, alles bedekkend wat je ziet.",
+      "Stop de opname. AI genereert een opgemaakt inspectierapport met secties, opsommingstekens en een samenvatting. Het loodgietrijprobleem wordt als urgent gemarkeerd.",
+      "PDF exporteren. E-mailen naar projectmanager. Klaar. Totale tijd: 6 minuten."
+    ]
+  },
+  "integration": {
+    "title": "Drijft Operationele AI aan",
+    "body": "Spraakrapporten gaan niet alleen over tijdsbesparing — ze voeden kritieke data in Operationele AI. Wanneer je team gedetailleerde spraakrapporten indient, kan Operationele AI patronen identificeren, knelpunten opsporen en je waarschuwen voor problemen voordat ze escaleren. Het is de basis van intelligent operationeel beheer."
+  },
+  "status": {
+    "title": "Momenteel in ontwikkeling",
+    "body": "Spraakrapporten zijn gebouwd en functioneren in onze ontwikkelomgeving. We verfijnen opmaaksjablonen en exportopties voor verschillende sectoren.",
+    "note": "Naar verwachting beschikbaar binnen 6 maanden voor VOIS for Work-abonnees."
+  }
+}

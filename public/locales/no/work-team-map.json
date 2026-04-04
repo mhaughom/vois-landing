@@ -1,0 +1,69 @@
+{
+  "badge": "Sanntidssynlighet",
+  "hero": {
+    "title": "Se hele teamet ditt. I sanntid.",
+    "description": "Alle feltarbeidere på et direktekart – fargekoded etter prosjekt, avdeling eller drift. Vet hvem som kjører, hvem som er på stedet og hvem som er tilgjengelig."
+  },
+  "body": "Alle innstemplede teammedlemmer vises på et direktekart fra Mapbox, oppdatert hvert 30. sekund via Supabase Realtime. Når en arbeiders hastighet overstiger 3 km/t, vises et ravgult kjøre-merke på pinnen – ledere vet umiddelbart hvem som er mellom jobber. Fem grupperingsmodi lar deg se etter prosjekt, avdeling, drift, org-nivå eller alle på én gang, hver med en deterministisk fargepalett slik at samme person alltid får samme farge.",
+  "groupTabs": ["Alle", "Prosjekt", "Avdeling", "Drift"],
+  "pins": [
+    {
+      "name": "Mike T.",
+      "label": "På stedet — Henderson",
+      "speed": 0
+    },
+    {
+      "name": "Sarah L.",
+      "label": "På vei — Wilson",
+      "sublabel": "(kjører)",
+      "speed": 45
+    },
+    {
+      "name": "James K.",
+      "label": "På stedet — Garcia",
+      "speed": 0
+    },
+    {
+      "name": "Lisa M.",
+      "label": "Tilgjengelig",
+      "sublabel": "Sist: Baker Kontor",
+      "speed": 0
+    }
+  ],
+  "mapCaption": "Oppdateres hvert ~30. sekund via Supabase Realtime. Kjøremerke vises når hastighet > 3 km/t.",
+  "benefits": {
+    "grouping": {
+      "title": "5 grupperingsmodi",
+      "description": "Se etter Alle, Prosjekt, Avdeling, Drift eller Org-nivå. Hver med deterministisk fargepalett – samme person, samme farge, alltid."
+    },
+    "driving": {
+      "title": "Kjøredeteksjon",
+      "description": "Når en arbeiders hastighet overstiger 3 km/t, vises et ravgult bilmerke på pinnen. Ledere ser umiddelbart hvem som er mellom jobber."
+    },
+    "route": {
+      "title": "Ruteoverlegg",
+      "description": "Veksle rutepoly-linjer fra Mapbox Directions API. Se planlagt rute vs faktisk plassering – oppdage avvik eller forsinkelser umiddelbart."
+    }
+  },
+  "scenario": {
+    "quote1": "Lekkasjen blir verre, kan noen komme tidligere?",
+    "narrative1": "Du åpner Teamkart, ser at Mike er 10 minutter unna og avslutter nåværende jobb. Du omtildeler nødsituasjonen til Mike fra dispatchbordet. Telefonen hans oppdateres, kartet-pinnen endres til",
+    "quote2": "På vei — Johnson,",
+    "narrative2": "og du forteller kunden:",
+    "quote3": "Mike er der om 15 minutter.",
+    "narrative3": "Ingen gjetting, ingen telefonlek."
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox GL",
+      "Supabase Realtime",
+      "~30s oppdatering",
+      "GPS-punkter",
+      "Deterministisk fargepalett"
+    ]
+  },
+  "cta": {
+    "heading": "Andre verktøy viser deg hvor arbeidere var. HABOS viser deg hvor de er.",
+    "button": "Bli med på ventelisten"
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "features": {
+    "yourAssistant": {
+      "headline": "Una IA que conoce todo tu negocio.",
+      "body": "VOIS aprende tus procesos, preferencias, historial y contexto. No solo responde preguntas — anticipa necesidades, redacta respuestas y actúa en tu nombre en todas las herramientas que usas.",
+      "closingLine": "Otros asistentes necesitan instrucciones. VOIS ya lo sabe."
+    },
+    "yourSuperAssistant": {
+      "headline": "Voz, reloj, bandeja, memoria — un solo cerebro.",
+      "body": "Habla a tu reloj, dicta en el carro, reenvía un correo o deja una nota. Cada entrada llega a un sistema inteligente que enruta, prioriza y recuerda todo.",
+      "closingLine": "Un cerebro. Todas las interfaces."
+    },
+    "yourDay": {
+      "headline": "Cada mañana, planificada para ti.",
+      "body": "VOIS revisa tus tareas, calendario, plazos y prioridades durante la noche. Cada mañana recibes un horario propuesto con bloques de tiempo temáticos, notas de preparación para reuniones y elementos marcados que requieren atención.",
+      "closingLine": "Tu día no debería empezar con decisiones. Debería empezar con un plan."
+    },
+    "meetings": {
+      "headline": "Preparado. Transcrito. Ejecutado.",
+      "body": "Informes personalizados antes de cada reunión. Transcripción en vivo con identificación de oradores durante. Tareas extraídas y asignadas a los proyectos y personas correctos después.",
+      "closingLine": "Otras herramientas transcriben. VOIS prepara, captura y actúa."
+    },
+    "projects": {
+      "headline": "Sabe lo que te necesita antes de que se detenga.",
+      "body": "El monitoreo de salud por IA rastrea la finalización de tareas, los patrones de actividad y el progreso. Cuando un proyecto se silencia o un hito se retrasa, VOIS lo señala de manera proactiva y sugiere los próximos pasos.",
+      "closingLine": "Los dashboards muestran lo que pasó. VOIS te dice qué hacer ahora."
+    },
+    "operations": {
+      "headline": "Tu negocio se monitorea solo.",
+      "body": "VOIS vigila KPIs, flujos de trabajo y procesos recurrentes. Cuando algo se desvía de lo normal — una entrega retrasada, un SLA incumplido, un presupuesto excedido — te alerta con contexto y la acción recomendada.",
+      "closingLine": "Deja de apagar incendios. Empieza a prevenirlos."
+    },
+    "clients": {
+      "headline": "Cada relación, contexto completo.",
+      "body": "VOIS construye perfiles detallados de cada interacción — reuniones, correos, notas, tareas. Antes de cualquier conversación, ves el historial completo, tendencias de sentimiento y puntos de conversación sugeridos por IA.",
+      "closingLine": "Tu CRM no debería ser una base de datos. Debería ser una memoria."
+    },
+    "documents": {
+      "headline": "Dilo. Recibe un documento.",
+      "body": "Describe lo que necesitas — un resumen de proyecto, una propuesta, una actualización semanal — y VOIS genera un documento estructurado desde tu voz, extrayendo contexto de tus proyectos y datos.",
+      "closingLine": "Deja de mirar páginas en blanco. Empieza a hablar."
+    },
+    "finance": {
+      "headline": "Cada centavo, una sola vista.",
+      "body": "Ingresos, gastos, facturas y pronósticos unificados en un dashboard impulsado por IA. VOIS categoriza transacciones, detecta anomalías y responde preguntas en lenguaje natural sobre tus números.",
+      "closingLine": "Tus libros deberían explicarse solos."
+    },
+    "website": {
+      "headline": "Tu sitio, construido por IA.",
+      "body": "Describe tu negocio y VOIS genera un sitio web completo — copy, diseño, imágenes, SEO. Actualízalo por voz. Conecta formularios, reservas y pagos sin tocar código.",
+      "closingLine": "Tu sitio web no necesita un desarrollador."
+    },
+    "aiAgents": {
+      "headline": "Tus primeras diez contrataciones no necesitan salario.",
+      "body": "Construye tu equipo de IA en un organigrama. Asigna agentes a roles — investigador, escritor, analista, operaciones. Cada uno tiene responsabilidades, herramientas, presupuestos y líneas de reporte. Planifican antes de actuar y hacen pausas para aprobación.",
+      "closingLine": "ChatGPT responde preguntas. Los agentes de VOIS completan misiones."
+    },
+    "reports": {
+      "headline": "Dicta tu informe en 90 segundos.",
+      "body": "Sube una plantilla y VOIS extrae cada campo. Completa todo el informe por voz — la IA te entrevista campo por campo y pre-completa lo que ya sabe de tus datos.",
+      "closingLine": "Diez preguntas. Listo."
+    },
+    "yourTeam": {
+      "headline": "Cada empleado, un super-asistente.",
+      "body": "Dale a cada miembro del equipo su propio asistente de IA que conoce el contexto, los procesos y el historial de la empresa. Incorporación, planificación diaria, búsqueda de conocimiento y gestión de tareas — personalizado por rol.",
+      "closingLine": "Escala tus mejores prácticas a cada puesto."
+    },
+    "playbooks": {
+      "headline": "Tus SOPs, vivos y aplicados.",
+      "body": "Convierte los procedimientos operativos estándar en flujos de trabajo activos. VOIS monitorea el cumplimiento, guía a los miembros del equipo en cada paso y señala desviaciones antes de que se conviertan en problemas.",
+      "closingLine": "Los SOPs no deberían vivir en carpetas. Deberían ejecutarse solos."
+    },
+    "fieldToOffice": {
+      "headline": "La brecha de información, eliminada.",
+      "body": "Un técnico termina un trabajo y habla una actualización de 30 segundos. La oficina la ve al instante — estructurada, archivada y vinculada al proyecto, cliente y factura correctos. Sin llamadas telefónicas, sin ingreso manual de datos.",
+      "closingLine": "El campo nunca vuelve a estar un día atrás."
+    },
+    "theAirlock": {
+      "headline": "Poder de IA. Control humano.",
+      "body": "Cada acción de IA pasa por el Airlock — una tarjeta de vista previa con confirmación criptográfica. La IA propone, tú revisas el resultado exacto y apruebas. Nada se envía, crea ni modifica sin tu aprobación explícita.",
+      "closingLine": "La confianza no es una configuración. Es una arquitectura."
+    },
+    "yourMemory": {
+      "headline": "Pregunta cualquier cosa que hayas dicho o leído.",
+      "body": "Busca en las 19 fuentes de datos — grabaciones de voz, correos, documentos, transcripciones de reuniones, notas de CRM — con búsqueda semántica. VOIS encuentra la respuesta incluso cuando no recuerdas en qué app estaba.",
+      "closingLine": "Tu segundo cerebro, con memoria perfecta."
+    },
+    "growthEngine": {
+      "headline": "Comparte una nota de reunión. Gana un cliente.",
+      "body": "Las notas de reunión compartidas se convierten en un canal de crecimiento. Los destinatarios ven la vista previa de tu empresa, reciben una oferta promocional y se registran en un espacio de trabajo precargado con los datos de su propia empresa.",
+      "closingLine": "Tu producto se vende solo a través del trabajo que hace."
+    }
+  },
+  "panels": {
+    "yourAssistant": {
+      "badge": "Conciencia total",
+      "heading": "Ya conoce tu negocio.",
+      "description": "Aprende tus procesos, preferencias e historial. Anticipa lo que necesitas antes de que preguntes.",
+      "tags": ["Correos", "Reuniones", "Proyectos", "CRM", "Docs", "Voz"],
+      "stat": "19",
+      "statLabel": "fuentes de datos",
+      "statSub": "buscadas en paralelo",
+      "statMore": "13 más",
+      "statDesc": "Voz, correo, CRM,\ndocs, chat, proyectos,\ny {{count}} más.",
+      "quote": "Otros asistentes necesitan instrucciones.\nVOIS ya lo sabe."
+    },
+    "yourSuperAssistant": {
+      "badge": "Entradas",
+      "voiceLabel": "Voz",
+      "voiceDesc": "habla naturalmente",
+      "watchLabel": "Reloj",
+      "watchDesc": "toca tu muñeca",
+      "emailLabel": "Correo",
+      "emailDesc": "reenvíalo",
+      "chatLabel": "Chat",
+      "chatDesc": "escribe o textea",
+      "slackLabel": "Slack",
+      "slackDesc": "dale órdenes",
+      "quote": "Un cerebro.\nTodas las interfaces.",
+      "mainBadge": "Todas las superficies, un cerebro",
+      "heading": "Habla, escribe, toca, reenvía.\nTodo llega a un solo lugar.",
+      "description": "Cada entrada se enruta, prioriza y recuerda — sin importar qué dispositivo usaste.",
+      "devices": ["Reloj", "Teléfono", "Desktop", "Bandeja"]
+    },
+    "yourDay": {
+      "badge": "Resumen matutino",
+      "heading": "Tu día, planificado\nantes de que despiertes.",
+      "description": "VOIS revisa tareas, calendario y plazos durante la noche. Despiertas con un horario propuesto.",
+      "stat": "7 AM",
+      "statLabel": "tu plan está listo",
+      "statSub": "construido mientras dormías",
+      "statNote": "Cero decisiones necesarias",
+      "statDesc": "Bloques de tiempo, notas de prep,\ny prioridades marcadas.",
+      "quote": "Tu día debería empezar con un plan, no con decisiones."
+    },
+    "meetings": {
+      "badge": "El ciclo completo",
+      "heading": "Preparado. Transcrito.\nEjecutado.",
+      "beforeLabel": "Antes",
+      "beforeDesc": "informe personalizado",
+      "duringLabel": "Durante",
+      "duringDesc": "transcripción en vivo",
+      "afterLabel": "Después",
+      "afterDesc": "tareas asignadas",
+      "step1": "Preparar",
+      "step1Sub": "auto-informe",
+      "step2": "Capturar",
+      "step2Sub": "transcribir",
+      "step3": "Actuar",
+      "step3Sub": "asignar tareas",
+      "quote": "Otras herramientas transcriben.\nVOIS prepara, captura\ny actúa.",
+      "stat": "0",
+      "statLabel": "seguimientos manuales",
+      "statSub": "acciones auto-asignadas a proyectos"
+    },
+    "projects": {
+      "healthBadge": "Salud",
+      "statusOnTrack": "En curso",
+      "statusAtRisk": "En riesgo",
+      "statusStalled": "Detenido",
+      "pctOnTrack": "82%",
+      "pctAtRisk": "14%",
+      "pctStalled": "4%",
+      "badge": "Proactivo, no reactivo",
+      "heading": "Sabe lo que te necesita\nantes de que se detenga.",
+      "description": "La IA monitorea la finalización, la actividad y los plazos. Cuando un proyecto se detiene, VOIS lo señala y sugiere los próximos pasos.",
+      "signals": ["Tareas detenidas", "Hitos incumplidos", "Caídas de actividad", "Desviación de plazos"],
+      "quote": "Los dashboards muestran lo que pasó.\nVOIS te dice qué hacer ahora."
+    },
+    "operations": {
+      "badge": "Siempre vigilando",
+      "heading": "Tu negocio\nse monitorea solo.",
+      "description": "KPIs, flujos de trabajo, procesos recurrentes. Cuando algo se desvía, recibes contexto y una solución recomendada.",
+      "trigger1": "Entrega retrasada",
+      "action1": "Notificar cliente automáticamente",
+      "trigger2": "SLA incumplido",
+      "action2": "Escalar al líder",
+      "trigger3": "Presupuesto excedido",
+      "action3": "Marcar para revisión",
+      "stat": "24/7",
+      "statLabel": "monitoreo",
+      "statSub": "cero ancho de banda humano",
+      "quote": "Deja de apagar incendios.\nEmpieza a prevenirlos."
+    },
+    "clients": {
+      "badge": "CRM de contexto completo",
+      "heading": "Cada relación,\nrecuerdo total.",
+      "description": "Perfiles detallados construidos de cada interacción. Antes de cualquier llamada, ve el historial completo y puntos de conversación sugeridos por IA.",
+      "lastContactKey": "Último contacto",
+      "lastContactVal": "Hace 3 días — correo",
+      "sentimentKey": "Sentimiento",
+      "sentimentVal": "Positivo, comprometido",
+      "openItemsKey": "Temas abiertos",
+      "openItemsVal": "2 propuestas pendientes",
+      "nextStepKey": "Próximo paso",
+      "nextStepVal": "Dar seguimiento al precio",
+      "callBadge": "Antes de cada llamada",
+      "callDesc": "Historial, sentimiento,\ntemas abiertos, puntos\nde conversación — auto-preparado.",
+      "callDescHighlight": "auto-preparado",
+      "quote": "Tu CRM debería ser una memoria, no una base de datos."
+    },
+    "documents": {
+      "stat": "Voz",
+      "statLabel": "a documento",
+      "types": ["Resúmenes", "Propuestas", "Informes", "Actualizaciones"],
+      "quote": "Deja de mirar páginas en blanco. Empieza a hablar.",
+      "badge": "Habla, no escribas",
+      "heading": "Describe lo que necesitas.\nRecibe un documento terminado.",
+      "description": "VOIS extrae contexto de tus proyectos y genera documentos estructurados desde tu voz.",
+      "step1": "Habla",
+      "step1Sub": "descríbelo",
+      "step2": "IA",
+      "step2Sub": "lo redacta",
+      "step3": "Listo",
+      "step3Sub": "formateado"
+    },
+    "finance": {
+      "badge": "Inteligencia financiera",
+      "heading": "Cada centavo,\nuna sola vista.",
+      "description": "Ingresos, gastos, facturas y pronósticos en un dashboard de IA. Haz preguntas en lenguaje natural.",
+      "revenueLabel": "Ingresos",
+      "revenueVal": "$48.2K",
+      "expensesLabel": "Gastos",
+      "expensesVal": "$31.7K",
+      "netLabel": "Neto",
+      "netVal": "$16.5K",
+      "quote": "Tus libros deberían explicarse solos.",
+      "queryBadge": "Pregunta lo que quieras",
+      "query1": "\"¿Cuánto gastamos en marketing?\"",
+      "query2": "\"Mostrar facturas vencidas\"",
+      "query3": "\"Tendencia de ingresos últimos 6 meses\""
+    },
+    "website": {
+      "badge": "Sitios construidos por IA",
+      "heading": "Describe tu negocio.\nObtén un sitio web.",
+      "description": "Copy, diseño, imágenes, SEO — generados. Actualiza por voz. Conecta formularios, reservas y pagos.",
+      "features": ["Copy y SEO", "Diseño", "Formularios", "Reservas", "Pagos", "Análisis"],
+      "quote": "Tu sitio web no necesita un desarrollador.",
+      "stat": "0",
+      "statLabel": "líneas de código",
+      "statSub": "actualizado por voz, siempre en vivo"
+    },
+    "aiAgents": {
+      "badge": "Tu organigrama de IA",
+      "heading": "Tus primeras diez contrataciones\nno necesitan salario.",
+      "description": "Construye agentes en un organigrama. Cada uno tiene responsabilidades, herramientas, presupuestos y líneas de reporte.",
+      "role1": "Investigador",
+      "role1Desc": "Web scraping, análisis",
+      "role2": "Escritor",
+      "role2Desc": "Contenido, propuestas",
+      "role3": "Analista",
+      "role3Desc": "Datos, pronósticos",
+      "role4": "Operaciones",
+      "role4Desc": "Programación, asignación",
+      "loopBadge": "El ciclo",
+      "loopSteps": ["Planificar", "Actuar", "Pausar", "Entregar"],
+      "loopNote": "Siempre en control",
+      "loopDesc": "Los agentes planifican antes de actuar\ny hacen pausa para tu aprobación.",
+      "quote": "ChatGPT responde preguntas.\nLos agentes de VOIS completan misiones."
+    },
+    "reports": {
+      "badge": "Informes, reinventados",
+      "heading": "Llama a tu asistente.\nDescribe lo que pasó.\nRecibe un informe terminado.",
+      "subHeading": "Sin formularios. Sin laptop. Solo una llamada.",
+      "description": "Sube cualquier plantilla y VOIS extrae cada campo. Luego complétalo por voz — la IA te entrevista y pre-completa lo que ya sabe.",
+      "step1": "Subir",
+      "step1Sub": "plantilla",
+      "step2": "Llamar",
+      "step2Sub": "a tu IA",
+      "step3": "Listo",
+      "step3Sub": "informe archivado",
+      "stat": "90s",
+      "statLabel": "tiempo prom. de informe",
+      "statSub": "vs 30 min tradicional",
+      "statSpeedNote": "10x más rápido",
+      "statDesc": "Las personas hablan 3–4x más rápido\nde lo que escriben. Suma formato con IA\n=",
+      "voiceBadge": "Voz primero",
+      "voiceHeading": "La IA pregunta. Tú respondes.\n10 preguntas. Listo.",
+      "phoneLabel": "Llamada telefónica",
+      "phoneDesc": "llama a tu asistente",
+      "interviewLabel": "Entrevista",
+      "interviewDesc": "la IA recorre los campos",
+      "dictationLabel": "Dictado",
+      "dictationDesc": "una nota de voz llena todo",
+      "chatLabel": "Chat",
+      "chatDesc": "entrada de texto conversacional"
+    },
+    "yourTeam": {
+      "badge": "IA por rol",
+      "heading": "Cada puesto recibe\nun super-asistente.",
+      "description": "Contexto empresarial, procesos e historial — personalizado por rol.",
+      "stat": "1:1",
+      "statLabel": "IA por empleado",
+      "statSub": "adaptado a su rol",
+      "statNote": "asistente personal",
+      "statDesc": "No un chatbot compartido.\nUno que conoce su trabajo.",
+      "perks": ["Guía de incorporación", "Planificador diario", "Búsqueda de conocimiento", "Gestor de tareas", "Coach de procesos", "Preparación de reuniones"],
+      "perksBadge": "Lo que recibe cada empleado"
+    },
+    "playbooks": {
+      "badge": "SOPs vivos",
+      "heading": "Tus playbooks\nse ejecutan solos.",
+      "description": "Convierte procedimientos en flujos de trabajo que monitorean el cumplimiento, guían cada paso y detectan desviaciones.",
+      "step1": "Paso 1",
+      "step1Desc": "Guiar al miembro del equipo",
+      "step2": "Paso 2",
+      "step2Desc": "Verificar cumplimiento",
+      "step3": "Paso 3",
+      "step3Desc": "Señalar desviación",
+      "quote": "Los SOPs no deberían vivir en carpetas. Deberían ejecutarse solos.",
+      "complianceBadge": "Puntuación de cumplimiento",
+      "stat": "97%",
+      "statSub": "prom. en todos los playbooks activos",
+      "statNote": "antes",
+      "statDesc": "Monitoreo en tiempo real.\nDesviaciones detectadas\nantes de que se conviertan en problemas."
+    },
+    "fieldToOffice": {
+      "badge": "Cierra la brecha",
+      "heading": "Actualización de campo en 30s.\nLa oficina la ve al instante.",
+      "description": "El técnico habla una nota de voz. Se estructura, archiva y vincula al proyecto, cliente y factura correctos.",
+      "step1": "Hablar",
+      "step1Sub": "en el sitio",
+      "step2": "IA",
+      "step2Sub": "estructura",
+      "step3": "Oficina",
+      "step3Sub": "lo ve",
+      "stat": "30s",
+      "statLabel": "nota de voz reemplaza",
+      "statSub": "20 min de papeleo",
+      "linksBadge": "Auto-vinculado a",
+      "links": ["Proyecto", "Cliente", "Factura", "Cronograma"],
+      "quote": "El campo nunca vuelve\na estar un día atrás."
+    },
+    "theAirlock": {
+      "badge": "Capa de seguridad de IA",
+      "heading": "Poder de IA.\nControl humano.",
+      "description": "Cada acción de IA pasa por una tarjeta de vista previa. Ves el resultado exacto y apruebas. Nada sucede sin tu autorización.",
+      "step1": "IA",
+      "step1Sub": "propone",
+      "step2": "Tú",
+      "step2Sub": "revisas",
+      "step3": "Aprobar",
+      "step3Sub": "o rechazar",
+      "stat": "100%",
+      "statLabel": "aprobado por humano",
+      "statSub": "cada acción, cada vez",
+      "ironRuleBadge": "La regla de hierro",
+      "ironRuleHeading": "La IA propone. Tú revisas.\nTú apruebas. Siempre.",
+      "quote": "La confianza no es una configuración.\nEs una arquitectura."
+    },
+    "yourMemory": {
+      "badge": "Búsqueda semántica",
+      "heading": "Pregunta cualquier cosa\nque hayas dicho.",
+      "description": "Busca por significado, no por palabras clave. VOIS encuentra respuestas en todas las fuentes.",
+      "stat": "19",
+      "statLabel": "fuentes indexadas",
+      "statMore": "+ 13 más",
+      "statSources": "Voz · Correo · Docs\nCRM · Chat · Notas",
+      "queryBadge": "Consultas de ejemplo",
+      "query1": "\"¿Qué dijo Sarah sobre el presupuesto?\"",
+      "query2": "\"Encuentra todo sobre retrasos en permisos\"",
+      "query3": "\"¿Cómo estamos con Henderson?\"",
+      "quote": "Tu segundo cerebro,\ncon memoria perfecta."
+    },
+    "growthEngine": {
+      "badge": "Ciclo viral",
+      "heading": "Comparte una nota de reunión.\nGana un cliente.",
+      "description": "Los destinatarios ven tu empresa, reciben una promo y se registran precargados con sus propios datos.",
+      "stat": "90%",
+      "statLabel": "de descuento por referidos",
+      "statHighlight": "sus propios datos",
+      "statDesc": "Los referidos obtienen\nun espacio de trabajo precargado\ncon",
+      "flyWheelBadge": "El volante",
+      "flyWheelSteps": ["Compartir", "Descubrir", "Registrarse", "Compartir"],
+      "flyWheelDesc": "Tu producto se vende solo\na través del trabajo que hace.",
+      "quote": "Cada nota de reunión\nes un canal de crecimiento."
+    }
+  }
+}

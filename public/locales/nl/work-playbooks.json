@@ -1,0 +1,85 @@
+{
+  "badge": "Kennisbeheer",
+  "hero": {
+    "title": "Eenmalig uploaden. Voor altijd doorzoekbaar.",
+    "description": "Upload een PDF, Word-document of URL. AI reinigt, structureert en verwerkt het in de Brain. Sleep mappen naar afdelingen — iedereen die het nodig heeft, krijgt automatisch toegang."
+  },
+  "intro": "Upload een PDF, Word-document of URL — GPT-4o reinigt, structureert en extraheert automatisch metadata. Elke playbook wordt opgesplitst in 512-dimensionale vectorinbedingen en geïndexeerd in de Brain. Vraag maanden later naar een procedure en de Brain vindt het met citaties. Zes toestemmingsmodellen regelen de toegang: automatische afdeling-synchronisatie, organisatieniveau-groepering, projectkoppeling, operatiekoppeling, aangepaste teams en handmatige mappen. Sleep een map naar een afdeling en overeenkomende teamleden krijgen direct toegang.",
+  "library": {
+    "footer": "17 vooraf ingestelde mappen automatisch aangemaakt bij installatie. Sleep elke map naar een afdeling, project of operatie — overeenkomende teamleden krijgen direct toegang.",
+    "folders": [
+      {
+        "name": "Bedrijfshandboek",
+        "meta": "12 documenten · Bijgewerkt 2 dagen geleden",
+        "status": "Actief"
+      },
+      {
+        "name": "Onboardinggids",
+        "meta": "8 documenten · Afdeling Veldoperaties",
+        "status": "Afdeling"
+      },
+      {
+        "name": "Veiligheidsprocedures",
+        "meta": "15 documenten · Alle teams",
+        "status": "Verplicht"
+      },
+      {
+        "name": "API-documentatie",
+        "meta": "6 documenten · Engineering",
+        "status": "Technisch"
+      },
+      {
+        "name": "Klantplaybooks",
+        "meta": "9 documenten · Sales + Support",
+        "status": "Gedeeld"
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "AI-documentimport",
+      "description": "Upload PDF, Word of Markdown. GPT-4o reinigt, structureert en extraheert automatisch metadata. Geen opmaak, geen tagging, geen zinloos werk."
+    },
+    {
+      "title": "Brain-geïndexeerd",
+      "description": "Elke playbook opgesplitst in 512-dim vectors. Vraag de Brain maanden later — hij vindt het antwoord met citaties."
+    },
+    {
+      "title": "Toestemmingsovererving",
+      "description": "Bewerkers en kijkers erven maptoegang naar submappen. Managers blijven expliciet. Gedetailleerde controle zonder complexiteit."
+    }
+  ],
+  "comparison": {
+    "before": {
+      "title": "Voor Playbooks",
+      "items": [
+        "SOPs staan in Google Drive.",
+        "Niemand weet welke versie actueel is.",
+        "Nieuwe medewerkers kunnen niets vinden.",
+        "Kennis vertrek wanneer mensen vertrekken."
+      ],
+      "footer": "30 min zoeken / week"
+    },
+    "after": {
+      "title": "Met Playbooks",
+      "items": [
+        "SOPs staan in Playbooks.",
+        "AI-geïndexeerd, semantisch doorzoekbaar, automatisch toegewezen per afdeling.",
+        "Vraag de Brain: \"Wat is onze procedure voor noodgevallen?\"",
+        "Direct antwoord."
+      ],
+      "footer": "30 seconden"
+    }
+  },
+  "techStrip": [
+    "GPT-4o documentverwerking",
+    "512-dim vectorinbedingen",
+    "6 toestemmingsmodellen",
+    "Slepen-om-toe-te-wijzen",
+    "17 vooraf ingestelde mappen"
+  ],
+  "closing": {
+    "tagline": "Andere kennisbases verzamelen stof. HABOS-kennisbases beantwoorden vragen.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

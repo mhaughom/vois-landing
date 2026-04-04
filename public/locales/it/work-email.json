@@ -1,0 +1,54 @@
+{
+  "badge": "Email Vocale",
+  "hero": {
+    "title": "Svuota la Posta In Arrivo Parlando.",
+    "description": "Di' \"leggi la mia posta\" mentre guidi. Detta le risposte. L'AI genera 3 opzioni di tono per ogni email. Invia quella che ti piace."
+  },
+  "body": "Di' 'leggi la mia posta' mentre guidi. HABOS riassume le tue email più importanti, legge ad alta voce quelle urgenti e genera tre bozze di risposta in toni diversi — Breve & Diretto, Caldo & Professionale, ed Esecutivo. Di' 'invia la seconda' e il gioco è fatto. Ogni email riceve anche azioni estratte dall'AI: le scadenze diventano attività, le richieste di riunione diventano eventi in calendario, e i follow-up vengono segnalati — tutto senza che tu digiti una singola parola.",
+  "conversation": {
+    "userAsk": "Cosa c'è nella mia posta?",
+    "aiSummary": "Hai 5 nuove email. La più importante è di Sarah Henderson riguardo alla tempistica di ristrutturazione — ha bisogno di conferma entro fine giornata. Vuoi che la legga?",
+    "userReply": "Sì, e bozza una risposta",
+    "aiDraftsIntro": "Ecco 3 opzioni:",
+    "draft1": {
+      "label": "Breve & Diretto",
+      "text": "Ciao Sarah, confermato — siamo in linea con la tempistica di marzo. Invierò il programma aggiornato entro domani."
+    },
+    "draft2": {
+      "label": "Caldo & Professionale",
+      "text": "Ciao Sarah, grazie per aver controllato. Sono felice di confermare che siamo in programma. Avrò la tempistica dettagliata per te entro domani mattina."
+    },
+    "draft3": {
+      "label": "Esecutivo",
+      "text": "Sarah — Confermato per marzo. Programma aggiornato a seguire domani. Fammi sapere se hai bisogno di qualcosa altro."
+    },
+    "userSend": "Invia la seconda",
+    "confirmation": "Email inviata. Zero digitazione. Zero tempo sullo schermo."
+  },
+  "benefits": {
+    "time": {
+      "title": "30 email → 5 minuti",
+      "description": "La modalità vocale legge quelle importanti, salta il rumore e ti lascia rispondere con la tua voce naturale. Il pendolarismo diventa produttivo."
+    },
+    "tone": {
+      "title": "3 opzioni di tono per risposta",
+      "description": "Breve & Diretto, Caldo & Professionale, Esecutivo. Scegli quello che si adatta, o di' all'AI di modificare. La tua voce, rifinita."
+    },
+    "actions": {
+      "title": "Azioni estratte automaticamente",
+      "description": "Quando un'email menziona una scadenza, una riunione o un'attività — appaiono le schede azione. Tocca per creare senza lasciare la posta in arrivo."
+    }
+  },
+  "scenario": "Sono le 7:45. Stai guidando verso il primo cantiere. Di' \"leggi la mia posta\". HABOS riassume 5 email, legge quella urgente del tuo cliente e bozza una risposta nel tuo tono. Di' \"inviala\". Nel momento in cui parcheggi, la tua posta è sgombra e il tuo cliente ha una risposta. Non hai mai toccato il telefono.",
+  "integrations": {
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "workspace": "Email dello spazio di lavoro",
+    "unified": "Posta in arrivo unificata",
+    "actions": "Azioni estratte automaticamente"
+  },
+  "closing": {
+    "tagline": "Le altre app email vogliono che tu digiti più velocemente. HABOS ti lascia smettere di digitare del tutto.",
+    "cta": "Iscriviti alla lista d'attesa"
+  }
+}

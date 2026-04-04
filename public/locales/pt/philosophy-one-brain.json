@@ -1,0 +1,48 @@
+{
+  "category": "Filosofia",
+  "title": "Um Único Cérebro",
+  "tagline": "Sem isso, \"fazemos tudo\" soa como o Zoho. Com isso, soa como inteligência acumulada. O CRM sabe sobre a nota de voz. A nota de voz sabe sobre o calendário. Cada funcionalidade é mais inteligente do que seria sozinha.",
+  "heroPlaceholder": "Ilustração principal",
+  "sources": [
+    "Gravações de voz", "Documentos", "E-mails", "Contatos",
+    "Histórico de chat", "Playbooks e SOPs", "Produtos", "Pedidos",
+    "Reservas", "Clientes no CRM", "Tickets de suporte", "Submissões de formulário",
+    "Trabalhos e visitas", "Rotas", "Sites", "Posts em redes sociais",
+    "Apresentações", "Projetos", "Eventos de calendário"
+  ],
+  "sourcesLabel": "19 fontes. Uma busca.",
+  "section1": {
+    "heading": "O imposto da fragmentação",
+    "body1": "Em uma pilha de ferramentas tradicional, seu calendário não sabe sobre suas tarefas. Suas notas de reunião não alimentam seu rastreador de projetos. Seus memos de voz ficam sem processar. Seu e-mail é uma ilha. Seu CRM não tem ideia do que foi dito nas reuniões.",
+    "body2": "Cada vez que você troca de aplicativo para encontrar contexto, você paga um imposto — em tempo, em atenção e em decisões tomadas sem o quadro completo. O trabalhador do conhecimento médio troca de aplicativo 1.200 vezes por dia. Isso não é produtividade. É atrito disfarçado de trabalho."
+  },
+  "section2": {
+    "heading": "Um banco de dados. Compreensão compartilhada.",
+    "body1": "O HABOS armazena tudo em uma camada de dados unificada. Uma consulta SQL pode unir contatos do CRM com transcrições de reuniões, itens de pedido com tickets de suporte, eventos de calendário com dependências de tarefas, e-mails com marcos de projeto e transcrições de notas de voz com SOPs de playbooks.",
+    "body2": "Isso significa que quando a IA o prepara para uma reunião, ela não verifica apenas seu calendário. Ela busca o histórico de compras do cliente, seus tickets abertos, o que foi discutido nas últimas três reuniões, o que seu playbook de vendas diz para fazer nesta etapa do negócio e uma nota de voz que você gravou passeando com seu cachorro onde mencionou o CEO deles."
+  },
+  "dataFlowPlaceholder": "Diagrama de fluxo de dados",
+  "brainSearchPlaceholder": "Visualização da busca no Brain",
+  "section3": {
+    "heading": "Como isso se parece na prática",
+    "query": "\"O que está acontecendo com a Nordic Fishing?\"",
+    "body": "Em três segundos você obtém: status no CRM (fase de negociação), os últimos três pedidos (R$47K no total), o ticket de suporte aberto sobre prazo de entrega, o que Lars disse sobre expansão na última reunião e um lembrete de que a renovação do contrato se aproxima em abril. Cada informação está vinculada à sua fonte. Você não abriu cinco aplicativos diferentes."
+  },
+  "section4": {
+    "heading": "Semântico, não apenas palavras-chave",
+    "body1": "O Brain usa embeddings vetoriais de 512 dimensões em todas as fontes de dados. Pesquisar \"projeções de receita\" encontra uma nota de voz intitulada \"perspectiva financeira do T3\". Pesquisar \"aquela coisa de HVAC que o Jonas mencionou\" encontra a transcrição da reunião onde ele falou sobre desgaste do compressor no Hotel Fjordview.",
+    "body2": "Todas as 19 fontes são consultadas simultaneamente. Latência típica: menos de um segundo para uma busca completa entre plataformas. A IA não apenas combina palavras-chave — ela entende seus dados semanticamente."
+  },
+  "section5": {
+    "heading": "O fosso que se aprofunda",
+    "body1": "Os concorrentes podem mover dados entre aplicativos. Podem construir pontes de API e pipelines de sincronização. O que não podem replicar é a compreensão compartilhada — a capacidade de cada parte do sistema raciocinar sobre todas as outras partes, porque tudo foi projetado para viver junto.",
+    "body2": "Quanto mais sua equipe usa o HABOS, mais poderoso isso se torna. Após seis meses, a IA conhece padrões que nenhum humano poderia rastrear em tantos sistemas: quais clientes recompram previsívelmente, quais operações consistentemente derivam, quais playbooks nunca são seguidos."
+  },
+  "quote": "\"Outras plataformas podem sincronizar seus dados. Apenas uma plataforma pode pensar sobre eles.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "O Fim da Entrada de Dados",
+    "nextLabel": "Próximo",
+    "nextTitle": "Sua Voz, Não a Nossa"
+  }
+}

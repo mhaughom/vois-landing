@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Lavori e Operazioni",
+  "hero": {
+    "title": "Gestisci le Operazioni con la Voce",
+    "description": "Assegna lavori, pianifica percorsi, traccia progetti, gestisci attività e registra il tempo — dal campo o dall'ufficio, senza burocrazia."
+  },
+  "items": [
+    {
+      "title": "Dispatch",
+      "desc": "Bacheca lavori giornaliera con flusso di stato, assegnazione team e notifiche ai clienti."
+    },
+    {
+      "title": "Percorsi",
+      "desc": "Ordinamento intelligente delle fermate con integrazione mappe per il tuo team sul campo."
+    },
+    {
+      "title": "Progetti",
+      "desc": "Vedi quali progetti necessitano attenzione — il lavoro bloccato viene segnalato prima che degeneri."
+    },
+    {
+      "title": "Attività",
+      "desc": "Le tue attività più importanti emergono per prime, create dalla voce o dalle riunioni."
+    },
+    {
+      "title": "Tracciamento Tempo",
+      "desc": "Timbra dal cellulare, traccia le ore fatturabili per lavoro, collega alla busta paga."
+    }
+  ]
+}

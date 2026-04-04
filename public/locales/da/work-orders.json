@@ -1,0 +1,52 @@
+{
+  "badge": "Ordrestyring",
+  "hero": {
+    "title": "Fra tilbud til betalt. Hvert trin sporet.",
+    "description": "Fuld livscyklus-ordrestyring med linjeposter, betalingssporing og automatiske lagerjusteringer — så intet falder igennem."
+  },
+  "intro": "Ordrer i VOIS er den centrale post, der forbinder CRM-klienter, produkter med varianter og lager. Når en booking afsluttes eller et job er færdigt, auto-oprettes en ordre med de korrekte linjeposter og prissætning. Betalingsstatus bevæger sig fra ubetalt til delvist betalt til betalt til refunderet — altid synlig, altid aktuel. Hvert linjepost fratrækker fra produktlager i realtid og eliminerer manuelle lagertællinger fuldstændigt.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovering", "amount": "kr. 87.500", "status": "Betalt ✓" },
+    { "id": "#1248", "client": "Baker HVAC Service", "amount": "kr. 22.400", "status": "Delvist" },
+    { "id": "#1249", "client": "Wilson Akut", "amount": "kr. 6.230", "status": "Ubetalt" }
+  ],
+  "lineItems": {
+    "heading": "Linjeposter — Ordre #1247 · Henderson Renovering",
+    "items": [
+      { "item": "Porcelænsfliser gulv (600x600)", "qty": 48, "unit": "kr. 595", "total": "kr. 28.560" },
+      { "item": "Fliseadhæsiv (25 kg pose)", "qty": 12, "unit": "kr. 224", "total": "kr. 2.688" },
+      { "item": "Arbejdskraft — flisearbejde (timer)", "qty": 24, "unit": "kr. 665", "total": "kr. 15.960" },
+      { "item": "Gulvvarmesæt", "qty": 1, "unit": "kr. 12.950", "total": "kr. 12.950" }
+    ],
+    "total": "I alt: kr. 87.500",
+    "annotation": "Ordrer auto-oprettes fra bookinger og jobs. Linjeposter henter fra dit produktkatalog med variantstøtte."
+  },
+  "benefitCards": [
+    {
+      "title": "Auto-oprettet fra bookinger",
+      "desc": "Når en booking afsluttes, genereres ordren automatisk med korrekte linjeposter og prissætning. Ingen dobbelt dataindtastning, ingen mistede gebyrer."
+    },
+    {
+      "title": "Direkte lagerjusteringer",
+      "desc": "Hvert ordrelinjepost fratrækker fra produktlager i realtid. Ingen manuelle lagertællinger. Genbestillingsadvarsler udløses, inden du løber tør."
+    },
+    {
+      "title": "Betalingslivscyklus",
+      "desc": "Spor ubetalt → delvist → betalt → refunderet. Hvert statusskifte logges og kobles automatisk til din regnskabsplatform."
+    }
+  ],
+  "scenario": "En VVS-mand afslutter et job. På køreturen tilbage fortæller han VOIS, hvilke dele han brugte — to kugleventiler, en flexslange og tre timers arbejde.",
+  "scenarioHighlight": "VOIS auto-opretter ordren med de korrekte linjeposter, fratrækker delene fra lageret, linker ordren til CRM-klienten og forbereder fakturaen — inden han er tilbage på kontoret.",
+  "techItems": [
+    "Auto-lagerfradrag",
+    "Linjepostsvarianter",
+    "Betalingslivscyklus",
+    "CRM-klienttilknytning",
+    "Booking-til-ordre-pipeline",
+    "Taleregistrerede ordrer"
+  ],
+  "cta": {
+    "title": "Stop med at jage papirarbejde.\nLad ordrer bygge sig selv.",
+    "button": "Tilmeld venteliste"
+  }
+}

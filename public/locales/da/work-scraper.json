@@ -1,0 +1,49 @@
+{
+  "badge": "Virksomhedsintelligens",
+  "hero": {
+    "title": "Én URL. Hele din virksomhed, udtrukket.",
+    "description": "Indtast dit website. HABOS crawler det, udtrækker din brandidentitet, produkter, team og sociale profiler — og fylder derefter hele dit arbejdsområde med rigtige data. Klar til at arbejde på minutter."
+  },
+  "body": "Indtast din virksomheds website-URL, og HABOS kører et syvtrins intelligensworkflow: identitetsopløsning, menneskelig gennemgang, intern kildeanalyse, ekstern forskning via Perplexity, indsamling af finansielle data, udvidelse af sociale profiler og endelig godkendelse. Hvert datapunkt har en konfidensscore — Shopify API-data scorer 1,0, strukturerede data 0,94, markdown-udtrækning 0,58. Systemet genererer derefter fjorten domæner af arbejdsområdedata fra din virksomhedsintelligens, så du træder ind i et fungerende system, ikke en tom skal.",
+  "extraction": {
+    "urlPlaceholder": "hendersonvvs.dk",
+    "extractingLabel": "Udtrækker...",
+    "rows": [
+      { "label": "Brand-tokens", "detail": "Farver: #1E40AF, #F59E0B · Skrifttype: Inter · Logo registreret" },
+      { "label": "Produkter", "detail": "8 ydelser fundet (Akutreparation, Vandvarmer, osv.)" },
+      { "label": "Team", "detail": "4 teammedlemmer identificeret fra Om-siden" },
+      { "label": "Sociale profiler", "detail": "Instagram, Facebook, Google Business tilknyttet" },
+      { "label": "Anmeldelser", "detail": "47 Google-anmeldelser importeret (4,8★ gennemsnit)" },
+      { "label": "Konkurrenter", "detail": "3 lokale konkurrenter identificeret via Perplexity" },
+      { "label": "Kontaktinfo", "detail": "Telefon, e-mail, 2 adresser geocodet" }
+    ],
+    "confidenceNote": "Hvert datapunkt har en konfidensscore. Shopify API-data: 1,0. Strukturerede data: 0,94. Markdown-udtrækning: 0,58. Du gennemgår høj-konfidens-elementer først."
+  },
+  "benefits": [
+    {
+      "title": "14 domæner fyldt",
+      "desc": "Projekter, opgaver, leads, kampagner, produkter, operationer, teamstruktur — alle genereret fra din virksomhedsintelligens. Dit arbejdsområde er produktivt fra dag ét."
+    },
+    {
+      "title": "Brand-injektion",
+      "desc": "Udtrukne farver, skrifttyper og designtokens injiceres automatisk i alle websites, du bygger i HABOS. Dine sites ser ud som dine, ikke en skabelon."
+    },
+    {
+      "title": "Scraping før tilmelding",
+      "desc": "Besøgende kan starte inden oprettelse af en konto. Resultater caches og gøres krav på via sikkert token efter tilmelding. Se værdi inden forpligtelse."
+    }
+  ],
+  "scenario": "En ny VVS-mand tilmelder sig og indtaster hendersonvvs.dk. På 90 sekunder udtrækker HABOS deres brand, 8 ydelser, teamfotos, Google-anmeldelser og sociale profiler. Når de lander i deres arbejdsområde, er det allerede udfyldt — projekter til aktive jobs, produkter til deres ydelser, leads fra deres kontaktformular og et branded websiteudkast. De konfigurerede intet. Softwaren konfigurerede sig selv.",
+  "scenarioHighlight": "Softwaren konfigurerede sig selv.",
+  "techItems": [
+    "Konfidensscored udtrækning",
+    "Multi-platform registrering",
+    "7-trins intelligensworkflow",
+    "Udvidelse af sociale profiler",
+    "Deterministisk arbejdsområde-seeding"
+  ],
+  "cta": {
+    "heading": "Andre platforme starter tomme. HABOS starter med din virksomhed allerede inde.",
+    "button": "Tilmeld venteliste"
+  }
+}

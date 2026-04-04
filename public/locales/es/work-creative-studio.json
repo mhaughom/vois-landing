@@ -1,0 +1,60 @@
+{
+  "badge": "Estudio creativo con IA",
+  "hero": {
+    "titlePart1": "Brief de campaña recibido.",
+    "titlePart2": "Creatividades puntuadas entregadas.",
+    "description": "Describa lo que necesita. La IA genera conceptos, renderiza imágenes basadas en sus productos reales y puntúa cada variante en 6 dimensiones de calidad. Publique las ganadoras."
+  },
+  "body": "El pipeline creativo es determinista: contexto de campaña de entrada, creatividades puntuadas de salida. La IA genera conceptos basados en las fotos reales de sus productos, logotipos y recursos de prueba — no imágenes de stock genéricas. Cada variante se puntúa en seis dimensiones: fidelidad del producto, fidelidad de marca, legibilidad, autenticidad, adecuación al canal y seguridad de políticas. Realice un seguimiento de cada creatividad generada desde la creación hasta el despliegue, el clic y la conversión. Sepa exactamente qué ángulos visuales generan ingresos.",
+  "pipelineLabel": "Pipeline de generación",
+  "pipelineStages": [
+    { "label": "Brief", "count": "1" },
+    { "label": "3 Conceptos", "count": "3" },
+    { "label": "12 Variantes", "count": "12" },
+    { "label": "Top 4 Puntuadas", "count": "4" }
+  ],
+  "creativeCards": [
+    { "channel": "Anuncio Meta", "score": "8.7/10" },
+    { "channel": "Instagram", "score": "9.1/10" },
+    { "channel": "Sitio web", "score": "7.3/10" },
+    { "channel": "Anuncio Google", "score": "8.9/10" }
+  ],
+  "scoringCaption": "Cada variante puntuada en: fidelidad del producto, fidelidad de marca, legibilidad, autenticidad, adecuación al canal y seguridad de políticas.",
+  "benefits": [
+    {
+      "title": "Basado en su marca",
+      "desc": "La IA referencia las fotos reales de sus productos, logotipos y recursos de prueba. No imágenes de stock genéricas — imágenes que parecen de su empresa real."
+    },
+    {
+      "title": "4 canales, un brief",
+      "desc": "Anuncios de Meta, publicaciones sociales, secciones del sitio web y diapositivas de presentación — todos generados desde un solo brief de campaña. Redimensionados y formateados por plataforma."
+    },
+    {
+      "title": "Modo exploración",
+      "desc": "¿Encontró una ganadora? El modo exploración genera más de 10 variaciones de su mejor concepto para pruebas A/B. Encuentre el ángulo exacto que convierte."
+    }
+  ],
+  "scoring": {
+    "heading": "Dimensiones de puntuación de calidad",
+    "dimensions": [
+      "Fidelidad del producto",
+      "Fidelidad de marca",
+      "Legibilidad",
+      "Autenticidad",
+      "Adecuación al canal",
+      "Seguridad de políticas"
+    ]
+  },
+  "scenario": "Está lanzando una promoción de HVAC de primavera. Escriba: «Genera creatividades para nuestra oferta especial de mantenimiento de AC de primavera — $99 para clientes existentes.» HABOS extrae las fotos de su servicio de AC, los colores de su marca y la oferta de la campaña. En 90 segundos: 3 conceptos, 12 variantes en Meta, Instagram y su sitio web. La variante con mayor puntuación tiene un 9,1 de calidad. Haga clic en «Publicar» — está activa en Meta y publicada en la superficie de campaña de su sitio web.",
+  "techItems": [
+    "Pipeline determinista de 7 pasos",
+    "Salida multicanal",
+    "Puntuación en 6 dimensiones",
+    "Atribución de ciclo cerrado",
+    "Modos Estudio y Exploración"
+  ],
+  "cta": {
+    "heading": "Otras herramientas generan imágenes genéricas. HABOS genera campañas puntuadas y listas para la marca.",
+    "button": "Unirse a la lista de espera"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "badge": "Gestión de equipo",
+  "hero": {
+    "title": "Arrastre. Suelte. Reorganice.",
+    "description": "Organigrama interactivo con borradores sandbox — modele reorganizaciones, compare con el estado actual y aplique atómicamente. Más una matriz de permisos de 37 aplicaciones con alcance automático por departamento y antigüedad."
+  },
+  "body": "El organigrama se renderiza como un árbol interactivo — arrastre nodos para reasignar gerentes. Cree borradores del organigrama para modelar reorganizaciones: tome una instantánea de la estructura actual, realice cambios, compare con el estado en vivo y aplique atómicamente cuando esté listo. Un sistema de control de acceso de tres niveles gestiona 37 aplicaciones con herencia de perfil por departamento y anulaciones directas. Los administradores controlan qué módulos ve cada persona, si pueden aprobar acciones, sus tarifas por hora y sus límites mensuales de créditos de IA.",
+  "orgChart": {
+    "caption": "Cree un borrador, modele la reorganización, previsualice las diferencias y aplique cuando esté listo. Nadie ve los cambios hasta que los publique."
+  },
+  "orgNodes": {
+    "ceo": { "name": "Elena Park", "role": "CEO" },
+    "vpOps": { "name": "James Okoro", "role": "VP de Operaciones" },
+    "vpSales": { "name": "Lisa Chen", "role": "VP de Ventas" },
+    "fieldOpsLead": { "name": "Mike R.", "role": "Líder de Operaciones de Campo", "draft": "Borrador: trasladado desde Ventas" },
+    "logisticsCoord": { "name": "Sara T.", "role": "Coordinadora de Logística" },
+    "accountExec": { "name": "David K.", "role": "Ejecutivo de Cuentas" },
+    "salesRep": { "name": "Amy J.", "role": "Representante de Ventas" }
+  },
+  "benefits": {
+    "permissions": {
+      "title": "Permisos de 37 aplicaciones",
+      "description": "Alcance automático por departamento y nivel organizacional. Cuando alguien se mueve, sus permisos se actualizan al instante en cada herramienta conectada."
+    },
+    "raci": {
+      "title": "Seguimiento RACI",
+      "description": "Defina quién es propietario, aprueba, consulta y se informa para cada proceso. Nunca más se preguntará «¿quién firma esto?»."
+    },
+    "dual": {
+      "title": "Informes duales",
+      "description": "Estructuras matriciales con gerentes primarios y secundarios. Las relaciones de línea punteada son ciudadanos de primera clase, no casos secundarios."
+    }
+  },
+  "scenario": {
+    "intro": "Está reestructurando el equipo de operaciones de campo.",
+    "narrative": "En lugar de hacer cambios en vivo y confundir a todos, crea un borrador. Arrastra a Mike de Ventas a Operaciones, añade una nueva posición de líder de equipo y previsualiza las diferencias. Tres personas movidas, dos líneas de reporte cambiadas. Revisa, aprueba y publica —",
+    "highlight": "toda la organización se actualiza atómicamente."
+  },
+  "techStrip": {
+    "items": [
+      "Visualización ReactFlow",
+      "Borradores sandbox",
+      "Aplicación atómica",
+      "Matriz de permisos de 37 aplicaciones",
+      "Responsabilidad RACI"
+    ]
+  },
+  "cta": {
+    "heading": "Otros organigramas son un PDF estático. El organigrama de HABOS es un centro de mando en vivo.",
+    "button": "Unirse a la lista de espera"
+  }
+}

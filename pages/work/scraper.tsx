@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
@@ -28,51 +29,25 @@ const staggerFast = {
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
-/* ── extraction row data ──────────────────────────────────────────────── */
-
-const extractionRows = [
-  { label: 'Brand tokens', detail: 'Colors: #1E40AF, #F59E0B \u00b7 Font: Inter \u00b7 Logo detected' },
-  { label: 'Products', detail: '8 services found (Emergency Repair, Water Heater, etc.)' },
-  { label: 'Team', detail: '4 team members identified from About page' },
-  { label: 'Social profiles', detail: 'Instagram, Facebook, Google Business linked' },
-  { label: 'Reviews', detail: '47 Google reviews imported (4.8\u2605 average)' },
-  { label: 'Competitors', detail: '3 local competitors identified via Perplexity' },
-  { label: 'Contact info', detail: 'Phone, email, 2 addresses geocoded' },
-];
-
-/* ── benefit cards data ───────────────────────────────────────────────── */
-
-const benefits = [
-  {
-    icon: Layers,
-    title: '14 domains seeded',
-    desc: 'Projects, tasks, leads, campaigns, products, operations, team structure \u2014 all generated from your company intelligence. Your workspace is productive from day one.',
-  },
-  {
-    icon: Paintbrush,
-    title: 'Brand injection',
-    desc: 'Extracted colors, fonts, and design tokens automatically inject into any website you build in HABOS. Your sites look like yours, not a template.',
-  },
-  {
-    icon: KeyRound,
-    title: 'Pre-signup scraping',
-    desc: 'Visitors can start before creating an account. Results are cached and claimed via secure token after signup. See value before committing.',
-  },
-];
-
-/* ── tech strip data ──────────────────────────────────────────────────── */
-
-const techItems = [
-  'Confidence-scored extraction',
-  'Multi-platform detection',
-  '7-step intelligence workflow',
-  'Social profile expansion',
-  'Deterministic workspace seeding',
-];
+const benefitIcons = [Layers, Paintbrush, KeyRound];
 
 /* ── page component ───────────────────────────────────────────────────── */
 
 const Scraper: React.FC = () => {
+  const { t } = useTranslation('work-scraper');
+
+  const extractionRows = t('extraction.rows', { returnObjects: true }) as Array<{
+    label: string;
+    detail: string;
+  }>;
+
+  const benefits = t('benefits', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>;
+
+  const techItems = t('techItems', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -90,7 +65,7 @@ const Scraper: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-orange-500/10 text-orange-700 rounded-full text-sm font-medium mb-6">
-                Company Intelligence
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -99,8 +74,7 @@ const Scraper: React.FC = () => {
               transition={{ duration: 0.6, ease: easeOutExpo }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]"
             >
-              One URL. Your Entire<br />
-              Business, Extracted.
+              {t('hero.title')}
             </motion.h1>
 
             <motion.p
@@ -108,15 +82,13 @@ const Scraper: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed"
             >
-              Enter your website. HABOS crawls it, extracts your brand identity, products,
-              team, and social profiles &mdash; then seeds your entire workspace with real data.
-              Ready to work in minutes.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Enter your company website URL and HABOS runs a seven-step intelligence workflow: identity resolution, human review, internal source analysis, external research via Perplexity, financial data gathering, social profile expansion, and final approval. Every data point carries a confidence score — Shopify API data scores 1.0, structured data 0.94, markdown extraction 0.58. The system then generates fourteen domains of workspace data from your company intelligence, so you walk into a working system, not an empty shell.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -131,14 +103,14 @@ const Scraper: React.FC = () => {
               {/* URL input bar */}
               <div className="bg-white rounded-xl border border-slate-200 px-5 py-3 flex items-center gap-3 mb-4 shadow-sm">
                 <div className="w-2 h-2 rounded-full bg-orange-400" />
-                <span className="text-sm font-mono text-slate-700">hendersonplumbing.com</span>
+                <span className="text-sm font-mono text-slate-700">{t('extraction.urlPlaceholder')}</span>
                 <div className="ml-auto">
                   <motion.div
                     animate={{ opacity: [0.4, 1, 0.4] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                     className="px-3 py-1 bg-orange-500 text-white text-xs font-medium rounded-full"
                   >
-                    Extracting...
+                    {t('extraction.extractingLabel')}
                   </motion.div>
                 </div>
               </div>
@@ -175,10 +147,7 @@ const Scraper: React.FC = () => {
 
               {/* Confidence note */}
               <p className="mt-5 text-sm text-slate-500 leading-relaxed px-1">
-                Every data point carries a confidence score. Shopify API data: <span className="font-mono text-slate-700">1.0</span>.
-                Structured data: <span className="font-mono text-slate-700">0.94</span>.
-                Markdown extraction: <span className="font-mono text-slate-700">0.58</span>.
-                You review the high-confidence items first.
+                {t('extraction.confidenceNote')}
               </p>
             </div>
           </motion.section>
@@ -192,20 +161,23 @@ const Scraper: React.FC = () => {
             className="mb-20"
           >
             <div className="grid md:grid-cols-3 gap-5">
-              {benefits.map((b) => (
-                <motion.div
-                  key={b.title}
-                  variants={fadeUp}
-                  transition={{ duration: 0.5, ease: easeOutExpo }}
-                  className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-orange-200 hover:shadow-md transition-all duration-300"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center mb-4">
-                    <b.icon size={18} className="text-orange-600" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{b.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
-                </motion.div>
-              ))}
+              {benefits.map((b, i) => {
+                const Icon = benefitIcons[i];
+                return (
+                  <motion.div
+                    key={b.title}
+                    variants={fadeUp}
+                    transition={{ duration: 0.5, ease: easeOutExpo }}
+                    className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-orange-200 hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center mb-4">
+                      <Icon size={18} className="text-orange-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{b.title}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.section>
 
@@ -219,12 +191,8 @@ const Scraper: React.FC = () => {
           >
             <div className="bg-slate-900 rounded-3xl p-8 md:p-10">
               <p className="text-lg md:text-xl text-slate-200 leading-relaxed">
-                A new plumber signs up and enters <span className="text-orange-400 font-mono text-base">hendersonplumbing.com</span>.
-                In 90 seconds, HABOS extracts their brand, 8 services, team photos, Google reviews,
-                and social profiles. When they land in their workspace, it&rsquo;s already populated &mdash;
-                projects for active jobs, products for their services, leads from their contact form,
-                and a branded website draft. They didn&rsquo;t configure anything.{' '}
-                <span className="text-white font-medium">The software configured itself.</span>
+                {t('scenario').replace(t('scenarioHighlight'), '')}{' '}
+                <span className="text-white font-medium">{t('scenarioHighlight')}</span>
               </p>
             </div>
           </motion.section>
@@ -258,8 +226,7 @@ const Scraper: React.FC = () => {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4">
-              Other platforms start empty.<br />
-              HABOS starts with your business already inside.
+              {t('cta.heading')}
             </h2>
 
             <a href="/#waitlist">
@@ -268,7 +235,7 @@ const Scraper: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-md hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
                 <ArrowRight size={16} />
               </motion.button>
             </a>

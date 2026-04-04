@@ -1,0 +1,15 @@
+{
+  "panelLabels": ["캘린더", "데이터베이스", "청구서", "이메일", "애널리틱스", "할 일", "채팅", "웹사이트", "문서"],
+  "widgetLabels": {
+    "Calendar": "캘린더",
+    "CRM": "CRM",
+    "Website": "웹사이트",
+    "Notes": "메모",
+    "Email": "이메일",
+    "Tasks": "할 일",
+    "Analytics": "애널리틱스",
+    "Documents": "문서",
+    "Chat": "채팅",
+    "Invoices": "청구서"
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../../components/Navbar';
 import {
   ArrowLeft,
@@ -29,18 +30,28 @@ const stagger = {
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
-/* ── widget data ───────────────────────────────────────────────────────── */
+/* ── icon maps ─────────────────────────────────────────────────────────── */
 
-const widgets = [
-  { icon: ShoppingCart, label: 'Product catalog' },
-  { icon: Calendar, label: 'Booking calendar' },
-  { icon: ShoppingCart, label: 'Shopping cart' },
-  { icon: CreditCard, label: 'Checkout' },
-  { icon: FileText, label: 'Contact form' },
-  { icon: Megaphone, label: 'Campaign offers' },
+const widgetIcons = [ShoppingCart, Calendar, ShoppingCart, CreditCard, FileText, Megaphone];
+const benefitIcons = [Copy, Layers, RotateCcw];
+const benefitAccents = [
+  'bg-blue-50 border-blue-100',
+  'bg-violet-50 border-violet-100',
+  'bg-emerald-50 border-emerald-100',
+];
+const benefitIconColors = ['text-blue-600', 'text-violet-600', 'text-emerald-600'];
+
+/* ── service card colors ───────────────────────────────────────────────── */
+
+const serviceColors = [
+  'bg-red-50 border-red-100',
+  'bg-amber-50 border-amber-100',
+  'bg-blue-50 border-blue-100',
 ];
 
-const techItems = [
+/* ── tech strip items ──────────────────────────────────────────────────── */
+
+const techItemsStatic = [
   'VibeSDK on Cloudflare Workers',
   'Multi-page React Router',
   'Brand token injection',
@@ -51,6 +62,15 @@ const techItems = [
 /* ── page component ────────────────────────────────────────────────────── */
 
 const WebsiteBuilder: React.FC = () => {
+  const { t } = useTranslation('work-website-builder');
+
+  const widgets = t('widgets', { returnObjects: true }) as Array<{ label: string }>;
+  const benefits = t('benefits', { returnObjects: true }) as Array<{ title: string; body: string }>;
+  const techItems = t('techItems', { returnObjects: true }) as string[];
+
+  const mockNavLinks = t('mockSite.navLinks', { returnObjects: true }) as string[];
+  const mockServices = t('mockSite.services', { returnObjects: true }) as Array<{ name: string }>;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -68,7 +88,7 @@ const WebsiteBuilder: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-700 rounded-full text-sm font-medium mb-6">
-                AI Website Builder
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -77,8 +97,7 @@ const WebsiteBuilder: React.FC = () => {
               transition={{ duration: 0.6, ease: easeOutExpo }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]"
             >
-              Describe Your Site.<br />
-              It Builds Itself.
+              {t('hero.title')}
             </motion.h1>
 
             <motion.p
@@ -86,14 +105,13 @@ const WebsiteBuilder: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed"
             >
-              Tell HABOS what you need. AI generates a complete multi-page React site
-              with your brand, products, bookings, and forms — deployed to a live URL instantly.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16">
             <p className="text-lg text-slate-600 leading-relaxed text-center">
-              Enter a competitor or reference website URL. Browser automation captures full-page screenshots, extracts DOM content, parses CSS design tokens, and detects logos and images. Before the AI builds, HABOS injects ten layers of workspace context: brand tokens, product catalog, booking widgets, shop components, form embeds, campaign surfaces, and an asset manifest. Products added in HABOS appear on the website automatically. Bookings flow into your calendar. Form submissions route to tickets or CRM leads.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -117,7 +135,7 @@ const WebsiteBuilder: React.FC = () => {
                 {/* URL bar */}
                 <div className="flex-1 flex justify-center">
                   <div className="bg-slate-800 rounded-lg px-4 py-1.5 text-sm text-slate-400 font-mono">
-                    henderson-plumbing.habos.site
+                    {t('mockSite.urlBar')}
                   </div>
                 </div>
                 <div className="w-[54px]" />
@@ -129,36 +147,32 @@ const WebsiteBuilder: React.FC = () => {
                 <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-lg bg-blue-600" />
-                    <span className="font-semibold text-sm text-slate-900">Henderson Plumbing</span>
+                    <span className="font-semibold text-sm text-slate-900">{t('mockSite.brandName')}</span>
                   </div>
                   <div className="hidden sm:flex items-center gap-6 text-xs text-slate-500">
-                    <span>Services</span>
-                    <span>About</span>
-                    <span>Contact</span>
+                    {mockNavLinks.map((link) => (
+                      <span key={link}>{link}</span>
+                    ))}
                   </div>
                   <div className="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg">
-                    Book Now
+                    {t('mockSite.bookButton')}
                   </div>
                 </div>
 
                 {/* Mock hero */}
                 <div className="bg-gradient-to-br from-blue-50 to-slate-50 px-6 py-10 md:py-14 text-center">
                   <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
-                    Henderson Plumbing
+                    {t('mockSite.brandName')}
                   </h2>
-                  <p className="text-sm text-slate-500">Licensed &amp; Insured Since 1985</p>
+                  <p className="text-sm text-slate-500">{t('mockSite.tagline')}</p>
                 </div>
 
                 {/* Mock service cards */}
                 <div className="grid grid-cols-3 gap-3 md:gap-4 px-4 md:px-6 py-6 md:py-8">
-                  {[
-                    { name: 'Emergency Repair', color: 'bg-red-50 border-red-100' },
-                    { name: 'Water Heater', color: 'bg-amber-50 border-amber-100' },
-                    { name: 'Bathroom Reno', color: 'bg-blue-50 border-blue-100' },
-                  ].map((svc) => (
+                  {mockServices.map((svc, i) => (
                     <div
                       key={svc.name}
-                      className={`rounded-xl border p-3 md:p-4 text-center ${svc.color}`}
+                      className={`rounded-xl border p-3 md:p-4 text-center ${serviceColors[i]}`}
                     >
                       <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white mx-auto mb-2 md:mb-3" />
                       <p className="text-xs md:text-sm font-medium text-slate-800">{svc.name}</p>
@@ -169,7 +183,7 @@ const WebsiteBuilder: React.FC = () => {
                 {/* Mock book button */}
                 <div className="flex justify-center pb-8">
                   <div className="px-6 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-full shadow-md shadow-blue-200">
-                    Book Now
+                    {t('mockSite.bookButton')}
                   </div>
                 </div>
               </div>
@@ -182,8 +196,8 @@ const WebsiteBuilder: React.FC = () => {
               transition={{ delay: 0.8, duration: 0.5 }}
               className="text-sm text-slate-500 leading-relaxed mt-6 text-center max-w-2xl mx-auto"
             >
-              Generated from: <span className="italic text-slate-600">"Build a plumbing company website with our services and a booking widget."</span>
-              {' '}Brand colors, products, and availability pulled from your workspace automatically.
+              {t('caption.prefix')}<span className="italic text-slate-600">{t('caption.prompt')}</span>
+              {t('caption.suffix')}
             </motion.p>
           </motion.section>
 
@@ -195,39 +209,23 @@ const WebsiteBuilder: React.FC = () => {
             variants={stagger}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
           >
-            {[
-              {
-                icon: <Copy size={22} className="text-blue-600" />,
-                title: 'Clone & improve',
-                body: "Enter a competitor's URL. HABOS captures screenshots, extracts design tokens, and rebuilds it as a modern React app with your branding and live commerce widgets.",
-                accent: 'bg-blue-50 border-blue-100',
-              },
-              {
-                icon: <Layers size={22} className="text-violet-600" />,
-                title: '10 enrichment layers',
-                body: 'Brand tokens, product catalog, booking widgets, shop components, form embeds, campaign surfaces, asset manifest — all injected before the AI builds.',
-                accent: 'bg-violet-50 border-violet-100',
-              },
-              {
-                icon: <RotateCcw size={22} className="text-emerald-600" />,
-                title: 'One-click rollback',
-                body: 'Create unlimited versions. Preview before publishing. Roll back to any previous version instantly. Your live site is never at risk.',
-                accent: 'bg-emerald-50 border-emerald-100',
-              },
-            ].map((card) => (
-              <motion.div
-                key={card.title}
-                variants={fadeUp}
-                transition={{ duration: 0.5 }}
-                className={`rounded-2xl border p-6 ${card.accent}`}
-              >
-                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm mb-4">
-                  {card.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">{card.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{card.body}</p>
-              </motion.div>
-            ))}
+            {benefits.map((card, i) => {
+              const Icon = benefitIcons[i];
+              return (
+                <motion.div
+                  key={card.title}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5 }}
+                  className={`rounded-2xl border p-6 ${benefitAccents[i]}`}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm mb-4">
+                    <Icon size={22} className={benefitIconColors[i]} />
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{card.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{card.body}</p>
+                </motion.div>
+              );
+            })}
           </motion.section>
 
           {/* ── 4. Widget Showcase ────────────────────────────────────── */}
@@ -239,19 +237,22 @@ const WebsiteBuilder: React.FC = () => {
             className="mb-20 text-center"
           >
             <p className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-4">
-              Live widgets that connect to your backend
+              {t('widgetsLabel')}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              {widgets.map((w) => (
-                <motion.div
-                  key={w.label}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-2 bg-blue-50 text-blue-700 rounded-lg px-3 py-2 text-sm font-medium"
-                >
-                  <w.icon size={15} />
-                  {w.label}
-                </motion.div>
-              ))}
+              {widgets.map((w, i) => {
+                const Icon = widgetIcons[i];
+                return (
+                  <motion.div
+                    key={w.label}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-2 bg-blue-50 text-blue-700 rounded-lg px-3 py-2 text-sm font-medium"
+                  >
+                    <Icon size={15} />
+                    {w.label}
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.section>
 
@@ -268,14 +269,10 @@ const WebsiteBuilder: React.FC = () => {
                 <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
                   <MessageSquare size={20} className="text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold leading-snug">How it works in practice</h3>
+                <h3 className="text-lg font-semibold leading-snug">{t('scenario.heading')}</h3>
               </div>
               <p className="text-slate-300 leading-relaxed text-base md:text-lg max-w-3xl">
-                A new client signs up and enters their current website URL. HABOS scrapes the
-                site — captures design, content, images, and brand tokens. In under 2 minutes,
-                a rebuilt version appears with HABOS commerce, booking, and forms wired in.
-                Products added in the dashboard appear on the website automatically. Bookings
-                flow into the calendar. Form submissions create tickets. One data layer, everywhere.
+                {t('scenario.body')}
               </p>
             </div>
           </motion.section>
@@ -309,8 +306,7 @@ const WebsiteBuilder: React.FC = () => {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4">
-              Other website builders are drag-and-drop.<br />
-              HABOS builds it for you.
+              {t('cta.heading')}
             </h2>
 
             <a href="/#waitlist">
@@ -319,7 +315,7 @@ const WebsiteBuilder: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-md hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
                 <ArrowRight size={16} />
               </motion.button>
             </a>

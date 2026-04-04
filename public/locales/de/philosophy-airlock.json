@@ -1,0 +1,76 @@
+{
+  "category": "Philosophie",
+  "title": "Die Luftschleuse",
+  "tagline": "KI schlägt vor. Sie entscheiden.",
+  "heroAlt": "Die Luftschleuse",
+  "section1": {
+    "heading": "Das Problem, über das niemand spricht",
+    "body1": "Das Gefährlichste an KI ist nicht, dass sie Fehler macht. Es ist, dass sie handelt, bevor Sie prüfen können. Ein Verkaufsbot bietet einen Rabatt von 40 % an, der gegen die Margenrichtlinie verstößt. Ein Buchungssystem plant doppelt, weil es die Dichte optimiert hat, ohne die Fahrtzeit zu berücksichtigen. Das sind keine Hypothesen.",
+    "body2": "Nur 6 % der Unternehmen geben an, dass sie autonomen KI-Agenten vollständig vertrauen. Die anderen 94 % haben Recht, vorsichtig zu sein. Wir haben das Gegenteil gebaut: Jede Aktion, die die KI ausführt, passiert das, was wir die Luftschleuse nennen – eine obligatorische Vorschau, bei der Sie genau sehen, was gleich passieren wird, bevor es passiert."
+  },
+  "section2": {
+    "heading": "Der Vergleich"
+  },
+  "comparison": [
+    { "action": "E-Mail senden", "auto": "Sofort gesendet. Der CEO findet einen Tippfehler, nachdem 200 Personen ihn gelesen haben.", "airlock": "Entwurf erscheint als Karte. Sie korrigieren den Tippfehler, tippen auf Senden." },
+    { "action": "Kalenderänderungen", "auto": "Dienstag doppelt gebucht – der persönliche Kalender wurde nicht überprüft.", "airlock": "Vorschau zeigt den Konflikt. Sie wählen den richtigen Zeitslot." },
+    { "action": "Aufgabenerstellung", "auto": "14 Aufgaben aus einem Meeting. 6 sind Duplikate.", "airlock": "Vorgeschlagene Liste. Sie verbinden zwei, löschen eine, genehmigen den Rest." },
+    { "action": "Kundenkommunikation", "auto": "Mit einem Gutschein geantwortet, den Sie nicht mehr anbieten.", "airlock": "Antwort erscheint als Vorschau. Sie passen das Angebot an, dann senden Sie es." }
+  ],
+  "tableHeaders": {
+    "action": "Aktion",
+    "auto": "Vollständig Autonom",
+    "airlock": "Die Luftschleuse"
+  },
+  "section3": {
+    "heading": "Kein UI-Muster. Ein Sicherheitsprotokoll.",
+    "body": "Jede Schreibaktion generiert einen HMAC-SHA256-signierten Bestätigungstoken, der den Nutzer, die genaue Aktion und die präzisen Argumente bindet – bis zu einzelnen Zeichen in einem E-Mail-Entwurf. Tokens laufen in 10 Minuten ab. Wenn sich etwas zwischen Vorschau und Bestätigung ändert, wird das Token ungültig. Die KI kann die Aktion nach dem Zeigen nicht mehr ändern. Was Sie genehmigt haben, wird genau so ausgeführt."
+  },
+  "quote": "\"Die Pause ist keine Einschränkung. Sie ist der Grund, warum Sie das Ihrem Unternehmen anvertrauen werden.\"",
+  "section4": {
+    "heading": "Ihre Daten. Ihre Infrastruktur. Ihre Regeln.",
+    "body": "Vertrauen geht nicht nur darum, was die KI tut – es geht darum, wo Ihre Daten leben. HABOS läuft überall, wo Sie es brauchen: unsere Cloud, Ihre Server oder vollständig luftgespalt ohne Internetabhängigkeit. Dieselbe Plattform, dieselben Funktionen, wo immer Ihre Daten sein müssen."
+  },
+  "deploymentOptions": [
+    {
+      "title": "Cloud",
+      "body": "Railway für Compute, Supabase für die Datenbank und die großen Hyperscaler für LLM. Ab dem ersten Tag produktionsbereit.",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "On-Premise",
+      "body": "Setzen Sie das vollständige Backend an Ihrem Standort ein. Betreiben Sie Qwen-Modelle auf Standard-Mac-Hardware für lokale KI – kein GPU-Cluster erforderlich.",
+      "badges": ["Qwen-Modelle", "Mac-kompatibel", "Selbstgehostete DB"]
+    },
+    {
+      "title": "Luftgespaltenes Rechenzentrum",
+      "body": "Für maximale Isolation setzen Sie ein lokales Rechenzentrum mit Modellen wie Kimi K2 ein. Vollständige KI-Fähigkeiten ohne Internetabhängigkeit.",
+      "badges": ["Kimi K2", "Luftgespalten", "Kein Datenabfluss"]
+    }
+  ],
+  "section5": {
+    "heading": "Sicherheit auf jeder Ebene"
+  },
+  "securityItems": [
+    {
+      "title": "Kryptografische Genehmigungstoken",
+      "body": "Jede KI-Aktion ist signiert und manipulationssicher."
+    },
+    {
+      "title": "Zeilensicherheit auf jeder Tabelle",
+      "body": "Nutzer sehen nur Daten, für die sie autorisiert sind."
+    },
+    {
+      "title": "Budget-Tracking pro Ausführung",
+      "body": "KI-Ausgaben werden pro Agent, pro Aufgabe verfolgt und begrenzt."
+    },
+    {
+      "title": "Vollständiger Prüfpfad",
+      "body": "Jede Aktion, jede Entscheidung, dauerhaft protokolliert."
+    }
+  ],
+  "nav": {
+    "nextLabel": "Weiter",
+    "nextTitle": "Alles an einem Ort"
+  }
+}

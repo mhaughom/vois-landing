@@ -1,0 +1,50 @@
+{
+  "badge": "Time & Payroll",
+  "hero": {
+    "title": "Clock In. We Handle the Math.",
+    "description": "GPS-verified time tracking with automatic overtime calculation, break tracking, and payroll-ready billing — no timesheets, no spreadsheets."
+  },
+  "body": "Location tracking only activates during a work session — no session means no GPS access. Privacy by design. The system captures GPS waypoints, computes regular versus overtime hours per calendar day, and triggers async manager notifications when daily thresholds are exceeded. At month end, every team member's hours are already calculated, overtime split out, and billing amounts computed with configurable hourly and overtime rates. Export to payroll in one click.",
+  "timecard": {
+    "heading": "Mike Torres — This Week",
+    "summary": "36.5 hrs regular · 4.5 hrs overtime",
+    "days": [
+      { "day": "Mon", "range": "7:00 AM → 3:30 PM", "hours": "8.0 hrs", "badge": "Regular" },
+      { "day": "Tue", "range": "6:45 AM → 4:15 PM", "hours": "9.0 hrs", "badge": "1.0 OT" },
+      { "day": "Wed", "range": "7:00 AM → 5:00 PM", "hours": "9.5 hrs", "badge": "1.5 OT" },
+      { "day": "Thu", "range": "7:15 AM → 3:45 PM", "hours": "8.0 hrs", "badge": "Regular" },
+      { "day": "Fri", "range": "7:00 AM → 1:30 PM", "hours": "6.5 hrs", "badge": "Half day" }
+    ],
+    "totalLine": "Total: 41.0 hrs | Regular: 36.5 × $45/hr = $1,642.50 | OT: 4.5 × $67.50/hr = $303.75 | Total: $1,946.25",
+    "footnote": "Overtime auto-calculated per calendar day. Manager notified when daily threshold exceeded."
+  },
+  "benefits": {
+    "gps": {
+      "title": "Privacy-first GPS",
+      "description": "Location tracking only activates during a work session. No session = no GPS access. Workers control when they're tracked."
+    },
+    "pause": {
+      "title": "Pause/resume",
+      "description": "Record breaks within a session. System computes regular vs paused time automatically. No manual deductions needed."
+    },
+    "alerts": {
+      "title": "Manager alerts",
+      "description": "Clock-out triggers async overtime check. If daily hours exceed the threshold (default 8h), the manager gets notified via org chart hierarchy."
+    }
+  },
+  "scenario": "End of the month. Instead of collecting paper timesheets, fixing math errors, and cross-referencing with job logs — you pull up HABOS. Every team member's hours are already calculated, overtime split out, billing amounts computed. Export to payroll in one click. That's 4 hours of admin work, gone.",
+  "scenarioHighlight": "That's 4 hours of admin work, gone.",
+  "techStrip": {
+    "items": [
+      "GPS-gated sessions",
+      "Haversine mileage",
+      "Per-day overtime calc",
+      "1.5× default OT rate",
+      "Payroll-ready export"
+    ]
+  },
+  "cta": {
+    "heading": "Other time trackers make your accountant cry. HABOS makes payroll painless.",
+    "button": "Join Waitlist"
+  }
+}

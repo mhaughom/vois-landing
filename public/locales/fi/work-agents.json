@@ -1,0 +1,59 @@
+{
+  "badge": "Ydinominaisuus",
+  "hero": {
+    "title": "Kuvaile se. Agentti hoitaa loput.",
+    "description": "Anna monimutkainen ohje selkokielellä. Autonominen agentti suunnittelee sen, suorittaa sen läpi koko liiketoimintasi ja pyytää luvan ennen mitään riskialtista."
+  },
+  "intro": "Tämä ei ole chatbot API-integraatioilla. Se on autonominen agenttikehys, jossa on suunnittelu, hyväksyntäportit, budjettiseuranta, delegointi ja vikasietoisuus — toimii 87 liiketoimintamoduulin yli rivi tason suojauksella. Arkkitehtuuri on verrattavissa yritystason työnkulkumoottoreihin kuten ServiceNow tai Salesforce Flow, mutta sitä ohjataan luonnollisella kielellä vetämisen ja pudottamisen sijaan. Aktiiviset ajot selviävät jopa palvelinuudelleenkäynnistyksissä.",
+  "pipeline": {
+    "steps": [
+      { "label": "Kuvaile" },
+      { "label": "Suunnittele" },
+      { "label": "Suorita" },
+      { "label": "Hyväksy" },
+      { "label": "Valmis" }
+    ],
+    "footer": "Agentti pysähtyy \"Hyväksy\"-kohtaan kaiken korkeariskisen osalta. Sinulla on aina viimeinen sana."
+  },
+  "scenario": {
+    "title": "Katso se käytännössä",
+    "instructionLabel": "Sinun ohjeesi",
+    "instruction": "\"Analysoi Q1-tulomme, löydä 3 huonoiten menestynyttä tuotetta ja lähetä johtoryhmälle yhteenveto sähköpostilla.\"",
+    "agentLabel": "Mitä agentti tekee",
+    "steps": [
+      { "text": "Kyselee Finance-moduulista Q1-tulot tuotteittain" },
+      { "text": "Ristiviittaa tuotekatalogin kontekstin" },
+      { "text": "Tunnistaa kolme heikointa: Widget Pro (-23 %), Basic Plan (-18 %), Starter Kit (-12 %)" },
+      { "text": "Kirjoittaa yhteenvetosähköpostin kaavioilla" },
+      { "text": "Pysähtyy — näyttää sinulle sähköpostiluonnoksen hyväksyttäväksi" },
+      { "text": "Hyväksyt → Sähköposti lähetetty johtoryhmälle" }
+    ]
+  },
+  "stats": {
+    "title": "Mitä tämä tarkoittaa sinulle",
+    "items": [
+      {
+        "big": "Tunteja → Minuutteja",
+        "desc": "Tehtävät, jotka veivät aamupäivän, hoituvat nyt yhdellä lauseella."
+      },
+      {
+        "big": "8 päätyökalua",
+        "desc": "Haku, aikataulutus, sähköposti, talous, varaukset, tutkimus, tehtävät, raportit — kaikki agentin käytettävissä."
+      },
+      {
+        "big": "3 tason delegointi",
+        "desc": "Agentit voivat synnyttää ala-agentteja budjettirajoilla. Monimutkainen työ, täysin seurattuna."
+      }
+    ]
+  },
+  "trustSignals": [
+    "Kryptografiset hyväksyntätokenit",
+    "Per-ajo budjettiseuranta",
+    "Täydellinen suoritusloki",
+    "Selviää palvelinuudelleenkäynnistyksissä"
+  ],
+  "closing": {
+    "tagline": "Muut alustat automatisoivat yksinkertaisia laukaisimia. VOIS-agentit ajattelevat, suunnittelevat ja suorittavat.",
+    "cta": "Liity odotuslistalle"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "badge": "Mediebibliotek",
+  "hero": {
+    "title": "Ladda upp det.\nAI förstår det.",
+    "description": "Lägg bilder, video, dokument eller ljud. AI extraherar produkter, personer, text och mening — och gör det sökbart efter innehåll, inte bara filnamn."
+  },
+  "intro": "Dra och släpp bilder, video, dokument eller ljud — Sharp autogenererar WebP-miniatyrer och GPT-4o-mini berikar allt asynkront. Visionsanalys extraherar produkter, personer, platser, färger och synlig text från bilder. Dokument får OCR. Video och ljud transkriberas och sammanfattas. Extraherad text delas upp i 512-dimensionella inbäddningar så att du kan söka efter mening — 'bastuproduktfoto' eller 'Henderson-faktura' — inte bara filnamn. Ett mediebibliotek delat med Produkter, Socialt, Marknadsföring, Webbplatser och Presentationer.",
+  "grid": {
+    "annotation": "Sök efter mening: \"bastuproduktfoto\" eller \"Henderson-faktura\" — inte bara filnamn. Ett bibliotek delat med Produkter, Socialt, Marknadsföring, Webbplatser och Presentationer."
+  },
+  "mediaItems": [
+    {
+      "filename": "product-photo-01.jpg",
+      "tag": "Produkt · Varmvattenberedare",
+      "ai": "AI: Ackumulatorfri enhet, rostfritt stål, bostadshus"
+    },
+    {
+      "filename": "team-photo.jpg",
+      "tag": "Team · 4 personer upptäckta",
+      "ai": "AI: Kontorsmiljö, märkesuniformer"
+    },
+    {
+      "filename": "invoice-march.pdf",
+      "tag": "Dokument · OCR extraherat",
+      "ai": "AI: Henderson Plumbing, 4 250 $, mars 2026"
+    },
+    {
+      "filename": "job-walkthrough.mp4",
+      "tag": "Video · Transkriberat",
+      "ai": "AI: 3 min genomgång, badrumrenovering"
+    },
+    {
+      "filename": "client-call.m4a",
+      "tag": "Ljud · Transkriberat",
+      "ai": "AI: Sarah Henderson, tillståndsdiskussion"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logotyp · Varumärkestillgång",
+      "ai": "AI: Primär logotyp, mörk variant"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "AI-visionsanalys",
+      "desc": "GPT-4o-mini identifierar produkter, personer, färger och text i bilder. Dokument får OCR. Video och ljud transkriberas."
+    },
+    {
+      "title": "Ett bibliotek överallt",
+      "desc": "Samma mediaväljare används i Produkter, Socialt, Marknadsföring, Webbplatser och Presentationer. Ingen duplicering."
+    },
+    {
+      "title": "Semantisk sökning",
+      "desc": "Text uppdelad i 512-dim inbäddningar. Hitta media efter mening, inte bara metadata."
+    }
+  ],
+  "techItems": [
+    "GPT-4o-mini vision",
+    "Sharp WebP-miniatyrer",
+    "512-dim inbäddningar",
+    "SHA-256 deduplicering",
+    "Automatisk rollhärleding"
+  ],
+  "cta": {
+    "title": "Andra filhanterare lagrar filer.\nHABOS förstår dem.",
+    "button": "Gå med i väntelistan"
+  }
+}

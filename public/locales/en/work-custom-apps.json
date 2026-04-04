@@ -1,0 +1,74 @@
+{
+  "badge": "Custom Apps",
+  "hero": {
+    "title": "Describe it.\nVOIS builds it.",
+    "description": "Create your own mini-apps with a single sentence. AI generates the schema, the dashboard, and the voice routing — your business gets tools that no vendor would ever build for you."
+  },
+  "heroPills": [
+    "Natural language creation",
+    "AI schema generation",
+    "Auto-dashboards"
+  ],
+  "demo": {
+    "steps": [
+      {
+        "label": "You describe",
+        "prompt": "\"I want an app to track equipment inspections\""
+      },
+      {
+        "label": "AI generates schema",
+        "fields": [
+          { "field": "Equipment", "type": "Text" },
+          { "field": "Location", "type": "Location" },
+          { "field": "Condition", "type": "Select" },
+          { "field": "Photo", "type": "Image" },
+          { "field": "Next Service Date", "type": "Date" }
+        ]
+      },
+      {
+        "label": "Instant dashboard",
+        "entries": [
+          { "equip": "Unit 3 — Compressor", "status": "Good" },
+          { "equip": "Unit 7 — HVAC", "status": "Fair" },
+          { "equip": "Unit 12 — Generator", "status": "Needs Repair" }
+        ],
+        "legend": [
+          "Good",
+          "Fair",
+          "Needs Repair"
+        ]
+      }
+    ],
+    "annotation": "From one sentence to a working app. No code. No waiting."
+  },
+  "benefitCards": [
+    {
+      "title": "Voice-routed data",
+      "body": "Say 'inspected unit 3, compressor showing wear' and it routes to your Equipment Inspections app automatically. Keywords are learned from your schema."
+    },
+    {
+      "title": "AI-powered fields",
+      "body": "Some fields fill themselves. An 'AI Recommendation' field on your inspection app might generate 'Schedule compressor replacement within 6 months' from your notes."
+    },
+    {
+      "title": "Instant dashboards",
+      "body": "Every custom app gets charts, filters, and AI insights out of the box. See trends in your data without building anything."
+    }
+  ],
+  "scenario": {
+    "heading": "Real-world scenario",
+    "body": "Your cleaning company needs to track site quality scores. You say \"create an app for site quality audits.\" VOIS generates fields for site, auditor, score, photos, and notes. An AI field auto-generates improvement suggestions. Within a minute you have a quality tracking system that routes voice notes from the field directly into structured records."
+  },
+  "techItems": [
+    "Natural language creation",
+    "AI schema generation",
+    "Voice intent routing",
+    "Auto-dashboards",
+    "AI generation fields",
+    "Marketplace sharing"
+  ],
+  "cta": {
+    "tagline": "Your business is unique. Your tools should be too.",
+    "button": "Join Waitlist"
+  }
+}

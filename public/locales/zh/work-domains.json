@@ -1,0 +1,62 @@
+{
+  "badge": "自定义域名",
+  "hero": {
+    "title": "你的域名。你的邮箱。一次设置。",
+    "description": "连接你的自定义域名，获取工作区电子邮件地址和自动 SSL——全部由 Cloudflare 的企业级基础设施支持。"
+  },
+  "body": "购买一个域名，即可获得网站、团队电子邮件地址以及完整的电子邮件系统，包括送达追踪、退信和投诉处理以及 AI 回复建议——所有这些都在一个设置页面上管理。Cloudflare 自动配置 SSL 和自定义主机名。AWS SES 通过 DKIM 处理电子邮件身份认证。入站电子邮件通过接收规则路由到 HABOS 邮件系统，在那里被解析、分组并可搜索。",
+  "mockCard": {
+    "domain": "hendersonplumbing.com",
+    "badges": {
+      "domain": "域名",
+      "connected": "已连接",
+      "ssl": "SSL",
+      "sslActive": "已激活",
+      "email": "电子邮件",
+      "emailConfigured": "已配置"
+    },
+    "rows": [
+      { "label": "网站", "value": "hendersonplumbing.com" },
+      { "label": "电子邮件", "value": "mike@hendersonplumbing.com" },
+      { "label": "预约", "value": "hendersonplumbing.com/book" }
+    ],
+    "annotation": "通过 Cloudflare，DNS 传播通常在 5 分钟内完成。"
+  },
+  "benefits": [
+    {
+      "title": "域名 + 邮箱 + SSL",
+      "desc": "无需单独的域名注册商、邮件服务商和 SSL 证书。一切在一个地方配置，一个仪表板，一张账单。"
+    },
+    {
+      "title": "专业电子邮件",
+      "desc": "从你的域名发送电子邮件——发票、确认、营销。而不是来自 noreply@some-platform.com。你的品牌，无处不在。"
+    },
+    {
+      "title": "企业级基础设施",
+      "desc": "Cloudflare 的全球边缘网络为你的网站提供服务。包含企业级 DDoS 防护、CDN 和 SSL 证书管理。"
+    }
+  ],
+  "comparison": {
+    "without": {
+      "heading": "没有 HABOS",
+      "text": "购买域名（12美元/年）。设置 DNS。获取 SSL 证书。配置电子邮件托管（6美元/月）。逐一关联。祈祷它能正常工作。调试 DNS 传播。",
+      "badge": "3 项服务，2+ 小时设置"
+    },
+    "with": {
+      "heading": "有了 HABOS",
+      "text": "输入你的域名。添加 DNS 记录。完成。电子邮件、SSL 和网站路由自动配置。",
+      "badge": "1 项服务，5 分钟"
+    }
+  },
+  "techItems": [
+    "Cloudflare Workers",
+    "自动 SSL 配置",
+    "工作区邮件路由",
+    "DNS 验证",
+    "全球 CDN"
+  ],
+  "cta": {
+    "heading": "其他平台让你管理 3 项服务。HABOS 全部搞定。",
+    "button": "加入等待名单"
+  }
+}

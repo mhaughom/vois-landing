@@ -1,0 +1,29 @@
+{
+  "category": "Filosofie",
+  "title": "Twee interfaces, één systeem",
+  "tagline": "Mensen krijgen schermen. Agents krijgen API's. Dezelfde tools, dezelfde gegevens.",
+  "heroAlt": "Twee interfaces — visuele dashboards en gestructureerde API's",
+  "body1": "De meeste 'AI-aangedreven' producten vallen in een van twee vallen. Eerste: een chatbot aan bestaande UI vastmaken en de AI knoppen laten klikken, menu's laten navigeren, schermen laten lezen. Het verbrandt 15.000 tokens om te doen wat een functieaanroep in 200 afhandelt. Wanneer de UI verandert, breekt de agent. Tweede: alleen AI bouwen zonder menselijke interface. De agent is snel — maar het is een zwarte doos. Hij \"behandelde\" je e-mail, maar je kunt niet zien wat hij heeft verstuurd.",
+  "humanInterface": {
+    "label": "Menselijke interface",
+    "body": "Visuele weekweergave. Kleurgecodeerde evenementen. Slepen om te verzetten. Ruimtelijk redeneren over je tijd."
+  },
+  "agentInterface": {
+    "label": "Agent-interface",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "Dezelfde agenda. Hetzelfde evenement. Dezelfde rechten."
+  },
+  "comparison": "Agent via web-UI: 15.000 tokens. Agent via functieaanroep: 200 tokens. 75x.",
+  "comparisonWebUI": "Agent via web-UI:",
+  "comparisonWebUIStat": "15.000 tokens.",
+  "comparisonFunctionCall": "Agent via functieaanroep:",
+  "comparisonFunctionCallStat": "200 tokens.",
+  "comparisonMultiplier": "75x.",
+  "quote": "\"AI knoppen laten klikken is als een piloot laten lopen. Geef elke intelligentie de interface die hij verdient.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Suggesties, geen menu's",
+    "nextLabel": "Volgende",
+    "nextTitle": "Leg je brein vast"
+  }
+}

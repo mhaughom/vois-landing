@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Navbar } from '../../components/Navbar';
 import {
@@ -67,18 +68,45 @@ const initialSlots: Slot[] = [
 
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as const;
 
-const confirmationSteps = [
-  { icon: CheckCircle2, text: 'Booking confirmed' },
-  { icon: ShoppingCart, text: 'Order #1248 created' },
-  { icon: UserPlus,     text: 'Sarah Henderson added to CRM' },
-  { icon: Bell,         text: 'Team notified' },
-];
-
 /* ── page component ────────────────────────────────────────────────────── */
 
 const Bookings: React.FC = () => {
+  const { t } = useTranslation('work-bookings');
   const [slots, setSlots] = useState(initialSlots);
   const [confirmed, setConfirmed] = useState(false);
+
+  const confirmationSteps = t('confirmationSteps', { returnObjects: true }) as string[];
+
+  const confirmationIcons = [CheckCircle2, ShoppingCart, UserPlus, Bell];
+
+  const techStripItems = [
+    { icon: <Shield size={14} />,       label: t('techStrip.0') },
+    { icon: <Lock size={14} />,         label: t('techStrip.1') },
+    { icon: <ShoppingCart size={14} />, label: t('techStrip.2') },
+    { icon: <Zap size={14} />,          label: t('techStrip.3') },
+    { icon: <Link2 size={14} />,        label: t('techStrip.4') },
+  ];
+
+  const benefitCards = [
+    {
+      icon: <ShoppingCart size={22} className="text-violet-600" />,
+      title: t('benefits.bookOrder.title'),
+      body: t('benefits.bookOrder.body'),
+      accent: 'bg-violet-50 border-violet-100',
+    },
+    {
+      icon: <Package size={22} className="text-amber-600" />,
+      title: t('benefits.stock.title'),
+      body: t('benefits.stock.body'),
+      accent: 'bg-amber-50 border-amber-100',
+    },
+    {
+      icon: <Globe size={22} className="text-emerald-600" />,
+      title: t('benefits.api.title'),
+      body: t('benefits.api.body'),
+      accent: 'bg-emerald-50 border-emerald-100',
+    },
+  ];
 
   const handleSlotClick = (idx: number) => {
     if (slots[idx].state === 'booked') return;
@@ -115,7 +143,7 @@ const Bookings: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-violet-500/10 text-violet-700 rounded-full text-sm font-medium mb-6">
-                Bookings
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -124,8 +152,12 @@ const Bookings: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]"
             >
-              Zero Double-Bookings.<br />
-              Guaranteed.
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </motion.h1>
 
             <motion.p
@@ -133,14 +165,13 @@ const Bookings: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed"
             >
-              Customers pick a slot, the system locks it atomically, creates the order,
-              upserts the CRM contact, and notifies your team — all in one transaction.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              PostgreSQL advisory locks prevent double-booking even under extreme concurrent load. If two people click the same slot at the same millisecond, one wins — the other sees 'slot taken' instantly. When a booking is confirmed, HABOS atomically creates or links a CRM client, generates an order with line items, deducts stock, and notifies the assigned team member. Cancel? Inventory restores and the order updates. Single transaction, no webhook delays, no orphaned records.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -158,8 +189,8 @@ const Bookings: React.FC = () => {
                   <Calendar size={20} className="text-violet-600" />
                 </div>
                 <div>
-                  <p className="text-base font-semibold text-slate-900">HVAC Maintenance</p>
-                  <p className="text-sm text-slate-500">60 min &middot; $150</p>
+                  <p className="text-base font-semibold text-slate-900">{t('grid.serviceTitle')}</p>
+                  <p className="text-sm text-slate-500">{t('grid.serviceMeta')}</p>
                 </div>
               </div>
 
@@ -220,7 +251,7 @@ const Bookings: React.FC = () => {
                     className="flex flex-col sm:flex-row items-center gap-3 justify-center"
                   >
                     <span className="text-sm text-slate-600">
-                      Selected: <strong className="text-violet-700">{selectedSlot.day} {selectedSlot.time}</strong>
+                      {t('grid.selectedPrefix')} <strong className="text-violet-700">{selectedSlot.day} {selectedSlot.time}</strong>
                     </span>
                     <motion.button
                       whileHover={{ scale: 1.03 }}
@@ -229,7 +260,7 @@ const Bookings: React.FC = () => {
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-violet-600 text-white text-sm font-medium rounded-full shadow-sm hover:bg-violet-700 transition-colors"
                     >
                       <Lock size={14} />
-                      Confirm Booking
+                      {t('grid.confirmButton')}
                     </motion.button>
                   </motion.div>
                 )}
@@ -242,22 +273,25 @@ const Bookings: React.FC = () => {
                   >
                     {/* Confirmation steps */}
                     <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-                      {confirmationSteps.map((step, i) => (
-                        <React.Fragment key={step.text}>
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: i * 0.15, ...springPop }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full border border-green-200 text-sm text-green-700 font-medium shadow-sm"
-                          >
-                            <step.icon size={14} />
-                            {step.text}
-                          </motion.div>
-                          {i < confirmationSteps.length - 1 && (
-                            <ArrowRight size={14} className="text-slate-300 shrink-0" />
-                          )}
-                        </React.Fragment>
-                      ))}
+                      {confirmationSteps.map((text, i) => {
+                        const StepIcon = confirmationIcons[i];
+                        return (
+                          <React.Fragment key={text}>
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: i * 0.15, ...springPop }}
+                              className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full border border-green-200 text-sm text-green-700 font-medium shadow-sm"
+                            >
+                              <StepIcon size={14} />
+                              {text}
+                            </motion.div>
+                            {i < confirmationSteps.length - 1 && (
+                              <ArrowRight size={14} className="text-slate-300 shrink-0" />
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
                     </div>
                   </motion.div>
                 )}
@@ -266,9 +300,7 @@ const Bookings: React.FC = () => {
               {/* Advisory lock explanation */}
               <div className="mt-6 pt-6 border-t border-violet-100/60">
                 <p className="text-sm text-slate-500 leading-relaxed max-w-2xl mx-auto text-center">
-                  PostgreSQL advisory locks prevent double-booking even under extreme concurrent
-                  load. If two people click the same slot at the same millisecond, one wins — the
-                  other sees "slot taken" instantly.
+                  {t('advisoryLock')}
                 </p>
               </div>
             </div>
@@ -282,26 +314,7 @@ const Bookings: React.FC = () => {
             variants={stagger}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
           >
-            {[
-              {
-                icon: <ShoppingCart size={22} className="text-violet-600" />,
-                title: 'Book \u2192 order \u2192 CRM',
-                body: 'One booking creates everything: order with line items, CRM contact upsert, staff notification, and customer confirmation email. Zero manual steps.',
-                accent: 'bg-violet-50 border-violet-100',
-              },
-              {
-                icon: <Package size={22} className="text-amber-600" />,
-                title: 'Smart stock reservation',
-                body: 'Inventory tracked across pending \u2192 confirmed \u2192 completed flow. No overselling, no manual stock checks.',
-                accent: 'bg-amber-50 border-amber-100',
-              },
-              {
-                icon: <Globe size={22} className="text-emerald-600" />,
-                title: 'Public + internal APIs',
-                body: 'Staff book from the dashboard. Customers book from your website or scheduling links. Same atomic protection, same availability pool.',
-                accent: 'bg-emerald-50 border-emerald-100',
-              },
-            ].map((card) => (
+            {benefitCards.map((card) => (
               <motion.div
                 key={card.title}
                 variants={fadeUp}
@@ -330,15 +343,13 @@ const Bookings: React.FC = () => {
               <div className="bg-slate-100 rounded-3xl p-8">
                 <div className="flex items-center gap-2 mb-4">
                   <XIcon size={18} className="text-slate-400" />
-                  <h3 className="text-lg font-semibold text-slate-700">Without HABOS</h3>
+                  <h3 className="text-lg font-semibold text-slate-700">{t('beforeAfter.withoutTitle')}</h3>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Customer emails to book. You check your calendar. Reply with available times.
-                  They pick one. You create the appointment, the invoice, and add them to your
-                  contacts. 8 steps, 3 apps.
+                  {t('beforeAfter.withoutText')}
                 </p>
                 <div className="inline-block px-4 py-2 bg-slate-200/80 rounded-full text-sm font-medium text-slate-600">
-                  ~15 min per booking
+                  {t('beforeAfter.withoutStat')}
                 </div>
               </div>
 
@@ -346,14 +357,13 @@ const Bookings: React.FC = () => {
               <div className="bg-violet-50 rounded-3xl p-8">
                 <div className="flex items-center gap-2 mb-4">
                   <CheckCircle2 size={18} className="text-violet-600" />
-                  <h3 className="text-lg font-semibold text-slate-900">With HABOS</h3>
+                  <h3 className="text-lg font-semibold text-slate-900">{t('beforeAfter.withTitle')}</h3>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Customer picks a slot on your website. Done. Order, CRM entry,
-                  notification, and confirmation email happen automatically.
+                  {t('beforeAfter.withText')}
                 </p>
                 <div className="inline-block px-4 py-2 bg-violet-100 rounded-full text-sm font-medium text-violet-700">
-                  ~30 seconds (their time, not yours)
+                  {t('beforeAfter.withStat')}
                 </div>
               </div>
             </div>
@@ -369,13 +379,7 @@ const Bookings: React.FC = () => {
           >
             <div className="bg-slate-900 rounded-2xl px-6 py-5">
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-                {[
-                  { icon: <Shield size={14} />,    label: 'PostgreSQL advisory locks' },
-                  { icon: <Lock size={14} />,      label: 'Atomic slot protection' },
-                  { icon: <ShoppingCart size={14} />, label: 'Auto-order creation' },
-                  { icon: <Zap size={14} />,       label: 'Race condition safe' },
-                  { icon: <Link2 size={14} />,     label: 'Self-cancellation links' },
-                ].map((item) => (
+                {techStripItems.map((item) => (
                   <span key={item.label} className="flex items-center gap-1.5 text-sm text-slate-300">
                     <span className="text-slate-500">{item.icon}</span>
                     {item.label}
@@ -394,8 +398,12 @@ const Bookings: React.FC = () => {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4">
-              Other booking tools are a separate calendar.<br />
-              HABOS bookings are wired into your entire business.
+              {t('closing.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h2>
 
             <a href="/#waitlist">
@@ -404,7 +412,7 @@ const Bookings: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-md hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('closing.cta')}
                 <ArrowRight size={16} />
               </motion.button>
             </a>

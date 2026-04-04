@@ -1,0 +1,23 @@
+{
+  "category": "Filosofia",
+  "title": "Cattura il Tuo Pensiero",
+  "tagline": "Le tue migliori idee nascono tra una riunione e l'altra. Noi le catturiamo.",
+  "heroAlt": "Cattura il Tuo Pensiero",
+  "body1": "È lunedì mattina. Sai di aver avuto pensieri importanti nel fine settimana — riesci a sentirli, appena fuori portata. I tuoi post-it sono caduti dal monitor. Il trucco \"mandami un'email\" è sepolto sotto 40 messaggi. Hai 47 note vocali senza etichetta e non hai tempo di ascoltarle. Il potenziale creativo evapora ogni giorno, non perché alle persone manchino le idee, ma perché lo strumento di acquisizione era troppo lontano.",
+  "body2": "Un idraulico finisce dal cliente Johnson e parla con VOIS durante il viaggio di ritorno a casa. Trenta secondi: \"Lo scaldabagno ha bisogno di essere sostituito, non riparato. Fategli un preventivo per un Bosch 27i, 18.000 corone. Ricordami di ordinare il pezzo domani.\" Quando parcheggia, il rapporto di lavoro è aggiornato, il CRM riflette la modifica, un preventivo è pronto e un promemoria è impostato per le 9. Le mani non hanno mai lasciato il volante.",
+  "stat": {
+    "withoutLabel": "Senza acquisizione",
+    "withoutCount": "23 idee",
+    "withoutSub": "3 realizzate",
+    "withLabel": "Con acquisizione",
+    "withCount": "23 catturate",
+    "withSub": "14 completate entro venerdì"
+  },
+  "quote": "\"Il tuo cervello non è mai stato il collo di bottiglia. Lo era il tuo strumento di acquisizione.\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Due Interfacce, Un Sistema",
+    "nextLabel": "Successivo",
+    "nextTitle": "Velocità del Pensiero"
+  }
+}

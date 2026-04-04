@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Kommunikasjon",
+  "hero": {
+    "title": "Alle samtaler, ett sted",
+    "description": "E-post, meldinger, telefon og supportsaker – samlet med AI som utarbeider svar, ruter meldinger og aldri lar noe falle gjennom sprekkene."
+  },
+  "items": [
+    {
+      "title": "E-post",
+      "desc": "Tøm innboksen ved å snakke – AI skriver svar i din tone."
+    },
+    {
+      "title": "Messenger",
+      "desc": "Alle kanaler samlet per person – e-post, chat og SMS i én strøm."
+    },
+    {
+      "title": "Telefon",
+      "desc": "AI-resepsjonist som booker avtaler og svarer på spørsmål 24/7."
+    },
+    {
+      "title": "Supportsaker",
+      "desc": "Saker opprettes fra skjemaer eller e-post med prioritetsnivåer og automatisk eskalering."
+    }
+  ]
+}

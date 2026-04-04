@@ -1,0 +1,60 @@
+{
+  "badge": "Téléphonie IA",
+  "hero": {
+    "title": "Un réceptionniste IA.\nUn vrai numéro de téléphone.",
+    "description": "HABOS provisionne un numéro de téléphone dédié pour votre entreprise. L'IA répond aux appels, prend des rendez-vous, crée des tâches et oriente vers la bonne personne — 24h/24, 7j/7."
+  },
+  "body": "HABOS provisionne de vrais numéros de téléphone — à la fois des lignes professionnelles workspace via Telnyx et des numéros d'assistant IA personnel via Twilio. Quand quelqu'un appelle, l'assistant IA répond avec un accès complet aux outils : vérifier le calendrier, créer des tâches, envoyer des messages, rechercher des contacts. Les actions à risque élevé comme les réservations ou les paiements utilisent une confirmation par SMS — un code à quatre chiffres envoyé par SMS à l'utilisateur. Les SMS entrants vers le numéro de l'assistant déclenchent une session IA conversationnelle avec les mêmes capacités complètes.",
+  "callFlow": {
+    "steps": [
+      {
+        "label": "Appel entrant : (555) 234-5678"
+      },
+      {
+        "label": "L'IA répond : « Henderson Plumbing, comment puis-je vous aider ? »"
+      },
+      {
+        "label": "Appelant : « J'ai une fuite, quelqu'un peut venir aujourd'hui ? »"
+      },
+      {
+        "label": "L'IA vérifie le calendrier → trouve un créneau disponible à 14h00"
+      },
+      {
+        "label": "L'IA : « Je peux vous programmer un technicien à 14h00 aujourd'hui. Cela vous convient ? »"
+      }
+    ],
+    "resultItems": {
+      "booking": "Réservation créée",
+      "ticket": "Ticket ouvert",
+      "notify": "Mike notifié",
+      "sms": "Confirmation SMS envoyée"
+    },
+    "caption": "L'IA dispose d'un accès complet aux outils — calendrier, CRM, tickets, réservations. Ce n'est pas un menu IVR. C'est un véritable assistant."
+  },
+  "benefits": {
+    "sms": {
+      "title": "Assistant SMS",
+      "body": "Les SMS entrants déclenchent une IA conversationnelle qui peut vérifier les plannings, créer des tâches et répondre — tout sans qu'un humain lève le petit doigt."
+    },
+    "recording": {
+      "title": "Enregistrement + transcription des appels",
+      "body": "Chaque appel est stocké avec une transcription complète, consultable par locuteur et mot-clé. Ne perdez plus jamais un détail d'une conversation client."
+    },
+    "approval": {
+      "title": "Approbation en 4 chiffres",
+      "body": "Les actions à risque élevé comme les réservations et les paiements utilisent des codes de confirmation par SMS. L'IA peut agir, mais les humains gardent le contrôle."
+    }
+  },
+  "scenario": "C'est dimanche. Une canalisation éclate. Le propriétaire appelle votre numéro professionnel. L'IA répond, comprend « fuite d'urgence », vérifie votre planning d'astreinte et réserve le technicien disponible le plus proche. Le propriétaire reçoit une confirmation SMS avec le nom du technicien et son heure d'arrivée estimée. Vous n'avez pas touché votre téléphone.",
+  "techStrip": [
+    "Telnyx + Twilio",
+    "OpenAI Realtime V2",
+    "Accès complet aux outils",
+    "Approbation par SMS",
+    "Routage IVR personnalisé"
+  ],
+  "closing": {
+    "title": "Les autres systèmes téléphoniques font attendre en musique.\nHABOS résout les problèmes.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

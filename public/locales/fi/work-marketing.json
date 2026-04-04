@@ -1,0 +1,65 @@
+{
+  "badge": "Markkinointikeskus",
+  "hero": {
+    "title": "Strategiasta liikevaihtoon. Yksi alusta.",
+    "description": "Määritä brändiäänesi ja asemointisi kerran. Jokainen kampanja, sisältö ja mahdollisuus ankkuroituu strategiaasi automaattisesti. Seuraa attribuutiota ensimmäisestä klikkauksesta suljettuun kauppaan."
+  },
+  "body": "Määritä brändiäänesi, asemointisi, kohde-ICP:t ja näyttöpisteet kerran — jokainen kampanja, luova omaisuus ja mahdollisuus ankkuroituu automaattisesti strategiaprofiiliisi. Järjestelmä analysoi jatkuvasti markkinaasi, kilpailijoita ja suorituskykydataa pintaamaan mahdollisuuksia, jotka muuten jäisivät huomaamatta: hinnoittelupuutteet, trendimuutokset ja uudelleenkäyttökulmat. Anonyymit vierailijasessiot seurataan ensimmäisestä klikkauksesta konversioon, joten voit nähdä, mikä sisältö, kampanja ja kanava ajoi jokaisen liidin, varauksen ja tilauksen.",
+  "dashboard": {
+    "activeCampaigns": {
+      "label": "Aktiiviset kampanjat",
+      "count": "3",
+      "campaigns": ["Kevään HVAC-kampanja", "Hätäpalvelut", "Suositteluohjelma"]
+    },
+    "attribution": {
+      "label": "Putken attribuutio",
+      "revenue": "127 000 $ liikevaihtoa seurattu",
+      "channels": [
+        { "name": "Verkkosivusto 45 %" },
+        { "name": "Sähköposti 30 %" },
+        { "name": "Some 25 %" }
+      ]
+    },
+    "opportunities": {
+      "label": "Tekoälyn mahdollisuudet",
+      "items": [
+        { "tag": "Puute", "text": "Kilpailijan puute: hätäpalvelun asemointi" },
+        { "tag": "Trendi", "text": "Älykodin integraation kysyntä +40 %" }
+      ]
+    },
+    "creative": {
+      "label": "Luova prosessi",
+      "summary": "12 omaisuutta tarkistuksessa",
+      "approved": "8 hyväksytty",
+      "pending": "3 odottaa",
+      "revision": "1 revisio"
+    },
+    "caption": "9 kojelautaa yhdessä: strategia, kampanjat, lähetykset, funneleet, näyttöomaisuudet, luova, kalenteri ja ROI-analytiikka."
+  },
+  "benefits": [
+    {
+      "title": "Tekoälyn mahdollisuuksien löytäminen",
+      "desc": "Järjestelmä analysoi markkinaasi, kilpailijoita ja suorituskykydataa pintaamaan mahdollisuuksia — trendimuutoksia, kilpailijoiden puutteita ja uudelleenkäyttökulmia, jotka muuten jäisivät huomaamatta."
+    },
+    {
+      "title": "Monipistekosketusattribuutio",
+      "desc": "Anonyymit vierailijasessiot seurataan ensimmäisestä klikkauksesta konversioon. Näe mikä sisältö, kampanja ja kanava ajoi jokaisen liidin, varauksen ja tilauksen."
+    },
+    {
+      "title": "Tarjousten orkestrointi",
+      "desc": "Linkitä tuotteet kampanjoihin dynaamisella hinnoittelulla — prosenttialennus, kiinteä hinta, paketit. Hallinnoi missä ja milloin tarjoukset näkyvät kaikilla markkinointipinnoillasi."
+    }
+  ],
+  "scenario": "Kilpailijasi nosti hintoja hätäputkitöissä. HABOS esittää tekoälymahdollisuuden: \"Hätäpalvelun hinnoittelupuute — kilpailijat keskimäärin 195 $/puhelu, sinä olet 150 $. Suositus: nosta 175 $:iin ja aja '24/7 Hätäpalvelu' -kampanja.\" Klikkaat \"Luo kampanja\" — se on esitäytetty mahdollisuusdatalla, linkitetty hätäpalveltuotteesi ja valmis julkaistavaksi.",
+  "techItems": [
+    "Strategia-ankkurointi",
+    "9-kojelautan komentokeskus",
+    "Monipistekosketusattribuutio",
+    "Tekoälyn mahdollisuuksien pisteytys",
+    "Suljetun silmukan liikevaihto"
+  ],
+  "cta": {
+    "heading": "Muut markkinointityökalut seuraavat kampanjoita. HABOS yhdistää kampanjat liikevaihtoon.",
+    "button": "Liity odotuslistalle"
+  }
+}

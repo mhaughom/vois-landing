@@ -93,6 +93,9 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
 }) => {
   const elapsedRef = useRef(0);
   const introCompleteRef = useRef(false);
+  const introHoldRef = useRef(0);
+  const introHoldDone = useRef(false);
+  const INTRO_HOLD = 1.0; // show dot for 1s before animating
   const autoRotRef = useRef(0);
   const [morph, setMorph] = useState(0);
   const [phase, setPhase] = useState<Phase>('dot');
@@ -134,6 +137,22 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
 
   useFrame((_, delta) => {
     const dt = Math.min(delta, 0.1);
+
+    // Hold: show dot at full size for INTRO_HOLD seconds before animating
+    if (!introHoldDone.current) {
+      introHoldRef.current += dt;
+      elapsedRef.current = DOT_END; // dot at full scale
+      setDotScale(1);
+      if (introHoldRef.current <= dt * 2) {
+        setPhase('dot');
+        onPhaseChange?.('dot');
+      }
+      if (introHoldRef.current >= INTRO_HOLD) {
+        introHoldDone.current = true;
+      }
+      return;
+    }
+
     const prevT = elapsedRef.current;
     const t = prevT + dt;
     elapsedRef.current = t;

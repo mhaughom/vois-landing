@@ -1,0 +1,47 @@
+{
+  "category": "Philosophie",
+  "title": "La fin de la saisie de données",
+  "tagline": "Chaque outil professionnel que vous utilisez aujourd'hui a été conçu avant l'existence de l'IA. HABOS ne l'était pas. Vous sentirez la différence dès le premier jour — les formulaires, les champs, le copier-coller entre applications — c'est terminé.",
+  "heroPlaceholder": "Illustration principale",
+  "section1": {
+    "heading": "Le problème du greffon",
+    "body1": "La plupart des éditeurs de logiciels ont pris des produits construits sur deux décennies et ont ajouté un chatbot IA dans un coin. Le chatbot peut répondre à des questions sur des données auxquelles il n'a jamais été conçu pour accéder, suggérer des actions qu'il n'a pas l'autorité d'entreprendre, et effectuer des recherches dans des systèmes qui n'étaient jamais censés partager de contexte.",
+    "body2": "Le résultat est un vernis d'intelligence sur une architecture fondamentalement non intelligente. L'IA se trouve à côté du logiciel. Elle ne vit pas à l'intérieur."
+  },
+  "section2": {
+    "heading": "Conçu avec l'intelligence comme fondation",
+    "body": "HABOS a été conçu dès le premier jour avec l'IA comme élément structurel, pas comme une fonctionnalité. Les trois systèmes principaux qui alimentent la plateforme — le Smart Router, le Cerveau et l'Orchestrateur d'agents — sont tous natifs IA. Ils n'enveloppent pas des logiciels existants dans un chatbot. Ils sont le logiciel."
+  },
+  "systems": [
+    {
+      "title": "Le Smart Router",
+      "desc": "Un moteur de classification d'intentions vocales qui prend un seul enregistrement de 30 secondes et en extrait plusieurs actions commerciales structurées — tâches, événements de calendrier, mises à jour CRM, ajustements d'inventaire — tout à la fois. Pas de la parole vers le texte. De la parole vers la compréhension."
+    },
+    {
+      "title": "Le Cerveau",
+      "desc": "Une couche de recherche sémantique unifiée sur 19 sources de données, interrogées en parallèle. Lorsque vous posez une question, HABOS recherche simultanément dans vos réunions, e-mails, CRM, projets, notes vocales, documents et playbooks — et comprend le sens, pas seulement les mots-clés."
+    },
+    {
+      "title": "L'Orchestrateur d'agents",
+      "desc": "Un moteur autonome de planification et d'exécution capable de décomposer des tâches complexes en étapes, d'exécuter des outils, de faire une pause pour votre approbation sur tout ce qui est à haut risque, et de reprendre — même après des redémarrages du serveur. Pas un chatbot avec des plugins. Une machine d'état complète avec suivi du budget et récupération après défaillance."
+    }
+  ],
+  "architecturePlaceholder": "Schéma d'architecture",
+  "section3": {
+    "heading": "Ce que natif IA signifie concrètement",
+    "body1": "Ça signifie qu'un plombier termine un travail, parle pendant 30 secondes dans son téléphone, et le système crée le rapport de travail, met à jour l'inventaire, génère la facture, notifie le bureau et enregistre le temps. Cette chaîne entière fonctionne parce que chaque module partage un cerveau unique propulsé par l'IA — pas parce que quelqu'un a connecté 6 APIs.",
+    "body2": "Ça signifie que lorsque l'IA vous prépare pour une réunion, elle tire de votre CRM, de l'historique des commandes, des transcriptions de réunions, des notes vocales, des e-mails, des playbooks et des tickets ouverts — en un seul passage. Pas parce qu'elle a cherché dans 7 applications séparées. Parce que toutes ces données vivent au même endroit et ont été conçues pour être raisonnées."
+  },
+  "section4": {
+    "heading": "L'effet de capitalisation",
+    "body1": "Une plateforme native IA devient plus intelligente à mesure que vous l'utilisez. Après six mois, le système sait quels clients recommandent sur des cycles prévisibles, quelles opérations dérivent constamment, quels membres de l'équipe sont surutilisés, et quel est le délai moyen de conclusion pour différents types d'affaires.",
+    "body2": "Cette intelligence organisationnelle accumulée est le fossé. Les données peuvent être exportées. La compréhension, non."
+  },
+  "quote": "« L'IA ne devrait pas être quelque chose vers quoi vous vous dirigez. Elle devrait être quelque chose qui est déjà là — tissée dans la façon dont le logiciel pense, agit et anticipe. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Le sas de sécurité",
+    "nextLabel": "Suivant",
+    "nextTitle": "Un seul cerveau"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "badge": "Biblioteca de Mídia",
+  "hero": {
+    "title": "Faça Upload.\nA IA Entende.",
+    "description": "Solte imagens, vídeos, documentos ou áudios. A IA extrai produtos, pessoas, texto e significado — depois torna tudo pesquisável por conteúdo, não apenas por nome de arquivo."
+  },
+  "intro": "Arraste e solte imagens, vídeos, documentos ou áudios — o Sharp gera automaticamente thumbnails WebP e o GPT-4o-mini enriquece tudo de forma assíncrona. A análise de visão extrai produtos, pessoas, localizações, cores e texto visível de imagens. Documentos recebem OCR. Vídeos e áudios recebem transcrição e sumarização. O texto extraído é dividido em embeddings de 512 dimensões para que você possa pesquisar por significado — 'foto de produto de sauna' ou 'fatura Henderson' — não apenas por nome de arquivo. Uma única biblioteca de mídia compartilhada entre Produtos, Social, Marketing, Sites e Apresentações.",
+  "grid": {
+    "annotation": "Pesquise por significado: \"foto de produto de sauna\" ou \"fatura Henderson\" — não apenas por nome de arquivo. Uma biblioteca compartilhada por Produtos, Social, Marketing, Sites e Apresentações."
+  },
+  "mediaItems": [
+    {
+      "filename": "product-photo-01.jpg",
+      "tag": "Produto · Aquecedor de água",
+      "ai": "IA: Unidade sem tanque, aço inoxidável, residencial"
+    },
+    {
+      "filename": "team-photo.jpg",
+      "tag": "Equipe · 4 pessoas detectadas",
+      "ai": "IA: Ambiente de escritório, uniformes com marca"
+    },
+    {
+      "filename": "invoice-march.pdf",
+      "tag": "Documento · OCR extraído",
+      "ai": "IA: Henderson Plumbing, $4.250, março de 2026"
+    },
+    {
+      "filename": "job-walkthrough.mp4",
+      "tag": "Vídeo · Transcrito",
+      "ai": "IA: Tour de 3 min, reforma de banheiro"
+    },
+    {
+      "filename": "client-call.m4a",
+      "tag": "Áudio · Transcrito",
+      "ai": "IA: Sarah Henderson, discussão sobre alvará"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logotipo · Ativo de marca",
+      "ai": "IA: Logotipo principal, variante escura"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Análise de visão por IA",
+      "desc": "O GPT-4o-mini detecta produtos, pessoas, cores e texto em imagens. Documentos recebem OCR. Vídeos e áudios recebem transcrição."
+    },
+    {
+      "title": "Uma biblioteca em todo lugar",
+      "desc": "O mesmo seletor de mídia usado em Produtos, Social, Marketing, Sites, Apresentações. Sem duplicação."
+    },
+    {
+      "title": "Busca semântica",
+      "desc": "Texto dividido em embeddings de 512 dimensões. Encontre mídia por significado, não apenas por metadados."
+    }
+  ],
+  "techItems": [
+    "Visão GPT-4o-mini",
+    "Thumbnails WebP com Sharp",
+    "Embeddings de 512 dimensões",
+    "Deduplicação SHA-256",
+    "Inferência automática de papel"
+  ],
+  "cta": {
+    "title": "Outros gerenciadores de arquivos armazenam arquivos.\nO HABOS os compreende.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "backLink": "Back to platform",
+  "category": "Content & Marketing",
+  "title": "Ads",
+  "description": "Run ad campaigns powered by your business data. HABOS connects your CRM, products, and client history to build smarter audiences and measure real ROI — not vanity metrics.",
+  "benefits": [
+    {
+      "title": "AI-targeted campaigns",
+      "desc": "HABOS analyzes your CRM, orders, and client data to build audiences that actually convert — no guesswork."
+    },
+    {
+      "title": "Multi-platform publishing",
+      "desc": "Create once, push to Google, Meta, LinkedIn, and TikTok. Budget allocation optimized by AI in real time."
+    },
+    {
+      "title": "Attribution that makes sense",
+      "desc": "See which ad brought which client, which deal, which revenue — connected end-to-end through your CRM."
+    },
+    {
+      "title": "Voice-created ads",
+      "desc": "Describe your offer by voice and get ad copy, visuals, and targeting suggestions generated instantly."
+    }
+  ]
+}

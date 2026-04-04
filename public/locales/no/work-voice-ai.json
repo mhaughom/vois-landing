@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Tale og AI",
+  "hero": {
+    "title": "Snakk til virksomheten din",
+    "description": "Talenotater som blir handlinger, møter som tar sine egne notater, en assistent som kjenner hele virksomheten din og spillebøker som kjører seg selv."
+  },
+  "items": [
+    {
+      "title": "Talenotater",
+      "desc": "Snakk i 30 sekunder – oppgaver, hendelser og oppdateringer opprettes automatisk."
+    },
+    {
+      "title": "Møtenotater",
+      "desc": "AI-briefinger før, direkte transkripsjon under, handlingspunkter rutet etter."
+    },
+    {
+      "title": "Assistent",
+      "desc": "Kjenner virksomheten din, forutser behov, handler på tvers av alle verktøy med tale."
+    },
+    {
+      "title": "Spillebøker",
+      "desc": "Levende arbeidsflyter som guider teamet ditt og varsler deg når noe går galt."
+    }
+  ]
+}

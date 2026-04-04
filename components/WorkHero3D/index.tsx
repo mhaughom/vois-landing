@@ -1,10 +1,11 @@
 import React, { useState, useRef, useCallback, useEffect, useMemo, Suspense } from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
+import { useTranslation } from 'react-i18next';
 import { AnimationScene } from './AnimationScene';
 import { TRI_LABELS } from './geometry';
 import { screenToSphere, arcballDelta } from './arcball';
-import { FEATURE_MAP, FeatureInfo } from './featureData';
+import { getFeatureMap, FeatureInfo } from './featureData';
 
 export type AnimPhase = 'dot' | 'split' | 'cube' | 'hex-morph' | 'idle';
 
@@ -410,7 +411,7 @@ const Tiny: React.FC<{ text: string }> = ({ text }) => (
   </div>
 );
 
-function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (React.ReactNode | null)[] {
+function getRichPanelContents(label: string, feat: FeatureInfo | undefined, t: (key: string, opts?: Record<string, unknown>) => string): (React.ReactNode | null)[] {
   if (!feat) return [null, null, null, null];
 
   switch (label) {
@@ -419,25 +420,25 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Your Assistant':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Total awareness</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">It already knows<br />your business.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.yourAssistant.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.yourAssistant.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Learns your processes, preferences, and history. Anticipates what you need before you ask.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.yourAssistant.description')}</div>
           <div className="grid grid-cols-3 gap-2 mt-2">
-            {['Emails', 'Meetings', 'Projects', 'CRM', 'Docs', 'Voice'].map(s => (
+            {(t('panels.yourAssistant.tags', { returnObjects: true }) as string[]).map(s => (
               <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
             ))}
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">19</div>
-          <div className="text-slate-600 text-[14px] font-semibold">data sources</div>
-          <div className="text-slate-400 text-[12px]">searched in parallel</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.yourAssistant.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.yourAssistant.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.yourAssistant.statSub')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Voice, email, CRM,<br />docs, chat, projects,<br />and <span className="font-semibold text-slate-700">13 more</span>.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">Voice, email, CRM,<br />docs, chat, projects,<br />and <span className="font-semibold text-slate-700">{t('panels.yourAssistant.statMore')}</span>.</div>
         </div>,
         <div key="a" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Other assistants need instructions.<br />VOIS already knows.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.yourAssistant.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -446,25 +447,25 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Your Super-Assistant':
       return [
         <div key="p" className="text-center space-y-2.5 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Inputs</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.yourSuperAssistant.badge')}</div>
           <div className="text-slate-500 text-[13px] leading-relaxed">
-            <span className="font-semibold text-slate-600">Voice</span> &mdash; speak naturally<br />
-            <span className="font-semibold text-slate-600">Watch</span> &mdash; tap your wrist<br />
-            <span className="font-semibold text-slate-600">Email</span> &mdash; forward it<br />
-            <span className="font-semibold text-slate-600">Chat</span> &mdash; type or text<br />
-            <span className="font-semibold text-slate-600">Slack</span> &mdash; command it
+            <span className="font-semibold text-slate-600">{t('panels.yourSuperAssistant.voiceLabel')}</span> &mdash; {t('panels.yourSuperAssistant.voiceDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.yourSuperAssistant.watchLabel')}</span> &mdash; {t('panels.yourSuperAssistant.watchDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.yourSuperAssistant.emailLabel')}</span> &mdash; {t('panels.yourSuperAssistant.emailDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.yourSuperAssistant.chatLabel')}</span> &mdash; {t('panels.yourSuperAssistant.chatDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.yourSuperAssistant.slackLabel')}</span> &mdash; {t('panels.yourSuperAssistant.slackDesc')}
           </div>
         </div>,
         <div key="s" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;One brain.<br />Every interface.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.yourSuperAssistant.quote')}&rdquo;</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Every surface, one brain</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Speak, type, tap, forward.<br />It all lands in one place.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.yourSuperAssistant.mainBadge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.yourSuperAssistant.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Every input is routed, prioritized, and remembered — no matter which device you used.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.yourSuperAssistant.description')}</div>
           <div className="flex items-center justify-center gap-2 mt-2">
-            {['Watch', 'Phone', 'Desktop', 'Inbox'].map(s => (
+            {(t('panels.yourSuperAssistant.devices', { returnObjects: true }) as string[]).map(s => (
               <div key={s} className="bg-blue-50 rounded-full px-2 py-0.5 text-[11px] text-blue-500 font-semibold">{s}</div>
             ))}
           </div>
@@ -476,10 +477,10 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Your Day':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Morning brief</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your day, planned<br />before you wake up.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.yourDay.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.yourDay.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">VOIS reviews tasks, calendar, and deadlines overnight. You wake to a proposed schedule.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.yourDay.description')}</div>
           <div className="space-y-1 mt-2 text-left">
             {[
               ['8:00', 'Deep work — Q3 proposal'],
@@ -494,14 +495,14 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">7 AM</div>
-          <div className="text-slate-600 text-[14px] font-semibold">your plan is ready</div>
-          <div className="text-slate-400 text-[12px]">built while you slept</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.yourDay.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.yourDay.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.yourDay.statSub')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Time blocks, prep notes,<br />and flagged priorities.<br /><span className="font-semibold text-slate-700">Zero decisions needed</span>.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.yourDay.statDesc')}<br /><span className="font-semibold text-slate-700">{t('panels.yourDay.statNote')}</span>.</div>
         </div>,
         <div key="a" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your day should start with a plan, not decisions.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.yourDay.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -510,38 +511,38 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Meetings':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">The full cycle</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Prepared. Transcribed.<br />Acted on.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.meetings.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.meetings.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
           <div className="text-slate-500 text-[13px] leading-relaxed">
-            <span className="font-semibold text-slate-600">Before</span> &mdash; personalized briefing<br />
-            <span className="font-semibold text-slate-600">During</span> &mdash; live transcription<br />
-            <span className="font-semibold text-slate-600">After</span> &mdash; action items routed
+            <span className="font-semibold text-slate-600">{t('panels.meetings.beforeLabel')}</span> &mdash; {t('panels.meetings.beforeDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.meetings.duringLabel')}</span> &mdash; {t('panels.meetings.duringDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.meetings.afterLabel')}</span> &mdash; {t('panels.meetings.afterDesc')}
           </div>
           <div className="flex items-center justify-center gap-3 mt-2">
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Prep</div>
-              <div className="text-[10px] text-slate-400">auto-brief</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.meetings.step1')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.meetings.step1Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Capture</div>
-              <div className="text-[10px] text-slate-400">transcribe</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.meetings.step2')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.meetings.step2Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Act</div>
-              <div className="text-[10px] text-slate-400">route tasks</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.meetings.step3')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.meetings.step3Sub')}</div>
             </div>
           </div>
         </div>,
         <div key="s" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Other tools transcribe.<br />VOIS prepares, captures,<br />and acts.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.meetings.quote')}&rdquo;</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">0</div>
-          <div className="text-slate-600 text-[14px] font-semibold">manual follow-ups</div>
-          <div className="text-slate-400 text-[12px]">actions auto-routed to projects</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.meetings.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.meetings.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.meetings.statSub')}</div>
         </div>,
         null,
       ];
@@ -550,12 +551,12 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Projects':
       return [
         <div key="p" className="text-center space-y-2.5 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Health</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.projects.healthBadge')}</div>
           <div className="space-y-1.5">
             {[
-              ['On track', 'bg-emerald-400', '82%'],
-              ['At risk', 'bg-amber-400', '14%'],
-              ['Stalled', 'bg-red-400', '4%'],
+              [t('panels.projects.statusOnTrack'), 'bg-emerald-400', t('panels.projects.pctOnTrack')],
+              [t('panels.projects.statusAtRisk'), 'bg-amber-400', t('panels.projects.pctAtRisk')],
+              [t('panels.projects.statusStalled'), 'bg-red-400', t('panels.projects.pctStalled')],
             ].map(([label, color, pct]) => (
               <div key={label} className="flex items-center gap-1.5">
                 <div className={`w-2 h-2 rounded-full ${color} shrink-0`} />
@@ -566,18 +567,18 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Proactive, not reactive</div>
-          <div className="text-slate-800 text-[19px] font-bold leading-snug">Know what needs you<br />before it stalls.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.projects.badge')}</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">{t('panels.projects.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">AI monitors completion, activity, and timelines. When a project goes quiet, VOIS flags it and suggests next steps.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.projects.description')}</div>
           <div className="grid grid-cols-2 gap-1.5 mt-2">
-            {['Stalled tasks', 'Missed milestones', 'Activity drops', 'Timeline drift'].map(s => (
+            {(t('panels.projects.signals', { returnObjects: true }) as string[]).map(s => (
               <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
             ))}
           </div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Dashboards show what happened.<br />VOIS tells you what to do next.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.projects.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -586,15 +587,15 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Operations':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Always watching</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your business<br />monitors itself.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.operations.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.operations.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">KPIs, workflows, recurring processes. When something deviates, you get context and a recommended fix.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.operations.description')}</div>
           <div className="space-y-1 mt-2">
             {[
-              ['Delayed delivery', 'Auto-notify client'],
-              ['Missed SLA', 'Escalate to lead'],
-              ['Budget overrun', 'Flag for review'],
+              [t('panels.operations.trigger1'), t('panels.operations.action1')],
+              [t('panels.operations.trigger2'), t('panels.operations.action2')],
+              [t('panels.operations.trigger3'), t('panels.operations.action3')],
             ].map(([trigger, action]) => (
               <div key={trigger} className="flex items-center gap-1.5 text-[11px]">
                 <div className="text-red-400 font-semibold shrink-0">{trigger}</div>
@@ -605,12 +606,12 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">24/7</div>
-          <div className="text-slate-600 text-[14px] font-semibold">monitoring</div>
-          <div className="text-slate-400 text-[12px]">zero human bandwidth</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.operations.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.operations.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.operations.statSub')}</div>
         </div>,
         <div key="a" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Stop firefighting.<br />Start preventing.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.operations.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -619,16 +620,16 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Clients':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Full context CRM</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Every relationship,<br />total recall.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.clients.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.clients.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Rich profiles built from every interaction. Before any call, see full history and AI-suggested talking points.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.clients.description')}</div>
           <div className="space-y-1.5 mt-2 text-left">
             {[
-              ['Last contact', '3 days ago — email'],
-              ['Sentiment', 'Positive, engaged'],
-              ['Open items', '2 proposals pending'],
-              ['Next step', 'Follow up on pricing'],
+              [t('panels.clients.lastContactKey'), t('panels.clients.lastContactVal')],
+              [t('panels.clients.sentimentKey'), t('panels.clients.sentimentVal')],
+              [t('panels.clients.openItemsKey'), t('panels.clients.openItemsVal')],
+              [t('panels.clients.nextStepKey'), t('panels.clients.nextStepVal')],
             ].map(([k, v]) => (
               <div key={k} className="flex items-start gap-2">
                 <div className="text-[11px] font-semibold text-slate-600 w-16 shrink-0">{k}</div>
@@ -638,11 +639,11 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Before every call</div>
-          <div className="text-slate-500 text-[13px] leading-relaxed">History, sentiment,<br />open items, talking<br />points — <span className="font-semibold text-slate-700">auto-prepared</span>.</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.clients.callBadge')}</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">History, sentiment,<br />open items, talking<br />points — <span className="font-semibold text-slate-700">{t('panels.clients.callDescHighlight')}</span>.</div>
         </div>,
         <div key="a" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your CRM should be a memory, not a database.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.clients.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -651,35 +652,37 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Documents':
       return [
         <div key="p" className="text-center space-y-2.5 w-full">
-          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">Voice</div>
-          <div className="text-slate-600 text-[14px] font-semibold">to document</div>
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">{t('panels.documents.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.documents.statLabel')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
           <div className="text-slate-500 text-[12px] leading-relaxed">
-            Briefs<br />Proposals<br />Reports<br />Updates
+            {(t('panels.documents.types', { returnObjects: true }) as string[]).map((type, i) => (
+              <React.Fragment key={type}>{i > 0 && <br />}{type}</React.Fragment>
+            ))}
           </div>
         </div>,
         <div key="s" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Stop staring at blank pages. Start talking.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.documents.quote')}&rdquo;</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Talk, don't type</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Describe what you need.<br />Get a finished document.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.documents.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.documents.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">VOIS pulls context from your projects and generates structured docs from your voice.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.documents.description')}</div>
           <div className="flex items-center justify-center gap-3 mt-2">
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Speak</div>
-              <div className="text-[10px] text-slate-400">describe it</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.documents.step1')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.documents.step1Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">AI</div>
-              <div className="text-[10px] text-slate-400">drafts it</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.documents.step2')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.documents.step2Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Done</div>
-              <div className="text-[10px] text-slate-400">formatted</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.documents.step3')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.documents.step3Sub')}</div>
             </div>
           </div>
         </div>,
@@ -690,15 +693,15 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Finance':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Financial intelligence</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Every dollar,<br />one view.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.finance.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.finance.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Revenue, expenses, invoices, and forecasts in one AI dashboard. Ask questions in plain language.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.finance.description')}</div>
           <div className="space-y-1 mt-2">
             {[
-              ['Revenue', '$48.2K', 'text-emerald-500'],
-              ['Expenses', '$31.7K', 'text-amber-500'],
-              ['Net', '$16.5K', 'text-blue-500'],
+              [t('panels.finance.revenueLabel'), t('panels.finance.revenueVal'), 'text-emerald-500'],
+              [t('panels.finance.expensesLabel'), t('panels.finance.expensesVal'), 'text-amber-500'],
+              [t('panels.finance.netLabel'), t('panels.finance.netVal'), 'text-blue-500'],
             ].map(([label, val, color]) => (
               <div key={label} className="flex items-center justify-between">
                 <div className="text-[11px] text-slate-500">{label}</div>
@@ -708,12 +711,12 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your books should explain themselves.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.finance.quote')}&rdquo;</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Ask anything</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.finance.queryBadge')}</div>
           <div className="space-y-1">
-            {['"How much did we spend on marketing?"', '"Show overdue invoices"', '"Revenue trend last 6 months"'].map(q => (
+            {[t('panels.finance.query1'), t('panels.finance.query2'), t('panels.finance.query3')].map(q => (
               <div key={q} className="bg-slate-50 rounded px-2 py-1 text-[11px] text-slate-500 italic">{q}</div>
             ))}
           </div>
@@ -725,23 +728,23 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Website':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">AI-built sites</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Describe your business.<br />Get a website.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.website.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.website.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Copy, layout, images, SEO — generated. Update by voice. Connect forms, booking, and payments.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.website.description')}</div>
           <div className="grid grid-cols-2 gap-1.5 mt-2">
-            {['Copy & SEO', 'Layout', 'Forms', 'Booking', 'Payments', 'Analytics'].map(s => (
+            {(t('panels.website.features', { returnObjects: true }) as string[]).map(s => (
               <div key={s} className="bg-blue-50 rounded px-1.5 py-1 text-[11px] text-blue-500 font-medium text-center">{s}</div>
             ))}
           </div>
         </div>,
         <div key="s" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your website shouldn&rsquo;t need a developer.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.website.quote')}&rdquo;</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">0</div>
-          <div className="text-slate-600 text-[14px] font-semibold">lines of code</div>
-          <div className="text-slate-400 text-[12px]">voice-updated, always live</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.website.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.website.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.website.statSub')}</div>
         </div>,
         null,
       ];
@@ -750,16 +753,16 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'AI Agents':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Your AI org chart</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your first ten hires<br />don&rsquo;t need salaries.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.aiAgents.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.aiAgents.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Build agents in an org chart. Each has responsibilities, tools, budgets, and reporting lines.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.aiAgents.description')}</div>
           <div className="space-y-1 mt-2">
             {[
-              ['Researcher', 'Web scraping, analysis'],
-              ['Writer', 'Content, proposals'],
-              ['Analyst', 'Data, forecasts'],
-              ['Ops', 'Scheduling, routing'],
+              [t('panels.aiAgents.role1'), t('panels.aiAgents.role1Desc')],
+              [t('panels.aiAgents.role2'), t('panels.aiAgents.role2Desc')],
+              [t('panels.aiAgents.role3'), t('panels.aiAgents.role3Desc')],
+              [t('panels.aiAgents.role4'), t('panels.aiAgents.role4Desc')],
             ].map(([role, desc]) => (
               <div key={role} className="flex items-center gap-2 text-[11px]">
                 <div className="font-semibold text-blue-500 w-14 shrink-0">{role}</div>
@@ -769,9 +772,9 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">The loop</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.aiAgents.loopBadge')}</div>
           <div className="flex items-center justify-center gap-2 mt-1">
-            {['Plan', 'Act', 'Pause', 'Deliver'].map((step, i) => (
+            {(t('panels.aiAgents.loopSteps', { returnObjects: true }) as string[]).map((step, i) => (
               <React.Fragment key={step}>
                 {i > 0 && <div className="text-slate-300 text-[14px]">&rarr;</div>}
                 <div className="bg-blue-50 rounded-full px-2 py-0.5 text-[11px] text-blue-500 font-semibold">{step}</div>
@@ -779,10 +782,10 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
             ))}
           </div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Agents plan before acting<br />and pause for your approval.<br /><span className="font-semibold text-slate-700">Always in control</span>.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.aiAgents.loopDesc')}<br /><span className="font-semibold text-slate-700">{t('panels.aiAgents.loopNote')}</span>.</div>
         </div>,
         <div key="a" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;ChatGPT answers questions.<br />VOIS agents complete missions.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.aiAgents.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -791,44 +794,44 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Reports':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Reports, reimagined</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Call your assistant.<br />Describe what happened.<br />Get a finished report.</div>
-          <div className="text-slate-400 text-[14px] leading-relaxed">No forms. No laptop. Just a phone call.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.reports.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.reports.heading')}</div>
+          <div className="text-slate-400 text-[14px] leading-relaxed">{t('panels.reports.subHeading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Upload any template and VOIS extracts every field. Then fill it by voice — the AI interviews you and pre-fills what it already knows.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.reports.description')}</div>
           <div className="flex items-center justify-center gap-3 mt-2">
             <div className="flex flex-col items-center">
-              <div className="text-[19px] font-bold text-blue-500">Upload</div>
-              <div className="text-[10px] text-slate-400">template</div>
+              <div className="text-[19px] font-bold text-blue-500">{t('panels.reports.step1')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.reports.step1Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[19px] font-bold text-blue-500">Call</div>
-              <div className="text-[10px] text-slate-400">your AI</div>
+              <div className="text-[19px] font-bold text-blue-500">{t('panels.reports.step2')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.reports.step2Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[19px] font-bold text-blue-500">Done</div>
-              <div className="text-[10px] text-slate-400">report filed</div>
+              <div className="text-[19px] font-bold text-blue-500">{t('panels.reports.step3')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.reports.step3Sub')}</div>
             </div>
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">90s</div>
-          <div className="text-slate-600 text-[14px] font-semibold">avg. report time</div>
-          <div className="text-slate-400 text-[12px]">vs 30 min traditional</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.reports.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.reports.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.reports.statSub')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">People talk 3&ndash;4x faster<br />than they type. Add AI<br />formatting = <span className="font-semibold text-slate-700">10x faster</span>.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.reports.statDesc')}<br />formatting = <span className="font-semibold text-slate-700">{t('panels.reports.statSpeedNote')}</span>.</div>
         </div>,
         <div key="a" className="text-center space-y-2.5 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Voice-first</div>
-          <div className="text-slate-800 text-[19px] font-bold leading-snug">AI asks. You answer.<br />10 questions. Done.</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.reports.voiceBadge')}</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">{t('panels.reports.voiceHeading')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
           <div className="text-slate-500 text-[13px] leading-relaxed">
-            <span className="font-semibold text-slate-600">Phone call</span> &mdash; ring your assistant<br />
-            <span className="font-semibold text-slate-600">Interview</span> &mdash; AI walks through fields<br />
-            <span className="font-semibold text-slate-600">Dictation</span> &mdash; one voice note fills all<br />
-            <span className="font-semibold text-slate-600">Chat</span> &mdash; conversational text input
+            <span className="font-semibold text-slate-600">{t('panels.reports.phoneLabel')}</span> &mdash; {t('panels.reports.phoneDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.reports.interviewLabel')}</span> &mdash; {t('panels.reports.interviewDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.reports.dictationLabel')}</span> &mdash; {t('panels.reports.dictationDesc')}<br />
+            <span className="font-semibold text-slate-600">{t('panels.reports.chatLabel')}</span> &mdash; {t('panels.reports.chatDesc')}
           </div>
         </div>,
         null,
@@ -838,22 +841,22 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Your Team':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Per-role AI</div>
-          <div className="text-slate-800 text-[19px] font-bold leading-snug">Every seat gets<br />a super-assistant.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.yourTeam.badge')}</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">{t('panels.yourTeam.heading')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Company context, processes, and history — personalized per role.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.yourTeam.description')}</div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">1:1</div>
-          <div className="text-slate-600 text-[14px] font-semibold">AI per employee</div>
-          <div className="text-slate-400 text-[12px]">tailored to their role</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.yourTeam.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.yourTeam.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.yourTeam.statSub')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Not a shared chatbot.<br />A <span className="font-semibold text-slate-700">personal assistant</span><br />that knows their job.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">Not a shared chatbot.<br />A <span className="font-semibold text-slate-700">{t('panels.yourTeam.statNote')}</span><br />that knows their job.</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">What each employee gets</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.yourTeam.perksBadge')}</div>
           <div className="grid grid-cols-2 gap-1.5 mt-1">
-            {['Onboarding guide', 'Daily planner', 'Knowledge lookup', 'Task manager', 'Process coach', 'Meeting prep'].map(s => (
+            {(t('panels.yourTeam.perks', { returnObjects: true }) as string[]).map(s => (
               <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
             ))}
           </div>
@@ -865,15 +868,15 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Playbooks':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Living SOPs</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Your playbooks<br />run themselves.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.playbooks.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.playbooks.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Turn procedures into workflows that monitor compliance, guide each step, and flag deviations.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.playbooks.description')}</div>
           <div className="space-y-1 mt-2">
             {[
-              ['Step 1', 'Guide team member', 'text-emerald-500'],
-              ['Step 2', 'Verify compliance', 'text-blue-500'],
-              ['Step 3', 'Flag deviation', 'text-amber-500'],
+              [t('panels.playbooks.step1'), t('panels.playbooks.step1Desc'), 'text-emerald-500'],
+              [t('panels.playbooks.step2'), t('panels.playbooks.step2Desc'), 'text-blue-500'],
+              [t('panels.playbooks.step3'), t('panels.playbooks.step3Desc'), 'text-amber-500'],
             ].map(([step, desc, color]) => (
               <div key={step} className="flex items-center gap-2 text-[11px]">
                 <div className={`font-bold ${color} w-8 shrink-0`}>{step}</div>
@@ -883,14 +886,14 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
           </div>
         </div>,
         <div key="s" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;SOPs shouldn&rsquo;t live in binders. They should run themselves.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.playbooks.quote')}&rdquo;</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Compliance score</div>
-          <div className="text-5xl font-black text-emerald-500 leading-none tracking-tight">97%</div>
-          <div className="text-slate-400 text-[12px]">avg. across active playbooks</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.playbooks.complianceBadge')}</div>
+          <div className="text-5xl font-black text-emerald-500 leading-none tracking-tight">{t('panels.playbooks.stat')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.playbooks.statSub')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Real-time monitoring.<br />Deviations caught <span className="font-semibold text-slate-700">before</span><br />they become problems.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.playbooks.statDesc')}<br /><span className="font-semibold text-slate-700">{t('panels.playbooks.statNote')}</span><br />they become problems.</div>
         </div>,
         null,
       ];
@@ -899,41 +902,41 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Field to Office':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Bridge the gap</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">Field update in 30s.<br />Office sees it instantly.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.fieldToOffice.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.fieldToOffice.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Technician speaks a voice note. It&rsquo;s structured, filed, and linked to the right project, client, and invoice.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.fieldToOffice.description')}</div>
           <div className="flex items-center justify-center gap-3 mt-2">
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Speak</div>
-              <div className="text-[10px] text-slate-400">on site</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.fieldToOffice.step1')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.fieldToOffice.step1Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">AI</div>
-              <div className="text-[10px] text-slate-400">structures</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.fieldToOffice.step2')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.fieldToOffice.step2Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">Office</div>
-              <div className="text-[10px] text-slate-400">sees it</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.fieldToOffice.step3')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.fieldToOffice.step3Sub')}</div>
             </div>
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">30s</div>
-          <div className="text-slate-600 text-[13px] font-semibold">voice note replaces</div>
-          <div className="text-slate-400 text-[12px]">20 min of paperwork</div>
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">{t('panels.fieldToOffice.stat')}</div>
+          <div className="text-slate-600 text-[13px] font-semibold">{t('panels.fieldToOffice.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.fieldToOffice.statSub')}</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Auto-linked to</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.fieldToOffice.linksBadge')}</div>
           <div className="grid grid-cols-2 gap-1.5 mt-1">
-            {['Project', 'Client', 'Invoice', 'Timeline'].map(s => (
+            {(t('panels.fieldToOffice.links', { returnObjects: true }) as string[]).map(s => (
               <div key={s} className="bg-slate-50 rounded px-1.5 py-1 text-[11px] text-slate-500 font-medium text-center">{s}</div>
             ))}
           </div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;The field is never<br />a day behind again.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.fieldToOffice.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -942,37 +945,37 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'The Airlock':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">AI safety layer</div>
-          <div className="text-slate-800 text-[20px] font-bold leading-snug">AI power.<br />Human control.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.theAirlock.badge')}</div>
+          <div className="text-slate-800 text-[20px] font-bold leading-snug">{t('panels.theAirlock.heading')}</div>
           <div className="w-8 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Every AI action goes through a preview card. You see the exact output, then approve. Nothing happens without your sign-off.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.theAirlock.description')}</div>
           <div className="flex items-center justify-center gap-3 mt-2">
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">AI</div>
-              <div className="text-[10px] text-slate-400">proposes</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.theAirlock.step1')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.theAirlock.step1Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-blue-500">You</div>
-              <div className="text-[10px] text-slate-400">review</div>
+              <div className="text-[16px] font-bold text-blue-500">{t('panels.theAirlock.step2')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.theAirlock.step2Sub')}</div>
             </div>
             <div className="text-slate-300 text-[16px]">&rarr;</div>
             <div className="flex flex-col items-center">
-              <div className="text-[16px] font-bold text-emerald-500">Approve</div>
-              <div className="text-[10px] text-slate-400">or reject</div>
+              <div className="text-[16px] font-bold text-emerald-500">{t('panels.theAirlock.step3')}</div>
+              <div className="text-[10px] text-slate-400">{t('panels.theAirlock.step3Sub')}</div>
             </div>
           </div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">100%</div>
-          <div className="text-slate-600 text-[14px] font-semibold">human-approved</div>
-          <div className="text-slate-400 text-[12px]">every action, every time</div>
+          <div className="text-6xl font-black text-blue-500 leading-none tracking-tight">{t('panels.theAirlock.stat')}</div>
+          <div className="text-slate-600 text-[14px] font-semibold">{t('panels.theAirlock.statLabel')}</div>
+          <div className="text-slate-400 text-[12px]">{t('panels.theAirlock.statSub')}</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">The iron rule</div>
-          <div className="text-slate-800 text-[19px] font-bold leading-snug">AI proposes. You review.<br />You approve. Always.</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.theAirlock.ironRuleBadge')}</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">{t('panels.theAirlock.ironRuleHeading')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Trust isn&rsquo;t a setting.<br />It&rsquo;s an architecture.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.theAirlock.quote')}&rdquo;</div>
         </div>,
         null,
       ];
@@ -981,31 +984,30 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Your Memory':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Semantic search</div>
-          <div className="text-slate-800 text-[19px] font-bold leading-snug">Ask anything<br />you&rsquo;ve ever said.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.yourMemory.badge')}</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">{t('panels.yourMemory.heading')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Search by meaning, not keywords. VOIS finds answers across every source.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.yourMemory.description')}</div>
         </div>,
         <div key="s" className="text-center space-y-2.5 w-full">
-          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">19</div>
-          <div className="text-slate-600 text-[13px] font-semibold">sources indexed</div>
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">{t('panels.yourMemory.stat')}</div>
+          <div className="text-slate-600 text-[13px] font-semibold">{t('panels.yourMemory.statLabel')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
           <div className="text-slate-500 text-[12px] leading-relaxed">
-            Voice &middot; Email &middot; Docs<br />
-            CRM &middot; Chat &middot; Notes<br />
-            + 13 more
+            {t('panels.yourMemory.statSources')}<br />
+            {t('panels.yourMemory.statMore')}
           </div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">Example queries</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.yourMemory.queryBadge')}</div>
           <div className="space-y-1">
-            {['"What did Sarah say about the budget?"', '"Find everything about permit delays"', '"Where are we with Henderson?"'].map(q => (
+            {[t('panels.yourMemory.query1'), t('panels.yourMemory.query2'), t('panels.yourMemory.query3')].map(q => (
               <div key={q} className="bg-slate-50 rounded px-2 py-1 text-[11px] text-slate-500 italic">{q}</div>
             ))}
           </div>
         </div>,
         <div key="f" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Your second brain,<br />with perfect recall.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.yourMemory.quote')}&rdquo;</div>
         </div>,
       ];
 
@@ -1013,21 +1015,21 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
     case 'Growth Engine':
       return [
         <div key="p" className="text-center space-y-3 w-full">
-          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">Viral loop</div>
-          <div className="text-slate-800 text-[19px] font-bold leading-snug">Share a meeting note.<br />Gain a customer.</div>
+          <div className="text-blue-500 text-[12px] font-bold uppercase tracking-widest">{t('panels.growthEngine.badge')}</div>
+          <div className="text-slate-800 text-[19px] font-bold leading-snug">{t('panels.growthEngine.heading')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Recipients see your company, get a promo, and sign up pre-seeded with their own data.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.growthEngine.description')}</div>
         </div>,
         <div key="s" className="text-center space-y-3 w-full">
-          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">90%</div>
-          <div className="text-slate-600 text-[13px] font-semibold">off for referrals</div>
+          <div className="text-5xl font-black text-blue-500 leading-none tracking-tight">{t('panels.growthEngine.stat')}</div>
+          <div className="text-slate-600 text-[13px] font-semibold">{t('panels.growthEngine.statLabel')}</div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[12px] leading-relaxed">Referred signups get<br />a workspace pre-seeded<br />from <span className="font-semibold text-slate-700">their own data</span>.</div>
+          <div className="text-slate-500 text-[12px] leading-relaxed">{t('panels.growthEngine.statDesc')}<br /><span className="font-semibold text-slate-700">{t('panels.growthEngine.statHighlight')}</span>.</div>
         </div>,
         <div key="a" className="text-center space-y-3 w-full">
-          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">The flywheel</div>
+          <div className="text-[12px] text-blue-500 font-bold uppercase tracking-widest">{t('panels.growthEngine.flyWheelBadge')}</div>
           <div className="flex items-center justify-center gap-2 mt-1">
-            {['Share', 'Discover', 'Sign up', 'Share'].map((step, i) => (
+            {(t('panels.growthEngine.flyWheelSteps', { returnObjects: true }) as string[]).map((step, i) => (
               <React.Fragment key={i}>
                 {i > 0 && <div className="text-slate-300 text-[12px]">&rarr;</div>}
                 <div className="bg-blue-50 rounded-full px-2 py-0.5 text-[10px] text-blue-500 font-semibold">{step}</div>
@@ -1035,10 +1037,10 @@ function getRichPanelContents(label: string, feat: FeatureInfo | undefined): (Re
             ))}
           </div>
           <div className="w-6 h-px bg-slate-200 mx-auto" />
-          <div className="text-slate-500 text-[13px] leading-relaxed">Your product sells itself<br />through the work it does.</div>
+          <div className="text-slate-500 text-[13px] leading-relaxed">{t('panels.growthEngine.flyWheelDesc')}</div>
         </div>,
         <div key="f" className="text-center space-y-2 w-full">
-          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;Every meeting note<br />is a growth channel.&rdquo;</div>
+          <div className="text-slate-600 text-[15px] font-serif italic leading-snug">&ldquo;{t('panels.growthEngine.quote')}&rdquo;</div>
         </div>,
       ];
 
@@ -1064,7 +1066,8 @@ const FocusPanels: React.FC<{
   interactive: boolean;
   visible?: boolean;
 }> = ({ containerWidth, label, faceIdx, visible = true }) => {
-  const feat = FEATURE_MAP[label];
+  const { t } = useTranslation('work-hero-3d');
+  const feat = getFeatureMap(t)[label];
 
   // Analytically compute panel template from pre-computed world-space vertices.
   // Orthographic projection: containerFrac = worldXY * (zoom / containerWidth) + 0.5
@@ -1085,7 +1088,7 @@ const FocusPanels: React.FC<{
   if (!template) return null;
 
   // Rich content per panel — varies by feature
-  const contents: (React.ReactNode | null)[] = getRichPanelContents(label, feat);
+  const contents: (React.ReactNode | null)[] = getRichPanelContents(label, feat, t);
 
   return (
     <>
@@ -1359,6 +1362,12 @@ export const WorkHero3D: React.FC<WorkHero3DProps> = ({ onPhaseChange, onFocusCh
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
         dpr={[1, 1.5]}
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener('webglcontextlost', (e) => {
+            e.preventDefault();
+            console.warn('[WorkHero3D] WebGL context lost');
+          });
+        }}
       >
         <ambientLight intensity={0.3} />
         <directionalLight position={[5, 5, 10]} intensity={1.2} />

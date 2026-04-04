@@ -1,0 +1,59 @@
+{
+  "badge": "Documenten",
+  "hero": {
+    "title_part1": "Schrijf één keer.",
+    "title_part2": "Vind voor altijd",
+    "description": "Een rijke teksteditor met sjablonen, volledige tekst zoeken en AI-ondersteund schrijven dat put uit je hele werkruimte."
+  },
+  "demoSection": {
+    "heading": "Schrijven en vinden op één plek",
+    "editorTitle": "Fjordview Hotel — Onderhoudsvoorstel",
+    "aiAssist": "AI-assistent",
+    "searchQuery": "onderhoudscontract",
+    "searchResults": "3 resultaten",
+    "results": [
+      {
+        "title": "Fjordview Hotel — Onderhoudsvoorstel",
+        "snippet": "...jaarlijks onderhoudscontract voor HVAC, loodgieterij en elektra..."
+      },
+      {
+        "title": "Q1 Serviceoverzicht — Fjordview",
+        "snippet": "...contractverlenging vervalt op 15 april. Huidige onderhoudssomvang omvat..."
+      },
+      {
+        "title": "Leveranciersprijs 2026",
+        "snippet": "...standaard onderhoudscontracttier: NOK 45.000/maand..."
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "Rijke editor",
+      "desc": "Volledige opmaak met koppen, lijsten, tabellen, afbeeldingen en ingesloten inhoud. Gebouwd op TipTap — snel en vertrouwd."
+    },
+    {
+      "title": "Sjablonen",
+      "desc": "Start vanuit bewezen sjablonen voor voorstellen, SOPs, vergaderingsagenda's en contracten. Eenmalig aanpassen, overal hergebruiken."
+    },
+    {
+      "title": "Volledige tekst zoeken",
+      "desc": "Elk woord wordt geïndexeerd. Zoek direct in alle documenten. Resultaten tonen context en markeren overeenkomsten."
+    }
+  ],
+  "scenario": {
+    "body": "Je hebt een onderhoudsvoorstel nodig voor Fjordview Hotel. In plaats van vanaf nul te beginnen, kies je het sjabloon 'Servicevoorstel'. AI vult klantgegevens in vanuit CRM, recente inspectieresultaten uit je rapporten en prijzen uit je productcatalogus. Je bewerkt twee zinnen en verstuurt.",
+    "closing": "Van lege pagina naar verzonden voorstel in minder dan twee minuten."
+  },
+  "techItems": [
+    "TipTap-editor",
+    "Sjabloonsysteem",
+    "Volledige tekst zoeken",
+    "AI-ondersteund opstellen",
+    "Projectkoppeling",
+    "Brain-doorzoekbaar"
+  ],
+  "cta": {
+    "tagline": "Documenten die je bedrijf kennen.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

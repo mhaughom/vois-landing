@@ -1,0 +1,63 @@
+{
+  "badge": "Créateur de site web IA",
+  "hero": {
+    "title": "Décrivez votre site. Il se construit tout seul.",
+    "description": "Dites à HABOS ce dont vous avez besoin. L'IA génère un site React multi-pages complet avec votre marque, vos produits, vos réservations et vos formulaires — déployé sur une URL en direct instantanément."
+  },
+  "body": "Saisissez l'URL d'un concurrent ou d'un site de référence. L'automatisation du navigateur capture des captures d'écran pleine page, extrait le contenu DOM, analyse les tokens de design CSS et détecte les logos et images. Avant que l'IA construise, HABOS injecte dix couches de contexte de l'espace de travail : tokens de marque, catalogue produits, widgets de réservation, composants boutique, intégrations de formulaires, surfaces de campagne et un manifeste d'assets. Les produits ajoutés dans HABOS apparaissent automatiquement sur le site web. Les réservations affluent dans votre calendrier. Les soumissions de formulaires sont routées vers les tickets ou les leads CRM.",
+  "mockSite": {
+    "urlBar": "henderson-plumbing.habos.site",
+    "brandName": "Henderson Plumbing",
+    "navLinks": ["Services", "À propos", "Contact"],
+    "bookButton": "Réserver maintenant",
+    "tagline": "Agréé & Assuré depuis 1985",
+    "services": [
+      { "name": "Réparation urgence" },
+      { "name": "Chauffe-eau" },
+      { "name": "Rénovation salle de bain" }
+    ]
+  },
+  "caption": {
+    "prefix": "Généré depuis : ",
+    "prompt": "Créez un site web de plomberie avec nos services et un widget de réservation.",
+    "suffix": " Couleurs de marque, produits et disponibilités extraits automatiquement de votre espace de travail."
+  },
+  "benefits": [
+    {
+      "title": "Clonez & améliorez",
+      "body": "Saisissez l'URL d'un concurrent. HABOS capture des captures d'écran, extrait les tokens de design et le reconstruit comme une application React moderne avec votre identité de marque et des widgets de commerce en direct."
+    },
+    {
+      "title": "10 couches d'enrichissement",
+      "body": "Tokens de marque, catalogue produits, widgets de réservation, composants boutique, intégrations de formulaires, surfaces de campagne, manifeste d'assets — tous injectés avant que l'IA construise."
+    },
+    {
+      "title": "Retour arrière en un clic",
+      "body": "Créez des versions illimitées. Prévisualisez avant de publier. Revenez à n'importe quelle version précédente instantanément. Votre site en direct n'est jamais en danger."
+    }
+  ],
+  "widgetsLabel": "Widgets en direct connectés à votre backend",
+  "widgets": [
+    { "label": "Catalogue produits" },
+    { "label": "Calendrier de réservation" },
+    { "label": "Panier d'achat" },
+    { "label": "Paiement" },
+    { "label": "Formulaire de contact" },
+    { "label": "Offres de campagne" }
+  ],
+  "scenario": {
+    "heading": "Comment ça fonctionne en pratique",
+    "body": "Un nouveau client s'inscrit et saisit l'URL de son site web actuel. HABOS explore le site — capture la conception, le contenu, les images et les tokens de marque. En moins de 2 minutes, une version reconstruite apparaît avec le commerce, les réservations et les formulaires HABOS intégrés. Les produits ajoutés dans le tableau de bord apparaissent automatiquement sur le site web. Les réservations affluent dans le calendrier. Les soumissions de formulaires créent des tickets. Une seule couche de données, partout."
+  },
+  "techItems": [
+    "VibeSDK sur Cloudflare Workers",
+    "React Router multi-pages",
+    "Injection de tokens de marque",
+    "Widgets web component",
+    "Support de domaine personnalisé"
+  ],
+  "cta": {
+    "heading": "Les autres créateurs de sites web sont du glisser-déposer. HABOS le construit pour vous.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

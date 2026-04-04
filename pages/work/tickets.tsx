@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Navbar } from '../../components/Navbar';
 import {
@@ -46,58 +47,6 @@ interface TicketData {
   resolved?: boolean;
 }
 
-const tickets: TicketData[] = [
-  {
-    priority: 'urgent',
-    title: 'Emergency: Johnson pipe burst',
-    assignee: 'Mike T.',
-    sla: '23 min remaining',
-  },
-  {
-    priority: 'high',
-    title: 'HVAC not cooling — Baker office',
-    assignee: 'Sarah L.',
-    sla: '2h 15min remaining',
-  },
-  {
-    priority: 'normal',
-    title: 'Quote request: bathroom renovation',
-    assignee: 'Unassigned',
-    sla: '7h remaining',
-  },
-  {
-    priority: 'normal',
-    title: 'Schedule annual inspection',
-    assignee: 'Auto-assigned',
-    sla: 'Resolved in 1h 20min',
-    resolved: true,
-  },
-];
-
-const priorityMeta: Record<
-  string,
-  { bg: string; text: string; dot: string; label: string }
-> = {
-  urgent: {
-    bg: 'bg-red-100',
-    text: 'text-red-700',
-    dot: 'bg-red-500',
-    label: 'Urgent',
-  },
-  high: {
-    bg: 'bg-amber-100',
-    text: 'text-amber-700',
-    dot: 'bg-amber-500',
-    label: 'High',
-  },
-  normal: {
-    bg: 'bg-green-100',
-    text: 'text-green-700',
-    dot: 'bg-green-500',
-    label: 'Normal',
-  },
-};
-
 /* ── SLA timer component ───────────────────────────────────────────────── */
 
 const SlaTimer: React.FC<{ ticket: TicketData }> = ({ ticket }) => {
@@ -138,39 +87,15 @@ const SlaTimer: React.FC<{ ticket: TicketData }> = ({ ticket }) => {
   );
 };
 
-/* ── benefit cards data ────────────────────────────────────────────────── */
-
-const benefits = [
-  {
-    icon: Layers,
-    title: 'Multi-source creation',
-    desc: 'From forms, emails, voice calls, API, or manual. Auto-dedup related requests.',
-  },
-  {
-    icon: ClipboardList,
-    title: 'Ticket \u2192 action pipeline',
-    desc: 'Link to projects, field jobs, and tasks. One ticket can spawn entire workflows.',
-  },
-  {
-    icon: Star,
-    title: 'CSAT collection',
-    desc: 'Auto-survey post-resolution for satisfaction scoring and trend tracking.',
-  },
-];
-
 /* ── source icons for multi-source visual ──────────────────────────────── */
 
-const sourceIcons = [
-  { icon: Mail, label: 'Email' },
-  { icon: Phone, label: 'Voice' },
-  { icon: Globe, label: 'Web form' },
-  { icon: Mic, label: 'Voice note' },
-  { icon: Code2, label: 'API' },
-];
+const sourceIconComponents = [Mail, Phone, Globe, Mic, Code2];
 
 /* ── page component ────────────────────────────────────────────────────── */
 
 const Tickets: React.FC = () => {
+  const { t } = useTranslation('work-tickets');
+
   /* live countdown for the urgent ticket */
   const [urgentSeconds, setUrgentSeconds] = useState(23 * 60);
 
@@ -186,6 +111,68 @@ const Tickets: React.FC = () => {
     const s = totalSec % 60;
     return `${m}:${s.toString().padStart(2, '0')} remaining`;
   };
+
+  const tickets = t('queue.tickets', { returnObjects: true }) as TicketData[];
+
+  const priorityMeta: Record<
+    string,
+    { bg: string; text: string; dot: string; label: string }
+  > = {
+    urgent: {
+      bg: 'bg-red-100',
+      text: 'text-red-700',
+      dot: 'bg-red-500',
+      label: t('queue.priorityLabels.urgent'),
+    },
+    high: {
+      bg: 'bg-amber-100',
+      text: 'text-amber-700',
+      dot: 'bg-amber-500',
+      label: t('queue.priorityLabels.high'),
+    },
+    normal: {
+      bg: 'bg-green-100',
+      text: 'text-green-700',
+      dot: 'bg-green-500',
+      label: t('queue.priorityLabels.normal'),
+    },
+  };
+
+  const benefits = [
+    {
+      icon: Layers,
+      title: t('benefits.multiSource.title'),
+      desc: t('benefits.multiSource.desc'),
+    },
+    {
+      icon: ClipboardList,
+      title: t('benefits.pipeline.title'),
+      desc: t('benefits.pipeline.desc'),
+    },
+    {
+      icon: Star,
+      title: t('benefits.csat.title'),
+      desc: t('benefits.csat.desc'),
+    },
+  ];
+
+  const sourceIconLabels = [
+    t('sourceIcons.email'),
+    t('sourceIcons.voice'),
+    t('sourceIcons.webForm'),
+    t('sourceIcons.voiceNote'),
+    t('sourceIcons.api'),
+  ];
+
+  const techStrip = t('techStrip', { returnObjects: true }) as string[];
+
+  const techStripIcons = [
+    <Timer size={14} />,
+    <Zap size={14} />,
+    <MessageSquare size={14} />,
+    <Sparkles size={14} />,
+    <Star size={14} />,
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -204,7 +191,7 @@ const Tickets: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-red-500/10 text-red-700 rounded-full text-sm font-medium mb-6">
-                Support &amp; Tickets
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -213,8 +200,12 @@ const Tickets: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-6 leading-[1.1]"
             >
-              SLA Timers. Auto-Escalation.<br />
-              Zero Breaches.
+              {t('hero.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </motion.h1>
 
             <motion.p
@@ -222,14 +213,13 @@ const Tickets: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed"
             >
-              Every ticket gets an SLA countdown. Breach warning fires 30 minutes
-              before deadline. If it breaches, auto-reassign to the next available agent.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">
             <p className="text-lg text-slate-600 leading-relaxed">
-              Every ticket gets an SLA countdown with configurable first-response and resolution targets by priority. Visual timers warn 30 minutes before breach. If a ticket breaches its SLA, auto-escalation kicks in — reassigning to the next available agent. Tickets can be created from forms, emails, voice calls, API, or manual entry with automatic deduplication. Customer emails appear as conversation threads with internal notes visible only to agents, and AI suggests responses based on context.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -244,10 +234,10 @@ const Tickets: React.FC = () => {
               {/* Header bar */}
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
-                  Active Queue
+                  {t('queue.header')}
                 </h3>
                 <span className="text-xs text-slate-400 font-medium">
-                  {tickets.length} tickets &middot; 1 breach warning
+                  {tickets.length} {t('queue.countLabel')}
                 </span>
               </div>
 
@@ -320,19 +310,19 @@ const Tickets: React.FC = () => {
                   <div className="flex items-start gap-2">
                     <AlertTriangle size={15} className="text-amber-500 mt-0.5 shrink-0" />
                     <span>
-                      <strong className="text-slate-700">30 minutes before breach</strong> &rarr; warning notification
+                      <strong className="text-slate-700">{t('queue.automation.breach30')}</strong> &rarr; {t('queue.automation.breach30Action')}
                     </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <Zap size={15} className="text-red-500 mt-0.5 shrink-0" />
                     <span>
-                      <strong className="text-slate-700">On breach</strong> &rarr; auto-reassign to next available
+                      <strong className="text-slate-700">{t('queue.automation.onBreach')}</strong> &rarr; {t('queue.automation.onBreachAction')}
                     </span>
                   </div>
                   <div className="flex items-start gap-2">
                     <Send size={15} className="text-green-500 mt-0.5 shrink-0" />
                     <span>
-                      <strong className="text-slate-700">Post-resolution</strong> &rarr; CSAT survey sent automatically
+                      <strong className="text-slate-700">{t('queue.automation.postResolution')}</strong> &rarr; {t('queue.automation.postResolutionAction')}
                     </span>
                   </div>
                 </div>
@@ -365,13 +355,13 @@ const Tickets: React.FC = () => {
                   {/* visual accent for multi-source card */}
                   {i === 0 && (
                     <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-50">
-                      {sourceIcons.map((src) => (
+                      {sourceIconComponents.map((Icon, idx) => (
                         <div
-                          key={src.label}
+                          key={sourceIconLabels[idx]}
                           className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center"
-                          title={src.label}
+                          title={sourceIconLabels[idx]}
                         >
-                          <src.icon size={13} className="text-slate-400" />
+                          <Icon size={13} className="text-slate-400" />
                         </div>
                       ))}
                     </div>
@@ -393,16 +383,15 @@ const Tickets: React.FC = () => {
               {/* Before */}
               <div className="bg-slate-50 rounded-2xl p-6 md:p-8 border border-slate-100">
                 <span className="inline-block px-3 py-1 bg-slate-200/60 text-slate-600 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
-                  Before
+                  {t('beforeAfter.beforeLabel')}
                 </span>
                 <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Customer emails. You see it 3 hours later. Assign it. Track it in a
-                  spreadsheet. Hope no one drops it. SLA? What SLA?
+                  {t('beforeAfter.beforeText')}
                 </p>
                 <div className="flex items-center gap-2 px-4 py-3 bg-white rounded-xl border border-slate-100">
                   <BarChart3 size={16} className="text-red-400" />
                   <span className="text-sm font-medium text-red-600">
-                    Average response: 3+ hours
+                    {t('beforeAfter.beforeStat')}
                   </span>
                 </div>
               </div>
@@ -410,16 +399,15 @@ const Tickets: React.FC = () => {
               {/* After */}
               <div className="bg-green-50/60 rounded-2xl p-6 md:p-8 border border-green-100/60">
                 <span className="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
-                  After
+                  {t('beforeAfter.afterLabel')}
                 </span>
                 <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  Customer emails. Ticket created automatically. SLA timer starts. Warning
-                  at 30 min. Auto-escalation on breach. CSAT survey post-resolution.
+                  {t('beforeAfter.afterText')}
                 </p>
                 <div className="flex items-center gap-2 px-4 py-3 bg-white rounded-xl border border-green-100">
                   <CheckCircle2 size={16} className="text-green-500" />
                   <span className="text-sm font-medium text-green-700">
-                    Average response: under SLA, always
+                    {t('beforeAfter.afterStat')}
                   </span>
                 </div>
               </div>
@@ -435,16 +423,10 @@ const Tickets: React.FC = () => {
             className="mb-20"
           >
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-5 bg-slate-50 rounded-2xl">
-              {[
-                { icon: <Timer size={14} />, label: 'SLA enforcement' },
-                { icon: <Zap size={14} />, label: 'Auto-escalation' },
-                { icon: <MessageSquare size={14} />, label: 'Email threading' },
-                { icon: <Sparkles size={14} />, label: 'AI reply suggestions' },
-                { icon: <Star size={14} />, label: 'CSAT surveys' },
-              ].map((item) => (
-                <span key={item.label} className="flex items-center gap-1.5 text-sm text-slate-600">
-                  <span className="text-slate-400">{item.icon}</span>
-                  {item.label}
+              {techStrip.map((label, i) => (
+                <span key={label} className="flex items-center gap-1.5 text-sm text-slate-600">
+                  <span className="text-slate-400">{techStripIcons[i]}</span>
+                  {label}
                 </span>
               ))}
             </div>
@@ -459,8 +441,12 @@ const Tickets: React.FC = () => {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4">
-              Other ticketing tools track issues.<br />
-              HABOS resolves them.
+              {t('closing.title').split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h2>
 
             <a href="/#waitlist">
@@ -469,7 +455,7 @@ const Tickets: React.FC = () => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full shadow-md hover:bg-slate-800 transition-colors"
               >
-                Join Waitlist
+                {t('closing.cta')}
                 <ArrowRight size={16} />
               </motion.button>
             </a>

@@ -1,0 +1,72 @@
+{
+  "category": "Filosofia",
+  "title": "Kertautuva muisti",
+  "tagline": "Jokainen keskustelu tekee seuraavasta älykkäämmän. Mitä kauemmin käytät HABOSia, sitä enemmän se ymmärtää liiketoimintaasi — ja sitä vaikeampaa tätä ymmärrystä on toistaa missään muualla.",
+  "heroPlaceholder": "Hero-kuva",
+  "section1": {
+    "heading": "Päivä yksi vs. päivä 180",
+    "body1": "Ensimmäisenä päivänä HABOS on kykenevä työkalu. Se käsittelee äänimuistiinpanosi, hallitsee tehtäväsi, hoitaa sähköpostisi. Se on nopea ja toimii. Mutta se ei vielä tunne sinua.",
+    "body2": "Päivään 180 mennessä järjestelmä tietää, mitkä asiakkaat tilaavat ennustettavilla sykleillä. Se tietää, että keskiviikon iltapäiväkokouksesi venyvät aina. Se tietää, että kun mainitset \"Bergenin projektin\" tarkoitat Fjordview Hotel -tiliä. Se tuntee kirjoitustyylisi, päätösmallit ja toiminnalliset rytmisi.",
+    "body3": "Tämä kertynyt ymmärrys ei ole ominaisuus, jonka voit asentaa. Se on älykkyyden, joka on ansaittu — keskustelu kerrallaan, päätös kerrallaan."
+  },
+  "section2": {
+    "heading": "Mitä kertyy"
+  },
+  "periods": [
+    {
+      "period": "Viikko 1",
+      "items": [
+        "Perustason äänen reititys toimii",
+        "Sähköpostiluonnokset ovat geneerisiä mutta toimivia",
+        "Aivojen haku kattaa sen mitä olet syöttänyt"
+      ]
+    },
+    {
+      "period": "Kuukausi 1",
+      "items": [
+        "Kirjoitustyyli on kalibroitu kullekin tiimin jäsenelle",
+        "Kokoustiiviistelmät hakevat relevantin historian",
+        "Älykkään reitittimen tarkkuus paranee korjaustesi myötä"
+      ]
+    },
+    {
+      "period": "Kuukausi 3",
+      "items": [
+        "Ennakoivat hälytykset havaittujen mallien perusteella",
+        "Strateginen neuvosto perustuu todelliseen liiketoimintadataasi",
+        "Ristilähdekytkennät, joita ihmiset jäisivät huomaamatta"
+      ]
+    },
+    {
+      "period": "Kuukausi 6+",
+      "items": [
+        "Ennustaa tilausajoitukset, kauppavaiheen kestot, kausiluonteiset mallit",
+        "Havaitsee toiminnallisen ajautumisen ennen kuin siitä tulee ongelma",
+        "Institutionaalinen tieto, joka selviää henkilöstön vaihtuvuudesta"
+      ]
+    }
+  ],
+  "curvePlaceholder": "Kertautuvan älykkyyden käyrä",
+  "section3": {
+    "heading": "Vallihauta, jonka rakennat käyttämällä",
+    "body1": "Useimmissa ohjelmistoissa vaihtamiskustannus on nolla datan viennin ulkopuolella. Projektinhallintaohjelmistosi ei viisastu, mitä kauemmin käytät sitä. CRM:si ei opi myyntimalleja. Kalenterisi ei ennakoi aikataulutusmieltymyksiäsi.",
+    "body2": "HABOS on erilainen, koska älykkyyskerros kertyy. Kuuden kuukauden jälkeen järjestelmän ymmärrys liiketoiminnastasi on aidosti ainutlaatuinen — rakennettu keskusteluistasi, päätöksistäsi, malleistasi ja korjauksistasi. Tätä ymmärrystä ei voi viedä CSV:nä. Se ei ole missään yksittäisessä tietokantataulussa. Se on hajautettu upotuksiin, tyyliprofiilek, reititysmalleihin ja käyttäytymismalleihin."
+  },
+  "section4": {
+    "heading": "Institutionaalinen muisti, joka ei jätä",
+    "body1": "Kun avainhenkilö lähtee, hän vie tietonsa mukanaan. Asiakasmieltymykset, joita hän muisti, prosessit, joita hän kehitti, suhteet, jotka hän rakensi — kaikki katoaa.",
+    "body2": "HABOS tallentaa tämän institutionaalisen tiedon sitä mukaa kun se syntyy. Jokainen äänimuistiinpano, kokous ja asiakasinteraktio ruokkii Aivoista. Kun joku uusi liittyy, hän perii paitsi datan myös ymmärryksen — tekoäly voi brifata häntä asiakashistoriasta, selittää miksi tiettyjä päätöksiä tehtiin ja tuoda esiin käsikirjat, joita edellinen henkilö kehitti."
+  },
+  "section5": {
+    "heading": "Etu, ei ansa",
+    "body1": "Emme rakenna lukitusta datan panttivankeudella. Datasi on aina vietävissä. Omistat sen. Mutta älykkyys — mallit, ennusteet, kontekstuaalinen ymmärrys — se on korkoa korolle sijoittamastasi ajasta. Se tekee jokaisesta kuukaudesta arvokkaamman kuin edellinen.",
+    "body2": "Potentiaaliselle asiakkaalle kysymys ei ole \"mitä HABOS maksaa kuukaudessa?\" Se on \"paljonko kuuden kuukauden kertynyt liiketoimintaälykkyys on arvoltaan?\""
+  },
+  "quote": "\"Datasi voidaan kopioida. Ymmärrystäsi ei. Jokainen päivä kun käytät HABOSia, kuilu näiden kahden välillä kasvaa.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Neuvonantajat, jotka ovat eri mieltä",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Pienen tiimin vipuvaikutus"
+  }
+}

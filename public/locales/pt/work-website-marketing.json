@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Site & Marketing",
+  "hero": {
+    "title": "Sua Marca, Amplificada pela IA",
+    "description": "Crie sites, produza conteúdo e execute campanhas — tudo impulsionado pelos dados do seu negócio, não por modelos genéricos."
+  },
+  "items": [
+    {
+      "title": "Construtor de Sites",
+      "desc": "Descreva seu negócio e obtenha um site — a IA escreve o texto e conecta pagamentos e agendamentos."
+    },
+    {
+      "title": "Estúdio Criativo",
+      "desc": "Gere conteúdo de marketing que combina com sua marca a partir do contexto do seu negócio."
+    },
+    {
+      "title": "Marketing",
+      "desc": "Campanhas de e-mail e SMS com textos criados por IA e segmentos de público inteligentes."
+    }
+  ]
+}

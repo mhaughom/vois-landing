@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "마음을 비워주는 임원 비서.",
+    "subheadline": "모든 것을 포착하세요. 정리는 필요 없습니다.",
+    "definition": "태스크  ·  캘린더  ·  아이디어  ·  목록  ·  커스텀 앱",
+    "cta": "액세스 요청",
+    "trustText": "귀하의 승인 없이는 아무것도 변경되지 않습니다.",
+    "watchVideo": "영상 보기",
+    "endVideo": "영상 종료",
+    "joinWaitlist": "대기자 명단 등록",
+    "tryAgain": "다시 시도"
+  },
+  "problem": {
+    "title": "누구나 하는 거짓말",
+    "body": [
+      "우리 모두 숨겨진 무게를 지고 삽니다. 오후 2시, 다음 회의를 향해 걷고 있는 당신. 머릿속에는 장보기 목록, 프로젝트의 획기적인 아이디어, 보낸 이메일에 대한 걱정, 그리고 오늘 물을 충분히 마시지 못했다는 사실이 뒤섞여 있습니다.",
+      "멈춰서 폰을 꺼내고, 잠금을 해제하고, 세 개의 앱을 열어 모든 것을 입력할 수도 있습니다. 하지만 그러지 않습니다. 누구나 하는 거짓말을 합니다: '그냥 기억하면 되지.'",
+      "(기억 못 합니다). 그리고 그 정신적 혼란은 집중력을 빼앗으며 당신 곁에 남습니다."
+    ]
+  },
+  "solution": {
+    "title": "다른 반응",
+    "body": "이제 다른 반응을 상상해 보세요. 그 무게를 지는 대신, 워치(또는 폰)의 버튼을 누릅니다. 말을 다듬지 않아도 됩니다. 화면을 보지 않아도 됩니다. 그냥 말하면 됩니다."
+  },
+  "demo": {
+    "input": "\"좋아요, 화요일에 계약 건으로 Sarah한테 전화하라고 상기시켜 줘. 그리고 집 리모델링 때문에 정말 부담이 돼, 소음이 너무 심해. 아, 방금 25분에 5km를 뛰었어, 기분 좋다.\"",
+    "caption": "엉성하게 들립니다. 인간적으로 들립니다. 당신처럼 들립니다. Vois는 소음을 듣습니다. 하지만 신호를 저장합니다."
+  },
+  "adapt": {
+    "title": "내 삶, 내 방식",
+    "body": "두통을 추적해야 하나요? 명상 연속 기록이나 아이의 재미있는 말들? 그냥 설명하면 됩니다. Vois가 즉시 맞춤형 공간을 만들어 드립니다. 시스템을 구축하는 것은 당신이 아닙니다. 그냥 그 안에서 살면 됩니다."
+  },
+  "privacy": {
+    "title": "내 마음, 내 통제",
+    "body": "Vois는 생각을 로컬에서 안전하게 정리합니다. 귀하가 승인하기 전까지는 아무것도 확정되지 않습니다. 공유되는 것도 없습니다. 열쇠를 가진 사람은 귀하뿐입니다.",
+    "localFirst": "로컬 우선",
+    "encryptedSync": "암호화 동기화",
+    "privacyIllustrationAlt": "프라이버시와 통제",
+    "enterpriseTitle": "엔터프라이즈급 보안",
+    "enterpriseBody": "귀하의 데이터는 세계 최대 기업들이 신뢰하는 동일한 인프라로 보호됩니다. 신뢰성과 보안을 위해 업계 선도적인 서비스를 사용합니다.",
+    "securityIllustrationAlt": "엔터프라이즈 보안",
+    "awsServers": "AWS 서버",
+    "supabase": "Supabase",
+    "soc2": "SOC 2 준수"
+  },
+  "footer": {
+    "headline": "맑은 정신. 체계적인 삶.",
+    "subheadline": "존재의 행정 업무를 스스로 하는 것을 멈추세요. 혼돈은 Vois에게 맡기고, 명료함은 당신이 가지세요.",
+    "cta": "베타 시작",
+    "tagline": "정신을 비우세요.",
+    "colProduct": "제품",
+    "colSupport": "지원",
+    "colLegal": "법적 고지",
+    "colSocial": "소셜",
+    "linkLogin": "로그인",
+    "linkDownloadIphone": "iPhone용 다운로드",
+    "linkDownloadWatch": "워치용 다운로드",
+    "linkDownloadMac": "Mac용 다운로드",
+    "linkHabos": "비즈니스용 HABOS",
+    "linkHelpFaq": "도움말 및 FAQ",
+    "linkContactUs": "문의하기",
+    "linkSetupGuide": "설정 가이드",
+    "linkPrivacyPolicy": "개인정보 처리방침",
+    "linkTerms": "서비스 이용약관",
+    "linkRefund": "환불 정책",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "삶은 메모 앱을 기다려 주지 않습니다.",
+    "p1": "회의에 걸어 들어가며. 샤워 중에. 문밖을 나서다가.",
+    "p2": "초대장. 태스크. 놓칠 수 없는 생각.",
+    "p3": "자신에게 말합니다: '그냥 기억하면 되지.'",
+    "p4": "(기억 못 합니다.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "소리의 속도로 검색하세요.",
+    "bodyBefore": "자연스럽게 물어보고 ",
+    "bodyHighlight": "즉각적인 답변",
+    "bodyAfter": "을 받으세요. 음성 어시스턴트가 포착한 모든 내용에서 정확히 필요한 것을 찾아드립니다."
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "items": [
+      {
+        "question": "개인용과 업무용의 차이는 무엇인가요?",
+        "answer": "개인용은 일상 생활용으로 태스크, 아이디어, 알림, 노트를 캡처합니다. 업무용은 회의 녹취, 액션 아이템, 팀 협업 도구, 우선 지원을 추가합니다."
+      },
+      {
+        "question": "음성 데이터는 개인 정보가 보호되나요?",
+        "answer": "네. 저희는 로컬 우선 아키텍처를 사용합니다. 녹음은 안전하게 처리되며, 개인적인 생각을 공개 모델 훈련에 사용하지 않습니다. 귀하의 뇌는 귀하의 것입니다."
+      },
+      {
+        "question": "언제든지 플랜을 변경하거나 취소할 수 있나요?",
+        "answer": "물론입니다. 언제든지 구독을 업그레이드, 다운그레이드 또는 취소할 수 있습니다. 취소하시면 현재 청구 기간이 끝날 때까지 액세스가 유지됩니다."
+      },
+      {
+        "question": "맞지 않으면 어떻게 하나요?",
+        "answer": "30일 환불 보장을 제공합니다. Vois가 첫 달에 정신을 비우는 데 도움이 되지 않는다면, 이메일로 연락 주시면 전액 환불해 드립니다."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "플랜 선택",
+    "subtitle": "무료로 시작하세요. 준비되면 업그레이드하세요.",
+    "billingMonthly": "월간",
+    "billingAnnual": "연간",
+    "saveLabel": "최대 40% 절약",
+    "freePlanTitle": "무료",
+    "freePlanDescription": "카드 없이 시도해 보세요",
+    "freePlanPeriod": "영구",
+    "freePlanCta": "무료 다운로드",
+    "personalPlanTitle": "개인",
+    "personalPlanBadge": "인기",
+    "personalPlanDescription": "일상 생활 정리용",
+    "personalPlanPeriod": "/월",
+    "personalPlanCta": "대기자 명단 등록",
+    "personalPlanNote": "언제든지 취소 가능. 30일 환불 보장.",
+    "workPlanTitle": "업무",
+    "workPlanDescription": "전문가 및 팀용",
+    "workPlanPeriod": "/월",
+    "workPlanCta": "대기자 명단 등록",
+    "workPlanNote": "언제든지 취소 가능. 30일 환불 보장."
+  }
+}

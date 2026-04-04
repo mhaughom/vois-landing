@@ -1,0 +1,59 @@
+{
+  "badge": "Handel",
+  "hero": {
+    "title": "Produkter, bestillinger og betalinger. Alt tilkoblet.",
+    "description": "Tjenester, fysiske varer, pakker og abonnementer – alle med lager på variantnivå, automatisk prising og Stripe-kasse innebygd."
+  },
+  "body": "Fire produkttyper i ett system: tjenester, fysiske varer, pakker og abonnementer – alle med lagerssporing på variantnivå, lavlager-varsler og automatiske trekk. Gjør ethvert produkt om til en bookbar avtale med konfigurerbar varighet, kapasitet, åpningstider og virkedager. Bygg inn en handlekurv eller bookingkalender direkte på nettstedet ditt – ingen separat plattform nødvendig. Beregning av linjeelementer på serversiden forhindrer svindel på klientsiden på tvers av alle kanaler.",
+  "productTypes": [
+    { "label": "Tjenester", "desc": "Time- eller fastpris" },
+    { "label": "Fysiske varer", "desc": "Lager på variantnivå" },
+    { "label": "Pakker", "desc": "Buntfler elementer" },
+    { "label": "Abonnementer", "desc": "Gjentakende fakturering" }
+  ],
+  "catalogCaption": "Ett katalogsystem håndterer alle fire. Gjør ethvert produkt om til en bookbar avtale eller en nettstedwidget.",
+  "orderSteps": ["Tilbud", "Ventende", "Bekreftet", "Pågår", "Fullført"],
+  "order": {
+    "heading": "Bestilling #1247 — Henderson Kjøkkenrenovering",
+    "tableHeaders": {
+      "product": "Produkt",
+      "qty": "Antall",
+      "unit": "Enhetspris",
+      "total": "Total"
+    },
+    "lineItems": [
+      { "product": "Tilpasset skap (valnøtt)", "qty": "1", "unit": "kr 24 000", "total": "kr 24 000" },
+      { "product": "Benkeplate — kvarts 150 cm", "qty": "2", "unit": "kr 6 500", "total": "kr 13 000" },
+      { "product": "Monteringsarbeid (4 t)", "qty": "1", "unit": "kr 5 500", "total": "kr 5 500" }
+    ],
+    "subtotal": "Delsum: kr 42 500",
+    "paymentConfirmed": "Stripe-betaling: ✓ Bekreftet",
+    "deposit": "Depositum: kr 10 000 betalt"
+  },
+  "orderCaption": "Bestillinger genereres automatisk fra bookinger, nettstedkjøp eller manuell opprettelse. Linjeelementer beregnet på serversiden – ingen svindel på klientsiden.",
+  "benefits": [
+    {
+      "title": "Lageret lyver aldri",
+      "desc": "Lager på variantnivå trekkes ved bestillingsbekreftelse. Lavlager-varsler utløses automatisk. Refusjoner gjenoppretter lageret."
+    },
+    {
+      "title": "Stripe på 3 klikk",
+      "desc": "Kasse-sesjoner, fakturaer, betalingslenker og refusjoner – alle gjennom Stripe Connect. Penger går til banken din, ikke en mellommann."
+    },
+    {
+      "title": "Nettsted → bestilling → CRM",
+      "desc": "Kunden kjøper på HABOS-nettstedet ditt. Bestilling opprettet. CRM-kontakt oppdatert. Kvittering sendt. Null manuell dataregistrering."
+    }
+  ],
+  "techItems": [
+    "4 produkttyper",
+    "Lager på variantnivå",
+    "Stripe Connect Express",
+    "Linjeelementer på serversiden",
+    "Booking ↔ bestillingssynk"
+  ],
+  "cta": {
+    "heading": "Andre handelsverktøy er en separat plattform. HABOS-handel er innebygd i alt.",
+    "button": "Bli med på ventelisten"
+  }
+}

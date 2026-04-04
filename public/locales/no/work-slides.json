@@ -1,0 +1,62 @@
+{
+  "badge": "AI-presentasjoner",
+  "hero": {
+    "title_part1": "Beskriv dekken ditt.",
+    "title_part2": "Det bygger seg selv.",
+    "description": "Fortell HABOS hva du trenger å presentere. AI genererer et komplett deck med merkevaren din, dataene dine og produktene dine – med direkte diagrammer som oppdateres automatisk."
+  },
+  "intro": "Presentasjonsgeneratoren lager decks fra arbeidsromskonteksten din med direktedatabinding. Først genererer den en disposisjon ved å analysere prompten din, søke i Brain og hente fra prosjektkontekst, produktkatalog og merkevareguid. Deretter bygger den hvert slide parallelt – opptil fem samtidige – med layoutspesifikke blokker: metrikker, diagrammer, tabeller og bilder. Inntektstall hentes fra Finans. Produktrutenett hentes fra katalogen din. Når de underliggende dataene endres, reflekterer presentasjonen det.",
+  "slidePreview": {
+    "title": "Q1 Inntektssammendrag",
+    "metrics": [
+      { "change": "+18%", "value": "kr 1 270 000", "label": "Inntekt" },
+      { "change": "+12%", "value": "89", "label": "Bestillinger" },
+      { "change": "-4%", "value": "kr 14 280", "label": "Snitt bestilling" }
+    ],
+    "slideNumber": "Slide 3 av 12"
+  },
+  "caption": {
+    "prefix": "Generert fra:",
+    "prompt": "«Bygg en Q1-investoroppdatering med inntektstrender og topprodukter.»",
+    "suffix": "Inntektstallene er direkte – de oppdateres når dataene dine endres."
+  },
+  "benefitCards": [
+    {
+      "title": "Prompt → deck på 60 sekunder",
+      "desc": "Beskriv hva du trenger. AI genererer en disposisjon, deretter bygger hvert slide parallelt. 12 kortlayouter, merkevarebevisste farger, ekte fotografier fra Unsplash."
+    },
+    {
+      "title": "Direkte databinding",
+      "desc": "Inntektsmetrikker hentes fra Finans. Produktrutenett hentes fra katalogen din. Når de underliggende dataene endres, oppdateres presentasjonen. Ingen manuell diagramgjenskaping."
+    },
+    {
+      "title": "Merkevaren din, automatisk",
+      "desc": "Temafarger, skrifter og logo hentes fra arbeidsrommets merkeinnstillinger. Hvert deck ser ut som ditt, ikke som en mal."
+    }
+  ],
+  "layouts": {
+    "heading": "12 kortlayouter, intelligent blandet",
+    "items": [
+      "Tittel", "Tekst + bilde", "Metrikk-rutenett", "Diagramfokus", "Sammenligning",
+      "Tidslinje", "Sitat", "3-kolonne", "Punkthøydepunkt", "Produktrutenett",
+      "Teamliste", "Oppfordring til handling"
+    ]
+  },
+  "scenario": {
+    "part1": "Investormøtet er om 2 timer. I stedet for å bruke 90 minutter på å bygge slides, skriver du:",
+    "prompt": "«Q1-investoroppdatering – inntektstrender, topprodukter, kundevekst og neste kvartal-veikartet.»",
+    "part2": "HABOS henter direktetall fra Finans, produkter fra katalogen og vekstdata fra CRM. Du har et polert, merkekledt deck på 60 sekunder.",
+    "closing": "Inntektsdiagrammet vil fortsatt være nøyaktig når du presenterer det."
+  },
+  "techItems": [
+    "GPT-4o disposisjon + parallellbygging",
+    "Unsplash + Gemini bilgegenerering",
+    "12 håndhevede layouter",
+    "Direkte databinding",
+    "Merkevarebevisst temaing"
+  ],
+  "cta": {
+    "tagline": "Andre slideverktøy gir deg maler. HABOS gir deg et ferdig deck.",
+    "button": "Bli med på ventelisten"
+  }
+}

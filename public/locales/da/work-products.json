@@ -1,0 +1,59 @@
+{
+  "badge": "Handel",
+  "hero": {
+    "title": "Produkter, ordrer og betalinger. Alt forbundet.",
+    "description": "Ydelser, fysiske varer, pakker og abonnementer — alle med lager på variantniveau, automatiseret prissætning og Stripe-checkout indbygget."
+  },
+  "body": "Fire produkttyper i ét system: ydelser, fysiske varer, pakker og abonnementer — alle med lagersporing på variantniveau, advarsler om lavt lager og automatiske fradrag. Gør ethvert produkt til en bookbar aftale med konfigurerbar varighed, kapacitet, åbningstider og arbejdsdage. Indlejr en indkøbskurv eller bookingkalender direkte på dit website — ingen separat platform nødvendig. Serverside-linjepostberegning forhindrer klientside-svindel på alle kanaler.",
+  "productTypes": [
+    { "label": "Ydelser", "desc": "Time- eller fastpris" },
+    { "label": "Fysiske varer", "desc": "Lager på variantniveau" },
+    { "label": "Pakker", "desc": "Bundl flere varer" },
+    { "label": "Abonnementer", "desc": "Tilbagevendende fakturering" }
+  ],
+  "catalogCaption": "Ét katalogsystem håndterer alle fire. Gør ethvert produkt til en bookbar aftale eller et website-widget.",
+  "orderSteps": ["Tilbud", "Afventer", "Bekræftet", "I gang", "Afsluttet"],
+  "order": {
+    "heading": "Ordre #1247 — Henderson Køkkenrenovering",
+    "tableHeaders": {
+      "product": "Produkt",
+      "qty": "Antal",
+      "unit": "Enhed",
+      "total": "I alt"
+    },
+    "lineItems": [
+      { "product": "Brugerdefinerede skabe (valnød)", "qty": "1", "unit": "kr. 16.800", "total": "kr. 16.800" },
+      { "product": "Bordplade — kvarts 150 cm", "qty": "2", "unit": "kr. 4.550", "total": "kr. 9.100" },
+      { "product": "Monteringsarbejde (4 timer)", "qty": "1", "unit": "kr. 3.850", "total": "kr. 3.850" }
+    ],
+    "subtotal": "Subtotal: kr. 29.750",
+    "paymentConfirmed": "Stripe-betaling: ✓ Bekræftet",
+    "deposit": "Depositum: kr. 7.000 betalt"
+  },
+  "orderCaption": "Ordrer auto-genereres fra bookinger, websitekøb eller manuel oprettelse. Linjeposter beregnet serverside — ingen klientside-svindel.",
+  "benefits": [
+    {
+      "title": "Lageret lyver aldrig",
+      "desc": "Lager på variantniveau fratrækkes ved ordrebekræftelse. Advarsler om lavt lager udløses automatisk. Refunderinger genopretter lageret."
+    },
+    {
+      "title": "Stripe med 3 klik",
+      "desc": "Betalingssessioner, fakturaer, betalingslinks og refunderinger — alt via Stripe Connect. Pengene går til din bank, ikke en mellemmand."
+    },
+    {
+      "title": "Website → ordre → CRM",
+      "desc": "Kunden køber på dit HABOS-website. Ordre oprettet. CRM-kontakt opdateret. Kvittering sendt. Nul manuel dataindtastning."
+    }
+  ],
+  "techItems": [
+    "4 produkttyper",
+    "Lager på variantniveau",
+    "Stripe Connect Express",
+    "Serverside-linjeposter",
+    "Booking ↔ ordre-sync"
+  ],
+  "cta": {
+    "heading": "Andre handelsværktøjer er en separat platform. HABOS-handel er indbygget i alt.",
+    "button": "Tilmeld venteliste"
+  }
+}

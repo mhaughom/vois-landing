@@ -1,0 +1,72 @@
+{
+  "badge": "Tekoälyn projektitietoisuus",
+  "hero": {
+    "title": "Tiedä aina mikä estää edistymistä.",
+    "description": "HABOS analysoi jatkuvasti jokaisen tehtävän, riippuvuuden ja aikarajan pintaamaan kriittisen polun. Näet pullonkaulat ennen kuin niistä tulee ongelmia."
+  },
+  "body": "Projektijärjestelmä käyttää tekoälyanalyysiä jatkuvasti tunnistamaan kriittinen polku. GPT-4o tutkii kaikki suunnitelman kohteet, riippuvuudet ja nykyisen tilan, sitten tunnistaa pullonkaulat ja estävät ketjut. Kriittisen polun kohteet saavat automaattisesti korkeamman prioriteetin aikataulutusmoottorissa — kun fokusajanjaksot täytetään, kriittisen polun tehtävät sijoitetaan ensin. Riippuvuudet pakottavat topologisen järjestyksen, joten edeltäjätehtävät ajoitetaan aina ennen riippuvaisiaan.",
+  "criticalPath": {
+    "heading": "Henderson Kitchen Renovation — Kriittinen polku",
+    "items": {
+      "permitsApproved": {
+        "title": "Luvat hyväksytty",
+        "date": "Valmis 20. maalisk."
+      },
+      "plumbingRoughIn": {
+        "title": "Putkityön raakarunko",
+        "date": "Valmis 23. maalisk."
+      },
+      "tileSelection": {
+        "title": "Laattavalinta",
+        "status": "ESTÄÄ — odottaa näytetoimitusta (erä 28. maalisk.)"
+      },
+      "tileInstallation": {
+        "title": "Laatan asennus",
+        "blockedBy": "Estää: Laattavalinta"
+      },
+      "finalInspection": {
+        "title": "Loppukatselmus",
+        "blockedBy": "Estää: Laatan asennus"
+      }
+    },
+    "note": "Tekoäly tunnisti \"Laattavalinta\" pullonkaulaksi 3 päivää ennen kuin tiimi huomasi. Kriittisen polun kohteet yllennetään automaattisesti korkeimmaksi prioriteetiksi aikataulussasi."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Pullonkaulat löydetään automaattisesti",
+      "description": "Tekoäly tutkii kaikki suunnitelman kohteet, riippuvuudet ja tilan. Se asettaa critical_rank-arvon kohteille, jotka muodostavat estävän ketjun — ja kalenterisi priorisoi ne välittömästi."
+    },
+    "dependencies": {
+      "title": "Riippuvuudet valvottu",
+      "description": "Jos edeltäjä ei ole valmis, riippuvainen tehtävä merkitään esteeksi eikä sitä voi aloittaa. Ei enää työskentelyä väärässä asiassa."
+    },
+    "connected": {
+      "title": "Jokainen lähde yhdistetty",
+      "description": "Sähköpostit, kokoukset, äänimuistiinpanot ja dokumentit merkitään automaattisesti projekteihin. Kysy \"miksi tämä on jäljessä?\" ja saat oikean vastauksen."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Ilman HABOS:ia",
+      "description": "Maanantain standup: \"Onko esteitä?\" Hiljaisuus. Torstai: \"Miksi laattaa ei ole asennettu?\" \"Voi, näytteet eivät koskaan saapuneet.\" Kolme päivää menetetty.",
+      "badge": "Pullonkaula havaittu: 3 päivää myöhässä"
+    },
+    "with": {
+      "heading": "HABOS:lla",
+      "description": "Tiistaiaamuna: ilmoitus — \"Laattavalinta on nyt kriittisen polun pullonkaula. Näytetoimitus on 2 päivää pois. Suositus: eskaloida toimittajalle.\" Toimenpide sama päivä.",
+      "badge": "Pullonkaula merkitty: 3 päivää etuajassa"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "GPT-4o kriittisen polun analyysi",
+      "Topologinen riippuvuusjärjestys",
+      "Automaattinen prioriteetin korotus",
+      "Moduulien välinen datamerkintä"
+    ]
+  },
+  "cta": {
+    "heading": "Muut projektityökalut näyttävät tehtäviä. HABOS näyttää mikä on tärkeää.",
+    "button": "Liity odotuslistalle"
+  }
+}

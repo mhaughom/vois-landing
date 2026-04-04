@@ -1,0 +1,71 @@
+{
+  "badge": "Mensajero unificado",
+  "hero": {
+    "title": "Cada canal. Una conversación.",
+    "description": "Correo, Slack, Teams, SMS y chat interno fusionados en una línea de tiempo centrada en la persona. Deje de revisar 5 aplicaciones para ver todos los mensajes de un cliente."
+  },
+  "body": "En lugar de revisar cuatro aplicaciones para ver todos los mensajes de un cliente, cada mensaje aparece en un flujo cronológico único — correo, Slack, Teams, SMS, chat interno — anclado a una sola persona. Cada mensaje entrante pasa por puntuación de importancia y extracción de elementos de acción. Los mensajes de alta importancia obtienen hechos extraídos, tareas y sugerencias de seguimiento. La IA entiende el contexto entre canales — un mensaje de Slack que hace referencia a un hilo de correo está vinculado a la misma conversación.",
+  "timeline": {
+    "contactName": "Sarah Henderson",
+    "channelsActive": "3 canales activos",
+    "messages": [
+      {
+        "channel": "email",
+        "subject": "Re: Cronograma de renovación de cocina",
+        "time": "18 mar, 2:30 PM",
+        "preview": "Hola Mike, confirmo que vamos según el cronograma para la fecha de inicio del 25 de marzo. Las encimeras llegan el jueves."
+      },
+      {
+        "channel": "slack",
+        "subject": "#proyecto-henderson",
+        "time": "19 mar, 9:15 AM",
+        "preview": "Pregunta rápida — ¿llegaron las muestras de azulejos? El cliente quiere confirmar el patrón de espiga antes de ordenar."
+      },
+      {
+        "channel": "sms",
+        "time": "20 mar, 11:00 AM",
+        "preview": "¡Permisos aprobados! 🎉"
+      },
+      {
+        "channel": "email",
+        "subject": "Re: Cronograma actualizado",
+        "time": "21 mar, 3:45 PM",
+        "preview": "Adjunto el cronograma revisado con el retraso por permisos incluido. Nueva finalización: 12 de abril."
+      }
+    ],
+    "caption": "Una persona, una línea de tiempo, cada canal. Responda por el mismo canal o cambie — usted elige."
+  },
+  "benefits": {
+    "classification": {
+      "title": "Clasificación con IA",
+      "body": "Mensajes puntuados automáticamente por importancia con extracción de elementos de acción. Lo urgente emerge; el ruido espera."
+    },
+    "replies": {
+      "title": "Respuestas adaptativas",
+      "body": "La IA coincide con su estilo de escritura en 3 variantes de tono. Suene como usted en correo, Slack y SMS — sin reescribir."
+    },
+    "mailboxes": {
+      "title": "Buzones compartidos",
+      "body": "Bandejas de entrada de equipo como soporte@empresa.com con asignación, seguimiento y temporizadores de SLA. Nada se pierde."
+    }
+  },
+  "beforeAfter": {
+    "beforeLabel": "Antes",
+    "beforeText": "Revisar Gmail. Revisar Slack. Revisar Teams. Revisar SMS. Reconstruir lo que Sarah dijo en 4 aplicaciones.",
+    "beforeStat": "~15 min/día",
+    "afterLabel": "Después",
+    "afterText": "Abra la conversación de Sarah. Todo está ahí.",
+    "afterStat": "~30 segundos"
+  },
+  "techStrip": [
+    "Hilos centrados en la persona",
+    "Composición multitransporte",
+    "Puntuación de importancia con IA",
+    "Extracción de elementos de acción",
+    "Sincronización en tiempo real"
+  ],
+  "closing": {
+    "tagline": "Otras bandejas muestran mensajes. HABOS muestra conversaciones.",
+    "cta": "Unirse a la lista de espera"
+  }
+}

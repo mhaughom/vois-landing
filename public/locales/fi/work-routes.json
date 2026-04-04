@@ -1,0 +1,85 @@
+{
+  "badge": "Reittien hallinta",
+  "hero": {
+    "title": "Reitit, jotka rakentavat itsensä.",
+    "description": "Nimeä työ teknikolle ja HABOS luo heidän reittinsä päiväksi automaattisesti — geokoodatut pysäkit, optimoitu järjestys ja yhdellä napautuksella navigointi Google Maps -sovellukseen."
+  },
+  "body": "Kun nimeät työvierailun teknikolle, heidän hallittu reittinsä päivittyy automaattisesti geokoodatuilla pysäkeillä Mapboxista. Muokkaa manuaalisesti ja se irtoaa automaattikirjoitusten estämiseksi. Jokainen reitti tallentaa GPS-reittipisteet viiden sekunnin välein, ja Haversine-etäisyys lasketaan palvelinpuolella tarkan kilometrilaskutuksen vuoksi. Kenttätyöntekijät merkitsevät pysäkit valmiiksi tai ohitetuiksi puhelimistaan — toimisto näkee edistymisen reaaliajassa ilman yhtään puhelua.",
+  "routeCard": {
+    "heading": "Mike Torres — Keskiviikon reitti",
+    "subheading": "5 pysäkkiä · 76 km arvioitu",
+    "navigate": "Navigoi",
+    "footnote": "Pysäkit geokoodattu automaattisesti Mapboxin kautta. Vedä järjestääksesi uudelleen. Napauta 'Navigoi' käänne käänteeltä -ohjeille."
+  },
+  "stops": [
+    {
+      "name": "Henderson Residence",
+      "time": "9:00",
+      "task": "Vesilämmittimen asennus",
+      "statusLabel": "Valmis"
+    },
+    {
+      "name": "Baker Office",
+      "time": "11:00",
+      "task": "HVAC-huolto",
+      "statusLabel": "Valmis"
+    },
+    {
+      "name": "Wilson Home",
+      "time": "13:00",
+      "task": "Putkityön korjaus",
+      "statusLabel": "Käynnissä"
+    },
+    {
+      "name": "Garcia Apartment",
+      "time": "15:00",
+      "task": "Sähkötarkastus",
+      "statusLabel": "Odottaa"
+    },
+    {
+      "name": "Johnson Property",
+      "time": "16:30",
+      "task": "Hätävuoto",
+      "statusLabel": "Lisätty tänään"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Automaattinen synkronointi lähetyksestä",
+      "desc": "Kun nimeät työvierailun teknikolle, heidän hallittu reittinsä päivittyy automaattisesti. Muokkaa manuaalisesti ja se irtoaa — ei tahattomia ylikirjoituksia."
+    },
+    {
+      "title": "Pysäkin tilanseuranta",
+      "desc": "Kenttätyöntekijät merkitsevät pysäkit valmiiksi tai ohitetuiksi puhelimistaan. Toimisto näkee edistymisen reaaliajassa ilman soittamista."
+    },
+    {
+      "title": "GPS-kilometriseuranta",
+      "desc": "Jokainen reitti tallentaa GPS-reittipisteet (5 sekunnin välein). Haversine-etäisyys lasketaan palvelinpuolella. Tarkka kilometri laskutusta ja korvauksia varten."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Ilman HABOS:ia",
+      "description": "Aamu: tulosta työlista. Syötä osoitteet manuaalisesti Google Maps -sovellukseen yksi kerrallaan. Toivo järjestyksen olevan järkevä. Soita toimistolle muutoksista. Kirjaa kilometrit paperille.",
+      "outcome": "~30 min turhautunut päivittäin"
+    },
+    "with": {
+      "label": "HABOS:lla",
+      "description": "Aamu: avaa sovellus. Reitti on valmis kaikilla pysäkeillä, optimoidulla järjestyksellä ja yhdellä napautuksella navigointi. Merkitse pysäkit valmiiksi edetessäsi. Kilometrit kirjataan automaattisesti.",
+      "outcome": "0 min suunnittelua"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox-geokoodaus ja suunnat",
+      "Hallitun reitin automaattinen synkronointi",
+      "GPS-reittipisteet joka 5 s",
+      "Haversine-etäisyys",
+      "Google Maps -syvälinkit"
+    ]
+  },
+  "cta": {
+    "heading": "Muut työkalut saavat sinut suunnittelemaan reittejä. HABOS suunnittelee ne puolestasi.",
+    "button": "Liity odotuslistalle"
+  }
+}

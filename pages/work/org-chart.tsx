@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   ClipboardList,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -35,26 +36,6 @@ interface OrgNode {
   border: string;
   draft?: string;
 }
-
-const ceo: OrgNode = {
-  name: 'Elena Park',
-  role: 'CEO',
-  bg: 'bg-slate-900',
-  text: 'text-white',
-  border: 'border-slate-900',
-};
-
-const heads: OrgNode[] = [
-  { name: 'James Okoro', role: 'VP Operations', bg: 'bg-indigo-600', text: 'text-white', border: 'border-indigo-600' },
-  { name: 'Lisa Chen', role: 'VP Sales', bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-600' },
-];
-
-const members: OrgNode[] = [
-  { name: 'Mike R.', role: 'Field Ops Lead', bg: 'bg-white', text: 'text-slate-900', border: 'border-indigo-300', draft: 'Draft: moved from Sales' },
-  { name: 'Sara T.', role: 'Logistics Coord.', bg: 'bg-white', text: 'text-slate-900', border: 'border-indigo-200' },
-  { name: 'David K.', role: 'Account Exec', bg: 'bg-white', text: 'text-slate-900', border: 'border-emerald-200' },
-  { name: 'Amy J.', role: 'Sales Rep', bg: 'bg-white', text: 'text-slate-900', border: 'border-emerald-200' },
-];
 
 /* ── node renderer ─────────────────────────────────────────────────────── */
 
@@ -84,28 +65,10 @@ const HLine: React.FC<{ className?: string }> = ({ className = '' }) => (
   <div className={`h-px bg-slate-300 ${className}`} />
 );
 
-/* ── benefit cards data ────────────────────────────────────────────────── */
+/* ── benefit icon components ───────────────────────────────────────────── */
 
-const benefits = [
-  {
-    icon: Shield,
-    title: '37-app permissions',
-    desc: 'Auto-scoped by department and org level. When someone moves, their permissions update instantly across every connected tool.',
-    color: 'indigo',
-  },
-  {
-    icon: ClipboardList,
-    title: 'RACI tracking',
-    desc: 'Define who owns, approves, consults, and gets informed for every process. Never wonder "who signs off on this?" again.',
-    color: 'violet',
-  },
-  {
-    icon: GitBranch,
-    title: 'Dual reporting',
-    desc: 'Matrix structures with primary and secondary managers. Dotted-line relationships are first-class citizens, not afterthoughts.',
-    color: 'sky',
-  },
-] as const;
+const benefitIcons = [Shield, ClipboardList, GitBranch];
+const benefitColors = ['indigo', 'violet', 'sky'] as const;
 
 const colorMap: Record<string, { iconBg: string; iconText: string }> = {
   indigo: { iconBg: 'bg-indigo-100', iconText: 'text-indigo-600' },
@@ -113,19 +76,35 @@ const colorMap: Record<string, { iconBg: string; iconText: string }> = {
   sky:    { iconBg: 'bg-sky-100',    iconText: 'text-sky-600' },
 };
 
-/* ── tech strip items ──────────────────────────────────────────────────── */
-
-const techItems = [
-  'ReactFlow visualization',
-  'Sandbox drafts',
-  'Atomic apply',
-  '37-app permission matrix',
-  'RACI responsibility',
-] as const;
-
 /* ── page component ────────────────────────────────────────────────────── */
 
 const OrgChart: React.FC = () => {
+  const { t } = useTranslation('work-org-chart');
+
+  const techItems = t('techStrip.items', { returnObjects: true }) as string[];
+
+  const ceoNode = t('orgNodes.ceo', { returnObjects: true }) as { name: string; role: string };
+  const vpOpsNode = t('orgNodes.vpOps', { returnObjects: true }) as { name: string; role: string };
+  const vpSalesNode = t('orgNodes.vpSales', { returnObjects: true }) as { name: string; role: string };
+  const fieldOpsLeadNode = t('orgNodes.fieldOpsLead', { returnObjects: true }) as { name: string; role: string; draft: string };
+  const logisticsCoordNode = t('orgNodes.logisticsCoord', { returnObjects: true }) as { name: string; role: string };
+  const accountExecNode = t('orgNodes.accountExec', { returnObjects: true }) as { name: string; role: string };
+  const salesRepNode = t('orgNodes.salesRep', { returnObjects: true }) as { name: string; role: string };
+
+  const ceo: OrgNode = { ...ceoNode, bg: 'bg-slate-900', text: 'text-white', border: 'border-slate-900' };
+  const heads: OrgNode[] = [
+    { ...vpOpsNode, bg: 'bg-indigo-600', text: 'text-white', border: 'border-indigo-600' },
+    { ...vpSalesNode, bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-600' },
+  ];
+  const members: OrgNode[] = [
+    { ...fieldOpsLeadNode, bg: 'bg-white', text: 'text-slate-900', border: 'border-indigo-300' },
+    { ...logisticsCoordNode, bg: 'bg-white', text: 'text-slate-900', border: 'border-indigo-200' },
+    { ...accountExecNode, bg: 'bg-white', text: 'text-slate-900', border: 'border-emerald-200' },
+    { ...salesRepNode, bg: 'bg-white', text: 'text-slate-900', border: 'border-emerald-200' },
+  ];
+
+  const benefitKeys = ['permissions', 'raci', 'dual'] as const;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -143,7 +122,7 @@ const OrgChart: React.FC = () => {
           >
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
               <span className="inline-block px-4 py-1.5 bg-indigo-500/10 text-indigo-700 rounded-full text-sm font-medium mb-6">
-                Team Management
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -152,7 +131,7 @@ const OrgChart: React.FC = () => {
               transition={{ duration: 0.6, ease: EASE_OUT }}
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-slate-900 mb-5 leading-[1.1]"
             >
-              Drag. Drop.<br />Reorganize.
+              {t('hero.title')}
             </motion.h1>
 
             <motion.p
@@ -160,15 +139,13 @@ const OrgChart: React.FC = () => {
               transition={{ duration: 0.5, ease: EASE_OUT }}
               className="text-lg md:text-xl text-slate-500 leading-relaxed max-w-2xl"
             >
-              Interactive org chart with sandbox drafts — model reorganizations, diff against
-              current state, and apply atomically. Plus a 37-app permission matrix that
-              auto-scopes by department and seniority.
+              {t('hero.description')}
             </motion.p>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">
             <p className="text-lg text-slate-600 leading-relaxed">
-              The org chart renders as an interactive tree — drag nodes to reassign managers. Create org chart drafts to model reorganizations: snapshot the current structure, make changes, diff against the live state, and apply atomically when ready. A three-tier access control system manages 37 apps with per-department profile inheritance and direct overrides. Admins control which modules each person sees, whether they can approve actions, their hourly rates, and their monthly AI credit limits.
+              {t('body')}
             </p>
           </motion.div>
 
@@ -241,8 +218,7 @@ const OrgChart: React.FC = () => {
 
               {/* Caption */}
               <p className="text-center text-sm text-slate-500 mt-10 max-w-lg mx-auto leading-relaxed">
-                Create a draft, model the reorg, preview the diff, and apply when ready.
-                No one sees changes until you publish.
+                {t('orgChart.caption')}
               </p>
             </div>
           </motion.section>
@@ -255,20 +231,22 @@ const OrgChart: React.FC = () => {
             variants={stagger}
             className="grid md:grid-cols-3 gap-6 mb-20"
           >
-            {benefits.map((b) => {
-              const c = colorMap[b.color];
+            {benefitKeys.map((key, i) => {
+              const color = benefitColors[i] ?? 'indigo';
+              const c = colorMap[color];
+              const Icon = benefitIcons[i];
               return (
                 <motion.div
-                  key={b.title}
+                  key={key}
                   variants={fadeUp}
                   transition={{ duration: 0.5, ease: EASE_OUT }}
                   className="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm"
                 >
                   <div className={`w-11 h-11 ${c.iconBg} rounded-xl flex items-center justify-center mb-4`}>
-                    <b.icon size={22} className={c.iconText} />
+                    <Icon size={22} className={c.iconText} />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{b.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{b.desc}</p>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{t(`benefits.${key}.title`)}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{t(`benefits.${key}.description`)}</p>
                 </motion.div>
               );
             })}
@@ -284,11 +262,9 @@ const OrgChart: React.FC = () => {
           >
             <div className="bg-slate-950 rounded-3xl p-8 md:p-12 text-white">
               <p className="text-lg md:text-xl leading-relaxed text-slate-300">
-                <span className="text-white font-medium">You're restructuring the field ops team.</span>{' '}
-                Instead of making live changes and confusing everyone, you create a draft. Drag Mike
-                from Sales to Operations, add a new team lead position, and preview the diff.
-                Three people moved, two reporting lines changed. You review, approve, and publish —{' '}
-                <span className="text-white font-medium">the entire org updates atomically.</span>
+                <span className="text-white font-medium">{t('scenario.intro')}</span>{' '}
+                {t('scenario.narrative')}{' '}
+                <span className="text-white font-medium">{t('scenario.highlight')}</span>
               </p>
             </div>
           </motion.section>
@@ -322,8 +298,7 @@ const OrgChart: React.FC = () => {
             className="text-center"
           >
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-slate-900 mb-4 leading-tight max-w-2xl mx-auto">
-              Other org charts are a static PDF.<br />
-              HABOS org charts are a live command center.
+              {t('cta.heading')}
             </h2>
 
             <a href="/#waitlist">
@@ -332,7 +307,7 @@ const OrgChart: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="mt-8 inline-flex items-center gap-2 bg-indigo-600 text-white px-8 py-3.5 rounded-full font-semibold text-base shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors"
               >
-                Join Waitlist
+                {t('cta.button')}
                 <ArrowRight size={18} />
               </motion.button>
             </a>

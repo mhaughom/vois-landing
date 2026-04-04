@@ -1,0 +1,49 @@
+{
+  "badge": "Links de Agendamento",
+  "hero": {
+    "title": "Seu Próprio Calendly.\nIntegrado.",
+    "description": "Crie links de agendamento compartilháveis que permitem que qualquer pessoa marque um horário com você — com geração inteligente de horários, tempo de buffer e proteção contra condição de corrida."
+  },
+  "body": "Crie links de agendamento ilimitados — URLs como habos.app/s/mathias-30min — onde os convidados agendam sem atrito e sem precisar criar uma conta. A geração inteligente de horários considera duração, horário comercial, tempo de buffer e eventos de calendário existentes. Preenchimento configurável antes e depois das reuniões bloqueia automaticamente os horários sobrepostos. Verificações no servidor evitam duplo agendamento mesmo sob solicitações simultâneas. Os convidados recebem e-mails de confirmação com links de cancelamento com um clique.",
+  "mockCard": {
+    "name": "Mathias Haughom",
+    "meetingType": "Consulta de 30 Minutos",
+    "url": "habos.app/s/mathias-30min",
+    "selectedTime": "Terça-feira 10h00",
+    "confirmButton": "Confirmar Agendamento",
+    "caption": "Compartilhe o link em qualquer lugar — assinatura de e-mail, site, bio das redes sociais. Os convidados agendam sem criar uma conta."
+  },
+  "benefits": {
+    "slotGeneration": {
+      "title": "Geração inteligente de horários",
+      "desc": "Duração, horário comercial, tempo de buffer e eventos de calendário existentes são considerados. Apenas os horários realmente disponíveis são exibidos — sem vai e vem."
+    },
+    "buffer": {
+      "title": "Buffer de 15 min integrado",
+      "desc": "O preenchimento configurável antes e depois das reuniões bloqueia automaticamente os horários sobrepostos. Sem mais chamadas consecutivas sem intervalo."
+    },
+    "selfService": {
+      "title": "Autoatendimento do convidado",
+      "desc": "O e-mail de confirmação inclui um link de cancelamento com um clique. Os convidados cancelam ou remarcam sem entrar em contato com você. Você é notificado."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Sem o HABOS",
+    "withoutText": "Pague $12/mês pelo Calendly. Copie a disponibilidade do seu calendário. Torça para sincronizar. Adicione manualmente o agendamento ao seu CRM. Envie a fatura separadamente.",
+    "withoutStat": "3 ferramentas, $12/mês extra",
+    "withTitle": "Com o HABOS",
+    "withText": "Crie um link de agendamento. Compartilhe. O convidado agenda. Calendário, CRM, pedido e notificação são atualizados automaticamente. Já incluído no seu plano.",
+    "withStat": "1 ferramenta, $0 extra"
+  },
+  "techStrip": [
+    "Geração inteligente de horários",
+    "Gerenciamento de tempo de buffer",
+    "Proteção contra condição de corrida",
+    "Links de autocancelamento",
+    "Integração com produtos"
+  ],
+  "closing": {
+    "title": "Outras ferramentas de agendamento são uma assinatura separada.\nO agendamento do HABOS está integrado.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "badge": "Gestión de rutas",
+  "hero": {
+    "title": "Rutas que se construyen solas.",
+    "description": "Asigne trabajos a un técnico y HABOS genera automáticamente su ruta del día — paradas geocodificadas, orden optimizado y navegación a Google Maps con un solo toque."
+  },
+  "body": "Cuando asigna una visita de trabajo a un técnico, su ruta gestionada se actualiza automáticamente con paradas geocodificadas desde Mapbox. Edite manualmente y se desvincula para evitar sobrescrituras de automatización. Cada ruta captura puntos de seguimiento GPS en intervalos de cinco segundos, con distancia Haversine calculada del lado del servidor para facturación precisa de kilometraje. Los trabajadores de campo marcan paradas como completadas u omitidas desde su teléfono — la oficina ve el progreso en tiempo real sin una sola llamada telefónica.",
+  "routeCard": {
+    "heading": "Mike Torres — Ruta del miércoles",
+    "subheading": "5 paradas · 76 km estimados",
+    "navigate": "Navegar",
+    "footnote": "Paradas geocodificadas automáticamente mediante Mapbox. Arrastre para reordenar. Toque «Navegar» para instrucciones giro a giro."
+  },
+  "stops": [
+    {
+      "name": "Residencia Henderson",
+      "time": "9:00 AM",
+      "task": "Instalación de calentador de agua",
+      "statusLabel": "Completado"
+    },
+    {
+      "name": "Oficina Baker",
+      "time": "11:00 AM",
+      "task": "Mantenimiento de HVAC",
+      "statusLabel": "Completado"
+    },
+    {
+      "name": "Casa Wilson",
+      "time": "1:00 PM",
+      "task": "Reparación de plomería",
+      "statusLabel": "En progreso"
+    },
+    {
+      "name": "Apartamento García",
+      "time": "3:00 PM",
+      "task": "Inspección eléctrica",
+      "statusLabel": "Pendiente"
+    },
+    {
+      "name": "Propiedad Johnson",
+      "time": "4:30 PM",
+      "task": "Fuga de emergencia",
+      "statusLabel": "Añadido hoy"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Sincronización automática desde despacho",
+      "desc": "Cuando asigna una visita de trabajo a un técnico, su ruta gestionada se actualiza automáticamente. Edite manualmente y se desvincula — sin sobrescrituras accidentales."
+    },
+    {
+      "title": "Seguimiento de estado de paradas",
+      "desc": "Los trabajadores de campo marcan paradas como completadas u omitidas desde su teléfono. La oficina ve el progreso en tiempo real sin llamar."
+    },
+    {
+      "title": "Seguimiento de kilometraje GPS",
+      "desc": "Cada ruta captura puntos GPS (intervalos de 5 seg). Distancia Haversine calculada del lado del servidor. Kilometraje preciso para facturación y reembolso."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Sin HABOS",
+      "description": "Por la mañana: imprimir lista de trabajos. Ingresar manualmente direcciones en Google Maps una a una. Esperar que el orden tenga sentido. Llamar a la oficina para cambios. Registrar kilometraje en papel.",
+      "outcome": "~30 min desperdiciados al día"
+    },
+    "with": {
+      "label": "Con HABOS",
+      "description": "Por la mañana: abrir la aplicación. La ruta está lista con todas las paradas, orden optimizado y navegación con un toque. Marque paradas completadas a medida que avanza. Kilometraje registrado automáticamente.",
+      "outcome": "0 min de planificación"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Geocodificación + direcciones Mapbox",
+      "Sincronización automática de ruta gestionada",
+      "Puntos GPS cada 5 seg",
+      "Distancia Haversine",
+      "Enlace profundo a Google Maps"
+    ]
+  },
+  "cta": {
+    "heading": "Otras herramientas le hacen planificar rutas. HABOS las planifica por usted.",
+    "button": "Unirse a la lista de espera"
+  }
+}

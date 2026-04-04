@@ -1,0 +1,24 @@
+{
+  "category": "Filosofia",
+  "title": "Suggerimenti, Non Menu",
+  "tagline": "Leggi. Tocca. Fatto.",
+  "heroAlt": "Schede di suggerimento che sostituiscono menu complessi",
+  "body1": "Un imprenditore fissa una bacheca delle attività cercando di capire cosa è importante adesso. Un commerciale legge un'email e pensa \"dovrei creare un follow-up\" — ma non lo fa, perché significa cambiare app, trovare il progetto giusto, compilare sei campi. Il pensiero muore nella lacuna tra il riconoscere cosa bisogna fare e il farlo davvero.",
+  "body2Prefix": "Arriva una richiesta di spostamento via email.",
+  "body2Body": "VOIS la legge e mostra tre opzioni toccabili: sposta a venerdì alle 10:00 (lo slot è libero), posticipa alla settimana prossima (mostrati 3 slot aperti), oppure rifiuta e suggerisci invece una chiamata. Un tocco. Riunione spostata, calendari aggiornati, conferma inviata.",
+  "body3Prefix": "La riunione finisce.",
+  "body3Body": "VOIS estrae quattro elementi di azione dalla trascrizione. Ognuno appare come scheda — assegnatario suggerito da chi ha detto cosa, data di scadenza dedotta dalla conversazione, progetto collegato automaticamente. Revisione in 30 secondi, aggiusta un assegnatario, tocca conferma. Quattro attività create, quattro persone notificate, zero moduli compilati.",
+  "comparisonTraditional": "Tradizionale:",
+  "comparisonTraditionalStat": "3 minuti per azione.",
+  "comparisonSuggestions": "Suggerimenti:",
+  "comparisonSuggestionsStat": "5 secondi.",
+  "comparisonResult": "Su 20 azioni quotidiane, sono",
+  "comparisonResultStat": "60 minuti recuperati.",
+  "quote": "\"Non dovresti dover gestire il software della tua azienda. Dovrebbe gestire se stesso e chiedere il tuo giudizio.\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Pensato per i Team",
+    "nextLabel": "Successivo",
+    "nextTitle": "Due Interfacce, Un Sistema"
+  }
+}

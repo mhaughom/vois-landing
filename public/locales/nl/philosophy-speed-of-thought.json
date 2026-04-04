@@ -1,0 +1,21 @@
+{
+  "category": "Filosofie",
+  "title": "Snelheid van gedachte",
+  "tagline": "Je snelste invoer is je stem. Je snelste uitvoer is een tik.",
+  "heroAlt": "Snelheid van gedachte",
+  "speedLines": {
+    "typing": "Typen: 40 WPM.",
+    "speaking": "Spreken: 150 WPM.",
+    "reading": "Lezen: 250 WPM.",
+    "tapping": "Tikken: direct."
+  },
+  "body1": "Een vergadering van 30 minuten levert tien beslissingen op. Dan besteedt iemand 45 minuten aan het intypen van die beslissingen in een projectmanagementtool. Het brein werkt op de snelheid van gedachte. Software werkt op de snelheid van typen. Dat verschil kost elke dag uren.",
+  "body2": "Neem een e-mailantwoord. Drie door AI gegenereerde varianten lezen: 10 seconden. Tikken op verzenden bij de juiste: 0,1 seconde. Totaal: 10,1 seconden. Zelf schrijven: 3–5 minuten. Dat is 20 keer sneller. Over 20 e-mails per dag is dat het verschil tussen een uur en vier minuten.",
+  "quote": "\"We hebben het typen niet versneld. We hebben de noodzaak ervan geëlimineerd.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Leg je brein vast",
+    "nextLabel": "Volgende",
+    "nextTitle": "Altijd binnen handbereik"
+  }
+}

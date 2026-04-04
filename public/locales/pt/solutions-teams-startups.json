@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "category": "Soluções — Equipes e Startups",
+    "title": "Uma plataforma para toda a sua empresa.",
+    "subtitle": "Substitua os 10 aplicativos que você adotou um de cada vez por um espaço de trabalho que realmente funciona em conjunto.",
+    "description": "Startups de tecnologia, agências em crescimento, empresas de serviços profissionais e qualquer empresa de 2 a 50 pessoas afogada em ferramentas."
+  },
+  "body": {
+    "section1": {
+      "heading": "Conte suas assinaturas",
+      "p1": "Slack para chat. Asana para tarefas. Notion para documentos. Google Workspace para e-mail e calendário. HubSpot para o CRM. Calendly para agendamento. Zapier para colar tudo. Loom para vídeo assíncrono. Talvez Toggl para controle de tempo. Talvez Intercom para suporte.",
+      "p2": "Uma startup de 9 pessoas pagando por assento em todos esses serviços está olhando para $4.200 por mês. Mais do que a maioria dos aluguéis de escritório. E nenhuma dessas ferramentas se fala sem o Zapier segurando-as com fita adesiva."
+    },
+    "appTable": {
+      "colApp": "Aplicativo",
+      "colCost": "Custo",
+      "colReplaces": "O HABOS substitui por",
+      "footerLabel": "HABOS — tudo acima, conectado",
+      "footerPrice": "$35",
+      "footerPriceSuffix": "/usuário/mês",
+      "apps": [
+        { "name": "Slack", "cost": "$12/usuário/mês", "replaces": "Comunicação" },
+        { "name": "Asana", "cost": "$11/usuário/mês", "replaces": "Projetos e Tarefas" },
+        { "name": "Notion", "cost": "$10/usuário/mês", "replaces": "Documentos e Brain" },
+        { "name": "Google Workspace", "cost": "$12/usuário/mês", "replaces": "Calendário, Docs, E-mail" },
+        { "name": "HubSpot", "cost": "$45/mês", "replaces": "CRM" },
+        { "name": "Calendly", "cost": "$12/mês", "replaces": "Agendamento" },
+        { "name": "Zapier", "cost": "$20/mês", "replaces": "Automações" },
+        { "name": "Loom", "cost": "$13/usuário/mês", "replaces": "Voz + Notas de Reunião" }
+      ]
+    },
+    "section2": {
+      "heading": "Mas o dinheiro não é o verdadeiro problema",
+      "p1": "O custo real é a fragmentação. Seu CEO passa 45 minutos toda manhã verificando Slack, Gmail, Asana e o CRM só para descobrir o que está acontecendo. Três mensagens precisam de respostas e o contexto de cada uma vive em uma ferramenta diferente.",
+      "p2": "Sua reunião semanal de equipe dura 45 minutos, e metade é atualização de status — todo mundo reportando no que está trabalhando porque não há uma visão compartilhada. A outra metade gera itens de ação que alguém escreve num quadro branco. Dois são esquecidos até às 14h.",
+      "p3": "Um novo contratado leva semanas para se tornar produtivo — não porque o trabalho é difícil, mas porque precisa de acesso a dez ferramentas e tem que aprender qual fonte de verdade verificar para qual tipo de informação.",
+      "p4": "E quando o CEO pergunta \"qual é o status do negócio Henderson?\" — três pessoas verificam três ferramentas e dão três respostas diferentes."
+    },
+    "section3": {
+      "heading": "O que uma plataforma muda",
+      "briefingLabel": "O resumo de segunda-feira de manhã",
+      "briefing": "\"3 tarefas atrasadas — 2 aguardando a revisão do contrato Henderson. 2 e-mails precisam da sua decisão. A receita desta semana está 12% acima da previsão. Um membro da equipe sinalizou um bloqueio ontem às 18h.\"",
+      "briefingNote": "Cinco minutos. Quadro completo. Zero troca de aplicativos.",
+      "p1": "As reuniões de equipe caem de 45 para 25 minutos. Um resumo pré-reunião é gerado automaticamente a partir dos dados reais do projeto. A transcrição ao vivo captura tudo. Os itens de ação são extraídos e atribuídos com base em função e carga de trabalho. Ninguém gasta tempo com atualizações de status — o painel já mostra tudo.",
+      "p2": "Novos funcionários recebem um login e um painel específico para seu papel no primeiro dia. Quando perguntam ao VOIS \"qual é o processo usual para integrar um novo cliente?\" — ele encontra o Playbook, os últimos três projetos de integração de clientes e uma transcrição de reunião onde a equipe discutiu melhorias. Uma pergunta, uma resposta, contexto completo.",
+      "p3": "Quando o CEO pergunta sobre o negócio Henderson, há um registro de CRM com uma única verdade: estágio do negócio, última comunicação, conclusão do projeto, fatura pendente e uma avaliação de IA — \"em risco, o cliente não confirmou a precificação, ligue hoje\".",
+      "p4": "Cinco Consultores de IA — Finanças, Estratégia, Operações, Marketing, Vendas — oferecem perspectivas que intencionalmente discordam. Porque decisões de negócios reais têm trade-offs, e o consenso de uma única IA é apenas um palpite confiante."
+    },
+    "stats": [
+      ["$300-500", "economizados mensalmente em SaaS"],
+      ["5 hrs/sem", "economizadas por pessoa"],
+      ["3 hrs/sem", "economizadas em reuniões"],
+      ["Dias", "para integrar (não semanas)"]
+    ],
+    "testimonial": {
+      "quote": "\"Estávamos pagando mais em assinaturas de software do que em aluguel de escritório. Slack, Notion, Asana, HubSpot, Calendly, Toggl, Google Workspace, Zapier — $4.200 por mês. O HABOS substituiu todos por $315. Mas o verdadeiro ganho não é o dinheiro — é que quando faço uma pergunta sobre um cliente, recebo uma resposta em vez de três.\"",
+      "attribution": "— Anders, 31 · Co-fundador · Startup SaaS de 9 pessoas · Oslo"
+    },
+    "cta": {
+      "heading": "Uma plataforma para toda a sua equipe. Finalmente.",
+      "button": "Entrar na lista de espera"
+    }
+  }
+}

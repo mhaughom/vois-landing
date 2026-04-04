@@ -1,0 +1,26 @@
+{
+  "category": "Filosofi",
+  "title": "Én assistent, ikke hundre verktøy",
+  "tagline": "VOIS kjenner hele bedriften din. Spør om hva som helst, fra hvor som helst.",
+  "heroAlt": "Én assistent med full forretningskontekst",
+  "section1": {
+    "heading": "Du er integrasjonen",
+    "body": "Klokken er 21. En klient sender e-post og spør om du kan møtes torsdag. For å svare trenger du tilgjengeligheten din fra Calendly, historikken din fra CRM-en og om de har betalt siste faktura fra regnskapet. Tre apper. Tre innlogginger. Fem minutter med klikking. For et svar som burde ta ti sekunder."
+  },
+  "section2": {
+    "heading": "Hva én assistent betyr",
+    "body1": "«Hva er historikken min med Acme Corp?» — VOIS søker i e-poster, møtetranskripsjoner, stemmeopptak, CRM-notater, fakturaer og prosjektfiler. På to sekunder vises en samlet tidslinje. 14 e-poster, 3 møter med transkripsjoner, siste faktura betalt 12. februar, aktivt prosjekt på 68 %. Prøv å gjøre det på tvers av fem separate apper.",
+    "body2": "«Svar til Sarah og si at torsdag passer.» — Én setning inn. VOIS vet hvem Sarah er (CRM), hva hun spurte om (innboksen), at torsdag er ledig (kalender) og hvordan rørleggeren vanligvis skriver (sendt historikk). En komplett, personalisert e-post vises som et forhåndsvisningskort. Ingenting sendes uten Luftslusa."
+  },
+  "section3": {
+    "heading": "Ikke bare en chatbot",
+    "body": "Det er en fullstendig plattform bak assistenten. Du kan åpne kalenderen direkte, bla gjennom CRM-en, redigere fakturaer, administrere prosjekter — alt gjennom tradisjonelle grensesnitt. Assistenten er én vei inn, ikke den eneste veien inn. Noen ting er raskere å si. Noen ting er raskere å se. VOIS gir deg begge."
+  },
+  "quote": "«Du burde ikke trenge å være din egen sekretær bare fordi du bruker forretningsprogramvare.»",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Alt på ett sted",
+    "nextLabel": "Neste",
+    "nextTitle": "Bygget for team"
+  }
+}

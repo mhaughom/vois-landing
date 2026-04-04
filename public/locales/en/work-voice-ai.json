@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Voice & AI",
+  "hero": {
+    "title": "Talk to Your Business",
+    "description": "Voice notes that become actions, meetings that take their own notes, an assistant that knows your entire business, and playbooks that run themselves."
+  },
+  "items": [
+    {
+      "title": "Voice Notes",
+      "desc": "Speak for 30 seconds — tasks, events, and updates are created automatically."
+    },
+    {
+      "title": "Meeting Notes",
+      "desc": "AI briefings before, live transcription during, action items routed after."
+    },
+    {
+      "title": "Assistant",
+      "desc": "Knows your business, anticipates needs, acts across every tool by voice."
+    },
+    {
+      "title": "Playbooks",
+      "desc": "Living workflows that guide your team and alert you when something goes wrong."
+    }
+  ]
+}
