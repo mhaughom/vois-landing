@@ -59,7 +59,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
                 <ArrowLeft size={16} />
               </Link>
               <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
-                <img src="/Logo/vois-logo.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
+                <img src="/Logo/habos-icon.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
                 <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
               </div>
             </div>
@@ -187,7 +187,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src="/Logo/vois-logo.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
+                <img src="/Logo/habos-icon.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
                 <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
               </div>
               <p className="text-slate-600 text-sm leading-relaxed max-w-md">
@@ -198,7 +198,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
             <div className="md:text-right">
               <h4 className="font-semibold text-slate-900 mb-3">{t('footer.companyInfoHeading')}</h4>
               <div className="text-sm text-slate-600 space-y-1">
-                <p>{t('footer.operatedBy')} <strong>VOIS AI AS</strong></p>
+                <p>{t('footer.operatedBy')} <strong>HABOS AI AS</strong></p>
                 <p>{t('footer.orgNumber')} <strong>{t('footer.orgValue')}</strong></p>
                 <p>{t('footer.address')} <strong>{t('footer.addressValue')}</strong></p>
                 <p>{t('footer.contact')} <a href={`mailto:${t('footer.contactEmail')}`} className="text-slate-900 hover:underline">{t('footer.contactEmail')}</a></p>
@@ -367,7 +367,7 @@ const TermsOfService = () => {
 
       <SubSection title={t('terms.s10.title')}>
         <p>
-          Questions? Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
+          Questions? Contact us at <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline">hello@habos.ai</a>
         </p>
       </SubSection>
     </>
@@ -409,7 +409,7 @@ const RefundPolicy = () => {
 
       <SubSection title={t('refund.s2.title')}>
         <p>
-          Contact us at <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
+          Contact us at <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline">hello@habos.ai</a>
         </p>
       </SubSection>
     </>
@@ -558,7 +558,7 @@ const PrivacyPolicy = () => {
       </SubSection>
 
       <SubSection title={t('privacy.s7.title')}>
-        <p>Our website (<a href="https://vois.app" className="text-blue-600 hover:underline">vois.app</a>) uses the following technologies:</p>
+        <p>Our website (<a href="https://habos.ai" className="text-blue-600 hover:underline">habos.ai</a>) uses the following technologies:</p>
 
         <h4 className="font-semibold text-slate-900 mb-2 mt-4">{t('privacy.s7.necessaryHeading')}</h4>
         <ul className="list-disc list-inside space-y-1 ml-4 mb-4">
@@ -586,9 +586,9 @@ const PrivacyPolicy = () => {
           {s9Items.map((item, i) => <li key={i}>{item}</li>)}
         </ul>
         <p className="mt-4">
-          {t('privacy.s9.contactNote').split('hello@tryvois.com')[0]}
-          <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline">hello@tryvois.com</a>
-          {t('privacy.s9.contactNote').split('hello@tryvois.com')[1]}
+          {t('privacy.s9.contactNote').split('hello@habos.ai')[0]}
+          <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline">hello@habos.ai</a>
+          {t('privacy.s9.contactNote').split('hello@habos.ai')[1]}
         </p>
       </SubSection>
 

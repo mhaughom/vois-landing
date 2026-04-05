@@ -222,9 +222,9 @@ const INTENT_PATTERNS: { patterns: RegExp[]; match: IntentMatch }[] = [
   },
 ];
 
-function matchIntent(text: string): IntentMatch | null {
-  for (const { patterns, match } of INTENT_PATTERNS) {
-    if (patterns.some((p) => p.test(text))) return match;
+function matchIntent(text: string, patterns: typeof INTENT_PATTERNS): IntentMatch | null {
+  for (const { patterns: pats, match } of patterns) {
+    if (pats.some((p) => p.test(text))) return match;
   }
   return null;
 }
@@ -392,21 +392,32 @@ async function openCalendlyPopup(url: string) {
 
 const PANEL_WIDTH = 380;
 
-interface ChatPanelProps {
-  onToggle?: (isOpen: boolean) => void;
+/** Product-specific configuration for ChatPanel. Pass from each app's entry point. */
+export interface ChatPanelConfig {
+  /** Product name used in UI copy (e.g. "HABOS" or "VOIS") */
+  productName: string;
+  /** Prefix for localStorage keys (e.g. "habos" → "habos-chat-messages") */
+  storagePrefix: string;
+  /** Intent patterns for local matching when API is unavailable */
+  intentPatterns?: typeof INTENT_PATTERNS;
+  /** Page-specific proactive suggestions */
+  pageSuggestions?: Record<string, PageSuggestion>;
+  /** Map of route paths to human-readable page names */
+  pageNames?: Record<string, string>;
+  /** Fallback message when API fails and no intent matches */
+  fallbackMessage?: string;
 }
 
-// Session storage keys
-const STORAGE_KEY_MESSAGES = 'habos-chat-messages';
-const STORAGE_KEY_DISMISSED = 'habos-chat-dismissed-routes';
-const STORAGE_KEY_EXIT_DISMISSED = 'habos-chat-exit-dismissed-routes';
-const STORAGE_KEY_CAPTURED_EMAIL = 'habos-chat-captured-email';
+interface ChatPanelProps {
+  onToggle?: (isOpen: boolean) => void;
+  config?: ChatPanelConfig;
+}
 
 const MAX_PERSISTED_MESSAGES = 50;
 
-function loadPersistedMessages(): ChatMessageData[] | null {
+function loadPersistedMessages(storageKey: string): ChatMessageData[] | null {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY_MESSAGES);
+    const raw = localStorage.getItem(storageKey);
     if (raw) {
       const parsed = JSON.parse(raw) as ChatMessageData[];
       if (Array.isArray(parsed) && parsed.length > 0) return parsed.slice(-MAX_PERSISTED_MESSAGES);
@@ -416,52 +427,51 @@ function loadPersistedMessages(): ChatMessageData[] | null {
 }
 
 /** Map route paths to readable page names for return visitor greetings */
-function pageNameFromPath(path: string): string {
-  const names: Record<string, string> = {
-    '/work/crm': 'CRM', '/work/email': 'Email', '/work/calendar': 'Calendar',
-    '/work/tasks': 'Tasks', '/work/projects': 'Projects', '/work/dispatch': 'Dispatch',
-    '/work/voice-notes': 'Voice Notes', '/work/meeting-notes': 'Meeting Notes',
-    '/work/assistant': 'AI Assistant', '/work/brain': 'The Brain',
-    '/work/finance': 'Finance', '/work/payments': 'Payments',
-    '/work/website-builder': 'Website Builder', '/work/marketing': 'Marketing',
-    '/work/telephony': 'Phone', '/work/messenger': 'Messenger',
-    '/work/reports': 'Reports', '/work/agents': 'AI Agents',
-    '/work/bookings': 'Bookings', '/work/tickets': 'Tickets',
-    '/work/people': 'People', '/work/creative-studio': 'Creative Studio',
-    '/work/slides': 'Slides', '/work/research': 'Research',
-    '/work/forms': 'Forms', '/work/ads': 'Ads', '/work/operations': 'Operations',
-  };
-  return names[path] || path.replace('/work/', '').replace(/-/g, ' ');
+function pageNameFromPath(path: string, pageNames: Record<string, string>): string {
+  return pageNames[path] || path.replace(/^\/[^/]+\//, '').replace(/-/g, ' ');
 }
 
-function loadDismissedRoutes(): Set<string> {
+function loadDismissedRoutes(storageKey: string): Set<string> {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY_DISMISSED);
+    const raw = sessionStorage.getItem(storageKey);
     if (raw) return new Set(JSON.parse(raw));
   } catch { /* ignore */ }
   return new Set();
 }
 
-function loadExitDismissedRoutes(): Set<string> {
+function loadExitDismissedRoutes(storageKey: string): Set<string> {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY_EXIT_DISMISSED);
+    const raw = sessionStorage.getItem(storageKey);
     if (raw) return new Set(JSON.parse(raw));
   } catch { /* ignore */ }
   return new Set();
 }
 
-export default function ChatPanel({ onToggle }: ChatPanelProps) {
+// Default storage keys (overridden by config.storagePrefix)
+const DEFAULT_STORAGE_PREFIX = 'chat';
+
+export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
+  const storagePrefix = config?.storagePrefix || DEFAULT_STORAGE_PREFIX;
+  const STORAGE_KEY_MESSAGES = `${storagePrefix}-chat-messages`;
+  const STORAGE_KEY_DISMISSED = `${storagePrefix}-chat-dismissed-routes`;
+  const STORAGE_KEY_EXIT_DISMISSED = `${storagePrefix}-chat-exit-dismissed-routes`;
+  const STORAGE_KEY_CAPTURED_EMAIL = `${storagePrefix}-chat-captured-email`;
+  const activeIntentPatterns = config?.intentPatterns || INTENT_PATTERNS;
+  const activePageSuggestions = config?.pageSuggestions || PAGE_SUGGESTIONS;
+  const activePageNames = config?.pageNames || {};
+  const productName = config?.productName || 'our';
+  const fallbackMessage = config?.fallbackMessage || "I can help you explore our features. Try asking about what interests you!";
   const { t } = useTranslation('chat-panel');
   const navigate = useNavigate();
   const location = useLocation();
-  const currentSuggestion = PAGE_SUGGESTIONS[location.pathname] || null;
+  const currentSuggestion = activePageSuggestions[location.pathname] || null;
   const [isOpen, setIsOpen] = useState(false);
   const [showProactive, setShowProactive] = useState(false);
-  const dismissedRoutesRef = useRef<Set<string>>(loadDismissedRoutes());
+  const dismissedRoutesRef = useRef<Set<string>>(loadDismissedRoutes(STORAGE_KEY_DISMISSED));
   const proactiveTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [messages, setMessages] = useState<ChatMessageData[]>(() => {
     // Try loading persisted messages from localStorage
-    const persisted = loadPersistedMessages();
+    const persisted = loadPersistedMessages(STORAGE_KEY_MESSAGES);
     if (persisted) return persisted;
 
     // Initialize visitor profile (creates on first visit, updates visitCount on return)
@@ -471,9 +481,9 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     if (isReturningVisitor()) {
       const profile = getVisitorProfile();
       const pages = (profile?.lastPages || [])
-        .filter(p => p.startsWith('/work/'))
+        .filter(p => p !== '/')
         .slice(-3)
-        .map(pageNameFromPath);
+        .map(p => pageNameFromPath(p, activePageNames));
       const greeting = pages.length > 0
         ? t('returnGreetingWithPages', { pages: pages.join(', ') })
         : t('returnGreeting');
@@ -505,7 +515,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
   }, []);
 
   // Exit-intent state
-  const exitDismissedRef = useRef<Set<string>>(loadExitDismissedRoutes());
+  const exitDismissedRef = useRef<Set<string>>(loadExitDismissedRoutes(STORAGE_KEY_EXIT_DISMISSED));
   const [showExitIntent, setShowExitIntent] = useState(false);
   const pageEnteredAtRef = useRef<number>(Date.now());
   const persistExitDismissed = useCallback(() => {
@@ -641,7 +651,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     if (proactiveTimerRef.current) clearTimeout(proactiveTimerRef.current);
 
     const path = location.pathname;
-    const suggestion = PAGE_SUGGESTIONS[path];
+    const suggestion = activePageSuggestions[path];
     if (isOpen || dismissedRoutesRef.current.has(path) || !suggestion) return;
 
     // Adjust delay based on referral source — paid traffic gets faster triggers
@@ -694,7 +704,7 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
     pageEnteredAtRef.current = Date.now();
 
     const path = location.pathname;
-    const suggestion = PAGE_SUGGESTIONS[path];
+    const suggestion = activePageSuggestions[path];
     if (!suggestion?.exitMessage) return;
 
     // Desktop only
@@ -940,13 +950,13 @@ export default function ChatPanel({ onToggle }: ChatPanelProps) {
       setIsStreaming(false);
       streamingMsgIdRef.current = null;
       // Fallback to local intent matching — remove any partial bubbles
-      const intent = matchIntent(trimmed);
+      const intent = matchIntent(trimmed, activeIntentPatterns);
       setMessages((prev) => {
         const without = prev.filter((m) => !allBubbleIds.includes(m.id));
         return [...without, {
           id: assistantMsgId,
           role: 'assistant' as const,
-          text: intent?.reply || "I can help you navigate HABOS features. Try asking about email, calendar, tasks, CRM, voice notes, or pricing!",
+          text: intent?.reply || fallbackMessage,
           actions: intent?.actions || [],
           _debugBubbleCount: 1,
         }];

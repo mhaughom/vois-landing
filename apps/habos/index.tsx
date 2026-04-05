@@ -93,6 +93,14 @@ const SpeedOfThought = React.lazy(() => import('./pages/philosophy/speed-of-thou
 const EverythingInOnePlace = React.lazy(() => import('./pages/philosophy/everything-in-one-place'));
 const BuiltForTeams = React.lazy(() => import('./pages/philosophy/built-for-teams'));
 const YourSoftwareYourWay = React.lazy(() => import('./pages/philosophy/your-software-your-way'));
+const AdvisorsThatDisagree = React.lazy(() => import('./pages/philosophy/advisors-that-disagree'));
+const AiNative = React.lazy(() => import('./pages/philosophy/ai-native'));
+const HumanControl = React.lazy(() => import('./pages/philosophy/human-control'));
+const MemoryThatCompounds = React.lazy(() => import('./pages/philosophy/memory-that-compounds'));
+const OneBrain = React.lazy(() => import('./pages/philosophy/one-brain'));
+const SmallTeamLeverage = React.lazy(() => import('./pages/philosophy/small-team-leverage'));
+const SuperchargeYourTeam = React.lazy(() => import('./pages/philosophy/supercharge-your-team'));
+const VoiceFirst = React.lazy(() => import('./pages/philosophy/voice-first'));
 
 // Wrapper components for direct Privacy/Terms routes
 const PrivacyPage = () => <Legal defaultSection="privacy" />;
@@ -177,6 +185,14 @@ root.render(
           <Route path="/philosophy/everything-in-one-place" element={<EverythingInOnePlace />} />
           <Route path="/philosophy/built-for-teams" element={<BuiltForTeams />} />
           <Route path="/philosophy/your-software-your-way" element={<YourSoftwareYourWay />} />
+          <Route path="/philosophy/advisors-that-disagree" element={<AdvisorsThatDisagree />} />
+          <Route path="/philosophy/ai-native" element={<AiNative />} />
+          <Route path="/philosophy/human-control" element={<HumanControl />} />
+          <Route path="/philosophy/memory-that-compounds" element={<MemoryThatCompounds />} />
+          <Route path="/philosophy/one-brain" element={<OneBrain />} />
+          <Route path="/philosophy/small-team-leverage" element={<SmallTeamLeverage />} />
+          <Route path="/philosophy/supercharge-your-team" element={<SuperchargeYourTeam />} />
+          <Route path="/philosophy/voice-first" element={<VoiceFirst />} />
           <Route path="/support" element={<Support />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />

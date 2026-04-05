@@ -1654,7 +1654,7 @@ const Work: React.FC = () => {
             {/* Col 1: Logo & Tagline */}
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <img src="/Logo/vois-logo.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
+                <img src="/Logo/habos-icon.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
                 <span className="font-semibold text-sm tracking-tight text-slate-900">{t('footer.brandName')}</span>
               </div>
               <p className="text-slate-500 text-sm">{t('footer.tagline')}</p>
@@ -1674,7 +1674,7 @@ const Work: React.FC = () => {
                   <button onClick={() => scrollToSection('explore')} className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.platform')}</button>
                 </li>
                 <li>
-                  <Link to="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.voisPersonal')}</Link>
+                  <Link to="/" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.product.habosPersonal')}</Link>
                 </li>
               </ul>
             </div>
@@ -1687,7 +1687,7 @@ const Work: React.FC = () => {
                   <Link to="/support" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.helpFaq')}</Link>
                 </li>
                 <li>
-                  <a href="mailto:hello@tryvois.com" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.contactSales')}</a>
+                  <a href="mailto:hello@habos.ai" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.contactSales')}</a>
                 </li>
                 <li>
                   <Link to="/setup" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.support.setupGuide')}</Link>
@@ -1716,16 +1716,16 @@ const Work: React.FC = () => {
               <h4 className="text-slate-900 font-medium text-sm mb-4">{t('footer.social.heading')}</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="https://x.com/voisaiapp" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.xTwitter')}</a>
+                  <a href="https://x.com/habos_ai" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.xTwitter')}</a>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com/usevois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.instagram')}</a>
+                  <a href="https://www.instagram.com/habos_ai" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.instagram')}</a>
                 </li>
                 <li>
-                  <a href="https://www.tiktok.com/@getvois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.tiktok')}</a>
+                  <a href="https://www.tiktok.com/@habos_ai" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.tiktok')}</a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/tryvois" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.facebook')}</a>
+                  <a href="https://www.facebook.com/habos_ai" target="_blank" rel="noopener noreferrer" className="text-slate-500 text-sm hover:text-slate-900 transition-colors">{t('footer.social.facebook')}</a>
                 </li>
               </ul>
             </div>
@@ -1734,7 +1734,7 @@ const Work: React.FC = () => {
           {/* Copyright */}
           <div className="mt-12 pt-8 border-t border-slate-100 text-center">
             <p className="text-slate-400 text-xs">
-              &copy; {new Date().getFullYear()} Vois AI. All rights reserved.
+              &copy; {new Date().getFullYear()} HABOS AI. All rights reserved.
             </p>
           </div>
         </div>

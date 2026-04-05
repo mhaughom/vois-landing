@@ -43,7 +43,7 @@ const Success = () => {
               whileHover={{ scale: 1.05 }}
               className="cursor-pointer"
             >
-              <img src="/Logo/vois-logo.svg" alt={t('logoAlt')} className="h-12 w-12" />
+              <img src="/Logo/habos-icon.svg" alt={t('logoAlt')} className="h-12 w-12" />
             </motion.div>
           </Link>
 

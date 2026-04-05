@@ -20,7 +20,7 @@ const Support = () => {
               <ArrowLeft size={16} />
             </Link>
             <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
-              <img src="/Logo/vois-logo.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
+              <img src="/Logo/habos-icon.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
               <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
             </div>
           </div>
@@ -107,7 +107,7 @@ const Support = () => {
             <FAQItem
               icon={<CreditCard size={18} />}
               question={t('faq.items.4.question')}
-              answer={<Trans i18nKey="faq.items.4.answer" t={t} components={{ email: <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline" />, refund: <Link to="/legal#refund" className="text-blue-600 hover:underline" /> }} />}
+              answer={<Trans i18nKey="faq.items.4.answer" t={t} components={{ email: <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline" />, refund: <Link to="/legal#refund" className="text-blue-600 hover:underline" /> }} />}
             />
             <FAQItem
               icon={<Shield size={18} />}
@@ -117,7 +117,7 @@ const Support = () => {
             <FAQItem
               icon={<MessageCircle size={18} />}
               question={t('faq.items.6.question')}
-              answer={<Trans i18nKey="faq.items.6.answer" t={t} components={{ email: <a href="mailto:hello@tryvois.com" className="text-blue-600 hover:underline" /> }} />}
+              answer={<Trans i18nKey="faq.items.6.answer" t={t} components={{ email: <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline" /> }} />}
             />
           </div>
         </motion.div>
@@ -139,7 +139,7 @@ const Support = () => {
               </div>
               <div className="space-y-2">
                 <p><span className="font-medium text-slate-900">{t('company.emailLabel')}:</span> <a href={`mailto:${t('company.emailValue')}`} className="text-blue-600 hover:underline">{t('company.emailValue')}</a></p>
-                <p><span className="font-medium text-slate-900">{t('company.websiteLabel')}:</span> <a href="https://tryvois.com" className="text-blue-600 hover:underline">{t('company.websiteValue')}</a></p>
+                <p><span className="font-medium text-slate-900">{t('company.websiteLabel')}:</span> <a href="https://habos.ai" className="text-blue-600 hover:underline">{t('company.websiteValue')}</a></p>
               </div>
             </div>
           </div>

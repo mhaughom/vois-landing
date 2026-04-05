@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // ═══════════════════════════════════════════════════════════════════════════
-// VOIS LOGO — The 3-pillar icon (SVG version for web)
+// HABOS LOGO — The 3-pillar icon (SVG version for web)
 // ═══════════════════════════════════════════════════════════════════════════
 
-function VoisLogo({ size = 32, color = '#FFF' }: { size?: number; color?: string }) {
+function HabosLogo({ size = 32, color = '#FFF' }: { size?: number; color?: string }) {
   const barW = size * 0.18;
   const barR = barW / 2;
   const gap = size * 0.08;
@@ -72,7 +72,7 @@ function WatchFaceWalkthrough({ step }: { step: number }) {
           animate={{ opacity: 1, scale: 1 }}
           className="w-[38px] h-[38px] rounded-full bg-[#1C1C1E] flex items-center justify-center border-2 border-[#34C759]"
         >
-          <VoisLogo size={24} color="#FFF" />
+          <HabosLogo size={24} color="#FFF" />
         </motion.div>
       );
     }
@@ -134,7 +134,7 @@ function WatchFaceWalkthrough({ step }: { step: number }) {
         <div className="flex justify-between w-full">
           {small ? (
             <div className={`${sz} rounded-full bg-[#1C1C1E] flex items-center justify-center ${step === 3 ? 'border-2 border-[#34C759]' : isCompMode ? 'border-[1.5px] border-[#48484A]' : ''}`}>
-              {step === 3 ? <VoisLogo size={16} color="#FFF" /> : (
+              {step === 3 ? <HabosLogo size={16} color="#FFF" /> : (
                 <svg width={iconSz} height={iconSz} viewBox="0 0 24 24" fill="none" stroke="#FF453A" strokeWidth="2" strokeLinecap="round">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
@@ -242,7 +242,7 @@ function WatchAppMockup({ availableAppsLabel, installButton }: { availableAppsLa
         className="flex items-center gap-3 bg-[#1C1C1E] rounded-[10px] py-2.5 px-3 border border-[#FF9F0A]"
       >
         <div className="w-[34px] h-[34px] rounded-lg bg-[#1A1A1A] flex items-center justify-center">
-          <VoisLogo size={22} color="#FFF" />
+          <HabosLogo size={22} color="#FFF" />
         </div>
         <span className="flex-1 text-[16px] font-semibold text-white">VOIS</span>
         <span className="text-[13px] font-bold text-[#FF9F0A] border border-[#FF9F0A] rounded-full py-1 px-3.5 tracking-wide">
@@ -336,7 +336,7 @@ function LockScreenWalkthrough({ step }: { step: number }) {
             </motion.div>
           )}
 
-          {/* Step 3: VOIS placed */}
+          {/* Step 3: HABOS placed */}
           {step === 3 && (
             <motion.div key="ls3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="h-full flex flex-col items-center pt-10 pb-14">
               <span className="text-[10px] font-medium text-[#E5E5EA] tracking-wide">Monday, February 10</span>
@@ -348,7 +348,7 @@ function LockScreenWalkthrough({ step }: { step: number }) {
                 className="flex justify-center mt-4"
               >
                 <div className="w-9 h-9 rounded-full bg-[#1C1C1E] border-[1.5px] border-[#34C759] flex items-center justify-center">
-                  <VoisLogo size={22} color="#FFF" />
+                  <HabosLogo size={22} color="#FFF" />
                 </div>
               </motion.div>
             </motion.div>
@@ -387,7 +387,7 @@ const Setup = () => {
             <ArrowLeft size={16} />
           </Link>
           <div className="flex items-center gap-2.5 bg-white/80 backdrop-blur-sm rounded-full pl-1.5 pr-4 py-1.5 border border-slate-100 shadow-sm">
-            <img src="/Logo/vois-logo.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
+            <img src="/Logo/habos-icon.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
             <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
           </div>
         </div>
