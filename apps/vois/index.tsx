@@ -24,9 +24,6 @@ const Success = React.lazy(() => import('./pages/Success'));
 const Support = React.lazy(() => import('./pages/Support'));
 const Setup = React.lazy(() => import('./pages/Setup'));
 
-// Dev tools
-const BoxAnimationRecorder = React.lazy(() => import('./components/BoxAnimationRecorder'));
-
 // Wrapper components for direct Privacy/Terms routes
 const PrivacyPage = () => <Legal defaultSection="privacy" />;
 const TermsPage = () => <Legal defaultSection="terms" />;
@@ -47,7 +44,6 @@ root.render(
           <Route path="/legal" element={<Legal />} />
           <Route path="/Privacy" element={<PrivacyPage />} />
           <Route path="/Terms" element={<TermsPage />} />
-          <Route path="/record-box" element={<BoxAnimationRecorder />} />
           <Route path="/support" element={<Support />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />

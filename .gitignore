@@ -25,3 +25,4 @@ dist-ssr
 .env
 3d_models/uploads-files-3642441-MacBook+Pro.rar
 .vercel
+.env.vercel
