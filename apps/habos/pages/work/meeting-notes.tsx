@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, Zap, Watch, Monitor, Sparkles } from 'lucide-r
 import MeetingNotesDemo from './features/MeetingNotesDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const featureIcons = [
   <Zap size={24} className="text-indigo-600" />,
@@ -131,6 +132,7 @@ const MeetingNotes: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

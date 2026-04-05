@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, X, Check, Search, ArrowRight } from 'lucide-react';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const VoisBrain: React.FC = () => {
   const { t } = useTranslation('work-brain');
@@ -182,6 +183,7 @@ const VoisBrain: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

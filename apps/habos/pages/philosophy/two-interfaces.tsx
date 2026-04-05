@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
@@ -102,6 +103,7 @@ const TwoInterfaces: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

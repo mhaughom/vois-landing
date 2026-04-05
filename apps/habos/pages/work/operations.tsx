@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Mic, MessageSquare, FileText, ClipboardList, AlertTriangle, TrendingDown, Zap } from 'lucide-react';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -243,6 +244,7 @@ const Operations: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

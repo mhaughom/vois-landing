@@ -23,6 +23,7 @@ import {
   Send,
   UserPlus,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -462,6 +463,7 @@ const Tickets: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

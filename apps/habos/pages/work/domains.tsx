@@ -11,6 +11,7 @@ import {
   Mail,
   Lock,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* -- animation helpers --------------------------------------------------- */
 
@@ -194,6 +195,7 @@ const Domains: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

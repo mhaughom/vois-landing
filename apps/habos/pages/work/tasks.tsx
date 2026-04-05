@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Mic, Video, Mail, Bot } from 'lucide-react';
 import TasksDemo from './features/TasksDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const sourceIcons = [Mic, Video, Mail, Bot];
 
@@ -223,6 +224,7 @@ const Tasks: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

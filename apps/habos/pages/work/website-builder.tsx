@@ -16,6 +16,7 @@ import {
   Megaphone,
   MessageSquare,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -322,6 +323,7 @@ const WebsiteBuilder: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

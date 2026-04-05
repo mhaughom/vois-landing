@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, AlertTriangle, Clock, Zap, Shield, Link2, Arro
 import ProjectsDemo from './features/ProjectsDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -237,6 +238,7 @@ const Projects: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

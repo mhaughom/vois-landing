@@ -472,6 +472,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
   const location = useLocation();
   const currentSuggestion = activePageSuggestions[location.pathname] || null;
   const [isOpen, setIsOpen] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   const [showProactive, setShowProactive] = useState(false);
   const dismissedRoutesRef = useRef<Set<string>>(loadDismissedRoutes(STORAGE_KEY_DISMISSED));
   const proactiveTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -521,6 +522,17 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     try { sessionStorage.setItem(STORAGE_KEY_DISMISSED, JSON.stringify([...dismissedRoutesRef.current])); }
     catch { /* ignore */ }
   }, []);
+
+  // Close help popup on outside click
+  const helpRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!showHelp) return;
+    const handleClick = (e: MouseEvent) => {
+      if (helpRef.current && !helpRef.current.contains(e.target as Node)) setShowHelp(false);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [showHelp]);
 
   // Exit-intent state
   const exitDismissedRef = useRef<Set<string>>(loadExitDismissedRoutes(STORAGE_KEY_EXIT_DISMISSED));
@@ -784,6 +796,50 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     }
   }, [navigate]);
 
+  // ── Suggested questions derived from user context ──
+  const suggestedQuestions = React.useMemo(() => {
+    const alreadyAsked = new Set(
+      messages.filter(m => m.role === 'user').map(m => m.text.toLowerCase().trim())
+    );
+    const candidates: string[] = [];
+
+    // 1. Current page suggestion
+    const current = activePageSuggestions[location.pathname];
+    if (current?.suggestion) candidates.push(current.suggestion);
+
+    // 2. Suggestions from previously visited pages
+    const profile = getVisitorProfile();
+    const visitedPages = profile?.lastPages || [];
+    for (const page of visitedPages) {
+      if (page === location.pathname) continue;
+      const s = activePageSuggestions[page];
+      if (s?.suggestion) candidates.push(s.suggestion);
+    }
+
+    // 3. General fallback questions
+    candidates.push(
+      'What can HABOS do for my business?',
+      'How is HABOS different from other tools?',
+      'What does pricing look like?',
+    );
+
+    // Deduplicate and filter out already-asked questions
+    const seen = new Set<string>();
+    return candidates.filter(q => {
+      const key = q.toLowerCase().trim();
+      if (seen.has(key) || alreadyAsked.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).slice(0, 3);
+  }, [messages, location.pathname, activePageSuggestions]);
+
+  // Active suggestion text for the pill extension on the chat button
+  const activeSuggestionText = showProactive && currentSuggestion
+    ? currentSuggestion.suggestion
+    : showExitIntent && currentSuggestion?.exitSuggestion
+      ? currentSuggestion.exitSuggestion
+      : null;
+
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const streamingMsgIdRef = useRef<number | null>(null);
@@ -1029,107 +1085,48 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
       {/* Floating trigger button */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
+          <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            onClick={() => toggle(true)}
-            className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg hover:bg-gray-800 transition-colors"
-            aria-label={t('openChatAriaLabel')}
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-0"
           >
-            <MessageCircle size={24} />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      {/* Proactive suggestion bubble — appears above the chat button */}
-      <AnimatePresence>
-        {showProactive && !isOpen && currentSuggestion && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.9 }}
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="fixed bottom-[5.5rem] right-6 z-50 max-w-[260px]"
-          >
-            <div className="relative bg-white rounded-2xl shadow-lg border border-gray-100 p-3.5">
-              <button
-                onClick={() => {
-                  setShowProactive(false);
-                  dismissedRoutesRef.current.add(location.pathname);
-                  persistDismissed();
-                }}
-                className="absolute top-2 right-2 text-gray-300 hover:text-gray-500 transition-colors"
-                aria-label="Dismiss suggestion"
-              >
-                <X size={12} />
-              </button>
-              <p className="text-[13px] text-gray-600 mb-2.5 pr-4">
-                {currentSuggestion.message}
-              </p>
-              <button
-                onClick={() => {
-                  const text = currentSuggestion.suggestion;
-                  setShowProactive(false);
-                  dismissedRoutesRef.current.add(location.pathname);
-                  persistDismissed();
-                  toggle(true);
-                  handleSend(text);
-                }}
-                className="text-xs text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-full px-3 py-1.5 font-medium transition-colors border border-blue-100"
-              >
-                {currentSuggestion.suggestion}
-              </button>
-              {/* Arrow tail pointing toward chat button */}
-              <div className="absolute -bottom-1.5 right-7 w-3 h-3 bg-white border-b border-r border-gray-100 transform rotate-45" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Exit-intent suggestion bubble — desktop only, same UI, different text */}
-      <AnimatePresence>
-        {showExitIntent && !isOpen && !showProactive && currentSuggestion?.exitMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.9 }}
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="fixed bottom-[5.5rem] right-6 z-50 max-w-[260px]"
-          >
-            <div className="relative bg-white rounded-2xl shadow-lg border border-gray-100 p-3.5">
-              <button
-                onClick={() => {
-                  setShowExitIntent(false);
-                  exitDismissedRef.current.add(location.pathname);
-                  persistExitDismissed();
-                  Analytics.exitIntentDismissed(location.pathname);
-                }}
-                className="absolute top-2 right-2 text-gray-300 hover:text-gray-500 transition-colors"
-                aria-label="Dismiss suggestion"
-              >
-                <X size={12} />
-              </button>
-              <p className="text-[13px] text-gray-600 mb-2.5 pr-4">
-                {currentSuggestion.exitMessage}
-              </p>
-              <button
-                onClick={() => {
-                  const text = currentSuggestion.exitSuggestion!;
-                  setShowExitIntent(false);
-                  exitDismissedRef.current.add(location.pathname);
-                  persistExitDismissed();
-                  Analytics.exitIntentClicked(location.pathname, text);
-                  toggle(true);
-                  handleSend(text);
-                }}
-                className="text-xs text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-full px-3 py-1.5 font-medium transition-colors border border-blue-100"
-              >
-                {currentSuggestion.exitSuggestion}
-              </button>
-              <div className="absolute -bottom-1.5 right-7 w-3 h-3 bg-white border-b border-r border-gray-100 transform rotate-45" />
-            </div>
+            {/* Suggestion pill — extends left from the button */}
+            <AnimatePresence>
+              {activeSuggestionText && (
+                <motion.button
+                  initial={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
+                  animate={{ width: 'auto', opacity: 1, paddingLeft: 16, paddingRight: 12 }}
+                  exit={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  onClick={() => {
+                    const text = activeSuggestionText;
+                    setShowProactive(false);
+                    setShowExitIntent(false);
+                    if (currentSuggestion) {
+                      dismissedRoutesRef.current.add(location.pathname);
+                      persistDismissed();
+                    }
+                    toggle(true);
+                    handleSend(text);
+                  }}
+                  className="h-14 overflow-hidden whitespace-nowrap rounded-l-full text-[13px] font-medium text-gray-700 shadow-lg border border-r-0"
+                  style={{ backgroundColor: '#C8DCED', borderColor: '#b4cfe0' }}
+                >
+                  {activeSuggestionText}
+                </motion.button>
+              )}
+            </AnimatePresence>
+            {/* Chat button */}
+            <button
+              onClick={() => toggle(true)}
+              className={`flex h-14 w-14 items-center justify-center shadow-lg transition-colors shrink-0 ${activeSuggestionText ? 'rounded-r-full rounded-l-none' : 'rounded-full'}`}
+              style={{ backgroundColor: '#C8DCED', borderColor: '#b4cfe0', borderWidth: 1, borderStyle: 'solid' }}
+              aria-label={t('openChatAriaLabel')}
+            >
+              <MessageCircle size={24} className="text-gray-700" />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1151,7 +1148,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             }}
             className="fixed flex flex-col bg-white/90 backdrop-blur-sm shadow-2xl border border-slate-200/40 overflow-hidden
               inset-0 rounded-none z-[51]
-              md:inset-auto md:rounded-2xl md:right-4 md:bottom-4 md:top-[100px] md:w-[380px] md:z-40
+              md:inset-auto md:rounded-2xl md:right-8 md:bottom-4 md:top-[100px] md:w-[380px] md:z-40
               md:bg-transparent md:backdrop-blur-none md:border-0 md:shadow-xl"
           >
             {/* Swipe handle — mobile only */}
@@ -1167,22 +1164,64 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                 <span className="text-sm font-semibold text-gray-900">{t('header')}</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="relative group">
+                <div ref={helpRef} className="relative">
                   <button
-                    className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
-                    aria-label={t('talkToTeam')}
+                    onClick={() => setShowHelp(prev => !prev)}
+                    className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${showHelp ? 'bg-gray-100 text-gray-600' : 'text-gray-400 hover:bg-gray-100 hover:text-gray-600'}`}
+                    aria-label={t('helpTitle', 'About this chat')}
+                    aria-expanded={showHelp}
                   >
                     <HelpCircle size={16} />
                   </button>
-                  <div className="absolute right-0 top-full mt-1 w-48 rounded-xl bg-white shadow-lg border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-                    <p className="text-xs text-gray-500 mb-2">{t('helpPopupText', 'Need help from a real person?')}</p>
-                    <button
-                      onClick={() => navigate('/support')}
-                      className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                    >
-                      {t('talkToTeam')}
-                    </button>
-                  </div>
+                  <AnimatePresence>
+                    {showHelp && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-0 top-full mt-1 w-72 rounded-xl bg-white shadow-lg border border-gray-100 p-4 z-50"
+                      >
+                        <p className="text-xs font-semibold text-gray-800 mb-1.5">{t('helpTitle', 'About this chat')}</p>
+                        <p className="text-[11px] text-gray-500 mb-2">{t('helpDescription', 'This is an AI assistant that knows HABOS inside and out. It can:')}</p>
+                        <ul className="text-[11px] text-gray-600 space-y-1 mb-2.5 pl-3">
+                          <li className="relative before:content-['·'] before:absolute before:-left-2.5 before:text-gray-400">{t('helpFeature1', 'Explain any feature in detail')}</li>
+                          <li className="relative before:content-['·'] before:absolute before:-left-2.5 before:text-gray-400">{t('helpFeature2', 'Help you find what you need')}</li>
+                          <li className="relative before:content-['·'] before:absolute before:-left-2.5 before:text-gray-400">{t('helpFeature3', 'Answer questions about pricing, setup & integrations')}</li>
+                          <li className="relative before:content-['·'] before:absolute before:-left-2.5 before:text-gray-400">{t('helpFeature4', 'Navigate you to the right page')}</li>
+                        </ul>
+                        {suggestedQuestions.length > 0 && (
+                          <div className="border-t border-gray-100 pt-2.5 mb-2.5">
+                            <p className="text-[10px] font-medium text-gray-500 uppercase tracking-wide mb-2">{t('helpSuggestedLabel', 'Try asking')}</p>
+                            <div className="flex flex-col gap-1.5">
+                              {suggestedQuestions.map((q) => (
+                                <button
+                                  key={q}
+                                  onClick={() => {
+                                    setShowHelp(false);
+                                    handleSend(q);
+                                  }}
+                                  className="text-left text-[11px] text-blue-600 bg-blue-50/60 hover:bg-blue-100 rounded-lg px-2.5 py-1.5 transition-colors border border-blue-100/60"
+                                >
+                                  {q}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        <p className="text-[10px] text-gray-400 mb-2.5">{t('helpNote', 'Your conversations stay private and are not shared with anyone.')}</p>
+                        <div className="border-t border-gray-100 pt-2">
+                          <p className="text-[10px] text-gray-400 mb-1">{t('helpHumanLabel', 'Prefer a human?')}</p>
+                          <button
+                            onClick={() => { setShowHelp(false); navigate('/support'); }}
+                            className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                          >
+                            {t('talkToTeam')}
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 <button
                   onClick={() => toggle(false)}
@@ -1207,10 +1246,10 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                     <div
                       className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-md ${
                         msg.role === 'user'
-                          ? 'text-white rounded-br-md'
+                          ? 'text-gray-900 rounded-br-md'
                           : 'bg-white/80 text-gray-800 rounded-bl-md'
                       }`}
-                      style={msg.role === 'user' ? { backgroundColor: '#5A7A9E' } : undefined}
+                      style={msg.role === 'user' ? { backgroundColor: '#C8DCED' } : undefined}
                     >
                       {msg.role === 'assistant' ? (
                         <>

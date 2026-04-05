@@ -5,6 +5,7 @@ import { Navbar } from '@li/shared/components/Navbar';
 import {
   ArrowLeft, ArrowRight, ArrowDown, CreditCard,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -173,6 +174,7 @@ const Payments: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

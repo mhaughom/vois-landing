@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@li/shared/components/Navbar';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -40,6 +41,7 @@ const SalesPayments: React.FC = () => {
           </div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

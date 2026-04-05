@@ -21,6 +21,7 @@ import {
   Zap,
   Radio,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -292,6 +293,7 @@ const Telephony: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

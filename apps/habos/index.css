@@ -3,7 +3,13 @@
   box-sizing: border-box;
 }
 
-/* Global subtle shadow on interactive elements and text */
+/* Subtle shadow on cards/panels/images sitting directly on the grain background */
+[class*="rounded-2xl"][class*="border"],
+[class*="rounded-xl"][class*="border"],
+[class*="rounded-3xl"][class*="border"],
+img[class*="rounded"] {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
 
 /* Calendly popup renders above chat panel */
 .calendly-overlay { z-index: 100 !important; }

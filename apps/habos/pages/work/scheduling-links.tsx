@@ -12,6 +12,7 @@ import {
   Timer,
   UserCheck,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* -- animation helpers --------------------------------------------------- */
 
@@ -285,6 +286,7 @@ const SchedulingLinks: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

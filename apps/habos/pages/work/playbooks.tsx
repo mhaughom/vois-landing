@@ -12,6 +12,7 @@ import {
   Check,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 // ── Animation config ────────────────────────────────────────────────────────
 
@@ -192,6 +193,7 @@ const PlaybooksPage: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

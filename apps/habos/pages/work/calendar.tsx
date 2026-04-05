@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Brain, Layers, GitBranch } from 'lucide-react';
 import CalendarDemo from './features/CalendarDemo';
 import { Navbar } from '@li/shared/components/Navbar';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -220,6 +221,7 @@ const CalendarPage: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

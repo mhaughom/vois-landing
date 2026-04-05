@@ -13,6 +13,7 @@ import {
   Globe,
   ChevronDown,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -258,6 +259,7 @@ const Forms: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

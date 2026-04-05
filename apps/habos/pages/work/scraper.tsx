@@ -11,6 +11,7 @@ import {
   Paintbrush,
   KeyRound,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -242,6 +243,7 @@ const Scraper: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

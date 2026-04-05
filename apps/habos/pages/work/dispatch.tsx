@@ -19,6 +19,7 @@ import {
   GripVertical,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -364,6 +365,7 @@ const Dispatch: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

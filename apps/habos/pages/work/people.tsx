@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   Calendar,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 // ── Animation helpers ───────────────────────────────────────────────────────
 
@@ -255,6 +256,7 @@ const People: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

@@ -12,6 +12,15 @@
   "emailInvalid": "Enter a valid email",
   "emailExists": "You're already signed up!",
   "bookDemo": "Book a 15-min demo",
+  "helpTitle": "About this chat",
+  "helpDescription": "This is an AI assistant that knows HABOS inside and out. It can:",
+  "helpFeature1": "Explain any feature in detail",
+  "helpFeature2": "Help you find what you need",
+  "helpFeature3": "Answer questions about pricing, setup & integrations",
+  "helpFeature4": "Navigate you to the right page",
+  "helpNote": "Your conversations stay private and are not shared with anyone.",
+  "helpSuggestedLabel": "Try asking",
+  "helpHumanLabel": "Prefer a human?",
   "returnGreeting": "Welcome back! What can I help you with today?",
   "returnGreetingWithPages": "Welcome back! Interested in {{pages}}? I can help you dive deeper."
 }

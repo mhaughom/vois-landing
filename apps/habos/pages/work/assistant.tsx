@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Check } from 'lucide-react';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -186,6 +187,7 @@ const Assistant: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

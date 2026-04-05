@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, FileText, Mic, Clock, CheckSquare } from 'lucide-react';
 import ReportsDemo from './features/ReportsDemo';
 import { Navbar } from '@li/shared/components/Navbar';
+import { Footer } from '../../components/Footer';
 
 const featureIcons = [Mic, FileText, Clock, CheckSquare] as const;
 
@@ -167,6 +168,7 @@ const Reports: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

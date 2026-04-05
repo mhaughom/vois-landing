@@ -9,6 +9,7 @@ import {
   MousePointerClick,
   Tags,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -222,6 +223,7 @@ const Marketing: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

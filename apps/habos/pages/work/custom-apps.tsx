@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@li/shared/components/Navbar';
 import { Puzzle, Mic, Sparkles, ArrowRight, LayoutGrid, Zap } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -233,6 +234,7 @@ const CustomApps: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

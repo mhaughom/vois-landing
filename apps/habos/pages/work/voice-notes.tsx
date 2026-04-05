@@ -13,6 +13,7 @@ import {
   Smartphone,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -209,6 +210,7 @@ const VoiceNotes: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

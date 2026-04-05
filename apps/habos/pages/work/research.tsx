@@ -4,6 +4,7 @@ import { ArrowLeft, Mic, Brain, FolderOpen, Search, BookOpen, MessageSquare, Spa
 import ResearchDemo from './features/ResearchDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const benefitCardIcons = [
   <Mic size={20} className="text-purple-600" />,
@@ -182,6 +183,7 @@ const Research: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

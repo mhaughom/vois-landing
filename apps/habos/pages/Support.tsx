@@ -3,6 +3,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Mail, MessageCircle, Clock, HelpCircle, RefreshCw, CreditCard, Smartphone, Shield } from 'lucide-react';
+import { Footer } from '../components/Footer';
 
 const Support = () => {
   const { t } = useTranslation('support');
@@ -146,21 +147,7 @@ const Support = () => {
         </motion.div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-200 bg-slate-50 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-slate-500">
-              &copy; {new Date().getFullYear()} {t('footer.copyright')}
-            </p>
-            <div className="flex items-center gap-4 text-xs text-slate-500">
-              <Link to="/Privacy" className="hover:text-slate-900 transition-colors">{t('footer.privacyPolicy')}</Link>
-              <span>&middot;</span>
-              <Link to="/Terms" className="hover:text-slate-900 transition-colors">{t('footer.termsOfService')}</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

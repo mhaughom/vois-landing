@@ -12,6 +12,7 @@ import {
   GripVertical,
   ArrowRight,
 } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -187,6 +188,7 @@ const CRM: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

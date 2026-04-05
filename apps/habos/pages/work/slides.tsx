@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowUpRight, ArrowDownRight, Zap, Database, Palette } from 'lucide-react';
 import { Navbar } from '@li/shared/components/Navbar';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -246,6 +247,7 @@ const Slides: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

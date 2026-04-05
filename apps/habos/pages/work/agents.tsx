@@ -18,6 +18,7 @@ import {
   Send,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -234,6 +235,7 @@ const Agents: React.FC = () => {
           </motion.section>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

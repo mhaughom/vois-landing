@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@li/shared/components/Navbar';
 import { ArrowLeft, Megaphone, Target, BarChart3, Zap } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -64,6 +65,7 @@ const Ads: React.FC = () => {
           </div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

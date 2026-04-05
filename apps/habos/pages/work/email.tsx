@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, MessageSquare, Zap } from 'lucide-react';
 import MailDemo from './features/MailDemo';
 import { Navbar } from '@li/shared/components/Navbar';
+import { Footer } from '../../components/Footer';
 
 const Email: React.FC = () => {
   const { t } = useTranslation('work-email');
@@ -227,6 +228,7 @@ const Email: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

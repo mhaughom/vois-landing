@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronRight, Shield, FileText, Lock, Smartphone, ArrowLeft, Menu, X } from 'lucide-react';
+import { Footer } from '../components/Footer';
 
 // Legal section types
 type LegalSection = 'terms' | 'refund' | 'privacy' | 'eula';
@@ -180,6 +181,8 @@ export const Legal = ({ defaultSection }: LegalProps) => {
           </main>
         </div>
       </div>
+
+      <Footer />
 
       {/* Legal Footer - Norwegian Law Compliance */}
       <footer className="border-t border-slate-200 bg-slate-50 mt-16">

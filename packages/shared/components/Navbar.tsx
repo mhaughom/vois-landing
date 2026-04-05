@@ -397,7 +397,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
         initial={skipEntrance ? false : { y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: 'circOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 pt-6 md:pt-8 pointer-events-none"
+        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-8 pt-6 md:pt-8 pointer-events-none"
       >
         {/* ── Logo ────────────────────────────────────────────────────── */}
         {isDemoActive && onResetDemo ? (

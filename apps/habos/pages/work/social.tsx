@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@li/shared/components/Navbar';
 import { Camera, Sparkles, CalendarClock, ArrowRight, BarChart3, Image } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -187,6 +188,7 @@ const Social: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

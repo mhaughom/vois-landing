@@ -12,6 +12,7 @@ import {
   ClipboardList,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Footer } from '../../components/Footer';
 
 /* ── animation helpers ─────────────────────────────────────────────────── */
 
@@ -315,6 +316,7 @@ const OrgChart: React.FC = () => {
 
         </div>
       </main>
+    <Footer />
     </div>
   );
 };

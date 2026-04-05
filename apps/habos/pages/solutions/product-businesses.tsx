@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Navbar } from '@li/shared/components/Navbar';
 import { ArrowRight } from 'lucide-react';
+import { Footer } from '../../components/Footer';
 
 const fade = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
@@ -137,6 +138,7 @@ const ProductBusinesses: React.FC = () => {
           </motion.div>
         </div>
       </main>
+    <Footer />
     </div>
   );
 };
