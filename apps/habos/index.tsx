@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ChatPanel from '@li/shared/components/ChatPanel';
+import { CookieConsent } from '@li/shared/components/CookieConsent';
 import './index.css';
 import '@li/shared/lib/i18n';
 import { configureConsent, bootConsent, isPostHogReady } from '@li/shared/lib/consent';
@@ -198,6 +199,7 @@ root.render(
           <Route path="/success" element={<Success />} />
         </Routes>
         <ChatPanel />
+        <CookieConsent />
       </Suspense>
     </BrowserRouter>
   </React.StrictMode>

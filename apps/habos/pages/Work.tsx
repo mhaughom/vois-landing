@@ -20,6 +20,7 @@ import {
 import { Analytics } from '@li/shared/lib/analytics';
 import { WorkHero3D, AnimPhase } from '../components/WorkHero3D';
 import { Navbar } from '@li/shared/components/Navbar';
+import { AnimatedHabosIcon } from '../components/AnimatedHabosIcon';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';
 import { BoxAnimation } from '@li/shared/components/BoxAnimation';
 import { AppGridBox } from '@li/shared/components/AppGridBox';
@@ -1008,7 +1009,7 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           NAVIGATION — outside content wrapper so z-50 stacks above overlay
           ═══════════════════════════════════════════════════════════════════ */}
-      <Navbar onOpenWaitlist={() => scrollToSection('pricing')} />
+      <Navbar onOpenWaitlist={() => scrollToSection('pricing')} LogoComponent={AnimatedHabosIcon} />
 
       {/* All content sits above the gradient + grain layers */}
       <div className="relative z-10">
