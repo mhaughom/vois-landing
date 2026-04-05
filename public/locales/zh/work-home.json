@@ -204,7 +204,8 @@
       "login":         "登录",
       "pricing":       "定价",
       "platform":      "平台",
-      "voisPersonal":  "VOIS 个人版"
+      "voisPersonal": "VOIS Personal",
+      "habosPersonal": "HABOS Personal"
     },
     "support": {
       "heading":       "支持",

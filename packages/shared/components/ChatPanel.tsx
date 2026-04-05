@@ -1157,7 +1157,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               <div className="w-10 h-1 rounded-full bg-gray-300" />
             </div>
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 md:py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-5 py-4 md:py-4 border-b border-gray-100 md:bg-white/60 md:backdrop-blur-sm md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
@@ -1283,7 +1283,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             </div>
 
             {/* Input */}
-            <div className="border-t border-gray-100 px-4 py-3">
+            <div className="border-t border-gray-100 px-4 py-3 md:bg-white/60 md:backdrop-blur-sm">
               <div className="flex items-center gap-2 rounded-xl bg-gray-50 border border-gray-200 px-3 py-2 focus-within:border-gray-400 transition-colors">
                 <input
                   ref={inputRef}
@@ -1306,7 +1306,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             </div>
 
             {/* Talk to our team link */}
-            <div className="px-4 pb-3 pt-1 flex justify-center">
+            <div className="px-4 pb-3 pt-1 flex justify-center md:bg-white/60 md:backdrop-blur-sm md:rounded-b-2xl">
               <button
                 onClick={() => navigate('/support')}
                 className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors"

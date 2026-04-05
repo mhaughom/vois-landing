@@ -16,86 +16,150 @@
     "madeFor": "Gjord för alla typer av företag."
   },
   "heroStories": [
-    { "label": "Problemet",         "headline": "Ditt företags data är fragmenterad\növer dussintals verktyg." },
-    { "label": "Kostnaden",         "headline": "Anställda spenderar sina dagar\npå att flytta data — inte skapa värde." },
-    { "label": "Bristningspunkten", "headline": "Ju snabbare du växer,\ndesto hårdare faller det isär." },
-    { "label": "Lösningen",         "headline": "Så vi byggde en plattform\nför allt." },
-    { "label": "HABOS",             "headline": "Dina verktyg. Din data.\nAllt fungerar som ett." },
-    { "label": "final",             "headline": "" }
+    {
+      "label": "Problemet",
+      "headline": "Ditt företags data är fragmenterad\növer dussintals verktyg."
+    },
+    {
+      "label": "Kostnaden",
+      "headline": "Anställda spenderar sina dagar\npå att flytta data — inte skapa värde."
+    },
+    {
+      "label": "Bristningspunkten",
+      "headline": "Ju snabbare du växer,\ndesto hårdare faller det isär."
+    },
+    {
+      "label": "Lösningen",
+      "headline": "Så vi byggde en plattform\nför allt."
+    },
+    {
+      "label": "HABOS",
+      "headline": "Dina verktyg. Din data.\nAllt fungerar som ett."
+    },
+    {
+      "label": "final",
+      "headline": ""
+    }
   ],
   "heroHeadlines": [
-    { "label": "Världens första",       "bold": "Människa-till-agent",    "light": "Affärsdriftssystem" },
-    { "label": "Allt i ett paket",      "bold": "Allt i ett paket",       "light": "Allt du behöver" },
-    { "label": "Allt-i-ett-plattform",  "bold": "All din programvara",    "light": "En plattform" },
-    { "label": "En inloggning, allt",   "bold": "Varje verktyg du behöver","light": "Bakom en inloggning" },
-    { "label": "Ersätt din stack",      "bold": "Ett system",             "light": "I stället för dussintals" },
-    { "label": "Programvara som tänker","bold": "AI-inbyggd programvara", "light": "Byggd från grunden" }
+    {
+      "label": "Världens första",
+      "bold": "Människa-till-agent",
+      "light": "Affärsdriftssystem"
+    },
+    {
+      "label": "Allt i ett paket",
+      "bold": "Allt i ett paket",
+      "light": "Allt du behöver"
+    },
+    {
+      "label": "Allt-i-ett-plattform",
+      "bold": "All din programvara",
+      "light": "En plattform"
+    },
+    {
+      "label": "En inloggning, allt",
+      "bold": "Varje verktyg du behöver",
+      "light": "Bakom en inloggning"
+    },
+    {
+      "label": "Ersätt din stack",
+      "bold": "Ett system",
+      "light": "I stället för dussintals"
+    },
+    {
+      "label": "Programvara som tänker",
+      "bold": "AI-inbyggd programvara",
+      "light": "Byggd från grunden"
+    }
   ],
   "heroGlowLabel": "Världens första",
   "heroSubtitle": "All din programvara, en plattform.\nSuperkrafter dina anställda med den AI-assistans vi alltid utlovades men aldrig fick.",
   "heroButtons": {
     "joinWaitlist": "Gå med i väntelistan",
-    "playVideo":    "Spela upp video",
-    "back":         "Tillbaka"
+    "playVideo": "Spela upp video",
+    "back": "Tillbaka"
   },
   "animPhase": {
-    "dot":      "Ett sinne som lär sig hela din verksamhet.",
-    "split":    "Det kopplar samman allt du gör.",
-    "cube":     "Struktur formas runt dig — inte tvärtom.",
+    "dot": "Ett sinne som lär sig hela din verksamhet.",
+    "split": "Det kopplar samman allt du gör.",
+    "cube": "Struktur formas runt dig — inte tvärtom.",
     "hexMorph": "Varje yta, en arbetsyta. Varje åtgärd, förväntad.",
-    "idle":     "Klicka på valfri sida för att utforska."
+    "idle": "Klicka på valfri sida för att utforska."
   },
   "explore": {
-    "heading":     "En plattform. Varje verktyg.",
+    "heading": "En plattform. Varje verktyg.",
     "description": "Klicka på valfri sida för att utforska vad HABOS kan göra för din verksamhet."
   },
   "smartRouter": {
     "statusDetected": "Smart Router — 2 avsikter identifierade",
     "statusRecording": "Spelar in...",
-    "statusReady":     "Redo",
+    "statusReady": "Redo",
     "transcriptLabel": "Transskript",
-    "listening":       "Lyssnar..."
+    "listening": "Lyssnar..."
   },
   "meetingNotes": {
-    "statusEnded":    "Mötet avslutat — 3 åtgärdspunkter",
-    "statusRecording":"Spelar in — Teamstrategimöte",
-    "statusReady":    "Redo",
-    "transcriptLabel":"Liveutskrift",
-    "actionsLabel":   "Extraherade åtgärdspunkter"
+    "statusEnded": "Mötet avslutat — 3 åtgärdspunkter",
+    "statusRecording": "Spelar in — Teamstrategimöte",
+    "statusReady": "Redo",
+    "transcriptLabel": "Liveutskrift",
+    "actionsLabel": "Extraherade åtgärdspunkter"
   },
   "meetingLines": [
-    { "speaker": "Du",     "text": "Låt oss börja med Q1-siffrorna. Intäkterna ökade med 12%.",          "time": "0:15" },
-    { "speaker": "Sarah",  "text": "Pipelinen ser stark ut men leveranstiderna oroar mig.",               "time": "0:42" },
-    { "speaker": "Du",     "text": "Bra poäng. Tänk om vi lägger till en buffervecka per milstolpe?",      "time": "1:08" },
-    { "speaker": "AI",     "text": "Förslag: \"Vad är beredskapsplanen om Q2-målen glider?\"",              "time": "1:15" }
+    {
+      "speaker": "Du",
+      "text": "Låt oss börja med Q1-siffrorna. Intäkterna ökade med 12%.",
+      "time": "0:15"
+    },
+    {
+      "speaker": "Sarah",
+      "text": "Pipelinen ser stark ut men leveranstiderna oroar mig.",
+      "time": "0:42"
+    },
+    {
+      "speaker": "Du",
+      "text": "Bra poäng. Tänk om vi lägger till en buffervecka per milstolpe?",
+      "time": "1:08"
+    },
+    {
+      "speaker": "AI",
+      "text": "Förslag: \"Vad är beredskapsplanen om Q2-målen glider?\"",
+      "time": "1:15"
+    }
   ],
   "meetingActions": [
-    { "text": "Skicka uppdaterad tidslinje till Sarah senast fredag" },
-    { "text": "Schemalägg uppföljning med teknikansvarig" },
-    { "text": "Förbered riskbedömning inför Q2-styrelsemötet" }
+    {
+      "text": "Skicka uppdaterad tidslinje till Sarah senast fredag"
+    },
+    {
+      "text": "Schemalägg uppföljning med teknikansvarig"
+    },
+    {
+      "text": "Förbered riskbedömning inför Q2-styrelsemötet"
+    }
   ],
   "agentPhilosophy": {
-    "badge":       "Agentfilosofi",
-    "heading":     "Varje anställd får en superagent.",
+    "badge": "Agentfilosofi",
+    "heading": "Varje anställd får en superagent.",
     "description": "En autonom AI-partner med tillgång till samma data, kontext och behörigheter som den person den betjänar. Den lyfter fram den mest värdefulla informationen, utkasdar svar, föreslår scheman och flaggar risker — men agerar aldrig ensam.",
-    "footer":      "AI-kraft, mänsklig kontroll. Varje utkast granskat. Varje åtgärd godkänd. Varje beslut ditt."
+    "footer": "AI-kraft, mänsklig kontroll. Varje utkast granskat. Varje åtgärd godkänd. Varje beslut ditt."
   },
   "agentTabs": [
     {
       "title": "AI-assistent",
-      "desc":  "Chatta med full affärskontext. Din agent resonerar över projekt, mejl, kalender, CRM och konversationer simultant — hämtar från varje databas du har tillgång till."
+      "desc": "Chatta med full affärskontext. Din agent resonerar över projekt, mejl, kalender, CRM och konversationer simultant — hämtar från varje databas du har tillgång till."
     },
     {
       "title": "Smart Router",
-      "desc":  "Prata naturligt — agenten tolkar din röst till strukturerade åtgärder. Uppföljningar blir uppgifter, möten hamnar i din kalender och varje avsikt dirigeras till rätt plats."
+      "desc": "Prata naturligt — agenten tolkar din röst till strukturerade åtgärder. Uppföljningar blir uppgifter, möten hamnar i din kalender och varje avsikt dirigeras till rätt plats."
     },
     {
       "title": "Mötesanteckningar",
-      "desc":  "Liveutskrift som fångar beslut, åtgärdspunkter och uppföljningar när de sker. Varje möte producerar en strukturerad sammanfattning — ingen manuell anteckning krävs."
+      "desc": "Liveutskrift som fångar beslut, åtgärdspunkter och uppföljningar när de sker. Varje möte producerar en strukturerad sammanfattning — ingen manuell anteckning krävs."
     }
   ],
   "replacesSection": {
-    "heading":     "Vad HABOS ersätter.",
+    "heading": "Vad HABOS ersätter.",
     "description": "Delad kontext gör varje funktion smartare än något fristående verktyg.",
     "colCategory": "Kategori",
     "colReplaces": "Ersätter",
@@ -103,127 +167,341 @@
     "mobileReplaces": "Ersätter"
   },
   "replacements": [
-    { "tool": "Otter.ai / Fireflies",        "category": "Mötesanteckningar",        "vois": "Briefingar inför varje möte, liveutskrift under och åtgärdspunkter extraherade och skickade till rätt personer efteråt",                                             "group": "Produktivitet" },
-    { "tool": "Todoist / Trello",            "category": "Uppgiftshantering",        "vois": "Dina viktigaste uppgifter visas alltid först — skapade från röst, möten eller mejl med inbyggd smart schemaläggning",                                                "group": "Produktivitet" },
-    { "tool": "Motion / Reclaim",            "category": "AI-schemaläggning",        "vois": "Din kalender fyller sig med fokuserade arbetsblock, ordnade efter prioritet och deadline — godkänn bara och kör",                                                     "group": "Produktivitet" },
-    { "tool": "Asana / Jira / Monday.com",  "category": "Projektspårning",          "vois": "Se vilka projekt som är friska och vilka som behöver uppmärksamhet — stoppat arbete och missade deadlines flaggas innan de eskalerar",                                "group": "Produktivitet" },
-    { "tool": "Google Docs / Notion",        "category": "Dokument",                 "vois": "Prata ut det, få ett dokument tillbaka — AI hämtar kontext från dina projekt och data automatiskt",                                                                   "group": "Produktivitet" },
-    { "tool": "Trainual / Process Street",   "category": "Playbooks & SOP:er",       "vois": "Levande arbetsflöden som leder ditt team steg-för-steg och varnar dig när något görs fel",                                                                          "group": "Produktivitet" },
-    { "tool": "HubSpot / Salesforce",        "category": "CRM & försäljning",        "vois": "Kundprofiler byggda automatiskt från varje konversation, mejl och möte — med AI-föreslagna nästa steg",                                                              "group": "Handel & kunder" },
-    { "tool": "Shopify / WooCommerce",       "category": "Produkter & ordrar",       "vois": "Produkter, prissättning, lager och bokningsbara tjänster — allt kopplat till din webbplats och AI-assistent",                                                        "group": "Handel & kunder" },
-    { "tool": "Calendly / Acuity",           "category": "Bokningar",                "vois": "Kunder bokar online, ordrar skapas automatiskt, betalning samlas in — ett steg, inget manuellt arbete",                                                              "group": "Handel & kunder" },
-    { "tool": "Mailchimp / ActiveCampaign",  "category": "Marknadsföring & trattar", "vois": "Mejl- och SMS-kampanjer med AI-skriven text, smarta målgruppssegment och automatiserade uppföljningssekvenser",                                                     "group": "Handel & kunder" },
-    { "tool": "Later / Hootsuite",           "category": "Sociala medier",           "vois": "Schemalägg inlägg, få AI-skrivna bildtexter och spåra vad som presterar — kopplat till ditt varumärke och innehållsbibliotek",                                      "group": "Handel & kunder" },
-    { "tool": "Canva / Adobe Express",       "category": "Creative Studio",          "vois": "Generera marknadsföringsinnehåll från din affärskontext — sociala inlägg, annonser och bilder som matchar ditt varumärke",                                         "group": "Handel & kunder" },
-    { "tool": "Superhuman / Spark",          "category": "AI-mejl",                  "vois": "Svara på din inkorg med röst, få tre svarsalternativ som låter som du och tappa aldrig bort uppföljningar",                                                         "group": "Kommunikation & innehåll" },
-    { "tool": "Gmail / Outlook / Slack",     "category": "Samlad meddelandehantering","vois": "Varje konversation med en person — mejl, chatt, SMS — i en tidslinje med AI-utkastade svar",                                                                     "group": "Kommunikation & innehåll" },
-    { "tool": "Squarespace / Wix",           "category": "Webbplatsbyggare",         "vois": "Beskriv din verksamhet och få en webbplats — AI skriver texten, kopplar dina bokningar och betalningar automatiskt",                                               "group": "Kommunikation & innehåll" },
-    { "tool": "PowerPoint / Google Slides",  "category": "Presentationer",           "vois": "AI-genererade presentationer som hämtar verkliga siffror från din verksamhet — redo att presentera, inte bara snygga mallar",                                       "group": "Kommunikation & innehåll" },
-    { "tool": "Zapier / Make",               "category": "Processautomation",        "vois": "Arbetsflöden som triggar över allt — inga tredjepartsverktyg, inga fördröjningar, för det bor allt i ett system",                                                  "group": "Drift & fält" },
-    { "tool": "ClickUp / Monday.com",        "category": "Verksamhet",               "vois": "Bli varnad när en process halkar efter innan det blir ett problem — med föreslagna åtgärder, inte bara varningar",                                                  "group": "Drift & fält" },
-    { "tool": "Zendesk / Freshdesk",         "category": "Supportärenden",           "vois": "Ärenden skapade automatiskt från formulär eller mejl, med prioritetsnivåer, timers och eskalering till rätt person",                                               "group": "Drift & fält" },
-    { "tool": "ServiceTitan / Jobber",       "category": "Fältdrift",                "vois": "Jobb, dispatch, rutter, team-GPS, tidsspårning — en 30 sekunders röstanteckning från skåpbilen ersätter all pappersarbete",                                        "group": "Drift & fält" },
-    { "tool": "Routific / Circuit",          "category": "Ruttplanering",            "vois": "Dra-och-släpp-ruttplanering med smart stoppordning och Google Maps-länkar för ditt team i fältet",                                                                 "group": "Drift & fält" },
-    { "tool": "Google Forms / SurveyMonkey","category": "Rapporter",                 "vois": "Fyll i vilken rapport som helst med röst på 90 sekunder — AI ställer frågorna, du svarar och rapporten arkiveras",                                                 "group": "Drift & fält" },
-    { "tool": "QuickBooks / Xero",           "category": "Ekonomi",                  "vois": "Logga utgifter med röst, spåra fakturor och betalningar, se din vinst i realtid — kopplat till Stripe",                                                             "group": "Ekonomi & administration" },
-    { "tool": "Procurify / Coupa",           "category": "Inköp & leverantörer",     "vois": "Inköpsordrar, leverantörsspårning och lagerhantering med stöd för delbetalning och fakturamatching",                                                               "group": "Ekonomi & administration" },
-    { "tool": "Toggl / Clockify",            "category": "Tidsspårning",             "vois": "Stämpla in och ut från telefonen, spåra fakturerbara timmar per jobb och länka tidsposter till dispatch och lön",                                                  "group": "Ekonomi & administration" },
-    { "tool": "BambooHR / Gusto",            "category": "Team & organisationsschema","vois": "Se hela din teamstruktur, hantera roller och åtkomst och planera förändringar — allt dra-och-släpp",                                                             "group": "Ekonomi & administration" },
-    { "tool": "Typeform / JotForm",          "category": "Formulär",                 "vois": "Bygg vilket formulär som helst, dirigera inlämningar till CRM eller ärenden automatiskt och skicka omedelbara bekräftelsesvar",                                     "group": "Ekonomi & administration" },
-    { "tool": "Confluence / Guru",           "category": "Kunskapssökning",          "vois": "Ställ en fråga och få svaret från hela din verksamhet — röstanteckningar, mejl, dokument, möten, allt",                                                            "group": "Ekonomi & administration" },
-    { "tool": "Google Drive / Dropbox",      "category": "Filer & media",            "vois": "En plats för alla dina filer med AI-taggning, fulltextsökning och en läsare som läser dokument högt",                                                              "group": "Ekonomi & administration" },
-    { "tool": "Virtuell chefsassistent",     "category": "Din AI-assistent",         "vois": "Känner hela din verksamhet, förutser vad du behöver och agerar i varje verktyg — via röst, klocka, telefon eller inkorg",                                          "group": "AI & röst" },
-    { "tool": "ChatGPT / Copilot",           "category": "AI-chatt",                 "vois": "En AI som känner din faktiska affärsdata — inte bara internet — och kan vidta åtgärder med ditt godkännande",                                                       "group": "AI & röst" },
-    { "tool": "Anpassad dev / Byrå",         "category": "AI-agenter",               "vois": "AI-arbetstagare som planerar flerstegiga uppgifter, använder dina verktyg och pausar för ditt godkännande innan de gör något viktigt",                             "group": "AI & röst" },
-    { "tool": "Perplexity / SearchGPT",      "category": "AI-research",              "vois": "Djup webbaserad research med angivna källor — delegerad till specialiserad AI och sparad i din kunskapsbas",                                                        "group": "AI & röst" },
-    { "tool": "Affärskonsulter",             "category": "Strategianalys",           "vois": "Analyserar dina intäkter, kunder, produkter och konkurrenter — lyfter fram möjligheter du skulle ha missat",                                                       "group": "AI & röst" },
-    { "tool": "Siri / Google Assistant",    "category": "Röstintelligens",           "vois": "En röstanteckning skapar uppgifter, händelser, lageruppdateringar och meddelanden — dirigerade till rätt plats automatiskt",                                      "group": "AI & röst" },
-    { "tool": "Apple Watch-appar",           "category": "Klockassistent",           "vois": "Full AI-assistent på handleden — prata, få svar, godkänn åtgärder, allt utan att ta fram telefonen",                                                              "group": "AI & röst" },
-    { "tool": "Svarstjänst",                 "category": "AI-telefon & SMS",         "vois": "Ett riktigt telefonnummer besvarat av din AI — bokar möten, svarar på frågor och hanterar meddelanden dygnet runt",                                                "group": "AI & röst" }
+    {
+      "tool": "Otter.ai / Fireflies",
+      "category": "Mötesanteckningar",
+      "vois": "Briefingar inför varje möte, liveutskrift under och åtgärdspunkter extraherade och skickade till rätt personer efteråt",
+      "group": "Produktivitet"
+    },
+    {
+      "tool": "Todoist / Trello",
+      "category": "Uppgiftshantering",
+      "vois": "Dina viktigaste uppgifter visas alltid först — skapade från röst, möten eller mejl med inbyggd smart schemaläggning",
+      "group": "Produktivitet"
+    },
+    {
+      "tool": "Motion / Reclaim",
+      "category": "AI-schemaläggning",
+      "vois": "Din kalender fyller sig med fokuserade arbetsblock, ordnade efter prioritet och deadline — godkänn bara och kör",
+      "group": "Produktivitet"
+    },
+    {
+      "tool": "Asana / Jira / Monday.com",
+      "category": "Projektspårning",
+      "vois": "Se vilka projekt som är friska och vilka som behöver uppmärksamhet — stoppat arbete och missade deadlines flaggas innan de eskalerar",
+      "group": "Produktivitet"
+    },
+    {
+      "tool": "Google Docs / Notion",
+      "category": "Dokument",
+      "vois": "Prata ut det, få ett dokument tillbaka — AI hämtar kontext från dina projekt och data automatiskt",
+      "group": "Produktivitet"
+    },
+    {
+      "tool": "Trainual / Process Street",
+      "category": "Playbooks & SOP:er",
+      "vois": "Levande arbetsflöden som leder ditt team steg-för-steg och varnar dig när något görs fel",
+      "group": "Produktivitet"
+    },
+    {
+      "tool": "HubSpot / Salesforce",
+      "category": "CRM & försäljning",
+      "vois": "Kundprofiler byggda automatiskt från varje konversation, mejl och möte — med AI-föreslagna nästa steg",
+      "group": "Handel & kunder"
+    },
+    {
+      "tool": "Shopify / WooCommerce",
+      "category": "Produkter & ordrar",
+      "vois": "Produkter, prissättning, lager och bokningsbara tjänster — allt kopplat till din webbplats och AI-assistent",
+      "group": "Handel & kunder"
+    },
+    {
+      "tool": "Calendly / Acuity",
+      "category": "Bokningar",
+      "vois": "Kunder bokar online, ordrar skapas automatiskt, betalning samlas in — ett steg, inget manuellt arbete",
+      "group": "Handel & kunder"
+    },
+    {
+      "tool": "Mailchimp / ActiveCampaign",
+      "category": "Marknadsföring & trattar",
+      "vois": "Mejl- och SMS-kampanjer med AI-skriven text, smarta målgruppssegment och automatiserade uppföljningssekvenser",
+      "group": "Handel & kunder"
+    },
+    {
+      "tool": "Later / Hootsuite",
+      "category": "Sociala medier",
+      "vois": "Schemalägg inlägg, få AI-skrivna bildtexter och spåra vad som presterar — kopplat till ditt varumärke och innehållsbibliotek",
+      "group": "Handel & kunder"
+    },
+    {
+      "tool": "Canva / Adobe Express",
+      "category": "Creative Studio",
+      "vois": "Generera marknadsföringsinnehåll från din affärskontext — sociala inlägg, annonser och bilder som matchar ditt varumärke",
+      "group": "Handel & kunder"
+    },
+    {
+      "tool": "Superhuman / Spark",
+      "category": "AI-mejl",
+      "vois": "Svara på din inkorg med röst, få tre svarsalternativ som låter som du och tappa aldrig bort uppföljningar",
+      "group": "Kommunikation & innehåll"
+    },
+    {
+      "tool": "Gmail / Outlook / Slack",
+      "category": "Samlad meddelandehantering",
+      "vois": "Varje konversation med en person — mejl, chatt, SMS — i en tidslinje med AI-utkastade svar",
+      "group": "Kommunikation & innehåll"
+    },
+    {
+      "tool": "Squarespace / Wix",
+      "category": "Webbplatsbyggare",
+      "vois": "Beskriv din verksamhet och få en webbplats — AI skriver texten, kopplar dina bokningar och betalningar automatiskt",
+      "group": "Kommunikation & innehåll"
+    },
+    {
+      "tool": "PowerPoint / Google Slides",
+      "category": "Presentationer",
+      "vois": "AI-genererade presentationer som hämtar verkliga siffror från din verksamhet — redo att presentera, inte bara snygga mallar",
+      "group": "Kommunikation & innehåll"
+    },
+    {
+      "tool": "Zapier / Make",
+      "category": "Processautomation",
+      "vois": "Arbetsflöden som triggar över allt — inga tredjepartsverktyg, inga fördröjningar, för det bor allt i ett system",
+      "group": "Drift & fält"
+    },
+    {
+      "tool": "ClickUp / Monday.com",
+      "category": "Verksamhet",
+      "vois": "Bli varnad när en process halkar efter innan det blir ett problem — med föreslagna åtgärder, inte bara varningar",
+      "group": "Drift & fält"
+    },
+    {
+      "tool": "Zendesk / Freshdesk",
+      "category": "Supportärenden",
+      "vois": "Ärenden skapade automatiskt från formulär eller mejl, med prioritetsnivåer, timers och eskalering till rätt person",
+      "group": "Drift & fält"
+    },
+    {
+      "tool": "ServiceTitan / Jobber",
+      "category": "Fältdrift",
+      "vois": "Jobb, dispatch, rutter, team-GPS, tidsspårning — en 30 sekunders röstanteckning från skåpbilen ersätter all pappersarbete",
+      "group": "Drift & fält"
+    },
+    {
+      "tool": "Routific / Circuit",
+      "category": "Ruttplanering",
+      "vois": "Dra-och-släpp-ruttplanering med smart stoppordning och Google Maps-länkar för ditt team i fältet",
+      "group": "Drift & fält"
+    },
+    {
+      "tool": "Google Forms / SurveyMonkey",
+      "category": "Rapporter",
+      "vois": "Fyll i vilken rapport som helst med röst på 90 sekunder — AI ställer frågorna, du svarar och rapporten arkiveras",
+      "group": "Drift & fält"
+    },
+    {
+      "tool": "QuickBooks / Xero",
+      "category": "Ekonomi",
+      "vois": "Logga utgifter med röst, spåra fakturor och betalningar, se din vinst i realtid — kopplat till Stripe",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "Procurify / Coupa",
+      "category": "Inköp & leverantörer",
+      "vois": "Inköpsordrar, leverantörsspårning och lagerhantering med stöd för delbetalning och fakturamatching",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "Toggl / Clockify",
+      "category": "Tidsspårning",
+      "vois": "Stämpla in och ut från telefonen, spåra fakturerbara timmar per jobb och länka tidsposter till dispatch och lön",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "BambooHR / Gusto",
+      "category": "Team & organisationsschema",
+      "vois": "Se hela din teamstruktur, hantera roller och åtkomst och planera förändringar — allt dra-och-släpp",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "Typeform / JotForm",
+      "category": "Formulär",
+      "vois": "Bygg vilket formulär som helst, dirigera inlämningar till CRM eller ärenden automatiskt och skicka omedelbara bekräftelsesvar",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "Confluence / Guru",
+      "category": "Kunskapssökning",
+      "vois": "Ställ en fråga och få svaret från hela din verksamhet — röstanteckningar, mejl, dokument, möten, allt",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "Google Drive / Dropbox",
+      "category": "Filer & media",
+      "vois": "En plats för alla dina filer med AI-taggning, fulltextsökning och en läsare som läser dokument högt",
+      "group": "Ekonomi & administration"
+    },
+    {
+      "tool": "Virtuell chefsassistent",
+      "category": "Din AI-assistent",
+      "vois": "Känner hela din verksamhet, förutser vad du behöver och agerar i varje verktyg — via röst, klocka, telefon eller inkorg",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "ChatGPT / Copilot",
+      "category": "AI-chatt",
+      "vois": "En AI som känner din faktiska affärsdata — inte bara internet — och kan vidta åtgärder med ditt godkännande",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "Anpassad dev / Byrå",
+      "category": "AI-agenter",
+      "vois": "AI-arbetstagare som planerar flerstegiga uppgifter, använder dina verktyg och pausar för ditt godkännande innan de gör något viktigt",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "Perplexity / SearchGPT",
+      "category": "AI-research",
+      "vois": "Djup webbaserad research med angivna källor — delegerad till specialiserad AI och sparad i din kunskapsbas",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "Affärskonsulter",
+      "category": "Strategianalys",
+      "vois": "Analyserar dina intäkter, kunder, produkter och konkurrenter — lyfter fram möjligheter du skulle ha missat",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "Siri / Google Assistant",
+      "category": "Röstintelligens",
+      "vois": "En röstanteckning skapar uppgifter, händelser, lageruppdateringar och meddelanden — dirigerade till rätt plats automatiskt",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "Apple Watch-appar",
+      "category": "Klockassistent",
+      "vois": "Full AI-assistent på handleden — prata, få svar, godkänn åtgärder, allt utan att ta fram telefonen",
+      "group": "AI & röst"
+    },
+    {
+      "tool": "Svarstjänst",
+      "category": "AI-telefon & SMS",
+      "vois": "Ett riktigt telefonnummer besvarat av din AI — bokar möten, svarar på frågor och hanterar meddelanden dygnet runt",
+      "group": "AI & röst"
+    }
   ],
   "pricing": {
-    "heading":     "Enkel, transparent prissättning.",
+    "heading": "Enkel, transparent prissättning.",
     "description": "Personlig får den fullständiga röst-till-åtgärdsloopen. Arbete lägger till de tre professionella pelarna.",
     "billingMonthly": "Månadsvis",
-    "billingAnnual":  "Årsvis",
-    "saveLabel":      "Spara upp till 40%",
+    "billingAnnual": "Årsvis",
+    "saveLabel": "Spara upp till 40%",
     "featureColHeader": "Funktion",
     "personalColHeader": "Personlig",
-    "workColHeader":     "Arbete",
+    "workColHeader": "Arbete",
     "personal": {
-      "name":        "Personlig",
+      "name": "Personlig",
       "description": "För vardagsorganisation",
       "priceAnnual": "$6,67",
-      "priceMonthly":"$14,99",
-      "perMonth":    "/månad",
-      "cta":         "Starta gratis provperiod",
-      "guarantee":   "30 dagars pengarna-tillbaka-garanti"
+      "priceMonthly": "$14,99",
+      "perMonth": "/månad",
+      "cta": "Starta gratis provperiod",
+      "guarantee": "30 dagars pengarna-tillbaka-garanti"
     },
     "work": {
-      "name":        "Arbete",
+      "name": "Arbete",
       "description": "För proffs & team",
       "priceAnnual": "$29",
-      "priceMonthly":"$39",
-      "perMonth":    "/månad",
-      "badge":       "Rekommenderat",
-      "cta":         "Starta gratis provperiod",
-      "guarantee":   "30 dagars pengarna-tillbaka-garanti"
+      "priceMonthly": "$39",
+      "perMonth": "/månad",
+      "badge": "Rekommenderat",
+      "cta": "Starta gratis provperiod",
+      "guarantee": "30 dagars pengarna-tillbaka-garanti"
     }
   },
   "pricingFeatures": [
-    { "feature": "Röstinfångning & Smart Router" },
-    { "feature": "AI-chattassistent" },
-    { "feature": "Uppgiftshantering med AI-poängsättning" },
-    { "feature": "Kalender med AI-schemaläggning" },
-    { "feature": "Anpassade appar & marknadsplats" },
-    { "feature": "Livsområden & automatiseringar" },
-    { "feature": "Liveutskrift av möten" },
-    { "feature": "Mötesbriefer & förberedelse" },
-    { "feature": "Privata AI-anteckningar per deltagare" },
-    { "feature": "Projekt & övervakning" },
-    { "feature": "Rapporter & arbetsgranskning" },
-    { "feature": "AI-agenter & research" },
-    { "feature": "Mejlintegration" },
-    { "feature": "Skrivbordsapp (Live Guide)" }
+    {
+      "feature": "Röstinfångning & Smart Router"
+    },
+    {
+      "feature": "AI-chattassistent"
+    },
+    {
+      "feature": "Uppgiftshantering med AI-poängsättning"
+    },
+    {
+      "feature": "Kalender med AI-schemaläggning"
+    },
+    {
+      "feature": "Anpassade appar & marknadsplats"
+    },
+    {
+      "feature": "Livsområden & automatiseringar"
+    },
+    {
+      "feature": "Liveutskrift av möten"
+    },
+    {
+      "feature": "Mötesbriefer & förberedelse"
+    },
+    {
+      "feature": "Privata AI-anteckningar per deltagare"
+    },
+    {
+      "feature": "Projekt & övervakning"
+    },
+    {
+      "feature": "Rapporter & arbetsgranskning"
+    },
+    {
+      "feature": "AI-agenter & research"
+    },
+    {
+      "feature": "Mejlintegration"
+    },
+    {
+      "feature": "Skrivbordsapp (Live Guide)"
+    }
   ],
   "cta": {
-    "heading":     "Börja prata med din arbetsdag.",
+    "heading": "Börja prata med din arbetsdag.",
     "description": "En röst. En hjärna. Allt sammankopplat.",
     "waitlistDescription": "Gå med i väntelistan för tidig tillgång till HABOS för Arbete.",
     "emailPlaceholder": "Ange din jobbmejl",
-    "submitButton":  "Få tidig tillgång",
-    "noSpam":        "Ingen spam. Inget kreditkort. Bara uppdateringar om HABOS för Arbete.",
-    "successMessage":"Du är med på listan! Vi hör av oss snart."
+    "submitButton": "Få tidig tillgång",
+    "noSpam": "Ingen spam. Inget kreditkort. Bara uppdateringar om HABOS för Arbete.",
+    "successMessage": "Du är med på listan! Vi hör av oss snart."
   },
   "footer": {
     "logoAlt": "HABOS",
     "brandName": "HABOS",
     "tagline": "Din AI-arbetsdag.",
     "product": {
-      "heading":       "Produkt",
-      "login":         "Logga in",
-      "pricing":       "Prissättning",
-      "platform":      "Plattform",
-      "voisPersonal":  "VOIS Personlig"
+      "heading": "Produkt",
+      "login": "Logga in",
+      "pricing": "Prissättning",
+      "platform": "Plattform",
+      "voisPersonal": "VOIS Personal",
+      "habosPersonal": "HABOS Personal"
     },
     "support": {
-      "heading":       "Support",
-      "helpFaq":       "Hjälp & FAQ",
-      "contactSales":  "Kontakta sälj",
-      "setupGuide":    "Konfigurationsguide"
+      "heading": "Support",
+      "helpFaq": "Hjälp & FAQ",
+      "contactSales": "Kontakta sälj",
+      "setupGuide": "Konfigurationsguide"
     },
     "legal": {
-      "heading":       "Juridiskt",
+      "heading": "Juridiskt",
       "privacyPolicy": "Integritetspolicy",
-      "termsOfService":"Användarvillkor",
-      "refundPolicy":  "Återbetalningspolicy"
+      "termsOfService": "Användarvillkor",
+      "refundPolicy": "Återbetalningspolicy"
     },
     "social": {
-      "heading":   "Socialt",
-      "xTwitter":  "X / Twitter",
+      "heading": "Socialt",
+      "xTwitter": "X / Twitter",
       "instagram": "Instagram",
-      "tiktok":    "TikTok",
-      "facebook":  "Facebook"
+      "tiktok": "TikTok",
+      "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Alla rättigheter förbehållna."
   }

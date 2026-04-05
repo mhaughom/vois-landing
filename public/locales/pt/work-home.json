@@ -16,86 +16,150 @@
     "madeFor": "Feito para todos os tipos de empresas."
   },
   "heroStories": [
-    { "label": "O Problema",       "headline": "Os dados da sua empresa estão fragmentados\nem dezenas de ferramentas." },
-    { "label": "O Custo",          "headline": "Os funcionários passam seus dias\nmovendo dados — não criando valor." },
-    { "label": "O Ponto de Ruptura","headline": "Quanto mais rápido você cresce,\nmais difícil fica manter tudo funcionando." },
-    { "label": "A Solução",        "headline": "Então construímos uma plataforma\npara tudo." },
-    { "label": "HABOS",            "headline": "Suas ferramentas. Seus dados.\nTudo funcionando como um." },
-    { "label": "final",            "headline": "" }
+    {
+      "label": "O Problema",
+      "headline": "Os dados da sua empresa estão fragmentados\nem dezenas de ferramentas."
+    },
+    {
+      "label": "O Custo",
+      "headline": "Os funcionários passam seus dias\nmovendo dados — não criando valor."
+    },
+    {
+      "label": "O Ponto de Ruptura",
+      "headline": "Quanto mais rápido você cresce,\nmais difícil fica manter tudo funcionando."
+    },
+    {
+      "label": "A Solução",
+      "headline": "Então construímos uma plataforma\npara tudo."
+    },
+    {
+      "label": "HABOS",
+      "headline": "Suas ferramentas. Seus dados.\nTudo funcionando como um."
+    },
+    {
+      "label": "final",
+      "headline": ""
+    }
   ],
   "heroHeadlines": [
-    { "label": "World's First",        "bold": "Humano para Agente",    "light": "Sistema Operacional\nde Negócios" },
-    { "label": "Business in a Box",    "bold": "Negócio Completo",      "light": "Tudo que Você Precisa" },
-    { "label": "All-in-One Platform",  "bold": "Todo o Seu Software",   "light": "Uma Plataforma" },
-    { "label": "One Login, Every Tool","bold": "Cada Ferramenta que Você Precisa","light": "Por Trás de Um Login" },
-    { "label": "Replace Your Stack",   "bold": "Um Sistema",            "light": "Em Vez de Dezenas" },
-    { "label": "Software That Thinks", "bold": "Software Nativo em IA", "light": "Criado do Zero" }
+    {
+      "label": "World's First",
+      "bold": "Humano para Agente",
+      "light": "Sistema Operacional\nde Negócios"
+    },
+    {
+      "label": "Business in a Box",
+      "bold": "Negócio Completo",
+      "light": "Tudo que Você Precisa"
+    },
+    {
+      "label": "All-in-One Platform",
+      "bold": "Todo o Seu Software",
+      "light": "Uma Plataforma"
+    },
+    {
+      "label": "One Login, Every Tool",
+      "bold": "Cada Ferramenta que Você Precisa",
+      "light": "Por Trás de Um Login"
+    },
+    {
+      "label": "Replace Your Stack",
+      "bold": "Um Sistema",
+      "light": "Em Vez de Dezenas"
+    },
+    {
+      "label": "Software That Thinks",
+      "bold": "Software Nativo em IA",
+      "light": "Criado do Zero"
+    }
   ],
   "heroGlowLabel": "World's First",
   "heroSubtitle": "Todo o seu software, uma plataforma.\nPotencialize seus funcionários com a assistência de IA que sempre nos foi prometida, mas nunca entregue.",
   "heroButtons": {
     "joinWaitlist": "Entrar na Lista de Espera",
-    "playVideo":    "Reproduzir Vídeo",
-    "back":         "Voltar"
+    "playVideo": "Reproduzir Vídeo",
+    "back": "Voltar"
   },
   "animPhase": {
-    "dot":      "Uma mente que aprende todo o seu negócio.",
-    "split":    "Ela conecta tudo o que você faz.",
-    "cube":     "A estrutura se forma ao seu redor — não ao contrário.",
+    "dot": "Uma mente que aprende todo o seu negócio.",
+    "split": "Ela conecta tudo o que você faz.",
+    "cube": "A estrutura se forma ao seu redor — não ao contrário.",
     "hexMorph": "Cada superfície, um espaço de trabalho. Cada ação, antecipada.",
-    "idle":     "Clique em qualquer face para explorar."
+    "idle": "Clique em qualquer face para explorar."
   },
   "explore": {
-    "heading":     "Uma plataforma. Cada ferramenta.",
+    "heading": "Uma plataforma. Cada ferramenta.",
     "description": "Clique em qualquer face para explorar o que o HABOS pode fazer pelo seu negócio."
   },
   "smartRouter": {
     "statusDetected": "Smart Router — 2 intenções detectadas",
     "statusRecording": "Gravando...",
-    "statusReady":     "Pronto",
+    "statusReady": "Pronto",
     "transcriptLabel": "Transcrição",
-    "listening":       "Ouvindo..."
+    "listening": "Ouvindo..."
   },
   "meetingNotes": {
-    "statusEnded":    "Reunião encerrada — 3 itens de ação",
-    "statusRecording":"Gravando — Reunião de Estratégia da Equipe",
-    "statusReady":    "Pronto",
-    "transcriptLabel":"Transcrição ao Vivo",
-    "actionsLabel":   "Itens de Ação Extraídos"
+    "statusEnded": "Reunião encerrada — 3 itens de ação",
+    "statusRecording": "Gravando — Reunião de Estratégia da Equipe",
+    "statusReady": "Pronto",
+    "transcriptLabel": "Transcrição ao Vivo",
+    "actionsLabel": "Itens de Ação Extraídos"
   },
   "meetingLines": [
-    { "speaker": "Você",   "text": "Vamos começar com os números do T1. A receita cresceu 12%.",       "time": "0:15" },
-    { "speaker": "Sarah", "text": "O pipeline parece sólido, mas os prazos de entrega me preocupam.", "time": "0:42" },
-    { "speaker": "Você",   "text": "Ponto válido. E se adicionarmos uma semana de buffer para cada marco?", "time": "1:08" },
-    { "speaker": "IA",    "text": "Sugerido: \"Qual é o plano de contingência se as metas do T2 atrasarem?\"",   "time": "1:15" }
+    {
+      "speaker": "Você",
+      "text": "Vamos começar com os números do T1. A receita cresceu 12%.",
+      "time": "0:15"
+    },
+    {
+      "speaker": "Sarah",
+      "text": "O pipeline parece sólido, mas os prazos de entrega me preocupam.",
+      "time": "0:42"
+    },
+    {
+      "speaker": "Você",
+      "text": "Ponto válido. E se adicionarmos uma semana de buffer para cada marco?",
+      "time": "1:08"
+    },
+    {
+      "speaker": "IA",
+      "text": "Sugerido: \"Qual é o plano de contingência se as metas do T2 atrasarem?\"",
+      "time": "1:15"
+    }
   ],
   "meetingActions": [
-    { "text": "Enviar cronograma atualizado para Sarah até sexta-feira" },
-    { "text": "Agendar acompanhamento com o líder de engenharia" },
-    { "text": "Preparar avaliação de risco para reunião do conselho do T2" }
+    {
+      "text": "Enviar cronograma atualizado para Sarah até sexta-feira"
+    },
+    {
+      "text": "Agendar acompanhamento com o líder de engenharia"
+    },
+    {
+      "text": "Preparar avaliação de risco para reunião do conselho do T2"
+    }
   ],
   "agentPhilosophy": {
-    "badge":       "Filosofia do Agente",
-    "heading":     "Cada funcionário recebe um super-agente.",
+    "badge": "Filosofia do Agente",
+    "heading": "Cada funcionário recebe um super-agente.",
     "description": "Um parceiro de IA autônomo com acesso aos mesmos dados, contexto e permissões que a pessoa a quem serve. Ele traz à tona as informações mais valiosas, elabora respostas, propõe agendas e sinaliza riscos — mas nunca age sozinho.",
-    "footer":      "Poder da IA, controle humano. Cada rascunho revisado. Cada ação aprovada. Cada decisão é sua."
+    "footer": "Poder da IA, controle humano. Cada rascunho revisado. Cada ação aprovada. Cada decisão é sua."
   },
   "agentTabs": [
     {
       "title": "Assistente de IA",
-      "desc":  "Converse com contexto completo do negócio. Seu agente raciocina sobre projetos, e-mails, calendário, CRM e conversas simultaneamente — extraindo informações de todos os bancos de dados aos quais você tem acesso."
+      "desc": "Converse com contexto completo do negócio. Seu agente raciocina sobre projetos, e-mails, calendário, CRM e conversas simultaneamente — extraindo informações de todos os bancos de dados aos quais você tem acesso."
     },
     {
       "title": "Smart Router",
-      "desc":  "Fale naturalmente — o agente converte sua voz em ações estruturadas. Acompanhamentos viram tarefas, reuniões chegam ao seu calendário, e cada intenção é roteada para o lugar certo."
+      "desc": "Fale naturalmente — o agente converte sua voz em ações estruturadas. Acompanhamentos viram tarefas, reuniões chegam ao seu calendário, e cada intenção é roteada para o lugar certo."
     },
     {
       "title": "Notas de Reunião",
-      "desc":  "Transcrição ao vivo que captura decisões, itens de ação e acompanhamentos à medida que acontecem. Cada reunião produz um resumo estruturado — sem anotações manuais."
+      "desc": "Transcrição ao vivo que captura decisões, itens de ação e acompanhamentos à medida que acontecem. Cada reunião produz um resumo estruturado — sem anotações manuais."
     }
   ],
   "replacesSection": {
-    "heading":     "O que o HABOS substitui.",
+    "heading": "O que o HABOS substitui.",
     "description": "O contexto compartilhado torna cada capacidade mais inteligente do que qualquer ferramenta independente.",
     "colCategory": "Categoria",
     "colReplaces": "Substitui",
@@ -103,127 +167,341 @@
     "mobileReplaces": "Substitui"
   },
   "replacements": [
-    { "tool": "Otter.ai / Fireflies",        "category": "Notas de Reunião",        "vois": "Briefings antes de cada reunião, transcrição ao vivo durante, itens de ação extraídos e enviados para as pessoas certas depois",                                      "group": "Produtividade" },
-    { "tool": "Todoist / Trello",            "category": "Gerenciamento de Tarefas", "vois": "Suas tarefas mais importantes sempre aparecem primeiro — criadas por voz, reuniões ou e-mail com agendamento inteligente integrado",                                    "group": "Produtividade" },
-    { "tool": "Motion / Reclaim",            "category": "Agendamento por IA",      "vois": "Seu calendário se preenche com blocos de trabalho focado, ordenados por prioridade e prazo — basta aprovar e seguir em frente",                                              "group": "Produtividade" },
-    { "tool": "Asana / Jira / Monday.com",  "category": "Gerenciamento de Projetos", "vois": "Veja quais projetos estão saudáveis e quais precisam de atenção — trabalhos paralisados e prazos perdidos sinalizados antes de escalar",                                 "group": "Produtividade" },
-    { "tool": "Google Docs / Notion",        "category": "Documentos",              "vois": "Fale e receba um documento de volta — a IA extrai contexto dos seus projetos e dados automaticamente",                                                           "group": "Produtividade" },
-    { "tool": "Trainual / Process Street",   "category": "Playbooks & SOPs",        "vois": "Fluxos de trabalho dinâmicos que guiam sua equipe passo a passo e alertam quando algo é feito errado",                                                          "group": "Produtividade" },
-    { "tool": "HubSpot / Salesforce",        "category": "CRM & Vendas",            "vois": "Perfis de clientes criados automaticamente a partir de cada conversa, e-mail e reunião — com próximos passos sugeridos por IA",                                          "group": "Comércio & Clientes" },
-    { "tool": "Shopify / WooCommerce",       "category": "Produtos & Pedidos",      "vois": "Produtos, preços, estoque e serviços agendáveis — tudo conectado ao seu site e assistente de IA",                                                   "group": "Comércio & Clientes" },
-    { "tool": "Calendly / Acuity",           "category": "Agendamentos",            "vois": "Clientes agendam online, pedidos são criados automaticamente, pagamento é coletado — uma etapa, sem trabalho manual",                                                 "group": "Comércio & Clientes" },
-    { "tool": "Mailchimp / ActiveCampaign",  "category": "Marketing & Funis",       "vois": "Campanhas de e-mail e SMS com textos criados por IA, segmentos de público inteligentes e sequências de acompanhamento automatizadas",                                               "group": "Comércio & Clientes" },
-    { "tool": "Later / Hootsuite",           "category": "Redes Sociais",           "vois": "Agende posts, obtenha legendas criadas por IA e acompanhe o desempenho — conectado à sua marca e biblioteca de conteúdo",                                        "group": "Comércio & Clientes" },
-    { "tool": "Canva / Adobe Express",       "category": "Estúdio Criativo",        "vois": "Gere conteúdo de marketing a partir do contexto do seu negócio — posts sociais, anúncios e visuais que combinam com sua marca",                                          "group": "Comércio & Clientes" },
-    { "tool": "Superhuman / Spark",          "category": "E-mail por IA",           "vois": "Responda sua caixa de entrada por voz, obtenha três opções de resposta que soam como você, e nunca perca o controle de acompanhamentos",                                            "group": "Comunicação & Conteúdo" },
-    { "tool": "Gmail / Outlook / Slack",     "category": "Mensagens Unificadas",    "vois": "Cada conversa com uma pessoa — e-mail, chat, SMS — em uma única linha do tempo com respostas elaboradas por IA",                                                         "group": "Comunicação & Conteúdo" },
-    { "tool": "Squarespace / Wix",           "category": "Construtor de Sites",     "vois": "Descreva seu negócio e obtenha um site — a IA escreve o texto e conecta agendamentos e pagamentos automaticamente",                                       "group": "Comunicação & Conteúdo" },
-    { "tool": "PowerPoint / Google Slides",  "category": "Apresentações",           "vois": "Decks de slides gerados por IA que puxam números reais do seu negócio — prontos para apresentar, não apenas modelos bonitos",                                      "group": "Comunicação & Conteúdo" },
-    { "tool": "Zapier / Make",               "category": "Automação de Processos",  "vois": "Fluxos de trabalho que disparam em tudo — sem ferramentas de terceiros, sem atrasos, porque tudo vive em um único sistema",                                        "group": "Operações & Campo" },
-    { "tool": "ClickUp / Monday.com",        "category": "Operações",               "vois": "Seja alertado quando um processo está atrasando antes que se torne um problema — com correções sugeridas, não apenas avisos",                                     "group": "Operações & Campo" },
-    { "tool": "Zendesk / Freshdesk",         "category": "Tickets de Suporte",      "vois": "Tickets criados automaticamente de formulários ou e-mail, com níveis de prioridade, temporizadores e escalonamento para a pessoa certa",                                   "group": "Operações & Campo" },
-    { "tool": "ServiceTitan / Jobber",       "category": "Operações de Campo",      "vois": "Trabalhos, despacho, rotas, GPS da equipe, controle de tempo — uma nota de voz de 30 segundos da van substitui toda a papelada",                                      "group": "Operações & Campo" },
-    { "tool": "Routific / Circuit",          "category": "Planejamento de Rotas",   "vois": "Planejamento de rotas com arrastar e soltar, ordenação inteligente de paradas e links do Google Maps para sua equipe no campo",                                               "group": "Operações & Campo" },
-    { "tool": "Google Forms / SurveyMonkey", "category": "Relatórios",              "vois": "Preencha qualquer relatório por voz em 90 segundos — a IA faz as perguntas, você responde e o relatório é arquivado",                                              "group": "Operações & Campo" },
-    { "tool": "QuickBooks / Xero",           "category": "Financeiro",              "vois": "Registre despesas por voz, acompanhe faturas e pagamentos, veja seu lucro em tempo real — conectado ao Stripe",                                               "group": "Financeiro & Admin" },
-    { "tool": "Procurify / Coupa",           "category": "Compras & Fornecedores",  "vois": "Pedidos de compra, rastreamento de fornecedores e gestão de estoque com suporte a pagamentos parciais e correspondência de faturas",                                              "group": "Financeiro & Admin" },
-    { "tool": "Toggl / Clockify",            "category": "Controle de Horas",       "vois": "Entre e saia do trabalho pelo celular, acompanhe horas faturáveis por trabalho e vincule entradas de tempo ao despacho e folha de pagamento",                                        "group": "Financeiro & Admin" },
-    { "tool": "BambooHR / Gusto",            "category": "Equipe & Organograma",    "vois": "Veja toda a estrutura da sua equipe, gerencie funções e acessos, e planeje mudanças — tudo com arrastar e soltar",                                                         "group": "Financeiro & Admin" },
-    { "tool": "Typeform / JotForm",          "category": "Formulários",             "vois": "Crie qualquer formulário, roteie envios para CRM ou tickets automaticamente e envie respostas de confirmação instantâneas",                                              "group": "Financeiro & Admin" },
-    { "tool": "Confluence / Guru",           "category": "Busca de Conhecimento",   "vois": "Faça uma pergunta e obtenha a resposta de todo o seu negócio — notas de voz, e-mails, documentos, reuniões, tudo",                                 "group": "Financeiro & Admin" },
-    { "tool": "Google Drive / Dropbox",      "category": "Arquivos & Mídia",        "vois": "Um único lugar para todos os seus arquivos com marcação por IA, busca em texto completo e um leitor que lê documentos em voz alta",                                             "group": "Financeiro & Admin" },
-    { "tool": "Assistente executivo virtual", "category": "Seu Assistente de IA",   "vois": "Conhece todo o seu negócio, antecipa o que você precisa e age em cada ferramenta — por voz, relógio, celular ou caixa de entrada",                                "group": "IA & Voz" },
-    { "tool": "ChatGPT / Copilot",           "category": "Chat com IA",             "vois": "Uma IA que conhece os dados reais do seu negócio — não apenas a internet — e pode agir com sua aprovação",                                          "group": "IA & Voz" },
-    { "tool": "Dev personalizado / Agência", "category": "Agentes de IA",           "vois": "Trabalhadores de IA que planejam tarefas em múltiplas etapas, usam suas ferramentas e pausam para sua aprovação antes de fazer algo importante",                                    "group": "IA & Voz" },
-    { "tool": "Perplexity / SearchGPT",      "category": "Pesquisa com IA",         "vois": "Pesquisa profunda na web com fontes citadas — delegada a IA especializada e salva na sua base de conhecimento",                                                  "group": "IA & Voz" },
-    { "tool": "Consultores de negócios",     "category": "Análise Estratégica",     "vois": "Analisa sua receita, clientes, produtos e concorrentes — traz à tona oportunidades que você teria perdido",                                             "group": "IA & Voz" },
-    { "tool": "Siri / Google Assistant",     "category": "Inteligência de Voz",     "vois": "Uma nota de voz cria tarefas, eventos, atualizações de estoque e mensagens — roteadas para o lugar certo automaticamente",                                     "group": "IA & Voz" },
-    { "tool": "Apple Watch apps",            "category": "Assistente no Relógio",   "vois": "Assistente de IA completo no seu pulso — fale, obtenha respostas, aprove ações, tudo sem tirar o celular do bolso",                                            "group": "IA & Voz" },
-    { "tool": "Serviço de atendimento",      "category": "IA por Telefone & SMS",   "vois": "Um número de telefone real atendido pela sua IA — agenda compromissos, responde perguntas e lida com mensagens 24/7",                                          "group": "IA & Voz" }
+    {
+      "tool": "Otter.ai / Fireflies",
+      "category": "Notas de Reunião",
+      "vois": "Briefings antes de cada reunião, transcrição ao vivo durante, itens de ação extraídos e enviados para as pessoas certas depois",
+      "group": "Produtividade"
+    },
+    {
+      "tool": "Todoist / Trello",
+      "category": "Gerenciamento de Tarefas",
+      "vois": "Suas tarefas mais importantes sempre aparecem primeiro — criadas por voz, reuniões ou e-mail com agendamento inteligente integrado",
+      "group": "Produtividade"
+    },
+    {
+      "tool": "Motion / Reclaim",
+      "category": "Agendamento por IA",
+      "vois": "Seu calendário se preenche com blocos de trabalho focado, ordenados por prioridade e prazo — basta aprovar e seguir em frente",
+      "group": "Produtividade"
+    },
+    {
+      "tool": "Asana / Jira / Monday.com",
+      "category": "Gerenciamento de Projetos",
+      "vois": "Veja quais projetos estão saudáveis e quais precisam de atenção — trabalhos paralisados e prazos perdidos sinalizados antes de escalar",
+      "group": "Produtividade"
+    },
+    {
+      "tool": "Google Docs / Notion",
+      "category": "Documentos",
+      "vois": "Fale e receba um documento de volta — a IA extrai contexto dos seus projetos e dados automaticamente",
+      "group": "Produtividade"
+    },
+    {
+      "tool": "Trainual / Process Street",
+      "category": "Playbooks & SOPs",
+      "vois": "Fluxos de trabalho dinâmicos que guiam sua equipe passo a passo e alertam quando algo é feito errado",
+      "group": "Produtividade"
+    },
+    {
+      "tool": "HubSpot / Salesforce",
+      "category": "CRM & Vendas",
+      "vois": "Perfis de clientes criados automaticamente a partir de cada conversa, e-mail e reunião — com próximos passos sugeridos por IA",
+      "group": "Comércio & Clientes"
+    },
+    {
+      "tool": "Shopify / WooCommerce",
+      "category": "Produtos & Pedidos",
+      "vois": "Produtos, preços, estoque e serviços agendáveis — tudo conectado ao seu site e assistente de IA",
+      "group": "Comércio & Clientes"
+    },
+    {
+      "tool": "Calendly / Acuity",
+      "category": "Agendamentos",
+      "vois": "Clientes agendam online, pedidos são criados automaticamente, pagamento é coletado — uma etapa, sem trabalho manual",
+      "group": "Comércio & Clientes"
+    },
+    {
+      "tool": "Mailchimp / ActiveCampaign",
+      "category": "Marketing & Funis",
+      "vois": "Campanhas de e-mail e SMS com textos criados por IA, segmentos de público inteligentes e sequências de acompanhamento automatizadas",
+      "group": "Comércio & Clientes"
+    },
+    {
+      "tool": "Later / Hootsuite",
+      "category": "Redes Sociais",
+      "vois": "Agende posts, obtenha legendas criadas por IA e acompanhe o desempenho — conectado à sua marca e biblioteca de conteúdo",
+      "group": "Comércio & Clientes"
+    },
+    {
+      "tool": "Canva / Adobe Express",
+      "category": "Estúdio Criativo",
+      "vois": "Gere conteúdo de marketing a partir do contexto do seu negócio — posts sociais, anúncios e visuais que combinam com sua marca",
+      "group": "Comércio & Clientes"
+    },
+    {
+      "tool": "Superhuman / Spark",
+      "category": "E-mail por IA",
+      "vois": "Responda sua caixa de entrada por voz, obtenha três opções de resposta que soam como você, e nunca perca o controle de acompanhamentos",
+      "group": "Comunicação & Conteúdo"
+    },
+    {
+      "tool": "Gmail / Outlook / Slack",
+      "category": "Mensagens Unificadas",
+      "vois": "Cada conversa com uma pessoa — e-mail, chat, SMS — em uma única linha do tempo com respostas elaboradas por IA",
+      "group": "Comunicação & Conteúdo"
+    },
+    {
+      "tool": "Squarespace / Wix",
+      "category": "Construtor de Sites",
+      "vois": "Descreva seu negócio e obtenha um site — a IA escreve o texto e conecta agendamentos e pagamentos automaticamente",
+      "group": "Comunicação & Conteúdo"
+    },
+    {
+      "tool": "PowerPoint / Google Slides",
+      "category": "Apresentações",
+      "vois": "Decks de slides gerados por IA que puxam números reais do seu negócio — prontos para apresentar, não apenas modelos bonitos",
+      "group": "Comunicação & Conteúdo"
+    },
+    {
+      "tool": "Zapier / Make",
+      "category": "Automação de Processos",
+      "vois": "Fluxos de trabalho que disparam em tudo — sem ferramentas de terceiros, sem atrasos, porque tudo vive em um único sistema",
+      "group": "Operações & Campo"
+    },
+    {
+      "tool": "ClickUp / Monday.com",
+      "category": "Operações",
+      "vois": "Seja alertado quando um processo está atrasando antes que se torne um problema — com correções sugeridas, não apenas avisos",
+      "group": "Operações & Campo"
+    },
+    {
+      "tool": "Zendesk / Freshdesk",
+      "category": "Tickets de Suporte",
+      "vois": "Tickets criados automaticamente de formulários ou e-mail, com níveis de prioridade, temporizadores e escalonamento para a pessoa certa",
+      "group": "Operações & Campo"
+    },
+    {
+      "tool": "ServiceTitan / Jobber",
+      "category": "Operações de Campo",
+      "vois": "Trabalhos, despacho, rotas, GPS da equipe, controle de tempo — uma nota de voz de 30 segundos da van substitui toda a papelada",
+      "group": "Operações & Campo"
+    },
+    {
+      "tool": "Routific / Circuit",
+      "category": "Planejamento de Rotas",
+      "vois": "Planejamento de rotas com arrastar e soltar, ordenação inteligente de paradas e links do Google Maps para sua equipe no campo",
+      "group": "Operações & Campo"
+    },
+    {
+      "tool": "Google Forms / SurveyMonkey",
+      "category": "Relatórios",
+      "vois": "Preencha qualquer relatório por voz em 90 segundos — a IA faz as perguntas, você responde e o relatório é arquivado",
+      "group": "Operações & Campo"
+    },
+    {
+      "tool": "QuickBooks / Xero",
+      "category": "Financeiro",
+      "vois": "Registre despesas por voz, acompanhe faturas e pagamentos, veja seu lucro em tempo real — conectado ao Stripe",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "Procurify / Coupa",
+      "category": "Compras & Fornecedores",
+      "vois": "Pedidos de compra, rastreamento de fornecedores e gestão de estoque com suporte a pagamentos parciais e correspondência de faturas",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "Toggl / Clockify",
+      "category": "Controle de Horas",
+      "vois": "Entre e saia do trabalho pelo celular, acompanhe horas faturáveis por trabalho e vincule entradas de tempo ao despacho e folha de pagamento",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "BambooHR / Gusto",
+      "category": "Equipe & Organograma",
+      "vois": "Veja toda a estrutura da sua equipe, gerencie funções e acessos, e planeje mudanças — tudo com arrastar e soltar",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "Typeform / JotForm",
+      "category": "Formulários",
+      "vois": "Crie qualquer formulário, roteie envios para CRM ou tickets automaticamente e envie respostas de confirmação instantâneas",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "Confluence / Guru",
+      "category": "Busca de Conhecimento",
+      "vois": "Faça uma pergunta e obtenha a resposta de todo o seu negócio — notas de voz, e-mails, documentos, reuniões, tudo",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "Google Drive / Dropbox",
+      "category": "Arquivos & Mídia",
+      "vois": "Um único lugar para todos os seus arquivos com marcação por IA, busca em texto completo e um leitor que lê documentos em voz alta",
+      "group": "Financeiro & Admin"
+    },
+    {
+      "tool": "Assistente executivo virtual",
+      "category": "Seu Assistente de IA",
+      "vois": "Conhece todo o seu negócio, antecipa o que você precisa e age em cada ferramenta — por voz, relógio, celular ou caixa de entrada",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "ChatGPT / Copilot",
+      "category": "Chat com IA",
+      "vois": "Uma IA que conhece os dados reais do seu negócio — não apenas a internet — e pode agir com sua aprovação",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "Dev personalizado / Agência",
+      "category": "Agentes de IA",
+      "vois": "Trabalhadores de IA que planejam tarefas em múltiplas etapas, usam suas ferramentas e pausam para sua aprovação antes de fazer algo importante",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "Perplexity / SearchGPT",
+      "category": "Pesquisa com IA",
+      "vois": "Pesquisa profunda na web com fontes citadas — delegada a IA especializada e salva na sua base de conhecimento",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "Consultores de negócios",
+      "category": "Análise Estratégica",
+      "vois": "Analisa sua receita, clientes, produtos e concorrentes — traz à tona oportunidades que você teria perdido",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "Siri / Google Assistant",
+      "category": "Inteligência de Voz",
+      "vois": "Uma nota de voz cria tarefas, eventos, atualizações de estoque e mensagens — roteadas para o lugar certo automaticamente",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "Apple Watch apps",
+      "category": "Assistente no Relógio",
+      "vois": "Assistente de IA completo no seu pulso — fale, obtenha respostas, aprove ações, tudo sem tirar o celular do bolso",
+      "group": "IA & Voz"
+    },
+    {
+      "tool": "Serviço de atendimento",
+      "category": "IA por Telefone & SMS",
+      "vois": "Um número de telefone real atendido pela sua IA — agenda compromissos, responde perguntas e lida com mensagens 24/7",
+      "group": "IA & Voz"
+    }
   ],
   "pricing": {
-    "heading":     "Preços simples e transparentes.",
+    "heading": "Preços simples e transparentes.",
     "description": "O Pessoal inclui o loop completo de voz para ação. O Profissional adiciona os três pilares profissionais.",
     "billingMonthly": "Mensal",
-    "billingAnnual":  "Anual",
-    "saveLabel":      "Economize até 40%",
+    "billingAnnual": "Anual",
+    "saveLabel": "Economize até 40%",
     "featureColHeader": "Funcionalidade",
     "personalColHeader": "Pessoal",
-    "workColHeader":     "Profissional",
+    "workColHeader": "Profissional",
     "personal": {
-      "name":        "Pessoal",
+      "name": "Pessoal",
       "description": "Para organização do dia a dia",
       "priceAnnual": "$6,67",
-      "priceMonthly":"$14,99",
-      "perMonth":    "/mês",
-      "cta":         "Iniciar Período de Teste",
-      "guarantee":   "Garantia de reembolso em 30 dias"
+      "priceMonthly": "$14,99",
+      "perMonth": "/mês",
+      "cta": "Iniciar Período de Teste",
+      "guarantee": "Garantia de reembolso em 30 dias"
     },
     "work": {
-      "name":        "Profissional",
+      "name": "Profissional",
       "description": "Para profissionais e equipes",
       "priceAnnual": "$29",
-      "priceMonthly":"$39",
-      "perMonth":    "/mês",
-      "badge":       "Recomendado",
-      "cta":         "Iniciar Período de Teste",
-      "guarantee":   "Garantia de reembolso em 30 dias"
+      "priceMonthly": "$39",
+      "perMonth": "/mês",
+      "badge": "Recomendado",
+      "cta": "Iniciar Período de Teste",
+      "guarantee": "Garantia de reembolso em 30 dias"
     }
   },
   "pricingFeatures": [
-    { "feature": "Captura de voz & Smart Router" },
-    { "feature": "Assistente de chat com IA" },
-    { "feature": "Gerenciamento de tarefas com pontuação por IA" },
-    { "feature": "Calendário com agendamento por IA" },
-    { "feature": "Apps personalizados & marketplace" },
-    { "feature": "Áreas de vida & automações" },
-    { "feature": "Transcrição de reuniões ao vivo" },
-    { "feature": "Briefings & preparação de reuniões" },
-    { "feature": "Notas de IA privadas por participante" },
-    { "feature": "Projetos & monitoramento" },
-    { "feature": "Relatórios & revisões de trabalho" },
-    { "feature": "Agentes de IA & pesquisa" },
-    { "feature": "Integração de e-mail" },
-    { "feature": "Aplicativo desktop (Guia ao Vivo)" }
+    {
+      "feature": "Captura de voz & Smart Router"
+    },
+    {
+      "feature": "Assistente de chat com IA"
+    },
+    {
+      "feature": "Gerenciamento de tarefas com pontuação por IA"
+    },
+    {
+      "feature": "Calendário com agendamento por IA"
+    },
+    {
+      "feature": "Apps personalizados & marketplace"
+    },
+    {
+      "feature": "Áreas de vida & automações"
+    },
+    {
+      "feature": "Transcrição de reuniões ao vivo"
+    },
+    {
+      "feature": "Briefings & preparação de reuniões"
+    },
+    {
+      "feature": "Notas de IA privadas por participante"
+    },
+    {
+      "feature": "Projetos & monitoramento"
+    },
+    {
+      "feature": "Relatórios & revisões de trabalho"
+    },
+    {
+      "feature": "Agentes de IA & pesquisa"
+    },
+    {
+      "feature": "Integração de e-mail"
+    },
+    {
+      "feature": "Aplicativo desktop (Guia ao Vivo)"
+    }
   ],
   "cta": {
-    "heading":     "Comece a falar com o seu dia de trabalho.",
+    "heading": "Comece a falar com o seu dia de trabalho.",
     "description": "Uma voz. Um Brain. Tudo conectado.",
     "waitlistDescription": "Entre na lista de espera para acesso antecipado ao HABOS para Empresas.",
     "emailPlaceholder": "Digite seu e-mail corporativo",
-    "submitButton":  "Obter Acesso Antecipado",
-    "noSpam":        "Sem spam. Sem cartão de crédito. Apenas atualizações sobre o HABOS para Empresas.",
-    "successMessage":"Você está na lista! Entraremos em contato em breve."
+    "submitButton": "Obter Acesso Antecipado",
+    "noSpam": "Sem spam. Sem cartão de crédito. Apenas atualizações sobre o HABOS para Empresas.",
+    "successMessage": "Você está na lista! Entraremos em contato em breve."
   },
   "footer": {
     "logoAlt": "HABOS",
     "brandName": "HABOS",
     "tagline": "Seu dia de trabalho com IA.",
     "product": {
-      "heading":       "Produto",
-      "login":         "Entrar",
-      "pricing":       "Preços",
-      "platform":      "Plataforma",
-      "voisPersonal":  "VOIS Pessoal"
+      "heading": "Produto",
+      "login": "Entrar",
+      "pricing": "Preços",
+      "platform": "Plataforma",
+      "voisPersonal": "VOIS Personal",
+      "habosPersonal": "HABOS Personal"
     },
     "support": {
-      "heading":       "Suporte",
-      "helpFaq":       "Ajuda & FAQ",
-      "contactSales":  "Falar com Vendas",
-      "setupGuide":    "Guia de Configuração"
+      "heading": "Suporte",
+      "helpFaq": "Ajuda & FAQ",
+      "contactSales": "Falar com Vendas",
+      "setupGuide": "Guia de Configuração"
     },
     "legal": {
-      "heading":       "Jurídico",
+      "heading": "Jurídico",
       "privacyPolicy": "Política de Privacidade",
-      "termsOfService":"Termos de Uso",
-      "refundPolicy":  "Política de Reembolso"
+      "termsOfService": "Termos de Uso",
+      "refundPolicy": "Política de Reembolso"
     },
     "social": {
-      "heading":   "Redes Sociais",
-      "xTwitter":  "X / Twitter",
+      "heading": "Redes Sociais",
+      "xTwitter": "X / Twitter",
       "instagram": "Instagram",
-      "tiktok":    "TikTok",
-      "facebook":  "Facebook"
+      "tiktok": "TikTok",
+      "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Todos os direitos reservados."
   }

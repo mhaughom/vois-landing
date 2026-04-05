@@ -904,7 +904,20 @@ const Work: React.FC = () => {
     };
   }, []);
 
-  // Background is fixed (no parallax) so it extends behind the ChatPanel naturally
+  // Apply background on <html> so it scrolls with the page AND extends behind ChatPanel
+  useEffect(() => {
+    const html = document.documentElement;
+    html.style.backgroundImage = 'url("/work-bg.jpg")';
+    html.style.backgroundSize = '100% auto';
+    html.style.backgroundRepeat = 'no-repeat';
+    html.style.backgroundColor = '#F8F9FA';
+    return () => {
+      html.style.backgroundImage = '';
+      html.style.backgroundSize = '';
+      html.style.backgroundRepeat = '';
+      html.style.backgroundColor = '';
+    };
+  }, []);
 
   useEffect(() => {
     Analytics.workPageViewed();
@@ -985,16 +998,7 @@ const Work: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA' }}>
-      {/* Background image — gradient + grain baked into one JPEG, fixed so it extends behind ChatPanel */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: 'url("/work-bg.jpg")',
-          backgroundSize: '100% auto',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+    <div className="min-h-screen relative overflow-x-hidden">
 
       {/* Top white gradient fade — softer entry from the top */}
       <div
