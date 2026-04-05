@@ -18,7 +18,7 @@ const TheAirlock: React.FC = () => {
   const securityColors = ['text-amber-500', 'text-emerald-500', 'text-blue-500', 'text-violet-500'];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">

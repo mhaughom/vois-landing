@@ -42,7 +42,7 @@ const Purchasing: React.FC = () => {
   const techItems = t('techItems', { returnObjects: true }) as string[];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* ─── Content ─── */}

@@ -23,7 +23,31 @@ export default defineConfig(({ mode }) => {
       },
     },
     publicDir: path.resolve(__dirname, '../../public'),
-    plugins: [react()],
+    plugins: [
+      react(),
+      // After build, copy app-specific public/ overrides on top of shared assets
+      {
+        name: 'copy-app-overrides',
+        closeBundle() {
+          const fs = require('fs');
+          const appPublic = path.resolve(__dirname, 'public');
+          if (!fs.existsSync(appPublic)) return;
+          function copyRecursive(src: string, dest: string) {
+            for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+              const srcPath = path.join(src, entry.name);
+              const destPath = path.join(dest, entry.name);
+              if (entry.isDirectory()) {
+                fs.mkdirSync(destPath, { recursive: true });
+                copyRecursive(srcPath, destPath);
+              } else {
+                fs.copyFileSync(srcPath, destPath);
+              }
+            }
+          }
+          copyRecursive(appPublic, path.resolve(__dirname, 'dist'));
+        },
+      },
+    ],
     define: {
       'process.env': JSON.stringify(env)
     },

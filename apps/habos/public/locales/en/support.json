@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "logoAlt": "HABOS",
+    "title": "Support"
+  },
+  "hero": {
+    "heading": "How can we help?",
+    "description": "We're here to help you get the most out of HABOS. Find answers below or reach out directly."
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "email": {
+      "label": "Email Support",
+      "address": "hello@tryvois.com",
+      "note": "For all inquiries and support requests"
+    },
+    "responseTime": {
+      "label": "Response Time",
+      "value": "Within 24 hours",
+      "note": "Monday through Friday"
+    }
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "What is HABOS?",
+        "answer": "HABOS is the world's first Human-to-Agent Business Operating System — a single platform that replaces the dozen fragmented tools businesses juggle every day."
+      },
+      {
+        "question": "Which devices does HABOS support?",
+        "answer": "HABOS works on any modern web browser. Access it from your desktop, laptop, tablet, or phone. Your data syncs seamlessly across all your devices."
+      },
+      {
+        "question": "How does billing work?",
+        "answer": "HABOS offers subscription plans billed monthly or annually. Join the waitlist now for founding member pricing."
+      },
+      {
+        "question": "How do I cancel my subscription?",
+        "answer": "You can cancel your subscription at any time from your account settings. You'll continue to have access until the end of your current billing period."
+      },
+      {
+        "question": "Can I get a refund?",
+        "answer": "Yes, we offer a 30-day money-back guarantee. If you're not satisfied, contact us at <email>hello@tryvois.com</email> or view our full <refund>Refund Policy</refund>."
+      },
+      {
+        "question": "Is my data secure?",
+        "answer": "Your privacy and data security are our top priority. We are fully GDPR compliant and use encryption to protect your data. Read our <privacy>Privacy Policy</privacy> for full details."
+      },
+      {
+        "question": "How do I report a bug or request a feature?",
+        "answer": "We'd love to hear from you! Send us an email at <email>hello@tryvois.com</email> with a description of the issue or your feature idea, and we'll get back to you."
+      }
+    ]
+  },
+  "company": {
+    "heading": "Company Information",
+    "companyLabel": "Company",
+    "companyValue": "HABOS AI AS",
+    "orgLabel": "Org. Number",
+    "orgValue": "936 920 594",
+    "locationLabel": "Location",
+    "locationValue": "Alsvåg, Norway",
+    "emailLabel": "Email",
+    "emailValue": "hello@tryvois.com",
+    "websiteLabel": "Website",
+    "websiteValue": "habos.ai"
+  },
+  "footer": {
+    "copyright": "HABOS AI. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  }
+}

@@ -18,7 +18,7 @@ const MeetingNotes: React.FC = () => {
   const howItWorksSteps = t('howItWorks.steps', { returnObjects: true }) as Array<{ title: string; description: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* Hero Section */}

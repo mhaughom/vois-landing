@@ -17,7 +17,7 @@ const VoiceFirst: React.FC = () => {
   const listItems = t('section3.items', { returnObjects: true }) as Array<{ label: string; body: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">

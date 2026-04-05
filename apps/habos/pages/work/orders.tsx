@@ -50,7 +50,7 @@ const Orders: React.FC = () => {
   }>).map((card, i) => ({ ...card, icon: benefitCardIcons[i] }));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* --- Content --- */}

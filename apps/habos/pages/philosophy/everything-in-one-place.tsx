@@ -14,7 +14,7 @@ const EverythingInOnePlace: React.FC = () => {
   const updates = t('section2.updates', { returnObjects: true }) as string[];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">

@@ -106,7 +106,7 @@ const OrgChart: React.FC = () => {
   const benefitKeys = ['permissions', 'raci', 'dual'] as const;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* ── Main ──────────────────────────────────────────────────────── */}

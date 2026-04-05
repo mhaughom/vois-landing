@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, createContext, useContext, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, ExternalLink, LifeBuoy, Mail, Check, Loader2, Calendar } from 'lucide-react';
+import { MessageCircle, X, Send, ExternalLink, HelpCircle, Mail, Check, Loader2, Calendar } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Markdown from 'react-markdown';
@@ -1150,31 +1150,50 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             className="fixed flex flex-col bg-white/90 backdrop-blur-sm shadow-2xl border border-slate-200/40 overflow-hidden
               inset-0 rounded-none z-[51]
               md:inset-auto md:rounded-2xl md:right-4 md:bottom-4 md:top-[100px] md:w-[380px] md:z-40
-              md:bg-transparent md:backdrop-blur-none md:shadow-none md:border-0"
+              md:bg-transparent md:backdrop-blur-none md:border-0 md:shadow-xl"
           >
             {/* Swipe handle — mobile only */}
             <div className="flex justify-center pt-2 pb-1 md:hidden">
               <div className="w-10 h-1 rounded-full bg-gray-300" />
             </div>
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 md:py-4 border-b border-gray-100 md:bg-white/60 md:backdrop-blur-sm md:rounded-t-2xl">
+            <div className="relative z-10 flex items-center justify-between px-5 py-4 md:py-4 border-b border-gray-100 md:bg-white/60 md:backdrop-blur-sm md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
                 </div>
                 <span className="text-sm font-semibold text-gray-900">{t('header')}</span>
               </div>
-              <button
-                onClick={() => toggle(false)}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
-                aria-label={t('closeChatAriaLabel')}
-              >
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-1">
+                <div className="relative group">
+                  <button
+                    className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+                    aria-label={t('talkToTeam')}
+                  >
+                    <HelpCircle size={16} />
+                  </button>
+                  <div className="absolute right-0 top-full mt-1 w-48 rounded-xl bg-white shadow-lg border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                    <p className="text-xs text-gray-500 mb-2">{t('helpPopupText', 'Need help from a real person?')}</p>
+                    <button
+                      onClick={() => navigate('/support')}
+                      className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      {t('talkToTeam')}
+                    </button>
+                  </div>
+                </div>
+                <button
+                  onClick={() => toggle(false)}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+                  aria-label={t('closeChatAriaLabel')}
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
@@ -1283,7 +1302,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             </div>
 
             {/* Input */}
-            <div className="border-t border-gray-100 px-4 py-3 md:bg-white/60 md:backdrop-blur-sm">
+            <div className="border-t border-gray-100 px-4 py-3 md:bg-white/60 md:backdrop-blur-sm md:rounded-b-2xl">
               <div className="flex items-center gap-2 rounded-xl bg-gray-50 border border-gray-200 px-3 py-2 focus-within:border-gray-400 transition-colors">
                 <input
                   ref={inputRef}
@@ -1305,16 +1324,6 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               </div>
             </div>
 
-            {/* Talk to our team link */}
-            <div className="px-4 pb-3 pt-1 flex justify-center md:bg-white/60 md:backdrop-blur-sm md:rounded-b-2xl">
-              <button
-                onClick={() => navigate('/support')}
-                className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <LifeBuoy size={12} />
-                {t('talkToTeam')}
-              </button>
-            </div>
           </motion.aside>
         )}
       </AnimatePresence>

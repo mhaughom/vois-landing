@@ -904,20 +904,6 @@ const Work: React.FC = () => {
     };
   }, []);
 
-  // Apply background on <html> so it scrolls with the page AND extends behind ChatPanel
-  useEffect(() => {
-    const html = document.documentElement;
-    html.style.backgroundImage = 'url("/work-bg.jpg")';
-    html.style.backgroundSize = '100% auto';
-    html.style.backgroundRepeat = 'no-repeat';
-    html.style.backgroundColor = '#F8F9FA';
-    return () => {
-      html.style.backgroundImage = '';
-      html.style.backgroundSize = '';
-      html.style.backgroundRepeat = '';
-      html.style.backgroundColor = '';
-    };
-  }, []);
 
   useEffect(() => {
     Analytics.workPageViewed();

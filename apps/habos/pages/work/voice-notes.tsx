@@ -44,7 +44,7 @@ const VoiceNotes: React.FC = () => {
   const techStrip = t('techStrip', { returnObjects: true }) as string[];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* ── Main ── */}

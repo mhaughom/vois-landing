@@ -14,7 +14,7 @@ const AlwaysWithinReach: React.FC = () => {
   const surfaces = t('surfaces', { returnObjects: true }) as Array<{ name: string; detail: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">

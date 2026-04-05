@@ -14,7 +14,7 @@ const AINative: React.FC = () => {
   const systems = t('systems', { returnObjects: true }) as Array<{ title: string; desc: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-32 pb-24 px-6 md:px-12">

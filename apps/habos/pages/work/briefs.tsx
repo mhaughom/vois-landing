@@ -15,7 +15,7 @@ const Briefs: React.FC = () => {
   const benefitCards = t('benefitCards', { returnObjects: true }) as Array<{ title: string; description: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* Content */}

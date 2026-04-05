@@ -127,7 +127,7 @@ const Bookings: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* ── Main ──────────────────────────────────────────────────────── */}

@@ -72,7 +72,7 @@ const WebsiteBuilder: React.FC = () => {
   const mockServices = t('mockSite.services', { returnObjects: true }) as Array<{ name: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* ── Main ──────────────────────────────────────────────────────── */}

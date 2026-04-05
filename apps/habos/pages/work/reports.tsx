@@ -23,7 +23,7 @@ const Reports: React.FC = () => {
   const exampleSteps = t('example.steps', { returnObjects: true }) as string[];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* Hero Section */}

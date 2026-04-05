@@ -39,7 +39,7 @@ const Payments: React.FC = () => {
   const flowNodes = t('flowNodes', { returnObjects: true }) as Array<{ label: string }>;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* ─── Content ─── */}

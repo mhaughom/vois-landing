@@ -9,7 +9,7 @@ const Email: React.FC = () => {
   const { t } = useTranslation('work-email');
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
