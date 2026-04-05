@@ -486,8 +486,10 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     // Personalized greeting for returning visitors
     if (isReturningVisitor()) {
       const profile = getVisitorProfile();
+      // Only mention substantive pages — skip generic navigation pages
+      const genericPages = new Set(['/', '/work', '/support', '/legal', '/login', '/setup', '/success']);
       const pages = (profile?.lastPages || [])
-        .filter(p => p !== '/')
+        .filter(p => !genericPages.has(p))
         .slice(-3)
         .map(p => pageNameFromPath(p, activePageNames));
       const greeting = pages.length > 0
@@ -1203,11 +1205,12 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                 >
                   <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-md ${
                         msg.role === 'user'
-                          ? 'bg-gray-900 text-white rounded-br-md'
-                          : 'bg-gray-50 text-gray-800 rounded-bl-md'
+                          ? 'text-white rounded-br-md'
+                          : 'bg-white/80 text-gray-800 rounded-bl-md'
                       }`}
+                      style={msg.role === 'user' ? { backgroundColor: '#5A7A9E' } : undefined}
                     >
                       {msg.role === 'assistant' ? (
                         <>

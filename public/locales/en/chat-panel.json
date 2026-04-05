@@ -13,5 +13,5 @@
   "emailExists": "You're already signed up!",
   "bookDemo": "Book a 15-min demo",
   "returnGreeting": "Welcome back! What can I help you with today?",
-  "returnGreetingWithPages": "Welcome back! Last time you were checking out {{pages}}. Want to pick up where you left off?"
+  "returnGreetingWithPages": "Welcome back! Interested in {{pages}}? I can help you dive deeper."
 }

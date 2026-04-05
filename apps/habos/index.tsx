@@ -17,6 +17,88 @@ configureWaitlist('habos');
 configureVisitorProfile('habos-visitor-profile', ['/work/crm', '/work/dispatch', '/work/finance', '/work/operations']);
 bootConsent();
 
+const habosChat = {
+  pageNames: {
+    '/': 'Home',
+    '/work': 'Work',
+    '/support': 'Support',
+    '/legal': 'Legal',
+    '/setup': 'Setup',
+    '/success': 'Success',
+    '/login': 'Login',
+    '/work/voice-notes': 'Voice Notes',
+    '/work/meeting-notes': 'Meeting Notes',
+    '/work/projects': 'Projects',
+    '/work/email': 'Email',
+    '/work/operations': 'Operations',
+    '/work/org-chart': 'Org Chart',
+    '/work/reports': 'Reports',
+    '/work/tasks': 'Tasks',
+    '/work/calendar': 'Calendar',
+    '/work/assistant': 'Assistant',
+    '/work/brain': 'Brain',
+    '/work/briefs': 'Briefs',
+    '/work/agents': 'Agents',
+    '/work/watch': 'Watch Assistant',
+    '/work/slides': 'Slides',
+    '/work/research': 'Research',
+    '/work/dispatch': 'Dispatch',
+    '/work/routes': 'Routes',
+    '/work/time-tracking': 'Time Tracking',
+    '/work/team-map': 'Team Map',
+    '/work/crm': 'CRM',
+    '/work/products': 'Products',
+    '/work/bookings': 'Bookings',
+    '/work/finance': 'Finance',
+    '/work/payments': 'Payments',
+    '/work/scheduling-links': 'Scheduling Links',
+    '/work/website-builder': 'Website Builder',
+    '/work/marketing': 'Marketing',
+    '/work/ads': 'Ads',
+    '/work/creative-studio': 'Creative Studio',
+    '/work/funnels': 'Funnels',
+    '/work/domains': 'Domains',
+    '/work/scraper': 'Scraper',
+    '/work/messenger': 'Messenger',
+    '/work/telephony': 'Telephony',
+    '/work/tickets': 'Tickets',
+    '/work/forms': 'Forms',
+    '/work/playbooks': 'Playbooks',
+    '/work/files': 'Files',
+    '/work/people': 'People',
+    '/work/communication': 'Communication',
+    '/work/scheduling': 'Scheduling',
+    '/work/jobs-operations': 'Jobs & Operations',
+    '/work/sales-payments': 'Sales & Payments',
+    '/work/voice-ai': 'Voice AI',
+    '/work/website-marketing': 'Website & Marketing',
+    '/solutions/service-businesses': 'Service Businesses',
+    '/solutions/product-businesses': 'Product Businesses',
+    '/solutions/creative-businesses': 'Creative Businesses',
+    '/solutions/field-operations': 'Field Operations',
+    '/solutions/teams-startups': 'Teams & Startups',
+    '/solutions/solo-founders': 'Solo Founders',
+    '/philosophy/the-airlock': 'The Airlock',
+    '/philosophy/one-assistant': 'One Assistant',
+    '/philosophy/capture-your-brain': 'Capture Your Brain',
+    '/philosophy/always-within-reach': 'Always Within Reach',
+    '/philosophy/suggestions-not-menus': 'Suggestions Not Menus',
+    '/philosophy/two-interfaces': 'Two Interfaces',
+    '/philosophy/speed-of-thought': 'Speed of Thought',
+    '/philosophy/everything-in-one-place': 'Everything in One Place',
+    '/philosophy/built-for-teams': 'Built for Teams',
+    '/philosophy/your-software-your-way': 'Your Software Your Way',
+    '/philosophy/advisors-that-disagree': 'Advisors That Disagree',
+    '/philosophy/ai-native': 'AI Native',
+    '/philosophy/human-control': 'Human Control',
+    '/philosophy/memory-that-compounds': 'Memory That Compounds',
+    '/philosophy/one-brain': 'One Brain',
+    '/philosophy/small-team-leverage': 'Small Team Leverage',
+    '/philosophy/supercharge-your-team': 'Supercharge Your Team',
+    '/philosophy/voice-first': 'Voice First',
+  },
+};
+
 // Lazy-load pages
 const Work = React.lazy(() => import('./pages/Work'));
 const Login = React.lazy(() => import('./pages/Login'));
@@ -198,7 +280,7 @@ root.render(
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />
         </Routes>
-        <ChatPanel />
+        <ChatPanel config={habosChat} />
         <CookieConsent />
       </Suspense>
     </BrowserRouter>

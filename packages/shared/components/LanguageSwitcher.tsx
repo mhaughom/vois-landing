@@ -86,7 +86,8 @@ export const LanguageSwitcher: React.FC<{ className?: string; navPill?: boolean 
       <AnimatePresence>
         {open && (
           <div
-            className="absolute right-0 top-full pt-3 z-50"
+            className="absolute top-full pt-3 z-50"
+            style={{ left: '50%', transform: 'translateX(-50%)' }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
