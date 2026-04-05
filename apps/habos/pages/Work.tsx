@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ContextualChat } from '@li/shared/components/ContextualChat';
 import { ActionCards as ActionCardsComponent } from '@li/shared/components/ActionCards';
 import { Link } from 'react-router-dom';
@@ -24,6 +24,7 @@ import { AnimatedHabosIcon } from '../components/AnimatedHabosIcon';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';
 import { BoxAnimation } from '@li/shared/components/BoxAnimation';
 import { AppGridBox } from '@li/shared/components/AppGridBox';
+import { WaitlistModal } from '@li/shared/components/WaitlistModal';
 
 import FeatureSection from './work/features/FeatureSection';
 import VoiceNotesDemo from './work/features/VoiceNotesDemo';
@@ -793,6 +794,8 @@ const Work: React.FC = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [annualBilling, setAnnualBilling] = useState(true);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [waitlistSource, setWaitlistSource] = useState('pricing');
   const [animPhase, setAnimPhase] = useState<AnimPhase>('dot');
   const [focusLabel, setFocusLabel] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
@@ -901,9 +904,7 @@ const Work: React.FC = () => {
     };
   }, []);
 
-  // Parallax: gradient scrolls at ~70% of content speed (lags 30% behind)
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, (v) => v * 0.3);
+  // Background is fixed (no parallax) so it extends behind the ChatPanel naturally
 
   useEffect(() => {
     Analytics.workPageViewed();
@@ -985,12 +986,10 @@ const Work: React.FC = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#F8F9FA' }}>
-      {/* Background image — gradient + grain baked into one JPEG, tiles vertically, parallax */}
-      <motion.div
-        className="absolute inset-x-0 top-0 pointer-events-none z-0"
+      {/* Background image — gradient + grain baked into one JPEG, fixed so it extends behind ChatPanel */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
         style={{
-          y: backgroundY,
-          height: '130%',
           backgroundImage: 'url("/work-bg.jpg")',
           backgroundSize: '100% auto',
           backgroundRepeat: 'no-repeat',
@@ -1009,7 +1008,7 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           NAVIGATION — outside content wrapper so z-50 stacks above overlay
           ═══════════════════════════════════════════════════════════════════ */}
-      <Navbar onOpenWaitlist={() => scrollToSection('pricing')} LogoComponent={AnimatedHabosIcon} />
+      <Navbar onOpenWaitlist={() => { setWaitlistSource('navbar'); setShowWaitlistModal(true); }} LogoComponent={AnimatedHabosIcon} />
 
       {/* All content sits above the gradient + grain layers */}
       <div className="relative z-10">
@@ -1494,6 +1493,8 @@ const Work: React.FC = () => {
                 <button
                   onClick={() => {
                     Analytics.waitlistModalOpened('work_pricing_personal');
+                    setWaitlistSource('pricing_personal');
+                    setShowWaitlistModal(true);
                   }}
                   className="w-full bg-slate-100 text-slate-900 py-3.5 rounded-full text-base font-semibold hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] mb-6"
                 >
@@ -1520,6 +1521,8 @@ const Work: React.FC = () => {
                 <button
                   onClick={() => {
                     Analytics.waitlistModalOpened('work_pricing_work');
+                    setWaitlistSource('pricing_work');
+                    setShowWaitlistModal(true);
                   }}
                   className="w-full bg-white text-slate-950 py-3.5 rounded-full text-base font-semibold hover:bg-slate-100 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg mb-6"
                 >
@@ -1744,6 +1747,13 @@ const Work: React.FC = () => {
       </div>{/* end content z-10 wrapper */}
 
       {/* Video modal removed — video now plays inline in hero */}
+
+      {/* Waitlist Modal */}
+      <WaitlistModal
+        isOpen={showWaitlistModal}
+        onClose={() => setShowWaitlistModal(false)}
+        source={waitlistSource}
+      />
     </div>
   );
 };

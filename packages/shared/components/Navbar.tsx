@@ -981,6 +981,11 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                 </div>
               ))}
 
+              {/* Mobile Language Switcher */}
+              <div className="mt-4">
+                <LanguageSwitcher navPill className="w-full" />
+              </div>
+
               {/* Mobile CTA */}
               <div className="mt-6 flex flex-col gap-3">
                 <motion.button

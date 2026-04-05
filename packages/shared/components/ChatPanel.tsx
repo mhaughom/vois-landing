@@ -65,14 +65,20 @@ const HighlightOverlay: React.FC<{ selector: string | null; onClear: () => void 
     const update = () => setRect(el.getBoundingClientRect());
     update();
 
-    // Re-measure on scroll/resize
-    window.addEventListener('scroll', update, true);
-    window.addEventListener('resize', update);
+    // Re-measure on scroll/resize — throttled via rAF to avoid layout thrashing
+    let rafId = 0;
+    const throttledUpdate = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => { update(); rafId = 0; });
+    };
+    window.addEventListener('scroll', throttledUpdate, { passive: true });
+    window.addEventListener('resize', throttledUpdate);
     // Auto-clear after 4s
     const timer = setTimeout(onClear, 4000);
     return () => {
-      window.removeEventListener('scroll', update, true);
-      window.removeEventListener('resize', update);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', throttledUpdate);
+      window.removeEventListener('resize', throttledUpdate);
       clearTimeout(timer);
     };
   }, [selector, onClear]);
@@ -615,11 +621,11 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
 
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('scroll', handleScroll, true);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('scroll', handleScroll, true);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -1126,31 +1132,6 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
         )}
       </AnimatePresence>
 
-      {/* Backdrop — flipped background behind chat panel, only in the reflow gap */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="fixed top-0 right-0 bottom-0 z-[5] pointer-events-none overflow-hidden hidden md:block"
-            style={{ width: PANEL_WIDTH + 32 }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: 'url("/work-bg.jpg")',
-                backgroundSize: '100vw auto',
-                backgroundPosition: 'right top',
-                backgroundRepeat: 'no-repeat',
-                transform: 'scaleX(-1)',
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Chat panel */}
       <AnimatePresence>
         {isOpen && (
@@ -1168,7 +1149,8 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             }}
             className="fixed flex flex-col bg-white/90 backdrop-blur-sm shadow-2xl border border-slate-200/40 overflow-hidden
               inset-0 rounded-none z-[51]
-              md:inset-auto md:rounded-2xl md:right-4 md:bottom-4 md:top-[100px] md:w-[380px] md:z-40"
+              md:inset-auto md:rounded-2xl md:right-4 md:bottom-4 md:top-[100px] md:w-[380px] md:z-40
+              md:bg-transparent md:backdrop-blur-none md:shadow-none md:border-0"
           >
             {/* Swipe handle — mobile only */}
             <div className="flex justify-center pt-2 pb-1 md:hidden">

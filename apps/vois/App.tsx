@@ -26,7 +26,7 @@ import { Analytics } from '@li/shared/lib/analytics';
 import { ActionCards } from '@li/shared/components/ActionCards';
 import { ContextualChat } from '@li/shared/components/ContextualChat';
 import { LifeAreas } from './components/LifeAreas';
-import { WaitlistModal } from './components/WaitlistModal';
+import { WaitlistModal } from '@li/shared/components/WaitlistModal';
 import { MobileVideoCards } from './components/MobileVideoCards';
 
 // Hook to detect user's motion preference
