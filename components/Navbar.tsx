@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Analytics } from '../lib/analytics';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { AnimatedHabosIcon } from './AnimatedHabosIcon';
 
 // Helper function to scroll to a section
 export const scrollToSection = (sectionId: string) => {
@@ -386,6 +387,9 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
     }, 200);
   }, []);
 
+  const [logoPillHovered, setLogoPillHovered] = useState(false);
+  const isHabos = variant === 'habos';
+
   return (
     <>
       <motion.nav
@@ -396,29 +400,43 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
       >
         {/* ── Logo ────────────────────────────────────────────────────── */}
         {isDemoActive && onResetDemo ? (
-          <button onClick={onResetDemo} className="pointer-events-auto cursor-pointer">
+          <button onClick={onResetDemo} className="pointer-events-auto cursor-pointer"
+            onMouseEnter={() => setLogoPillHovered(true)}
+            onMouseLeave={() => setLogoPillHovered(false)}
+          >
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2.5 sm:gap-4 bg-white/80 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-slate-100 shadow-lg"
+              className="flex items-center gap-0 bg-white/80 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full border border-slate-100 shadow-lg"
             >
-              <img src={brand.logo} alt={t(`brand.${variant}.name`)} className="h-6 w-6 sm:h-9 sm:w-9" />
+              {isHabos ? (
+                <AnimatedHabosIcon isHovered={logoPillHovered} className="h-8 w-8 sm:h-12 sm:w-12 -ml-1" />
+              ) : (
+                <img src={brand.logo} alt={t(`brand.${variant}.name`)} className="h-8 w-8 sm:h-12 sm:w-12 -ml-1" />
+              )}
               <div className="flex flex-col">
-                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{t(`brand.${variant}.name`)}</span>
-                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{t(`brand.${variant}.tagline`)}</span>
+                <span className="font-black text-base sm:text-2xl tracking-tight text-slate-900 leading-none">{t(`brand.${variant}.name`)}</span>
+                <span className="text-[6px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{t(`brand.${variant}.tagline`)}</span>
               </div>
             </motion.div>
           </button>
         ) : (
-          <Link to={brand.homeLink} className="pointer-events-auto">
+          <Link to={brand.homeLink} className="pointer-events-auto"
+            onMouseEnter={() => setLogoPillHovered(true)}
+            onMouseLeave={() => setLogoPillHovered(false)}
+          >
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-2.5 sm:gap-4 bg-white/80 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-full border border-slate-100 shadow-lg"
+              className="flex items-center gap-0 bg-white/80 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full border border-slate-100 shadow-lg"
             >
-              <img src={brand.logo} alt={t(`brand.${variant}.name`)} className="h-6 w-6 sm:h-9 sm:w-9" />
+              {isHabos ? (
+                <AnimatedHabosIcon isHovered={logoPillHovered} className="h-8 w-8 sm:h-12 sm:w-12 -ml-1" />
+              ) : (
+                <img src={brand.logo} alt={t(`brand.${variant}.name`)} className="h-8 w-8 sm:h-12 sm:w-12 -ml-1" />
+              )}
               <div className="flex flex-col">
-                <span className="font-black text-xl sm:text-3xl tracking-tight text-slate-900 leading-none">{t(`brand.${variant}.name`)}</span>
-                <span className="text-[7px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{t(`brand.${variant}.tagline`)}</span>
+                <span className="font-black text-base sm:text-2xl tracking-tight text-slate-900 leading-none">{t(`brand.${variant}.name`)}</span>
+                <span className="text-[6px] sm:text-[8px] font-semibold tracking-[0.15em] uppercase text-slate-400 leading-tight">{t(`brand.${variant}.tagline`)}</span>
               </div>
             </motion.div>
           </Link>
@@ -651,7 +669,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               </motion.div>
             ) : (
               <motion.div key="m" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                <Menu size={18} className="text-slate-700" />
+                <ChevronDown size={18} className="text-slate-700" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -798,15 +816,30 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
       {/* ── Mobile menu overlay ─────────────────────────────────────── */}
       <AnimatePresence>
         {mobileMenuOpen && (
+          <>
+          {/* Scrim behind mobile menu */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[41] bg-black/20 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
           <motion.div
             variants={mobileOverlay}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-40 bg-white backdrop-blur-2xl overflow-y-auto overscroll-contain"
-            style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 80px)' }}
+            className="fixed z-[42] md:hidden bg-white/95 backdrop-blur-2xl overflow-y-auto overscroll-contain rounded-2xl border border-slate-200/60 shadow-2xl"
+            style={{
+              top: 'calc(env(safe-area-inset-top, 0px) + 80px)',
+              left: '12px',
+              right: '12px',
+              maxHeight: 'calc(100vh - env(safe-area-inset-top, 0px) - 120px)',
+            }}
           >
-            <div className="px-6 pb-10">
+            <div className="px-5 pb-8 pt-2">
               {menuData.map((category) => (
                 <div key={category.label} className="border-b border-slate-100">
                   <button
@@ -839,14 +872,25 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                         <div className="pb-4">
                           {category.label === t('habos.product') ? (
                             /* Product: show clusters with nested sub-pages */
-                            Object.entries(PRODUCT_CLUSTERS).map(([clusterName, cluster]) => (
+                            Object.entries(PRODUCT_CLUSTERS).map(([clusterName, cluster]) => {
+                              const clusterMenuItem = category.sections[0].items.find(item => item.href === cluster.overview);
+                              const ClusterIcon = clusterMenuItem?.icon;
+                              const clusterColor = clusterMenuItem?.color;
+                              return (
                               <div key={clusterName} className="mb-1">
                                 {/* Cluster header — tappable to expand */}
                                 <button
                                   onClick={() => setMobileClusterExpanded(mobileClusterExpanded === clusterName ? null : clusterName)}
                                   className="w-full flex items-center justify-between px-2 py-3 rounded-xl active:bg-slate-50 transition-colors"
                                 >
-                                  <span className="text-sm font-semibold text-slate-800">{clusterGroupLabel(clusterName)}</span>
+                                  <div className="flex items-center gap-2.5">
+                                    {ClusterIcon && (
+                                      <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
+                                        <ClusterIcon size={15} style={{ color: clusterColor || '#94a3b8' }} />
+                                      </div>
+                                    )}
+                                    <span className="text-sm font-semibold text-slate-800">{clusterGroupLabel(clusterName)}</span>
+                                  </div>
                                   <ChevronDown
                                     size={14}
                                     className={`text-slate-400 transition-transform duration-200 ${
@@ -897,7 +941,8 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                   )}
                                 </AnimatePresence>
                               </div>
-                            ))
+                              );
+                            })
                           ) : (
                             /* Other categories: flat list as before */
                             category.sections.map((section, si) => (
@@ -915,7 +960,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                     className="flex items-center gap-3 px-2 py-3 rounded-xl active:bg-slate-50 transition-colors"
                                   >
                                     <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
-                                      <item.icon size={16} className="text-slate-500" />
+                                      <item.icon size={16} style={{ color: item.color || '#94a3b8' }} />
                                     </div>
                                     <div>
                                       <p className="text-sm font-medium text-slate-800">
@@ -958,6 +1003,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
               </div>
             </div>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

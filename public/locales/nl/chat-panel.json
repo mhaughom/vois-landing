@@ -4,5 +4,12 @@
   "placeholder": "Stel een vraag over een functie...",
   "openChatAriaLabel": "Chat openen",
   "closeChatAriaLabel": "Chat sluiten",
-  "sendMessageAriaLabel": "Bericht versturen"
+  "sendMessageAriaLabel": "Bericht versturen",
+  "talkToTeam": "Praat met ons team",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
 }

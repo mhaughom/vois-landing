@@ -39,132 +39,205 @@ import TeamViewDemo from './work/features/TeamViewDemo';
 import LiveViewDemo from './work/features/LiveViewDemo';
 import CustomAppsDemo from './work/features/CustomAppsDemo';
 
-// ── Chroma key video — renders video to canvas, replacing white with transparency ──
+// ── Hero intro video — plain video playback with intro->loop swap ─────────
 
-const ChromaKeyVideo: React.FC<{
-  videoRef: React.RefObject<HTMLVideoElement | null>;
+const HeroIntroVideo: React.FC<{
   src: string;
   loopSrc?: string;
-  keyStrength: number;
+  active?: boolean;
   className?: string;
   onVideoTime?: (totalElapsed: number) => void;
-}> = ({ videoRef, src, loopSrc, keyStrength, className, onVideoTime }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+}> = ({ src, loopSrc, active = true, className, onVideoTime }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number>(0);
-  const introVideoRef = useRef<HTMLVideoElement | null>(null);
-  const loopVideoRef = useRef<HTMLVideoElement | null>(null);
+  const internalVideoRef = useRef<HTMLVideoElement | null>(null);
+  const reportRafRef = useRef<number>(0);
   const useLoopRef = useRef(false);
   const introEndTimeRef = useRef(0);
-  const startWallTime = useRef(0);
   const isVisibleRef = useRef(true);
-
-  // Expose the intro video to parent
-  useEffect(() => {
-    if (videoRef && 'current' in videoRef) {
-      (videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = introVideoRef.current;
-    }
-  }, [videoRef]);
 
   // Pause videos when off-screen
   useEffect(() => {
+    const video = internalVideoRef.current;
+    if (!active) {
+      video?.pause();
+      return;
+    }
     const el = containerRef.current;
-    if (!el) return;
+    if (!el || !video) return;
     const observer = new IntersectionObserver(([entry]) => {
       isVisibleRef.current = entry.isIntersecting;
-      const intro = introVideoRef.current;
-      const loop = loopVideoRef.current;
-      if (entry.isIntersecting) {
-        const active = useLoopRef.current ? loop : intro;
-        active?.play().catch(() => {});
-      } else {
-        intro?.pause();
-        loop?.pause();
-      }
+      if (!active || !entry.isIntersecting) video.pause();
+      else video.play().catch(() => {});
     });
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [active]);
 
-  // Preload loop video and switch when intro ends
+  // Preload loop video so the handoff is ready.
   useEffect(() => {
-    const intro = introVideoRef.current;
-    const loop = loopVideoRef.current;
-    if (!intro || !loop || !loopSrc) return;
-    // Preload loop video so it's ready instantly
-    loop.src = loopSrc;
-    loop.load();
-    const onEnded = () => {
-      if (useLoopRef.current) return;
-      introEndTimeRef.current = intro.duration || 39;
-      useLoopRef.current = true;
-      loop.currentTime = 0;
-      loop.play().catch(() => {});
-    };
-    intro.addEventListener('ended', onEnded);
-    return () => intro.removeEventListener('ended', onEnded);
+    if (!loopSrc) return;
+    const preloadVideo = document.createElement('video');
+    preloadVideo.preload = 'auto';
+    preloadVideo.src = loopSrc;
+    preloadVideo.load();
   }, [loopSrc]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
-
-    let running = true;
-    const draw = () => {
-      if (!running) return;
-      // Skip draw when off-screen
-      if (!isVisibleRef.current) {
-        rafRef.current = requestAnimationFrame(draw);
-        return;
-      }
-      const video = useLoopRef.current ? loopVideoRef.current : introVideoRef.current;
-      if (video && video.readyState >= 2 && video.videoWidth > 0) {
-        // Render at half resolution during chroma key for performance
-        const scale = keyStrength > 0.01 ? 0.5 : 1;
-        const tw = Math.round(video.videoWidth * scale);
-        const th = Math.round(video.videoHeight * scale);
-        if (canvas.width !== tw || canvas.height !== th) {
-          canvas.width = tw;
-          canvas.height = th;
-        }
-        ctx.drawImage(video, 0, 0, tw, th);
-        if (keyStrength > 0.01) {
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const d = imageData.data;
-          const threshold = 220;
-          for (let i = 0; i < d.length; i += 4) {
-            const r = d[i], g = d[i + 1], b = d[i + 2];
-            if (r > threshold && g > threshold && b > threshold) {
-              const whiteness = Math.min(1, (Math.min(r, g, b) - threshold) / (255 - threshold));
-              d[i + 3] = Math.round(255 * (1 - whiteness * keyStrength));
-            }
-          }
-          ctx.putImageData(imageData, 0, 0);
-        }
-        // Report total elapsed video time
-        if (onVideoTime) {
-          const elapsed = useLoopRef.current
-            ? introEndTimeRef.current + (loopVideoRef.current?.currentTime || 0)
-            : video.currentTime;
-          onVideoTime(elapsed);
-        }
-      }
-      rafRef.current = requestAnimationFrame(draw);
+    const video = internalVideoRef.current;
+    if (!video) return;
+    const onEnded = () => {
+      if (useLoopRef.current || !loopSrc) return;
+      introEndTimeRef.current = video.duration || 39;
+      useLoopRef.current = true;
+      video.src = loopSrc;
+      video.loop = true;
+      video.currentTime = 0;
+      video.play().catch(() => {});
     };
-    rafRef.current = requestAnimationFrame(draw);
-    return () => { running = false; cancelAnimationFrame(rafRef.current); };
-  }, [keyStrength, onVideoTime]);
+    video.addEventListener('ended', onEnded);
+    return () => video.removeEventListener('ended', onEnded);
+  }, [loopSrc]);
+
+  useEffect(() => {
+    const video = internalVideoRef.current;
+    if (!video) return;
+    if (!active) {
+      video.pause();
+      return;
+    }
+    useLoopRef.current = false;
+    introEndTimeRef.current = 0;
+    video.loop = false;
+    if (video.src !== new URL(src, window.location.href).href) {
+      video.src = src;
+      video.load();
+    }
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }, [active, src]);
+
+  useEffect(() => {
+    if (!active) return;
+    const video = internalVideoRef.current;
+    if (!video || !onVideoTime) return;
+    let running = true;
+    const report = () => {
+      if (!running) return;
+      if (isVisibleRef.current) {
+        const elapsed = useLoopRef.current
+          ? introEndTimeRef.current + video.currentTime
+          : video.currentTime;
+        onVideoTime(elapsed);
+      }
+      reportRafRef.current = requestAnimationFrame(report);
+    };
+    reportRafRef.current = requestAnimationFrame(report);
+    return () => {
+      running = false;
+      cancelAnimationFrame(reportRafRef.current);
+    };
+  }, [active, onVideoTime]);
+
+  useEffect(() => {
+    const video = internalVideoRef.current;
+    if (!video) return;
+    if (!active) {
+      video.pause();
+      return;
+    }
+    video.play().catch(() => {});
+  }, [active]);
 
   return (
     <div ref={containerRef} className={className}>
-      <video ref={introVideoRef} src={src} muted playsInline preload="auto" style={{ display: 'none' }} />
-      <video ref={loopVideoRef} muted playsInline loop preload="auto" style={{ display: 'none' }} />
-      <canvas
-        ref={canvasRef}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      <video
+        ref={internalVideoRef}
+        src={src}
+        muted
+        playsInline
+        preload="auto"
+        className="w-full h-full object-cover"
       />
+    </div>
+  );
+};
+
+const HeroIntroStage: React.FC<{ active: boolean }> = ({ active }) => {
+  const { t, i18n } = useTranslation('work-home');
+  const [videoElapsed, setVideoElapsed] = useState(0);
+  const businesses = useMemo(
+    () => t('heroBusinesses', { returnObjects: true }) as string[],
+    [i18n.language, t],
+  );
+
+  useEffect(() => {
+    if (!active) setVideoElapsed(0);
+  }, [active]);
+
+  const vt = videoElapsed - 0.5;
+  const lipsVisible = vt >= 5.5;
+  const lipsOpacity = Math.min(1, Math.max(0, (vt - 5) / 1));
+  const sceneTime = Math.max(0, vt - 4.5);
+  const sceneIdx = Math.floor(sceneTime / 3) % businesses.length;
+  const edgeGradientOpacity = Math.max(0, 1 - videoElapsed / 2.2);
+
+  return (
+    <div className="flex flex-col items-center">
+      <p
+        className="text-sm font-medium text-slate-400 tracking-wide mb-3 transition-opacity duration-500"
+        style={{ opacity: lipsOpacity }}
+      >
+        {t('heroVideo.madeFor')}
+      </p>
+      <div
+        className="relative"
+        style={{
+          width: 'min(340px, 38vh)',
+          height: 'min(340px, 38vh)',
+        }}
+      >
+        <div className="absolute inset-0 rounded-2xl bg-white border border-slate-200/60 shadow-2xl" />
+        <HeroIntroVideo
+          src="/videos/Intro-trimmed.mp4"
+          loopSrc="/videos/Intro-loop.mp4"
+          active={active}
+          className="absolute inset-0 rounded-2xl overflow-hidden"
+          onVideoTime={(t) => {
+            setVideoElapsed((prev) => (Math.abs(t - prev) > 0.05 ? t : prev));
+          }}
+        />
+        <div
+          className="absolute inset-0 rounded-2xl pointer-events-none"
+          style={{
+            opacity: edgeGradientOpacity,
+            background: [
+              'linear-gradient(to right, rgba(248,249,250,0.36), rgba(248,249,250,0) 18%, rgba(248,249,250,0) 82%, rgba(248,249,250,0.36))',
+              'linear-gradient(to bottom, rgba(248,249,250,0.28), rgba(248,249,250,0) 16%, rgba(248,249,250,0) 84%, rgba(248,249,250,0.28))',
+              'radial-gradient(circle at center, rgba(248,249,250,0) 58%, rgba(248,249,250,0.18) 100%)',
+            ].join(', '),
+            transition: 'opacity 180ms linear',
+          }}
+        />
+      </div>
+      <div
+        className="mt-4 transition-opacity duration-500"
+        style={{ opacity: lipsOpacity, minHeight: 40 }}
+      >
+        <AnimatePresence mode="wait">
+          {lipsVisible && (
+            <motion.h3
+              key={businesses[sceneIdx]}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="text-2xl font-semibold text-slate-900 tracking-tight text-center"
+            >
+              {businesses[sceneIdx]}
+            </motion.h3>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };
@@ -735,9 +808,12 @@ const Work: React.FC = () => {
     return () => mq.removeEventListener('change', handler);
   }, []);
   const [showVideo, setShowVideo] = useState(false);
+  const [introActive, setIntroActive] = useState(false);
+  const [showBoxAnimation, setShowBoxAnimation] = useState(true);
   const [heroHeadlineIdx, setHeroHeadlineIdx] = useState(0);
   const [boxTime, setBoxTime] = useState(0);
   const boxTimeRef = useRef(0);
+  const introTransitionTimeoutRef = useRef<number | null>(null);
   const boxTimeCallback = useCallback((t: number) => {
     // Only trigger React re-render at story thresholds — avoids re-rendering
     // the entire Work component (1600+ DOM nodes) on every tick
@@ -749,9 +825,7 @@ const Work: React.FC = () => {
       setBoxTime(t);
     }
   }, []);
-  const [videoElapsed, setVideoElapsed] = useState(0);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const introVideoRef = useRef<HTMLVideoElement>(null);
   const introStartedRef = useRef(false);
   const unfocusRef = React.useRef<(() => void) | null>(null);
 
@@ -807,13 +881,24 @@ const Work: React.FC = () => {
 
   // Start intro video when box animation reaches crossfade point
   useEffect(() => {
-    if (boxTime >= 32 && !introStartedRef.current && introVideoRef.current) {
+    if (boxTime >= 32 && !introStartedRef.current) {
       console.log('[HERO DEBUG] Starting intro video at boxTime:', boxTime.toFixed(1));
       introStartedRef.current = true;
-      introVideoRef.current.currentTime = 0;
-      introVideoRef.current.play().catch((e) => console.error('[HERO DEBUG] Intro video play failed:', e));
+      setIntroActive(true);
+      introTransitionTimeoutRef.current = window.setTimeout(() => {
+        setShowBoxAnimation(false);
+        setBoxTime((prev) => (prev < 34 ? 35 : prev));
+      }, 700);
     }
   }, [boxTime]);
+
+  useEffect(() => {
+    return () => {
+      if (introTransitionTimeoutRef.current !== null) {
+        clearTimeout(introTransitionTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Parallax: gradient scrolls at ~70% of content speed (lags 30% behind)
   const { scrollY } = useScroll();
@@ -931,110 +1016,38 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           HERO SECTION — Traditional headline + CTA
           ═══════════════════════════════════════════════════════════════════ */}
-      <Section className="h-screen min-h-screen pt-28 md:pt-44 pb-12 md:pb-28 px-6 md:px-12 flex items-center relative" style={{ overflow: 'visible' }}>
-        {/* Shared anchor for 3D box + intro video — desktop only, hidden on narrow screens */}
+      <Section className="h-screen min-h-screen pt-28 md:pt-44 pb-12 md:pb-28 px-6 md:px-12 flex flex-col relative" style={{ overflow: 'visible' }}>
+        {/* 3D box + intro video — desktop only, absolutely positioned */}
         {/* Box Animation — smooth crossfade out */}
         <div
           className="absolute inset-0 z-0 items-center justify-center pointer-events-none"
           style={{
             display: isDesktop ? 'flex' : 'none',
-            opacity: showVideo ? 0 : Math.max(0, Math.min(1, 1 - (boxTime - 32) / 0.5)),
-            transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
+            opacity: showVideo ? 0 : introActive ? 0 : 1,
+            transition: 'opacity 700ms ease-in-out',
             left: '40%',
           }}
         >
-          <BoxAnimation style={{ width: '100%', height: '100%' }} onTimeUpdate={boxTimeCallback} />
+          {showBoxAnimation && <BoxAnimation style={{ width: '100%', height: '100%' }} onTimeUpdate={boxTimeCallback} paused={introActive} />}
         </div>
         {/* Intro video — smooth crossfade in */}
-        {(() => {
-          const videoFadeIn = Math.max(0, Math.min(1, (boxTime - 32) / 0.5));
-          const videoAge = Math.max(0, boxTime - 32);
-          const bgFade = Math.min(1, Math.max(0, (videoAge - 3) / 3));
-          return (
-            <div
-              className="absolute inset-0 z-0 items-center justify-center pointer-events-none"
-              style={{
-                display: isDesktop ? 'flex' : 'none',
-                opacity: showVideo ? 0 : videoFadeIn,
-                transition: showVideo ? 'opacity 700ms ease-in-out' : undefined,
-                left: '40%',
-              }}
-            >
-              <div className="flex flex-col items-center">
-                {(() => {
-                  const VIDEO_BUSINESSES = t('heroBusinesses', { returnObjects: true }) as string[];
-                  // Offset by -0.5s to compensate for state propagation delay
-                  const vt = videoElapsed - 0.5;
-                  const lipsVisible = vt >= 5.5;
-                  const lipsOpacity = Math.min(1, Math.max(0, (vt - 5) / 1));
-                  // Each scene is ~3s. Use modulo to wrap around for loop video
-                  const sceneTime = Math.max(0, vt - 4.5);
-                  const sceneIdx = Math.floor(sceneTime / 3) % VIDEO_BUSINESSES.length;
-                  return (
-                    <>
-                      {/* "Made for..." top lip */}
-                      <p
-                        className="text-sm font-medium text-slate-400 tracking-wide mb-3 transition-opacity duration-500"
-                        style={{ opacity: lipsOpacity }}
-                      >
-                        {t('heroVideo.madeFor')}
-                      </p>
-                      <div
-                        className="relative"
-                        style={{
-                          width: 'min(340px, 38vh)',
-                          height: 'min(340px, 38vh)',
-                        }}
-                      >
-                        {/* White background + frame that fades in */}
-                        <div
-                          className="absolute inset-0 rounded-2xl bg-white border border-slate-200/60 shadow-2xl"
-                          style={{ opacity: bgFade }}
-                        />
-                        {/* Canvas-keyed video */}
-                        <ChromaKeyVideo
-                          videoRef={introVideoRef}
-                          src="/videos/Intro-trimmed.mp4"
-                          loopSrc="/videos/Intro-loop.mp4"
-                          keyStrength={1 - bgFade}
-                          className="absolute inset-0 rounded-2xl overflow-hidden"
-                          onVideoTime={(t) => {
-                            if (Math.abs(t - videoElapsed) > 0.05) setVideoElapsed(t);
-                          }}
-                        />
-                      </div>
-                      {/* Company name bottom lip */}
-                      <div
-                        className="mt-4 transition-opacity duration-500"
-                        style={{ opacity: lipsOpacity, minHeight: 40 }}
-                      >
-                        <AnimatePresence mode="wait">
-                          {lipsVisible && (
-                            <motion.h3
-                              key={VIDEO_BUSINESSES[sceneIdx]}
-                              initial={{ opacity: 0, y: 6 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -6 }}
-                              transition={{ duration: 0.3 }}
-                              className="text-2xl font-semibold text-slate-900 tracking-tight text-center"
-                            >
-                              {VIDEO_BUSINESSES[sceneIdx]}
-                            </motion.h3>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </>
-                  );
-                })()}
-              </div>
-            </div>
-          );
-        })()}
-        <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div
+          className="absolute inset-0 z-0 items-center justify-center pointer-events-none"
+          style={{
+            display: isDesktop ? 'flex' : 'none',
+            opacity: showVideo ? 0 : introActive ? 1 : 0,
+            transition: 'opacity 700ms ease-in-out',
+            left: '40%',
+          }}
+        >
+          <HeroIntroStage active={introActive && !showVideo} />
+        </div>
+        {/* my-auto centers when room, stays at top when tight — never goes above padding */}
+        <div className="max-w-7xl mx-auto w-full relative z-10 my-auto">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             {/* Left: Text content */}
             <div
-              className="text-center lg:text-left lg:flex-shrink-0 transition-[width] duration-700 ease-in-out relative w-full lg:max-w-[50%]"
+              className="text-center lg:text-left lg:flex-shrink-0 transition-[width] duration-700 ease-in-out relative z-10 w-full lg:max-w-[50%]"
               style={{ width: showVideo ? '20%' : undefined, minHeight: 'clamp(320px, 45vh, 500px)' }}
             >
               {/* Animated story headline — synced to box animation */}
@@ -1044,7 +1057,7 @@ const Work: React.FC = () => {
                 // Debug log removed — rrweb console recorder creates feedback loop
 
                 // Consistent font size class for ALL phases
-                const headlineSizeClass = 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl';
+                const headlineSizeClass = '';
 
                 return (
                   <>
@@ -1076,7 +1089,7 @@ const Work: React.FC = () => {
                     </p>
                     {/* Fixed-height headline container prevents layout shift */}
                     <h1 className="mb-3 md:mb-5"
-                      style={{ minHeight: 'clamp(120px, 18vh, 240px)' }}
+                      style={{ minHeight: 'clamp(80px, 18vh, 240px)', fontSize: 'clamp(1.5rem, min(5vw, 7vh), 4.5rem)' }}
                     >
                       {showVideo ? (
                         <>
@@ -1103,7 +1116,7 @@ const Work: React.FC = () => {
                               {heroHeadlines[heroHeadlineIdx].light.split('\n').map((line, i) => (
                                 <React.Fragment key={i}>
                                   <br />
-                                  <span className="font-normal whitespace-nowrap" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>{line}</span>
+                                  <span className="font-normal" style={{ color: 'rgba(30, 58, 138, 0.5)' }}>{line}</span>
                                 </React.Fragment>
                               ))}
                             </motion.span>

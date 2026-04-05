@@ -4,5 +4,12 @@
   "placeholder": "기능에 대해 물어보세요...",
   "openChatAriaLabel": "채팅 열기",
   "closeChatAriaLabel": "채팅 닫기",
-  "sendMessageAriaLabel": "메시지 보내기"
+  "sendMessageAriaLabel": "메시지 보내기",
+  "talkToTeam": "팀과 상담하기",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
 }

@@ -4,5 +4,12 @@
   "placeholder": "询问任何功能...",
   "openChatAriaLabel": "打开对话",
   "closeChatAriaLabel": "关闭对话",
-  "sendMessageAriaLabel": "发送消息"
+  "sendMessageAriaLabel": "发送消息",
+  "talkToTeam": "联系我们的团队",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
 }

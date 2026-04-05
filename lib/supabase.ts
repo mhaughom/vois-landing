@@ -21,6 +21,7 @@ export interface WaitlistEntry {
   completed_demo?: boolean;
   watched_video?: boolean;
   metadata?: Record<string, any>;
+  product?: 'vois' | 'habos';
 }
 
 // Waitlist service
@@ -38,6 +39,7 @@ export const waitlistService = {
           completed_demo: data.completed_demo,
           watched_video: data.watched_video,
           metadata: data.metadata,
+          product: data.product || (window.location.hostname.includes('habos') ? 'habos' : 'vois'),
         }])
         .select()
         .single();

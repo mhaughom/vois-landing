@@ -4,5 +4,12 @@
   "placeholder": "اسأل عن أي ميزة...",
   "openChatAriaLabel": "فتح المحادثة",
   "closeChatAriaLabel": "إغلاق المحادثة",
-  "sendMessageAriaLabel": "إرسال رسالة"
+  "sendMessageAriaLabel": "إرسال رسالة",
+  "talkToTeam": "تحدث مع فريقنا",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
 }

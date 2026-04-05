@@ -1869,11 +1869,11 @@ export const AppGridBox: React.FC = () => {
       </div>
 
       {/* Card grid — categorized rows with headers */}
-      <div className="max-w-5xl mx-auto px-6 relative z-10 space-y-6">
+      <div className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-6">
         {appCategories.map(cat => (
           <div key={cat.category}>
             <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-3 text-center">{cat.category}</h3>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex justify-center" style={{ gap: 'clamp(6px, 1vw, 14px)' }}>
           {cat.items.map(app => {
             const gone = absorbed.has(app.label);
             const flying = absorbing.has(app.label);
@@ -1885,8 +1885,9 @@ export const AppGridBox: React.FC = () => {
               <motion.div
                 key={app.label}
                 ref={(el) => { if (el) cardRefs.current.set(app.label, el); }}
-                className="relative select-none w-[58px] sm:w-[68px]"
+                className="relative select-none"
                 style={{
+                  width: `clamp(52px, ${80 / cat.items.length}vw, 110px)`,
                   zIndex: flying ? (descending.has(app.label) ? 20 : 50) : 10,
                   visibility: gone ? 'hidden' : 'visible',
                 }}
@@ -1972,8 +1973,8 @@ export const AppGridBox: React.FC = () => {
                     <app.W c={app.color} h={hoveredApp?.label === app.label} />
                   )}
                   <div
-                    className="absolute bottom-0 inset-x-0 text-center text-[9px] font-semibold pb-1.5 truncate px-1 rounded-b-xl"
-                    style={{ color: app.color, background: 'linear-gradient(to top, white 60%, transparent)' }}
+                    className="absolute bottom-0 inset-x-0 text-center font-semibold pb-1.5 truncate px-1 rounded-b-xl"
+                    style={{ color: app.color, background: 'linear-gradient(to top, white 60%, transparent)', fontSize: 'clamp(8px, 0.65vw, 10px)' }}
                   >
                     {app.label}
                   </div>
@@ -1988,9 +1989,9 @@ export const AppGridBox: React.FC = () => {
         {/* Hover popup */}
         <AnimatePresence>
           {hoveredApp && hoverRect && (() => {
-            const popW = Math.min(480, Math.max(280, vw * 0.35));
             const vw = typeof window !== 'undefined' ? window.innerWidth : 1200;
             const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
+            const popW = Math.min(480, Math.max(280, vw * 0.35));
             const spaceAbove = hoverRect.y - 16;
             const spaceBelow = vh - (hoverRect.y + hoverRect.h + 16);
             const spaceRight = vw - (hoverRect.x + hoverRect.w / 2 + 16);

@@ -4,5 +4,12 @@
   "placeholder": "Spørg om en hvilken som helst funktion...",
   "openChatAriaLabel": "Åbn chat",
   "closeChatAriaLabel": "Luk chat",
-  "sendMessageAriaLabel": "Send besked"
+  "sendMessageAriaLabel": "Send besked",
+  "talkToTeam": "Tal med vores team",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
 }

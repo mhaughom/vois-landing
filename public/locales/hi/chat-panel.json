@@ -4,5 +4,12 @@
   "placeholder": "किसी भी फीचर के बारे में पूछें...",
   "openChatAriaLabel": "चैट खोलें",
   "closeChatAriaLabel": "चैट बंद करें",
-  "sendMessageAriaLabel": "संदेश भेजें"
+  "sendMessageAriaLabel": "संदेश भेजें",
+  "talkToTeam": "हमारी टीम से बात करें",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
 }

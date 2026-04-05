@@ -120,6 +120,30 @@ export const Analytics = {
     capture('section_viewed', { section });
   },
 
+  // Chat conversion events
+  chatEmailCaptured: (email: string, conversationLength: number) => {
+    if (isPostHogReady()) {
+      posthog.identify(email, { email, captured_via: 'chat' });
+    }
+    capture('chat_email_captured', { conversation_length: conversationLength });
+  },
+
+  chatMeetingBookingClicked: (url: string) => {
+    capture('chat_meeting_booking_clicked', { calendly_url: url });
+  },
+
+  exitIntentTriggered: (page: string) => {
+    capture('exit_intent_triggered', { page });
+  },
+
+  exitIntentClicked: (page: string, suggestion: string) => {
+    capture('exit_intent_clicked', { page, suggestion });
+  },
+
+  exitIntentDismissed: (page: string) => {
+    capture('exit_intent_dismissed', { page });
+  },
+
   // Demo drop-offs
   demoCancelled: (stage: string) => {
     capture('demo_cancelled', { cancelled_at_stage: stage });

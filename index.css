@@ -3,6 +3,9 @@
   box-sizing: border-box;
 }
 
+/* Calendly popup renders above chat panel */
+.calendly-overlay { z-index: 100 !important; }
+
 html {
   scroll-behavior: smooth;
   overflow-x: clip;

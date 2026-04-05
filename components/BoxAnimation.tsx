@@ -559,33 +559,13 @@ const fogBlobTextures = (() => {
 
 // === Sub-components ===
 
-const BORDER_R = S * 0.022;
+const panelEdgeGeometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(S * 2, S * 2, THICK));
 const PanelEdges: React.FC<{ opacity: number }> = ({ opacity }) => {
-  const geo = useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(S * 2, S * 2, THICK)), []);
-  const edges = useMemo(() => {
-    const pos = geo.getAttribute("position");
-    const segs: { mid: V3; rot: V3; len: number }[] = [];
-    for (let i = 0; i < pos.count; i += 2) {
-      const ax = pos.getX(i), ay = pos.getY(i), az = pos.getZ(i);
-      const bx = pos.getX(i + 1), by = pos.getY(i + 1), bz = pos.getZ(i + 1);
-      const dx = bx - ax, dy = by - ay, dz = bz - az;
-      const len = Math.sqrt(dx * dx + dy * dy + dz * dz);
-      if (len < 0.001) continue;
-      const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dx, dy, dz).normalize());
-      const e = new THREE.Euler().setFromQuaternion(q);
-      segs.push({ mid: [(ax + bx) / 2, (ay + by) / 2, (az + bz) / 2], rot: [e.x, e.y, e.z], len });
-    }
-    return segs;
-  }, [geo]);
+  if (opacity < 0.01) return null;
   return (
-    <>
-      {edges.map((e, j) => (
-        <mesh key={j} position={e.mid} rotation={e.rot}>
-          <cylinderGeometry args={[BORDER_R, BORDER_R, e.len, 4]} />
-          <meshStandardMaterial color="#0d1525" transparent opacity={opacity} />
-        </mesh>
-      ))}
-    </>
+    <lineSegments geometry={panelEdgeGeometry}>
+      <lineBasicMaterial color="#0d1525" transparent opacity={opacity} toneMapped={false} />
+    </lineSegments>
   );
 };
 
@@ -753,7 +733,6 @@ const BoxAnimationScene: React.FC<{
   const _panelColors = useMemo(() => PANEL_COLORS.map(c => new THREE.Color(c)), []);
   const _flapColors = useMemo(() => ['#FF80C8', '#60D8FF', '#FFB060', '#60FF90'].map(c => new THREE.Color(c)), []);
 
-  const frameSkip = useRef(0);
   const fpsFrames = useRef(0);
   const fpsLastLog = useRef(performance.now());
   useFrame((_, delta) => {
@@ -783,12 +762,12 @@ const BoxAnimationScene: React.FC<{
       }
       return;
     }
-    // Re-render React tree at ~20fps instead of 60fps to reduce reconciliation cost
-    frameSkip.current++;
-    if (frameSkip.current >= 3) {
-      frameSkip.current = 0;
-      setTick(t => t + 1);
-    }
+    // Cap React-driven scene updates to ~30fps on fast machines, but still
+    // update every available frame on slower ones so motion doesn't turn choppy.
+    const nowMs = performance.now();
+    if (nowMs - lastRenderTime.current < 1000 / 30) return;
+    lastRenderTime.current = nowMs;
+    setTick(t => t + 1);
   });
 
   const time = elapsedRef.current;
@@ -1210,11 +1189,12 @@ export interface BoxAnimationProps {
   style?: React.CSSProperties;
   onTimeUpdate?: (time: number) => void;
   preserveDrawingBuffer?: boolean;
+  paused?: boolean;
   /** When set, animation advances only when this ref's value increases (frame-step mode for recording) */
   manualTimeRef?: React.MutableRefObject<number>;
 }
 
-export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, onTimeUpdate, preserveDrawingBuffer = false, manualTimeRef }) => {
+export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, onTimeUpdate, preserveDrawingBuffer = false, paused = false, manualTimeRef }) => {
   const timeCallbackRef = useRef(onTimeUpdate);
   timeCallbackRef.current = onTimeUpdate;
   // Delay Canvas creation by one frame so StrictMode's unmount can release the
@@ -1231,6 +1211,7 @@ export const BoxAnimation: React.FC<BoxAnimationProps> = ({ className, style, on
       <Canvas
         orthographic
         camera={{ zoom: 55, position: [0, 0, 10], near: 0.1, far: 100 }}
+        frameloop={paused ? "never" : "always"}
         style={{ width: "100%", height: "100%", background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', preserveDrawingBuffer }}
         dpr={1}
