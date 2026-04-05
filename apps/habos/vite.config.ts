@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
+    publicDir: path.resolve(__dirname, '../../public'),
     plugins: [react()],
     define: {
       'process.env': JSON.stringify(env)
