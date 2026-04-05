@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Solutions — Creative Businesses",
+    "title": "Spend your time creating.\u00a0Not administrating.",
+    "subtitle": "Client management, project tracking, proposals, invoicing, and team coordination — handled.",
+    "description": "Agencies, studios, photographers, videographers, freelance writers, event planners, architects, and any business where the work is creative but everything around it is a grind."
+  },
+  "body": {
+    "caseStudyLabel": "Case Study",
+    "section1": {
+      "heading": "How a 6-person agency in Bergen got 12 hours back per week",
+      "p1": "Marte runs a digital agency. Six people. Branding, social media, web design. Her clients are mid-size Norwegian companies who expect fast communication and high-quality creative work. Her problem wasn't the creative work. It was everything else."
+    },
+    "section2": {
+      "heading": "The before",
+      "p1": "Monday mornings started with a two-hour status meeting. Not because the team was slow — because nobody could see where any project stood without asking. Asana had task lists. Notion had meeting notes. Toggl had hours. The CRM had client details. Slack had the actual conversations. Getting a full picture of any project meant checking five tools.",
+      "p2": "A client would reply to a proposal at 11pm. Before Marte could write three sentences back, she needed to check the original proposal in Google Docs, the budget in a spreadsheet, and her team's availability in Asana. Four tabs. Fifteen minutes. For a three-sentence email.",
+      "p3": "Invoicing was the worst. Hours were in Toggl. Deliverables were in Asana. Contract terms were in an email attachment from three months ago. The invoices ended up approximate. She was either undercharging or having awkward conversations.",
+      "p4": "And prospective clients? When someone asked \"can you send examples of similar work?\" — finding case studies across Google Drive, Dropbox, and old email threads took forty-five minutes. She'd promise to send by end of day and deliver two days later."
+    },
+    "section3": {
+      "heading": "The turning point",
+      "p1": "Marte switched to HABOS. Not because of a single feature, but because she was tired of being a systems administrator instead of a creative director.",
+      "p2": "The first thing that changed was client calls. HABOS generates a meeting brief before each call — previous notes, project status, outstanding decisions. During the call, live transcription captures everything. Afterward: action items extracted automatically, assigned to the right people, linked to the project. The client gets a follow-up email summarizing decisions, drafted in Marte's voice, within ten minutes.",
+      "highlight": {
+        "label": "The moment that sold her",
+        "voiceNote": "\"VOIS, find me everything from projects similar to the Andersson inquiry — social media campaigns for food brands, last two years.\"",
+        "result": "Three seconds. Two case studies, a proposal template, and a timeline from a comparable project. All found across documents, project records, proposals, and meeting transcripts."
+      }
+    },
+    "section4": {
+      "heading": "The after",
+      "p1": "The Monday status meeting is gone. Replaced by a five-minute dashboard check. Every project shows its health, blockers, and next milestones. The meeting that replaced it is twenty-five minutes of actual decisions.",
+      "p2": "Invoicing takes minutes, not hours. Time tracking is linked to projects. Deliverables are checked off in milestones. Contract terms live in the CRM record. The invoice generates with the correct line items, billable hours, and payment terms. One tap to send.",
+      "p3": "Proposals that used to take a day now take an hour. Describe the project in a voice note, and HABOS drafts a proposal pulling from past project data and pricing.",
+      "p4": "Clients noticed the difference before Marte's team did. Faster responses. Better follow-through. A client portal where they can see project progress, approve deliverables, and message the team directly. No more \"can you send me an update?\" emails."
+    },
+    "section5": {
+      "heading": "The results",
+      "stats": [
+        ["12 hrs", "saved per week on admin"],
+        ["90%", "faster proposal turnaround"],
+        ["$200+", "saved monthly on tools"],
+        ["0", "lost project knowledge"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"We used to spend Monday mornings in a 2-hour status meeting just to figure out where every project stood. Now we check the dashboard in 5 minutes and get straight to work. The AI meeting notes alone saved us 6 hours a week — and our clients noticed we reply faster.\"",
+      "attribution": "— Marte, 34 · Digital agency · 6 people · Bergen"
+    },
+    "cta": {
+      "heading": "Get back to the work you actually started this business to do.",
+      "button": "Join the waitlist"
+    }
+  }
+}

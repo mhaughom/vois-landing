@@ -1,0 +1,14 @@
+{
+  "headline": "Bem-vindo ao VOIS.",
+  "subtitle": "Sua assinatura está ativa. Vamos começar.",
+  "nextStepsHeading": "O que acontece a seguir",
+  "steps": [
+    "Verifique seu e-mail para receber o comprovante",
+    "Baixe o VOIS na App Store",
+    "Entre com seu e-mail para ativar"
+  ],
+  "downloadButton": "Baixar na App Store",
+  "discordButton": "Entrar na Comunidade Discord",
+  "backToHome": "Voltar ao Início",
+  "logoAlt": "Vois"
+}

@@ -1,0 +1,66 @@
+{
+  "badge": "Próximamente",
+  "hero": {
+    "title": "Informes por voz",
+    "description": "Dicte informes. Recorra una inspección del sitio hablando sus observaciones — la IA genera un PDF formateado al instante."
+  },
+  "intro": "Los informes tradicionales requieren sentarse, abrir un formulario y escribir respuestas. HABOS ofrece cuatro modos de relleno: una entrevista de voz en tiempo real donde la IA hace preguntas campo por campo, un modo de dictado donde una sola nota de voz rellena todos los campos en silencio, un chatbot de texto que recorre cada campo de forma conversacional y la entrada manual tradicional como respaldo. Suba un PDF o imagen y la Visión de GPT-4 extrae etiquetas de campo, tipos y patrones de validación para generar automáticamente un esquema tipado.",
+  "problem": {
+    "title": "El problema de escribir informes",
+    "body": "Para los trabajadores de campo, enfermeras, inspectores y muchos profesionales, escribir informes en pantallas táctiles o computadoras es una enorme pérdida de tiempo. Es lento, tedioso y las personas a menudo omiten detalles porque escribir es demasiado engorroso. Los informes de voz cambian todo."
+  },
+  "features": [
+    {
+      "title": "Solo hable",
+      "desc": "Abra VOIS, toque grabar y hable sobre sus observaciones. Sin escribir, sin formularios, sin casillas de verificación. La IA escucha, estructura y formatea todo automáticamente."
+    },
+    {
+      "title": "Formato instantáneo",
+      "desc": "La IA genera un informe correctamente formateado — encabezados, secciones, puntos de viñeta, resúmenes. Exporte como PDF, Word o cualquier formato que necesite. Está listo para enviar de inmediato."
+    },
+    {
+      "title": "10 veces más rápido",
+      "desc": "Las personas hablan 3-4 veces más rápido de lo que escriben. Añada el formato de IA y está mirando un ahorro de tiempo de 10x. Lo que antes tomaba 30 minutos ahora toma 3."
+    },
+    {
+      "title": "Información más rica",
+      "desc": "Cuando reportar es tan fácil, las personas incluyen más detalles. Obtiene mejores datos, más contexto y comunicación más clara — todo porque hablar es sin esfuerzo."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfecto para",
+    "items": [
+      {
+        "title": "Trabajadores de campo",
+        "desc": "Inspecciones de sitio, informes de seguridad, registros de mantenimiento"
+      },
+      {
+        "title": "Salud",
+        "desc": "Notas de enfermeras, observaciones de pacientes, cambios de turno"
+      },
+      {
+        "title": "Ventas y servicio",
+        "desc": "Reuniones con clientes, llamadas de servicio, notas de seguimiento"
+      }
+    ]
+  },
+  "example": {
+    "title": "Ejemplo: Inspección de sitio de construcción",
+    "steps": [
+      "Llega al sitio con su teléfono o reloj. Toque grabar en VOIS.",
+      "«Inspección del sitio, Edificio 3, 15 de marzo. Condiciones climáticas: despejado, 18 grados. La cimentación parece sólida — sin grietas visibles. La instalación eléctrica provisional está al 80% completada, según lo programado. Problema de plomería en Unidad 204 — fuga bajo el fregadero, necesita reparación antes de la inspección. Conductos de HVAC instalados, esperando conexiones finales...»",
+      "Camina y habla durante 5 minutos, cubriendo todo lo que ve.",
+      "Detenga la grabación. La IA genera un informe de inspección formateado con secciones, puntos de viñeta y un resumen. El problema de plomería se marca como urgente.",
+      "Exporte PDF. Envíe por correo al director de proyecto. Listo. Tiempo total: 6 minutos."
+    ]
+  },
+  "integration": {
+    "title": "Potencia la IA de Operaciones",
+    "body": "Los informes de voz no son solo para ahorrar tiempo — alimentan datos críticos en la IA de Operaciones. Cuando su equipo envía informes de voz detallados, la IA de Operaciones puede identificar patrones, detectar cuellos de botella y alertarle sobre problemas antes de que escalen. Es la base de la gestión inteligente de operaciones."
+  },
+  "status": {
+    "title": "Actualmente en desarrollo",
+    "body": "Los informes de voz están construidos y funcionando en nuestro entorno de desarrollo. Estamos refinando las plantillas de formato y las opciones de exportación para diferentes industrias.",
+    "note": "Se espera que esté disponible dentro de 6 meses para los suscriptores de VOIS for Work."
+  }
+}

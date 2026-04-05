@@ -1,0 +1,62 @@
+{
+  "badge": "Construtor de Formulários",
+  "hero": {
+    "title": "Crie um Formulário.\nEle Cuida do Resto.",
+    "description": "21 tipos de campo, construtor de arrastar e soltar, e regras de roteamento que criam tickets, leads no CRM e inscrições em funis automaticamente ao submeter."
+  },
+  "body": "Os formulários suportam três modos de preenchimento: clique e digitação tradicional, chat com IA onde os clientes descrevem suas necessidades naturalmente, ou entrada por voz onde eles falam as respostas e a IA transcreve. Quando um formulário é enviado, o mecanismo de roteamento avalia regras condicionais — 'se o orçamento exceder $50K, crie um ticket de alta prioridade.' Contatos no CRM são inseridos/atualizados automaticamente por e-mail, tickets são criados com mapeamento inteligente de campos, leads fluem para funis de nutrição, e e-mails de confirmação são enviados — tudo em uma operação atômica.",
+  "mockForm": {
+    "title": "Solicite um Orçamento",
+    "badge": "3 modos de preenchimento",
+    "fields": {
+      "fullName": "Nome Completo",
+      "fullNamePlaceholder": "João Henderson",
+      "email": "E-mail",
+      "emailPlaceholder": "joao@exemplo.com",
+      "serviceNeeded": "Serviço Necessário",
+      "servicePlaceholder": "Encanamento",
+      "budgetRange": "Faixa de Orçamento",
+      "budgetPlaceholder": "$5K+",
+      "projectDescription": "Descreva seu projeto",
+      "projectPlaceholder": "Reforma de banheiro, demolição completa e reconstrução..."
+    },
+    "serviceOptions": ["Encanamento", "Climatização", "Elétrica"],
+    "budgetOptions": ["< $1K", "$1–5K", "$5K+"],
+    "submit": "Enviar",
+    "modes": {
+      "form": "Formulário",
+      "chat": "Chat",
+      "voice": "Voz"
+    },
+    "caption": "Os clientes podem preencher tradicionalmente, conversar com um chatbot de IA ou falar suas respostas. Mesmo formulário, três modos de entrada."
+  },
+  "benefits": {
+    "crm": {
+      "title": "CRM automático + tickets",
+      "desc": "Os envios inserem/atualizam automaticamente contatos no CRM (deduplicados por e-mail) e criam tickets com mapeamento inteligente de campos e regras de roteamento."
+    },
+    "routing": {
+      "title": "Roteamento condicional",
+      "desc": "Se orçamento > $5K → criar ticket com prioridade: alta. Se serviço = Climatização → atribuir à Sarah. Regras executadas automaticamente em cada envio."
+    },
+    "embed": {
+      "title": "Incorporação em site",
+      "desc": "Incorpore no seu site HABOS com fundo transparente e altura automática. Mensagens de redimensionamento cross-origin mantêm tudo perfeito."
+    }
+  },
+  "scenario": {
+    "label": "Cenário real",
+    "text": "Um proprietário visita seu site e preenche uma solicitação de orçamento para uma reforma de banheiro de $8K. O HABOS cria um ticket de alta prioridade (regra de orçamento > $5K), insere/atualiza o contato no CRM, o inscrevem no funil de \"lead quente\" e envia um e-mail de confirmação — tudo antes de você ver a notificação. Quando você abre o ticket, o perfil completo do CRM, contexto do projeto e resposta sugerida já estão lá."
+  },
+  "techStrip": [
+    "21 tipos de campo",
+    "3 modos de preenchimento",
+    "Roteamento condicional",
+    "Inserção automática no CRM",
+    "Análise de visualização e conversão"
+  ],
+  "closing": {
+    "title": "Outras ferramentas de formulário coletam dados.\nO HABOS age sobre eles.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "Product",
+    "solutions": "Oplossingen",
+    "philosophy": "Filosofie",
+    "communication": {
+      "label": "Communicatie",
+      "desc": "E-mail, Messenger, Telefoon, Supporttickets"
+    },
+    "scheduling": {
+      "label": "Planning & Boekingen",
+      "desc": "Agenda, Boekingen, Planningslinks"
+    },
+    "jobsOperations": {
+      "label": "Opdrachten & Operaties",
+      "desc": "Dispatch, Routes, Projecten, Taken, Tijdregistratie"
+    },
+    "salesPayments": {
+      "label": "Verkoop & Betalingen",
+      "desc": "CRM, Producten, Facturering, Betalingen"
+    },
+    "voiceAi": {
+      "label": "Stem & AI",
+      "desc": "Stemnotities, Vergadernotities, Assistent, Draaiboeken"
+    },
+    "websiteMarketing": {
+      "label": "Website & Marketing",
+      "desc": "Websitebouwer, Sociaal, E-mailcampagnes"
+    },
+    "serviceBusinesses": {
+      "label": "Dienstverlenende bedrijven",
+      "desc": "Van loodgieters tot consultants tot therapeuten"
+    },
+    "productBusinesses": {
+      "label": "Productbedrijven",
+      "desc": "Van winkels tot e-commerce tot fabrikanten"
+    },
+    "creativeBusinesses": {
+      "label": "Creatieve bedrijven",
+      "desc": "Van bureaus tot fotografen tot studio's"
+    },
+    "fieldOperations": {
+      "label": "Buitendienst",
+      "desc": "Van bouw tot bezorging tot vastgoedbeheer"
+    },
+    "teamsStartups": {
+      "label": "Teams & Startups",
+      "desc": "Een bedrijf opbouwen met 2-50 mensen"
+    },
+    "soloFounders": {
+      "label": "Solo-ondernemers",
+      "desc": "Van freelancers tot eenmansbedrijven"
+    },
+    "intelligenceYouControl": "Intelligentie die jij beheert",
+    "securityFirst": {
+      "label": "Beveiliging voorop",
+      "desc": "AI met grenzen. Jouw grenzen."
+    },
+    "oneAssistant": {
+      "label": "Één assistent",
+      "desc": "Vraag alles, van overal"
+    },
+    "captureYourBrain": {
+      "label": "Leg je brein vast",
+      "desc": "Vang ideeën voor ze verdwijnen"
+    },
+    "fastByDesign": "Snel van nature",
+    "suggestionsNotMenus": {
+      "label": "Suggesties, geen menu's",
+      "desc": "Lezen. Tikken. Klaar."
+    },
+    "twoInterfaces": {
+      "label": "Twee interfaces",
+      "desc": "Schermen voor mensen, API's voor agents"
+    },
+    "speedOfThought": {
+      "label": "Snelheid van gedachte",
+      "desc": "Stem in, tik eruit"
+    },
+    "alwaysWithinReach": {
+      "label": "Altijd binnen handbereik",
+      "desc": "Horloge, telefoon, vergrendelscherm"
+    },
+    "builtForYourBusiness": "Gebouwd voor jouw bedrijf",
+    "everythingInOnePlace": {
+      "label": "Alles op één plek",
+      "desc": "Één login, elk hulpmiddel"
+    },
+    "builtForTeams": {
+      "label": "Gebouwd voor teams",
+      "desc": "Dezelfde waarheid, verschillende perspectieven"
+    },
+    "yourSoftwareYourWay": {
+      "label": "Jouw software, op jouw manier",
+      "desc": "Flexibel van ontwerp"
+    },
+    "ctaLabel": "Aanmelden voor wachtlijst",
+    "betaLogin": "Bèta-inloggen"
+  },
+  "vois": {
+    "features": "Functies",
+    "resources": "Bronnen",
+    "voiceCapture": {
+      "label": "Stemopname",
+      "desc": "Praat, wij regelen de rest"
+    },
+    "aiAssistant": {
+      "label": "AI-assistent",
+      "desc": "Jouw persoonlijke AI-partner"
+    },
+    "calendar": {
+      "label": "Agenda",
+      "desc": "Focusblokken automatisch invullen"
+    },
+    "tasks": {
+      "label": "Taken",
+      "desc": "AI-prioritering"
+    },
+    "watch": {
+      "label": "Watch",
+      "desc": "Volledige AI aan je pols"
+    },
+    "customApps": {
+      "label": "Maatwerkpps",
+      "desc": "Bouw je eigen ruimtes"
+    },
+    "habosForWork": {
+      "label": "HABOS voor Werk",
+      "desc": "Het volledige bedrijfsplatform"
+    },
+    "support": {
+      "label": "Ondersteuning",
+      "desc": "Hulp van ons team"
+    },
+    "privacyPolicy": {
+      "label": "Privacybeleid",
+      "desc": "Hoe we je gegevens beschermen"
+    },
+    "termsOfService": {
+      "label": "Servicevoorwaarden",
+      "desc": "Onze serviceovereenkomst"
+    },
+    "ctaLabel": "Aanmelden voor wachtlijst",
+    "workLabel": "HABOS voor Werk",
+    "tryNow": "Nu proberen",
+    "betaLogin": "Bèta-inloggen"
+  },
+  "clusters": {
+    "communication": {
+      "email": "E-mail",
+      "messenger": "Messenger",
+      "phone": "Telefoon",
+      "supportTickets": "Supporttickets"
+    },
+    "schedulingBookings": {
+      "calendar": "Agenda",
+      "bookings": "Boekingen",
+      "schedulingLinks": "Planningslinks"
+    },
+    "jobsOperations": {
+      "dispatch": "Dispatch",
+      "routes": "Routes",
+      "projects": "Projecten",
+      "tasks": "Taken",
+      "timeTracking": "Tijdregistratie"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "Producten",
+      "invoicing": "Facturering",
+      "payments": "Betalingen"
+    },
+    "voiceAi": {
+      "voiceNotes": "Stemnotities",
+      "meetingNotes": "Vergadernotities",
+      "assistant": "Assistent",
+      "playbooks": "Draaiboeken"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "Websitebouwer",
+      "creativeStudio": "Creatieve Studio",
+      "marketing": "Marketing"
+    }
+  },
+  "mobile": {
+    "overview": "Overzicht"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "Aanmelden voor wachtlijst",
+      "workLabel": "HABOS voor Werk",
+      "tagline": "door HABOS"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "Aanmelden voor wachtlijst",
+      "tagline": "AI-kracht, menselijke controle"
+    }
+  },
+  "clusterPages": {
+    "email": "E-mail",
+    "messenger": "Messenger",
+    "telephony": "Telefoon",
+    "tickets": "Supporttickets",
+    "calendar": "Agenda",
+    "bookings": "Boekingen",
+    "scheduling-links": "Planningslinks",
+    "dispatch": "Dispatch",
+    "routes": "Routes",
+    "projects": "Projecten",
+    "tasks": "Taken",
+    "time-tracking": "Tijdregistratie",
+    "crm": "CRM",
+    "products": "Producten",
+    "finance": "Facturering",
+    "payments": "Betalingen",
+    "voice-notes": "Stemnotities",
+    "meeting-notes": "Vergadernotities",
+    "assistant": "Assistent",
+    "playbooks": "Draaiboeken",
+    "website-builder": "Websitebouwer",
+    "creative-studio": "Creatieve Studio",
+    "marketing": "Marketing"
+  },
+  "clusterGroupNames": {
+    "communication": "Communicatie",
+    "schedulingBookings": "Planning & Boekingen",
+    "jobsOperations": "Opdrachten & Operaties",
+    "salesPayments": "Verkoop & Betalingen",
+    "voiceAi": "Stem & AI",
+    "websiteMarketing": "Website & Marketing"
+  }
+}

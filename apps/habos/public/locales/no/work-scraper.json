@@ -1,0 +1,49 @@
+{
+  "badge": "Bedriftsintelligens",
+  "hero": {
+    "title": "Én URL. Hele virksomheten din, uttrukket.",
+    "description": "Skriv inn nettstedet ditt. HABOS crawler det, trekker ut merkevareidentiteten, produkter, team og sosiale profiler – og fyller deretter hele arbeidsrommet med ekte data. Klar til å bruke på minutter."
+  },
+  "body": "Skriv inn bedriftens nettstedURL og HABOS kjører en syv-trinns intelligensprosess: identitetsoppløsning, manuell gjennomgang, intern kildeanalyse, ekstern forskning via Perplexity, innsamling av finansielle data, utvidelse av sosiale profiler og endelig godkjenning. Hvert datapunkt har en konfidensscore – Shopify API-data scorer 1,0, strukturerte data 0,94, markdown-ekstraksjon 0,58. Systemet genererer deretter fjorten domener av arbeidsromdata fra bedriftsintelligensen din, slik at du kommer inn i et fungerende system, ikke et tomt skall.",
+  "extraction": {
+    "urlPlaceholder": "hendersonroring.no",
+    "extractingLabel": "Trekker ut...",
+    "rows": [
+      { "label": "Merketokens", "detail": "Farger: #1E40AF, #F59E0B · Skrift: Inter · Logo oppdaget" },
+      { "label": "Produkter", "detail": "8 tjenester funnet (Nødreparasjon, Varmtvannsbereder, osv.)" },
+      { "label": "Team", "detail": "4 teammedlemmer identifisert fra Om-side" },
+      { "label": "Sosiale profiler", "detail": "Instagram, Facebook, Google Business koblet" },
+      { "label": "Anmeldelser", "detail": "47 Google-anmeldelser importert (4,8★ gjennomsnitt)" },
+      { "label": "Konkurrenter", "detail": "3 lokale konkurrenter identifisert via Perplexity" },
+      { "label": "Kontaktinfo", "detail": "Telefon, e-post, 2 adresser geokodede" }
+    ],
+    "confidenceNote": "Hvert datapunkt har en konfidensscore. Shopify API-data: 1,0. Strukturerte data: 0,94. Markdown-ekstraksjon: 0,58. Du gjennomgår høy-konfidens-elementer først."
+  },
+  "benefits": [
+    {
+      "title": "14 domener fylt",
+      "desc": "Prosjekter, oppgaver, leads, kampanjer, produkter, drift, teamstruktur – alle generert fra bedriftsintelligensen din. Arbeidsrommet er produktivt fra dag én."
+    },
+    {
+      "title": "Merkeinjeksjon",
+      "desc": "Uttrukne farger, skrifter og designtokens injiseres automatisk i alle nettsteder du bygger i HABOS. Nettstedene dine ser ut som dine, ikke en mal."
+    },
+    {
+      "title": "Pre-registrering skraping",
+      "desc": "Besøkende kan starte før de oppretter en konto. Resultater bufres og kreves via sikker token etter registrering. Se verdi før du forplikter deg."
+    }
+  ],
+  "scenario": "En ny rørlegger registrerer seg og skriver inn hendersonroring.no. På 90 sekunder trekker HABOS ut merket, 8 tjenester, teambilder, Google-anmeldelser og sosiale profiler. Når de lander i arbeidsrommet er det allerede fylt – prosjekter for aktive jobber, produkter for tjenestene deres, leads fra kontaktskjemaet og et merkekledt nettstedsutkast. De konfigurerte ingenting. Programvaren konfigurerte seg selv.",
+  "scenarioHighlight": "Programvaren konfigurerte seg selv.",
+  "techItems": [
+    "Konfidensscoret ekstraksjon",
+    "Flerplattform-deteksjon",
+    "7-trinns intelligensprosess",
+    "Utvidelse av sosiale profiler",
+    "Deterministisk arbeidsromfylling"
+  ],
+  "cta": {
+    "heading": "Andre plattformer starter tomme. HABOS starter med virksomheten din allerede inni.",
+    "button": "Bli med på ventelisten"
+  }
+}

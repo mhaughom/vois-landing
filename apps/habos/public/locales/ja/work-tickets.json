@@ -1,0 +1,92 @@
+{
+  "badge": "サポート＆チケット",
+  "hero": {
+    "title": "SLAタイマー。自動エスカレーション。\n違反ゼロ。",
+    "description": "すべてのチケットにSLAカウントダウンを設定。期限30分前に警告を発令。違反した場合は次の空き担当者へ自動再割り当て。"
+  },
+  "body": "すべてのチケットは、優先度ごとに設定可能な初回応答および解決目標を持つSLAカウントダウンが付与されます。違反30分前に視覚的タイマーが警告します。チケットがSLAに違反すると、自動エスカレーションが作動し、次の空き担当者へ再割り当てされます。チケットはフォーム、メール、音声通話、API、または手動入力から作成でき、関連リクエストは自動で重複排除されます。顧客のメールはスレッド形式で表示され、内部メモは担当者のみに表示されます。AIがコンテキストに基づいた返信を提案します。",
+  "queue": {
+    "header": "アクティブキュー",
+    "countLabel": "件のチケット · 1件の違反警告",
+    "tickets": [
+      {
+        "priority": "urgent",
+        "title": "緊急：Johnson宅の水道管破裂",
+        "assignee": "Mike T.",
+        "sla": "残り23分"
+      },
+      {
+        "priority": "high",
+        "title": "HVACが冷えない — Baker Office",
+        "assignee": "Sarah L.",
+        "sla": "残り2時間15分"
+      },
+      {
+        "priority": "normal",
+        "title": "見積もり依頼：浴室リフォーム",
+        "assignee": "未割り当て",
+        "sla": "残り7時間"
+      },
+      {
+        "priority": "normal",
+        "title": "年次点検のスケジュール設定",
+        "assignee": "自動割り当て",
+        "sla": "1時間20分で解決済み",
+        "resolved": true
+      }
+    ],
+    "priorityLabels": {
+      "urgent": "緊急",
+      "high": "高",
+      "normal": "通常"
+    },
+    "automation": {
+      "breach30": "違反30分前",
+      "breach30Action": "警告通知",
+      "onBreach": "違反時",
+      "onBreachAction": "次の空き担当者へ自動再割り当て",
+      "postResolution": "解決後",
+      "postResolutionAction": "CSATアンケートを自動送信"
+    }
+  },
+  "benefits": {
+    "multiSource": {
+      "title": "マルチソース作成",
+      "desc": "フォーム、メール、音声通話、API、または手動入力から。関連リクエストは自動で重複排除。"
+    },
+    "pipeline": {
+      "title": "チケット → アクションパイプライン",
+      "desc": "プロジェクト、フィールドジョブ、タスクにリンク。1枚のチケットからワークフロー全体を起動できます。"
+    },
+    "csat": {
+      "title": "CSAT収集",
+      "desc": "解決後に自動アンケートを送信し、満足度スコアとトレンドを追跡。"
+    }
+  },
+  "sourceIcons": {
+    "email": "メール",
+    "voice": "音声",
+    "webForm": "Webフォーム",
+    "voiceNote": "ボイスノート",
+    "api": "API"
+  },
+  "beforeAfter": {
+    "beforeLabel": "導入前",
+    "beforeText": "顧客がメールを送信。3時間後に気づく。割り当てる。スプレッドシートで追跡。誰も見落とさないことを祈る。SLA？何のこと？",
+    "beforeStat": "平均応答時間：3時間以上",
+    "afterLabel": "導入後",
+    "afterText": "顧客がメールを送信。チケットが自動作成される。SLAタイマーが開始。30分前に警告。違反時に自動エスカレーション。解決後にCSATアンケート。",
+    "afterStat": "平均応答時間：常にSLA以内"
+  },
+  "techStrip": [
+    "SLA強制",
+    "自動エスカレーション",
+    "メールスレッド化",
+    "AI返信提案",
+    "CSATアンケート"
+  ],
+  "closing": {
+    "title": "他のチケットツールは問題を追跡します。\nHABOSは問題を解決します。",
+    "cta": "ウェイトリストに参加"
+  }
+}

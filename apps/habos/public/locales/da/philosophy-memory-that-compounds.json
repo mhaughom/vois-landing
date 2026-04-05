@@ -1,0 +1,72 @@
+{
+  "category": "Filosofi",
+  "title": "Hukommelse der vokser",
+  "tagline": "Enhver samtale gør den næste klogere. Jo længere du bruger HABOS, desto mere forstår det din virksomhed — og desto sværere er den forståelse at genskabe andre steder.",
+  "heroPlaceholder": "Heroillustration",
+  "section1": {
+    "heading": "Dag ét vs. dag 180",
+    "body1": "På dag ét er HABOS et kompetent værktøj. Det behandler dine stemmenoter, administrerer dine opgaver, håndterer din e-mail. Det er hurtigt, og det virker. Men det kender dig endnu ikke.",
+    "body2": "På dag 180 ved systemet, hvilke kunder genbestiller på forudsigelige cyklusser. Det ved, at dine onsdagsmøder om eftermiddagen altid trækker ud. Det ved, at når du nævner \"Bergen-projektet\", mener du Fjordview Hotel-kontoen. Det kender din skrivestil, dine beslutningsmønstre, dine driftsmæssige rytmer.",
+    "body3": "Den akkumulerede forståelse er ikke en funktion, du kan installere. Det er intelligens, der er optjent — samtale for samtale, beslutning for beslutning."
+  },
+  "section2": {
+    "heading": "Hvad der vokser"
+  },
+  "periods": [
+    {
+      "period": "Uge 1",
+      "items": [
+        "Grundlæggende stemmerutering virker",
+        "E-mailkladder er generiske men funktionelle",
+        "Brain-søgning dækker det, du har indtastet"
+      ]
+    },
+    {
+      "period": "Måned 1",
+      "items": [
+        "Skrivestil er kalibreret til hvert teammedlem",
+        "Mødeforberedelser trækker relevant historik",
+        "Smart Router-nøjagtighed forbedres fra dine korrektioner"
+      ]
+    },
+    {
+      "period": "Måned 3",
+      "items": [
+        "Proaktive advarsler baseret på mønstre det har observeret",
+        "Strategisk Råd forankret i dine faktiske forretningsdata",
+        "Tværkildeforbindelser, som mennesker ville gå glip af"
+      ]
+    },
+    {
+      "period": "Måned 6+",
+      "items": [
+        "Forudsiger genbestillingstiming, aftalestadiernes varighed, sæsonmønstre",
+        "Opdager driftsmæssigt frafald, inden det bliver et problem",
+        "Institutionel viden der overlever medarbejderomsætning"
+      ]
+    }
+  ],
+  "curvePlaceholder": "Kurve for sammensatte intelligens",
+  "section3": {
+    "heading": "Den grøft du bygger ved at bruge det",
+    "body1": "De fleste software har nul skifteomkostninger ud over dataeksport. Dit projektstyringsværktøj bliver ikke klogere, jo længere du bruger det. Dit CRM lærer ikke dine salgsmønstre. Din kalender forudser ikke dine planlægningspræferencer.",
+    "body2": "HABOS er anderledes, fordi intelligenslaget vokser. Efter seks måneder er systemets forståelse af din virksomhed genuint unik — bygget fra dine samtaler, dine beslutninger, dine mønstre, dine korrektioner. Den forståelse kan ikke eksporteres som en CSV-fil. Den er ikke i nogen enkelt databasetabel. Den er distribueret på tværs af embeddings, stilprofiler, ruteringsmodeller og adfærdsmønstre."
+  },
+  "section4": {
+    "heading": "Institutionel hukommelse der ikke siger op",
+    "body1": "Når en nøglemedarbejder forlader, tager de deres viden med sig. De kundepræferencer, de huskede, de processer, de opfandt, de relationer, de byggede — alt forsvinder.",
+    "body2": "HABOS fanger den institutionelle viden, mens den opstår. Hvert stemmenote, hvert møde, hvert kundeinteraktion fodrer Brain. Når nogen nyt tilslutter sig, arver de ikke bare data men forståelsen — AI'en kan brifffe dem om kundehistorik, forklare hvorfor visse beslutninger blev truffet, og fremdrage de afspilningsplaner, som den tidligere person udviklede."
+  },
+  "section5": {
+    "heading": "En fordel, ikke en fælde",
+    "body1": "Vi bygger ikke lock-in via data-gidseltagning. Dine data kan altid eksporteres. Du ejer dem. Men intelligensen — mønstrene, forudsigelserne, den kontekstuelle forståelse — det er sammensatte renter på den tid, du har investeret. Det gør hver måned mere værdifuld end den forrige.",
+    "body2": "Spørgsmålet for en potentiel kunde er ikke \"hvad koster HABOS pr. måned?\" Det er \"hvad er seks måneder med sammensatte forretningsintelligens værd?\""
+  },
+  "quote": "\"Dine data kan kopieres. Din forståelse kan ikke. Hver dag du bruger HABOS, vokser kløften mellem de to.\"",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Rådgivere der er uenige",
+    "nextLabel": "Næste",
+    "nextTitle": "Lille team, stor effekt"
+  }
+}

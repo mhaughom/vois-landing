@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "サポート"
+  },
+  "hero": {
+    "heading": "何かお困りですか？",
+    "description": "Voisを最大限にご活用いただくためのサポートをご提供しています。下記のFAQをご確認いただくか、直接お問い合わせください。"
+  },
+  "contact": {
+    "heading": "お問い合わせ",
+    "email": {
+      "label": "メールサポート",
+      "address": "hello@tryvois.com",
+      "note": "すべてのお問い合わせおよびサポートリクエスト"
+    },
+    "responseTime": {
+      "label": "返信時間",
+      "value": "24時間以内",
+      "note": "月曜日〜金曜日"
+    }
+  },
+  "faq": {
+    "heading": "よくあるご質問",
+    "items": [
+      {
+        "question": "Voisとは何ですか？",
+        "answer": "Voisは、あなたの考えをキャプチャ、整理し、行動に移すことを支援するAI搭載のボイスノートアプリです。iPhone、Apple Watch、Macでご利用いただけます。"
+      },
+      {
+        "question": "Voisはどのデバイスに対応していますか？",
+        "answer": "Voisは、iPhone、Apple Watch、Macでご利用いただけます。App Storeからダウンロードできます。データはすべてのデバイス間でシームレスに同期されます。"
+      },
+      {
+        "question": "料金の仕組みはどうなっていますか？",
+        "answer": "Voisでは月払いまたは年払いのサブスクリプションプランをご用意しています。AppleデバイスのApp Storeからサブスクリプションを管理できます。すべての支払いはAppleを通じて安全に処理されます。"
+      },
+      {
+        "question": "サブスクリプションをキャンセルするにはどうすればよいですか？",
+        "answer": "App Storeからいつでもサブスクリプションをキャンセルできます。iPhoneの設定 ＞ Apple ID ＞ サブスクリプションへ移動し、Voisを見つけてキャンセルをタップしてください。現在の請求期間の終了までご利用いただけます。"
+      },
+      {
+        "question": "返金は受けられますか？",
+        "answer": "はい、30日間の返金保証をご提供しています。ご満足いただけない場合は、<email>hello@tryvois.com</email>までご連絡いただくか、<refund>返金ポリシー</refund>をご確認ください。"
+      },
+      {
+        "question": "データのセキュリティは安全ですか？",
+        "answer": "お客様のプライバシーとデータセキュリティを最優先に考えています。完全にGDPR準拠しており、データの保護に暗号化を使用しています。詳細については<privacy>プライバシーポリシー</privacy>をご覧ください。"
+      },
+      {
+        "question": "バグの報告や機能のリクエストはどうすればよいですか？",
+        "answer": "ぜひご意見をお聞かせください！<email>hello@tryvois.com</email>宛に問題の説明や機能のアイデアをメールでお送りください。折り返しご連絡いたします。"
+      }
+    ]
+  },
+  "company": {
+    "heading": "会社情報",
+    "companyLabel": "会社名",
+    "companyValue": "VOIS AI AS",
+    "orgLabel": "組織番号",
+    "orgValue": "936 920 594",
+    "locationLabel": "所在地",
+    "locationValue": "Alsvåg, Norway",
+    "emailLabel": "メール",
+    "emailValue": "hello@tryvois.com",
+    "websiteLabel": "ウェブサイト",
+    "websiteValue": "tryvois.com"
+  },
+  "footer": {
+    "copyright": "Vois AI. All rights reserved.",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約"
+  }
+}

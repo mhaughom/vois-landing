@@ -1,0 +1,52 @@
+{
+  "quizCategories": [
+    "Veranstaltungen & Kalender",
+    "Aufgaben & To-dos",
+    "Einkaufen & Listen",
+    "Ideen & Notizen",
+    "Gesundheit & Wohlbefinden",
+    "Finanzen & Budget",
+    "Ziele & Gewohnheiten",
+    "Menschen & Soziales"
+  ],
+  "quizDevices": {
+    "watch": {
+      "label": "Apple Watch",
+      "desc": "Erfassen Sie es an Ihrem Handgelenk"
+    },
+    "phone": {
+      "label": "iPhone",
+      "desc": "Immer in Ihrer Tasche"
+    },
+    "both": {
+      "label": "Beides",
+      "desc": "Das vollständige Erlebnis"
+    }
+  },
+  "step1": {
+    "heading": "Was würden Sie speichern?",
+    "subLabel": "Wählen Sie alles aus, was Ihren Kopf belastet."
+  },
+  "step2": {
+    "heading": "Wie würden Sie es anzeigen?",
+    "subLabel": "Wählen Sie Ihr bevorzugtes Gerät."
+  },
+  "step3": {
+    "heading": "Starten Sie Ihr Abonnement",
+    "subLabel": "Geben Sie Ihre E-Mail-Adresse ein, um zum Checkout zu gelangen.",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "sie@unternehmen.de",
+    "perMonth": "/Monat",
+    "guarantee": "Jederzeit kündbar. 30-Tage-Geld-zurück-Garantie.",
+    "continueToPay": "Weiter zur Zahlung"
+  },
+  "back": "Zurück",
+  "continue": "Weiter",
+  "errors": {
+    "emailRequired": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "tooManyAttempts": "Zu viele Versuche. Bitte warten Sie einen Moment und versuchen Sie es erneut.",
+    "unavailable": "Der Checkout ist vorübergehend nicht verfügbar. Bitte versuchen Sie es später erneut.",
+    "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  }
+}

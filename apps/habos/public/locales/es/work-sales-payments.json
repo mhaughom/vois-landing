@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Ventas y pagos",
+  "hero": {
+    "title": "Del primer contacto a la factura pagada",
+    "description": "CRM, productos, facturación y pagos en un solo flujo — construido desde sus conversaciones, no desde entradas manuales de datos."
+  },
+  "items": [
+    {
+      "title": "CRM",
+      "desc": "Perfiles de clientes construidos automáticamente desde cada interacción con próximos pasos sugeridos por IA."
+    },
+    {
+      "title": "Productos",
+      "desc": "Productos, precios, inventario y servicios reservables conectados a su sitio web."
+    },
+    {
+      "title": "Facturación",
+      "desc": "Rastree cuentas por cobrar, cuentas por pagar y ganancias en tiempo real."
+    },
+    {
+      "title": "Pagos",
+      "desc": "Pagos con Stripe y depósitos directos al banco."
+    }
+  ]
+}

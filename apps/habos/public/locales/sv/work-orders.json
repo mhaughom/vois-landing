@@ -1,0 +1,52 @@
+{
+  "badge": "Orderhantering",
+  "hero": {
+    "title": "Från offert till betalt. Varje steg spårat.",
+    "description": "Fullständig livscykelorderhantering med radposter, betalningsspårning och automatiska lagerjusteringar — så att inget faller igenom sprickorna."
+  },
+  "intro": "Ordrar i VOIS är den centrala posten som kopplar samman CRM-klienter, produkter med varianter och lager. När en bokning slutförs eller ett jobb avslutas skapas en order automatiskt med rätt radposter och prissättning. Betalningsstatus flödar från obetald till delvis betald till betald till återbetald — alltid synlig, alltid aktuell. Varje radpost drar av från produktlagret i realtid, vilket helt eliminerar manuella lagerräkningar.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovering", "amount": "$12 500", "status": "Betalt ✓" },
+    { "id": "#1248", "client": "Baker HVAC-service", "amount": "$3 200", "status": "Delvis" },
+    { "id": "#1249", "client": "Wilson Akut", "amount": "$890", "status": "Obetalt" }
+  ],
+  "lineItems": {
+    "heading": "Radposter — Order #1247 · Henderson Renovering",
+    "items": [
+      { "item": "Klinker 600x600", "qty": 48, "unit": "$85,00", "total": "$4 080" },
+      { "item": "Kakelfix 25 kg", "qty": 12, "unit": "$32,00", "total": "$384" },
+      { "item": "Arbete — kakelläggning (tim)", "qty": 24, "unit": "$95,00", "total": "$2 280" },
+      { "item": "Golvvärmekit", "qty": 1, "unit": "$1 850,00", "total": "$1 850" }
+    ],
+    "total": "Totalt: $12 500",
+    "annotation": "Ordrar skapas automatiskt från bokningar och jobb. Radposter hämtas från din produktkatalog med variantstöd."
+  },
+  "benefitCards": [
+    {
+      "title": "Autoskapad från bokningar",
+      "desc": "När en bokning slutförs genereras ordern automatiskt med rätt radposter och prissättning. Ingen dubbel datainmatning, inga missade avgifter."
+    },
+    {
+      "title": "Live-lagerjusteringar",
+      "desc": "Varje orderradpost drar av från produktlagret i realtid. Inga manuella lagerräkningar. Påbeställningsaviseringar triggar innan du tar slut."
+    },
+    {
+      "title": "Betalningslivscykel",
+      "desc": "Spåra obetald → delvis → betald → återbetald. Varje statusändring loggas och kopplas automatiskt till din redovisningsplattform."
+    }
+  ],
+  "scenario": "En rörmokare avslutar ett jobb. På hemkörningen berättar han för VOIS vilka delar han använde — två kulventiler, en flexslang och tre timmars arbete.",
+  "scenarioHighlight": "VOIS skapar automatiskt ordern med rätt radposter, drar av delarna från lagret, kopplar ordern till CRM-klienten och förbereder fakturan — innan han är tillbaka på kontoret.",
+  "techItems": [
+    "Automatisk lageravdrag",
+    "Radpostsvarianter",
+    "Betalningslivscykel",
+    "CRM-klientlänkning",
+    "Bokning-till-order-pipeline",
+    "Röstinfångade ordrar"
+  ],
+  "cta": {
+    "title": "Sluta jaga pappersarbete.\nLåt ordrar bygga sig själva.",
+    "button": "Gå med i väntelistan"
+  }
+}

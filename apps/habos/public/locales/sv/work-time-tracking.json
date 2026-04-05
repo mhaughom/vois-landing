@@ -1,0 +1,50 @@
+{
+  "badge": "Tid & lön",
+  "hero": {
+    "title": "Stämpla in. Vi hanterar matematiken.",
+    "description": "GPS-verifierad tidsspårning med automatisk övertidsberäkning, pausspårning och löneredo fakturering — inga tidrapporter, inga kalkylblad."
+  },
+  "body": "Platsspårning aktiveras bara under en arbetsession — ingen session innebär ingen GPS-åtkomst. Integritetsvänlig design. Systemet fångar GPS-waypoints, beräknar ordinarie kontra övertidstimmar per kalenderdag och triggar asynkrona chefsaviseringar när dagliga trösklar överskrids. Vid månadsskiftet är varje teammedlems timmar redan beräknade, övertid uppdelad och faktureringsbelopp beräknade med konfigurerbara tim- och övertidspriser. Exportera till lönesystemet med ett klick.",
+  "timecard": {
+    "heading": "Mike Torres — Denna vecka",
+    "summary": "36,5 tim ordinarie · 4,5 tim övertid",
+    "days": [
+      { "day": "Mån", "range": "07:00 → 15:30", "hours": "8,0 tim", "badge": "Ordinarie" },
+      { "day": "Tis", "range": "06:45 → 16:15", "hours": "9,0 tim", "badge": "1,0 ÖT" },
+      { "day": "Ons", "range": "07:00 → 17:00", "hours": "9,5 tim", "badge": "1,5 ÖT" },
+      { "day": "Tor", "range": "07:15 → 15:45", "hours": "8,0 tim", "badge": "Ordinarie" },
+      { "day": "Fre", "range": "07:00 → 13:30", "hours": "6,5 tim", "badge": "Halvdag" }
+    ],
+    "totalLine": "Totalt: 41,0 tim | Ordinarie: 36,5 × $45/tim = $1 642,50 | ÖT: 4,5 × $67,50/tim = $303,75 | Totalt: $1 946,25",
+    "footnote": "Övertid automatberäknad per kalenderdag. Chef meddelas när daglig tröskel överskrids."
+  },
+  "benefits": {
+    "gps": {
+      "title": "Integritetsfördröjt GPS",
+      "description": "Platsspårning aktiveras bara under en arbetsession. Ingen session = ingen GPS-åtkomst. Arbetare kontrollerar när de spåras."
+    },
+    "pause": {
+      "title": "Pausa/fortsätt",
+      "description": "Registrera pauser inom en session. Systemet beräknar ordinarie vs pausad tid automatiskt. Inga manuella avdrag behövs."
+    },
+    "alerts": {
+      "title": "Chefsaviseringar",
+      "description": "Utstämpling triggar asynkron övertidskontroll. Om dagliga timmar överstiger tröskeln (standard 8 tim) meddelas chefen via organisationsschemahierarkin."
+    }
+  },
+  "scenario": "Slutet av månaden. I stället för att samla in papperstidrapporter, fixa mattefel och korshänvisa med jobbloggar — öppnar du HABOS. Varje teammedlems timmar är redan beräknade, övertid uppdelad, faktureringsbelopp beräknade. Exportera till lönesystemet med ett klick. Det är 4 timmars administrationsarbete, borta.",
+  "scenarioHighlight": "Det är 4 timmars administrationsarbete, borta.",
+  "techStrip": {
+    "items": [
+      "GPS-begränsade sessioner",
+      "Haversine-körsträcka",
+      "Övertidsberäkning per dag",
+      "1,5× standard övertidssats",
+      "Löneredo export"
+    ]
+  },
+  "cta": {
+    "heading": "Andra tidsspårare får din revisor att gråta. HABOS gör lönehanteringen smidig.",
+    "button": "Gå med i väntelistan"
+  }
+}

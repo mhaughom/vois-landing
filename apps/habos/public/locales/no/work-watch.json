@@ -1,0 +1,64 @@
+{
+  "badge": "Kjernefunksjon",
+  "hero": {
+    "title": "Hele virksomheten din.\nPå håndleddet.",
+    "description": "Ikke et varselspeil. En full AI-assistent med tale, verktøy og under 300 ms responstid."
+  },
+  "intro": "En feltarbeider med klokken kan diktere et 30-sekunders talenotat mellom jobber. Smart Router behandler det til oppgaver, hendelser og notater. De åpner aldri telefonen. Dataene flyter inn i det samlede systemet og er umiddelbart synlig for kontorteamet på nett-dashbordet. Tre NECP-samsvarsfixer forhindrer watchOS fra å drepe tilkoblingen – og løser 35-sekunders timeout-problemet som plager alle andre klokke-AI-apper.",
+  "stats": [
+    {
+      "number": "<300ms",
+      "label": "Tale-til-tale responstid. Raskere enn å ta opp telefonen."
+    },
+    {
+      "number": "8 verktøy",
+      "label": "Opprett oppgaver, sjekk kalender, søk data, lag e-postutkast – alt fra håndleddet."
+    },
+    {
+      "number": "0 apper åpnet",
+      "label": "Dikter en 30-sekunders oppdatering mellom jobber. Den blir oppgaver, hendelser og notater automatisk."
+    }
+  ],
+  "timeline": {
+    "title": "En morgen i feltet",
+    "entries": [
+      {
+        "time": "07:45",
+        "text": "Kjører til første jobb. Løft håndleddet: «Hva er planen min i dag?» Klokken leser opp 4 avtaler."
+      },
+      {
+        "time": "09:15",
+        "text": "Mellom jobber. «Nettopp ferdig med Henderson varmtvannsbereder, brukte to fleksible koblinger, tok 3 timer.» Klokken oppretter jobpost, oppdaterer lager, logger tid."
+      },
+      {
+        "time": "11:00",
+        "text": "På stedet. «Minn meg på å bestille flere fleksible koblinger og følge opp med Sarah om renoveringen.» To oppgaver opprettet, null skriving."
+      },
+      {
+        "time": "12:30",
+        "text": "Lunsjpause. Bytter til tekstmodus på stille restaurant. Skriver: «Hvordan er fordringene denne måneden?» Får et fullt finanssammendrag."
+      }
+    ]
+  },
+  "features": {
+    "suggestionCards": {
+      "title": "Forslagskort",
+      "description": "Etter hvert bytte vises handlingskort på klokkeflaten. «Opprett oppgave: Følg opp med Sarah» eller «Planlegg: Stedsbesøk tirsdag kl. 14». Trykk for å bekrefte, sveip for å avvise. Inget lite tastatur nødvendig."
+    },
+    "seamlessHandoff": {
+      "title": "Sømløs overlevering",
+      "description": "Start en samtale på klokken, fortsett på telefonen eller Mac-en. Talenotater tatt opp på klokken flyter gjennom Smart Router – kontorteamet ser oppdateringer i sanntid uten at du berører telefonen."
+    }
+  },
+  "techPills": [
+    "WebSocket-relay",
+    "OpenAI Realtime V2",
+    "NECP-kompatibel (ingen 35 sek timeout)",
+    "37 Swift-filer",
+    "Dobbel modus: tale + tekst"
+  ],
+  "closing": {
+    "tagline": "Andre klokkapper viser varsler. VOIS legger hele virksomheten din på håndleddet.",
+    "cta": "Bli med på ventelisten"
+  }
+}

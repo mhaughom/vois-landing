@@ -1,0 +1,62 @@
+{
+  "userTypes": ["Persoonlijk", "Werk", "Beide"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Vriend/collega",
+    "Zoekmachine",
+    "YouTube",
+    "Reddit",
+    "Anders"
+  ],
+  "useCases": [
+    "Persoonlijke taken & herinneringen",
+    "Werkvergaderingen & notities",
+    "Ideeën & brainstormen",
+    "Boodschappen & lijsten",
+    "Aangepast bijhouden (gezondheid, gewoonten, enz.)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "Waarvoor gebruik je VOIS?",
+    "subLabel": "Selecteer alles dat van toepassing is",
+    "stepIndicator": "Stap 1 van 5"
+  },
+  "stepUserType": {
+    "heading": "Hoe gebruik je VOIS?",
+    "subLabel": "Kies één optie",
+    "stepIndicator": "Stap 2 van 5"
+  },
+  "stepDevices": {
+    "heading": "Welke apparaten gebruik je?",
+    "subLabel": "Selecteer alles dat van toepassing is",
+    "stepIndicator": "Stap 3 van 5"
+  },
+  "stepReferral": {
+    "heading": "Hoe heb je over VOIS gehoord?",
+    "subLabel": "Dit helpt ons onze community te begrijpen",
+    "stepIndicator": "Stap 4 van 5"
+  },
+  "stepEmail": {
+    "heading": "Wat is je e-mailadres?",
+    "subLabel": "We sturen je vroege toegang wanneer we lanceren",
+    "placeholder": "Voer je e-mailadres in",
+    "joining": "Aanmelden...",
+    "joinWaitlist": "Aanmelden voor wachtlijst",
+    "stepIndicator": "Stap 4 van 5"
+  },
+  "stepSuccess": {
+    "heading": "Je staat op de lijst!",
+    "willSendEmail": "We sturen je een e-mail op",
+    "whatsNext": "Wat is er volgende stap?",
+    "whatsNextBody": "We lanceren binnenkort! Jij bent een van de eersten die vroege toegang en exclusieve updates krijgt.",
+    "done": "Klaar"
+  },
+  "continue": "Doorgaan",
+  "errors": {
+    "emailInvalid": "Voer een geldig e-mailadres in",
+    "emailExists": "Dit e-mailadres staat al op de wachtlijst!",
+    "joinFailed": "Aanmelden voor wachtlijst mislukt"
+  }
+}

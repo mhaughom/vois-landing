@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Voz e IA",
+  "hero": {
+    "title": "Hable con su negocio",
+    "description": "Notas de voz que se convierten en acciones, reuniones que toman sus propias notas, un asistente que conoce todo su negocio y playbooks que se ejecutan solos."
+  },
+  "items": [
+    {
+      "title": "Notas de voz",
+      "desc": "Hable 30 segundos — tareas, eventos y actualizaciones se crean automáticamente."
+    },
+    {
+      "title": "Notas de reunión",
+      "desc": "Informes de IA antes, transcripción en vivo durante, elementos de acción enrutados después."
+    },
+    {
+      "title": "Asistente",
+      "desc": "Conoce su negocio, anticipa necesidades, actúa en cada herramienta por voz."
+    },
+    {
+      "title": "Playbooks",
+      "desc": "Flujos de trabajo activos que guían a su equipo y le alertan cuando algo sale mal."
+    }
+  ]
+}

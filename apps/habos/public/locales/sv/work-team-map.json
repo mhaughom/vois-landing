@@ -1,0 +1,69 @@
+{
+  "badge": "Realtidssynlighet",
+  "hero": {
+    "title": "Se hela ditt team. I realtid.",
+    "description": "Varje fältarbetare på en live-karta — färgkodad efter projekt, avdelning eller verksamhet. Vet vem som kör, vem som är på plats och vem som är tillgänglig."
+  },
+  "body": "Varje instämplad teammedlem visas på en live Mapbox-karta, uppdaterad var 30:e sekund via Supabase Realtime. När en arbetares hastighet överstiger 3 km/h visas en bärnsten körningsbricka på deras pin — chefer vet omedelbart vem som är på väg mellan jobb. Fem grupperingslägen låter dig visa efter projekt, avdelning, verksamheter, organisationsnivå eller alla på en gång, vart och ett med en deterministisk färgpalett så att samma person alltid får samma färg.",
+  "groupTabs": ["Alla", "Projekt", "Avdelning", "Verksamheter"],
+  "pins": [
+    {
+      "name": "Mike T.",
+      "label": "På plats — Henderson",
+      "speed": 0
+    },
+    {
+      "name": "Sarah L.",
+      "label": "På väg — Wilson",
+      "sublabel": "(kör)",
+      "speed": 45
+    },
+    {
+      "name": "James K.",
+      "label": "På plats — Garcia",
+      "speed": 0
+    },
+    {
+      "name": "Lisa M.",
+      "label": "Tillgänglig",
+      "sublabel": "Senast: Baker-kontoret",
+      "speed": 0
+    }
+  ],
+  "mapCaption": "Uppdateras var ~30:e sekund via Supabase Realtime. Körningsbricka visas när hastigheten > 3 km/h.",
+  "benefits": {
+    "grouping": {
+      "title": "5 grupperingslägen",
+      "description": "Visa Alla, Projekt, Avdelning, Verksamheter eller Organisationsnivå. Vart och ett med deterministisk färgpalett — samma person, samma färg, varje gång."
+    },
+    "driving": {
+      "title": "Körningsdetektering",
+      "description": "När en arbetares hastighet överstiger 3 km/h visas en bärnsten bilbricka på deras pin. Chefer ser omedelbart vem som är mellan jobb."
+    },
+    "route": {
+      "title": "Ruttöverlagring",
+      "description": "Växla ruttpolylinjer från Mapbox Directions API. Se den planerade rutten vs faktisk position — identifiera avvikelser eller förseningar omedelbart."
+    }
+  },
+  "scenario": {
+    "quote1": "Läckan förvärras, kan någon komma tidigare?",
+    "narrative1": "Du öppnar Teamkartan, ser att Mike är 10 minuter bort och avslutar sitt nuvarande jobb. Du tilldelar om akutfallet till Mike från dispatchbrädan. Hans telefon uppdateras, kartpinnen ändras till",
+    "quote2": "På väg — Johnson,",
+    "narrative2": "och du berättar för kunden:",
+    "quote3": "Mike är där om 15 minuter.",
+    "narrative3": "Ingen gissning, ingen telefonkarusell."
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox GL",
+      "Supabase Realtime",
+      "~30 sek uppdatering",
+      "GPS-waypoints",
+      "Deterministisk färgpalett"
+    ]
+  },
+  "cta": {
+    "heading": "Andra verktyg visar var dina arbetare var. HABOS visar var de är.",
+    "button": "Gå med i väntelistan"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "category": "Filosofia",
+  "title": "Sempre ao Alcance",
+  "tagline": "Watch. Celular. Tela de bloqueio. Uma ligação telefônica. Onde quer que você esteja.",
+  "heroAlt": "Sempre ao Alcance",
+  "body": "Um eletricista em uma escada. Mãos segurando fios. Um pensamento surge sobre o próximo trabalho. O celular está no bolso. Até ele descer, desbloqueá-lo, abrir o aplicativo e navegar até a tela certa — três minutos se passaram. Mais provavelmente, o pensamento já foi embora. O software de negócios foi construído para mesas. Metade da força de trabalho não tem uma.",
+  "surfaces": [
+    { "name": "Watch", "detail": "Menos de 300ms. Levante o pulso, fale, pronto." },
+    { "name": "Tela de bloqueio", "detail": "Um toque inicia a gravação. Sem desbloqueio." },
+    { "name": "Ligação telefônica", "detail": "Ligue para o seu número VOIS. Qualquer telefone, qualquer rede." },
+    { "name": "Notificação", "detail": "Toque em uma opção de resposta sem abrir o aplicativo." }
+  ],
+  "funnelNote": "Cada toque adicional é um vazamento no funil de captura.",
+  "quote": "\"Se você precisa abrir um aplicativo para usá-lo, você já perdeu.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Velocidade do Pensamento",
+    "nextLabel": "Próximo",
+    "nextTitle": "Voltar ao HABOS"
+  }
+}

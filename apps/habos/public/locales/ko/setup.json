@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "설정 가이드"
+  },
+  "hero": {
+    "heading": "기기에 VOIS 설정하기",
+    "description": "Apple Watch 페이스와 iPhone 잠금 화면에 VOIS를 추가하여 탭 한 번으로 바로 녹음하세요."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "1단계: 워치에 VOIS 설치하기"
+    },
+    "step2": {
+      "heading": "2단계: 워치 페이스에 VOIS 추가하기"
+    },
+    "installSteps": [
+      { "number": 1, "text": "iPhone에서 Watch 앱 열기" },
+      { "number": 2, "text": "아래로 스크롤하여 '사용 가능한 앱' 찾기" },
+      { "number": 3, "text": "VOIS 옆의 설치 탭하기" }
+    ],
+    "faceSteps": [
+      "워치 페이스를 길게 누르기",
+      "'편집' 탭하기",
+      "컴플리케이션 슬롯 탭하기",
+      "VOIS 선택하기"
+    ],
+    "availableAppsLabel": "사용 가능한 앱",
+    "installButton": "설치"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone 잠금 화면",
+    "step": {
+      "heading": "잠금 화면에 VOIS 위젯 추가하기"
+    },
+    "steps": [
+      "잠금 화면을 길게 누르기",
+      "사용자화 탭하기",
+      "+ 위젯 추가 탭하기",
+      "VOIS 선택하기"
+    ]
+  }
+}

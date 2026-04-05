@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Missions & Opérations",
+  "hero": {
+    "title": "Gérez vos opérations par la voix",
+    "description": "Distribuez les missions, planifiez les itinéraires, suivez les projets, gérez les tâches et enregistrez le temps — depuis le terrain ou le bureau, sans paperasse."
+  },
+  "items": [
+    {
+      "title": "Dispatch",
+      "desc": "Tableau des missions journalières avec suivi de statut, affectation d'équipe et notifications clients."
+    },
+    {
+      "title": "Itinéraires",
+      "desc": "Ordre d'arrêts optimisé avec intégration cartographique pour votre équipe sur le terrain."
+    },
+    {
+      "title": "Projets",
+      "desc": "Identifiez les projets nécessitant votre attention — les blocages signalés avant qu'ils s'aggravent."
+    },
+    {
+      "title": "Tâches",
+      "desc": "Vos tâches les plus importantes remontent en premier, créées depuis la voix ou les réunions."
+    },
+    {
+      "title": "Suivi du temps",
+      "desc": "Pointage mobile, suivi des heures facturables par mission, liaison avec la paie."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "category": "Philosophie",
+  "title": "Deux interfaces, un système",
+  "tagline": "Les humains ont des écrans. Les agents ont des APIs. Les mêmes outils, les mêmes données.",
+  "heroAlt": "Interfaces doubles — tableaux de bord visuels et APIs structurées",
+  "body1": "La plupart des produits « propulsés par IA » tombent dans l'un de deux pièges. Premier : greffer un chatbot sur une interface existante et faire en sorte que l'IA clique sur des boutons, navigue dans des menus, lit des écrans. Ça brûle 15 000 tokens pour faire ce qu'un appel de fonction gère en 200. Quand l'interface change, l'agent casse. Second : construire uniquement en IA sans interface humaine. L'agent est rapide — mais c'est une boîte noire. Il a « géré » votre e-mail, mais vous ne pouvez pas voir ce qu'il a envoyé.",
+  "humanInterface": {
+    "label": "Interface humaine",
+    "body": "Vue hebdomadaire visuelle. Événements codés par couleur. Glisser pour replanifier. Raisonnement spatial sur votre temps."
+  },
+  "agentInterface": {
+    "label": "Interface agent",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "Le même calendrier. Le même événement. Les mêmes permissions."
+  },
+  "comparison": "Agent via interface web : 15 000 tokens. Agent via appel de fonction : 200 tokens. 75 fois.",
+  "comparisonWebUI": "Agent via interface web :",
+  "comparisonWebUIStat": "15 000 tokens.",
+  "comparisonFunctionCall": "Agent via appel de fonction :",
+  "comparisonFunctionCallStat": "200 tokens.",
+  "comparisonMultiplier": "75 fois.",
+  "quote": "« Faire cliquer l'IA sur des boutons, c'est comme faire marcher un pilote. Donnez à chaque intelligence l'interface qu'elle mérite. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Suggestions, pas menus",
+    "nextLabel": "Suivant",
+    "nextTitle": "Capturez votre cerveau"
+  }
+}

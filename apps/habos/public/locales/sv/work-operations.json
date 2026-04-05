@@ -1,0 +1,69 @@
+{
+  "badge": "Verksamhetsintelligens",
+  "hero": {
+    "title": "Problem lyfts fram innan någon märker det.",
+    "description": "Definiera dina affärskadenser. Teammedlemmar rapporterar med röst. AI poängsätter hälsa automatiskt och flaggar avvikelser med korrigerande åtgärder."
+  },
+  "body": "Verksamhetsmodulen väntar inte på att någon ska märka problem — den identifierar dem automatiskt. Admin konfigurerar regler per verksamhet: 'om genomförandegrad sjunker under 90%, flagga gult; under 70%, flagga rött.' När teammedlemmar lämnar in rapporter via röst, diktering, chatt eller formulär utvärderar systemet varje regel, beräknar efterlevnadspoäng, producerar hälsostatus och lyfter omedelbart fram resultat på instrumentpanelen. Över flera rapportkörningar spårar det trender och varnar om avvikelser innan de blir kriser.",
+  "dashboard": {
+    "title": "Levande hälsoinstrumentpanel",
+    "items": {
+      "dailyRevenue": {
+        "name": "Daglig intäktsrapport",
+        "category": "Försäljning"
+      },
+      "weeklySafety": {
+        "name": "Veckovis säkerhetsgranskning",
+        "category": "Fältdrift"
+      },
+      "monthlyEquipment": {
+        "name": "Månadsvis utrustningskontroll",
+        "category": "Underhåll"
+      }
+    },
+    "aiAlert": {
+      "label": "AI-åtgärd:",
+      "message": "Utrustningskontrollens genomförandegrad sjönk från 95% till 41% denna månad. Rekommendation: schemalägg obligatorisk utbildning + tilldela om till seniortekniker."
+    },
+    "footnote": "Hälsopoäng uppdateras automatiskt när rapporter lämnas in. Ingen manuell spårning."
+  },
+  "benefits": {
+    "reporting": {
+      "title": "4 sätt att rapportera",
+      "description": "Röstintervju, diktering, chatt eller traditionellt formulär. Fältarbetare fyller i rapporter genom att prata på hemkörningen. Inga klippbrädor."
+    },
+    "rules": {
+      "title": "Regler fångar problem",
+      "description": "Konfigurera trösklar: 'om daglig_intäkt < 50 000 kr, flagga RÖD.' Efterlevnadspoängsättning spårar aktualitet. Sent = proportionellt lägre poäng."
+    },
+    "ai": {
+      "title": "AI-korrigerande åtgärder",
+      "description": "När hälsan sjunker genererar AI 3–5 specifika åtgärder med brådskandighetnivåer. Inte vag rådgivning — konkreta nästa steg dirigerade till rätt personer."
+    }
+  },
+  "comparison": {
+    "without": {
+      "label": "Utan HABOS",
+      "description": "Fredag: 'Hur går det med säkerhetsgranskningen?' 'Eh, låt mig kolla.' Måndag: 'Det visar sig att 3 platser hoppade över den.' Onsdag: incidentrapport.",
+      "outcome": "Problem upptäckt: 5 dagar för sent"
+    },
+    "with": {
+      "label": "Med HABOS",
+      "description": "Tisdag: Automatiserad avisering — 'Säkerhetsgranskning genomförd till 67%, 3 platser försenade. Förslag: tilldela om till reservinspektörer.' Åtgärd vidtagen samma dag.",
+      "outcome": "Problem flaggat: dag ett"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "BPMN-liknande flödesdiagram",
+      "Regelbaserad hälsopoängsättning",
+      "7-dagars trendsparklines",
+      "AI-korrigerande åtgärder",
+      "4 rapportfyllningslägen"
+    ]
+  },
+  "cta": {
+    "heading": "Andra verktyg spårar vad som hände. HABOS fångar vad som håller på att gå fel.",
+    "button": "Gå med i väntelistan"
+  }
+}

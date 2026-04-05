@@ -1,0 +1,71 @@
+{
+  "badge": "统一消息",
+  "hero": {
+    "title": "每个渠道。一段对话。",
+    "description": "电子邮件、Slack、Teams、短信和内部聊天合并到一个以人为中心的时间线中。不再需要查看 5 个应用才能看到一个客户的所有消息。"
+  },
+  "body": "无需查看四个应用即可看到客户的所有消息，每条消息都出现在一个按时间顺序排列的流中——电子邮件、Slack、Teams、短信、内部聊天——锚定到单个人。每条入站消息都经过重要性评分和行动事项提取。高重要性消息获得提取的事实、任务和跟进建议。AI 理解跨渠道的上下文——引用邮件线程的 Slack 消息与同一对话关联。",
+  "timeline": {
+    "contactName": "Sarah Henderson",
+    "channelsActive": "3 个渠道活跃",
+    "messages": [
+      {
+        "channel": "email",
+        "subject": "回复：厨房翻新时间表",
+        "time": "3月18日，下午2:30",
+        "preview": "Mike 你好，确认我们按计划在 3 月 25 日开工。台面周四到货。"
+      },
+      {
+        "channel": "slack",
+        "subject": "#henderson-project",
+        "time": "3月19日，上午9:15",
+        "preview": "快问一下——瓷砖样品到了吗？客户想在下单前确认人字形拼法。"
+      },
+      {
+        "channel": "sms",
+        "time": "3月20日，上午11:00",
+        "preview": "许可证已批准！🎉"
+      },
+      {
+        "channel": "email",
+        "subject": "回复：更新的时间表",
+        "time": "3月21日，下午3:45",
+        "preview": "附上已将许可证延误考虑在内的修订时间表。新的完工日期：4 月 12 日。"
+      }
+    ],
+    "caption": "一个人，一条时间线，每个渠道。通过同一渠道回复或切换——由你决定。"
+  },
+  "benefits": {
+    "classification": {
+      "title": "AI 分类",
+      "body": "消息按重要性自动评分，并提取行动事项。紧急的浮现出来；噪音等待处理。"
+    },
+    "replies": {
+      "title": "自适应回复",
+      "body": "AI 在 3 种语气变体中匹配你的写作风格。在电子邮件、Slack 和短信上听起来像你——无需重写。"
+    },
+    "mailboxes": {
+      "title": "共享邮箱",
+      "body": "团队收件箱，如 support@company.com，带分配、追踪和 SLA 计时器。没有任何事情被遗漏。"
+    }
+  },
+  "beforeAfter": {
+    "beforeLabel": "之前",
+    "beforeText": "查看 Gmail。查看 Slack。查看 Teams。查看短信。在 4 个应用中拼凑 Sarah 说的内容。",
+    "beforeStat": "约每天 15 分钟",
+    "afterLabel": "之后",
+    "afterText": "打开 Sarah 的对话。一切都在这里。",
+    "afterStat": "约 30 秒"
+  },
+  "techStrip": [
+    "以人为中心的线程",
+    "多渠道撰写",
+    "AI 重要性评分",
+    "行动事项提取",
+    "实时同步"
+  ],
+  "closing": {
+    "tagline": "其他收件箱向你展示消息。HABOS 向你展示对话。",
+    "cta": "加入等待名单"
+  }
+}

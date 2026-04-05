@@ -1,0 +1,49 @@
+{
+  "badge": "Pagamenti",
+  "hero": {
+    "title": "Il Cliente Paga. Tu Vieni Pagato. Direttamente.",
+    "description": "Stripe Connect Express deposita i pagamenti direttamente sul tuo conto bancario. Nessun intermediario che trattiene i tuoi soldi. Nessun ritardo di 30 giorni sui pagamenti."
+  },
+  "body": "HABOS fornisce account Stripe Connect Express per spazio di lavoro, abilitando pagamenti diretti al conto bancario del proprietario dell'azienda. Il cliente paga sul sito web, Stripe addebita, la piattaforma deduce una commissione applicativa configurabile e il resto viene depositato direttamente sul conto bancario del proprietario. Rimborsi completi e parziali fluiscono attraverso Stripe con ripristino automatico delle scorte. Questo è il modello di Shopify applicato a una piattaforma AI-native.",
+  "flowNodes": [
+    { "label": "Il cliente paga $100" },
+    { "label": "Stripe elabora" },
+    { "label": "Commissione HABOS: $5" },
+    { "label": "Tu ricevi: $95" }
+  ],
+  "flowCaption": "Commissione applicativa configurabile (predefinita 5%). Flusso ricavi: Cliente → Stripe → HABOS prende la commissione → il resto depositato sul tuo conto.",
+  "benefits": [
+    {
+      "title": "Configurazione in 3 clic",
+      "desc": "Collega il tuo account Stripe, completa l'onboarding (dati aziendali, coordinate bancarie, partita IVA) e sei attivo. Addebiti abilitati, pagamenti abilitati."
+    },
+    {
+      "title": "Ogni metodo di pagamento",
+      "desc": "Sessioni di checkout, fatture, link di pagamento, pagamenti manuali e rimborsi — tutto attraverso un'unica integrazione. Rimborsi completi e parziali con ripristino automatico delle scorte."
+    },
+    {
+      "title": "Sito web → pagamento → banca",
+      "desc": "Il cliente acquista sul tuo sito HABOS. Stripe addebita la sua carta. La tua quota viene depositata. L'ordine viene tracciato. Nessuna riconciliazione necessaria."
+    }
+  ],
+  "pricing": {
+    "heading": "Come funzionano i prezzi HABOS",
+    "tiers": [
+      { "name": "Free", "credits": "1K crediti AI/mese", "price": "$0/mese" },
+      { "name": "Personal", "credits": "7,5K crediti AI/mese", "price": "$14,99/mese" },
+      { "name": "Work", "credits": "17,5K crediti AI/mese", "price": "$34,99/mese" }
+    ],
+    "topUps": "Più ricariche per spazio di lavoro ($100–$1K) per team che necessitano più capacità AI."
+  },
+  "techItems": [
+    "Stripe Connect Express",
+    "Commissioni configurabili",
+    "Sincronizzazione webhook",
+    "Rimborsi completi + parziali",
+    "RevenueCat per mobile"
+  ],
+  "cta": {
+    "heading": "Le altre piattaforme trattengono i tuoi soldi. HABOS li invia alla tua banca.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

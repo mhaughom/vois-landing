@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "Produkt",
+    "solutions": "Lösningar",
+    "philosophy": "Filosofi",
+    "communication": {
+      "label": "Kommunikation",
+      "desc": "E-post, Messenger, Telefon, Supportärenden"
+    },
+    "scheduling": {
+      "label": "Schemaläggning & bokningar",
+      "desc": "Kalender, Bokningar, Schemaläggningslänkar"
+    },
+    "jobsOperations": {
+      "label": "Jobb & drift",
+      "desc": "Utsändning, Rutter, Projekt, Uppgifter, Tidsspårning"
+    },
+    "salesPayments": {
+      "label": "Försäljning & betalningar",
+      "desc": "CRM, Produkter, Fakturering, Betalningar"
+    },
+    "voiceAi": {
+      "label": "Röst & AI",
+      "desc": "Röstanteckningar, Mötesanteckningar, Assistent, Spelböcker"
+    },
+    "websiteMarketing": {
+      "label": "Webbplats & marknadsföring",
+      "desc": "Webbplatsbyggare, Socialt, E-postkampanjer"
+    },
+    "serviceBusinesses": {
+      "label": "Tjänsteföretag",
+      "desc": "Från rörmokare till konsulter till terapeuter"
+    },
+    "productBusinesses": {
+      "label": "Produktföretag",
+      "desc": "Från butiker till e-handel till tillverkare"
+    },
+    "creativeBusinesses": {
+      "label": "Kreativa företag",
+      "desc": "Från byråer till fotografer till studior"
+    },
+    "fieldOperations": {
+      "label": "Fältverksamhet",
+      "desc": "Från byggbranschen till leverans till fastighetsförvaltning"
+    },
+    "teamsStartups": {
+      "label": "Team och startups",
+      "desc": "Bygger ett företag med 2–50 personer"
+    },
+    "soloFounders": {
+      "label": "Sologrundare",
+      "desc": "Från frilansare till enpersonsföretag"
+    },
+    "intelligenceYouControl": "Intelligens du kontrollerar",
+    "securityFirst": {
+      "label": "Säkerhet först",
+      "desc": "AI med gränser. Dina gränser."
+    },
+    "oneAssistant": {
+      "label": "En assistent",
+      "desc": "Fråga om vad som helst, var som helst"
+    },
+    "captureYourBrain": {
+      "label": "Fånga din hjärna",
+      "desc": "Fånga idéer innan de försvinner"
+    },
+    "fastByDesign": "Snabb av design",
+    "suggestionsNotMenus": {
+      "label": "Förslag, inte menyer",
+      "desc": "Läs. Tryck. Klart."
+    },
+    "twoInterfaces": {
+      "label": "Två gränssnitt",
+      "desc": "Skärmar för dig, API:er för agenter"
+    },
+    "speedOfThought": {
+      "label": "Tankens hastighet",
+      "desc": "Röst in, tryck ut"
+    },
+    "alwaysWithinReach": {
+      "label": "Alltid inom räckhåll",
+      "desc": "Klocka, telefon, låsskärm"
+    },
+    "builtForYourBusiness": "Byggt för ditt företag",
+    "everythingInOnePlace": {
+      "label": "Allt på ett ställe",
+      "desc": "En inloggning, varje verktyg"
+    },
+    "builtForTeams": {
+      "label": "Byggt för team",
+      "desc": "Samma sanning, olika perspektiv"
+    },
+    "yourSoftwareYourWay": {
+      "label": "Din programvara, ditt sätt",
+      "desc": "Flexibel av design"
+    },
+    "ctaLabel": "Gå med i väntelistan",
+    "betaLogin": "Beta-inloggning"
+  },
+  "vois": {
+    "features": "Funktioner",
+    "resources": "Resurser",
+    "voiceCapture": {
+      "label": "Röstinspelning",
+      "desc": "Tala, vi hanterar resten"
+    },
+    "aiAssistant": {
+      "label": "AI-assistent",
+      "desc": "Din personliga AI-partner"
+    },
+    "calendar": {
+      "label": "Kalender",
+      "desc": "Fyll fokusblock automatiskt"
+    },
+    "tasks": {
+      "label": "Uppgifter",
+      "desc": "AI-prioritering"
+    },
+    "watch": {
+      "label": "Klocka",
+      "desc": "Full AI på handleden"
+    },
+    "customApps": {
+      "label": "Anpassade appar",
+      "desc": "Bygg dina egna utrymmen"
+    },
+    "habosForWork": {
+      "label": "HABOS för arbete",
+      "desc": "Den fullständiga affärsplattformen"
+    },
+    "support": {
+      "label": "Support",
+      "desc": "Få hjälp från vårt team"
+    },
+    "privacyPolicy": {
+      "label": "Integritetspolicy",
+      "desc": "Hur vi skyddar dina uppgifter"
+    },
+    "termsOfService": {
+      "label": "Användarvillkor",
+      "desc": "Vårt tjänsteavtal"
+    },
+    "ctaLabel": "Gå med i väntelistan",
+    "workLabel": "HABOS för arbete",
+    "tryNow": "Prova nu",
+    "betaLogin": "Beta-inloggning"
+  },
+  "clusters": {
+    "communication": {
+      "email": "E-post",
+      "messenger": "Messenger",
+      "phone": "Telefon",
+      "supportTickets": "Supportärenden"
+    },
+    "schedulingBookings": {
+      "calendar": "Kalender",
+      "bookings": "Bokningar",
+      "schedulingLinks": "Schemaläggningslänkar"
+    },
+    "jobsOperations": {
+      "dispatch": "Utsändning",
+      "routes": "Rutter",
+      "projects": "Projekt",
+      "tasks": "Uppgifter",
+      "timeTracking": "Tidsspårning"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "Produkter",
+      "invoicing": "Fakturering",
+      "payments": "Betalningar"
+    },
+    "voiceAi": {
+      "voiceNotes": "Röstanteckningar",
+      "meetingNotes": "Mötesanteckningar",
+      "assistant": "Assistent",
+      "playbooks": "Spelböcker"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "Webbplatsbyggare",
+      "creativeStudio": "Kreativt studio",
+      "marketing": "Marknadsföring"
+    }
+  },
+  "mobile": {
+    "overview": "Översikt"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "Gå med i väntelistan",
+      "workLabel": "HABOS för arbete",
+      "tagline": "av HABOS"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "Gå med i väntelistan",
+      "tagline": "AI-kraft, mänsklig kontroll"
+    }
+  },
+  "clusterPages": {
+    "email": "E-post",
+    "messenger": "Messenger",
+    "telephony": "Telefon",
+    "tickets": "Supportärenden",
+    "calendar": "Kalender",
+    "bookings": "Bokningar",
+    "scheduling-links": "Schemaläggningslänkar",
+    "dispatch": "Utsändning",
+    "routes": "Rutter",
+    "projects": "Projekt",
+    "tasks": "Uppgifter",
+    "time-tracking": "Tidsspårning",
+    "crm": "CRM",
+    "products": "Produkter",
+    "finance": "Fakturering",
+    "payments": "Betalningar",
+    "voice-notes": "Röstanteckningar",
+    "meeting-notes": "Mötesanteckningar",
+    "assistant": "Assistent",
+    "playbooks": "Spelböcker",
+    "website-builder": "Webbplatsbyggare",
+    "creative-studio": "Kreativt studio",
+    "marketing": "Marknadsföring"
+  },
+  "clusterGroupNames": {
+    "communication": "Kommunikation",
+    "schedulingBookings": "Schemaläggning & bokningar",
+    "jobsOperations": "Jobb & drift",
+    "salesPayments": "Försäljning & betalningar",
+    "voiceAi": "Röst & AI",
+    "websiteMarketing": "Webbplats & marknadsföring"
+  }
+}

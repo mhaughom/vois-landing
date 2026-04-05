@@ -1,0 +1,52 @@
+{
+  "badge": "Bestillingshåndtering",
+  "hero": {
+    "title": "Fra tilbud til betalt. Hvert steg sporet.",
+    "description": "Fullstendig livssyklus-bestillingshåndtering med linjeelementer, betalingssporing og automatiske lagerjusteringer – slik at ingenting faller gjennom sprekkene."
+  },
+  "intro": "Bestillinger i VOIS er den sentrale posten som kobler CRM-kunder, produkter med varianter og lager. Når en booking fullføres eller en jobb avsluttes, opprettes en bestilling automatisk med riktige linjeelementer og priser. Betalingsstatus flyter fra ubetalt til delvis betalt til betalt til refundert – alltid synlig, alltid oppdatert. Hvert linjeelement trekker fra produktlager i sanntid, og eliminerer manuelle lagertelleringer helt.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovering", "amount": "kr 125 000", "status": "Betalt ✓" },
+    { "id": "#1248", "client": "Baker HVAC Service", "amount": "kr 32 000", "status": "Delvis" },
+    { "id": "#1249", "client": "Wilson Nødsituasjon", "amount": "kr 8 900", "status": "Ubetalt" }
+  ],
+  "lineItems": {
+    "heading": "Linjeelementer — Bestilling #1247 · Henderson Renovering",
+    "items": [
+      { "item": "Porselensfliser (600x600)", "qty": 48, "unit": "kr 850,00", "total": "kr 40 800" },
+      { "item": "Flislim (25 kg pose)", "qty": 12, "unit": "kr 320,00", "total": "kr 3 840" },
+      { "item": "Arbeid — flislegging (timer)", "qty": 24, "unit": "kr 950,00", "total": "kr 22 800" },
+      { "item": "Gulvvarme-kit", "qty": 1, "unit": "kr 18 500,00", "total": "kr 18 500" }
+    ],
+    "total": "Total: kr 125 000",
+    "annotation": "Bestillinger opprettes automatisk fra bookinger og jobber. Linjeelementer hentes fra produktkatalogen din med variantstøtte."
+  },
+  "benefitCards": [
+    {
+      "title": "Automatisk opprettet fra bookinger",
+      "desc": "Når en booking fullføres, genereres bestillingen automatisk med riktige linjeelementer og priser. Ingen dobbel dataregistrering, ingen tapte avgifter."
+    },
+    {
+      "title": "Direkte lagerjusteringer",
+      "desc": "Hvert bestillingslinjeelement trekker fra produktlager i sanntid. Ingen manuelle lagertelleringer. Gjenbestillingsvarsler utløses før du går tom."
+    },
+    {
+      "title": "Betalingslivssyklus",
+      "desc": "Spor ubetalt → delvis → betalt → refundert. Alle statusendringer logges og kobles til regnskapsplattformen din automatisk."
+    }
+  ],
+  "scenario": "En rørlegger avslutter en jobb. På turen hjem forteller han VOIS hvilke deler han brukte – to stengeventiler, en fleksslange og tre timers arbeid.",
+  "scenarioHighlight": "VOIS oppretter automatisk bestillingen med riktige linjeelementer, trekker delene fra lageret, kobler bestillingen til CRM-kunden og forbereder fakturaen – før han er tilbake på kontoret.",
+  "techItems": [
+    "Automatisk lagertrekk",
+    "Linjeelement-varianter",
+    "Betalingslivssyklus",
+    "CRM-kundekobling",
+    "Booking-til-bestilling-pipeline",
+    "Taleregistrerte bestillinger"
+  ],
+  "cta": {
+    "title": "Slutt å jage papirarbeid.\nLa bestillinger bygge seg selv.",
+    "button": "Bli med på ventelisten"
+  }
+}

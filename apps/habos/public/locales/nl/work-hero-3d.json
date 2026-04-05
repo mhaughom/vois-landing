@@ -1,0 +1,379 @@
+{
+  "features": {
+    "yourAssistant": {
+      "headline": "Een AI die uw hele bedrijf kent.",
+      "body": "VOIS leert uw processen, voorkeuren, geschiedenis en context. Het beantwoordt niet alleen vragen — het anticipeert op behoeften, stelt antwoorden op en handelt namens u in elk hulpmiddel dat u gebruikt.",
+      "closingLine": "Andere assistenten hebben instructies nodig. VOIS weet het al."
+    },
+    "yourSuperAssistant": {
+      "headline": "Stem, horloge, inbox, geheugen — één brein.",
+      "body": "Spreek naar uw horloge, dicteer in de auto, stuur een e-mail door of laat een notitie achter. Elke invoer komt terecht in één intelligent systeem dat alles routeert, prioriteert en onthoudt.",
+      "closingLine": "Één brein. Elk apparaat."
+    },
+    "yourDay": {
+      "headline": "Elke ochtend, gepland voor u.",
+      "body": "VOIS bekijkt uw taken, agenda, deadlines en prioriteiten 's nachts. Elke ochtend krijgt u een voorgesteld schema met thematische tijdblokken, voorbereidingsnotities voor vergaderingen en gemarkeerde items die aandacht nodig hebben.",
+      "closingLine": "Uw dag moet niet beginnen met beslissingen. Het moet beginnen met een plan."
+    },
+    "meetings": {
+      "headline": "Voorbereid. Getranscribeerd. Opgevolgd.",
+      "body": "Gepersonaliseerde briefings voor elke vergadering. Live transcriptie met sprekeridentificatie tijdens. Actiepunten geëxtraheerd en doorgestuurd naar de juiste projecten en mensen erna.",
+      "closingLine": "Andere tools transcriberen. VOIS bereidt voor, legt vast en handelt."
+    },
+    "projects": {
+      "headline": "Weet wat u nodig heeft voordat het vastloopt.",
+      "body": "AI-gezondheidsscore bewaakt taakvoltooiing, activiteitspatronen en tijdlijnvoortgang. Als een project stil valt of een mijlpaal verschuift, signaleert VOIS dit proactief en stelt vervolgstappen voor.",
+      "closingLine": "Dashboards tonen wat er is gebeurd. VOIS vertelt u wat u hierna moet doen."
+    },
+    "operations": {
+      "headline": "Uw bedrijf bewaakt zichzelf.",
+      "body": "VOIS bewaakt KPI's, workflows en terugkerende processen. Als iets afwijkt van normaal — een vertraagde levering, een gemiste SLA, een budgetoverschrijding — waarschuwt het u met context en aanbevolen actie.",
+      "closingLine": "Stop met brandjes blussen. Begin met voorkomen."
+    },
+    "clients": {
+      "headline": "Elke relatie, volledige context.",
+      "body": "VOIS bouwt rijke profielen op uit elke interactie — vergaderingen, e-mails, notities, taken. Voor elk gesprek ziet u de volledige geschiedenis, sentimenttrends en AI-voorgestelde gespreksonderwerpen.",
+      "closingLine": "Uw CRM moet geen database zijn. Het moet een geheugen zijn."
+    },
+    "documents": {
+      "headline": "Vertel het. Krijg een document terug.",
+      "body": "Beschrijf wat u nodig heeft — een projectbeschrijving, een voorstel, een wekelijkse update — en VOIS genereert een gestructureerd document vanuit uw stem, waarbij context uit uw projecten en gegevens wordt gehaald.",
+      "closingLine": "Stop met staren naar lege pagina's. Begin met praten."
+    },
+    "finance": {
+      "headline": "Elke euro, één overzicht.",
+      "body": "Omzet, uitgaven, facturen en prognoses samengevoegd in één AI-dashboard. VOIS categoriseert transacties, signaleert afwijkingen en beantwoordt vragen over uw cijfers in gewone taal.",
+      "closingLine": "Uw boekhouding moet zichzelf verklaren."
+    },
+    "website": {
+      "headline": "Uw website, gebouwd door AI.",
+      "body": "Beschrijf uw bedrijf en VOIS genereert een complete website — tekst, lay-out, afbeeldingen, SEO. Update het via stem. Verbind formulieren, reserveringen en betalingen zonder code aan te raken.",
+      "closingLine": "Uw website heeft geen ontwikkelaar nodig."
+    },
+    "aiAgents": {
+      "headline": "Uw eerste tien medewerkers hebben geen salaris nodig.",
+      "body": "Bouw uw AI-team in een organogram. Wijs agents toe aan rollen — onderzoeker, schrijver, analist, operaties. Elk heeft verantwoordelijkheden, tools, budgetten en rapportagelijnen. Ze plannen voor ze handelen en pauzeren voor goedkeuring.",
+      "closingLine": "ChatGPT beantwoordt vragen. VOIS-agents voltooien missies."
+    },
+    "reports": {
+      "headline": "Spreek uw rapport in 90 seconden in.",
+      "body": "Upload een sjabloon en VOIS extraheert elk veld. Vul het volledige rapport in via stem — AI interviewt u veld voor veld en vult alvast in wat het al weet uit uw gegevens.",
+      "closingLine": "Tien vragen. Klaar."
+    },
+    "yourTeam": {
+      "headline": "Elke medewerker, een superassistent.",
+      "body": "Geef elk teamlid zijn eigen AI-assistent die bedrijfscontext, processen en geschiedenis kent. Onboarding, dagelijkse planning, kennisopzoek en taakbeheer — gepersonaliseerd per rol.",
+      "closingLine": "Schaal uw beste werkwijzen naar elke stoel."
+    },
+    "playbooks": {
+      "headline": "Uw SOPs, levend en gehandhaafd.",
+      "body": "Zet standaardprocedures om in levende workflows. VOIS bewaakt naleving, begeleidt teamleden door elke stap en signaleert afwijkingen voordat ze problemen worden.",
+      "closingLine": "SOPs horen niet in mappen. Ze moeten zichzelf uitvoeren."
+    },
+    "fieldToOffice": {
+      "headline": "De informatiekloof, geëlimineerd.",
+      "body": "Een technicus rondt een klus af en spreekt een 30 seconden durende update in. Het kantoor ziet het direct — gestructureerd, opgeslagen en gekoppeld aan het juiste project, klant en factuur. Geen telefoontjes, geen gegevensinvoer.",
+      "closingLine": "Het veld loopt nooit meer een dag achter."
+    },
+    "theAirlock": {
+      "headline": "AI-kracht. Menselijke controle.",
+      "body": "Elke AI-actie gaat via de Airlock — een voorbeeldkaart met cryptografische bevestiging. De AI stelt voor, u bekijkt de exacte uitvoer, dan keurt u goed. Er wordt niets verzonden, aangemaakt of gewijzigd zonder uw expliciete goedkeuring.",
+      "closingLine": "Vertrouwen is geen instelling. Het is een architectuur."
+    },
+    "yourMemory": {
+      "headline": "Vraag alles wat u ooit heeft gezegd of gelezen.",
+      "body": "Zoek in alle 19 gegevensbronnen — spraakopnames, e-mails, documenten, vergadertranscripties, CRM-notities — met semantisch zoeken. VOIS vindt het antwoord zelfs als u niet meer weet in welke app het stond.",
+      "closingLine": "Uw tweede brein, met perfect geheugen."
+    },
+    "growthEngine": {
+      "headline": "Deel een vergadernotitie. Win een klant.",
+      "body": "Gedeelde vergadernotities worden een groeicanaal. Ontvangers zien uw bedrijfspreview, krijgen een promotienaanbod en melden zich aan in een werkruimte die vooraf is gevuld met hun eigen bedrijfsgegevens.",
+      "closingLine": "Uw product verkoopt zichzelf via het werk dat het doet."
+    }
+  },
+  "panels": {
+    "yourAssistant": {
+      "badge": "Totaal bewustzijn",
+      "heading": "Het kent uw bedrijf al.",
+      "description": "Leert uw processen, voorkeuren en geschiedenis. Anticipeert op wat u nodig heeft voordat u het vraagt.",
+      "tags": ["E-mails", "Vergaderingen", "Projecten", "CRM", "Docs", "Stem"],
+      "stat": "19",
+      "statLabel": "gegevensbronnen",
+      "statSub": "parallel doorzocht",
+      "statMore": "13 meer",
+      "statDesc": "Stem, e-mail, CRM,\ndocs, chat, projecten,\nen {{count}} meer.",
+      "quote": "Andere assistenten hebben instructies nodig.\nVOIS weet het al."
+    },
+    "yourSuperAssistant": {
+      "badge": "Invoer",
+      "voiceLabel": "Stem",
+      "voiceDesc": "spreek natuurlijk",
+      "watchLabel": "Horloge",
+      "watchDesc": "tik op uw pols",
+      "emailLabel": "E-mail",
+      "emailDesc": "stuur door",
+      "chatLabel": "Chat",
+      "chatDesc": "typ of sms",
+      "slackLabel": "Slack",
+      "slackDesc": "geef opdracht",
+      "quote": "Één brein.\nElk apparaat.",
+      "mainBadge": "Elk oppervlak, één brein",
+      "heading": "Spreek, typ, tik, stuur door.\nHet komt allemaal op één plek terecht.",
+      "description": "Elke invoer wordt gerouteerd, geprioriteerd en onthouden — ongeacht welk apparaat u gebruikte.",
+      "devices": ["Horloge", "Telefoon", "Desktop", "Inbox"]
+    },
+    "yourDay": {
+      "badge": "Ochtendbrief",
+      "heading": "Uw dag, gepland\nvoordat u wakker wordt.",
+      "description": "VOIS bekijkt taken, agenda en deadlines 's nachts. U wordt wakker met een voorgesteld schema.",
+      "stat": "7 uur",
+      "statLabel": "uw plan is klaar",
+      "statSub": "gemaakt terwijl u sliep",
+      "statNote": "Nul beslissingen nodig",
+      "statDesc": "Tijdblokken, voorbereidingsnotities,\nen gemarkeerde prioriteiten.",
+      "quote": "Uw dag moet beginnen met een plan, niet met beslissingen."
+    },
+    "meetings": {
+      "badge": "De volledige cyclus",
+      "heading": "Voorbereid. Getranscribeerd.\nOpgevolgd.",
+      "beforeLabel": "Ervoor",
+      "beforeDesc": "gepersonaliseerde briefing",
+      "duringLabel": "Tijdens",
+      "duringDesc": "live transcriptie",
+      "afterLabel": "Erna",
+      "afterDesc": "actiepunten doorgestuurd",
+      "step1": "Voorbereid",
+      "step1Sub": "auto-briefing",
+      "step2": "Vastgelegd",
+      "step2Sub": "transcriptie",
+      "step3": "Actie",
+      "step3Sub": "taken routeren",
+      "quote": "Andere tools transcriberen.\nVOIS bereidt voor, legt vast,\nen handelt.",
+      "stat": "0",
+      "statLabel": "handmatige follow-ups",
+      "statSub": "acties automatisch doorgestuurd naar projecten"
+    },
+    "projects": {
+      "healthBadge": "Gezondheid",
+      "statusOnTrack": "Op schema",
+      "statusAtRisk": "Risico",
+      "statusStalled": "Gestagneerd",
+      "pctOnTrack": "82%",
+      "pctAtRisk": "14%",
+      "pctStalled": "4%",
+      "badge": "Proactief, niet reactief",
+      "heading": "Weet wat u nodig heeft\nvoordat het vastloopt.",
+      "description": "AI bewaakt voltooiing, activiteit en tijdlijnen. Als een project stil valt, signaleert VOIS het en stelt vervolgstappen voor.",
+      "signals": ["Vastgelopen taken", "Gemiste mijlpalen", "Activiteitsdalingen", "Tijdlijnverschuiving"],
+      "quote": "Dashboards tonen wat er is gebeurd.\nVOIS vertelt u wat u hierna moet doen."
+    },
+    "operations": {
+      "badge": "Altijd in de gaten",
+      "heading": "Uw bedrijf\nbewaakt zichzelf.",
+      "description": "KPI's, workflows, terugkerende processen. Als iets afwijkt, krijgt u context en een aanbevolen oplossing.",
+      "trigger1": "Vertraagde levering",
+      "action1": "Klant automatisch melden",
+      "trigger2": "Gemiste SLA",
+      "action2": "Escaleren naar lead",
+      "trigger3": "Budgetoverschrijding",
+      "action3": "Markeren voor beoordeling",
+      "stat": "24/7",
+      "statLabel": "bewaking",
+      "statSub": "nul menselijke bandbreedte",
+      "quote": "Stop met brandjes blussen.\nBegin met voorkomen."
+    },
+    "clients": {
+      "badge": "Volledig context CRM",
+      "heading": "Elke relatie,\nvolledige herinnering.",
+      "description": "Rijke profielen opgebouwd uit elke interactie. Voor elk gesprek ziet u de volledige geschiedenis en AI-voorgestelde gespreksonderwerpen.",
+      "lastContactKey": "Laatste contact",
+      "lastContactVal": "3 dagen geleden — e-mail",
+      "sentimentKey": "Sentiment",
+      "sentimentVal": "Positief, betrokken",
+      "openItemsKey": "Openstaande items",
+      "openItemsVal": "2 voorstellen in behandeling",
+      "nextStepKey": "Volgende stap",
+      "nextStepVal": "Opvolgen over prijsstelling",
+      "callBadge": "Voor elk gesprek",
+      "callDesc": "Geschiedenis, sentiment,\nopenstaande items, gespreks-\npunten — automatisch voorbereid.",
+      "callDescHighlight": "automatisch voorbereid",
+      "quote": "Uw CRM moet een geheugen zijn, niet een database."
+    },
+    "documents": {
+      "stat": "Stem",
+      "statLabel": "naar document",
+      "types": ["Briefings", "Voorstellen", "Rapporten", "Updates"],
+      "quote": "Stop met staren naar lege pagina's. Begin met praten.",
+      "badge": "Praten, niet typen",
+      "heading": "Beschrijf wat u nodig heeft.\nKrijg een afgerond document.",
+      "description": "VOIS haalt context uit uw projecten en genereert gestructureerde documenten vanuit uw stem.",
+      "step1": "Spreek",
+      "step1Sub": "beschrijf het",
+      "step2": "AI",
+      "step2Sub": "stelt op",
+      "step3": "Klaar",
+      "step3Sub": "opgemaakt"
+    },
+    "finance": {
+      "badge": "Financiële intelligentie",
+      "heading": "Elke euro,\néén overzicht.",
+      "description": "Omzet, uitgaven, facturen en prognoses in één AI-dashboard. Stel vragen in gewone taal.",
+      "revenueLabel": "Omzet",
+      "revenueVal": "$48,2K",
+      "expensesLabel": "Uitgaven",
+      "expensesVal": "$31,7K",
+      "netLabel": "Netto",
+      "netVal": "$16,5K",
+      "quote": "Uw boekhouding moet zichzelf verklaren.",
+      "queryBadge": "Stel alles",
+      "query1": "\"Hoeveel hebben we aan marketing uitgegeven?\"",
+      "query2": "\"Toon achterstallige facturen\"",
+      "query3": "\"Omzettrend afgelopen 6 maanden\""
+    },
+    "website": {
+      "badge": "AI-gebouwde websites",
+      "heading": "Beschrijf uw bedrijf.\nKrijg een website.",
+      "description": "Tekst, lay-out, afbeeldingen, SEO — gegenereerd. Update via stem. Verbind formulieren, reserveringen en betalingen.",
+      "features": ["Tekst & SEO", "Lay-out", "Formulieren", "Reserveringen", "Betalingen", "Analyse"],
+      "quote": "Uw website heeft geen ontwikkelaar nodig.",
+      "stat": "0",
+      "statLabel": "regels code",
+      "statSub": "via stem bijgewerkt, altijd live"
+    },
+    "aiAgents": {
+      "badge": "Uw AI-organogram",
+      "heading": "Uw eerste tien medewerkers\nhebben geen salaris nodig.",
+      "description": "Bouw agents in een organogram. Elk heeft verantwoordelijkheden, tools, budgetten en rapportagelijnen.",
+      "role1": "Onderzoeker",
+      "role1Desc": "Webscraping, analyse",
+      "role2": "Schrijver",
+      "role2Desc": "Content, voorstellen",
+      "role3": "Analist",
+      "role3Desc": "Data, prognoses",
+      "role4": "Operaties",
+      "role4Desc": "Planning, routering",
+      "loopBadge": "De lus",
+      "loopSteps": ["Plan", "Handel", "Pauzeer", "Lever op"],
+      "loopNote": "Altijd in controle",
+      "loopDesc": "Agents plannen voor ze handelen\nen pauzeren voor uw goedkeuring.",
+      "quote": "ChatGPT beantwoordt vragen.\nVOIS-agents voltooien missies."
+    },
+    "reports": {
+      "badge": "Rapporten, opnieuw bedacht",
+      "heading": "Bel uw assistent.\nBeschrijf wat er is gebeurd.\nKrijg een afgerond rapport.",
+      "subHeading": "Geen formulieren. Geen laptop. Gewoon een telefoontje.",
+      "description": "Upload een sjabloon en VOIS extraheert elk veld. Vul het dan in via stem — de AI interviewt u en vult vooraf in wat het al weet.",
+      "step1": "Upload",
+      "step1Sub": "sjabloon",
+      "step2": "Bel",
+      "step2Sub": "uw AI",
+      "step3": "Klaar",
+      "step3Sub": "rapport ingediend",
+      "stat": "90s",
+      "statLabel": "gem. rapportagetijd",
+      "statSub": "vs 30 min traditioneel",
+      "statSpeedNote": "10x sneller",
+      "statDesc": "Mensen praten 3–4x sneller\ndan ze typen. Voeg AI-\nopmaak toe =",
+      "voiceBadge": "Stem-eerst",
+      "voiceHeading": "AI vraagt. U antwoordt.\n10 vragen. Klaar.",
+      "phoneLabel": "Telefoongesprek",
+      "phoneDesc": "bel uw assistent",
+      "interviewLabel": "Interview",
+      "interviewDesc": "AI doorloopt de velden",
+      "dictationLabel": "Dictaat",
+      "dictationDesc": "één stemnotitie vult alles in",
+      "chatLabel": "Chat",
+      "chatDesc": "conversationele tekstinvoer"
+    },
+    "yourTeam": {
+      "badge": "AI per rol",
+      "heading": "Elke stoel krijgt\neen superassistent.",
+      "description": "Bedrijfscontext, processen en geschiedenis — gepersonaliseerd per rol.",
+      "stat": "1:1",
+      "statLabel": "AI per medewerker",
+      "statSub": "afgestemd op hun rol",
+      "statNote": "persoonlijke assistent",
+      "statDesc": "Geen gedeelde chatbot.\nEen die hun werk kent.",
+      "perks": ["Onboardinggids", "Dagplanner", "Kennisopzoek", "Taakbeheer", "Procescoach", "Vergadervoorbereiding"],
+      "perksBadge": "Wat elke medewerker krijgt"
+    },
+    "playbooks": {
+      "badge": "Levende SOPs",
+      "heading": "Uw playbooks\nvoeren zichzelf uit.",
+      "description": "Zet procedures om in workflows die naleving bewaken, elke stap begeleiden en afwijkingen signaleren.",
+      "step1": "Stap 1",
+      "step1Desc": "Teamlid begeleiden",
+      "step2": "Stap 2",
+      "step2Desc": "Naleving verifiëren",
+      "step3": "Stap 3",
+      "step3Desc": "Afwijking signaleren",
+      "quote": "SOPs horen niet in mappen. Ze moeten zichzelf uitvoeren.",
+      "complianceBadge": "Nalevingsscore",
+      "stat": "97%",
+      "statSub": "gem. over actieve playbooks",
+      "statNote": "voor",
+      "statDesc": "Realtime bewaking.\nAfwijkingen gedetecteerd\nvoordat ze problemen worden."
+    },
+    "fieldToOffice": {
+      "badge": "Overbrugde de kloof",
+      "heading": "Veldupdate in 30s.\nKantoor ziet het direct.",
+      "description": "Technicus spreekt een stemnotitie in. Het is gestructureerd, opgeslagen en gekoppeld aan het juiste project, klant en factuur.",
+      "step1": "Spreek",
+      "step1Sub": "ter plaatse",
+      "step2": "AI",
+      "step2Sub": "structureert",
+      "step3": "Kantoor",
+      "step3Sub": "ziet het",
+      "stat": "30s",
+      "statLabel": "stemnotitie vervangt",
+      "statSub": "20 min papierwerk",
+      "linksBadge": "Automatisch gekoppeld aan",
+      "links": ["Project", "Klant", "Factuur", "Tijdlijn"],
+      "quote": "Het veld loopt nooit meer\neen dag achter."
+    },
+    "theAirlock": {
+      "badge": "AI-veiligheidslaag",
+      "heading": "AI-kracht.\nMenselijke controle.",
+      "description": "Elke AI-actie gaat via een voorbeeldkaart. U ziet de exacte uitvoer, dan keurt u goed. Er gebeurt niets zonder uw goedkeuring.",
+      "step1": "AI",
+      "step1Sub": "stelt voor",
+      "step2": "U",
+      "step2Sub": "beoordeelt",
+      "step3": "Goed",
+      "step3Sub": "of afwijzen",
+      "stat": "100%",
+      "statLabel": "menselijk goedgekeurd",
+      "statSub": "elke actie, elke keer",
+      "ironRuleBadge": "De ijzeren regel",
+      "ironRuleHeading": "AI stelt voor. U beoordeelt.\nU keurt goed. Altijd.",
+      "quote": "Vertrouwen is geen instelling.\nHet is een architectuur."
+    },
+    "yourMemory": {
+      "badge": "Semantisch zoeken",
+      "heading": "Vraag alles\nwat u ooit heeft gezegd.",
+      "description": "Zoek op betekenis, niet op trefwoorden. VOIS vindt antwoorden in elke bron.",
+      "stat": "19",
+      "statLabel": "bronnen geïndexeerd",
+      "statMore": "+ 13 meer",
+      "statSources": "Stem · E-mail · Docs\nCRM · Chat · Notities",
+      "queryBadge": "Voorbeeldvragen",
+      "query1": "\"Wat zei Sarah over het budget?\"",
+      "query2": "\"Vind alles over vergunningsvertragingen\"",
+      "query3": "\"Waar staan we met Henderson?\"",
+      "quote": "Uw tweede brein,\nmet perfect geheugen."
+    },
+    "growthEngine": {
+      "badge": "Virale lus",
+      "heading": "Deel een vergadernotitie.\nWin een klant.",
+      "description": "Ontvangers zien uw bedrijf, krijgen een promotie en melden zich aan met vooraf ingevulde eigen gegevens.",
+      "stat": "90%",
+      "statLabel": "korting voor doorverwijzingen",
+      "statHighlight": "hun eigen gegevens",
+      "statDesc": "Doorverwezen aanmeldingen krijgen\neen werkruimte vooraf gevuld\nmet",
+      "flyWheelBadge": "Het vliegwiel",
+      "flyWheelSteps": ["Deel", "Ontdek", "Aanmelden", "Deel"],
+      "flyWheelDesc": "Uw product verkoopt zichzelf\ndoor het werk dat het doet.",
+      "quote": "Elke vergadernotitie\nis een groeicanaal."
+    }
+  }
+}

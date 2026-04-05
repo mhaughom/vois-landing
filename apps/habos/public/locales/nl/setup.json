@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Installatiegids"
+  },
+  "hero": {
+    "heading": "Stel VOIS in op je apparaten",
+    "description": "Voeg VOIS toe aan je Apple Watch-wijzerplaat en iPhone-vergrendelscherm voor directe opname met één tik."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "Stap 1: Installeer VOIS op je Watch"
+    },
+    "step2": {
+      "heading": "Stap 2: Voeg VOIS toe aan je wijzerplaat"
+    },
+    "installSteps": [
+      { "number": 1, "text": "Open de Watch-app op je iPhone" },
+      { "number": 2, "text": "Scroll naar \"Beschikbare apps\"" },
+      { "number": 3, "text": "Tik op Installeren naast VOIS" }
+    ],
+    "faceSteps": [
+      "Houd je wijzerplaat ingedrukt",
+      "Tik op \"Wijzigen\"",
+      "Tik op een complicatiepositie",
+      "Selecteer VOIS"
+    ],
+    "availableAppsLabel": "Beschikbare apps",
+    "installButton": "INSTALLEREN"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone-vergrendelscherm",
+    "step": {
+      "heading": "Voeg VOIS-widget toe aan je vergrendelscherm"
+    },
+    "steps": [
+      "Houd je vergrendelscherm ingedrukt",
+      "Tik op Aanpassen",
+      "Tik op + Widgets toevoegen",
+      "Selecteer VOIS"
+    ]
+  }
+}

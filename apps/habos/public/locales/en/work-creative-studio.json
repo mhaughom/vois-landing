@@ -1,0 +1,60 @@
+{
+  "badge": "AI Creative Studio",
+  "hero": {
+    "titlePart1": "Campaign Brief In.",
+    "titlePart2": "Scored Creatives Out.",
+    "description": "Describe what you need. AI generates concepts, renders images grounded in your real products, and scores each variant across 6 quality dimensions. Deploy the winners."
+  },
+  "body": "The creative pipeline is deterministic: campaign context in, scored creatives out. AI generates concepts grounded in your real product photos, logos, and proof assets — not generic stock. Every variant is scored across six dimensions: product fidelity, brand fidelity, readability, authenticity, placement fit, and policy safety. Track every generated creative from creation to deployment to click to conversion. Know exactly which visual angles drive revenue.",
+  "pipelineLabel": "Generation Pipeline",
+  "pipelineStages": [
+    { "label": "Brief", "count": "1" },
+    { "label": "3 Concepts", "count": "3" },
+    { "label": "12 Variants", "count": "12" },
+    { "label": "Top 4 Scored", "count": "4" }
+  ],
+  "creativeCards": [
+    { "channel": "Meta Ad", "score": "8.7/10" },
+    { "channel": "Instagram", "score": "9.1/10" },
+    { "channel": "Website", "score": "7.3/10" },
+    { "channel": "Google Ad", "score": "8.9/10" }
+  ],
+  "scoringCaption": "Each variant scored on: product fidelity, brand fidelity, readability, authenticity, placement fit, and policy safety.",
+  "benefits": [
+    {
+      "title": "Grounded in your brand",
+      "desc": "AI references your real product photos, logos, and proof assets. Not generic stock — images that look like your actual business."
+    },
+    {
+      "title": "4 channels, one brief",
+      "desc": "Meta ads, social posts, website sections, and presentation slides — all generated from a single campaign brief. Resized and formatted per platform."
+    },
+    {
+      "title": "Explore mode",
+      "desc": "Found a winner? Explore mode generates 10+ variations of your best concept for A/B testing. Find the exact angle that converts."
+    }
+  ],
+  "scoring": {
+    "heading": "Quality Scoring Dimensions",
+    "dimensions": [
+      "Product fidelity",
+      "Brand fidelity",
+      "Readability",
+      "Authenticity",
+      "Placement fit",
+      "Policy safety"
+    ]
+  },
+  "scenario": "You're launching a spring HVAC promotion. Type: \"Generate creatives for our spring AC tune-up special — $99 for existing customers.\" HABOS pulls your AC service photos, brand colors, and the campaign offer. In 90 seconds: 3 concepts, 12 variants across Meta, Instagram, and your website. The top-scoring variant has a 9.1 quality rating. Click \"Deploy\" — it's live on Meta and published to your website's campaign surface.",
+  "techItems": [
+    "7-step deterministic pipeline",
+    "Multi-channel output",
+    "6-dimension scoring",
+    "Closed-loop attribution",
+    "Studio + Explore modes"
+  ],
+  "cta": {
+    "heading": "Other tools generate generic images. HABOS generates scored, brand-ready campaigns.",
+    "button": "Join Waitlist"
+  }
+}

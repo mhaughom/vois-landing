@@ -1,0 +1,59 @@
+{
+  "badge": "Dokumenter",
+  "hero": {
+    "title_part1": "Skriv én gang.",
+    "title_part2": "Finn for alltid",
+    "description": "En rik teksteditor med maler, fulltekstsøk og AI-assistert skriving som henter fra hele arbeidsområdet ditt."
+  },
+  "demoSection": {
+    "heading": "Skriv og finn på ett sted",
+    "editorTitle": "Fjordview Hotel — Vedlikeholdsforslag",
+    "aiAssist": "AI-assistanse",
+    "searchQuery": "vedlikeholdskontrakt",
+    "searchResults": "3 resultater",
+    "results": [
+      {
+        "title": "Fjordview Hotel — Vedlikeholdsforslag",
+        "snippet": "...årlig vedlikeholdskontrakt som dekker HVAC, rørleggerarbeid og elektro..."
+      },
+      {
+        "title": "Q1 Serviceoversikt — Fjordview",
+        "snippet": "...kontraktsfornyelse innen 15. april. Gjeldende vedlikeholdsomfang inkluderer..."
+      },
+      {
+        "title": "Leverandørprisliste 2026",
+        "snippet": "...standard vedlikeholdskontrakt nivå: NOK 45 000/måned..."
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "Rik editor",
+      "desc": "Full formatering med overskrifter, lister, tabeller, bilder og innbygging. Bygget på TipTap – rask og kjent."
+    },
+    {
+      "title": "Maler",
+      "desc": "Start fra velprøvde maler for tilbud, SOPer, møteagendaer og kontrakter. Tilpass én gang, bruk overalt."
+    },
+    {
+      "title": "Fulltekstsøk",
+      "desc": "Hvert ord er indeksert. Søk på tvers av alle dokumenter umiddelbart. Resultatene viser kontekst og fremhever treff."
+    }
+  ],
+  "scenario": {
+    "body": "Du trenger et vedlikeholdsforslag for Fjordview Hotel. I stedet for å starte fra bunnen av velger du malen «Servicetilbud». AI forhåndsutfyller kundeopplysninger fra CRM, nylige inspeksjonsfunn fra rapportene dine og priser fra produktkatalogen din. Du redigerer to setninger og sender.",
+    "closing": "Fra blank side til sendt tilbud på under to minutter."
+  },
+  "techItems": [
+    "TipTap-editor",
+    "Malsystem",
+    "Fulltekstsøk",
+    "AI-assistert skriving",
+    "Prosjektkobling",
+    "Søkbar i Brain"
+  ],
+  "cta": {
+    "tagline": "Dokumenter som kjenner virksomheten din.",
+    "button": "Bli med på ventelisten"
+  }
+}

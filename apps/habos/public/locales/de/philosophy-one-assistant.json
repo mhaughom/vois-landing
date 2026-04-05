@@ -1,0 +1,26 @@
+{
+  "category": "Philosophie",
+  "title": "Ein Assistent, nicht hundert Tools",
+  "tagline": "VOIS kennt Ihr gesamtes Unternehmen. Fragen Sie alles, von überall.",
+  "heroAlt": "Ein Assistent mit vollem Geschäftskontext",
+  "section1": {
+    "heading": "Sie sind die Integration",
+    "body": "Es ist 21 Uhr. Ein Kunde schreibt eine E-Mail und fragt, ob Sie sich Donnerstag treffen können. Um zu antworten, brauchen Sie Ihre Verfügbarkeit aus Calendly, Ihre Historie aus dem CRM und ob er seine letzte Rechnung aus der Buchhaltung bezahlt hat. Drei Apps. Drei Logins. Fünf Minuten Klicken. Für eine Antwort, die zehn Sekunden dauern sollte."
+  },
+  "section2": {
+    "heading": "Was ein Assistent bedeutet",
+    "body1": "\"Was ist meine Geschichte mit Acme Corp?\" – VOIS durchsucht E-Mails, Meetingtranskripte, Sprachaufnahmen, CRM-Notizen, Rechnungen und Projektdateien. In zwei Sekunden erscheint eine einheitliche Timeline. 14 E-Mails, 3 Meetings mit Transkripten, letzte Rechnung am 12. Feb. bezahlt, aktives Projekt zu 68 %. Versuchen Sie das über fünf separate Apps.",
+    "body2": "\"Antworte Sarah und sag ihr, Donnerstag passt.\" – Ein Satz rein. VOIS weiß, wer Sarah ist (CRM), was sie gefragt hat (Posteingang), dass Donnerstag frei ist (Kalender) und wie der Klempner normalerweise schreibt (Sendehistorie). Eine vollständige, personalisierte E-Mail erscheint als Vorschaukarte. Nichts wird ohne die Luftschleuse gesendet."
+  },
+  "section3": {
+    "heading": "Nicht nur ein Chatbot",
+    "body": "Hinter dem Assistenten steckt eine vollständige Plattform. Sie können den Kalender direkt öffnen, das CRM durchsuchen, Rechnungen bearbeiten, Projekte verwalten – alles über traditionelle Schnittstellen. Der Assistent ist ein Weg hinein, nicht der einzige Weg hinein. Manche Dinge sagt man schneller. Manche Dinge sieht man schneller. VOIS gibt Ihnen beides."
+  },
+  "quote": "\"Sie sollten nicht Ihr eigener Sekretär sein müssen, nur weil Sie Unternehmenssoftware nutzen.\"",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Alles an einem Ort",
+    "nextLabel": "Weiter",
+    "nextTitle": "Für Teams gebaut"
+  }
+}

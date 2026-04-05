@@ -1,0 +1,58 @@
+{
+  "category": "Filosofi",
+  "title": "Luftsluset",
+  "tagline": "Alle konkurrenter vælger enten fuld autonomi eller fuldstændig manuel styring. HABOS er den eneste platform, der gør pausen til en funktion. AI foreslår. Du godkender. Enhver handling passerer igennem Luftsluset — håndhævet af kode, ikke af AI'ens gode dømmekraft.",
+  "heroPlaceholder": "Heroillustration",
+  "section1": {
+    "heading": "Jernreglen",
+    "body1": "AI'en kan ikke skrive til databasen, uden at brugeren ser en forhåndsvisning og eksplicit godkender. Dette er ikke en anbefaling. Ikke en bedste praksis. Ikke en AI-instruktion, der kan omgås. Det er en hård gate i værktøjsruteren, der ikke kan omgås — ikke af AI'en, ikke af et plugin, ikke af nogen uden at ændre kildekoden.",
+    "body2": "Når du siger \"send en e-mail til Lars\", kladder AI'en den, viser dig den og venter. Når du siger \"opret en opgave\", viser AI'en dig opgavekortet og venter. Når en agent afslutter et titrins forskningsopgave og ønsker at gemme resultaterne — viser den dig artefaktet og venter. Altid."
+  },
+  "section2": {
+    "heading": "Tre tillidsniveauer"
+  },
+  "tiers": [
+    {
+      "tier": "Læs",
+      "desc": "Søge, liste, slå oplysninger op. AI'en kan frit indsamle kontekst for at give dig bedre svar.",
+      "rule": "Udfør straks. Ingen godkendelse nødvendig."
+    },
+    {
+      "tier": "Skriv",
+      "desc": "Oprette opgaver, planlægge begivenheder, opdatere poster. Alt, der ændrer tilstanden i din virksomhed.",
+      "rule": "Forhåndsvisning først. Du ser præcis, hvad der ville ske. Godkend eller afvis."
+    },
+    {
+      "tier": "Høj risiko",
+      "desc": "Sende e-mails, poste på Slack, finansielle ændringer. Handlinger synlige for folk uden for systemet.",
+      "rule": "Forhåndsvisning + ekstra godkendelse. Varigt revisionsregister. Overlever servernedbrud."
+    }
+  ],
+  "approvalFlowPlaceholder": "Godkendelsesflowdiagram",
+  "section3": {
+    "heading": "Kryptografisk bekræftelse",
+    "body": "Enhver skrivehandling genererer et bekræftelsestoken — kryptografisk, med 10 minutters udløb, bundet til den specifikke bruger og de nøjagtige argumenter. Hvis noget ændrer sig mellem forhåndsvisning og bekræftelse, kræves et nyt token. AI'en kan ikke ændre handlingen, efter den er vist for dig. Det, du så, er det, der udføres."
+  },
+  "section4": {
+    "heading": "Politikker på arbejdsrumsniveau",
+    "intro": "Administratorer har yderligere kontroller, der tilsidesætter alt andet:",
+    "policies": [
+      "Bloker specifikke værktøjer helt — ingen AI-e-mailafsendelse for dette arbejdsrum",
+      "Kræv ekstra godkendelse for specifikke handlingstyper",
+      "Begræns hvilke AI-modeller der bruges",
+      "Begræns budgetter pr. kørsel — en agent kan ikke bruge mere end du har autoriseret"
+    ],
+    "outro": "Alt håndhævet af kode. Ikke ved at bede AI'en om at opføre sig ordentligt. Ikke ved at håbe den følger instrukser. Ved gates i eksekveringslaget, som AI'en ikke har mulighed for at omgå."
+  },
+  "approvalFlowScreenshotPlaceholder": "Skærmbillede af godkendelsesflow",
+  "section5": {
+    "heading": "Hvorfor dette er vigtigt",
+    "body1": "AI-branchen kappes om autonomi. Fuldt autonome agenter, der handler på dine vegne uden at spørge. Vi mener, dette er baglæns for erhvervssoftware.",
+    "body2": "En virksomhedsejer skal stole på sine værktøjer som de stoler på sit team: med klar delegering, synlige handlinger og muligheden for at sige nej. HABOS giver dig superkræfter — og holder dine hænder på rattet."
+  },
+  "quote": "\"Den bedste AI træffer ikke beslutninger for dig. Den gør dig hurtigere til selv at træffe beslutninger.\"",
+  "nav": {
+    "nextLabel": "Næste",
+    "nextTitle": "Slutningen på dataindtastning"
+  }
+}

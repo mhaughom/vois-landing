@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "プロダクト",
+    "solutions": "ソリューション",
+    "philosophy": "フィロソフィー",
+    "communication": {
+      "label": "コミュニケーション",
+      "desc": "メール、メッセンジャー、電話、サポートチケット"
+    },
+    "scheduling": {
+      "label": "スケジュール＆予約",
+      "desc": "カレンダー、予約、スケジューリングリンク"
+    },
+    "jobsOperations": {
+      "label": "ジョブ＆オペレーション",
+      "desc": "ディスパッチ、ルート、プロジェクト、タスク、工数管理"
+    },
+    "salesPayments": {
+      "label": "営業＆決済",
+      "desc": "CRM、製品、請求書発行、支払い"
+    },
+    "voiceAi": {
+      "label": "ボイス＆AI",
+      "desc": "ボイスノート、会議メモ、アシスタント、プレイブック"
+    },
+    "websiteMarketing": {
+      "label": "ウェブサイト＆マーケティング",
+      "desc": "ウェブサイトビルダー、ソーシャル、メールキャンペーン"
+    },
+    "serviceBusinesses": {
+      "label": "サービス業",
+      "desc": "配管業者からコンサルタント、セラピストまで"
+    },
+    "productBusinesses": {
+      "label": "物販業",
+      "desc": "実店舗からEコマース、メーカーまで"
+    },
+    "creativeBusinesses": {
+      "label": "クリエイティブ業",
+      "desc": "代理店からフォトグラファー、スタジオまで"
+    },
+    "fieldOperations": {
+      "label": "フィールドオペレーション",
+      "desc": "建設から配送、不動産管理まで"
+    },
+    "teamsStartups": {
+      "label": "チーム＆スタートアップ",
+      "desc": "2〜50人で会社を構築する"
+    },
+    "soloFounders": {
+      "label": "ソロファウンダー",
+      "desc": "フリーランスから一人会社まで"
+    },
+    "intelligenceYouControl": "あなたがコントロールするインテリジェンス",
+    "securityFirst": {
+      "label": "セキュリティファースト",
+      "desc": "制限のあるAI。あなたの制限で。"
+    },
+    "oneAssistant": {
+      "label": "ワンアシスタント",
+      "desc": "どこからでも、何でも質問"
+    },
+    "captureYourBrain": {
+      "label": "思考をキャプチャ",
+      "desc": "アイデアが消える前に捉える"
+    },
+    "fastByDesign": "スピードのための設計",
+    "suggestionsNotMenus": {
+      "label": "メニューではなく提案",
+      "desc": "読む。タップ。完了。"
+    },
+    "twoInterfaces": {
+      "label": "2つのインターフェース",
+      "desc": "あなた向けの画面、エージェント向けのAPI"
+    },
+    "speedOfThought": {
+      "label": "思考のスピード",
+      "desc": "声で入力、タップで完了"
+    },
+    "alwaysWithinReach": {
+      "label": "いつでも手の届く場所に",
+      "desc": "Watch、スマートフォン、ロック画面"
+    },
+    "builtForYourBusiness": "あなたのビジネスのために構築",
+    "everythingInOnePlace": {
+      "label": "すべてが一か所に",
+      "desc": "1つのログイン、すべてのツール"
+    },
+    "builtForTeams": {
+      "label": "チーム向けに構築",
+      "desc": "同じ真実、異なる視点"
+    },
+    "yourSoftwareYourWay": {
+      "label": "あなたのソフトウェア、あなたのやり方で",
+      "desc": "柔軟な設計"
+    },
+    "ctaLabel": "ウェイトリストに登録",
+    "betaLogin": "ベータログイン"
+  },
+  "vois": {
+    "features": "機能",
+    "resources": "リソース",
+    "voiceCapture": {
+      "label": "ボイスキャプチャ",
+      "desc": "話すだけで、あとはお任せ"
+    },
+    "aiAssistant": {
+      "label": "AIアシスタント",
+      "desc": "あなた専用のAIパートナー"
+    },
+    "calendar": {
+      "label": "カレンダー",
+      "desc": "フォーカスブロックを自動設定"
+    },
+    "tasks": {
+      "label": "タスク",
+      "desc": "AIによる優先順位付け"
+    },
+    "watch": {
+      "label": "Watch",
+      "desc": "手首にフルAI"
+    },
+    "customApps": {
+      "label": "カスタムアプリ",
+      "desc": "独自のスペースを構築"
+    },
+    "habosForWork": {
+      "label": "HABOS for Work",
+      "desc": "フルビジネスプラットフォーム"
+    },
+    "support": {
+      "label": "サポート",
+      "desc": "チームからサポートを受ける"
+    },
+    "privacyPolicy": {
+      "label": "プライバシーポリシー",
+      "desc": "データの保護方法"
+    },
+    "termsOfService": {
+      "label": "利用規約",
+      "desc": "サービス契約"
+    },
+    "ctaLabel": "ウェイトリストに登録",
+    "workLabel": "HABOS for Work",
+    "tryNow": "今すぐ試す",
+    "betaLogin": "ベータログイン"
+  },
+  "clusters": {
+    "communication": {
+      "email": "メール",
+      "messenger": "メッセンジャー",
+      "phone": "電話",
+      "supportTickets": "サポートチケット"
+    },
+    "schedulingBookings": {
+      "calendar": "カレンダー",
+      "bookings": "予約",
+      "schedulingLinks": "スケジューリングリンク"
+    },
+    "jobsOperations": {
+      "dispatch": "ディスパッチ",
+      "routes": "ルート",
+      "projects": "プロジェクト",
+      "tasks": "タスク",
+      "timeTracking": "工数管理"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "製品",
+      "invoicing": "請求書発行",
+      "payments": "支払い"
+    },
+    "voiceAi": {
+      "voiceNotes": "ボイスノート",
+      "meetingNotes": "会議メモ",
+      "assistant": "アシスタント",
+      "playbooks": "プレイブック"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "ウェブサイトビルダー",
+      "creativeStudio": "クリエイティブスタジオ",
+      "marketing": "マーケティング"
+    }
+  },
+  "mobile": {
+    "overview": "概要"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "ウェイトリストに登録",
+      "workLabel": "HABOS for Work",
+      "tagline": "by HABOS"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "ウェイトリストに登録",
+      "tagline": "AIの力、人間のコントロール"
+    }
+  },
+  "clusterPages": {
+    "email": "メール",
+    "messenger": "メッセンジャー",
+    "telephony": "電話",
+    "tickets": "サポートチケット",
+    "calendar": "カレンダー",
+    "bookings": "予約",
+    "scheduling-links": "スケジューリングリンク",
+    "dispatch": "ディスパッチ",
+    "routes": "ルート",
+    "projects": "プロジェクト",
+    "tasks": "タスク",
+    "time-tracking": "工数管理",
+    "crm": "CRM",
+    "products": "製品",
+    "finance": "請求書発行",
+    "payments": "支払い",
+    "voice-notes": "ボイスノート",
+    "meeting-notes": "会議メモ",
+    "assistant": "アシスタント",
+    "playbooks": "プレイブック",
+    "website-builder": "ウェブサイトビルダー",
+    "creative-studio": "クリエイティブスタジオ",
+    "marketing": "マーケティング"
+  },
+  "clusterGroupNames": {
+    "communication": "コミュニケーション",
+    "schedulingBookings": "スケジュール＆予約",
+    "jobsOperations": "ジョブ＆オペレーション",
+    "salesPayments": "営業＆決済",
+    "voiceAi": "ボイス＆AI",
+    "websiteMarketing": "ウェブサイト＆マーケティング"
+  }
+}

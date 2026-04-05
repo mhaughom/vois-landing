@@ -1,0 +1,74 @@
+{
+  "badge": "Individuelle Apps",
+  "hero": {
+    "title": "Beschreibe es.\nVOIS baut es.",
+    "description": "Erstelle deine eigenen Mini-Apps mit einem einzigen Satz. KI generiert das Schema, das Dashboard und das Sprach-Routing — dein Unternehmen bekommt Tools, die kein Anbieter je für dich gebaut hätte."
+  },
+  "heroPills": [
+    "Erstellung in natürlicher Sprache",
+    "KI-Schema-Generierung",
+    "Auto-Dashboards"
+  ],
+  "demo": {
+    "steps": [
+      {
+        "label": "Du beschreibst",
+        "prompt": "\"Ich möchte eine App zur Verfolgung von Geräteinspektionen\""
+      },
+      {
+        "label": "KI generiert Schema",
+        "fields": [
+          { "field": "Gerät", "type": "Text" },
+          { "field": "Standort", "type": "Standort" },
+          { "field": "Zustand", "type": "Auswahl" },
+          { "field": "Foto", "type": "Bild" },
+          { "field": "Nächstes Servicedatum", "type": "Datum" }
+        ]
+      },
+      {
+        "label": "Sofortiges Dashboard",
+        "entries": [
+          { "equip": "Einheit 3 — Kompressor", "status": "Gut" },
+          { "equip": "Einheit 7 — HVAC", "status": "Mittel" },
+          { "equip": "Einheit 12 — Generator", "status": "Reparaturbedarf" }
+        ],
+        "legend": [
+          "Gut",
+          "Mittel",
+          "Reparaturbedarf"
+        ]
+      }
+    ],
+    "annotation": "Von einem Satz zu einer funktionierenden App. Kein Code. Kein Warten."
+  },
+  "benefitCards": [
+    {
+      "title": "Sprachgesteuerte Dateneingabe",
+      "body": "Sage 'Einheit 3 inspiziert, Kompressor zeigt Verschleiß' und es wird automatisch in deine Geräteinspektion-App geleitet. Schlüsselwörter werden aus deinem Schema erlernt."
+    },
+    {
+      "title": "KI-gestützte Felder",
+      "body": "Manche Felder füllen sich selbst aus. Ein 'KI-Empfehlung'-Feld in deiner Inspektions-App könnte aus deinen Notizen 'Kompressoraustausch innerhalb von 6 Monaten einplanen' generieren."
+    },
+    {
+      "title": "Sofortige Dashboards",
+      "body": "Jede individuelle App erhält sofort Diagramme, Filter und KI-Einblicke. Erkenne Trends in deinen Daten, ohne etwas aufzubauen."
+    }
+  ],
+  "scenario": {
+    "heading": "Praxisbeispiel",
+    "body": "Dein Reinigungsunternehmen muss Qualitätsbewertungen für Standorte verfolgen. Du sagst \"Erstelle eine App für Standortqualitätsprüfungen.\" VOIS generiert Felder für Standort, Prüfer, Bewertung, Fotos und Notizen. Ein KI-Feld generiert automatisch Verbesserungsvorschläge. Innerhalb einer Minute hast du ein Qualitätsverfolgungssystem, das Sprachnotizen direkt aus dem Feld in strukturierte Datensätze leitet."
+  },
+  "techItems": [
+    "Erstellung in natürlicher Sprache",
+    "KI-Schema-Generierung",
+    "Sprach-Intent-Routing",
+    "Auto-Dashboards",
+    "KI-Generierungsfelder",
+    "Marktplatz-Sharing"
+  ],
+  "cta": {
+    "tagline": "Dein Unternehmen ist einzigartig. Deine Tools sollten es auch sein.",
+    "button": "Warteliste beitreten"
+  }
+}

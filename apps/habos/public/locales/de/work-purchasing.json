@@ -1,0 +1,62 @@
+{
+  "badge": "Einkauf",
+  "hero": {
+    "title": "Lieferanten, Bestellungen und Lagerbestand.\nVerbunden.",
+    "description": "Verwalte Lieferanten, erstelle Bestellungen, empfange Waren und sieh zu, wie sich Lagerbestände automatisch anpassen — keine Tabellen, keine Doppeleingabe."
+  },
+  "mockPO": {
+    "title": "Bestellung #0042 — Nordic Supply Co",
+    "status": "Lieferung ausstehend",
+    "tableHeaders": {
+      "item": "Artikel",
+      "qty": "Menge",
+      "unit": "Einzelpreis",
+      "total": "Gesamt"
+    },
+    "lineItems": [
+      { "product": "Flexverbinder x20", "qty": 20, "unit": "17,00 €", "total": "340 €" },
+      { "product": "Kupferrohr 15mm x50m", "qty": 50, "unit": "17,80 €", "total": "890 €" },
+      { "product": "Dichtmittel-Boxen x12", "qty": 12, "unit": "13,00 €", "total": "156 €" }
+    ],
+    "totalsRow": {
+      "total": "Gesamt: 1.386 €",
+      "lineCount": "3 Positionen"
+    },
+    "received": {
+      "heading": "Erhalten (2 von 3)",
+      "items": [
+        { "product": "Flexverbinder x20", "checked": true },
+        { "product": "Kupferrohr 15mm x50m", "checked": true },
+        { "product": "Dichtmittel-Boxen x12", "checked": false }
+      ]
+    },
+    "annotation": "Bestellungen sind direkt mit deinem Produktkatalog verknüpft. Der Eingang aktualisiert den Lagerbestand in Echtzeit — auch bei Teillieferungen."
+  },
+  "benefits": [
+    {
+      "title": "Lieferantenverzeichnis",
+      "desc": "Lieferanten, Kontaktdaten, Zahlungsbedingungen und Bestellhistorie verfolgen. Wisse, wer was liefert und wann."
+    },
+    {
+      "title": "Bestellungen",
+      "desc": "Bestellungen aus Niedrigbestandswarnungen oder manuellen Anfragen erstellen. Positionen sind mit deinem Produktkatalog verknüpft."
+    },
+    {
+      "title": "Eingang & Lagerbestand",
+      "desc": "Artikel als erhalten markieren. Lagerbestände aktualisieren sich automatisch. Teillieferungen werden verfolgt."
+    }
+  ],
+  "scenario": "Dein Lager meldet niedrigen Lagerbestand bei Flexverbindern. VOIS erstellt einen Bestellungsentwurf an deinen bevorzugten Lieferanten mit den richtigen Mengen und Preisen aus deiner letzten Bestellung. Du genehmigst mit einem Tippen. Wenn die Lieferung ankommt, markiert dein Team die Artikel als erhalten und der Lagerbestand aktualisiert sich sofort.",
+  "techItems": [
+    "Lieferantenverwaltung",
+    "Bestellungen",
+    "Teileingang",
+    "Auto-Bestandsanpassung",
+    "Rechnungsverfolgung",
+    "Niedrigbestandswarnungen"
+  ],
+  "cta": {
+    "title": "Von der Nachbestellung bis zur Auffüllung.\nEin System.",
+    "button": "Warteliste beitreten"
+  }
+}

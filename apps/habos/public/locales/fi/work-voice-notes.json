@@ -1,0 +1,75 @@
+{
+  "badge": "Älykäs reititin",
+  "hero": {
+    "title": "Yksi tallennus.\nNeljä järjestelmää päivitetty.",
+    "description": "Puhu 30 sekuntia päivästäsi. HABOS havaitsee jokaisen aikeen ja reitittää jokaisen oikeaan paikkaan."
+  },
+  "heroPills": ["11 aietyyppiä", "< 3 sek käsittely", "Sana tason kartoitus"],
+  "intro": "Tämä ei ole puheesta tekstiksi, jota seuraa lomakkeen täyttö. Tämä on puhetta ymmärrykseen monijärjestelmäorkestroinnin kautta. Lähin analogia on ihminen johtajan assistentti, joka kuuntelee epäjärjestelmiällistä päivitystäsi ja luo neljä eri kohdetta neljässä eri järjestelmässä — paitsi HABOS tekee sen alle kolmessa sekunnissa. Järjestelmä ymmärtää jopa keston: kahden minuutin tallennus, jossa mainitaan \"kokous\", luokitellaan aikataulutuksena. Viisitoista minuuttia tallennus, jossa mainitaan \"kokous\", luokitellaan kokousmuistiinpanoina.",
+  "demo": {
+    "transcript": "\u201cMuistuta minua seuraamaan Saran kanssa keittiötarjouksesta, aikatauluta paikan käynti ensi tiistaina kello 14, käytimme kolme laattalaatikkoa varastosta, ja kerro Mikelle että luvat tulivat läpi.\u201d",
+    "cards": [
+      {
+        "label": "Tehtävä luotu",
+        "detail": "Seuranta Saran kanssa \u2014 Keittiöremontti"
+      },
+      {
+        "label": "Tapahtuma aikataulutettu",
+        "detail": "Paikan käynti \u2014 Tiistai 14:00"
+      },
+      {
+        "label": "Varasto päivitetty",
+        "detail": "Kaakeli \u2014 3 laatiikkoa vähennetty"
+      },
+      {
+        "label": "Viesti laadittu",
+        "detail": "Mikelle: Luvat tulivat läpi"
+      }
+    ],
+    "footer": "Kaikki yhdestä lauseesta. Nolla sovelluksesta toiseen vaihtamista."
+  },
+  "benefitCards": [
+    {
+      "title": "15 min \u2192 30 sek",
+      "body": "Aamuinen päivitys, jonka tehdäkseen piti avata 4 sovellusta ja kirjoittaa jokaiseen? Vain puhu."
+    },
+    {
+      "title": "Nolla hukattuja kohteita",
+      "body": "Luottamuspisteytys havaitsee matalan varmuuden aikeet ja reitittää ne postilaatikkoosi tarkistettavaksi."
+    },
+    {
+      "title": "Toimii kaikkialla",
+      "body": "Tallenna puhelimellasi, kellollasi tai Macilla. Älykäs reititin käsittelee identtisesti jokaisella laitteella."
+    }
+  ],
+  "confidence": {
+    "title": "Kuinka luottamus toimii",
+    "rows": [
+      {
+        "range": "\u2265 85 %",
+        "label": "Automaattisesti luotu",
+        "detail": "Korkean luottamuksen kohteet menevät suoraan määränpäähänsä."
+      },
+      {
+        "range": "50\u201384 %",
+        "label": "Postilaatikon tarkistus",
+        "detail": "Keskitason luottamuksen kohteet odottavat sinun vahvistustasi."
+      },
+      {
+        "range": "< 50 %",
+        "label": "Aivokaatopaikan tallenne",
+        "detail": "Matalan luottamuksen kohteet tallennetaan muistiinpanoina. Mikään ei häviä."
+      }
+    ]
+  },
+  "techStrip": [
+    "Deepgram Nova-3 litterointi",
+    "Kestotietoinen reititys",
+    "Sana tason indeksikartoitus",
+    "11 aietyyppiä"
+  ],
+  "closing": {
+    "tagline": "Muut sovellukset antavat tallentaa äänimuistioita. HABOS ymmärtää niitä.",
+    "cta": "Liity odotuslistalle"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "Documenti",
+  "hero": {
+    "title_part1": "Scrivi una volta.",
+    "title_part2": "Trova per sempre",
+    "description": "Un editor di testo ricco con modelli, ricerca full-text e scrittura assistita dall'AI che attinge dall'intero tuo spazio di lavoro."
+  },
+  "demoSection": {
+    "heading": "Scrivi e trova in un unico posto",
+    "editorTitle": "Hotel Fjordview — Proposta di Manutenzione",
+    "aiAssist": "Assistenza AI",
+    "searchQuery": "contratto di manutenzione",
+    "searchResults": "3 risultati",
+    "results": [
+      {
+        "title": "Hotel Fjordview — Proposta di Manutenzione",
+        "snippet": "...contratto di manutenzione annuale che copre HVAC, impianti idraulici ed elettrici..."
+      },
+      {
+        "title": "Revisione Servizi Q1 — Fjordview",
+        "snippet": "...rinnovo contratto previsto per il 15 aprile. L'attuale ambito di manutenzione include..."
+      },
+      {
+        "title": "Listino Prezzi Fornitori 2026",
+        "snippet": "...livello contratto manutenzione standard: NOK 45.000/mese..."
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "Editor ricco",
+      "desc": "Formattazione completa con intestazioni, elenchi, tabelle, immagini e incorporamenti. Basato su TipTap — veloce e familiare."
+    },
+    {
+      "title": "Modelli",
+      "desc": "Inizia da modelli collaudati per proposte, SOP, ordini del giorno e contratti. Personalizza una volta, riutilizza ovunque."
+    },
+    {
+      "title": "Ricerca full-text",
+      "desc": "Ogni parola è indicizzata. Cerca in tutti i documenti all'istante. I risultati mostrano il contesto ed evidenziano le corrispondenze."
+    }
+  ],
+  "scenario": {
+    "body": "Hai bisogno di una proposta di manutenzione per l'Hotel Fjordview. Invece di partire da zero, scegli il modello \"Proposta di Servizio\". L'AI pre-compila i dettagli del cliente dal CRM, i risultati recenti delle ispezioni dai tuoi report e i prezzi dal tuo catalogo prodotti. Modifichi due frasi e invii.",
+    "closing": "Dalla pagina bianca alla proposta inviata in meno di due minuti."
+  },
+  "techItems": [
+    "Editor TipTap",
+    "Sistema di modelli",
+    "Ricerca full-text",
+    "Bozza assistita dall'AI",
+    "Collegamento a progetti",
+    "Ricercabile nel Brain"
+  ],
+  "cta": {
+    "tagline": "Documenti che conoscono la tua azienda.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "category": "Ratkaisut — Tiimit ja startit",
+    "title": "Yksi alusta koko yrityksellesi.",
+    "subtitle": "Korvaa 10 sovellusta, jotka otit käyttöön yksi kerrallaan, yhdellä työtilalla, joka oikeasti toimii yhdessä.",
+    "description": "Teknologistartupit, kasvavat toimistot, ammatillisten palvelujen yritykset ja kaikki 2–50 hengen yritykset, jotka hukkuvat työkaluihin."
+  },
+  "body": {
+    "section1": {
+      "heading": "Laske tilauksesi",
+      "p1": "Slack chattiin. Asana tehtäviin. Notion dokumenteille. Google Workspace sähköpostiin ja kalenteriin. HubSpot CRM:ksi. Calendly aikataulutukseen. Zapier niiden yhteen liimaamiseen. Loom asynkroniseen videoon. Ehkä Toggl ajanseurantaan. Ehkä Intercom tukeen.",
+      "p2": "Yhdeksän hengen startup, joka maksaa per-käyttäjä kaikista näistä, katsoo 4 200 dollaria kuukaudessa. Enemmän kuin useimmat toimistovuokrat. Eikä mikään näistä työkaluista kommunikoi keskenään ilman Zapieria, joka pitää ne yhdessä teipillä."
+    },
+    "appTable": {
+      "colApp": "Sovellus",
+      "colCost": "Hinta",
+      "colReplaces": "HABOS korvaa",
+      "footerLabel": "HABOS — kaikki yllä oleva, yhdistettynä",
+      "footerPrice": "$35",
+      "footerPriceSuffix": "/käyttäjä/kk",
+      "apps": [
+        { "name": "Slack", "cost": "$12/käyttäjä/kk", "replaces": "Viestintä" },
+        { "name": "Asana", "cost": "$11/käyttäjä/kk", "replaces": "Projektit ja tehtävät" },
+        { "name": "Notion", "cost": "$10/käyttäjä/kk", "replaces": "Dokumentit ja aivot" },
+        { "name": "Google Workspace", "cost": "$12/käyttäjä/kk", "replaces": "Kalenteri, dokumentit, sähköposti" },
+        { "name": "HubSpot", "cost": "$45/kk", "replaces": "CRM" },
+        { "name": "Calendly", "cost": "$12/kk", "replaces": "Aikataulutus" },
+        { "name": "Zapier", "cost": "$20/kk", "replaces": "Automaatiot" },
+        { "name": "Loom", "cost": "$13/käyttäjä/kk", "replaces": "Ääni ja kokousmuistiinpanot" }
+      ]
+    },
+    "section2": {
+      "heading": "Mutta raha ei ole todellinen ongelma",
+      "p1": "Todellinen kustannus on hajanaisuus. Toimitusjohtajasi käyttää 45 minuuttia joka aamu Slackin, Gmailin, Asenan ja CRM:n selaamiseen vain selvittääkseen mitä tapahtuu. Kolmeen viestiin tarvitaan vastaukset, ja jokaisen asiayhteys on eri työkalussa.",
+      "p2": "Viikoittainen tiimipalaveri kestää 45 minuuttia, ja puolet siitä on tilanneraportteja — jokainen kertoo mitä on tekemässä, koska ei ole yhteistä näkymää. Toinen puoli tuottaa toimintakohteita, jotka joku kirjoittaa taululle. Kaksi on unohdettu kello 14 mennessä.",
+      "p3": "Uuden työntekijän tuottavuuden saavuttaminen kestää viikkoja — ei siksi, että työ olisi vaikeaa, vaan koska he tarvitsevat pääsyn kymmeneen työkaluun ja heidän täytyy oppia, mikä on totuuden lähde millekin tiedolle.",
+      "p4": "Ja kun toimitusjohtaja kysyy \"mikä on Henderson-kaupan tilanne?\" — kolme henkilöä tarkistaa kolmea työkalua ja antaa kolme eri vastausta."
+    },
+    "section3": {
+      "heading": "Mitä yksi alusta muuttaa",
+      "briefingLabel": "Maanantaiaamun briifaus",
+      "briefing": "\"3 tehtävää myöhässä — 2 odottaa Henderson-sopimuksen tarkistamista. 2 sähköpostia tarvitsee päätöksesi. Tulot tällä viikolla ovat 12 % ennustetta paremmat. Yksi tiimin jäsen ilmoitti esteestä eilen kello 18.\"",
+      "briefingNote": "Viisi minuuttia. Täydellinen kuva. Ei sovelluksesta toiseen hyppimistä.",
+      "p1": "Tiimipalaverit lyhenevät 45 minuutista 25:een. Kokousta edeltävä yhteenveto luodaan automaattisesti todellisesta projektidatasta. Reaaliaikainen litterointi tallentaa kaiken. Toimintakohteet poimitaan ja jaetaan roolin ja työmäärän mukaan. Kukaan ei käytä aikaa tilanneraportteihin — kojelauta näyttää kaiken jo.",
+      "p2": "Uudet työntekijät saavat yhden kirjautumisen ja roolipohjaisen kojelaudan ensimmäisenä päivänä. Kun he kysyvät VOIS:lta \"mikä on normaali prosessi uuden asiakkaan perehdyttämiseen?\" — se löytää toimintaohjeen, kolme viimeisintä asiakasperehdytysprojektia ja kokoustallenteen, jossa tiimi käsitteli parannuksia. Yksi kysymys, yksi vastaus, täydellinen asiayhteys.",
+      "p3": "Kun toimitusjohtaja kysyy Henderson-kaupasta, siellä on yksi CRM-tietue yhdellä totuudella: kaupan vaihe, viimeisin viestintä, projektin edistyminen, avoin lasku ja tekoälyarvio — \"riskissä, asiakas ei ole vahvistanut hinnoittelua, soita tänään\".",
+      "p4": "Viisi tekoälyneuvonantajaa — Talous, Strategia, Toiminnot, Markkinointi, Myynti — tarjoavat tarkoituksella eriäviä näkemyksiä. Koska todellisilla liiketoimintapäätöksillä on kompromisseja, eikä yhteisymmärrys yhdeltä tekoälyltä ole muuta kuin itsevarmalta kuulostava arvaus."
+    },
+    "stats": [
+      ["300–500 $", "säästetty kuukaudessa SaaS-menoissa"],
+      ["5 t/vk", "säästetty per henkilö"],
+      ["3 t/vk", "säästetty kokouksissa"],
+      ["Päiviä", "perehtymiseen (ei viikkoja)"]
+    ],
+    "testimonial": {
+      "quote": "\"Maksoimme ohjelmistotilauksista enemmän kuin toimistovuokrasta. Slack, Notion, Asana, HubSpot, Calendly, Toggl, Google Workspace, Zapier — 4 200 dollaria kuukaudessa. HABOS korvasi ne kaikki 315 dollarilla. Mutta todellinen voitto ei ole raha — se on se, että kun kysyn asiakkaasta, saan yhden vastauksen kolmen sijaan.\"",
+      "attribution": "— Anders, 31 · Yhteisperustaja · 9 hengen SaaS-startup · Oslo"
+    },
+    "cta": {
+      "heading": "Yksi alusta koko tiimillesi. Vihdoinkin.",
+      "button": "Liity odotuslistalle"
+    }
+  }
+}

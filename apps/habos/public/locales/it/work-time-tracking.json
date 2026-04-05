@@ -1,0 +1,50 @@
+{
+  "badge": "Tempo e Busta Paga",
+  "hero": {
+    "title": "Timbra l'Entrata. Pensiamo Noi ai Calcoli.",
+    "description": "Tracciamento tempo verificato via GPS con calcolo automatico degli straordinari, tracciamento delle pause e fatturazione pronta per la busta paga — niente tabelle di marcia, niente fogli di calcolo."
+  },
+  "body": "Il tracciamento della posizione si attiva solo durante una sessione di lavoro — nessuna sessione significa nessun accesso GPS. Privacy by design. Il sistema cattura waypoint GPS, calcola le ore regolari rispetto agli straordinari per giorno di calendario e attiva notifiche asincrone al manager quando le soglie giornaliere vengono superate. A fine mese, le ore di ogni membro del team sono già calcolate, gli straordinari separati e gli importi di fatturazione calcolati con tariffe orarie e di straordinario configurabili. Esporta nella busta paga con un clic.",
+  "timecard": {
+    "heading": "Mike Torres — Questa Settimana",
+    "summary": "36,5 ore regolari · 4,5 ore straordinari",
+    "days": [
+      { "day": "Lun", "range": "7:00 → 15:30", "hours": "8,0 ore", "badge": "Regolare" },
+      { "day": "Mar", "range": "6:45 → 16:15", "hours": "9,0 ore", "badge": "1,0 ST" },
+      { "day": "Mer", "range": "7:00 → 17:00", "hours": "9,5 ore", "badge": "1,5 ST" },
+      { "day": "Gio", "range": "7:15 → 15:45", "hours": "8,0 ore", "badge": "Regolare" },
+      { "day": "Ven", "range": "7:00 → 13:30", "hours": "6,5 ore", "badge": "Mezza giornata" }
+    ],
+    "totalLine": "Totale: 41,0 ore | Regolare: 36,5 × $45/ora = $1.642,50 | ST: 4,5 × $67,50/ora = $303,75 | Totale: $1.946,25",
+    "footnote": "Straordinari calcolati automaticamente per giorno di calendario. Il manager viene notificato quando la soglia giornaliera viene superata."
+  },
+  "benefits": {
+    "gps": {
+      "title": "GPS privacy-first",
+      "description": "Il tracciamento della posizione si attiva solo durante una sessione di lavoro. Nessuna sessione = nessun accesso GPS. I lavoratori controllano quando vengono tracciati."
+    },
+    "pause": {
+      "title": "Pausa/ripresa",
+      "description": "Registra le pause all'interno di una sessione. Il sistema calcola automaticamente il tempo regolare rispetto a quello in pausa. Nessuna deduzione manuale necessaria."
+    },
+    "alerts": {
+      "title": "Avvisi al manager",
+      "description": "La timbratura di uscita attiva un controllo asincrono degli straordinari. Se le ore giornaliere superano la soglia (predefinita 8h), il manager riceve una notifica tramite la gerarchia dell'organigramma."
+    }
+  },
+  "scenario": "Fine mese. Invece di raccogliere tabelle di marcia cartacee, correggere errori di calcolo e incrociare i riferimenti con i log di lavoro — apri HABOS. Le ore di ogni membro del team sono già calcolate, gli straordinari separati, gli importi di fatturazione calcolati. Esporta nella busta paga con un clic. Sono 4 ore di lavoro amministrativo, scomparse.",
+  "scenarioHighlight": "Sono 4 ore di lavoro amministrativo, scomparse.",
+  "techStrip": {
+    "items": [
+      "Sessioni con gate GPS",
+      "Chilometraggio Haversine",
+      "Calcolo straordinari per giorno",
+      "Tariffa ST predefinita 1,5×",
+      "Esportazione pronta per busta paga"
+    ]
+  },
+  "cta": {
+    "heading": "Gli altri time tracker fanno piangere il tuo contabile. HABOS rende la busta paga indolore.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "userTypes": ["Personligt", "Arbete", "Båda"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Vän/kollega",
+    "Sökmotor",
+    "YouTube",
+    "Reddit",
+    "Annat"
+  ],
+  "useCases": [
+    "Personliga uppgifter och påminnelser",
+    "Arbetsmöten och anteckningar",
+    "Idéer och brainstorming",
+    "Shopping och listor",
+    "Anpassad spårning (hälsa, vanor, osv.)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "Vad kommer du använda VOIS till?",
+    "subLabel": "Välj alla som gäller",
+    "stepIndicator": "Steg 1 av 5"
+  },
+  "stepUserType": {
+    "heading": "Hur kommer du använda VOIS?",
+    "subLabel": "Välj ett alternativ",
+    "stepIndicator": "Steg 2 av 5"
+  },
+  "stepDevices": {
+    "heading": "Vilka enheter kommer du använda?",
+    "subLabel": "Välj alla som gäller",
+    "stepIndicator": "Steg 3 av 5"
+  },
+  "stepReferral": {
+    "heading": "Hur hörde du talas om VOIS?",
+    "subLabel": "Detta hjälper oss förstå vår gemenskap",
+    "stepIndicator": "Steg 4 av 5"
+  },
+  "stepEmail": {
+    "heading": "Vad är din e-postadress?",
+    "subLabel": "Vi skickar tidig åtkomst när vi lanserar",
+    "placeholder": "Ange din e-postadress",
+    "joining": "Anmäler...",
+    "joinWaitlist": "Gå med i väntelistan",
+    "stepIndicator": "Steg 4 av 5"
+  },
+  "stepSuccess": {
+    "heading": "Du är med på listan!",
+    "willSendEmail": "Vi skickar ett e-postmeddelande till",
+    "whatsNext": "Vad händer härnäst?",
+    "whatsNextBody": "Vi lanserar snart! Du kommer vara bland de första att få tidig åtkomst och exklusiva uppdateringar.",
+    "done": "Klar"
+  },
+  "continue": "Fortsätt",
+  "errors": {
+    "emailInvalid": "Ange en giltig e-postadress",
+    "emailExists": "Den här e-postadressen är redan med på väntelistan!",
+    "joinFailed": "Det gick inte att gå med i väntelistan"
+  }
+}

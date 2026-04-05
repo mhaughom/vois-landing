@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Løsninger — Servicebedrifter",
+    "title": "Kjør servicebedriften din med stemmen din.",
+    "subtitle": "Fra jobbstedet til fakturaen — uten å røre et tastatur.",
+    "description": "Rørleggere, elektrikere, renholdere, konsulenter, terapeuter, regnskapsførere, coacher og alle som selger tid, ekspertise eller arbeid."
+  },
+  "story": {
+    "dayLabel": "Lars' tirsdag",
+    "section1": {
+      "heading": "07:30 — Kaffe og planen",
+      "p1": "Lars er mesterrørlegger i Tromsø. Fire ansatte. Før HABOS betød morgenene å sjekke Google Kalender, et regneark med jobbdetaljer og WhatsApp for siste minutts avbestillinger. I dag åpner han én app. Timeplanen er der, med klienthistorikk, adresser og notater for hvert oppdrag. En klient omplanla over natten via e-post — AI-en har allerede flyttet avtalen, justert ruten og utarbeidet en bekreftelse. Lars trykker «bekreft» mens kaffen fortsatt er for varm å drikke."
+    },
+    "section2": {
+      "heading": "11:45 — Bilen",
+      "p1": "Lars er nettopp ferdig med å bytte en stoppekran hos Johnson-huset. Før HABOS var dette øyeblikket et sort hull — han ville tekste seg selv «Johnson — byttet kran, bestill ny fitting» og aldri komme rundt til å fakturere det skikkelig. Nå løfter han håndleddet:",
+      "voiceNote": "«VOIS, Johnson-oppdrag ferdig. Byttet stoppekranen og forsyningsrøret. Trenger å bestille en Grohe-blanderarm fra Backer, 3 200 kroner. Gi dem tilbud på 4 800 installert.»",
+      "voiceResult": "Tjue sekunder. Jobbrapport arkivert. CRM oppdatert. Innkjøpsordre utkastet. Tilbud klar for gjennomgang.",
+      "p2": "Han går til bilen. Det er det. Systemet analyserte stemmen hans til strukturerte data — deler brukt, kostnader, oppfølginger, klientsentiment — og rutet hvert stykke til riktig sted. Ingen skriving. Ingen laptop. Ingen «jeg gjør det i kveld.»"
+    },
+    "section3": {
+      "heading": "15:20 — På veien",
+      "p1": "Lars kjører. En ny henvendelse lander i den delte innboksen — en huseier som spør om en badrenovasjon. Før HABOS ville denne e-posten sitte ubesvart i timer. Innen klokken 17 ville den potensielle kunden ha bestilt hos noen andre. Forskning viser at 78 % av kundene velger den første bedriften som svarer.",
+      "p2": "I stedet vurderer AI-en henvendelsen, klassifiserer den som et nytt lead og utarbeider et svar i Lars' stemme. Ved et rødt lys vises en varsling: «Nytt lead — badrenovasjon. Svar klart.» Lars kaster et blikk på utkastet: «Takk for at du tok kontakt. Jeg ser gjerne på det. Jeg har ledig tid fra midten av mai — ville et stedbesøk den 15. eller 16. passe?» Han trykker send. To minutter. Den potensielle kunden er imponert. Lars' konkurrent har ennå ikke åpnet e-posten."
+    },
+    "section4": {
+      "heading": "21:15 — Sofaen",
+      "p1": "Før HABOS var dette administrasjonstimen. Fakturering fra hukommelsen. Svare på seks e-poster. Oppdatere CRM-en han sluttet å vedlikeholde i februar. Planlegge morgendagen. To timer ubetalt arbeid, hver kveld.",
+      "p2": "I kveld ser Lars på TV. Fakturaen for Johnson-oppdraget ble utkastet fra stemmenotatet, gjennomgått på telefonen klokken 18 og sendt med ett trykk. Fire e-poster ble håndtert via varslingskort mellom oppdrag. Morgendagens timeplan er satt. Innkjøpsordren for Grohe-blanderarm venter på leverandørbekreftelse.",
+      "p3": "Kvelden tilhører familien."
+    },
+    "section5": {
+      "heading": "Hva Lars pleide å betale for",
+      "p1": "Før HABOS hadde Lars Calendly for bestillinger, Fiken for regnskap, et halvt vedlikeholdt HubSpot CRM, Todoist for oppgaver, Gmail for kundee-poster, WhatsApp for meldinger og vurderte Jobber for utsendelse. Samlet: over $300 per måned i abonnementer, de fleste underutnyttet.",
+      "p2": "HABOS erstatter alle. Planlegging med Stripe-betalinger og dobbelbookingsforebygging. Økonomi med stemme-utgiftsfangst og norsk samsvar. CRM som bygger seg selv fra samtaler. Oppgaver hentet fra stemmenotater. En samlet innboks med AI-svar i hans stemme. Utsendelse og ruteplanlegging. Én plattform. $35 per måned."
+    },
+    "section6": {
+      "heading": "Hva som endret seg for bedriften hans",
+      "p1": "Administrasjon falt fra fjorten timer per uke til fire. Gjennomsnittlig responstid på nye henvendelser gikk fra fire timer til fem minutter. Forrige måned bestilte teamet åtte oppdrag fra e-posthenvendelser de ville ha tapt før — fordi HABOS svarte mens de fortsatt sto på stiger.",
+      "p2": "Null tapte fakturaer. Null leads tapt til sen respons. Null kvelder tilbrakt med laptop."
+    },
+    "testimonial": {
+      "quote": "«Jeg pleide å bruke hver kveld på fakturaer og e-poster. Nå snakker jeg til klokken etter hvert oppdrag og alt er ferdig innen middag. Forrige måned bestilte vi 8 oppdrag vi ville ha tapt — fordi HABOS svarte på 2 minutter mens jeg fortsatt sto på en stige.»",
+      "attribution": "— Lars, 41 · Mesterrørlegger · 4 ansatte · Tromsø"
+    },
+    "cta": {
+      "heading": "Din siste kveld med ubetalt administrasjon starter nå.",
+      "button": "Bli med på venteliste"
+    }
+  }
+}

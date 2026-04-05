@@ -1,0 +1,58 @@
+{
+  "badge": "Centro di Controllo Finanziario",
+  "hero": {
+    "title": "Entrate. Uscite. Un'Unica Verità.",
+    "description": "Crediti dalla tua piattaforma contabile, spese operative da HABOS, costi acquisiti vocalmente dal campo — tutto riconciliato in un'unica dashboard."
+  },
+  "body": "Il modulo Finanza fornisce una vista unificata di tutto il denaro che fluisce nell'azienda. I crediti si sincronizzano dalla tua piattaforma contabile con il tracciamento dello stato delle fatture — bozza, inviata, parzialmente pagata, pagata, scaduta. Le spese vengono acquisite vocalmente: di' 'speso $45 per adesivo per piastrelle al negozio di ferramenta' e il Router Intelligente crea un record di spesa con commerciante, importo e allocazione al progetto. Le istantanee dei ricavi mensili si ricostruiscono automaticamente per la visibilità del flusso di cassa.",
+  "metrics": [
+    { "label": "Fatturato", "value": "$47.250" },
+    { "label": "Ricevuto", "value": "$38.100" },
+    { "label": "In Sospeso", "value": "$9.150" },
+    { "label": "Scaduto", "value": "$2.300" }
+  ],
+  "moneyIn": {
+    "heading": "Entrate",
+    "rows": [
+      { "client": "Henderson Reno", "amount": "$12.500", "status": "Pagato" },
+      { "client": "Baker HVAC", "amount": "$8.200", "status": "In sospeso" },
+      { "client": "Wilson Plumb", "amount": "$2.300", "status": "Scaduto (14 giorni)" }
+    ]
+  },
+  "moneyOut": {
+    "heading": "Uscite",
+    "rows": [
+      { "item": "Materiali per piastrelle", "amount": "$1.850", "status": "Pagato" },
+      { "item": "Carburante veicolo", "amount": "$420", "status": "Acquisito vocalmente" },
+      { "item": "Subappaltatore", "amount": "$3.200", "status": "In attesa" }
+    ]
+  },
+  "dashboardCaption": "I crediti si sincronizzano dalla tua piattaforma contabile. Le spese vengono acquisite vocalmente, tramite ricevuta o inserimento manuale. Le istantanee dei ricavi mensili si ricostruiscono automaticamente.",
+  "benefits": [
+    {
+      "title": "Acquisizione spese vocale",
+      "desc": "Di' \"speso $180 per piastrelle al Home Depot\" mentre guidi. HABOS crea la spesa, abbina automaticamente il commerciante e suggerisce il codice contabile."
+    },
+    {
+      "title": "Automazione fatture",
+      "desc": "Trasforma ordini HABOS e voci di tempo in fatture contabili. La risoluzione intelligente delle entità mappa i clienti CRM ai contatti contabili automaticamente."
+    },
+    {
+      "title": "Istantanee mensili",
+      "desc": "Totali fatturati, ricevuti, in sospeso e scaduti si ricostruiscono mensilmente. Vedi i trend del flusso di cassa senza un foglio di calcolo."
+    }
+  ],
+  "scenario": "Fine mese. Il tuo contabile chiede: \"Qual è il saldo in sospeso e quali clienti sono scaduti?\" Invece di esportare da 3 sistemi e incrociare i riferimenti in Excel — apri HABOS Finanza. $9.150 in sospeso, $2.300 scaduti da Wilson Plumbing (14 giorni). Una schermata, numeri reali dalla tua piattaforma contabile, zero riconciliazione.",
+  "scenarioHighlight": "$9.150 in sospeso, $2.300 scaduti da Wilson Plumbing (14 giorni). Una schermata, numeri reali dalla tua piattaforma contabile, zero riconciliazione.",
+  "techItems": [
+    "Sincronizzazione piattaforma contabile",
+    "Risoluzione entità",
+    "Operazioni idempotenti",
+    "Acquisizione spese vocale",
+    "Ricostruzione ricavi mensili"
+  ],
+  "cta": {
+    "heading": "Le altre dashboard mostrano stime. HABOS mostra la verità contabile.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

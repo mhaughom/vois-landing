@@ -1,0 +1,59 @@
+{
+  "badge": "Handel",
+  "hero": {
+    "title": "Produkte, Aufträge und Zahlungen. Alles verbunden.",
+    "description": "Dienstleistungen, physische Güter, Pakete und Abonnements — alle mit variantenbasiertem Lagerbestand, automatisierter Preisgestaltung und integriertem Stripe-Checkout."
+  },
+  "body": "Vier Produkttypen in einem System: Dienstleistungen, physische Güter, Pakete und Abonnements — alle mit variantenbasierter Bestandsverfolgung, Niedrigbestandswarnungen und automatischen Abzügen. Wandle jedes Produkt in einen buchbaren Termin mit konfigurierbarer Dauer, Kapazität, Öffnungszeiten und Geschäftstagen um. Bette einen Warenkorb oder Buchungskalender direkt auf deiner Website ein — keine separate Plattform erforderlich. Serverseitige Positionsberechnung verhindert clientseitige Betrugsversuche über alle Kanäle.",
+  "productTypes": [
+    { "label": "Dienstleistungen", "desc": "Stunden- oder Festpreisgestaltung" },
+    { "label": "Physische Güter", "desc": "Variantenbasierter Lagerbestand" },
+    { "label": "Pakete", "desc": "Mehrere Artikel bündeln" },
+    { "label": "Abonnements", "desc": "Wiederkehrende Abrechnung" }
+  ],
+  "catalogCaption": "Ein Katalogsystem verwaltet alle vier. Wandle jedes Produkt in einen buchbaren Termin oder ein Website-Widget um.",
+  "orderSteps": ["Angebot", "Ausstehend", "Bestätigt", "In Bearbeitung", "Abgeschlossen"],
+  "order": {
+    "heading": "Auftrag #1247 — Henderson Küchenrenovierung",
+    "tableHeaders": {
+      "product": "Produkt",
+      "qty": "Menge",
+      "unit": "Einzelpreis",
+      "total": "Gesamt"
+    },
+    "lineItems": [
+      { "product": "Individuelle Schränke (Walnuss)", "qty": "1", "unit": "2.400 €", "total": "2.400 €" },
+      { "product": "Arbeitsplatte — Quarz 150 cm", "qty": "2", "unit": "650 €", "total": "1.300 €" },
+      { "product": "Montagearbeit (4 Std.)", "qty": "1", "unit": "550 €", "total": "550 €" }
+    ],
+    "subtotal": "Zwischensumme: 4.250 €",
+    "paymentConfirmed": "Stripe-Zahlung: ✓ Bestätigt",
+    "deposit": "Anzahlung: 1.000 € bezahlt"
+  },
+  "orderCaption": "Aufträge werden automatisch aus Buchungen, Website-Käufen oder manueller Erstellung generiert. Positionen serverseitig berechnet — kein clientseitiger Betrug.",
+  "benefits": [
+    {
+      "title": "Lagerbestand lügt nie",
+      "desc": "Variantenbasierter Lagerbestand zieht bei Auftragsbestätigung ab. Niedrigbestandswarnungen werden automatisch ausgelöst. Rückerstattungen stellen Lagerbestand wieder her."
+    },
+    {
+      "title": "Stripe in 3 Klicks",
+      "desc": "Checkout-Sitzungen, Rechnungen, Zahlungslinks und Rückerstattungen — alles über Stripe Connect. Geld geht auf dein Konto, nicht an einen Zwischenhändler."
+    },
+    {
+      "title": "Website → Auftrag → CRM",
+      "desc": "Kunde kauft auf deiner HABOS-Website. Auftrag erstellt. CRM-Kontakt aktualisiert. Quittung gesendet. Null manuelle Dateneingabe."
+    }
+  ],
+  "techItems": [
+    "4 Produkttypen",
+    "Variantenbasierter Lagerbestand",
+    "Stripe Connect Express",
+    "Serverseitige Positionen",
+    "Buchung ↔ Auftrags-Sync"
+  ],
+  "cta": {
+    "heading": "Andere Commerce-Tools sind eine separate Plattform. HABOS-Commerce ist in alles eingebaut.",
+    "button": "Warteliste beitreten"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "Funzionalità Principale",
+  "hero": {
+    "title": "Descrivi. L'Agente Fa il Resto.",
+    "description": "Dai un'istruzione complessa in linguaggio naturale. Un agente autonomo la pianifica, la esegue su tutta la tua azienda e chiede il permesso prima di qualsiasi azione rischiosa."
+  },
+  "intro": "Non si tratta di un chatbot con integrazioni API. È un framework di agenti autonomi con pianificazione, gate di approvazione, monitoraggio del budget, delega e recupero dagli errori — che opera su 87 moduli aziendali con sicurezza a livello di riga. L'architettura è paragonabile a motori di workflow enterprise come ServiceNow o Salesforce Flow, ma guidata dal linguaggio naturale invece che da diagrammi drag-and-drop. Le esecuzioni attive sopravvivono persino ai riavvii del server.",
+  "pipeline": {
+    "steps": [
+      { "label": "Descrivi" },
+      { "label": "Pianifica" },
+      { "label": "Esegui" },
+      { "label": "Approva" },
+      { "label": "Fatto" }
+    ],
+    "footer": "L'agente si ferma su \"Approva\" per qualsiasi azione ad alto rischio. Hai sempre l'ultima parola."
+  },
+  "scenario": {
+    "title": "Guarda come funziona",
+    "instructionLabel": "La tua istruzione",
+    "instruction": "«Analizza i ricavi del primo trimestre, trova i 3 prodotti con le peggiori performance e invia un riepilogo via email al team dirigenziale.»",
+    "agentLabel": "Cosa fa l'agente",
+    "steps": [
+      { "text": "Interroga il modulo Finance per i ricavi T1 per prodotto" },
+      { "text": "Incroci i dati con il catalogo prodotti per il contesto" },
+      { "text": "Identifica i 3 peggiori: Widget Pro (-23%), Piano Base (-18%), Kit Iniziale (-12%)" },
+      { "text": "Redige un'email riepilogativa con grafici" },
+      { "text": "Si ferma — ti mostra la bozza dell'email per approvazione" },
+      { "text": "Approvi → Email inviata al team dirigenziale" }
+    ]
+  },
+  "stats": {
+    "title": "Cosa significa per te",
+    "items": [
+      {
+        "big": "Ore → Minuti",
+        "desc": "Attività che richiedevano una mattinata ora si completano con una singola frase."
+      },
+      {
+        "big": "8 Strumenti Principali",
+        "desc": "Ricerca, pianificazione, email, finanza, prenotazioni, ricerca, attività, report — tutto a disposizione dell'agente."
+      },
+      {
+        "big": "Delega a 3 Livelli",
+        "desc": "Gli agenti possono generare agenti figli con limiti di budget. Lavoro complesso, completamente tracciato."
+      }
+    ]
+  },
+  "trustSignals": [
+    "Token di approvazione crittografici",
+    "Monitoraggio budget per esecuzione",
+    "Traccia di esecuzione completa",
+    "Sopravvive ai riavvii del server"
+  ],
+  "closing": {
+    "tagline": "Le altre piattaforme automatizzano trigger semplici. Gli agenti VOIS pensano, pianificano ed eseguono.",
+    "cta": "Unisciti alla Lista d'Attesa"
+  }
+}

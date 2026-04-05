@@ -1,0 +1,62 @@
+{
+  "badge": "Formular-Builder",
+  "hero": {
+    "title": "Erstelle ein Formular.\nEs erledigt den Rest.",
+    "description": "21 Feldtypen, Drag-and-Drop-Builder und Weiterleitungsregeln, die bei der Einreichung automatisch Tickets, CRM-Leads und Funnel-Einschreibungen erstellen."
+  },
+  "body": "Formulare unterstützen drei Ausfüllmodi: traditionelles Klicken und Tippen, KI-gestützter Chat, bei dem Kunden ihren Bedarf natürlich beschreiben, oder Spracheingabe, bei der sie Antworten sprechen und KI transkribiert. Wenn ein Formular eingereicht wird, wertet die Weiterleitungs-Engine bedingte Regeln aus — 'wenn Budget 50.000 € übersteigt, erstelle ein hochpriorisiertes Ticket.' CRM-Kontakte werden automatisch per E-Mail dedupliziert, Tickets werden mit intelligentem Feld-Mapping erstellt, Leads fließen in Pflege-Funnels und Bestätigungs-E-Mails werden gesendet — alles in einer atomaren Operation.",
+  "mockForm": {
+    "title": "Angebot anfordern",
+    "badge": "3 Ausfüllmodi",
+    "fields": {
+      "fullName": "Vollständiger Name",
+      "fullNamePlaceholder": "John Henderson",
+      "email": "E-Mail",
+      "emailPlaceholder": "john@example.com",
+      "serviceNeeded": "Benötigter Service",
+      "servicePlaceholder": "Sanitär",
+      "budgetRange": "Budgetrahmen",
+      "budgetPlaceholder": "5.000 €+",
+      "projectDescription": "Beschreibe dein Projekt",
+      "projectPlaceholder": "Badrenovierung, vollständiger Rückbau und Neuaufbau..."
+    },
+    "serviceOptions": ["Sanitär", "HVAC", "Elektro"],
+    "budgetOptions": ["< 1.000 €", "1.000–5.000 €", "5.000 €+"],
+    "submit": "Absenden",
+    "modes": {
+      "form": "Formular",
+      "chat": "Chat",
+      "voice": "Sprache"
+    },
+    "caption": "Kunden können traditionell ausfüllen, mit einem KI-Chatbot sprechen oder ihre Antworten diktieren. Dasselbe Formular, drei Eingabemodi."
+  },
+  "benefits": {
+    "crm": {
+      "title": "Auto-CRM + Tickets",
+      "desc": "Einreichungen aktualisieren CRM-Kontakte automatisch (per E-Mail dedupliziert) und erstellen Tickets mit intelligentem Feld-Mapping und Weiterleitungsregeln."
+    },
+    "routing": {
+      "title": "Bedingte Weiterleitung",
+      "desc": "Wenn Budget > 5.000 € → Ticket-Priorität: hoch erstellen. Wenn Service = HVAC → Sarah zuweisen. Regeln laufen automatisch bei jeder Einreichung."
+    },
+    "embed": {
+      "title": "Website-Einbettung",
+      "desc": "Auf deiner HABOS-Website mit transparentem Hintergrund und Auto-Höhe einbetten. Cross-Origin-Größenanpassungs-Messaging hält es nahtlos."
+    }
+  },
+  "scenario": {
+    "label": "Praxisbeispiel",
+    "text": "Ein Hausbesitzer besucht deine Website und füllt eine Angebotsanfrage für eine 8.000-€-Badrenovierung aus. HABOS erstellt ein hochpriorisiertes Ticket (Budget > 5.000 €-Regel), aktualisiert das CRM, schreibt ihn in den \"warmen Lead\"-Funnel ein und sendet eine Bestätigungs-E-Mail — alles bevor du die Benachrichtigung siehst. Wenn du das Ticket öffnest, sind ihr vollständiges CRM-Profil, der Projektkontext und eine vorgeschlagene Antwort bereits vorhanden."
+  },
+  "techStrip": [
+    "21 Feldtypen",
+    "3 Ausfüllmodi",
+    "Bedingte Weiterleitung",
+    "Auto-CRM-Upsert",
+    "Aufruf- und Konversionsanalysen"
+  ],
+  "closing": {
+    "title": "Andere Formular-Tools sammeln Daten.\nHABOS handelt danach.",
+    "cta": "Warteliste beitreten"
+  }
+}

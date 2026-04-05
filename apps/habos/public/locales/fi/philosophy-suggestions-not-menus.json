@@ -1,0 +1,24 @@
+{
+  "category": "Filosofia",
+  "title": "Ehdotuksia, ei valikoita",
+  "tagline": "Lue. Napauta. Valmis.",
+  "heroAlt": "Ehdotuskortit monimutkaiset valikot korvaavat",
+  "body1": "Yrityksen omistaja tuijottaa tehtävätaulua yrittäen selvittää, mikä on tärkeää juuri nyt. Myyntiedustaja lukee sähköpostin ja miettii \"minun pitäisi luoda seuranta\" — mutta ei tee, koska se tarkoittaa sovellusten vaihtamista, oikean projektin löytämistä, kuuden kentän täyttämistä. Ajatus kuolee tunnistamisen ja tekemisen väliseen kuiluun.",
+  "body2Prefix": "Uudelleenaikataulupyyntö saapuu sähköpostissa.",
+  "body2Body": "VOIS lukee sen ja tuo esiin kolme napautettavaa vaihtoehtoa: siirry perjantaihin klo 10 (paikka on vapaa), siirrä ensi viikolle (3 avointa paikkaa näytetään) tai kieltäydy ja ehdota puhelua sen sijaan. Yksi napautus. Kokous siirretty, kalenterit päivitetty, vahvistus lähetetty.",
+  "body3Prefix": "Kokous päättyy.",
+  "body3Body": "VOIS poimii neljä toimintapistettä litteroinnista. Jokainen näkyy korttina — vastaava ehdotetaan sen perusteella kuka sanoi mitä, määräaika johdettu keskustelusta, projekti linkitetty automaattisesti. Tarkista 30 sekunnissa, muuta yhtä vastaavaa, napauta vahvista. Neljä tehtävää luotu, neljä henkilöä ilmoitettu, nolla lomaketta täytetty.",
+  "comparisonTraditional": "Perinteinen:",
+  "comparisonTraditionalStat": "3 minuuttia per toiminto.",
+  "comparisonSuggestions": "Ehdotukset:",
+  "comparisonSuggestionsStat": "5 sekuntia.",
+  "comparisonResult": "20 päivittäisen toiminnon yli se on",
+  "comparisonResultStat": "60 minuuttia takaisin.",
+  "quote": "\"Sinun ei pitäisi joutua operoimaan liiketoimintaohjelmistoasi. Sen pitäisi operoida itse ja pyytää arvosteluasi.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Rakennettu tiimeille",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Kaksi käyttöliittymää, yksi järjestelmä"
+  }
+}

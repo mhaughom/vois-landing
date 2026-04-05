@@ -1,0 +1,52 @@
+{
+  "badge": "Ricerca AI",
+  "hero": {
+    "title": "Fai una Domanda.\nOttieni un Report con Citazioni.",
+    "description": "HABOS delega la ricerca approfondita a Perplexity AI, affina la domanda con prompt di chiarimento e fornisce un riepilogo esecutivo strutturato — poi incorpora tutto nel tuo Brain per il recupero futuro."
+  },
+  "intro": "Pronuncia una domanda nel telefono — HABOS la classifica automaticamente come intent di ricerca e avvia un'indagine approfondita. Prima di eseguire ricerche costose, l'AI pone due domande di chiarimento mirate per restringere il campo. Poi il modello sonar-pro di Perplexity viene eseguito in modo asincrono, fornendo un riepilogo esecutivo strutturato con risultati chiave, citazioni e domande di follow-up. La ricerca completata viene suddivisa e incorporata nel tuo Brain, così emerge nelle ricerche future e nelle conversazioni AI per sempre.",
+  "flow": {
+    "label": "Come funziona",
+    "userQuestion": "Qual è il panorama competitivo per gli strumenti di pianificazione AI nei servizi sul campo?",
+    "clarifyIntro": "Prima di fare ricerca, due domande rapide:",
+    "clarifyQ1": "Sei concentrato sul mercato statunitense o globale?",
+    "clarifyQ2": "Dimensione azienda: PMI o enterprise?",
+    "answerPills": ["Mercato USA", "PMI"],
+    "result": {
+      "label": "Riepilogo Esecutivo",
+      "title": "Panorama Competitivo: Pianificazione AI nei Servizi sul Campo",
+      "findings": [
+        "ServiceTitan domina l'enterprise con il 42% di quota di mercato, ma la loro offerta per PMI è limitata e troppo costosa a $89/utente/mese.",
+        "Jobber e Housecall Pro competono sulla semplicità per le PMI, ma nessuno dei due offre pianificazione AI-native — entrambi aggiungono solo automazione di base.",
+        "I nuovi entranti AI-first (FieldPulse, Zuper) stanno guadagnando terreno, crescendo 3x YoY nella fascia $10-30/utente, segnalando una forte domanda PMI per la pianificazione intelligente."
+      ],
+      "citations": "12 citazioni",
+      "embeddedLabel": "Incorporato nel Brain"
+    }
+  },
+  "benefitCards": [
+    {
+      "title": "Da voce a ricerca",
+      "body": "Di' \"ricerca i prezzi dei concorrenti nel nostro settore\" durante una nota vocale. HABOS rileva l'intent di ricerca e avvia l'analisi automaticamente."
+    },
+    {
+      "title": "Sempre nel tuo Brain",
+      "body": "La ricerca completata viene suddivisa, incorporata (vettori a 512 dimensioni) e ricercabile per sempre. Chiedi mesi dopo — il Brain ricorda."
+    },
+    {
+      "title": "Contesto collegato al progetto",
+      "body": "Collega la ricerca ai progetti. Le ricerche future sullo stesso argomento estraggono i risultati precedenti per un'analisi più ricca e non ripetitiva."
+    }
+  ],
+  "techStrip": [
+    "Perplexity sonar-pro",
+    "Domande di chiarimento AI",
+    "Risultati incorporati RAG",
+    "Contesto cross-progetto",
+    "Follow-up chat persistenti"
+  ],
+  "closing": {
+    "title": "Gli altri strumenti ti danno una barra di ricerca.\nHABOS ti dà un team di ricerca.",
+    "cta": "Iscriviti alla lista d'attesa"
+  }
+}

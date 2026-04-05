@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Voix & IA",
+  "hero": {
+    "title": "Parlez à votre entreprise",
+    "description": "Des notes vocales qui deviennent des actions, des réunions qui prennent leurs propres notes, un assistant qui connaît toute votre entreprise, et des playbooks qui s'exécutent d'eux-mêmes."
+  },
+  "items": [
+    {
+      "title": "Notes vocales",
+      "desc": "Parlez 30 secondes — tâches, événements et mises à jour sont créés automatiquement."
+    },
+    {
+      "title": "Notes de réunion",
+      "desc": "Briefings IA avant, transcription en direct pendant, points d'action routés après."
+    },
+    {
+      "title": "Assistant",
+      "desc": "Connaît votre entreprise, anticipe vos besoins, agit sur chaque outil par la voix."
+    },
+    {
+      "title": "Playbooks",
+      "desc": "Workflows vivants qui guident votre équipe et vous alertent quand quelque chose va mal."
+    }
+  ]
+}

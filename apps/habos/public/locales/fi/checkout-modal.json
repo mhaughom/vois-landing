@@ -1,0 +1,52 @@
+{
+  "quizCategories": [
+    "Tapahtumat ja kalenteri",
+    "Tehtävät ja to-dot",
+    "Ostokset ja listat",
+    "Ideat ja muistiinpanot",
+    "Terveys ja hyvinvointi",
+    "Talous ja budjetti",
+    "Tavoitteet ja tavat",
+    "Ihmiset ja sosiaalinen elämä"
+  ],
+  "quizDevices": {
+    "watch": {
+      "label": "Apple Watch",
+      "desc": "Tallenna ranteeltasi"
+    },
+    "phone": {
+      "label": "iPhone",
+      "desc": "Aina taskussasi"
+    },
+    "both": {
+      "label": "Molemmat",
+      "desc": "Täydellinen kokemus"
+    }
+  },
+  "step1": {
+    "heading": "Mitä tallentaisit?",
+    "subLabel": "Valitse kaikki, jotka täyttävät pääsi."
+  },
+  "step2": {
+    "heading": "Miten katselisit niitä?",
+    "subLabel": "Valitse haluamasi laite."
+  },
+  "step3": {
+    "heading": "Aloita tilauksesi",
+    "subLabel": "Syötä sähköpostisi jatkaaksesi kassalle.",
+    "emailLabel": "Sähköposti",
+    "emailPlaceholder": "sinä@yritys.fi",
+    "perMonth": "/kk",
+    "guarantee": "Peruuta milloin tahansa. 30 päivän rahat takaisin -takuu.",
+    "continueToPay": "Jatka maksuun"
+  },
+  "back": "Takaisin",
+  "continue": "Jatka",
+  "errors": {
+    "emailRequired": "Syötä sähköpostiosoitteesi.",
+    "emailInvalid": "Syötä kelvollinen sähköpostiosoite.",
+    "tooManyAttempts": "Liian monta yritystä. Odota hetki ja yritä uudelleen.",
+    "unavailable": "Kassa ei ole tilapäisesti käytettävissä. Yritä myöhemmin uudelleen.",
+    "generic": "Jokin meni pieleen. Yritä uudelleen."
+  }
+}

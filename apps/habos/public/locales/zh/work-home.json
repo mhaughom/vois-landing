@@ -1,0 +1,230 @@
+{
+  "heroBusinesses": [
+    "创意机构",
+    "水管工",
+    "牙科诊所",
+    "咨询公司",
+    "美容院与水疗中心",
+    "建筑公司",
+    "房地产经纪人",
+    "餐厅",
+    "清洁公司",
+    "在线商店",
+    "物业管理公司"
+  ],
+  "heroVideo": {
+    "madeFor": "为各类公司而生。"
+  },
+  "heroStories": [
+    { "label": "问题",       "headline": "你公司的数据分散\n在数十个工具中。" },
+    { "label": "代价",       "headline": "员工整天在搬运数据——\n而非创造价值。" },
+    { "label": "临界点",     "headline": "增长越快，\n就越难维系。" },
+    { "label": "解决方案",   "headline": "所以我们构建了一个\n涵盖一切的平台。" },
+    { "label": "HABOS",      "headline": "你的工具。你的数据。\n作为一个整体协同运作。" },
+    { "label": "final",      "headline": "" }
+  ],
+  "heroHeadlines": [
+    { "label": "全球首创",        "bold": "人机协作",         "light": "业务操作\n系统" },
+    { "label": "一站式业务",      "bold": "业务一体化",       "light": "你所需的一切" },
+    { "label": "全合一平台",      "bold": "所有软件",         "light": "一个平台" },
+    { "label": "一次登录，所有工具", "bold": "你需要的每个工具", "light": "一次登录" },
+    { "label": "替换你的工具栈",  "bold": "一个系统",         "light": "替代数十个" },
+    { "label": "会思考的软件",    "bold": "AI 原生软件",      "light": "从零构建" }
+  ],
+  "heroGlowLabel": "全球首创",
+  "heroSubtitle": "所有软件，一个平台。\n用我们一直被承诺但从未真正得到的 AI 助力，为你的员工赋能。",
+  "heroButtons": {
+    "joinWaitlist": "加入等待名单",
+    "playVideo":    "播放视频",
+    "back":         "返回"
+  },
+  "animPhase": {
+    "dot":      "一个能学习你整个业务的思维中心。",
+    "split":    "它将你所做的一切连接起来。",
+    "cube":     "结构围绕你形成——而不是相反。",
+    "hexMorph": "每个界面都是工作区。每个行动都被预见。",
+    "idle":     "点击任意面来探索。"
+  },
+  "explore": {
+    "heading":     "一个平台。所有工具。",
+    "description": "点击任意面，探索 HABOS 能为你的业务做什么。"
+  },
+  "smartRouter": {
+    "statusDetected": "智能路由器 — 检测到 2 个意图",
+    "statusRecording": "录音中……",
+    "statusReady":     "就绪",
+    "transcriptLabel": "转录",
+    "listening":       "正在聆听……"
+  },
+  "meetingNotes": {
+    "statusEnded":    "会议结束 — 3 个行动事项",
+    "statusRecording":"录音中 — 团队策略会议",
+    "statusReady":    "就绪",
+    "transcriptLabel":"实时转录",
+    "actionsLabel":   "已提取行动事项"
+  },
+  "meetingLines": [
+    { "speaker": "你",    "text": "我们从 Q1 数据开始。收入增长了 12%。",       "time": "0:15" },
+    { "speaker": "Sarah", "text": "销售管道看起来不错，但交付时间线让我担忧。", "time": "0:42" },
+    { "speaker": "你",    "text": "说得有理。如果我们在每个里程碑增加一周缓冲期怎么样？", "time": "1:08" },
+    { "speaker": "AI",    "text": "建议提问："如果 Q2 目标滑落，应急方案是什么？"",   "time": "1:15" }
+  ],
+  "meetingActions": [
+    { "text": "周五前将更新的时间表发给 Sarah" },
+    { "text": "与工程负责人安排后续会议" },
+    { "text": "为 Q2 董事会会议准备风险评估" }
+  ],
+  "agentPhilosophy": {
+    "badge":       "智能体理念",
+    "heading":     "每位员工都有一个超级智能体。",
+    "description": "一个自主 AI 伙伴，拥有与其服务的人相同的数据访问权、上下文和权限。它浮现最有价值的信息、起草回复、提出日程安排并标记风险——但从不单独行动。",
+    "footer":      "AI 能力，人类掌控。每份草稿经过审阅。每个行动经过批准。每个决策由你做主。"
+  },
+  "agentTabs": [
+    {
+      "title": "AI 助手",
+      "desc":  "带有完整业务背景的聊天。你的智能体同时在项目、电子邮件、日历、CRM 和对话中推理——从你所有有权访问的数据库中提取。"
+    },
+    {
+      "title": "智能路由器",
+      "desc":  "自然说话——智能体将你的语音解析为结构化行动。跟进事项成为任务，会议落入日历，每个意图都路由到正确的地方。"
+    },
+    {
+      "title": "会议记录",
+      "desc":  "实时转录，在发生时捕捉决策、行动事项和跟进。每次会议产生结构化摘要——无需手动记录。"
+    }
+  ],
+  "replacesSection": {
+    "heading":     "HABOS 替代什么。",
+    "description": "共享上下文让每项能力都比任何独立工具更智能。",
+    "colCategory": "类别",
+    "colReplaces": "替代",
+    "colAdvantage": "HABOS 优势",
+    "mobileReplaces": "替代"
+  },
+  "replacements": [
+    { "tool": "Otter.ai / Fireflies",        "category": "会议记录",      "vois": "每次会议前的简报、会议中的实时转录、会议后提取的行动事项并发送给相关人员",                                   "group": "生产力" },
+    { "tool": "Todoist / Trello",            "category": "任务管理",      "vois": "最重要的任务始终优先展示——从语音、会议或电子邮件创建，内置智能排程",                                         "group": "生产力" },
+    { "tool": "Motion / Reclaim",            "category": "AI 排程",       "vois": "日历用专注工作时间块自动填充，按优先级和截止日期排序——只需批准即可",                                        "group": "生产力" },
+    { "tool": "Asana / Jira / Monday.com",  "category": "项目追踪",      "vois": "查看哪些项目健康、哪些需要关注——停滞的工作和错过的截止日期在升级前被标记",                                  "group": "生产力" },
+    { "tool": "Google Docs / Notion",        "category": "文档",          "vois": "说出来，获得一份文档——AI 自动从你的项目和数据中提取上下文",                                               "group": "生产力" },
+    { "tool": "Trainual / Process Street",   "category": "操作手册与 SOP", "vois": "逐步引导团队的活跃工作流，在出错时提醒你",                                                              "group": "生产力" },
+    { "tool": "HubSpot / Salesforce",        "category": "CRM 与销售",    "vois": "从每次对话、电子邮件和会议自动构建的客户档案——带 AI 建议的下一步",                                       "group": "商务与客户" },
+    { "tool": "Shopify / WooCommerce",       "category": "产品与订单",    "vois": "产品、定价、库存和可预约服务——全部与你的网站和 AI 助手相连",                                            "group": "商务与客户" },
+    { "tool": "Calendly / Acuity",           "category": "预约",          "vois": "客户在线预约，订单自动创建，一步收款——无需手动操作",                                                    "group": "商务与客户" },
+    { "tool": "Mailchimp / ActiveCampaign",  "category": "营销与漏斗",    "vois": "AI 撰写文案的电子邮件和短信活动、智能受众细分和自动跟进序列",                                            "group": "商务与客户" },
+    { "tool": "Later / Hootsuite",           "category": "社交媒体",      "vois": "安排帖子、获取 AI 生成的标题、追踪表现——与你的品牌和内容库相连",                                        "group": "商务与客户" },
+    { "tool": "Canva / Adobe Express",       "category": "创意工作室",    "vois": "从你的业务背景生成营销内容——符合你品牌的社交帖子、广告和视觉素材",                                      "group": "商务与客户" },
+    { "tool": "Superhuman / Spark",          "category": "AI 邮件",       "vois": "用语音处理收件箱，获得三个听起来像你的回复选项，永不错过跟进",                                           "group": "沟通与内容" },
+    { "tool": "Gmail / Outlook / Slack",     "category": "统一消息",      "vois": "与一个人的每次对话——电子邮件、聊天、短信——在一条时间线上，带 AI 起草的回复",                            "group": "沟通与内容" },
+    { "tool": "Squarespace / Wix",           "category": "网站构建器",    "vois": "描述你的业务，获得一个网站——AI 撰写文案，自动连接你的预约和支付",                                       "group": "沟通与内容" },
+    { "tool": "PowerPoint / Google Slides",  "category": "演示文稿",      "vois": "AI 生成的幻灯片从你的业务提取真实数字——准备好演示，不只是好看的模板",                                   "group": "沟通与内容" },
+    { "tool": "Zapier / Make",               "category": "流程自动化",    "vois": "跨所有事物触发的工作流——无需第三方工具，无延迟，因为一切都在一个系统中",                                 "group": "运营与现场" },
+    { "tool": "ClickUp / Monday.com",        "category": "运营",          "vois": "在流程滞后成为问题之前得到提醒——带建议的解决方案，而非仅仅是警告",                                      "group": "运营与现场" },
+    { "tool": "Zendesk / Freshdesk",         "category": "支持工单",      "vois": "从表单或电子邮件自动创建工单，带优先级、计时器和升级到正确人员",                                         "group": "运营与现场" },
+    { "tool": "ServiceTitan / Jobber",       "category": "现场运营",      "vois": "任务、调度、路线、团队 GPS、时间追踪——面包车里 30 秒的语音备注替代所有文书工作",                        "group": "运营与现场" },
+    { "tool": "Routific / Circuit",          "category": "路线规划",      "vois": "拖放路线规划，智能停靠点排序，以及为现场团队提供 Google Maps 链接",                                   "group": "运营与现场" },
+    { "tool": "Google Forms / SurveyMonkey", "category": "报告",          "vois": "90 秒内用语音填写任何报告——AI 提问，你回答，报告已归档",                                             "group": "运营与现场" },
+    { "tool": "QuickBooks / Xero",           "category": "财务",          "vois": "用语音记录费用，追踪发票和付款，实时查看利润——与 Stripe 相连",                                       "group": "财务与行政" },
+    { "tool": "Procurify / Coupa",           "category": "采购与供应商",  "vois": "采购订单、供应商追踪和库存管理，支持部分付款和账单匹配",                                              "group": "财务与行政" },
+    { "tool": "Toggl / Clockify",            "category": "时间追踪",      "vois": "从手机打卡，按任务追踪计费小时，将时间记录与派遣和薪资关联",                                          "group": "财务与行政" },
+    { "tool": "BambooHR / Gusto",            "category": "团队与组织架构", "vois": "查看整个团队结构，管理角色和权限，规划变更——全部拖放操作",                                            "group": "财务与行政" },
+    { "tool": "Typeform / JotForm",          "category": "表单",          "vois": "构建任何表单，将提交自动路由到 CRM 或工单，并发送即时确认回复",                                       "group": "财务与行政" },
+    { "tool": "Confluence / Guru",           "category": "知识搜索",      "vois": "提出问题，从整个业务获得答案——语音备注、电子邮件、文档、会议，一切",                                   "group": "财务与行政" },
+    { "tool": "Google Drive / Dropbox",      "category": "文件与媒体",    "vois": "所有文件的一个地方，带 AI 标签、全文搜索和大声朗读文档的阅读器",                                      "group": "财务与行政" },
+    { "tool": "虚拟行政助理",               "category": "你的 AI 助手",  "vois": "了解你的整个业务，预见你的需求，通过语音、手表、手机或收件箱跨所有工具行动",                           "group": "AI 与语音" },
+    { "tool": "ChatGPT / Copilot",           "category": "AI 聊天",       "vois": "了解你真实业务数据的 AI——不只是互联网——经你批准可采取行动",                                           "group": "AI 与语音" },
+    { "tool": "自定义开发 / 代理机构",       "category": "AI 智能体",     "vois": "规划多步骤任务、使用你的工具并在做任何重要事情前暂停征得你批准的 AI 工作者",                           "group": "AI 与语音" },
+    { "tool": "Perplexity / SearchGPT",      "category": "AI 研究",       "vois": "带引用来源的深度网络研究——委托给专业 AI 并保存到你的知识库",                                         "group": "AI 与语音" },
+    { "tool": "商业顾问",                    "category": "战略分析",      "vois": "分析你的收入、客户、产品和竞争对手——浮现你可能错过的机会",                                           "group": "AI 与语音" },
+    { "tool": "Siri / Google Assistant",     "category": "语音智能",      "vois": "一条语音备注创建任务、事件、库存更新和消息——自动路由到正确的地方",                                    "group": "AI 与语音" },
+    { "tool": "Apple Watch 应用",            "category": "手表助手",      "vois": "手腕上的完整 AI 助手——说话、获得答案、批准行动，无需拿出手机",                                       "group": "AI 与语音" },
+    { "tool": "接听服务",                    "category": "AI 电话与短信", "vois": "由你的 AI 接听的真实电话号码——全天候预约、回答问题和处理消息",                                       "group": "AI 与语音" }
+  ],
+  "pricing": {
+    "heading":     "简单透明的定价。",
+    "description": "个人版获得完整的语音到行动循环。工作版增加三大专业支柱。",
+    "billingMonthly": "按月",
+    "billingAnnual":  "按年",
+    "saveLabel":      "最高节省 40%",
+    "featureColHeader": "功能",
+    "personalColHeader": "个人版",
+    "workColHeader":     "工作版",
+    "personal": {
+      "name":        "个人版",
+      "description": "用于日常生活管理",
+      "priceAnnual": "$6.67",
+      "priceMonthly":"$14.99",
+      "perMonth":    "/月",
+      "cta":         "开始免费试用",
+      "guarantee":   "30 天退款保证"
+    },
+    "work": {
+      "name":        "工作版",
+      "description": "适合专业人士和团队",
+      "priceAnnual": "$29",
+      "priceMonthly":"$39",
+      "perMonth":    "/月",
+      "badge":       "推荐",
+      "cta":         "开始免费试用",
+      "guarantee":   "30 天退款保证"
+    }
+  },
+  "pricingFeatures": [
+    { "feature": "语音采集与智能路由器" },
+    { "feature": "AI 聊天助手" },
+    { "feature": "带 AI 评分的任务管理" },
+    { "feature": "带 AI 排程的日历" },
+    { "feature": "自定义应用与市场" },
+    { "feature": "生活区域与自动化" },
+    { "feature": "实时会议转录" },
+    { "feature": "会议简报与准备" },
+    { "feature": "每位参会者的私人 AI 笔记" },
+    { "feature": "项目与监控" },
+    { "feature": "报告与工作审查" },
+    { "feature": "AI 智能体与研究" },
+    { "feature": "电子邮件集成" },
+    { "feature": "桌面应用（实时指南）" }
+  ],
+  "cta": {
+    "heading":     "开始与你的工作日对话。",
+    "description": "一个声音。一个大脑。万物互联。",
+    "waitlistDescription": "加入等待名单，抢先体验 HABOS 工作版。",
+    "emailPlaceholder": "输入你的工作邮箱",
+    "submitButton":  "获取早期访问权限",
+    "noSpam":        "无垃圾邮件。无需信用卡。只有 HABOS 工作版的更新。",
+    "successMessage":"你已加入名单！我们将很快与你联系。"
+  },
+  "footer": {
+    "logoAlt": "HABOS",
+    "brandName": "HABOS",
+    "tagline": "你的 AI 工作日。",
+    "product": {
+      "heading":       "产品",
+      "login":         "登录",
+      "pricing":       "定价",
+      "platform":      "平台",
+      "voisPersonal":  "VOIS 个人版"
+    },
+    "support": {
+      "heading":       "支持",
+      "helpFaq":       "帮助与常见问题",
+      "contactSales":  "联系销售",
+      "setupGuide":    "设置指南"
+    },
+    "legal": {
+      "heading":       "法律",
+      "privacyPolicy": "隐私政策",
+      "termsOfService":"服务条款",
+      "refundPolicy":  "退款政策"
+    },
+    "social": {
+      "heading":   "社交",
+      "xTwitter":  "X / Twitter",
+      "instagram": "Instagram",
+      "tiktok":    "TikTok",
+      "facebook":  "Facebook"
+    },
+    "copyright": "© {{year}} Vois AI. 保留所有权利。"
+  }
+}

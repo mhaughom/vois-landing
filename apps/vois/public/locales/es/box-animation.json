@@ -1,0 +1,15 @@
+{
+  "panelLabels": ["Calendario", "Base de datos", "Facturas", "Correo", "Análisis", "Tareas", "Chat", "Sitio web", "Documentos"],
+  "widgetLabels": {
+    "Calendar": "Calendario",
+    "CRM": "CRM",
+    "Website": "Sitio web",
+    "Notes": "Notas",
+    "Email": "Correo",
+    "Tasks": "Tareas",
+    "Analytics": "Análisis",
+    "Documents": "Documentos",
+    "Chat": "Chat",
+    "Invoices": "Facturas"
+  }
+}

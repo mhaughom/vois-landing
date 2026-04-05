@@ -1,0 +1,50 @@
+{
+  "category": "Filosofia",
+  "title": "Sinun äänesi, ei meidän",
+  "tagline": "Tekoälyn ei tarvitse saada kaikkia kuulostamaan samalta. HABOS oppii kirjoitystyylisi, sävysi, omituisuutesi — jotta jokainen luonnos, jokainen sähköposti, jokainen vastaus kuulostaa sinulta. Ei yrityschatbotilta. Sinulta.",
+  "heroPlaceholder": "Hero-kuva",
+  "section1": {
+    "heading": "Näppäimistö on pullonkaula",
+    "body1": "Kirjoittaminen keksittiin kirjoituskoneita varten. Naputtelu keksittiin puhelimia varten. Kumpikaan ei keksitty yrityksen pyörittämiseen. Kun kenttäteknikko lopettaa työn, viimeinen asia mitä hän haluaa tehdä on istua pakettiautossa täyttäen neljää eri sovellusta. Kun perustajalla on idea klo 23, hän ei halua avata kannettavaa ja navigoida kolmea valikkoa.",
+    "body2": "Ääni on nopein, matalin kitkatainen tapa tallentaa intentio. Puhut noin 150 sanaa minuutissa. Kirjoitat 40. Se ei ole pieni ero — se on 4-kertainen kerroin syöttönopeudessa ja kuilu idean saamisen ja sen menettämisen välillä."
+  },
+  "section2": {
+    "heading": "Ei litterointi. Ymmärtäminen.",
+    "body1": "Useimmat äänituotteet litteroivat puheesi tekstiksi ja pysähtyvät siihen. Saat seinän sanoja ja saman määrän työtä edessäsi. HABOS tekee jotain perustavanlaatuisesti erilaista.",
+    "body2": "Älykäs reititin ottaa yhden äänitallennuksen ja luokittelee jokaisen lauseen intentioihin — tehtävät, kalenteritapahtumat, CRM-päivitykset, varastomuistiinpanot, viestit, tutkimuspyynnöt — poimii sitten strukturoidun datan jokaiselle ja reitittää ne oikeaan kohteeseen. Kaikki alle kolmessa sekunnissa."
+  },
+  "voiceNoteLabel": "30 sekunnin äänimuistiinpano",
+  "voiceNoteText": "\"Valmis Fjordview'ssa. Yksikkö 3:n kompressori näyttää varhaista kulumista, suosittelen vaihtamista kuuden kuukauden sisällä. Täytyy tilata suodattimet yksiköihin 1 ja 5, SKU on 4427-B. Muistuta minua puhumaan hotellin johtajalle huoltosopimuksen uusimisesta.\"",
+  "voiceNoteActions": [
+    { "label": "Raportti", "text": "HVAC-tarkastus täytetty automaattisesti havainnoilla" },
+    { "label": "Ostotilaus", "text": "Suodattimet SKU 4427-B → ostojonoon" },
+    { "label": "Tehtävä", "text": "Seuraa johtajan kanssa: sopimuksen uusiminen" },
+    { "label": "CRM-muistiinpano", "text": "Kompressorihavainto kirjattu asiakastietueeseen" }
+  ],
+  "voiceNoteFooter": "4 napautusta hyväksyä. 40 sekuntia yhteensä. Olisi vienyt 20 minuuttia yli 4 sovelluksen.",
+  "voiceSurfacesPlaceholder": "Äänipintojen yleiskatsaus",
+  "section3": {
+    "heading": "Jokainen pinta puhuu",
+    "intro": "Ääni ei rajoitu yhteen ominaisuuteen. Se on ensisijainen syöte koko alustalla:",
+    "items": [
+      { "label": "iPhone ja Apple Watch", "body": "tallenna äänimuistiinpanoja liikkeellä, saa toimintakortteja ranteellesi, vahvista napautuksella tai sanalla" },
+      { "label": "Reaaliaikainen keskustelu", "body": "kaksisuuntainen ääni tekoälyassistentin kanssa, alle 300 ms puheesta puheeseen latenssi" },
+      { "label": "Ääniähköposti", "body": "vastaa koko postilaatikkoosi puhumalla: \"Vastaa Larssille, kerro hänelle, että perjantai sopii\"" },
+      { "label": "Ääniraportit", "body": "täytä strukturoidut lomakkeet keskustelulla kenttien napsauttelun sijaan" },
+      { "label": "Koouslitterointi", "body": "live-muistiinpanot, toimintapisteet ja ehdotetut kysymykset, kaikki generoitu reaaliajassa" }
+    ]
+  },
+  "voiceFlowPlaceholder": "Äänivuon kaavio",
+  "section4": {
+    "heading": "Kontekstitietoinen reititys",
+    "body1": "Älykäs reititin on kestotietoinen. 2 minuutin tallennus, jossa mainitaan \"kokous\", luokitellaan kokouksen aikatauluttamiseksi. 15 minuutin tallennus, jossa mainitaan \"kokous\", luokitellaan kokousmuistiinpanoiksi. Järjestelmä ymmärtää, että lyhyet tallenteet ovat komentoja ja pitkät tallenteet ovat sisältöä.",
+    "body2": "Se myös kartoittaa sanakohtaiset indeksit — jotta mobiili käyttöliittymä voi korostaa tarkalleen, mitkä sanat muuttuivat minkäkin toiminnoksi. Napauta \"aikatauluta paikalla käynti ensi tiistaina klo 14\" litteroinnissa ja se avaa kalenteritapahtuman, joka luotiin näistä tarkoista sanoista."
+  },
+  "quote": "\"Lähin analogia on ihminen johtotason assistentti, joka kuuntelee ramppailevan päivityksesi ja luo neljä eri kohdetta neljässä eri järjestelmässä. Paitsi HABOS tekee sen alle kolmessa sekunnissa.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Yksi aivosto",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Neuvonantajat, jotka ovat eri mieltä"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "category": "Philosophy",
+  "title": "Memory That Compounds",
+  "tagline": "Every conversation makes the next one smarter. The longer you use HABOS, the more it understands your business — and the harder that understanding is to replicate anywhere else.",
+  "heroPlaceholder": "Hero illustration",
+  "section1": {
+    "heading": "Day one vs. day 180",
+    "body1": "On day one, HABOS is a capable tool. It processes your voice notes, manages your tasks, handles your email. It's fast and it works. But it doesn't know you yet.",
+    "body2": "By day 180, the system knows which clients reorder on predictable cycles. It knows that your Wednesday afternoon meetings always run long. It knows that when you mention \"the Bergen project\" you mean the Fjordview Hotel account. It knows your writing style, your decision patterns, your operational rhythms.",
+    "body3": "That accumulated understanding isn't a feature you can install. It's intelligence that was earned — conversation by conversation, decision by decision."
+  },
+  "section2": {
+    "heading": "What compounds"
+  },
+  "periods": [
+    {
+      "period": "Week 1",
+      "items": [
+        "Basic voice routing works",
+        "Email drafts are generic but functional",
+        "Brain search covers what you've entered"
+      ]
+    },
+    {
+      "period": "Month 1",
+      "items": [
+        "Writing style is calibrated to each team member",
+        "Meeting briefs pull relevant history",
+        "Smart Router accuracy improves from your corrections"
+      ]
+    },
+    {
+      "period": "Month 3",
+      "items": [
+        "Proactive alerts based on patterns it's observed",
+        "Strategic Council grounded in your actual business data",
+        "Cross-source connections humans would miss"
+      ]
+    },
+    {
+      "period": "Month 6+",
+      "items": [
+        "Predicts reorder timing, deal-stage durations, seasonal patterns",
+        "Catches operational drift before it becomes a problem",
+        "Institutional knowledge that survives employee turnover"
+      ]
+    }
+  ],
+  "curvePlaceholder": "Compounding intelligence curve",
+  "section3": {
+    "heading": "The moat you build by using it",
+    "body1": "Most software has zero switching cost beyond the data export. Your project management tool doesn't get smarter the longer you use it. Your CRM doesn't learn your sales patterns. Your calendar doesn't anticipate your scheduling preferences.",
+    "body2": "HABOS is different because the intelligence layer compounds. After six months, the system's understanding of your business is genuinely unique — built from your conversations, your decisions, your patterns, your corrections. That understanding can't be exported as a CSV. It's not in any single database table. It's distributed across embeddings, style profiles, routing models, and behavioral patterns."
+  },
+  "section4": {
+    "heading": "Institutional memory that doesn't quit",
+    "body1": "When a key employee leaves, they take their knowledge with them. The client preferences they memorized, the processes they invented, the relationships they built — all gone.",
+    "body2": "HABOS captures that institutional knowledge as it happens. Every voice note, every meeting, every client interaction feeds the Brain. When someone new joins, they inherit not just the data but the understanding — the AI can brief them on client history, explain why certain decisions were made, and surface the playbooks that the previous person developed."
+  },
+  "section5": {
+    "heading": "A benefit, not a trap",
+    "body1": "We're not building lock-in through data hostage-taking. Your data is always exportable. You own it. But the intelligence — the patterns, the predictions, the contextual understanding — that's the compound interest on the time you've invested. It makes every month more valuable than the last.",
+    "body2": "The question for a prospect isn't \"what does HABOS cost per month?\" It's \"what is six months of compounded business intelligence worth?\""
+  },
+  "quote": "\"Your data can be copied. Your understanding can't. Every day you use HABOS, the gap between the two widens.\"",
+  "nav": {
+    "prevLabel": "Previous",
+    "prevTitle": "Advisors That Disagree",
+    "nextLabel": "Next",
+    "nextTitle": "Small Team Leverage"
+  }
+}

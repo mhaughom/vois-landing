@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "title": "Valorizamos sua privacidade",
+    "description": "Utilizamos análises para entender como os visitantes interagem com nosso site, a fim de melhorar a experiência. Nenhum dado é usado para publicidade.",
+    "privacyPolicy": "Política de Privacidade",
+    "rejectAllAriaLabel": "Rejeitar todos os cookies",
+    "acceptAll": "Aceitar Todos",
+    "rejectAll": "Rejeitar Todos",
+    "manage": "Gerenciar",
+    "necessary": "Necessários",
+    "necessaryDescription": "Necessários para o funcionamento do site. Não podem ser desativados.",
+    "analytics": "Análise",
+    "analyticsDescription": "Nos ajuda a entender os padrões de uso via PostHog (hospedado na UE). Sem rastreamento de anúncios.",
+    "analyticsToggleAriaLabel": "Ativar/desativar rastreamento de análise",
+    "savePreferences": "Salvar Preferências"
+  },
+  "settings": {
+    "triggerLabel": "Configurações de Cookies",
+    "modalTitle": "Preferências de Cookies",
+    "description": "Controle quais cookies e tecnologias de rastreamento estão ativos.",
+    "privacyPolicy": "Política de Privacidade",
+    "necessary": "Necessários",
+    "necessaryDescription": "Necessários para o funcionamento do site.",
+    "analytics": "Análise",
+    "analyticsDescription": "Análise PostHog (hospedado na UE). Sem rastreamento de anúncios.",
+    "analyticsToggleAriaLabel": "Ativar/desativar análise",
+    "savePreferences": "Salvar Preferências",
+    "cancel": "Cancelar"
+  }
+}

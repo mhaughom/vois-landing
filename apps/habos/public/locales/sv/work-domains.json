@@ -1,0 +1,62 @@
+{
+  "badge": "Anpassade domäner",
+  "hero": {
+    "title": "Din domän. Ditt mejl. En konfiguration.",
+    "description": "Anslut din anpassade domän, få arbetsplatsmejladresser och automatisk SSL — allt backat av Cloudflares företagsinfrastruktur."
+  },
+  "body": "Ett domänköp ger dig en webbplats, mejladresser för ditt team och ett komplett mejlsystem med leveransbarhetsspårning, hantering av studsar och klagomål samt AI-svarsförslag — allt hanterat från en inställningssida. Cloudflare tillhandahåller automatiskt SSL och anpassade värdnamn. AWS SES hanterar mejlidentitet med DKIM för autentiserad sändning. Inkommande mejl dirigeras via kvittoregler till HABOS-mejlsystemet där det parsas, trådas och är sökbart.",
+  "mockCard": {
+    "domain": "hendersonplumbing.com",
+    "badges": {
+      "domain": "Domän",
+      "connected": "Ansluten",
+      "ssl": "SSL",
+      "sslActive": "Aktiv",
+      "email": "Mejl",
+      "emailConfigured": "Konfigurerat"
+    },
+    "rows": [
+      { "label": "Webbplats", "value": "hendersonplumbing.com" },
+      { "label": "Mejl", "value": "mike@hendersonplumbing.com" },
+      { "label": "Bokning", "value": "hendersonplumbing.com/book" }
+    ],
+    "annotation": "DNS-spridning slutförs vanligtvis på under 5 minuter med Cloudflare."
+  },
+  "benefits": [
+    {
+      "title": "Domän + mejl + SSL",
+      "desc": "Ingen separat domänregistrator, mejlleverantör och SSL-certifikat. Allt konfigurerat på ett ställe, en instrumentpanel, en faktura."
+    },
+    {
+      "title": "Professionellt mejl",
+      "desc": "Skicka mejl från din domän — fakturor, bekräftelser, marknadsföring. Inte från noreply@en-plattform.com. Ditt varumärke, överallt."
+    },
+    {
+      "title": "Företagsinfrastruktur",
+      "desc": "Cloudflares globala kantnätverk betjänar din webbplats. DDoS-skydd, CDN och SSL-certifikathantering på företagsnivå ingår."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "heading": "Utan HABOS",
+      "text": "Köp domän (12 $/år). Konfigurera DNS. Skaffa SSL-certifikat. Konfigurera mejlvärd (6 $/mån). Peka allt. Be att det fungerar. Felsök DNS-spridning.",
+      "badge": "3 tjänster, 2+ timmars konfiguration"
+    },
+    "with": {
+      "heading": "Med HABOS",
+      "text": "Ange din domän. Lägg till DNS-poster. Klart. Mejl, SSL och webbplatsdirigering konfigureras automatiskt.",
+      "badge": "1 tjänst, 5 minuter"
+    }
+  },
+  "techItems": [
+    "Cloudflare Workers",
+    "Automatisk SSL-tillhandahållning",
+    "Arbetsplatsmejldirigering",
+    "DNS-verifiering",
+    "Globalt CDN"
+  ],
+  "cta": {
+    "heading": "Andra plattformar låter dig hantera 3 tjänster. HABOS hanterar allt.",
+    "button": "Gå med i väntelistan"
+  }
+}

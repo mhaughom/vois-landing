@@ -1,0 +1,59 @@
+{
+  "badge": "Comércio",
+  "hero": {
+    "title": "Produtos, Pedidos e Pagamentos. Tudo Conectado.",
+    "description": "Serviços, produtos físicos, pacotes e assinaturas — todos com estoque por variante, precificação automatizada e checkout do Stripe integrado."
+  },
+  "body": "Quatro tipos de produto em um único sistema: serviços, produtos físicos, pacotes e assinaturas — todos com rastreamento de estoque por variante, alertas de estoque baixo e deduções automáticas. Transforme qualquer produto em um agendamento com duração, capacidade, horários e dias úteis configuráveis. Incorpore um carrinho de compras ou calendário de agendamentos diretamente no seu site — sem precisar de uma plataforma separada. O cálculo de itens de linha no servidor previne fraudes do lado do cliente em todos os canais.",
+  "productTypes": [
+    { "label": "Serviços", "desc": "Preço por hora ou fixo" },
+    { "label": "Produtos Físicos", "desc": "Estoque por variante" },
+    { "label": "Pacotes", "desc": "Agrupe múltiplos itens" },
+    { "label": "Assinaturas", "desc": "Cobrança recorrente" }
+  ],
+  "catalogCaption": "Um sistema de catálogo para os quatro tipos. Transforme qualquer produto em um agendamento ou um widget de site.",
+  "orderSteps": ["Orçamento", "Pendente", "Confirmado", "Em Andamento", "Concluído"],
+  "order": {
+    "heading": "Pedido #1247 — Reforma da Cozinha Henderson",
+    "tableHeaders": {
+      "product": "Produto",
+      "qty": "Qtd",
+      "unit": "Unitário",
+      "total": "Total"
+    },
+    "lineItems": [
+      { "product": "Armário personalizado (nogueira)", "qty": "1", "unit": "$2.400", "total": "$2.400" },
+      { "product": "Tampo — quartzo 60\"", "qty": "2", "unit": "$650", "total": "$1.300" },
+      { "product": "Mão de obra de instalação (4 hrs)", "qty": "1", "unit": "$550", "total": "$550" }
+    ],
+    "subtotal": "Subtotal: $4.250",
+    "paymentConfirmed": "Pagamento Stripe: ✓ Confirmado",
+    "deposit": "Entrada: $1.000 pago"
+  },
+  "orderCaption": "Pedidos gerados automaticamente a partir de agendamentos, compras no site ou criação manual. Itens de linha calculados no servidor — sem fraude do lado do cliente.",
+  "benefits": [
+    {
+      "title": "Estoque nunca mente",
+      "desc": "Estoque por variante deduzido na confirmação do pedido. Alertas de estoque baixo acionados automaticamente. Reembolsos restauram o estoque."
+    },
+    {
+      "title": "Stripe em 3 cliques",
+      "desc": "Sessões de checkout, faturas, links de pagamento e reembolsos — tudo pelo Stripe Connect. O dinheiro vai para sua conta bancária, não para um intermediário."
+    },
+    {
+      "title": "Site → pedido → CRM",
+      "desc": "Cliente compra no seu site HABOS. Pedido criado. Contato no CRM inserido/atualizado. Recibo enviado. Zero entrada manual de dados."
+    }
+  ],
+  "techItems": [
+    "4 tipos de produto",
+    "Estoque por variante",
+    "Stripe Connect Express",
+    "Itens de linha no servidor",
+    "Sincronização agendamento ↔ pedido"
+  ],
+  "cta": {
+    "heading": "Outras ferramentas de comércio são uma plataforma separada. O comércio do HABOS está integrado a tudo.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

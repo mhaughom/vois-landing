@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "Produto",
+    "solutions": "Soluções",
+    "philosophy": "Filosofia",
+    "communication": {
+      "label": "Comunicação",
+      "desc": "E-mail, Mensageiro, Telefone, Tickets de Suporte"
+    },
+    "scheduling": {
+      "label": "Agendamento e Reservas",
+      "desc": "Calendário, Reservas, Links de Agendamento"
+    },
+    "jobsOperations": {
+      "label": "Trabalhos e Operações",
+      "desc": "Despacho, Rotas, Projetos, Tarefas, Controle de Tempo"
+    },
+    "salesPayments": {
+      "label": "Vendas e Pagamentos",
+      "desc": "CRM, Produtos, Faturamento, Pagamentos"
+    },
+    "voiceAi": {
+      "label": "Voz e IA",
+      "desc": "Notas de Voz, Notas de Reunião, Assistente, Playbooks"
+    },
+    "websiteMarketing": {
+      "label": "Site e Marketing",
+      "desc": "Construtor de Site, Social, Campanhas de E-mail"
+    },
+    "serviceBusinesses": {
+      "label": "Empresas de Serviços",
+      "desc": "De encanadores a consultores e terapeutas"
+    },
+    "productBusinesses": {
+      "label": "Empresas de Produtos",
+      "desc": "De lojas ao e-commerce e fabricantes"
+    },
+    "creativeBusinesses": {
+      "label": "Empresas Criativas",
+      "desc": "De agências a fotógrafos e estúdios"
+    },
+    "fieldOperations": {
+      "label": "Operações em Campo",
+      "desc": "Da construção à entrega e gestão de imóveis"
+    },
+    "teamsStartups": {
+      "label": "Equipes e Startups",
+      "desc": "Construindo uma empresa com 2 a 50 pessoas"
+    },
+    "soloFounders": {
+      "label": "Empreendedores Solo",
+      "desc": "De freelancers a empresas individuais"
+    },
+    "intelligenceYouControl": "Inteligência Sob Seu Controle",
+    "securityFirst": {
+      "label": "Segurança em Primeiro Lugar",
+      "desc": "IA com limites. Seus limites."
+    },
+    "oneAssistant": {
+      "label": "Um Assistente",
+      "desc": "Pergunte qualquer coisa, de qualquer lugar"
+    },
+    "captureYourBrain": {
+      "label": "Capture Seu Pensamento",
+      "desc": "Capture ideias antes que desapareçam"
+    },
+    "fastByDesign": "Rápido por Design",
+    "suggestionsNotMenus": {
+      "label": "Sugestões, Não Menus",
+      "desc": "Leia. Toque. Pronto."
+    },
+    "twoInterfaces": {
+      "label": "Duas Interfaces",
+      "desc": "Telas para você, APIs para agentes"
+    },
+    "speedOfThought": {
+      "label": "Velocidade do Pensamento",
+      "desc": "Voz para dentro, toque para fora"
+    },
+    "alwaysWithinReach": {
+      "label": "Sempre ao Alcance",
+      "desc": "Watch, celular, tela de bloqueio"
+    },
+    "builtForYourBusiness": "Feito para o Seu Negócio",
+    "everythingInOnePlace": {
+      "label": "Tudo em Um Só Lugar",
+      "desc": "Um login, todas as ferramentas"
+    },
+    "builtForTeams": {
+      "label": "Feito para Equipes",
+      "desc": "Uma verdade única, perspectivas diferentes"
+    },
+    "yourSoftwareYourWay": {
+      "label": "Seu Software, Do Seu Jeito",
+      "desc": "Flexível por design"
+    },
+    "ctaLabel": "Entrar na Lista de Espera",
+    "betaLogin": "Login do Beta"
+  },
+  "vois": {
+    "features": "Funcionalidades",
+    "resources": "Recursos",
+    "voiceCapture": {
+      "label": "Captura de Voz",
+      "desc": "Fale, cuidamos do resto"
+    },
+    "aiAssistant": {
+      "label": "Assistente de IA",
+      "desc": "Seu parceiro pessoal de IA"
+    },
+    "calendar": {
+      "label": "Calendário",
+      "desc": "Blocos de foco preenchidos automaticamente"
+    },
+    "tasks": {
+      "label": "Tarefas",
+      "desc": "Priorização por IA"
+    },
+    "watch": {
+      "label": "Watch",
+      "desc": "IA completa no pulso"
+    },
+    "customApps": {
+      "label": "Apps Personalizados",
+      "desc": "Crie seus próprios espaços"
+    },
+    "habosForWork": {
+      "label": "HABOS para Trabalho",
+      "desc": "A plataforma de negócios completa"
+    },
+    "support": {
+      "label": "Suporte",
+      "desc": "Obtenha ajuda da nossa equipe"
+    },
+    "privacyPolicy": {
+      "label": "Política de Privacidade",
+      "desc": "Como protegemos seus dados"
+    },
+    "termsOfService": {
+      "label": "Termos de Serviço",
+      "desc": "Nosso contrato de serviço"
+    },
+    "ctaLabel": "Entrar na Lista de Espera",
+    "workLabel": "HABOS para Trabalho",
+    "tryNow": "Experimente Agora",
+    "betaLogin": "Login do Beta"
+  },
+  "clusters": {
+    "communication": {
+      "email": "E-mail",
+      "messenger": "Mensageiro",
+      "phone": "Telefone",
+      "supportTickets": "Tickets de Suporte"
+    },
+    "schedulingBookings": {
+      "calendar": "Calendário",
+      "bookings": "Reservas",
+      "schedulingLinks": "Links de Agendamento"
+    },
+    "jobsOperations": {
+      "dispatch": "Despacho",
+      "routes": "Rotas",
+      "projects": "Projetos",
+      "tasks": "Tarefas",
+      "timeTracking": "Controle de Tempo"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "Produtos",
+      "invoicing": "Faturamento",
+      "payments": "Pagamentos"
+    },
+    "voiceAi": {
+      "voiceNotes": "Notas de Voz",
+      "meetingNotes": "Notas de Reunião",
+      "assistant": "Assistente",
+      "playbooks": "Playbooks"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "Construtor de Site",
+      "creativeStudio": "Estúdio Criativo",
+      "marketing": "Marketing"
+    }
+  },
+  "mobile": {
+    "overview": "Visão Geral"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "Entrar na Lista de Espera",
+      "workLabel": "HABOS para Trabalho",
+      "tagline": "by HABOS"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "Entrar na Lista de Espera",
+      "tagline": "Poder da IA, Controle Humano"
+    }
+  },
+  "clusterPages": {
+    "email": "E-mail",
+    "messenger": "Mensageiro",
+    "telephony": "Telefone",
+    "tickets": "Tickets de Suporte",
+    "calendar": "Calendário",
+    "bookings": "Reservas",
+    "scheduling-links": "Links de Agendamento",
+    "dispatch": "Despacho",
+    "routes": "Rotas",
+    "projects": "Projetos",
+    "tasks": "Tarefas",
+    "time-tracking": "Controle de Tempo",
+    "crm": "CRM",
+    "products": "Produtos",
+    "finance": "Faturamento",
+    "payments": "Pagamentos",
+    "voice-notes": "Notas de Voz",
+    "meeting-notes": "Notas de Reunião",
+    "assistant": "Assistente",
+    "playbooks": "Playbooks",
+    "website-builder": "Construtor de Site",
+    "creative-studio": "Estúdio Criativo",
+    "marketing": "Marketing"
+  },
+  "clusterGroupNames": {
+    "communication": "Comunicação",
+    "schedulingBookings": "Agendamento e Reservas",
+    "jobsOperations": "Trabalhos e Operações",
+    "salesPayments": "Vendas e Pagamentos",
+    "voiceAi": "Voz e IA",
+    "websiteMarketing": "Site e Marketing"
+  }
+}

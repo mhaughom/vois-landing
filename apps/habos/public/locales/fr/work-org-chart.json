@@ -1,0 +1,52 @@
+{
+  "badge": "Gestion d'équipe",
+  "hero": {
+    "title": "Glissez. Déposez. Réorganisez.",
+    "description": "Organigramme interactif avec brouillons bac à sable — modélisez les réorganisations, comparez avec l'état actuel et appliquez atomiquement. Plus une matrice de permissions 37 applications qui se limite automatiquement par département et ancienneté."
+  },
+  "body": "L'organigramme s'affiche comme un arbre interactif — faites glisser les nœuds pour réaffecter les managers. Créez des brouillons d'organigramme pour modéliser les réorganisations : prenez un instantané de la structure actuelle, apportez des modifications, comparez avec l'état en direct et appliquez atomiquement quand vous êtes prêt. Un système de contrôle d'accès à trois niveaux gère 37 applications avec héritage de profil par département et remplacements directs. Les administrateurs contrôlent quels modules chaque personne voit, si elle peut approuver des actions, ses taux horaires et ses limites de crédits IA mensuels.",
+  "orgChart": {
+    "caption": "Créez un brouillon, modélisez la réorganisation, prévisualisez les différences et appliquez quand vous êtes prêt. Personne ne voit les changements avant votre publication."
+  },
+  "orgNodes": {
+    "ceo": { "name": "Elena Park", "role": "PDG" },
+    "vpOps": { "name": "James Okoro", "role": "VP Opérations" },
+    "vpSales": { "name": "Lisa Chen", "role": "VP Ventes" },
+    "fieldOpsLead": { "name": "Mike R.", "role": "Responsable Opérations Terrain", "draft": "Brouillon : transféré depuis les Ventes" },
+    "logisticsCoord": { "name": "Sara T.", "role": "Coordinatrice Logistique" },
+    "accountExec": { "name": "David K.", "role": "Responsable de compte" },
+    "salesRep": { "name": "Amy J.", "role": "Commerciale" }
+  },
+  "benefits": {
+    "permissions": {
+      "title": "Permissions 37 applications",
+      "description": "Limitées automatiquement par département et niveau d'organisation. Quand quelqu'un change de poste, ses permissions se mettent à jour instantanément sur chaque outil connecté."
+    },
+    "raci": {
+      "title": "Suivi RACI",
+      "description": "Définissez qui est responsable, approbateur, consulté et informé pour chaque processus. Ne vous demandez plus jamais « qui valide ça ? »"
+    },
+    "dual": {
+      "title": "Double rattachement",
+      "description": "Structures matricielles avec managers principal et secondaire. Les relations en pointillé sont des citoyens de première classe, pas des réflexions après coup."
+    }
+  },
+  "scenario": {
+    "intro": "Vous restructurez l'équipe opérations terrain.",
+    "narrative": "Au lieu de faire des changements en direct et de semer la confusion, vous créez un brouillon. Faites glisser Mike des Ventes aux Opérations, ajoutez un nouveau poste de responsable d'équipe et prévisualisez les différences. Trois personnes déplacées, deux lignes hiérarchiques modifiées. Vous examinez, approuvez et publiez —",
+    "highlight": "toute l'organisation se met à jour atomiquement."
+  },
+  "techStrip": {
+    "items": [
+      "Visualisation ReactFlow",
+      "Brouillons bac à sable",
+      "Application atomique",
+      "Matrice de permissions 37 applications",
+      "Responsabilité RACI"
+    ]
+  },
+  "cta": {
+    "heading": "Les autres organigrammes sont un PDF statique. L'organigramme HABOS est un centre de commandement en direct.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

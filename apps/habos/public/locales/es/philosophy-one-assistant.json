@@ -1,0 +1,26 @@
+{
+  "category": "Filosofía",
+  "title": "Un asistente, no cien herramientas",
+  "tagline": "VOIS conoce toda su empresa. Pregunte cualquier cosa, desde cualquier lugar.",
+  "heroAlt": "Un asistente con contexto empresarial completo",
+  "section1": {
+    "heading": "Usted es la integración",
+    "body": "Son las 9 pm. Un cliente escribe preguntando si puede reunirse el jueves. Para responder, necesita su disponibilidad de Calendly, su historial del CRM y si pagaron su última factura en contabilidad. Tres aplicaciones. Tres inicios de sesión. Cinco minutos haciendo clic. Para una respuesta que debería tardar diez segundos."
+  },
+  "section2": {
+    "heading": "Qué significa tener un solo asistente",
+    "body1": "«¿Cuál es mi historial con Acme Corp?» — VOIS busca correos electrónicos, transcripciones de reuniones, grabaciones de voz, notas del CRM, facturas y archivos del proyecto. En dos segundos aparece una cronología unificada. 14 correos, 3 reuniones con transcripciones, última factura pagada el 12 de febrero, proyecto activo al 68%. Intente hacer eso en cinco aplicaciones separadas.",
+    "body2": "«Respóndele a Sarah y dile que el jueves me viene bien.» — Una sola frase. VOIS sabe quién es Sarah (CRM), qué preguntó (bandeja de entrada), que el jueves está libre (calendario) y cómo escribe habitualmente el fontanero (historial de enviados). Aparece un correo electrónico completo y personalizado como tarjeta de vista previa. Nada se envía sin la Esclusa."
+  },
+  "section3": {
+    "heading": "No es solo un chatbot",
+    "body": "Hay una plataforma completa detrás del asistente. Puede abrir el calendario directamente, navegar por el CRM, editar facturas, gestionar proyectos — todo a través de interfaces tradicionales. El asistente es una forma de acceso, no la única. Algunas cosas son más rápidas de decir. Otras son más rápidas de ver. VOIS le da ambas opciones."
+  },
+  "quote": "«No debería necesitar ser su propio secretario solo porque usa software empresarial.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Todo en un solo lugar",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Creado para equipos"
+  }
+}

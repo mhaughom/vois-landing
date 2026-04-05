@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "title": "Wij respecteren je privacy",
+    "description": "We gebruiken analyses om te begrijpen hoe bezoekers onze site gebruiken, zodat we de ervaring kunnen verbeteren. Gegevens worden niet voor advertentiedoeleinden gebruikt.",
+    "privacyPolicy": "Privacybeleid",
+    "rejectAllAriaLabel": "Alle cookies weigeren",
+    "acceptAll": "Alles accepteren",
+    "rejectAll": "Alles weigeren",
+    "manage": "Beheren",
+    "necessary": "Noodzakelijk",
+    "necessaryDescription": "Vereist voor de werking van de site. Kan niet worden uitgeschakeld.",
+    "analytics": "Analyse",
+    "analyticsDescription": "Helpt ons gebruikspatronen te begrijpen via PostHog (EU-gehost). Geen advertentietracking.",
+    "analyticsToggleAriaLabel": "Analysetracking in-/uitschakelen",
+    "savePreferences": "Voorkeuren opslaan"
+  },
+  "settings": {
+    "triggerLabel": "Cookie-instellingen",
+    "modalTitle": "Cookie-voorkeuren",
+    "description": "Bepaal welke cookies en trackingtechnologieën actief zijn.",
+    "privacyPolicy": "Privacybeleid",
+    "necessary": "Noodzakelijk",
+    "necessaryDescription": "Vereist voor de werking van de site.",
+    "analytics": "Analyse",
+    "analyticsDescription": "PostHog-analyse (EU-gehost). Geen advertentietracking.",
+    "analyticsToggleAriaLabel": "Analyse in-/uitschakelen",
+    "savePreferences": "Voorkeuren opslaan",
+    "cancel": "Annuleren"
+  }
+}

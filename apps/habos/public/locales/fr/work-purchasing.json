@@ -1,0 +1,62 @@
+{
+  "badge": "Achats",
+  "hero": {
+    "title": "Fournisseurs, commandes et stocks.\nConnectés.",
+    "description": "Gérez les fournisseurs, créez des bons de commande, réceptionnez les marchandises et regardez les niveaux de stock s'ajuster automatiquement — pas de tableurs, pas de double saisie."
+  },
+  "mockPO": {
+    "title": "BC #0042 — Nordic Supply Co",
+    "status": "En attente de livraison",
+    "tableHeaders": {
+      "item": "Article",
+      "qty": "Qté",
+      "unit": "Unitaire",
+      "total": "Total"
+    },
+    "lineItems": [
+      { "product": "Raccords flexibles x20", "qty": 20, "unit": "17,00 $", "total": "340 $" },
+      { "product": "Tuyau cuivre 15 mm x50 m", "qty": 50, "unit": "17,80 $", "total": "890 $" },
+      { "product": "Boîtes de mastic x12", "qty": 12, "unit": "13,00 $", "total": "156 $" }
+    ],
+    "totalsRow": {
+      "total": "Total : 1 386 $",
+      "lineCount": "3 lignes d'articles"
+    },
+    "received": {
+      "heading": "Reçu (2 sur 3)",
+      "items": [
+        { "product": "Raccords flexibles x20", "checked": true },
+        { "product": "Tuyau cuivre 15 mm x50 m", "checked": true },
+        { "product": "Boîtes de mastic x12", "checked": false }
+      ]
+    },
+    "annotation": "Les bons de commande sont directement liés à votre catalogue produits. La réception met à jour le stock en temps réel — même pour les livraisons partielles."
+  },
+  "benefits": [
+    {
+      "title": "Annuaire des fournisseurs",
+      "desc": "Suivez les fournisseurs, les coordonnées, les conditions de paiement et l'historique des commandes. Sachez qui livre quoi et quand."
+    },
+    {
+      "title": "Bons de commande",
+      "desc": "Créez des bons de commande depuis les alertes de stock faible ou les demandes manuelles. Les lignes d'articles sont liées à votre catalogue produits."
+    },
+    {
+      "title": "Réception & stock",
+      "desc": "Marquez les articles comme reçus. Les niveaux de stock se mettent à jour automatiquement. Les livraisons partielles sont suivies."
+    }
+  ],
+  "scenario": "Votre entrepôt signale un stock faible en raccords flexibles. VOIS crée un brouillon de bon de commande pour votre fournisseur préféré avec les bonnes quantités et tarifs de votre dernière commande. Vous approuvez d'un seul appui. Quand la livraison arrive, votre équipe marque les articles reçus et l'inventaire se met à jour instantanément.",
+  "techItems": [
+    "Gestion des fournisseurs",
+    "Bons de commande",
+    "Réception partielle",
+    "Ajustement automatique du stock",
+    "Suivi des factures",
+    "Alertes de stock faible"
+  ],
+  "cta": {
+    "title": "Du réapprovisionnement au restockage.\nUn seul système.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

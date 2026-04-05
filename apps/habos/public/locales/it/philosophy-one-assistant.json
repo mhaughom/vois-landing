@@ -1,0 +1,26 @@
+{
+  "category": "Filosofia",
+  "title": "Un Solo Assistente, Non Cento Strumenti",
+  "tagline": "VOIS conosce tutta la tua azienda. Chiedi qualsiasi cosa, da qualsiasi luogo.",
+  "heroAlt": "Un solo assistente con tutto il contesto aziendale",
+  "section1": {
+    "heading": "Sei tu l'integrazione",
+    "body": "Sono le 21:00. Un cliente manda un'email chiedendo se puoi incontrarlo giovedì. Per rispondere, hai bisogno della tua disponibilità da Calendly, della tua cronologia dal CRM e di sapere se ha pagato l'ultima fattura dalla contabilità. Tre app. Tre login. Cinque minuti di clic. Per una risposta che dovrebbe richiedere dieci secondi."
+  },
+  "section2": {
+    "heading": "Cosa significa avere un solo assistente",
+    "body1": "\"Qual è la mia cronologia con Acme Corp?\" — VOIS cerca nelle email, nelle trascrizioni delle riunioni, nelle registrazioni vocali, nelle note CRM, nelle fatture e nei file di progetto. In due secondi, appare una timeline unificata. 14 email, 3 riunioni con trascrizioni, ultima fattura pagata il 12 febbraio, progetto attivo all'68%. Prova a farlo su cinque app separate.",
+    "body2": "\"Rispondi a Sara e dille che giovedì va bene.\" — Una frase in ingresso. VOIS sa chi è Sara (CRM), di cosa ha chiesto (casella di posta), che giovedì è libero (calendario) e come scrive l'idraulico di solito (cronologia inviati). Appare un'email completa e personalizzata come scheda di anteprima. Niente viene inviato senza l'Airlock."
+  },
+  "section3": {
+    "heading": "Non solo un chatbot",
+    "body": "C'è una piattaforma completa dietro l'assistente. Puoi aprire il calendario direttamente, sfogliare il CRM, modificare le fatture, gestire i progetti — tutto attraverso interfacce tradizionali. L'assistente è un modo per entrare, non l'unico modo. Alcune cose sono più veloci da dire. Altre sono più veloci da vedere. VOIS ti dà entrambi."
+  },
+  "quote": "\"Non dovresti dover essere il tuo stesso segretario solo perché usi software aziendale.\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Tutto in un Unico Posto",
+    "nextLabel": "Successivo",
+    "nextTitle": "Pensato per i Team"
+  }
+}

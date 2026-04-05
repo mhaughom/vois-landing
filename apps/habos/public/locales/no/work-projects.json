@@ -1,0 +1,72 @@
+{
+  "badge": "AI-prosjektintelligens",
+  "hero": {
+    "title": "Vet alltid hva som blokkerer fremgangen.",
+    "description": "HABOS analyserer kontinuerlig alle oppgaver, avhengigheter og frister for å avdekke kritisk sti. Du ser flaskehalser før de blir problemer."
+  },
+  "body": "Prosjektsystemet bruker AI-analyse til kontinuerlig å identifisere kritisk sti. GPT-4o undersøker alle planelementer, avhengigheter og gjeldende status, deretter identifiserer flaskehalser og blokkerende kjeder. Elementer på kritisk sti får automatisk høyere prioritet i planleggingsmotoren – når fokusblokker fylles, settes kritisk sti-oppgaver inn først. Avhengigheter håndhever topologisk rekkefølge, slik at forgjengere alltid planlegges før etterfølgerne.",
+  "criticalPath": {
+    "heading": "Henderson Kjøkkenrenovering — Kritisk sti",
+    "items": {
+      "permitsApproved": {
+        "title": "Tillatelser godkjent",
+        "date": "Fullført 20. mars"
+      },
+      "plumbingRoughIn": {
+        "title": "Rørleggerarbeid grovinstallasjon",
+        "date": "Fullført 23. mars"
+      },
+      "tileSelection": {
+        "title": "Flisvalg",
+        "status": "BLOKKERER — venter på utvalgslevering (forfall 28. mars)"
+      },
+      "tileInstallation": {
+        "title": "Flisinstallasjon",
+        "blockedBy": "Blokkert av: Flisvalg"
+      },
+      "finalInspection": {
+        "title": "Sluttinspeksjon",
+        "blockedBy": "Blokkert av: Flisinstallasjon"
+      }
+    },
+    "note": "AI identifiserte «Flisvalg» som flaskehalsen 3 dager før teamet la merke til det. Elementer på kritisk sti forfremmes automatisk til høyeste prioritet i planen din."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Flaskehalser funnet automatisk",
+      "description": "AI undersøker alle planelementer, avhengigheter og status. Den setter critical_rank på elementer som danner blokkerende kjeden – og kalenderen din prioriterer dem umiddelbart."
+    },
+    "dependencies": {
+      "title": "Avhengigheter håndhevet",
+      "description": "Hvis en forgjenger ikke er fullført, merkes den avhengige oppgaven som blokkert og kan ikke startes. Aldri mer arbeid med feil ting."
+    },
+    "connected": {
+      "title": "Alle kilder tilkoblet",
+      "description": "E-poster, møter, talenotater og dokumenter er automatisk tagget til prosjekter. Spør «hvorfor henger dette etter?» og få et ekte svar."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Uten HABOS",
+      "description": "Mandagsoppdatering: «Noen blokkerende?» Stillhet. Torsdag: «Hvorfor er ikke flisene lagt?» «Åh, utvalget kom aldri.» Tre dager tapt.",
+      "badge": "Flaskehals oppdaget: 3 dager for sent"
+    },
+    "with": {
+      "heading": "Med HABOS",
+      "description": "Tirsdag morgen: varsling – «Flisvalg er nå kritisk sti-flaskehalsen. Utvalgslevering er 2 dager unna. Anbefaling: eskaler med leverandør.» Handling tatt samme dag.",
+      "badge": "Flaskehals flagget: 3 dager tidlig"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "GPT-4o kritisk sti-analyse",
+      "Topologisk avhengighetssortering",
+      "Automatisk prioritetsheving",
+      "Kryss-modul datatagging"
+    ]
+  },
+  "cta": {
+    "heading": "Andre prosjektverktøy viser deg oppgaver. HABOS viser deg hva som betyr noe.",
+    "button": "Bli med på ventelisten"
+  }
+}

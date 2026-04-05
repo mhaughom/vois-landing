@@ -1,0 +1,62 @@
+{
+  "userTypes": ["Personnel", "Professionnel", "Les deux"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Ami/collègue",
+    "Moteur de recherche",
+    "YouTube",
+    "Reddit",
+    "Autre"
+  ],
+  "useCases": [
+    "Tâches personnelles & rappels",
+    "Réunions de travail & notes",
+    "Idées & brainstorming",
+    "Courses & listes",
+    "Suivi personnalisé (santé, habitudes, etc.)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "Pour quoi utiliserez-vous VOIS ?",
+    "subLabel": "Sélectionnez tout ce qui s'applique",
+    "stepIndicator": "Étape 1 sur 5"
+  },
+  "stepUserType": {
+    "heading": "Comment utiliserez-vous VOIS ?",
+    "subLabel": "Choisissez-en un",
+    "stepIndicator": "Étape 2 sur 5"
+  },
+  "stepDevices": {
+    "heading": "Quels appareils utiliserez-vous ?",
+    "subLabel": "Sélectionnez tout ce qui s'applique",
+    "stepIndicator": "Étape 3 sur 5"
+  },
+  "stepReferral": {
+    "heading": "Comment avez-vous entendu parler de VOIS ?",
+    "subLabel": "Cela nous aide à comprendre notre communauté",
+    "stepIndicator": "Étape 4 sur 5"
+  },
+  "stepEmail": {
+    "heading": "Quel est votre e-mail ?",
+    "subLabel": "Nous vous enverrons un accès anticipé lors du lancement",
+    "placeholder": "Saisissez votre e-mail",
+    "joining": "Inscription en cours...",
+    "joinWaitlist": "Rejoindre la liste d'attente",
+    "stepIndicator": "Étape 4 sur 5"
+  },
+  "stepSuccess": {
+    "heading": "Vous êtes sur la liste !",
+    "willSendEmail": "Nous vous enverrons un e-mail à",
+    "whatsNext": "Quelle est la suite ?",
+    "whatsNextBody": "Nous lançons bientôt ! Vous serez parmi les premiers à obtenir un accès anticipé et des mises à jour exclusives.",
+    "done": "Terminé"
+  },
+  "continue": "Continuer",
+  "errors": {
+    "emailInvalid": "Veuillez saisir une adresse e-mail valide",
+    "emailExists": "Cet e-mail est déjà sur la liste d'attente !",
+    "joinFailed": "Échec de l'inscription à la liste d'attente"
+  }
+}

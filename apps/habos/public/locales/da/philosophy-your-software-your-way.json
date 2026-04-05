@@ -1,0 +1,44 @@
+{
+  "category": "Filosofi",
+  "title": "Din software, din vej",
+  "tagline": "Ingen to virksomheder er ens. Dit styresystem bør ikke foregive, at de er det.",
+  "body1": "De fleste software beder dig om at tilpasse dig til den. Du lærer dens menustruktur, husker dens genveje og bygger workarounds til de ting, den næsten gør, men ikke helt. Over tid stopper du med at bemærke, hvor meget af din proces er formet af værktøjets begrænsninger snarere end dine faktiske behov.",
+  "body2": "Vi bygger VOIS til at bøje den anden vej.",
+  "quote1": "\"Det bedste værktøj er det, der passer til hånden, der holder det.\"",
+  "section1": {
+    "heading": "Dedikerede timer, dedikeret til dig",
+    "body": "Efterhånden som VOIS vokser, forpligter vi os til noget sjældent: dedikerede medarbejdertimer til din virksomhed. Ikke en generisk supportkø. Ikke en chatbot. Rigtige mennesker fra vores team, allokeret til at forstå dine arbejdsgange og få softwaren til at arbejde hårdere for dig. Hvad enten det drejer sig om at justere, hvordan en funktion fungerer, bygge en tilpasset visning eller tilslutte en integration, der kun giver mening for din branche — vi gør arbejdet."
+  },
+  "practiceLabel": "Hvad dette ser ud som i praksis",
+  "practiceItems": [
+    {
+      "name": "Tilpassede apps",
+      "desc": "Byg eller anmod om apps, der lever inde i VOIS, skræddersyet til den måde, dit team faktisk arbejder på."
+    },
+    {
+      "name": "Betalt tilpasning",
+      "desc": "Bestil funktioner, arbejdsgange eller integrationer bygget specifikt til din virksomhed."
+    },
+    {
+      "name": "Funktionsforslag",
+      "desc": "Foreslå funktionalitet, der kun gælder for dig — og se den bygget ind i din instans."
+    },
+    {
+      "name": "Åben platform",
+      "desc": "Efterhånden som vi modnes, åbner vi systemet, så du kan udvide det selv eller bringe dine egne udviklere ind."
+    }
+  ],
+  "section2": {
+    "heading": "Software der vokser med dig",
+    "body1": "Den typiske SaaS-spillebog er at bygge ét produkt og sælge det til alle på samme måde. Det fungerer for simple værktøjer. Men VOIS er ikke et simpelt værktøj — det er dit styresystem. Og et styresystem bør afspejle den virksomhed, det driver, ikke omvendt.",
+    "body2": "Et anlægsgartnerfirma behøver ikke det samme dashboard som et designbureau. En soloonsulent behøver ikke de samme arbejdsgange som et 40-personers feltteam. I stedet for at tvinge alle gennem den samme tragt, giver vi dig hellere byggestenene og støtten til at samle noget, der er genuint dit."
+  },
+  "quote2": "\"Vi ønsker ikke at være softwaren, du nøjes med. Vi ønsker at være softwaren, du selv ville bygge — hvis du havde tid.\"",
+  "body3": "Dette er et langsigtet engagement, ikke et løfte på lanceringsdagen. Vi bygger fundamentet nu, så når vi åbner det op, kan enhver virksomhed på VOIS gøre det genuint til deres eget.",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Altid inden for rækkevidde",
+    "nextLabel": "Næste",
+    "nextTitle": "Luftsluset"
+  }
+}

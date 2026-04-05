@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Lösungen — Produktunternehmen",
+    "title": "Ihr gesamtes Geschäft an einem Ort.",
+    "subtitle": "Produkte, Bestellungen, Inventar, Website, Marketing und Kundendienst – ohne App-Wechsel.",
+    "description": "Online-Shops, Einzelhandelsgeschäfte, handgefertigte Waren, Lebensmittelproduzenten, Großhandel, Abo-Boxen und alle, die physische oder digitale Produkte verkaufen."
+  },
+  "body": {
+    "section1": {
+      "heading": "Rechnen Sie Ihren aktuellen Stack durch",
+      "p1": "Shopify: 39 $/Monat. Mailchimp: 20 $/Monat. Later für Social Media: 25 $/Monat. Gorgias für Support: 60 $/Monat. Eine Tabelle, die Sie manuell für \"echte\" Inventarzahlen pflegen. Squarespace für die Website, die Sie separat von Ihrem eigentlichen Produktkatalog aktualisieren. Ein Haftzettel, der Sie daran erinnert, Verpackung von einem Lieferanten nachzubestellen, dessen Nummer in Ihren Telefonkontakten steckt.",
+      "p2": "Das sind 144 $ pro Monat an Software – ohne die Zeit zu berücksichtigen, die Sie damit verbringen, Daten zwischen all diesen zu verschieben."
+    },
+    "section2": {
+      "heading": "Wo die Zeit hingeht",
+      "p1": "Vier Minuten, um eine \"Wo ist meine Bestellung?\"-E-Mail zu beantworten. Shopify für die Bestellung prüfen, die Versandseite für die Sendungsverfolgung, die Antwort in Gmail mit der eingefügten Sendungsnummer verfassen. Multipliziert mit zwölf Kunden pro Tag. Das sind achtundvierzig Minuten für eine Aufgabe, die von einer KI erledigt werden könnte, die bereits den Bestellstatus und die Sendungsnummer kennt.",
+      "p2": "Einen ganzen Nachmittag, um eine Aktion durchzuführen. Ihre E-Mail-Liste ist in Mailchimp. Ihre Kaufhistorie ist in Shopify. Ihr Social-Media-Inhalt wird über Later verwaltet. Eine 15%-Rabatt-Kampagne für Stammkunden bedeutet, Daten aus einem Tool zu exportieren, in ein anderes zu importieren und manuell über ein drittes zu koordinieren.",
+      "p3": "Ein beliebter Artikel geht aus dem Lager, weil die Nachbestellungserinnerung eine E-Mail war, die Sie letzte Woche vergraben haben. Jetzt bestellen Sie eilig zum doppelten Versandpreis und verlieren in der Zwischenzeit Umsatz."
+    },
+    "section3": {
+      "heading": "Was sich mit HABOS ändert",
+      "p1": "Ein Dashboard. Bestellungen, Lagerbestände und Kundennachrichten in derselben Ansicht. Wenn eine Versandanfrage eingeht, hat die KI bereits den Bestellstatus und die Sendungsnummer – sie erstellt die Antwort über Nacht. Sie überprüfen drei davon in dreißig Sekunden beim Morgenkaffee.",
+      "p2": "Wenn der Lagerbestand niedrig wird, meldet HABOS es drei Tage, bevor Sie es bemerken würden. Eine Bestellanfrage wird mit Ihrem üblichen Lieferanten in der üblichen Menge entworfen. Sie genehmigen es auf Ihrem Telefon während des Mittagsspaziergangs.",
+      "voiceNote": "\"VOIS, erstelle eine Kampagne für Stammkunden – 15 % Rabatt, E-Mail und Instagram, nächste Woche.\"",
+      "voiceResult": "KI zieht Stammkunden aus dem CRM. Erstellt E-Mail-Text in Ihrer Markenstimme. Schlägt eine Instagram-Bildunterschrift mit Ihrem meistverkauften Produktfoto vor. Sie tweaken die Betreffzeile, tippen auf Genehmigen. Fünf Minuten.",
+      "p3": "Ihre Website wird aus Ihrem tatsächlichen Produktkatalog generiert. Ändern Sie einen Preis, er wird auf der Website aktualisiert. Fügen Sie ein Produkt hinzu, es erscheint. Kein separates CMS zu pflegen. Keine Synchronisierungsprobleme. Kein \"Die Website sagt 24,99 €, aber es sind jetzt tatsächlich 29,99 €.\""
+    },
+    "section4": {
+      "heading": "Die neue Rechnung",
+      "before": {
+        "label": "Vorher",
+        "price": "144 €+/Monat",
+        "note": "6 Tools, keines verbunden"
+      },
+      "after": {
+        "label": "Nachher",
+        "price": "35 €/Monat",
+        "note": "Alles, verbunden"
+      },
+      "stats": [
+        ["8 Std.", "bei Support/Woche gespart"],
+        ["5 Std.", "bei Marketing/Woche gespart"],
+        ["0", "Stockouts durch verpasste Nachbestellungen"],
+        ["30 Sek.", "um auf eine Versandanfrage zu antworten"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Ich lebte gleichzeitig in Shopify, Mailchimp und Google Sheets. Jetzt prüfe ich morgens ein Dashboard und alles ist da. Die KI beantwortete 6 Kundenmails, während ich Bestellungen verpackt habe. Meine Rücklaufquote sank, weil Kunden sofortige Antworten bekommen statt einen Tag zu warten.\"",
+      "attribution": "— Ingrid, 29 · Nordische Hautpflegemarke · 2 Teilzeitmitarbeiter"
+    },
+    "cta": {
+      "heading": "Verbringen Sie morgen damit, Produkte herzustellen, nicht Software zu verwalten.",
+      "button": "Der Warteliste beitreten"
+    }
+  }
+}

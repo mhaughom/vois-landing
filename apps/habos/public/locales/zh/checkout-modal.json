@@ -1,0 +1,52 @@
+{
+  "quizCategories": [
+    "活动与日历",
+    "任务与待办",
+    "购物与清单",
+    "想法与笔记",
+    "健康与养生",
+    "财务与预算",
+    "目标与习惯",
+    "人际与社交"
+  ],
+  "quizDevices": {
+    "watch": {
+      "label": "Apple Watch",
+      "desc": "在手腕上随手记录"
+    },
+    "phone": {
+      "label": "iPhone",
+      "desc": "随时在口袋里"
+    },
+    "both": {
+      "label": "两者都用",
+      "desc": "完整体验"
+    }
+  },
+  "step1": {
+    "heading": "您想记录什么？",
+    "subLabel": "选择所有占据您脑海的事项。"
+  },
+  "step2": {
+    "heading": "您希望如何查看？",
+    "subLabel": "选择您偏好的设备。"
+  },
+  "step3": {
+    "heading": "开始您的订阅",
+    "subLabel": "输入您的邮箱以继续结账。",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "you@company.com",
+    "perMonth": "/月",
+    "guarantee": "随时取消。30天退款保障。",
+    "continueToPay": "继续付款"
+  },
+  "back": "返回",
+  "continue": "继续",
+  "errors": {
+    "emailRequired": "请输入您的邮箱地址。",
+    "emailInvalid": "请输入有效的邮箱地址。",
+    "tooManyAttempts": "尝试次数过多，请稍候再试。",
+    "unavailable": "结账暂时不可用，请稍后重试。",
+    "generic": "出现错误，请重试。"
+  }
+}

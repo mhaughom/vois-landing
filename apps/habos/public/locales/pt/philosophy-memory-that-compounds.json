@@ -1,0 +1,72 @@
+{
+  "category": "Filosofia",
+  "title": "Memória que se Acumula",
+  "tagline": "Cada conversa torna a próxima mais inteligente. Quanto mais você usa o HABOS, mais ele entende o seu negócio — e mais difícil fica de replicar essa compreensão em qualquer outro lugar.",
+  "heroPlaceholder": "Ilustração principal",
+  "section1": {
+    "heading": "Dia um vs. dia 180",
+    "body1": "No primeiro dia, o HABOS é uma ferramenta capaz. Ele processa suas notas de voz, gerencia suas tarefas, cuida do seu e-mail. É rápido e funciona. Mas ainda não te conhece.",
+    "body2": "Ao 180º dia, o sistema sabe quais clientes recompram em ciclos previsíveis. Sabe que suas reuniões de quarta à tarde sempre se estendem. Sabe que quando você menciona \"o projeto Bergen\" você está falando da conta do Hotel Fjordview. Conhece seu estilo de escrita, seus padrões de decisão, seus ritmos operacionais.",
+    "body3": "Essa compreensão acumulada não é uma funcionalidade que você pode instalar. É inteligência que foi conquistada — conversa por conversa, decisão por decisão."
+  },
+  "section2": {
+    "heading": "O que se acumula"
+  },
+  "periods": [
+    {
+      "period": "Semana 1",
+      "items": [
+        "O roteamento de voz básico funciona",
+        "Os rascunhos de e-mail são genéricos mas funcionais",
+        "A busca do Brain cobre o que você inseriu"
+      ]
+    },
+    {
+      "period": "Mês 1",
+      "items": [
+        "O estilo de escrita é calibrado para cada membro da equipe",
+        "Os resumos de reunião buscam histórico relevante",
+        "A precisão do Smart Router melhora com suas correções"
+      ]
+    },
+    {
+      "period": "Mês 3",
+      "items": [
+        "Alertas proativos com base em padrões observados",
+        "Conselho Estratégico fundamentado nos dados reais do seu negócio",
+        "Conexões entre fontes que humanos perderiam"
+      ]
+    },
+    {
+      "period": "Mês 6+",
+      "items": [
+        "Prevê timing de recompra, durações de etapas de negócio, padrões sazonais",
+        "Detecta deriva operacional antes que se torne um problema",
+        "Conhecimento institucional que sobrevive à rotatividade de funcionários"
+      ]
+    }
+  ],
+  "curvePlaceholder": "Curva de inteligência acumulada",
+  "section3": {
+    "heading": "O fosso que você constrói ao usá-lo",
+    "body1": "A maioria dos softwares tem custo de migração zero além da exportação de dados. Sua ferramenta de gestão de projetos não fica mais inteligente quanto mais você a usa. Seu CRM não aprende seus padrões de vendas. Seu calendário não antecipa suas preferências de agendamento.",
+    "body2": "O HABOS é diferente porque a camada de inteligência se acumula. Após seis meses, o entendimento do sistema sobre o seu negócio é genuinamente único — construído a partir das suas conversas, suas decisões, seus padrões, suas correções. Esse entendimento não pode ser exportado como CSV. Não está em nenhuma tabela de banco de dados única. Está distribuído em embeddings, perfis de estilo, modelos de roteamento e padrões comportamentais."
+  },
+  "section4": {
+    "heading": "Memória institucional que não pede demissão",
+    "body1": "Quando um funcionário-chave sai, leva seu conhecimento junto. As preferências dos clientes que memorizou, os processos que inventou, os relacionamentos que construiu — tudo perdido.",
+    "body2": "O HABOS captura esse conhecimento institucional enquanto ele acontece. Cada nota de voz, cada reunião, cada interação com cliente alimenta o Brain. Quando alguém novo entra, herda não apenas os dados mas a compreensão — a IA pode resumi-los sobre o histórico do cliente, explicar por que certas decisões foram tomadas e trazer à tona os playbooks que a pessoa anterior desenvolveu."
+  },
+  "section5": {
+    "heading": "Um benefício, não uma armadilha",
+    "body1": "Não estamos construindo aprisionamento por meio de retenção de dados. Seus dados são sempre exportáveis. Você os possui. Mas a inteligência — os padrões, as previsões, a compreensão contextual — esse é o juro composto sobre o tempo que você investiu. Torna cada mês mais valioso que o anterior.",
+    "body2": "A pergunta para um potencial cliente não é \"quanto o HABOS custa por mês?\" É \"quanto vale seis meses de inteligência de negócios acumulada?\""
+  },
+  "quote": "\"Seus dados podem ser copiados. Sua compreensão não pode. A cada dia que você usa o HABOS, a distância entre os dois aumenta.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Consultores que Discordam",
+    "nextLabel": "Próximo",
+    "nextTitle": "Alavancagem para Pequenas Equipes"
+  }
+}

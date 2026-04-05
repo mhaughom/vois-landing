@@ -1,0 +1,379 @@
+{
+  "features": {
+    "yourAssistant": {
+      "headline": "En AI der kender hele din virksomhed.",
+      "body": "VOIS lærer dine processer, præferencer, historik og kontekst. Det besvarer ikke bare spørgsmål — det forudser behov, udarbejder svar og handler på dine vegne i hvert værktøj du bruger.",
+      "closingLine": "Andre assistenter har brug for instruktioner. VOIS ved det allerede."
+    },
+    "yourSuperAssistant": {
+      "headline": "Stemme, ur, indbakke, hukommelse — én hjerne.",
+      "body": "Tal til dit ur, dikter i bilen, videresend en e-mail, eller efterlad en note. Hvert input lander i ét intelligent system der dirigerer, prioriterer og husker alt.",
+      "closingLine": "Én hjerne. Hvert interface."
+    },
+    "yourDay": {
+      "headline": "Hver morgen, planlagt for dig.",
+      "body": "VOIS gennemgår dine opgaver, kalender, deadlines og prioriteter om natten. Hver morgen får du et foreslået skema med tematiske tidsblokke, forberedelsesnoter til møder og markerede punkter der kræver opmærksomhed.",
+      "closingLine": "Din dag skal ikke starte med beslutninger. Den skal starte med en plan."
+    },
+    "meetings": {
+      "headline": "Forberedt. Transskriberet. Handlet på.",
+      "body": "Personlige briefinger inden hvert møde. Live transskription med taler-identifikation undervejs. Handlingspunkter ekstraheret og dirigeret til de rette projekter og personer efterfølgende.",
+      "closingLine": "Andre værktøjer transskriberer. VOIS forbereder, fanger og handler."
+    },
+    "projects": {
+      "headline": "Vid hvad der har brug for dig, inden det går i stå.",
+      "body": "AI-sundhedsscore overvåger opgavefuldførelse, aktivitetsmønstre og tidslinjefremdrift. Når et projekt bliver stille eller en milepæl glider, markerer VOIS det proaktivt og foreslår næste skridt.",
+      "closingLine": "Dashboards viser hvad der er sket. VOIS fortæller dig hvad du skal gøre næst."
+    },
+    "operations": {
+      "headline": "Din virksomhed overvåger sig selv.",
+      "body": "VOIS holder øje med KPI'er, arbejdsprocesser og tilbagevendende processer. Når noget afviger fra normalen — en forsinket levering, en overskredet SLA, en budgetoverskridelse — advarer det dig med kontekst og anbefalet handling.",
+      "closingLine": "Stop med at bekæmpe ildebrande. Begynd at forebygge."
+    },
+    "clients": {
+      "headline": "Hvert forhold, fuld kontekst.",
+      "body": "VOIS opbygger rige profiler fra hvert samspil — møder, e-mails, noter, opgaver. Inden ethvert møde ser du den fulde historik, sentimenttendenser og AI-foreslåede samtalepunkter.",
+      "closingLine": "Dit CRM skal ikke være en database. Det skal være en hukommelse."
+    },
+    "documents": {
+      "headline": "Tal om det. Få et dokument tilbage.",
+      "body": "Beskriv hvad du har brug for — en projektbeskrivelse, et forslag, en ugentlig opdatering — og VOIS genererer et struktureret dokument fra din stemme og trækker kontekst fra dine projekter og data.",
+      "closingLine": "Stop med at stirre på tomme sider. Begynd at tale."
+    },
+    "finance": {
+      "headline": "Hver krone, ét overblik.",
+      "body": "Omsætning, udgifter, fakturaer og prognoser samlet i ét AI-drevet dashboard. VOIS kategoriserer transaktioner, markerer anomalier og besvarer spørgsmål om dine tal på naturligt sprog.",
+      "closingLine": "Din bogføring skal forklare sig selv."
+    },
+    "website": {
+      "headline": "Din hjemmeside, bygget af AI.",
+      "body": "Beskriv din virksomhed og VOIS genererer en komplet hjemmeside — tekst, layout, billeder, SEO. Opdater med stemmen. Tilslut formularer, booking og betalinger uden at røre kode.",
+      "closingLine": "Din hjemmeside behøver ikke en udvikler."
+    },
+    "aiAgents": {
+      "headline": "Dine første ti ansatte behøver ikke løn.",
+      "body": "Byg dit AI-team i et organisationsdiagram. Tildel agenter til roller — forsker, skribent, analytiker, ops. Hver har ansvarsområder, værktøjer, budgetter og rapporteringslinjer. De planlægger, inden de handler, og pauser for godkendelse.",
+      "closingLine": "ChatGPT besvarer spørgsmål. VOIS-agenter gennemfører missioner."
+    },
+    "reports": {
+      "headline": "Indsig din rapport på 90 sekunder.",
+      "body": "Upload en skabelon og VOIS ekstraherer hvert felt. Udfyld hele rapporten med stemmen — AI interviewer dig ét felt ad gangen og forudfylder hvad det allerede ved fra dine data.",
+      "closingLine": "Ti spørgsmål. Færdig."
+    },
+    "yourTeam": {
+      "headline": "Hver medarbejder, en superassistent.",
+      "body": "Giv hvert teammedlem sin egen AI-assistent der kender virksomhedens kontekst, processer og historik. Onboarding, daglig planlægning, vidensopslag og opgavestyring — personaliseret per rolle.",
+      "closingLine": "Skalér dine bedste praksisser til hver plads."
+    },
+    "playbooks": {
+      "headline": "Dine SOPs, levende og håndhævede.",
+      "body": "Omsæt standardprocedurer til levende arbejdsprocesser. VOIS overvåger overholdelse, guider teammedlemmer gennem hvert trin og markerer afvigelser, inden de bliver problemer.",
+      "closingLine": "SOPs skal ikke leve i mapper. De skal køre sig selv."
+    },
+    "fieldToOffice": {
+      "headline": "Informationskløften, elimineret.",
+      "body": "En tekniker afslutter et job og indlæser en 30-sekunders opdatering. Kontoret ser det øjeblikkeligt — struktureret, arkiveret og knyttet til det rette projekt, kunden og fakturaen. Ingen telefonopkald, ingen dataindtastning.",
+      "closingLine": "Feltet er aldrig en dag bagud igen."
+    },
+    "theAirlock": {
+      "headline": "AI-kraft. Menneskelig kontrol.",
+      "body": "Alle AI-handlinger går gennem Airlock — et forhåndsvisningskort med kryptografisk bekræftelse. AI'en foreslår, du gennemgår det præcise output, derefter godkender du. Intet sendes, oprettes eller ændres uden dit udtrykkelige samtykke.",
+      "closingLine": "Tillid er ikke en indstilling. Det er en arkitektur."
+    },
+    "yourMemory": {
+      "headline": "Spørg om alt du nogensinde har sagt eller læst.",
+      "body": "Søg på tværs af alle 19 datakilder — stemmeoptagelser, e-mails, dokumenter, mødereferater, CRM-noter — med semantisk søgning. VOIS finder svaret selv når du ikke kan huske hvilken app det var i.",
+      "closingLine": "Din anden hjerne, med perfekt hukommelse."
+    },
+    "growthEngine": {
+      "headline": "Del en mødesnote. Vind en kunde.",
+      "body": "Delte mødesnoten bliver en vækstkanal. Modtagere ser din virksomhedsforhåndsvisning, får et kampagnetilbud og tilmelder sig i et arbejdsområde forudfyldt med deres egne virksomhedsdata.",
+      "closingLine": "Dit produkt sælger sig selv gennem det arbejde det udfører."
+    }
+  },
+  "panels": {
+    "yourAssistant": {
+      "badge": "Total bevidsthed",
+      "heading": "Det kender allerede din virksomhed.",
+      "description": "Lærer dine processer, præferencer og historik. Forudser hvad du har brug for, inden du spørger.",
+      "tags": ["E-mails", "Møder", "Projekter", "CRM", "Docs", "Stemme"],
+      "stat": "19",
+      "statLabel": "datakilder",
+      "statSub": "søgt parallelt",
+      "statMore": "13 mere",
+      "statDesc": "Stemme, e-mail, CRM,\ndocs, chat, projekter,\nog {{count}} mere.",
+      "quote": "Andre assistenter har brug for instruktioner.\nVOIS ved det allerede."
+    },
+    "yourSuperAssistant": {
+      "badge": "Input",
+      "voiceLabel": "Stemme",
+      "voiceDesc": "tal naturligt",
+      "watchLabel": "Ur",
+      "watchDesc": "tryk på håndleddet",
+      "emailLabel": "E-mail",
+      "emailDesc": "videresend det",
+      "chatLabel": "Chat",
+      "chatDesc": "skriv eller tekst",
+      "slackLabel": "Slack",
+      "slackDesc": "giv kommandoer",
+      "quote": "Én hjerne.\nHvert interface.",
+      "mainBadge": "Hvert overflad, én hjerne",
+      "heading": "Tal, skriv, tryk, videresend.\nDet lander hele det ét sted.",
+      "description": "Hvert input dirigeres, prioriteres og huskes — uanset hvilken enhed du brugte.",
+      "devices": ["Ur", "Telefon", "Desktop", "Indbakke"]
+    },
+    "yourDay": {
+      "badge": "Morgenbriefing",
+      "heading": "Din dag, planlagt\nfør du vågner.",
+      "description": "VOIS gennemgår opgaver, kalender og deadlines om natten. Du vågner til et foreslået skema.",
+      "stat": "07:00",
+      "statLabel": "din plan er klar",
+      "statSub": "bygget mens du sov",
+      "statNote": "Nul beslutninger nødvendige",
+      "statDesc": "Tidsblokke, forberedelsesnoter,\nog markerede prioriteter.",
+      "quote": "Din dag skal starte med en plan, ikke beslutninger."
+    },
+    "meetings": {
+      "badge": "Den fulde cyklus",
+      "heading": "Forberedt. Transskriberet.\nHandlet på.",
+      "beforeLabel": "Inden",
+      "beforeDesc": "personlig briefing",
+      "duringLabel": "Under",
+      "duringDesc": "live transskription",
+      "afterLabel": "Efter",
+      "afterDesc": "handlingspunkter dirigeret",
+      "step1": "Forbered",
+      "step1Sub": "auto-briefing",
+      "step2": "Fang",
+      "step2Sub": "transskribér",
+      "step3": "Handl",
+      "step3Sub": "dirigér opgaver",
+      "quote": "Andre værktøjer transskriberer.\nVOIS forbereder, fanger,\nog handler.",
+      "stat": "0",
+      "statLabel": "manuelle opfølgninger",
+      "statSub": "handlinger auto-dirigeret til projekter"
+    },
+    "projects": {
+      "healthBadge": "Sundhed",
+      "statusOnTrack": "På rette spor",
+      "statusAtRisk": "I risikozone",
+      "statusStalled": "Gået i stå",
+      "pctOnTrack": "82%",
+      "pctAtRisk": "14%",
+      "pctStalled": "4%",
+      "badge": "Proaktiv, ikke reaktiv",
+      "heading": "Vid hvad der har brug for dig\ninden det går i stå.",
+      "description": "AI overvåger fuldførelse, aktivitet og tidslinjer. Når et projekt tystner, markerer VOIS det og foreslår næste skridt.",
+      "signals": ["Fastkørte opgaver", "Oversprungne milepæle", "Aktivitetsfald", "Tidslinjeglidning"],
+      "quote": "Dashboards viser hvad der er sket.\nVOIS fortæller dig hvad du skal gøre næst."
+    },
+    "operations": {
+      "badge": "Altid på vagt",
+      "heading": "Din virksomhed\novervåger sig selv.",
+      "description": "KPI'er, arbejdsprocesser, tilbagevendende processer. Når noget afviger, får du kontekst og en anbefalet løsning.",
+      "trigger1": "Forsinket levering",
+      "action1": "Notificér kunden automatisk",
+      "trigger2": "Overskredet SLA",
+      "action2": "Eskaler til ansvarlig",
+      "trigger3": "Budgetoverskridelse",
+      "action3": "Markér til gennemgang",
+      "stat": "24/7",
+      "statLabel": "overvågning",
+      "statSub": "nul menneskelig båndbredde",
+      "quote": "Stop med at bekæmpe ildebrande.\nBegynd at forebygge."
+    },
+    "clients": {
+      "badge": "Fuld kontekst CRM",
+      "heading": "Hvert forhold,\ntotal erindring.",
+      "description": "Rige profiler bygget fra hvert samspil. Inden ethvert opkald ser du den fulde historik og AI-foreslåede samtalepunkter.",
+      "lastContactKey": "Seneste kontakt",
+      "lastContactVal": "3 dage siden — e-mail",
+      "sentimentKey": "Sentiment",
+      "sentimentVal": "Positivt, engageret",
+      "openItemsKey": "Åbne punkter",
+      "openItemsVal": "2 forslag afventer",
+      "nextStepKey": "Næste skridt",
+      "nextStepVal": "Følg op om prissætning",
+      "callBadge": "Inden hvert opkald",
+      "callDesc": "Historik, sentiment,\nåbne punkter, samtale-\npunkter — auto-forberedt.",
+      "callDescHighlight": "auto-forberedt",
+      "quote": "Dit CRM bør være en hukommelse, ikke en database."
+    },
+    "documents": {
+      "stat": "Stemme",
+      "statLabel": "til dokument",
+      "types": ["Briefs", "Forslag", "Rapporter", "Opdateringer"],
+      "quote": "Stop med at stirre på tomme sider. Begynd at tale.",
+      "badge": "Tal, skriv ikke",
+      "heading": "Beskriv hvad du har brug for.\nFå et færdigt dokument.",
+      "description": "VOIS trækker kontekst fra dine projekter og genererer strukturerede dokumenter fra din stemme.",
+      "step1": "Tal",
+      "step1Sub": "beskriv det",
+      "step2": "AI",
+      "step2Sub": "udkaster",
+      "step3": "Færdig",
+      "step3Sub": "formateret"
+    },
+    "finance": {
+      "badge": "Finansiel intelligens",
+      "heading": "Hver krone,\nét overblik.",
+      "description": "Omsætning, udgifter, fakturaer og prognoser i ét AI-dashboard. Stil spørgsmål på almindeligt dansk.",
+      "revenueLabel": "Omsætning",
+      "revenueVal": "$48,2K",
+      "expensesLabel": "Udgifter",
+      "expensesVal": "$31,7K",
+      "netLabel": "Netto",
+      "netVal": "$16,5K",
+      "quote": "Din bogføring bør forklare sig selv.",
+      "queryBadge": "Spørg om alt",
+      "query1": "\"Hvor meget brugte vi på markedsføring?\"",
+      "query2": "\"Vis forfaldne fakturaer\"",
+      "query3": "\"Omsætningstrend de seneste 6 måneder\""
+    },
+    "website": {
+      "badge": "AI-byggede hjemmesider",
+      "heading": "Beskriv din virksomhed.\nFå en hjemmeside.",
+      "description": "Tekst, layout, billeder, SEO — genereret. Opdater med stemmen. Tilslut formularer, booking og betalinger.",
+      "features": ["Tekst & SEO", "Layout", "Formularer", "Booking", "Betalinger", "Analyse"],
+      "quote": "Din hjemmeside behøver ikke en udvikler.",
+      "stat": "0",
+      "statLabel": "linjer kode",
+      "statSub": "stemmeopdateret, altid live"
+    },
+    "aiAgents": {
+      "badge": "Dit AI-organisationsdiagram",
+      "heading": "Dine første ti ansatte\nbehøver ikke løn.",
+      "description": "Byg agenter i et organisationsdiagram. Hver har ansvarsområder, værktøjer, budgetter og rapporteringslinjer.",
+      "role1": "Forsker",
+      "role1Desc": "Webskrabning, analyse",
+      "role2": "Skribent",
+      "role2Desc": "Indhold, forslag",
+      "role3": "Analytiker",
+      "role3Desc": "Data, prognoser",
+      "role4": "Ops",
+      "role4Desc": "Planlægning, dirigering",
+      "loopBadge": "Løkken",
+      "loopSteps": ["Planlæg", "Handl", "Pausér", "Levér"],
+      "loopNote": "Altid i kontrol",
+      "loopDesc": "Agenter planlægger inden de handler\nog pauser for dit godkendelse.",
+      "quote": "ChatGPT besvarer spørgsmål.\nVOIS-agenter gennemfører missioner."
+    },
+    "reports": {
+      "badge": "Rapporter, nytænkt",
+      "heading": "Ring til din assistent.\nBeskriv hvad der skete.\nFå en færdig rapport.",
+      "subHeading": "Ingen formularer. Ingen laptop. Bare et telefonopkald.",
+      "description": "Upload en skabelon og VOIS ekstraherer hvert felt. Udfyld den derefter med stemmen — AI interviewer dig og forudfylder hvad den allerede ved.",
+      "step1": "Upload",
+      "step1Sub": "skabelon",
+      "step2": "Ring",
+      "step2Sub": "til din AI",
+      "step3": "Færdig",
+      "step3Sub": "rapport indsendt",
+      "stat": "90s",
+      "statLabel": "gns. rapporteringstid",
+      "statSub": "vs 30 min traditionelt",
+      "statSpeedNote": "10x hurtigere",
+      "statDesc": "Folk taler 3–4x hurtigere\nend de skriver. Tilføj AI-\nformatering =",
+      "voiceBadge": "Stemme-først",
+      "voiceHeading": "AI spørger. Du svarer.\n10 spørgsmål. Færdig.",
+      "phoneLabel": "Telefonopkald",
+      "phoneDesc": "ring til din assistent",
+      "interviewLabel": "Interview",
+      "interviewDesc": "AI gennemgår felterne",
+      "dictationLabel": "Diktering",
+      "dictationDesc": "én stemmenote udfylder alt",
+      "chatLabel": "Chat",
+      "chatDesc": "samtalepræget tekstinput"
+    },
+    "yourTeam": {
+      "badge": "AI per rolle",
+      "heading": "Hvert sæde får\nen superassistent.",
+      "description": "Virksomhedens kontekst, processer og historik — personaliseret per rolle.",
+      "stat": "1:1",
+      "statLabel": "AI per medarbejder",
+      "statSub": "skræddersyet til deres rolle",
+      "statNote": "personlig assistent",
+      "statDesc": "Ikke en delt chatbot.\nEn der kender deres job.",
+      "perks": ["Onboarding-guide", "Daglig planlægger", "Vidensopslag", "Opgavestyring", "Procescoach", "Mødeforberedelse"],
+      "perksBadge": "Hvad hver medarbejder får"
+    },
+    "playbooks": {
+      "badge": "Levende SOPs",
+      "heading": "Dine playbooks\nkører sig selv.",
+      "description": "Omsæt procedurer til arbejdsprocesser der overvåger overholdelse, guider hvert trin og markerer afvigelser.",
+      "step1": "Trin 1",
+      "step1Desc": "Vejled teammedlem",
+      "step2": "Trin 2",
+      "step2Desc": "Verificér overholdelse",
+      "step3": "Trin 3",
+      "step3Desc": "Markér afvigelse",
+      "quote": "SOPs skal ikke leve i mapper. De skal køre sig selv.",
+      "complianceBadge": "Overholdelsesscore",
+      "stat": "97%",
+      "statSub": "gns. på tværs af aktive playbooks",
+      "statNote": "inden",
+      "statDesc": "Realtidsovervågning.\nAfvigelser fanget\nfør de bliver problemer."
+    },
+    "fieldToOffice": {
+      "badge": "Bro over kløften",
+      "heading": "Feltopdatering på 30s.\nKontoret ser det øjeblikkeligt.",
+      "description": "Teknikeren indlæser en stemmenote. Den struktureres, arkiveres og knyttes til det rette projekt, kunden og fakturaen.",
+      "step1": "Tal",
+      "step1Sub": "på stedet",
+      "step2": "AI",
+      "step2Sub": "strukturerer",
+      "step3": "Kontor",
+      "step3Sub": "ser det",
+      "stat": "30s",
+      "statLabel": "stemmenote erstatter",
+      "statSub": "20 min papirarbejde",
+      "linksBadge": "Auto-knyttet til",
+      "links": ["Projekt", "Kunde", "Faktura", "Tidslinje"],
+      "quote": "Feltet er aldrig\nen dag bagud igen."
+    },
+    "theAirlock": {
+      "badge": "AI-sikkerhedslag",
+      "heading": "AI-kraft.\nMenneskelig kontrol.",
+      "description": "Alle AI-handlinger går gennem et forhåndsvisningskort. Du ser det præcise output, derefter godkender du. Intet sker uden dit samtykke.",
+      "step1": "AI",
+      "step1Sub": "foreslår",
+      "step2": "Du",
+      "step2Sub": "gennemgår",
+      "step3": "Godkend",
+      "step3Sub": "eller afvis",
+      "stat": "100%",
+      "statLabel": "menneskelig godkendt",
+      "statSub": "hver handling, hver gang",
+      "ironRuleBadge": "Jernreglen",
+      "ironRuleHeading": "AI foreslår. Du gennemgår.\nDu godkender. Altid.",
+      "quote": "Tillid er ikke en indstilling.\nDet er en arkitektur."
+    },
+    "yourMemory": {
+      "badge": "Semantisk søgning",
+      "heading": "Spørg om alt\ndu nogensinde har sagt.",
+      "description": "Søg på betydning, ikke nøgleord. VOIS finder svar på tværs af alle kilder.",
+      "stat": "19",
+      "statLabel": "kilder indekseret",
+      "statMore": "+ 13 mere",
+      "statSources": "Stemme · E-mail · Docs\nCRM · Chat · Noter",
+      "queryBadge": "Eksempelspørgsmål",
+      "query1": "\"Hvad sagde Sarah om budgettet?\"",
+      "query2": "\"Find alt om tilladelsesforsinkelser\"",
+      "query3": "\"Hvor står vi med Henderson?\"",
+      "quote": "Din anden hjerne,\nmed perfekt hukommelse."
+    },
+    "growthEngine": {
+      "badge": "Viral løkke",
+      "heading": "Del en mødesnote.\nVind en kunde.",
+      "description": "Modtagere ser din virksomhed, får et kampagnetilbud og tilmelder sig forudfyldt med egne data.",
+      "stat": "90%",
+      "statLabel": "rabat til henvisninger",
+      "statHighlight": "deres egne data",
+      "statDesc": "Henvist tilmeldte får\net arbejdsområde forudfyldt\nmed",
+      "flyWheelBadge": "Svinghjulet",
+      "flyWheelSteps": ["Del", "Opdag", "Tilmeld", "Del"],
+      "flyWheelDesc": "Dit produkt sælger sig selv\ngenom det arbejde det udfører.",
+      "quote": "Hver mødesnote\ner en vækstkanal."
+    }
+  }
+}

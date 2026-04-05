@@ -1,0 +1,62 @@
+{
+  "badge": "Domaines personnalisés",
+  "hero": {
+    "title": "Votre domaine. Votre e-mail. Une seule configuration.",
+    "description": "Connectez votre domaine personnalisé, obtenez des adresses e-mail professionnelles et un SSL automatique — le tout reposant sur l'infrastructure enterprise de Cloudflare."
+  },
+  "body": "Un seul achat de domaine vous offre un site web, des adresses e-mail pour votre équipe et un système de messagerie complet avec suivi de délivrabilité, gestion des rebonds et des plaintes, et suggestions de réponses IA — le tout géré depuis une seule page de paramètres. Cloudflare provisionne automatiquement le SSL et les noms d'hôtes personnalisés. AWS SES gère l'identité e-mail avec DKIM pour un envoi authentifié. Les e-mails entrants transitent par des règles de réception vers le système de messagerie HABOS où ils sont analysés, classés par fil et rendus consultables.",
+  "mockCard": {
+    "domain": "hendersonplumbing.com",
+    "badges": {
+      "domain": "Domaine",
+      "connected": "Connecté",
+      "ssl": "SSL",
+      "sslActive": "Actif",
+      "email": "E-mail",
+      "emailConfigured": "Configuré"
+    },
+    "rows": [
+      { "label": "Site web", "value": "hendersonplumbing.com" },
+      { "label": "E-mail", "value": "mike@hendersonplumbing.com" },
+      { "label": "Réservation", "value": "hendersonplumbing.com/book" }
+    ],
+    "annotation": "La propagation DNS se termine généralement en moins de 5 minutes avec Cloudflare."
+  },
+  "benefits": [
+    {
+      "title": "Domaine + e-mail + SSL",
+      "desc": "Aucun bureau d'enregistrement séparé, aucun fournisseur d'e-mail distinct, aucun certificat SSL à part. Tout est configuré en un seul endroit, un seul tableau de bord, une seule facture."
+    },
+    {
+      "title": "E-mail professionnel",
+      "desc": "Envoyez des e-mails depuis votre domaine — factures, confirmations, marketing. Pas depuis noreply@une-plateforme.com. Votre marque, partout."
+    },
+    {
+      "title": "Infrastructure enterprise",
+      "desc": "Le réseau edge mondial de Cloudflare héberge votre site. Protection DDoS de niveau enterprise, CDN et gestion des certificats SSL inclus."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "heading": "Sans HABOS",
+      "text": "Acheter un domaine (12 $/an). Configurer le DNS. Obtenir un certificat SSL. Paramétrer l'hébergement e-mail (6 $/mois). Tout relier. Espérer que ça fonctionne. Déboguer la propagation DNS.",
+      "badge": "3 services, plus de 2 h de configuration"
+    },
+    "with": {
+      "heading": "Avec HABOS",
+      "text": "Saisissez votre domaine. Ajoutez les enregistrements DNS. C'est fait. L'e-mail, le SSL et le routage du site sont configurés automatiquement.",
+      "badge": "1 service, 5 minutes"
+    }
+  },
+  "techItems": [
+    "Cloudflare Workers",
+    "Provisionnement SSL automatique",
+    "Routage e-mail workspace",
+    "Vérification DNS",
+    "CDN mondial"
+  ],
+  "cta": {
+    "heading": "Les autres plateformes vous font gérer 3 services. HABOS gère tout.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "backLink": "Torna alla piattaforma",
+  "category": "Contenuti e Marketing",
+  "title": "Annunci",
+  "description": "Gestisci campagne pubblicitarie alimentate dai tuoi dati aziendali. HABOS connette il tuo CRM, i prodotti e la cronologia dei clienti per costruire pubblici più intelligenti e misurare il ROI reale — non metriche di vanità.",
+  "benefits": [
+    {
+      "title": "Campagne mirate dall'AI",
+      "desc": "HABOS analizza il tuo CRM, gli ordini e i dati dei clienti per costruire pubblici che convertono davvero — senza congetture."
+    },
+    {
+      "title": "Pubblicazione su più piattaforme",
+      "desc": "Crea una volta, pubblica su Google, Meta, LinkedIn e TikTok. Allocazione del budget ottimizzata dall'AI in tempo reale."
+    },
+    {
+      "title": "Attribuzione che ha senso",
+      "desc": "Vedi quale annuncio ha portato quale cliente, quale trattativa, quale fatturato — collegato end-to-end tramite il tuo CRM."
+    },
+    {
+      "title": "Annunci creati per voce",
+      "desc": "Descrivi la tua offerta per voce e ottieni testi pubblicitari, elementi visivi e suggerimenti di targeting generati istantaneamente."
+    }
+  ]
+}

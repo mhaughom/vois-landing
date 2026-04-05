@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "title": "개인정보를 소중히 여깁니다",
+    "description": "방문자가 사이트를 어떻게 이용하는지 파악하여 경험을 개선하기 위해 분석 도구를 사용합니다. 데이터는 광고 목적으로 사용되지 않습니다.",
+    "privacyPolicy": "개인정보 처리방침",
+    "rejectAllAriaLabel": "모든 쿠키 거부",
+    "acceptAll": "모두 수락",
+    "rejectAll": "모두 거부",
+    "manage": "관리",
+    "necessary": "필수",
+    "necessaryDescription": "사이트 기능에 필요합니다. 비활성화할 수 없습니다.",
+    "analytics": "분석",
+    "analyticsDescription": "PostHog(EU 호스팅)을 통해 사용 패턴을 파악하는 데 도움이 됩니다. 광고 추적 없음.",
+    "analyticsToggleAriaLabel": "분석 추적 전환",
+    "savePreferences": "환경설정 저장"
+  },
+  "settings": {
+    "triggerLabel": "쿠키 설정",
+    "modalTitle": "쿠키 환경설정",
+    "description": "활성화할 쿠키 및 추적 기술을 제어하세요.",
+    "privacyPolicy": "개인정보 처리방침",
+    "necessary": "필수",
+    "necessaryDescription": "사이트 기능에 필요합니다.",
+    "analytics": "분석",
+    "analyticsDescription": "PostHog 분석(EU 호스팅). 광고 추적 없음.",
+    "analyticsToggleAriaLabel": "분석 전환",
+    "savePreferences": "환경설정 저장",
+    "cancel": "취소"
+  }
+}

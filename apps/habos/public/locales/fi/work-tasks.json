@@ -1,0 +1,64 @@
+{
+  "badge": "Tekoälyn pisteytetyt tehtävät",
+  "hero": {
+    "title": "Sinä tallennat. Tekoäly priorisoi.",
+    "description": "Luo tehtäviä äänellä, kokouksista tai sähköpostista. Jokainen tehtävä saa tekoälyn laskeman pisteytyksen, joka syöttyy suoraan aikatauluusi."
+  },
+  "body": "Jokainen tehtävä saa kaksi tekoälyn laskemaa pistettä: tärkeys (kuinka paljon se merkitsee tavoitteillesi) ja kiireellisyys (kuinka aikaherkkä se on). Tekoäly punnitsee aikarajat, projektin terveyden, riippuvuudet, toimialayhteyden ja henkilökohtaiset kuviosi. Korkean pisteytyksen tehtävät aikataulutetaan ensin kun tekoäly suunnittelee päiväsi. Matalan pisteytyksen melu pysyy poissa fokusajastasi. Tehtävät virtaavat sisään äänimuistiinpanoista, kokoustallenteista, sähköposteista ja agenttitulosteista — sinä tallennat, HABOS priorisoi.",
+  "tasks": [
+    {
+      "title": "Viimeistele Henderson-ehdotus",
+      "source": "projektista"
+    },
+    {
+      "title": "Vastaa Saran sähköpostiin laattanäytteistä",
+      "source": "sähköpostista"
+    },
+    {
+      "title": "Tarkista viikoittainen toimintaraportti",
+      "source": "kokouksesta"
+    },
+    {
+      "title": "Päivitä tiimin organisaatiokaavio",
+      "source": "äänimuistiinpanosta"
+    }
+  ],
+  "taskList": {
+    "note": "Tehtävät pisteytetään tekoälyllä punniten aikarajat, projektiyhteyteys, riippuvuudet ja kuviot. Korkeat pisteet → aikataulutetaan ensin."
+  },
+  "sources": {
+    "heading": "Mistä tehtävät tulevat",
+    "labels": ["Äänimuistiinpanot", "Kokoukset", "Sähköposti", "Tekoälyagentit"],
+    "destinationLabel": "Tekoälyn prioriteettijono"
+  },
+  "benefits": {
+    "capture": {
+      "title": "30 sek tallentamiseen",
+      "description": "Sano \"muistuta minua seuraamaan Hendersonin kanssa ehdotuksesta perjantaihin mennessä.\" Valmis. Otsikko, eräpäivä, projekti ja nimetty henkilö poimittu."
+    },
+    "sorting": {
+      "title": "0 manuaalista järjestelyä",
+      "description": "Lopeta 20 minuutin käyttäminen joka aamu tehtävälistasi lajitteluun. Tekoälyn pisteet päivittyvät kun asiayhteys muuttuu — aikarajat lähestyvät, riippuvuudet valmistuvat, projektin terveys muuttuu."
+    },
+    "meeting": {
+      "title": "Kokous → tehtävät automaattisesti",
+      "description": "Kun joku sanoo \"John, voitko hoitaa laattatilaukseen?\" kokouksessa, tehtävä ilmestyy Johnin jonoon. Kenenkään ei tarvitse muistaa kirjoittaa sitä ylös."
+    }
+  },
+  "scoring": {
+    "label": "Pisteytyksen erittely",
+    "factors": [
+      "Manuaalinen järjestys",
+      "Prioriteettimerkintä",
+      "Tekoälyn tärkeys",
+      "Tekoälyn kiireellisyys",
+      "Eräpäivä",
+      "Kalenterin sopivuus",
+      "Luontipäivä"
+    ]
+  },
+  "cta": {
+    "heading": "Muut tehtäväsovellukset saavat sinut lajittelemaan. HABOS lajittelee puolestasi.",
+    "button": "Liity odotuslistalle"
+  }
+}

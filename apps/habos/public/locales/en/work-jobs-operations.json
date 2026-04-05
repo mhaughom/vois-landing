@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Jobs & Operations",
+  "hero": {
+    "title": "Run Your Operations by Voice",
+    "description": "Dispatch jobs, plan routes, track projects, manage tasks, and log time — from the field or the office, with zero paperwork."
+  },
+  "items": [
+    {
+      "title": "Dispatch",
+      "desc": "Day-of job board with status flow, team assignment, and client notifications."
+    },
+    {
+      "title": "Routes",
+      "desc": "Smart stop ordering with maps integration for your team in the field."
+    },
+    {
+      "title": "Projects",
+      "desc": "See which projects need attention — stalled work flagged before it escalates."
+    },
+    {
+      "title": "Tasks",
+      "desc": "Your most important tasks surface first, created from voice or meetings."
+    },
+    {
+      "title": "Time Tracking",
+      "desc": "Clock in from mobile, track billable hours per job, link to payroll."
+    }
+  ]
+}

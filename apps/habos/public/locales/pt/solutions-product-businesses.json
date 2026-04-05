@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "category": "Soluções — Empresas de Produtos",
+    "title": "Toda a sua loja em um só lugar.",
+    "subtitle": "Produtos, pedidos, estoque, site, marketing e atendimento ao cliente — sem troca de aplicativos.",
+    "description": "Lojas online, lojas físicas, produtos artesanais, produtores de alimentos, atacado, caixas de assinatura e qualquer pessoa que vende produtos físicos ou digitais."
+  },
+  "body": {
+    "section1": {
+      "heading": "Faça as contas da sua pilha atual",
+      "p1": "Shopify: $39/mês. Mailchimp: $20/mês. Later para redes sociais: $25/mês. Gorgias para suporte: $60/mês. Uma planilha que você mantém manualmente para números de estoque \"reais\". Squarespace para o site que você atualiza separadamente do seu catálogo de produtos real. Um post-it lembrando você de encomendar embalagens de um fornecedor cujo número está nos contatos do celular.",
+      "p2": "Isso é $144 por mês em software — sem contar o tempo que você passa movendo dados entre todos eles."
+    },
+    "section2": {
+      "heading": "Onde o tempo vai",
+      "p1": "Quatro minutos para responder um e-mail de \"onde está meu pedido?\". Verificar o Shopify para o pedido, o site de envio para rastreamento, compor a resposta no Gmail com o número de rastreamento colado. Multiplicar por doze clientes por dia. São quarenta e oito minutos em uma tarefa que poderia ser tratada por uma IA que já conhece o status do pedido e o número de rastreamento.",
+      "p2": "Uma tarde inteira para fazer uma promoção. Sua lista de e-mails está no Mailchimp. Seu histórico de compras está no Shopify. Seu conteúdo social é gerenciado pelo Later. Uma campanha de 15% de desconto para clientes que retornam significa exportar dados de uma ferramenta, importar para outra e coordenar manualmente por uma terceira.",
+      "p3": "Um item popular fica sem estoque porque o lembrete de reposição foi um e-mail que você enterrou na semana passada. Agora você está acelerando a envio com custo dobrado e perdendo vendas enquanto isso."
+    },
+    "section3": {
+      "heading": "O que muda com o HABOS",
+      "p1": "Um painel. Pedidos, níveis de estoque e mensagens de clientes na mesma tela. Quando uma consulta de envio chega, a IA já tem o status do pedido e o número de rastreamento — ela rascunha a resposta durante a noite. Você revisa três delas em trinta segundos enquanto toma o café da manhã.",
+      "p2": "Quando o estoque está baixo, o HABOS sinaliza três dias antes de você perceber. Uma ordem de compra é rascunhada com seu fornecedor habitual na quantidade habitual. Você aprova no celular enquanto caminha para o almoço.",
+      "voiceNote": "\"VOIS, crie uma campanha para clientes recorrentes — 15% de desconto, e-mail e Instagram, executando na próxima semana.\"",
+      "voiceResult": "A IA busca clientes recorrentes no CRM. Rascunha o copy do e-mail na voz da sua marca. Sugere legenda para o Instagram com a foto do seu produto mais vendido. Você ajusta a linha de assunto, toca em aprovar. Cinco minutos.",
+      "p3": "Seu site é gerado a partir do seu catálogo de produtos real. Mude um preço, ele atualiza no site. Adicione um produto, ele aparece. Sem CMS separado para manter. Sem problemas de sincronização. Sem \"o site diz $24,99 mas agora é $29,99\"."
+    },
+    "section4": {
+      "heading": "A nova matemática",
+      "before": {
+        "label": "Antes",
+        "price": "$144+/mês",
+        "note": "6 ferramentas, nenhuma conectada"
+      },
+      "after": {
+        "label": "Depois",
+        "price": "$35/mês",
+        "note": "Tudo conectado"
+      },
+      "stats": [
+        ["8 hrs", "economizadas em suporte/semana"],
+        ["5 hrs", "economizadas em marketing/semana"],
+        ["0", "falta de estoque por reposições esquecidas"],
+        ["30 seg", "para responder uma consulta de envio"]
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Eu vivia no Shopify, Mailchimp e Google Sheets simultaneamente. Agora verifico um painel pela manhã e tudo está lá. A IA respondeu 6 e-mails de clientes enquanto eu embalava pedidos. Minhas devoluções caíram porque os clientes recebem respostas instantâneas em vez de esperar um dia.\"",
+      "attribution": "— Ingrid, 29 · Marca nórdica de skincare · 2 funcionários em tempo parcial"
+    },
+    "cta": {
+      "heading": "Passe amanhã fazendo produtos, não gerenciando software.",
+      "button": "Entrar na lista de espera"
+    }
+  }
+}

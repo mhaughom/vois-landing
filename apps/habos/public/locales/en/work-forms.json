@@ -1,0 +1,62 @@
+{
+  "badge": "Form Builder",
+  "hero": {
+    "title": "Build a Form.\nIt Does the Rest.",
+    "description": "21 field types, drag-and-drop builder, and routing rules that auto-create tickets, CRM leads, and funnel enrollments on submission."
+  },
+  "body": "Forms support three fill modes: traditional click-and-type, AI-powered chat where customers describe their needs naturally, or voice input where they speak answers and AI transcribes. When a form is submitted, the routing engine evaluates conditional rules — 'if budget exceeds $50K, create a high-priority ticket.' CRM contacts are auto-upserted by email, tickets are created with smart field mapping, leads flow into nurture funnels, and confirmation emails are sent — all in one atomic operation.",
+  "mockForm": {
+    "title": "Request a Quote",
+    "badge": "3 fill modes",
+    "fields": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "John Henderson",
+      "email": "Email",
+      "emailPlaceholder": "john@example.com",
+      "serviceNeeded": "Service Needed",
+      "servicePlaceholder": "Plumbing",
+      "budgetRange": "Budget Range",
+      "budgetPlaceholder": "$5K+",
+      "projectDescription": "Describe your project",
+      "projectPlaceholder": "Bathroom renovation, full tear-out and rebuild..."
+    },
+    "serviceOptions": ["Plumbing", "HVAC", "Electrical"],
+    "budgetOptions": ["< $1K", "$1–5K", "$5K+"],
+    "submit": "Submit",
+    "modes": {
+      "form": "Form",
+      "chat": "Chat",
+      "voice": "Voice"
+    },
+    "caption": "Customers can fill traditionally, talk to an AI chatbot, or speak their answers. Same form, three input modes."
+  },
+  "benefits": {
+    "crm": {
+      "title": "Auto-CRM + tickets",
+      "desc": "Submissions auto-upsert CRM contacts (deduped by email) and create tickets with smart field mapping and routing rules."
+    },
+    "routing": {
+      "title": "Conditional routing",
+      "desc": "If budget > $5K → create ticket priority: high. If service = HVAC → assign to Sarah. Rules run automatically on every submission."
+    },
+    "embed": {
+      "title": "Website embedding",
+      "desc": "Embed on your HABOS site with transparent background and auto-height. Cross-origin resize messaging keeps it seamless."
+    }
+  },
+  "scenario": {
+    "label": "Real scenario",
+    "text": "A homeowner visits your website and fills out a quote request for a $8K bathroom renovation. HABOS creates a high-priority ticket (budget > $5K rule), upserts them in CRM, enrolls them in the \"warm lead\" funnel, and sends a confirmation email — all before you see the notification. When you open the ticket, their full CRM profile, project context, and suggested response are already there."
+  },
+  "techStrip": [
+    "21 field types",
+    "3 fill modes",
+    "Conditional routing",
+    "Auto-CRM upsert",
+    "View + conversion analytics"
+  ],
+  "closing": {
+    "title": "Other form tools collect data.\nHABOS acts on it.",
+    "cta": "Join Waitlist"
+  }
+}

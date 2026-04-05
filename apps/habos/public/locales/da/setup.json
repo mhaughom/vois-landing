@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Opsætningsvejledning"
+  },
+  "hero": {
+    "heading": "Opsæt VOIS på dine enheder",
+    "description": "Tilføj VOIS til dit Apple Watch-urskive og iPhone-låseskærm for øjeblikkelig optagelse med ét tryk."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "Trin 1: Installer VOIS på dit ur"
+    },
+    "step2": {
+      "heading": "Trin 2: Tilføj VOIS til dit urskive"
+    },
+    "installSteps": [
+      { "number": 1, "text": "Åbn Watch-appen på din iPhone" },
+      { "number": 2, "text": "Rul ned til \"Tilgængelige apps\"" },
+      { "number": 3, "text": "Tryk på Installer ud for VOIS" }
+    ],
+    "faceSteps": [
+      "Hold fingeren nede på dit urskive",
+      "Tryk på \"Rediger\"",
+      "Tryk på en komplikationsplads",
+      "Vælg VOIS"
+    ],
+    "availableAppsLabel": "Tilgængelige apps",
+    "installButton": "INSTALLER"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone-låseskærm",
+    "step": {
+      "heading": "Tilføj VOIS-widget til din låseskærm"
+    },
+    "steps": [
+      "Hold fingeren nede på din låseskærm",
+      "Tryk på Tilpas",
+      "Tryk på + Tilføj widgets",
+      "Vælg VOIS"
+    ]
+  }
+}

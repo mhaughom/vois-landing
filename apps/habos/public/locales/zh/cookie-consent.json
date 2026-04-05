@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "title": "我们重视您的隐私",
+    "description": "我们使用分析工具来了解访问者与我们网站的互动方式，以便改善用户体验。所有数据均不用于广告目的。",
+    "privacyPolicy": "隐私政策",
+    "rejectAllAriaLabel": "拒绝所有 Cookie",
+    "acceptAll": "全部接受",
+    "rejectAll": "全部拒绝",
+    "manage": "管理",
+    "necessary": "必要",
+    "necessaryDescription": "网站正常运行所必需的 Cookie，无法禁用。",
+    "analytics": "分析",
+    "analyticsDescription": "通过 PostHog（欧盟托管）帮助我们了解使用模式，不追踪广告。",
+    "analyticsToggleAriaLabel": "切换分析追踪",
+    "savePreferences": "保存偏好"
+  },
+  "settings": {
+    "triggerLabel": "Cookie 设置",
+    "modalTitle": "Cookie 偏好",
+    "description": "控制哪些 Cookie 和追踪技术处于启用状态。",
+    "privacyPolicy": "隐私政策",
+    "necessary": "必要",
+    "necessaryDescription": "网站正常运行所必需的 Cookie。",
+    "analytics": "分析",
+    "analyticsDescription": "PostHog 分析（欧盟托管），不追踪广告。",
+    "analyticsToggleAriaLabel": "切换分析",
+    "savePreferences": "保存偏好",
+    "cancel": "取消"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "badge": "Pagos",
+  "hero": {
+    "title": "El cliente paga. Usted recibe el dinero. Directamente.",
+    "description": "Stripe Connect Express deposita los pagos directamente en su cuenta bancaria. Sin intermediario que retenga su dinero. Sin demoras de pago de 30 días."
+  },
+  "body": "HABOS aprovisiona cuentas Stripe Connect Express por espacio de trabajo, habilitando pagos directos a la cuenta bancaria del propietario del negocio. El cliente paga en el sitio web, Stripe cobra, la plataforma deduce una tarifa de aplicación configurable y el resto se deposita directamente en la cuenta bancaria del propietario. Los reembolsos totales y parciales fluyen a través de Stripe con restauración automática de stock. Este es el modelo de Shopify aplicado a una plataforma nativa de IA.",
+  "flowNodes": [
+    { "label": "El cliente paga $100" },
+    { "label": "Stripe procesa" },
+    { "label": "Tarifa HABOS: $5" },
+    { "label": "Usted recibe: $95" }
+  ],
+  "flowCaption": "Tarifa de aplicación configurable (5% por defecto). Flujo de ingresos: Cliente → Stripe → HABOS toma tarifa → el resto se deposita en su banco.",
+  "benefits": [
+    {
+      "title": "Configuración en 3 clics",
+      "desc": "Conecte su cuenta de Stripe, complete la incorporación (datos de negocio, información bancaria, número de identificación fiscal) y está en vivo. Cargos habilitados, pagos habilitados."
+    },
+    {
+      "title": "Cada método de pago",
+      "desc": "Sesiones de pago, facturas, enlaces de pago, pagos manuales y reembolsos — todo a través de una integración. Reembolsos totales y parciales con restauración automática de stock."
+    },
+    {
+      "title": "Sitio web → pago → banco",
+      "desc": "El cliente compra en su sitio web HABOS. Stripe cobra su tarjeta. Su parte se deposita. La orden queda rastreada. Sin necesidad de reconciliación."
+    }
+  ],
+  "pricing": {
+    "heading": "Cómo funcionan los precios de HABOS",
+    "tiers": [
+      { "name": "Gratis", "credits": "1K créditos de IA/mes", "price": "$0/mes" },
+      { "name": "Personal", "credits": "7.5K créditos de IA/mes", "price": "$14.99/mes" },
+      { "name": "Work", "credits": "17.5K créditos de IA/mes", "price": "$34.99/mes" }
+    ],
+    "topUps": "Más recargas de espacio de trabajo ($100–$1K) para equipos que necesitan más capacidad de IA."
+  },
+  "techItems": [
+    "Stripe Connect Express",
+    "Tarifas configurables",
+    "Sincronización de webhooks",
+    "Reembolsos totales y parciales",
+    "RevenueCat para móvil"
+  ],
+  "cta": {
+    "heading": "Otras plataformas retienen su dinero. HABOS lo envía a su banco.",
+    "button": "Unirse a la lista de espera"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "badge": "AI Website Builder",
+  "hero": {
+    "title": "अपनी साइट बताएं। यह खुद बनती है।",
+    "description": "अपने व्यवसाय का वर्णन करें। HABOS एक पूरी branded website बनाता है — आपके products, booking calendar, और checkout के साथ — कोई template चुनने की जरूरत नहीं।"
+  },
+  "mockSite": {
+    "domain": "henderson-plumbing.habos.site",
+    "headline": "Henderson Plumbing",
+    "subheadline": "Emergency & Commercial Plumbing Services",
+    "widgets": [
+      { "label": "Product catalog", "description": "Services automatically populated" },
+      { "label": "Booking calendar", "description": "Live availability from scheduling" },
+      { "label": "Shopping cart", "description": "Enabled for product sales" },
+      { "label": "Checkout", "description": "Stripe Connect powered" },
+      { "label": "Contact form", "description": "Routes to CRM as leads" },
+      { "label": "Campaign offers", "description": "Pulled from active campaigns" }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Clone & improve",
+      "desc": "एक competitor का URL दर्ज करें। HABOS structure और messaging analyze करता है, फिर आपके brand और data के साथ एक बेहतर version बनाता है।"
+    },
+    {
+      "title": "10 enrichment layers",
+      "desc": "आपकी साइट automatically आपके products, bookings, reviews, team photos, और campaign offers से भरती है। कोई manual copy-paste नहीं।"
+    },
+    {
+      "title": "One-click rollback",
+      "desc": "हर change versioned है। किसी भी पिछले version पर instantly वापस जाएं — एक साल पहले का भी।"
+    }
+  ],
+  "scenario": {
+    "part1": "एक plumber type करता है: \"Emergency और commercial plumbing के लिए Henderson Plumbing। Fast, reliable, licensed।\"",
+    "part2": "HABOS उनका brand निकालता है, उनकी 8 services populate करता है, उनके Google reviews embed करता है, और एक booking calendar जोड़ता है जो उनके live schedule से connect है।",
+    "closing": "साइट 90 सेकंड में live है। Domain उनका है। हर widget उनके workspace data से connect है।"
+  },
+  "techItems": [
+    "AI page generation",
+    "Brand token injection",
+    "Live data widgets",
+    "Stripe Checkout",
+    "Version history",
+    "Custom domain support"
+  ],
+  "cta": {
+    "heading": "अन्य website builder templates देते हैं। HABOS आपका व्यवसाय देता है, online।",
+    "button": "वेटलिस्ट में शामिल हों"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "category": "Filosofia",
+  "title": "Duas Interfaces, Um Sistema",
+  "tagline": "Humanos recebem telas. Agentes recebem APIs. As mesmas ferramentas, os mesmos dados.",
+  "heroAlt": "Interfaces duais — painéis visuais e APIs estruturadas",
+  "body1": "A maioria dos produtos \"com IA\" cai em uma de duas armadilhas. Primeira: adicionar um chatbot à UI existente e fazer a IA clicar em botões, navegar em menus, ler telas. Ela queima 15.000 tokens para fazer o que uma chamada de função resolve em 200. Quando a UI muda, o agente quebra. Segunda: construir apenas para IA sem interface humana. O agente é rápido — mas é uma caixa preta. Ele \"cuidou\" do seu e-mail, mas você não consegue ver o que enviou.",
+  "humanInterface": {
+    "label": "Interface humana",
+    "body": "Visualização semanal. Eventos com código de cores. Arrastar para reagendar. Raciocínio espacial sobre o seu tempo."
+  },
+  "agentInterface": {
+    "label": "Interface do agente",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "O mesmo calendário. O mesmo evento. As mesmas permissões."
+  },
+  "comparison": "Agente via UI web: 15.000 tokens. Agente via chamada de função: 200 tokens. 75x.",
+  "comparisonWebUI": "Agente via UI web:",
+  "comparisonWebUIStat": "15.000 tokens.",
+  "comparisonFunctionCall": "Agente via chamada de função:",
+  "comparisonFunctionCallStat": "200 tokens.",
+  "comparisonMultiplier": "75x.",
+  "quote": "\"Fazer a IA clicar em botões é como fazer um piloto caminhar. Dê a cada inteligência a interface que merece.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Sugestões, Não Menus",
+    "nextLabel": "Próximo",
+    "nextTitle": "Capture Seu Pensamento"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "category": "Filosofía",
+  "title": "Capture su mente",
+  "tagline": "Sus mejores ideas ocurren entre reuniones. Nosotras las capturamos.",
+  "heroAlt": "Capture su mente",
+  "body1": "Es lunes por la mañana. Sabe que tuvo pensamientos importantes durante el fin de semana — puede sentirlos, justo fuera de su alcance. Sus notas adhesivas se cayeron del monitor. El truco de «enviarse un correo» está enterrado bajo 40 mensajes. Tiene 47 notas de voz sin etiquetar y no tiene tiempo para escuchar ninguna. El potencial creativo se evapora cada día, no porque las personas carezcan de ideas, sino porque la herramienta de captura estaba demasiado lejos.",
+  "body2": "Un fontanero termina en casa de Johnson y habla con VOIS durante el camino a casa. Treinta segundos: «El calentador de agua necesita reemplazarse, no repararse. Cotizarles un Bosch 27i, 18.000 coronas. Recuérdame pedir la pieza mañana.» Para cuando estaciona, el informe del trabajo está actualizado, el CRM refleja el cambio, hay un presupuesto en borrador y se ha establecido un recordatorio para las 9 AM. Las manos nunca dejaron el volante.",
+  "stat": {
+    "withoutLabel": "Sin captura",
+    "withoutCount": "23 ideas",
+    "withoutSub": "3 ejecutadas",
+    "withLabel": "Con captura",
+    "withCount": "23 capturadas",
+    "withSub": "14 completadas antes del viernes"
+  },
+  "quote": "«Su cerebro nunca fue el cuello de botella. Su herramienta de captura lo era.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Dos interfaces, un sistema",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Velocidad del pensamiento"
+  }
+}

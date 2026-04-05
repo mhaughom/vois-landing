@@ -1,0 +1,56 @@
+{
+  "category": "Filosofie",
+  "title": "Adviseurs die het oneens zijn",
+  "tagline": "Elk ander AI-product belooft consensus. HABOS belooft productief conflict. Omdat de beste beslissingen voortkomen uit het horen van het argument dat je niet wilde horen.",
+  "heroPlaceholder": "Held-illustratie",
+  "section1": {
+    "heading": "Het probleem van de ja-machine",
+    "body1": "De meeste AI-assistenten zijn vleiers. Stel een slechte vraag, krijg een enthousiast antwoord. Stel een gebrekkige strategie voor, krijg ondersteunende opsommingspunten. De AI gaat akkoord omdat hij geoptimaliseerd is om behulpzaam te zijn, en behulpzaamheid is verward met instemming.",
+    "body2": "Dat is prima voor het schrijven van e-mails. Het is gevaarlijk voor het nemen van zakelijke beslissingen. Een oprichter die alleen 'geweldig idee' hoort, is een oprichter die tegen muren aanloopt."
+  },
+  "section2": {
+    "heading": "De Strategische Raad",
+    "body": "HABOS geeft je niet één AI-perspectief. Het geeft je er meerdere — elk met een ander mandaat, een andere risicobereidheid en een andere set prioriteiten. We noemen dit de Strategische Raad."
+  },
+  "advisors": [
+    {
+      "name": "De Operator",
+      "desc": "Gericht op uitvoering, tijdlijnen en resourcebeperkingen. Vraagt: \"Kunnen we dit werkelijk doen met wat we hebben?\""
+    },
+    {
+      "name": "De Strateeg",
+      "desc": "Gericht op langetermijnpositionering, marktdynamiek en concurrentievoordeel. Vraagt: \"Moeten we dit überhaupt doen?\""
+    },
+    {
+      "name": "De Tegenstander",
+      "desc": "Neemt bewust het tegenovergestelde standpunt in. Toetst aannames. Vraagt: \"Wat als je het bij het verkeerde eind hebt?\""
+    },
+    {
+      "name": "De Stem van de Klant",
+      "desc": "Vertegenwoordigt het perspectief van uw klanten op basis van CRM-gegevens, feedback en gespreksgeschiedenis. Vraagt: \"Wat zouden uw klanten echt willen?\""
+    }
+  ],
+  "councilPlaceholder": "Visualisatie van het raadsdebat",
+  "section3": {
+    "heading": "Gestructureerde meningsverschillen",
+    "body1": "Wanneer je een beslissing aan de Raad voorlegt — \"Moeten we uitbreiden naar de Bergen-markt?\" of \"Moeten we een tweede technicus aannemen?\" — krijg je niet één antwoord. Je krijgt een gestructureerd debat. Elke adviseur presenteert zijn zaak, reageert op de anderen en brengt risico's naar voren die de anderen niet noemden.",
+    "body2": "Het resultaat is geen aanbeveling. Het is een beslissingsbrief: de sterkste argumenten voor en tegen, de belangrijkste onzekerheden, de meest relevante datapunten en de vragen die je moet beantwoorden voordat je tot actie overgaat. Jij neemt de beslissing. De Raad zorgt ervoor dat je eerst alles hebt gehoord."
+  },
+  "section4": {
+    "heading": "Waarom dit moeilijker is dan het klinkt",
+    "body1": "AI bouwen die het met zichzelf oneens is, is oprecht moeilijk. Het vereist dat elke adviseur een eigen redeneerwerk krijgt, dat ze niet in consensus instorten, dat hun argumenten geworteld zijn in uw werkelijke bedrijfsgegevens, en dat het meningsverschil op een nuttige manier wordt gepresenteerd in plaats van verwarrend.",
+    "body2": "De meeste AI-bedrijven zullen dit niet proberen omdat consensus eenvoudiger te bouwen en te vermarkten is. Maar consensus is ook minder waardevol. Het hele punt van het hebben van adviseurs is dat zij dingen zien die jij niet ziet — inclusief dingen die je niet wilt zien."
+  },
+  "section5": {
+    "heading": "Afgestemd op jouw bedrijf",
+    "body1": "De Raad is niet generiek. De Operator kent de werkelijke capaciteit van uw team omdat hij uw resourcegegevens leest. De Strateeg kent uw concurrentielandschap omdat hij uw marktonderzoek leest. De Stem van de Klant kent de werkelijke zorgen van uw klanten omdat hij uw CRM en supporttickets leest.",
+    "body2": "Na zes maanden zijn de argumenten van de Raad geworteld in patronen uit uw specifieke bedrijf — niet in theoretische MBA-frameworks."
+  },
+  "quote": "\"Het gevaarlijkste wat een AI kan doen, is u vertellen wat u wilt horen. Het meest waardevolle wat het kan doen, is u vertellen wat u moet horen.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Jouw stem, niet de onze",
+    "nextLabel": "Volgende",
+    "nextTitle": "Geheugen dat cumuleert"
+  }
+}

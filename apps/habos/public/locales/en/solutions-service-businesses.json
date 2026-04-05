@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Solutions — Service Businesses",
+    "title": "Run your service business with your voice.",
+    "subtitle": "From the job site to the invoice — without touching a keyboard.",
+    "description": "Plumbers, electricians, cleaners, consultants, therapists, accountants, coaches, and anyone who sells time, expertise, or labor."
+  },
+  "story": {
+    "dayLabel": "Lars's Tuesday",
+    "section1": {
+      "heading": "7:30 AM — Coffee and the plan",
+      "p1": "Lars is a master plumber in Tromsø. Four employees. Before HABOS, mornings meant checking Google Calendar, a spreadsheet of job details, and WhatsApp for last-minute cancellations. Today he opens one app. His schedule is there, with client history, addresses, and notes for each job. A client rescheduled overnight via email — the AI already moved the appointment, adjusted the route, and drafted a confirmation. Lars taps \"confirm\" while his coffee is still too hot to drink."
+    },
+    "section2": {
+      "heading": "11:45 AM — The van",
+      "p1": "Lars just finished replacing a shut-off valve at the Johnson house. Before HABOS, this moment was a black hole — he'd text himself \"Johnson — replaced valve, order new fitting\" and never get around to invoicing it properly. Now he raises his wrist:",
+      "voiceNote": "\"VOIS, Johnson job done. Replaced the shut-off valve and the supply line. Need to order a Grohe mixer tap from Backer, 3,200 kroner. Quote them 4,800 installed.\"",
+      "voiceResult": "Twenty seconds. Job report filed. CRM updated. Purchase order drafted. Quote ready for review.",
+      "p2": "He's walking to the van. That's it. The system parsed his voice into structured data — parts used, costs, follow-ups, client sentiment — and routed each piece to the right place. No typing. No laptop. No \"I'll do it tonight.\""
+    },
+    "section3": {
+      "heading": "3:20 PM — On the road",
+      "p1": "Lars is driving. A new inquiry lands in the shared inbox — a homeowner asking about a bathroom renovation. Before HABOS, this email would sit unanswered for hours. By 5pm, the prospect would have booked someone else. Research shows 78% of customers go with the first business that responds.",
+      "p2": "Instead, the AI assesses the inquiry, classifies it as a new lead, and drafts a reply in Lars's voice. At a red light, a notification shows: \"New lead — bathroom renovation. Reply ready.\" Lars glances at the draft: \"Thanks for reaching out. I'd be happy to take a look. I have availability starting mid-May — would a site visit on the 15th or 16th work?\" He taps send. Two minutes. The prospect is impressed. Lars's competitor still hasn't opened the email."
+    },
+    "section4": {
+      "heading": "9:15 PM — The couch",
+      "p1": "Before HABOS, this was admin hour. Invoicing from memory. Replying to six emails. Updating the CRM he stopped maintaining in February. Scheduling tomorrow. Two hours of unpaid work, every night.",
+      "p2": "Tonight, Lars is watching TV. The invoice for the Johnson job was drafted from his voice note, reviewed on his phone at 6pm, and sent with one tap. Four emails were handled through notification cards between jobs. Tomorrow's schedule is set. The purchase order for the Grohe mixer is awaiting supplier confirmation.",
+      "p3": "His evening belongs to his family."
+    },
+    "section5": {
+      "heading": "What Lars used to pay for",
+      "p1": "Before HABOS, Lars had Calendly for bookings, Fiken for accounting, a half-maintained HubSpot CRM, Todoist for tasks, Gmail for customer emails, WhatsApp for messaging, and was looking at Jobber for dispatch. Combined: over $300 a month in subscriptions, most of them underused.",
+      "p2": "HABOS replaces all of them. Scheduling with Stripe payments and double-booking prevention. Finance with voice expense capture and Norwegian compliance. CRM that builds itself from conversations. Tasks extracted from voice notes. A unified inbox with AI replies in his voice. Dispatch and route planning. One platform. $35 a month."
+    },
+    "section6": {
+      "heading": "What changed for his business",
+      "p1": "Admin dropped from fourteen hours a week to four. Average response time on new inquiries went from four hours to five minutes. Last month, his team booked eight jobs from email inquiries they would have lost before — because HABOS replied while they were still on ladders.",
+      "p2": "Zero invoices forgotten. Zero leads lost to slow response. Zero evenings spent on a laptop."
+    },
+    "testimonial": {
+      "quote": "\"I used to spend every evening doing invoices and emails. Now I talk to my watch after each job and everything is done by dinner. Last month we booked 8 jobs we would have lost — because HABOS replied in 2 minutes while I was still on a ladder.\"",
+      "attribution": "— Lars, 41 · Master plumber · 4 employees · Tromsø"
+    },
+    "cta": {
+      "heading": "Your last evening of unpaid admin starts now.",
+      "button": "Join the waitlist"
+    }
+  }
+}

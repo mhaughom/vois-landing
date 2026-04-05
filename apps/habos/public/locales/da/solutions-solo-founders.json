@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Løsninger — Soloiværksættere",
+    "title": "Din første medarbejder koster 35\u00a0dollars\u00a0om\u00a0måneden.",
+    "subtitle": "Freelancere, uafhængige konsulenter, selvstændige håndværkere, enkeltmandsbureauer, coaches, soloforsvarere og alle, der samtidig er CEO, sælger, revisor, marketingchef og kundeservicerepræsentant."
+  },
+  "body": {
+    "salutation": "Kære soloiværksætter,",
+    "p1": "Vi ved, hvordan dine morgener ser ud. Alarmen ringer kl. 6:45, og inden dine fødder rammer gulvet, tjekker du e-mails. Fjorten beskeder i løbet af natten. Tre kræver svar. To er fakturaer, du burde have sendt i forrige uge. En er en potentiel kunde, du har tænkt på at følge op med i dagevis. Du føler dig bagud, før du er kommet ud af sengen.",
+    "p2": "Vi kender forholdet. Et møde med en klient på tredive minutter genererer femten minutters administration bagefter — at skrive noter, oprette opgaver, sende en opsummering på e-mail. Halvdelen af dit arbejdsliv bruges på arbejde om arbejdet, i stedet for selve arbejdet.",
+    "p3": "Vi ved, hvad der sker kl. 14. Du burde udføre fakturerbart klientarbejde, men du har brugt den seneste time på \"forretning\" — en faktura, fire e-mails, en hjemmesideopdatering, et LinkedIn-opslag, et omplanlagt møde. Intet af det er fakturerbart. Intet af det er grunden til, at du startede dette.",
+    "p4": "Og vi kender til søndagsaftenerne. Regneark-CRM. De forfaldne fakturaer. De opfølgende e-mails, du har udskudt. To timers ubetalt arbejde på din fridag. Hver eneste uge.",
+    "divider": "Her er, hvad der ændrer sig.",
+    "briefing": {
+      "label": "06:45 — Dit ur",
+      "text": "\"2 fakturaer forfalden — rykkerbreve klargjort. 1 ny potentiel kunde — svar klar til gennemgang. I dag: 10:00 Sarah Chen (briefing forberedt — noter fra sidste møde, udestående beløb, projektstatus), 14:00 opkald med ny kunde (virksomhedsresearch afsluttet natten over). 3 opgaver forfaldne.\"",
+      "note": "Du trykker send på fakturaerne og godkender svaret til den potentielle kunde, inden du kommer ud af sengen."
+    },
+    "p5": "Dit klientmøde kl. 9? Du lytter og taler blot. HABOS fanger transskriptionen, trækker tre handlingspunkter ud og udkaster en opfølgende e-mail til klienten. Du gennemgår den på din telefon, ændrer én sætning, trykker send. Samlet administration: halvfems sekunder.",
+    "p6": "Kl. 14 udfører du fakturerbart arbejde. Fakturaen blev sendt i morges — udkastet fra dine projektmilepæle og timepriser. De fire e-mails blev håndteret mellem møder via notifikationskort — tre var AI-udkastede svar, du godkendte med ét tryk, en var en planlægningsanmodning, som AI'en løste ved at tjekke din kalender. LinkedIn-indholdet blev udkastet fra morgenmødets indsigter.",
+    "p7": "Du har ikke \"lavet administration\" i dag. Det skete rundt om dig.",
+    "p8": "Søndagsaften? Du ser en film. CRM'et vedligeholder sig selv fra dine e-mails og opkald. Forfaldne fakturaer sendte venlige påmindelser. Opfølgende e-mails er udkastet og sat i kø til mandag morgen. Din kalender, dine opgaver og projektdeadlines er i ét system, der ved, hvad der er næste skridt.",
+    "p9": "Søndagsaftener er dine igen.",
+    "emotional": {
+      "line1": "Den ensomste del af at drive en virksomhed alene er ikke arbejdet — det er at have ingen at uddelegere til, ingen der minder dig, ingen der fanger de bolde, du taber.",
+      "line2": "VOIS erstatter ikke menneskelig forbindelse. Men det erstatter det menneskelige administrative arbejde, der holder dig fra det arbejde, du elsker, og det liv, du startede denne virksomhed for at have."
+    },
+    "section2": {
+      "heading": "Hvad VOIS erstatter",
+      "p1": "Du har sandsynligvis en version af dette sæt: ChatGPT til tænkning, Calendly til bookinger, Wave eller QuickBooks til fakturering, Gmail til alt, Notion eller Trello til opgaver, Mailchimp til lejlighedsvise e-mailblasts og din egen hukommelse til at holde styr på, hvem du skylder en opfølgning.",
+      "p2": "HABOS erstatter alt dette med én AI-assistent, der faktisk kender din virksomhed — dine klienter, dine projekter, din tidsplan, dine priser, din stemme. ChatGPT kender internettet. VOIS kender dig.",
+      "p3": "Det bygger dit CRM fra samtaler, så du aldrig opdaterer et regneark igen. Det udkaster e-mails i din stemme og venter på din godkendelse. Det sporer forpligtelser, du indgår på møder, og minder dig, inden du glemmer. Det giver dig fem AI-rådgivere — Finans, Strategi, Drift, Marketing, Salg — der med vilje er uenige, fordi det at arbejde solo ikke behøver at betyde, at du træffer alle beslutninger alene.",
+      "p4": "Og det kører på dit Apple Watch, så du kan tjekke din dag, godkende en e-mail eller fange en idé mellem møder, på en gåtur, i en elevator.",
+      "p5": "Alt for 35 dollars om måneden."
+    },
+    "stats": [
+      ["15 timer", "frigjort om ugen"],
+      ["300+ dollars", "sparet månedligt"],
+      ["0", "mistede opfølgninger"],
+      ["0", "søndagsaftener med administration"]
+    ],
+    "testimonial": {
+      "quote": "\"Jeg brugte hver søndagsaften på at lave den administration, jeg ikke kunne passe ind i arbejdsugen. Nu håndterer VOIS min fakturering, mine opfølgninger og min planlægning, mens jeg laver klientarbejde. AI-rådgiverne er overraskende nyttige — forrige måned foreslog strategirådgiveren, at jeg skulle fokusere på en niche, jeg ikke havde overvejet. Jeg landede to nye klienter fra det. For første gang i seks års konsulentvirksomhed føler jeg, at jeg har et team.\"",
+      "attribution": "— Camilla, 42 · Uafhængig managementkonsulent · Oslo"
+    },
+    "cta": {
+      "heading": "Ansæt din første medarbejder for 35 dollars om måneden.",
+      "button": "Tilmeld venteliste"
+    }
+  }
+}

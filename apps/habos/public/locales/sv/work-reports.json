@@ -1,0 +1,66 @@
+{
+  "badge": "Kommer snart",
+  "hero": {
+    "title": "Röstrapporter",
+    "description": "Prata rapporter till existens. Gå igenom en platsinspektion och tala dina observationer — AI genererar omedelbart en formaterad PDF."
+  },
+  "intro": "Traditionella rapporter kräver att du sätter dig ner, öppnar ett formulär och skriver svar. HABOS erbjuder fyra fyllningslägen: en realtids röstintervju där AI ställer frågor fält för fält, ett dikteringsläge där en enda röstanteckning fyller alla fält tyst, en textchatbot som går igenom varje fält konversationellt och traditionell manuell inmatning som reserv. Ladda upp en PDF eller bild och GPT-4 Vision extraherar fältetiketter, typer och valideringsmönster för att automatiskt generera ett typat schema.",
+  "problem": {
+    "title": "Problemet med rapportskrivning",
+    "body": "För fältarbetare, sjuksköterskor, inspektörer och många proffs är det en enorm tidstjuv att skriva rapporter på pekskärmar eller datorer. Det är långsamt, tråkigt och folk lämnar ofta ut detaljer för att det är för besvärligt att skriva. Röstrapporter förändrar allt."
+  },
+  "features": [
+    {
+      "title": "Prata bara",
+      "desc": "Öppna VOIS, tryck på spela in och prata igenom dina observationer. Ingen skrivning, inga formulär, inga kryssrutor. AI lyssnar, strukturerar och formaterar allt automatiskt."
+    },
+    {
+      "title": "Omedelbar formatering",
+      "desc": "AI genererar en korrekt formaterad rapport — rubriker, avsnitt, punktlistor, sammanfattningar. Exportera som PDF, Word eller vilket format du behöver. Den är klar att skicka in omedelbart."
+    },
+    {
+      "title": "10 gånger snabbare",
+      "desc": "Folk pratar 3–4 gånger snabbare än de skriver. Lägg till AI-formatering och du tittar på 10 gånger tidsbesparande. Vad som brukade ta 30 minuter tar nu 3."
+    },
+    {
+      "title": "Rikare information",
+      "desc": "När rapportering är så här enkel inkluderar folk mer detaljer. Du får bättre data, mer kontext och tydligare kommunikation — allt för att prata är ansträngningsfritt."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfekt för",
+    "items": [
+      {
+        "title": "Fältarbetare",
+        "desc": "Platsinspektion, säkerhetsrapporter, underhållsloggar"
+      },
+      {
+        "title": "Vård",
+        "desc": "Sjuksköterskeanteckningar, patientobservationer, skiftöverlämningar"
+      },
+      {
+        "title": "Försäljning & service",
+        "desc": "Kundmöten, servicebesök, uppföljningsanteckningar"
+      }
+    ]
+  },
+  "example": {
+    "title": "Exempel: Byggplatsinspektion",
+    "steps": [
+      "Du anländer till platsen med telefonen eller klockan. Tryck på spela in i VOIS.",
+      "\"Platsinspektion, Byggnad 3, 15 mars. Väderförhållanden: klart, 18 grader. Grunden ser solid ut — inga sprickor synliga. Grov-el är 80% klar, i tid. VVS-problem i Enhet 204 — läcka under diskhon, behöver reparation innan inspektion. HVAC-kanaler installerade, inväntar slutanslutningar...\"",
+      "Du promenerar och pratar i 5 minuter och täcker allt du ser.",
+      "Stoppa inspelningen. AI genererar en formaterad inspektionsrapport med avsnitt, punktlistor och en sammanfattning. VVS-problemet flaggas som brådskande.",
+      "Exportera PDF. Mejla till projektledaren. Klart. Total tid: 6 minuter."
+    ]
+  },
+  "integration": {
+    "title": "Driver verksamhets-AI",
+    "body": "Röstrapporter handlar inte bara om att spara tid — det matar kritisk data in i Verksamhets-AI. När ditt team lämnar in detaljerade röstrapporter kan Verksamhets-AI identifiera mönster, hitta flaskhalsar och varna dig för problem innan de eskalerar. Det är grunden för intelligent verksamhetsledning."
+  },
+  "status": {
+    "title": "Under utveckling",
+    "body": "Röstrapporter är byggt och fungerar i vår utvecklingsmiljö. Vi förfinar formateringsmallar och exportalternativ för olika branscher.",
+    "note": "Förväntas vara tillgänglig inom 6 månader för VOIS för Arbete-prenumeranter."
+  }
+}

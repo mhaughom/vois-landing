@@ -1,0 +1,52 @@
+{
+  "badge": "KI-Recherche",
+  "hero": {
+    "title": "Stelle eine Frage.\nErhalte einen zitierten Bericht.",
+    "description": "HABOS delegiert tiefe Recherche an Perplexity AI, verfeinert die Frage mit klärenden Prompts und liefert eine strukturierte Zusammenfassung für Führungskräfte — und bettet alles in deinen Brain für zukünftige Abrufe ein."
+  },
+  "intro": "Sprich eine Frage in dein Telefon — HABOS klassifiziert sie automatisch als Recherche-Intent und startet eine tiefe Untersuchung. Bevor teure Recherche durchgeführt wird, stellt die KI zwei gezielte Klärungsfragen, um den Umfang einzugrenzen. Dann läuft Perplexitys sonar-pro-Modell asynchron und liefert eine strukturierte Zusammenfassung für Führungskräfte mit Hauptbefunden, Zitaten und Folgefragen. Die abgeschlossene Recherche wird aufgeteilt und in deinen Brain eingebettet, sodass sie bei zukünftigen Suchen und KI-Gesprächen für immer auftaucht.",
+  "flow": {
+    "label": "So funktioniert es",
+    "userQuestion": "Wie ist die Wettbewerbslandschaft für KI-Planungstools im Außendienst?",
+    "clarifyIntro": "Bevor ich recherchiere, zwei schnelle Fragen:",
+    "clarifyQ1": "Konzentrierst du dich auf den US-Markt oder global?",
+    "clarifyQ2": "Unternehmensgröße: KMU oder Enterprise?",
+    "answerPills": ["US-Markt", "KMU"],
+    "result": {
+      "label": "Zusammenfassung",
+      "title": "Wettbewerbslandschaft: KI-Planung im Außendienst",
+      "findings": [
+        "ServiceTitan dominiert Enterprise mit 42% Marktanteil, aber ihr KMU-Angebot ist begrenzt und mit 89 $/Nutzer/Monat überteuert.",
+        "Jobber und Housecall Pro konkurrieren auf Einfachheit für KMU, aber keiner bietet KI-native Planung — beide bolzen grundlegende Automatisierung auf.",
+        "KI-First-Einsteiger (FieldPulse, Zuper) gewinnen an Boden, wachsen 3x jährlich im Bereich 10-30 $/Nutzer und signalisieren starke KMU-Nachfrage nach intelligenter Planung."
+      ],
+      "citations": "12 Zitate",
+      "embeddedLabel": "Im Brain eingebettet"
+    }
+  },
+  "benefitCards": [
+    {
+      "title": "Sprache zu Recherche",
+      "body": "Sage \"recherchiere Mitbewerberpreise in unserem Bereich\" während einer Sprachnotiz. HABOS erkennt den Recherche-Intent und startet die Analyse automatisch."
+    },
+    {
+      "title": "Immer in deinem Brain",
+      "body": "Abgeschlossene Recherche wird aufgeteilt, eingebettet (512-dim-Vektoren) und für immer durchsuchbar. Frage Monate später danach — der Brain erinnert sich."
+    },
+    {
+      "title": "Projektverknüpfter Kontext",
+      "body": "Verknüpfe Recherche mit Projekten. Zukünftige Recherche zu demselben Thema zieht frühere Erkenntnisse für reichhaltigere, nicht-repetitive Analysen ein."
+    }
+  ],
+  "techStrip": [
+    "Perplexity sonar-pro",
+    "KI-Klärungsfragen",
+    "RAG-eingebettete Ergebnisse",
+    "Projektübergreifender Kontext",
+    "Persistente Chat-Nachfassaktionen"
+  ],
+  "closing": {
+    "title": "Andere Tools geben dir eine Suchleiste.\nHABOS gibt dir ein Recherche-Team.",
+    "cta": "Warteliste beitreten"
+  }
+}

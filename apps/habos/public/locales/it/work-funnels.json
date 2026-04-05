@@ -1,0 +1,69 @@
+{
+  "badge": "Automazione Marketing",
+  "hero": {
+    "title": "I Lead Entrano. I Ricavi Escono.",
+    "description": "Invio modulo → sequenza di nurturing generata dall'AI → SMS ed email → prenotazione o vendita. Basata sulla psicologia, consenso prima di tutto, e abbastanza intelligente da fermarsi quando il lead risponde."
+  },
+  "body": "Quando arriva un invio di modulo, i lead fluiscono automaticamente in sequenze di nurturing generate dall'AI. Tutti i contenuti seguono un framework di persuasione comprovato in quattro fasi: personalizzazione, autorità con numeri specifici, un'offerta quantificata con inversione del rischio e un invito all'azione specifico. I funnel si fermano automaticamente quando il lead risponde, raggiunge una fase CRM terminale o si disiscriv — prevenendo il contatto eccessivo. Gli invii email e SMS sono limitati dal consenso esplicito, con parole chiave STOP che revocano globalmente.",
+  "sequence": {
+    "label": "Sequenza di Nurturing",
+    "step1": "Modulo inviato",
+    "step2": {
+      "label": "Immediato: SMS di benvenuto",
+      "message": "\"Ciao Sarah, grazie per la tua richiesta sui nostri servizi HVAC! Sono Mike di Henderson...\""
+    },
+    "wait1": "Attendi 2 ore",
+    "step3": {
+      "label": "Email: Autorità + prova",
+      "message": "\"Oggetto: Il 94% dei nostri clienti risparmia $200+ sulle bollette energetiche...\""
+    },
+    "wait2": "Attendi 1 giorno",
+    "step4": {
+      "label": "SMS: Offerta + CTA",
+      "message": "\"Offerta primaverile: messa a punto AC $99 (prezzo regolare $149). Prenota entro venerdì → habos.app/s/henderson-ac\""
+    },
+    "autostop": {
+      "label": "Arresto automatico",
+      "desc": "Lead risposto / prenotato / vinto → la sequenza si ferma automaticamente"
+    },
+    "summary": "Framework di persuasione a 4 fasi: Personalizzazione → Autorità → Offerta → CTA. 7 strategie preimpostate pronte all'uso.",
+    "summaryFramework": "Personalizzazione → Autorità → Offerta → CTA."
+  },
+  "benefits": [
+    {
+      "title": "Consenso prima di tutto",
+      "desc": "Email e SMS limitati dal consenso esplicito. Le parole chiave STOP revocano globalmente. Il primo messaggio operativo ha la tutela legale — i follow-up richiedono opt-in."
+    },
+    {
+      "title": "Regole di arresto intelligenti",
+      "desc": "I funnel si fermano automaticamente quando il lead risponde (SMS o email), raggiunge una fase CRM terminale (vinto/perso/prenotato) o si disiscriv. Nessun contatto eccessivo."
+    },
+    {
+      "title": "7 strategie integrate",
+      "desc": "Follow-up lead caldo, outreach B2B a freddo, nurturing modulo, promemoria prenotazioni, riattivazione, upsell clienti e personalizzato. Ognuna ottimizzata per il suo caso d'uso."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Senza HABOS",
+      "text": "Il lead compila il modulo. Lo vedi 3 ore dopo. Bozzi un'email. La invii. Aspetti. Fai follow-up manualmente. Dimentichi il 40% dei lead.",
+      "badge": "Tempo medio di risposta: 3+ ore"
+    },
+    "with": {
+      "label": "Con HABOS",
+      "text": "Il lead compila il modulo. SMS di benvenuto immediato. Email di autorità 2 ore dopo. Offerta il giorno seguente. Se rispondono o prenotano — la sequenza si ferma.",
+      "badge": "Tempo di risposta: immediato"
+    }
+  },
+  "techItems": [
+    "Messaggistica basata sulla psicologia",
+    "Orari silenziosi + fuso orario",
+    "Rilevamento risposta in entrata",
+    "Sincronizzazione fase CRM",
+    "Orchestrazione multi-fase"
+  ],
+  "cta": {
+    "heading": "Gli altri strumenti di automazione inviano messaggi. HABOS nutre le relazioni.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

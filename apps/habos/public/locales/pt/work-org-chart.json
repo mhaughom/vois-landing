@@ -1,0 +1,52 @@
+{
+  "badge": "Gestão de Equipe",
+  "hero": {
+    "title": "Arraste. Solte. Reorganize.",
+    "description": "Organograma interativo com rascunhos em sandbox — modele reorganizações, compare com o estado atual e aplique atomicamente. Além de uma matriz de permissões de 37 aplicativos que se ajusta automaticamente por departamento e senioridade."
+  },
+  "body": "O organograma é renderizado como uma árvore interativa — arraste nós para reatribuir gerentes. Crie rascunhos de organograma para modelar reorganizações: capture a estrutura atual, faça alterações, compare com o estado ativo e aplique atomicamente quando estiver pronto. Um sistema de controle de acesso de três camadas gerencia 37 aplicativos com herança de perfil por departamento e substituições diretas. Os administradores controlam quais módulos cada pessoa vê, se podem aprovar ações, suas taxas horárias e seus limites mensais de créditos de IA.",
+  "orgChart": {
+    "caption": "Crie um rascunho, modele a reorganização, visualize a comparação e aplique quando estiver pronto. Ninguém vê as mudanças até você publicar."
+  },
+  "orgNodes": {
+    "ceo": { "name": "Elena Park", "role": "CEO" },
+    "vpOps": { "name": "James Okoro", "role": "VP de Operações" },
+    "vpSales": { "name": "Lisa Chen", "role": "VP de Vendas" },
+    "fieldOpsLead": { "name": "Mike R.", "role": "Líder de Ops de Campo", "draft": "Rascunho: movido de Vendas" },
+    "logisticsCoord": { "name": "Sara T.", "role": "Coord. de Logística" },
+    "accountExec": { "name": "David K.", "role": "Executivo de Contas" },
+    "salesRep": { "name": "Amy J.", "role": "Representante de Vendas" }
+  },
+  "benefits": {
+    "permissions": {
+      "title": "Permissões de 37 aplicativos",
+      "description": "Ajustadas automaticamente por departamento e nível organizacional. Quando alguém muda de posição, suas permissões são atualizadas instantaneamente em todas as ferramentas conectadas."
+    },
+    "raci": {
+      "title": "Rastreamento RACI",
+      "description": "Defina quem possui, aprova, consulta e é informado em cada processo. Nunca mais se pergunte \"quem assina isso?\"."
+    },
+    "dual": {
+      "title": "Duplo reporte",
+      "description": "Estruturas matriciais com gerentes primários e secundários. Relacionamentos de linha pontilhada são cidadãos de primeira classe, não um pós-pensamento."
+    }
+  },
+  "scenario": {
+    "intro": "Você está reestruturando a equipe de operações de campo.",
+    "narrative": "Em vez de fazer alterações ao vivo e confundir todos, você cria um rascunho. Arrasta o Mike de Vendas para Operações, adiciona uma nova posição de líder de equipe e visualiza a comparação. Três pessoas movidas, duas linhas de reporte alteradas. Você revisa, aprova e publica —",
+    "highlight": "o organograma inteiro é atualizado atomicamente."
+  },
+  "techStrip": {
+    "items": [
+      "Visualização com ReactFlow",
+      "Rascunhos em sandbox",
+      "Aplicação atômica",
+      "Matriz de permissões de 37 aplicativos",
+      "Responsabilidade RACI"
+    ]
+  },
+  "cta": {
+    "heading": "Outros organogramas são um PDF estático. O organograma do HABOS é um centro de comando ao vivo.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

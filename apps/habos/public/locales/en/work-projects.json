@@ -1,0 +1,72 @@
+{
+  "badge": "AI Project Intelligence",
+  "hero": {
+    "title": "Always Know What's Blocking Progress.",
+    "description": "HABOS continuously analyzes every task, dependency, and deadline to surface the critical path. You see bottlenecks before they become problems."
+  },
+  "body": "The project system uses AI analysis to continuously identify the critical path. GPT-4o examines all plan items, dependencies, and current status, then identifies bottlenecks and blocking chains. Critical path items automatically receive higher priority in the scheduling engine — when focus blocks fill, critical path tasks slot in first. Dependencies enforce topological ordering, so predecessor tasks are always scheduled before their dependents.",
+  "criticalPath": {
+    "heading": "Henderson Kitchen Renovation — Critical Path",
+    "items": {
+      "permitsApproved": {
+        "title": "Permits approved",
+        "date": "Completed Mar 20"
+      },
+      "plumbingRoughIn": {
+        "title": "Plumbing rough-in",
+        "date": "Completed Mar 23"
+      },
+      "tileSelection": {
+        "title": "Tile selection",
+        "status": "BLOCKING — waiting on sample delivery (due Mar 28)"
+      },
+      "tileInstallation": {
+        "title": "Tile installation",
+        "blockedBy": "Blocked by: Tile selection"
+      },
+      "finalInspection": {
+        "title": "Final inspection",
+        "blockedBy": "Blocked by: Tile installation"
+      }
+    },
+    "note": "AI identified \"Tile selection\" as the bottleneck 3 days before the team noticed. Critical path items are auto-promoted to highest priority in your schedule."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Bottlenecks found automatically",
+      "description": "AI examines all plan items, dependencies, and status. It sets critical_rank on items that form the blocking chain — and your calendar prioritizes them immediately."
+    },
+    "dependencies": {
+      "title": "Dependencies enforced",
+      "description": "If a predecessor isn't complete, the dependent task is marked blocked and can't be started. No more working on the wrong thing."
+    },
+    "connected": {
+      "title": "Every source connected",
+      "description": "Emails, meetings, voice notes, and documents are auto-tagged to projects. Ask \"why is this behind?\" and get a real answer."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Without HABOS",
+      "description": "Monday standup: \"Any blockers?\" Silence. Thursday: \"Why isn't the tile installed?\" \"Oh, the samples never arrived.\" Three days lost.",
+      "badge": "Bottleneck discovered: 3 days late"
+    },
+    "with": {
+      "heading": "With HABOS",
+      "description": "Tuesday morning: notification — \"Tile selection is now the critical path bottleneck. Sample delivery is 2 days out. Recommend: escalate with supplier.\" Action taken same day.",
+      "badge": "Bottleneck flagged: 3 days early"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "GPT-4o critical path analysis",
+      "Topological dependency sort",
+      "Auto-priority elevation",
+      "Cross-module data tagging"
+    ]
+  },
+  "cta": {
+    "heading": "Other project tools show you tasks. HABOS shows you what matters.",
+    "button": "Join Waitlist"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "badge": "KI-Telefonie",
+  "hero": {
+    "title": "Ein KI-Rezeptionist.\nEine echte Telefonnummer.",
+    "description": "HABOS stellt eine dedizierte Telefonnummer für dein Unternehmen bereit. KI beantwortet Anrufe, bucht Meetings, erstellt Aufgaben und leitet an die richtige Person weiter — 24/7."
+  },
+  "body": "HABOS stellt echte Telefonnummern bereit — sowohl Arbeitsbereichs-Geschäftsleitungen über Telnyx als auch persönliche KI-Assistenten-Nummern über Twilio. Wenn jemand anruft, antwortet der KI-Assistent mit vollem Tool-Zugang: Kalender prüfen, Aufgaben erstellen, Nachrichten senden, Kontakte nachschlagen. Risikoreichere Aktionen wie Buchungen oder Zahlungen verwenden SMS-basierte Genehmigung — ein vierstelliger Code wird per SMS an den Nutzer gesendet. Eingehende SMS an die Assistenten-Nummer lösen eine Konversations-KI-Sitzung mit denselben vollständigen Fähigkeiten aus.",
+  "callFlow": {
+    "steps": [
+      {
+        "label": "Eingehender Anruf: (555) 234-5678"
+      },
+      {
+        "label": "KI antwortet: 'Henderson Sanitär, wie kann ich helfen?'"
+      },
+      {
+        "label": "Anrufer: 'Ich habe ein undichtes Rohr, kann jemand heute kommen?'"
+      },
+      {
+        "label": "KI prüft Kalender → findet freien Slot um 14:00 Uhr"
+      },
+      {
+        "label": "KI: 'Ich kann heute um 14:00 Uhr einen Techniker planen. Würde das passen?'"
+      }
+    ],
+    "resultItems": {
+      "booking": "Buchung erstellt",
+      "ticket": "Ticket geöffnet",
+      "notify": "Mike benachrichtigt",
+      "sms": "SMS-Bestätigung gesendet"
+    },
+    "caption": "Die KI hat vollen Tool-Zugang — Kalender, CRM, Tickets, Buchungen. Es ist kein IVR-Menü. Es ist ein echter Assistent."
+  },
+  "benefits": {
+    "sms": {
+      "title": "SMS-Assistent",
+      "body": "Eingehende Texte lösen Konversations-KI aus, die Zeitpläne prüfen, Aufgaben erstellen und antworten kann — alles ohne dass ein Mensch einen Finger rührt."
+    },
+    "recording": {
+      "title": "Anrufaufzeichnung + Transkription",
+      "body": "Jeder Anruf mit vollständigem Transkript gespeichert, nach Sprecher und Schlüsselwort durchsuchbar. Verliere nie ein Detail aus einem Kundengespräch."
+    },
+    "approval": {
+      "title": "4-stellige Genehmigung",
+      "body": "Risikoreichere Aktionen wie Buchungen und Zahlungen verwenden SMS-basierte Bestätigungscodes. KI kann handeln, aber Menschen bleiben in Kontrolle."
+    }
+  },
+  "scenario": "Es ist Sonntag. Ein Rohr platzt. Der Hausbesitzer ruft deine Geschäftsnummer an. KI antwortet, versteht \"Notfall-Leck\", prüft deinen Bereitschaftsplan und bucht den nächsten verfügbaren Techniker. Der Hausbesitzer erhält eine SMS-Bestätigung mit dem Namen und der ETA des Technikers. Du hast dein Telefon nicht berührt.",
+  "techStrip": [
+    "Telnyx + Twilio",
+    "OpenAI Realtime V2",
+    "Vollständiger Tool-Zugang",
+    "SMS-basierte Genehmigung",
+    "Individuelles IVR-Routing"
+  ],
+  "closing": {
+    "title": "Andere Telefonsysteme spielen Warteschleifenmusik.\nHABOS löst Probleme.",
+    "cta": "Warteliste beitreten"
+  }
+}

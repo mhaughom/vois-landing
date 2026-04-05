@@ -1,0 +1,65 @@
+{
+  "badge": "Rubrica Persone",
+  "hero": {
+    "title": "Ogni Persona. Ogni Interazione. Una Vista.",
+    "description": "Registrazioni vocali, email, chat, riunioni, timeline CRM — HABOS consolida ogni punto di contatto con una persona in un unico profilo relazionale."
+  },
+  "intro": "La rubrica Persone si costruisce da sola in base a come parli delle persone. Menziona il nome di qualcuno in una nota vocale e HABOS lo crea automaticamente o lo collega con contesto e analisi del sentiment. L'hub persona aggrega ogni interazione: registrazioni vocali in cui vengono menzionati, thread email, conversazioni chat, riunioni in cui hanno parlato, voci della timeline CRM e sessioni AI per persona — tutto restituito da una singola chiamata al database. Gli argomenti comuni vengono inferiti dall'AI e i trend del sentiment vengono tracciati su tutti i canali.",
+  "profile": {
+    "name": "Sarah Henderson",
+    "sentiment": "Positivo",
+    "role": "Decision Maker presso Henderson Plumbing",
+    "interactions": "47 interazioni",
+    "lastContact": "Ultimo contatto: 2 giorni fa",
+    "actionItems": "3 azioni aperte",
+    "annotation": "La rubrica Persone si costruisce da sola in base a come parli delle persone. Menziona qualcuno in una nota vocale — viene creato automaticamente con contesto."
+  },
+  "timeline": [
+    {
+      "title": "Re: Tempistica cucina",
+      "detail": "21 mar — Confermato il programma rivisto"
+    },
+    {
+      "title": "Chiamata vocale",
+      "detail": "20 mar — Discusso l'approvazione dei permessi, sentiment positivo"
+    },
+    {
+      "title": "Slack #henderson",
+      "detail": "19 mar — Ha chiesto dei campioni di piastrelle"
+    },
+    {
+      "title": "Sincronizzazione team",
+      "detail": "18 mar — 2 azioni assegnate a Sarah"
+    },
+    {
+      "title": "Menzione nota vocale",
+      "detail": "15 mar — 'Sarah ha bisogno dell'aggiornamento budget entro venerdì'"
+    }
+  ],
+  "benefitCards": [
+    {
+      "title": "Creato automaticamente dalla voce",
+      "body": "Menziona il nome di qualcuno durante una registrazione o una chiamata, HABOS lo crea o lo collega nella tua rubrica con contesto e sentiment."
+    },
+    {
+      "title": "Collegamento multi-ruolo",
+      "body": "La stessa persona può essere 'Decision Maker' all'Azienda A e 'Responsabile Tecnico' all'Azienda B. Tracciamento ruoli flessibile su tutti i clienti CRM."
+    },
+    {
+      "title": "Pipeline di reindicizzazione",
+      "body": "Elabora in bulk tutte le registrazioni per trovare menzioni di persone, creare/deduplicare contatti, analizzare il sentiment ed estrarre gli argomenti comuni."
+    }
+  ],
+  "scenario": "Stai per chiamare Sarah ma non ricordi dove stai. Apri il suo profilo — vedi l'email di martedì sulla tempistica rivista, la domanda su Slack sui campioni di piastrelle e una nota vocale della settimana scorsa in cui hai detto che Sarah ha bisogno dell'aggiornamento budget. Tre azioni aperte sono elencate. Sei completamente preparato in 10 secondi — senza cercare in una singola app.",
+  "techItems": [
+    "RPC get_person_hub()",
+    "Sentiment cross-canale",
+    "Rilevamento menzioni vocali",
+    "Deduplicazione automatica per nome",
+    "Collegamento CRM ↔ Persone"
+  ],
+  "cta": {
+    "tagline": "Le altre app tracciano i contatti. HABOS traccia le relazioni.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

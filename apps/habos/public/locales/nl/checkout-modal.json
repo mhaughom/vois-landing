@@ -1,0 +1,52 @@
+{
+  "quizCategories": [
+    "Evenementen & Agenda",
+    "Taken & To-dos",
+    "Boodschappen & Lijsten",
+    "Ideeën & Notities",
+    "Gezondheid & Welzijn",
+    "Financiën & Budget",
+    "Doelen & Gewoonten",
+    "Mensen & Sociaal"
+  ],
+  "quizDevices": {
+    "watch": {
+      "label": "Apple Watch",
+      "desc": "Vastleggen aan je pols"
+    },
+    "phone": {
+      "label": "iPhone",
+      "desc": "Altijd in je zak"
+    },
+    "both": {
+      "label": "Beide",
+      "desc": "De volledige ervaring"
+    }
+  },
+  "step1": {
+    "heading": "Wat zou jij opslaan?",
+    "subLabel": "Kies alles wat je gedachten bezighoudt."
+  },
+  "step2": {
+    "heading": "Hoe wil je het bekijken?",
+    "subLabel": "Kies je voorkeurssapparaat."
+  },
+  "step3": {
+    "heading": "Start je abonnement",
+    "subLabel": "Voer je e-mailadres in om door te gaan naar de betaling.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "jij@bedrijf.nl",
+    "perMonth": "/maand",
+    "guarantee": "Altijd opzegbaar. 30 dagen geld-terug-garantie.",
+    "continueToPay": "Doorgaan naar betaling"
+  },
+  "back": "Terug",
+  "continue": "Doorgaan",
+  "errors": {
+    "emailRequired": "Voer je e-mailadres in.",
+    "emailInvalid": "Voer een geldig e-mailadres in.",
+    "tooManyAttempts": "Te veel pogingen. Wacht even en probeer het opnieuw.",
+    "unavailable": "Afrekenen is tijdelijk niet beschikbaar. Probeer het later opnieuw.",
+    "generic": "Er is iets misgegaan. Probeer het opnieuw."
+  }
+}

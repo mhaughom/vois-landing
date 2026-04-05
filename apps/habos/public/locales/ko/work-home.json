@@ -1,0 +1,230 @@
+{
+  "heroBusinesses": [
+    "크리에이티브 에이전시",
+    "배관 업체",
+    "치과",
+    "컨설팅 기업",
+    "살롱 & 스파",
+    "건설회사",
+    "부동산 중개인",
+    "음식점",
+    "청소 업체",
+    "온라인 쇼핑몰",
+    "부동산 관리업체"
+  ],
+  "heroVideo": {
+    "madeFor": "모든 유형의 기업을 위해 만들어졌습니다."
+  },
+  "heroStories": [
+    { "label": "문제",           "headline": "회사 데이터가 수십 개의\n툴에 분산되어 있습니다." },
+    { "label": "비용",           "headline": "직원들이 하루를\n데이터 이동에 씁니다 — 가치 창출이 아닌." },
+    { "label": "한계점",         "headline": "빠르게 성장할수록\n더 빨리 무너집니다." },
+    { "label": "해결책",         "headline": "그래서 우리는 모든 것을 위한\n하나의 플랫폼을 만들었습니다." },
+    { "label": "HABOS",          "headline": "당신의 툴. 당신의 데이터.\n모두 하나로 작동합니다." },
+    { "label": "final",          "headline": "" }
+  ],
+  "heroHeadlines": [
+    { "label": "세계 최초",         "bold": "인간-에이전트",     "light": "비즈니스 운영\n시스템" },
+    { "label": "올인원 사업 도구",   "bold": "올인원 사업 도구", "light": "필요한 모든 것" },
+    { "label": "통합 플랫폼",        "bold": "모든 소프트웨어",  "light": "하나의 플랫폼" },
+    { "label": "하나의 로그인",      "bold": "필요한 모든 툴",   "light": "하나의 로그인으로" },
+    { "label": "스택 교체",          "bold": "하나의 시스템",    "light": "수십 개 대신" },
+    { "label": "생각하는 소프트웨어","bold": "AI 네이티브 소프트웨어","light": "처음부터 구축됨" }
+  ],
+  "heroGlowLabel": "세계 최초",
+  "heroSubtitle": "모든 소프트웨어, 하나의 플랫폼.\n우리가 항상 약속받았지만 얻지 못했던 AI 지원으로 직원을 강화하세요.",
+  "heroButtons": {
+    "joinWaitlist": "대기자 명단 참여",
+    "playVideo":    "영상 재생",
+    "back":         "뒤로"
+  },
+  "animPhase": {
+    "dot":      "비즈니스 전체를 학습하는 하나의 마음.",
+    "split":    "당신이 하는 모든 것을 연결합니다.",
+    "cube":     "구조가 당신 주변에 형성됩니다 — 반대가 아닌.",
+    "hexMorph": "모든 표면이 워크스페이스. 모든 행동이 예측됩니다.",
+    "idle":     "아무 면을 클릭해 탐색하세요."
+  },
+  "explore": {
+    "heading":     "하나의 플랫폼. 모든 툴.",
+    "description": "아무 면을 클릭해 HABOS가 비즈니스에 무엇을 할 수 있는지 탐색하세요."
+  },
+  "smartRouter": {
+    "statusDetected": "스마트 라우터 — 인텐트 2개 감지됨",
+    "statusRecording": "녹음 중...",
+    "statusReady":     "준비됨",
+    "transcriptLabel": "전사본",
+    "listening":       "듣는 중..."
+  },
+  "meetingNotes": {
+    "statusEnded":    "미팅 종료 — 할 일 3개",
+    "statusRecording":"녹음 중 — 팀 전략 미팅",
+    "statusReady":    "준비됨",
+    "transcriptLabel":"실시간 전사",
+    "actionsLabel":   "추출된 할 일"
+  },
+  "meetingLines": [
+    { "speaker": "나",    "text": "1분기 수치부터 시작하죠. 매출이 12% 올랐습니다.",         "time": "0:15" },
+    { "speaker": "Sarah", "text": "파이프라인은 좋아 보이지만 납품 일정이 걱정됩니다.",       "time": "0:42" },
+    { "speaker": "나",    "text": "맞는 말이에요. 각 마일스톤에 버퍼 주를 추가하면 어떨까요?","time": "1:08" },
+    { "speaker": "AI",    "text": "제안: \"2분기 목표가 미달되면 대응책은 무엇인가요?\"",      "time": "1:15" }
+  ],
+  "meetingActions": [
+    { "text": "금요일까지 업데이트된 일정을 Sarah에게 발송" },
+    { "text": "엔지니어링 리드와 후속 미팅 일정 잡기" },
+    { "text": "2분기 이사회 미팅을 위한 리스크 평가 준비" }
+  ],
+  "agentPhilosophy": {
+    "badge":       "에이전트 철학",
+    "heading":     "모든 직원이 슈퍼 에이전트를 받습니다.",
+    "description": "담당자와 동일한 데이터, 맥락, 권한에 접근하는 자율 AI 파트너. 가장 가치 있는 정보를 표시하고, 답장을 초안하고, 일정을 제안하고, 위험을 표시합니다 — 하지만 혼자 행동하지는 않습니다.",
+    "footer":      "AI 파워, 인간 통제. 모든 초안이 검토됩니다. 모든 행동이 승인됩니다. 모든 결정이 당신의 것입니다."
+  },
+  "agentTabs": [
+    {
+      "title": "AI 어시스턴트",
+      "desc":  "완전한 비즈니스 맥락으로 채팅하세요. 에이전트가 프로젝트, 이메일, 캘린더, CRM, 대화를 동시에 추론합니다 — 접근 가능한 모든 데이터베이스에서 가져옵니다."
+    },
+    {
+      "title": "스마트 라우터",
+      "desc":  "자연스럽게 말하세요 — 에이전트가 음성을 구조화된 행동으로 분석합니다. 후속 연락은 할 일이 되고, 미팅은 캘린더에 추가되고, 모든 인텐트는 올바른 곳으로 라우팅됩니다."
+    },
+    {
+      "title": "미팅 노트",
+      "desc":  "사람들이 말할 때 결정, 할 일, 후속 연락을 캡처하는 실시간 전사. 모든 미팅이 구조화된 요약을 생성합니다 — 수동 노트 없음."
+    }
+  ],
+  "replacesSection": {
+    "heading":     "HABOS가 대체하는 것들.",
+    "description": "공유된 맥락이 모든 기능을 어떤 독립 툴보다 스마트하게 만듭니다.",
+    "colCategory": "카테고리",
+    "colReplaces": "대체",
+    "colAdvantage": "HABOS 장점",
+    "mobileReplaces": "대체"
+  },
+  "replacements": [
+    { "tool": "Otter.ai / Fireflies",        "category": "미팅 노트",           "vois": "모든 미팅 전 브리핑, 미팅 중 실시간 전사, 이후 올바른 사람에게 전송되는 추출된 할 일",                           "group": "생산성" },
+    { "tool": "Todoist / Trello",            "category": "할 일 관리",           "vois": "가장 중요한 할 일이 항상 먼저 표시됩니다 — 음성, 미팅, 이메일에서 생성되며 스마트 일정 관리 내장",              "group": "생산성" },
+    { "tool": "Motion / Reclaim",            "category": "AI 일정 관리",         "vois": "캘린더가 우선순위와 마감일 순서로 집중 업무 블록을 스스로 채웁니다 — 승인만 하면 됩니다",                       "group": "생산성" },
+    { "tool": "Asana / Jira / Monday.com",  "category": "프로젝트 추적",         "vois": "어떤 프로젝트가 건강하고 어떤 것이 주의가 필요한지 확인하세요 — 지연된 업무와 놓친 마감일이 에스컬레이션 전에 표시됩니다", "group": "생산성" },
+    { "tool": "Google Docs / Notion",        "category": "문서",                 "vois": "말하면 문서로 돌아옵니다 — AI가 프로젝트와 데이터에서 맥락을 자동으로 가져옵니다",                               "group": "생산성" },
+    { "tool": "Trainual / Process Street",   "category": "플레이북 & SOP",       "vois": "팀을 단계별로 안내하고 잘못된 작업 시 알림을 보내는 살아있는 워크플로우",                                        "group": "생산성" },
+    { "tool": "HubSpot / Salesforce",        "category": "CRM & 영업",           "vois": "모든 대화, 이메일, 미팅에서 자동으로 구축되는 고객 프로필 — AI가 제안하는 다음 단계와 함께",                     "group": "커머스 & 고객" },
+    { "tool": "Shopify / WooCommerce",       "category": "제품 & 주문",          "vois": "제품, 가격, 재고, 예약 가능 서비스 — 모두 웹사이트와 AI 어시스턴트에 연결됨",                                   "group": "커머스 & 고객" },
+    { "tool": "Calendly / Acuity",           "category": "예약",                 "vois": "클라이언트가 온라인으로 예약하면, 주문이 자동 생성되고, 결제가 수집됩니다 — 한 단계, 수동 작업 없음",            "group": "커머스 & 고객" },
+    { "tool": "Mailchimp / ActiveCampaign",  "category": "마케팅 & 퍼널",        "vois": "AI가 작성한 카피, 스마트 오디언스 세그먼트, 자동 후속 시퀀스가 있는 이메일 및 SMS 캠페인",                     "group": "커머스 & 고객" },
+    { "tool": "Later / Hootsuite",           "category": "소셜 미디어",          "vois": "게시물을 예약하고, AI가 작성한 캡션을 받고, 성과를 추적하세요 — 브랜드와 콘텐츠 라이브러리에 연결됩니다",      "group": "커머스 & 고객" },
+    { "tool": "Canva / Adobe Express",       "category": "크리에이티브 스튜디오","vois": "비즈니스 맥락에서 마케팅 콘텐츠 생성 — 브랜드에 맞는 소셜 게시물, 광고, 비주얼",                             "group": "커머스 & 고객" },
+    { "tool": "Superhuman / Spark",          "category": "AI 이메일",            "vois": "음성으로 받은 편지함 답변, 당신처럼 들리는 세 가지 답장 옵션, 후속 연락 놓침 없음",                             "group": "커뮤니케이션 & 콘텐츠" },
+    { "tool": "Gmail / Outlook / Slack",     "category": "통합 메시지",          "vois": "한 사람과의 모든 대화 — 이메일, 채팅, SMS — AI가 초안한 답장과 함께 하나의 타임라인으로",                       "group": "커뮤니케이션 & 콘텐츠" },
+    { "tool": "Squarespace / Wix",           "category": "웹사이트 빌더",        "vois": "비즈니스를 설명하면 웹사이트를 만들어줍니다 — AI가 카피를 작성하고, 예약과 결제를 자동으로 연결합니다",         "group": "커뮤니케이션 & 콘텐츠" },
+    { "tool": "PowerPoint / Google Slides",  "category": "프레젠테이션",         "vois": "비즈니스의 실제 수치를 가져오는 AI 생성 슬라이드 덱 — 예쁜 템플릿이 아닌 바로 발표 가능한",                   "group": "커뮤니케이션 & 콘텐츠" },
+    { "tool": "Zapier / Make",               "category": "프로세스 자동화",      "vois": "모든 것에서 트리거되는 워크플로우 — 타사 툴 없음, 지연 없음, 모두 하나의 시스템에 있으므로",                   "group": "운영 & 현장" },
+    { "tool": "ClickUp / Monday.com",        "category": "운영",                 "vois": "프로세스가 뒤처질 때 문제가 되기 전에 알림을 받으세요 — 경고만이 아닌 제안된 수정 사항과 함께",               "group": "운영 & 현장" },
+    { "tool": "Zendesk / Freshdesk",         "category": "지원 티켓",            "vois": "양식이나 이메일에서 자동으로 생성되는 티켓, 우선순위 수준, 타이머, 올바른 사람에게 에스컬레이션",             "group": "운영 & 현장" },
+    { "tool": "ServiceTitan / Jobber",       "category": "현장 운영",            "vois": "업무, 디스패치, 경로, 팀 GPS, 시간 추적 — 밴에서 30초 음성 메모가 모든 서류 작업을 대체합니다",              "group": "운영 & 현장" },
+    { "tool": "Routific / Circuit",          "category": "경로 계획",            "vois": "스마트 정류장 순서와 현장 팀을 위한 Google Maps 링크가 있는 드래그앤드롭 경로 계획",                           "group": "운영 & 현장" },
+    { "tool": "Google Forms / SurveyMonkey", "category": "보고서",               "vois": "90초 만에 음성으로 보고서 작성 — AI가 질문하고, 당신이 답하면, 보고서가 제출됩니다",                          "group": "운영 & 현장" },
+    { "tool": "QuickBooks / Xero",           "category": "재무",                 "vois": "음성으로 비용 기록, 청구서 및 결제 추적, 실시간 수익 확인 — Stripe에 연결됨",                                "group": "재무 & 행정" },
+    { "tool": "Procurify / Coupa",           "category": "구매 & 공급업체",      "vois": "부분 결제 지원 및 청구서 매칭이 있는 구매 주문, 공급업체 추적, 재고 관리",                                   "group": "재무 & 행정" },
+    { "tool": "Toggl / Clockify",            "category": "시간 추적",            "vois": "휴대폰에서 출퇴근, 업무별 청구 시간 추적, 디스패치 및 급여와 시간 항목 연결",                                "group": "재무 & 행정" },
+    { "tool": "BambooHR / Gusto",            "category": "팀 & 조직도",          "vois": "전체 팀 구조 확인, 역할 및 접근 권한 관리, 변경 사항 계획 — 모두 드래그앤드롭",                              "group": "재무 & 행정" },
+    { "tool": "Typeform / JotForm",          "category": "양식",                 "vois": "양식을 만들고, 제출을 CRM이나 티켓에 자동 라우팅하고, 즉시 확인 답변을 발송합니다",                          "group": "재무 & 행정" },
+    { "tool": "Confluence / Guru",           "category": "지식 검색",            "vois": "질문하면 비즈니스 전체에서 답변을 받습니다 — 음성 메모, 이메일, 문서, 미팅, 모든 것에서",                    "group": "재무 & 행정" },
+    { "tool": "Google Drive / Dropbox",      "category": "파일 & 미디어",        "vois": "AI 태깅, 전문 검색, 문서를 소리 내어 읽는 리더가 있는 모든 파일을 위한 하나의 공간",                         "group": "재무 & 행정" },
+    { "tool": "가상 임원 어시스턴트",         "category": "AI 어시스턴트",        "vois": "전체 비즈니스를 알고, 필요한 것을 예측하고, 모든 툴에서 행동합니다 — 음성, 워치, 전화, 또는 받은 편지함으로","group": "AI & 음성" },
+    { "tool": "ChatGPT / Copilot",           "category": "AI 채팅",              "vois": "인터넷이 아닌 실제 비즈니스 데이터를 아는 AI — 승인과 함께 행동할 수 있습니다",                             "group": "AI & 음성" },
+    { "tool": "맞춤 개발 / 에이전시",         "category": "AI 에이전트",          "vois": "다단계 작업을 계획하고, 툴을 사용하고, 중요한 작업 전에 승인을 위해 일시 중지하는 AI 작업자",              "group": "AI & 음성" },
+    { "tool": "Perplexity / SearchGPT",      "category": "AI 리서치",            "vois": "출처 인용이 있는 심층 웹 리서치 — 전문 AI에 위임하고 지식 베이스에 저장됩니다",                             "group": "AI & 음성" },
+    { "tool": "비즈니스 컨설턴트",            "category": "전략 분석",            "vois": "매출, 클라이언트, 제품, 경쟁사를 분석 — 놓쳤을 기회를 표시합니다",                                        "group": "AI & 음성" },
+    { "tool": "Siri / Google Assistant",     "category": "음성 인텔리전스",      "vois": "음성 메모 하나가 할 일, 이벤트, 재고 업데이트, 메시지를 생성 — 자동으로 올바른 곳으로 라우팅됩니다",      "group": "AI & 음성" },
+    { "tool": "Apple Watch 앱",              "category": "워치 어시스턴트",      "vois": "손목의 완전한 AI 어시스턴트 — 말하고, 답변 받고, 행동 승인, 모두 휴대폰 없이",                            "group": "AI & 음성" },
+    { "tool": "자동 응답 서비스",             "category": "AI 전화 & SMS",        "vois": "AI가 응답하는 실제 전화번호 — 예약 잡기, 질문 답변, 메시지 24/7 처리",                                   "group": "AI & 음성" }
+  ],
+  "pricing": {
+    "heading":     "단순하고 투명한 요금제.",
+    "description": "Personal은 완전한 음성-행동 루프를 제공합니다. Work는 세 가지 전문 기둥을 추가합니다.",
+    "billingMonthly": "월간",
+    "billingAnnual":  "연간",
+    "saveLabel":      "최대 40% 절약",
+    "featureColHeader": "기능",
+    "personalColHeader": "Personal",
+    "workColHeader":     "Work",
+    "personal": {
+      "name":        "Personal",
+      "description": "일상적인 생활 정리를 위해",
+      "priceAnnual": "$6.67",
+      "priceMonthly":"$14.99",
+      "perMonth":    "/월",
+      "cta":         "무료 체험 시작",
+      "guarantee":   "30일 환불 보장"
+    },
+    "work": {
+      "name":        "Work",
+      "description": "전문가 & 팀을 위해",
+      "priceAnnual": "$29",
+      "priceMonthly":"$39",
+      "perMonth":    "/월",
+      "badge":       "추천",
+      "cta":         "무료 체험 시작",
+      "guarantee":   "30일 환불 보장"
+    }
+  },
+  "pricingFeatures": [
+    { "feature": "음성 캡처 & 스마트 라우터" },
+    { "feature": "AI 채팅 어시스턴트" },
+    { "feature": "AI 점수가 있는 할 일 관리" },
+    { "feature": "AI 일정 관리가 있는 캘린더" },
+    { "feature": "맞춤형 앱 & 마켓플레이스" },
+    { "feature": "생활 영역 & 자동화" },
+    { "feature": "실시간 미팅 전사" },
+    { "feature": "미팅 브리핑 & 준비" },
+    { "feature": "참석자별 개인 AI 메모" },
+    { "feature": "프로젝트 & 모니터링" },
+    { "feature": "보고서 & 업무 검토" },
+    { "feature": "AI 에이전트 & 리서치" },
+    { "feature": "이메일 통합" },
+    { "feature": "데스크톱 앱 (라이브 가이드)" }
+  ],
+  "cta": {
+    "heading":     "업무 시간과 대화를 시작하세요.",
+    "description": "하나의 음성. 하나의 브레인. 모든 것이 연결됩니다.",
+    "waitlistDescription": "HABOS for Work 조기 접근을 위한 대기자 명단에 참여하세요.",
+    "emailPlaceholder": "업무 이메일을 입력하세요",
+    "submitButton":  "조기 접근 신청",
+    "noSpam":        "스팸 없음. 신용카드 없음. HABOS for Work 업데이트만 받습니다.",
+    "successMessage":"대기자 명단에 등록되었습니다! 곧 연락드리겠습니다."
+  },
+  "footer": {
+    "logoAlt": "HABOS",
+    "brandName": "HABOS",
+    "tagline": "AI 업무 일상.",
+    "product": {
+      "heading":       "제품",
+      "login":         "로그인",
+      "pricing":       "요금제",
+      "platform":      "플랫폼",
+      "voisPersonal":  "VOIS Personal"
+    },
+    "support": {
+      "heading":       "지원",
+      "helpFaq":       "도움말 & FAQ",
+      "contactSales":  "영업 문의",
+      "setupGuide":    "설정 가이드"
+    },
+    "legal": {
+      "heading":       "법적 고지",
+      "privacyPolicy": "개인정보 처리방침",
+      "termsOfService":"이용약관",
+      "refundPolicy":  "환불 정책"
+    },
+    "social": {
+      "heading":   "소셜",
+      "xTwitter":  "X / Twitter",
+      "instagram": "Instagram",
+      "tiktok":    "TikTok",
+      "facebook":  "Facebook"
+    },
+    "copyright": "© {{year}} Vois AI. 모든 권리 보유."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "badge": "KI-Kreativstudio",
+  "hero": {
+    "titlePart1": "Kampagnen-Briefing rein.",
+    "titlePart2": "Bewertete Creatives raus.",
+    "description": "Beschreibe, was du brauchst. KI generiert Konzepte, rendert Bilder basierend auf deinen echten Produkten und bewertet jede Variante in 6 Qualitätsdimensionen. Veröffentliche die Gewinner."
+  },
+  "body": "Die Creative-Pipeline ist deterministisch: Kampagnenkontext rein, bewertete Creatives raus. KI generiert Konzepte basierend auf deinen echten Produktfotos, Logos und Nachweismaterialien — nicht generisches Stockmaterial. Jede Variante wird in sechs Dimensionen bewertet: Produkttreue, Markentreue, Lesbarkeit, Authentizität, Platzierungspassung und Richtlinienkonformität. Verfolge jeden erstellten Creative von der Erstellung bis zur Veröffentlichung, zum Klick und zur Conversion. Wisse genau, welche visuellen Winkel Umsatz generieren.",
+  "pipelineLabel": "Generierungs-Pipeline",
+  "pipelineStages": [
+    { "label": "Briefing", "count": "1" },
+    { "label": "3 Konzepte", "count": "3" },
+    { "label": "12 Varianten", "count": "12" },
+    { "label": "Top 4 bewertet", "count": "4" }
+  ],
+  "creativeCards": [
+    { "channel": "Meta-Anzeige", "score": "8,7/10" },
+    { "channel": "Instagram", "score": "9,1/10" },
+    { "channel": "Website", "score": "7,3/10" },
+    { "channel": "Google-Anzeige", "score": "8,9/10" }
+  ],
+  "scoringCaption": "Jede Variante bewertet nach: Produkttreue, Markentreue, Lesbarkeit, Authentizität, Platzierungspassung und Richtlinienkonformität.",
+  "benefits": [
+    {
+      "title": "Verwurzelt in deiner Marke",
+      "desc": "KI greift auf deine echten Produktfotos, Logos und Nachweismaterialien zurück. Kein generisches Stockmaterial — Bilder, die wie dein tatsächliches Unternehmen aussehen."
+    },
+    {
+      "title": "4 Kanäle, ein Briefing",
+      "desc": "Meta-Anzeigen, Social-Media-Beiträge, Website-Abschnitte und Präsentationsfolien — alle aus einem einzigen Kampagnen-Briefing generiert. Größenangepasst und plattformgerecht formatiert."
+    },
+    {
+      "title": "Explorationsmodus",
+      "desc": "Einen Gewinner gefunden? Der Explorationsmodus generiert 10+ Variationen deines besten Konzepts für A/B-Tests. Finde den genauen Winkel, der konvertiert."
+    }
+  ],
+  "scoring": {
+    "heading": "Qualitätsbewertungsdimensionen",
+    "dimensions": [
+      "Produkttreue",
+      "Markentreue",
+      "Lesbarkeit",
+      "Authentizität",
+      "Platzierungspassung",
+      "Richtlinienkonformität"
+    ]
+  },
+  "scenario": "Du launcht eine Frühjahrs-Klimaanlagen-Promotion. Tippe: \"Erstelle Creatives für unsere Frühjahrs-AC-Wartungsaktion — 99 € für Bestandskunden.\" HABOS lädt deine AC-Service-Fotos, Markenfarben und das Kampagnenangebot. In 90 Sekunden: 3 Konzepte, 12 Varianten für Meta, Instagram und deine Website. Die am besten bewertete Variante hat eine Qualitätsbewertung von 9,1. Klicke auf \"Veröffentlichen\" — sie ist live auf Meta und auf der Kampagnenfläche deiner Website veröffentlicht.",
+  "techItems": [
+    "7-stufige deterministische Pipeline",
+    "Multi-Kanal-Output",
+    "6-Dimensionen-Bewertung",
+    "Closed-Loop-Attribution",
+    "Studio- und Explorationsmodus"
+  ],
+  "cta": {
+    "heading": "Andere Tools generieren generische Bilder. HABOS generiert bewertete, markenkonforme Kampagnen.",
+    "button": "Warteliste beitreten"
+  }
+}

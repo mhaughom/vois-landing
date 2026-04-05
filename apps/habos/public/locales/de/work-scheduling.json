@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Planung & Buchungen",
+  "hero": {
+    "title": "Dein Kalender läuft von selbst",
+    "description": "KI-Planung, Online-Buchungen und teilbare Links — verbunden mit deinem CRM und Zahlungen, damit nichts durchs Raster fällt."
+  },
+  "items": [
+    {
+      "title": "Kalender",
+      "desc": "Fokusblöcke automatisch gefüllt, Meetings mit KI-Briefings vorbereitet."
+    },
+    {
+      "title": "Buchungen",
+      "desc": "Kunden buchen online, Aufträge automatisch erstellt, Zahlung in einem Schritt erfasst."
+    },
+    {
+      "title": "Planungslinks",
+      "desc": "Teilbare Buchungsseiten mit Verfügbarkeits-Sync und Stripe-Zahlungen."
+    }
+  ]
+}

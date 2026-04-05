@@ -1,0 +1,50 @@
+{
+  "category": "Filosofia",
+  "title": "La Tua Voce, Non la Nostra",
+  "tagline": "L'AI non deve rendere tutti uguali. HABOS impara il tuo stile di scrittura, il tuo tono, le tue peculiarità — così ogni bozza, ogni email, ogni risposta suona come te. Non un chatbot aziendale. Te.",
+  "heroPlaceholder": "Illustrazione hero",
+  "section1": {
+    "heading": "La tastiera è un collo di bottiglia",
+    "body1": "La digitazione è stata inventata per le macchine da scrivere. Il tocco è stato inventato per i telefoni. Nessuno dei due è stato inventato per gestire un'azienda. Quando un tecnico sul campo finisce un lavoro, l'ultima cosa che vuole fare è sedersi nel furgone compilando quattro app diverse. Quando un fondatore ha un'idea alle 23:00, non vuole aprire un laptop e navigare tre menu.",
+    "body2": "La voce è il modo più veloce e a minor attrito per catturare l'intento. Parli a circa 150 parole al minuto. Digiti a 40. Non è una piccola differenza — è un moltiplicatore 4x sulla velocità di input e il divario tra avere un'idea e perderla."
+  },
+  "section2": {
+    "heading": "Non trascrizione. Comprensione.",
+    "body1": "La maggior parte dei prodotti vocali trascrive il tuo parlato in testo e si ferma lì. Ottieni un muro di parole e la stessa quantità di lavoro davanti a te. HABOS fa qualcosa di fondamentalmente diverso.",
+    "body2": "Lo Smart Router prende una singola registrazione vocale e classifica ogni frase in intenti — attività, eventi del calendario, aggiornamenti CRM, note sull'inventario, messaggi, richieste di ricerca — poi estrae dati strutturati per ciascuno e li instrada alla destinazione giusta. Tutto in meno di tre secondi."
+  },
+  "voiceNoteLabel": "Nota vocale di 30 secondi",
+  "voiceNoteText": "\"Finito al Fjordview. Il compressore dell'Unità 3 mostra usura precoce, raccomando la sostituzione entro sei mesi. Devo ordinare filtri per le unità 1 e 5, il SKU è 4427-B. Ricordami anche di parlare con il direttore dell'hotel per rinnovare il loro contratto di manutenzione.\"",
+  "voiceNoteActions": [
+    { "label": "Rapporto", "text": "Ispezione HVAC auto-compilata con i risultati" },
+    { "label": "Ordine d'acquisto", "text": "Filtri SKU 4427-B → coda acquisti" },
+    { "label": "Attività", "text": "Follow up con il direttore re: rinnovo contratto" },
+    { "label": "Nota CRM", "text": "Risultato compressore registrato sul record del cliente" }
+  ],
+  "voiceNoteFooter": "4 tocchi per approvare. 40 secondi in totale. Sarebbero stati 20 minuti su 4 app.",
+  "voiceSurfacesPlaceholder": "Panoramica delle superfici vocali",
+  "section3": {
+    "heading": "Ogni superficie parla",
+    "intro": "La voce non è limitata a una funzionalità. È un input di prima classe sull'intera piattaforma:",
+    "items": [
+      { "label": "iPhone e Apple Watch", "body": "registra note vocali in movimento, ricevi schede di azione al polso, conferma con un tocco o una parola" },
+      { "label": "Conversazione in tempo reale", "body": "voce bidirezionale con l'assistente AI, latenza da parlato a parlato inferiore a 300ms" },
+      { "label": "Email vocale", "body": "rispondi all'intera casella di posta parlando: \"Rispondi a Lars, digli che sono disponibile giovedì\"" },
+      { "label": "Rapporti vocali", "body": "compila moduli strutturati tramite conversazione invece di cliccare sui campi" },
+      { "label": "Trascrizione riunioni", "body": "note in tempo reale, elementi di azione e domande suggerite, tutti generati in tempo reale" }
+    ]
+  },
+  "voiceFlowPlaceholder": "Diagramma del flusso vocale",
+  "section4": {
+    "heading": "Routing consapevole del contesto",
+    "body1": "Lo Smart Router è consapevole della durata. Una registrazione di 2 minuti che menziona \"riunione\" viene classificata come pianificazione di una riunione. Una registrazione di 15 minuti che menziona \"riunione\" viene classificata come note di riunione. Il sistema comprende che le registrazioni brevi sono comandi e quelle lunghe sono contenuti.",
+    "body2": "Mappa anche gli indici a livello di parola — così l'interfaccia mobile può evidenziare esattamente quali parole sono diventate quali azioni. Tocca \"pianifica una visita al sito il prossimo martedì alle 14:00\" nella trascrizione e si apre l'evento del calendario creato da quelle esatte parole."
+  },
+  "quote": "\"L'analogia più vicina è un assistente esecutivo umano che ascolta il tuo aggiornamento confuso e crea quattro elementi diversi in quattro sistemi diversi. Tranne che HABOS lo fa in meno di tre secondi.\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Un Solo Brain",
+    "nextLabel": "Successivo",
+    "nextTitle": "Consulenti che Non Concordano"
+  }
+}

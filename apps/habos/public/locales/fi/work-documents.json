@@ -1,0 +1,59 @@
+{
+  "badge": "Dokumentit",
+  "hero": {
+    "title_part1": "Kirjoita kerran.",
+    "title_part2": "Löydä ikuisesti",
+    "description": "Monipuolinen tekstieditori malleilla, kokotekstihaulla ja tekoälyavusteisella kirjoittamisella, joka hyödyntää koko työtilasi."
+  },
+  "demoSection": {
+    "heading": "Kirjoita ja löydä yhdessä paikassa",
+    "editorTitle": "Fjordview Hotel — Huoltoehdotus",
+    "aiAssist": "Tekoälyapu",
+    "searchQuery": "huoltosopimus",
+    "searchResults": "3 tulosta",
+    "results": [
+      {
+        "title": "Fjordview Hotel — Huoltoehdotus",
+        "snippet": "...vuotuinen huoltosopimus kattaen HVAC:n, putkityön ja sähkötyön..."
+      },
+      {
+        "title": "Q1 Palvelukatsaus — Fjordview",
+        "snippet": "...sopimuksen uusiminen 15. huhtikuuta. Nykyinen huoltolaajuus sisältää..."
+      },
+      {
+        "title": "Toimittajien hinnoittelulista 2026",
+        "snippet": "...vakiohuoltosopimustaso: 45 000 NOK/kk..."
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "Monipuolinen editori",
+      "desc": "Täysi muotoilu otsikoilla, listoilla, taulukoilla, kuvilla ja upotuksilla. Rakennettu TipTap:ille — nopea ja tuttu."
+    },
+    {
+      "title": "Mallit",
+      "desc": "Aloita todistetuilta malleista ehdotuksille, toimintaohjeille, kokousagendoille ja sopimuksille. Mukauta kerran, käytä uudelleen kaikkialla."
+    },
+    {
+      "title": "Kokotekstihaku",
+      "desc": "Jokainen sana on indeksoitu. Hae kaikista dokumenteista välittömästi. Tulokset näyttävät kontekstin ja korostavat osumia."
+    }
+  ],
+  "scenario": {
+    "body": "Tarvitset huoltoehdotuksen Fjordview Hotelille. Sen sijaan, että aloitat alusta, valitset \"Palveluehdotus\"-mallin. Tekoäly esitäyttää asiakastiedot CRM:stä, viimeisimmät tarkastuslöydökset raporteistasi ja hinnoittelun tuoteluettelostasi. Muokkaat kaksi lausetta ja lähetät.",
+    "closing": "Tyhjästä sivusta lähetettyyn ehdotukseen alle kahdessa minuutissa."
+  },
+  "techItems": [
+    "TipTap-editori",
+    "Mallijärjestelmä",
+    "Kokotekstihaku",
+    "Tekoälyavusteinen kirjoittaminen",
+    "Projektilinkkaus",
+    "Brain-haettava"
+  ],
+  "cta": {
+    "tagline": "Dokumentit, jotka tuntevat liiketoimintasi.",
+    "button": "Liity odotuslistalle"
+  }
+}

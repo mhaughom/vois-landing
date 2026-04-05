@@ -1,0 +1,66 @@
+{
+  "badge": "Prossimamente",
+  "hero": {
+    "title": "Report Vocali",
+    "description": "Detta i report ad alta voce. Cammina per un'ispezione di sito parlando delle tue osservazioni — l'AI genera immediatamente un PDF formattato."
+  },
+  "intro": "I report tradizionali richiedono di sedersi, aprire un modulo e digitare le risposte. HABOS offre quattro modalità di compilazione: un'intervista vocale in tempo reale dove l'AI fa domande campo per campo, una modalità dettatura dove una singola nota vocale compila tutti i campi in silenzio, un chatbot testuale che guida attraverso ogni campo in modo conversazionale e l'inserimento manuale tradizionale come alternativa. Carica un PDF o un'immagine e GPT-4 Vision estrae etichette di campo, tipi e pattern di validazione per generare automaticamente uno schema tipizzato.",
+  "problem": {
+    "title": "Il Problema della Redazione dei Report",
+    "body": "Per i lavoratori sul campo, infermieri, ispettori e molti professionisti, scrivere report su touchscreen o computer è un enorme spreco di tempo. È lento, noioso e le persone spesso omettono dettagli perché digitare è troppo laborioso. I Report Vocali cambiano tutto."
+  },
+  "features": [
+    {
+      "title": "Parla Soltanto",
+      "desc": "Apri VOIS, tocca registra e parla delle tue osservazioni. Niente digitazione, niente moduli, niente caselle di controllo. L'AI ascolta, struttura e formatta tutto automaticamente."
+    },
+    {
+      "title": "Formattazione Immediata",
+      "desc": "L'AI genera un report correttamente formattato — intestazioni, sezioni, punti elenco, riepiloghi. Esporta come PDF, Word o qualsiasi formato necessario. È pronto da inviare immediatamente."
+    },
+    {
+      "title": "10 Volte Più Veloce",
+      "desc": "Le persone parlano 3-4 volte più velocemente di quanto digitano. Aggiungi la formattazione AI e ottieni un risparmio di tempo di 10 volte. Quello che richiedeva 30 minuti ora ne richiede 3."
+    },
+    {
+      "title": "Informazioni più Ricche",
+      "desc": "Quando fare report è così semplice, le persone includono più dettagli. Ottieni dati migliori, più contesto e comunicazione più chiara — tutto perché parlare è senza sforzo."
+    }
+  ],
+  "useCases": {
+    "heading": "Perfetto Per",
+    "items": [
+      {
+        "title": "Lavoratori sul Campo",
+        "desc": "Ispezioni di sito, report di sicurezza, log di manutenzione"
+      },
+      {
+        "title": "Sanità",
+        "desc": "Note infermieristiche, osservazioni pazienti, passaggi di turno"
+      },
+      {
+        "title": "Vendite e Servizi",
+        "desc": "Riunioni con clienti, chiamate di servizio, note di follow-up"
+      }
+    ]
+  },
+  "example": {
+    "title": "Esempio: Ispezione Cantiere Edile",
+    "steps": [
+      "Arrivi al sito con il telefono o l'orologio. Tocca registra in VOIS.",
+      "\"Ispezione sito, Edificio 3, 15 marzo. Condizioni meteorologiche: sereno, 18 gradi. Le fondamenta sembrano solide — nessuna crepa visibile. L'impianto elettrico grezzo è all'80% completato, nei tempi previsti. Problema idraulico nell'Unità 204 — perdita sotto il lavabo, necessita riparazione prima dell'ispezione. Condotti HVAC installati, in attesa dei collegamenti finali...\"",
+      "Cammini e parli per 5 minuti, coprendo tutto ciò che vedi.",
+      "Ferma la registrazione. L'AI genera un report di ispezione formattato con sezioni, punti elenco e un riepilogo. Il problema idraulico viene segnalato come urgente.",
+      "Esporta PDF. Invia email al project manager. Fatto. Tempo totale: 6 minuti."
+    ]
+  },
+  "integration": {
+    "title": "Alimenta l'AI Operativa",
+    "body": "I Report Vocali non servono solo a risparmiare tempo — alimentano dati critici nell'AI Operativa. Quando il tuo team invia report vocali dettagliati, l'AI Operativa può identificare pattern, individuare colli di bottiglia e avvisarti di problemi prima che degenerino. È il fondamento della gestione operativa intelligente."
+  },
+  "status": {
+    "title": "Attualmente in Sviluppo",
+    "body": "I Report Vocali sono costruiti e funzionanti nel nostro ambiente di sviluppo. Stiamo perfezionando i modelli di formattazione e le opzioni di esportazione per diversi settori.",
+    "note": "Previsto disponibile entro 6 mesi per gli abbonati VOIS for Work."
+  }
+}

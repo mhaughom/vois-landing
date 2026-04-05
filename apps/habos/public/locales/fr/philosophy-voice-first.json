@@ -1,0 +1,50 @@
+{
+  "category": "Philosophie",
+  "title": "Votre voix, pas la nôtre",
+  "tagline": "L'IA n'a pas à rendre tout le monde pareil. HABOS apprend votre style d'écriture, votre ton, vos particularités — afin que chaque brouillon, chaque e-mail, chaque réponse vous ressemble. Pas un chatbot d'entreprise. Vous.",
+  "heroPlaceholder": "Illustration principale",
+  "section1": {
+    "heading": "Le clavier est un goulot d'étranglement",
+    "body1": "La frappe a été inventée pour les machines à écrire. Le tap a été inventé pour les téléphones. Ni l'un ni l'autre n'a été inventé pour gérer une entreprise. Quand un technicien terrain finit une mission, la dernière chose qu'il veut faire c'est s'asseoir dans la camionnette à remplir quatre applications différentes. Quand un fondateur a une idée à 23h, il ne veut pas ouvrir un ordinateur portable et naviguer dans trois menus.",
+    "body2": "La voix est le moyen le plus rapide et le moins contraignant de capturer une intention. Vous parlez à environ 150 mots par minute. Vous tapez à 40. Ce n'est pas une petite différence — c'est un multiplicateur de 4x sur la vitesse de saisie, et la différence entre avoir une idée et la perdre."
+  },
+  "section2": {
+    "heading": "Pas de la transcription. De la compréhension.",
+    "body1": "La plupart des produits vocaux transcrivent votre discours en texte et s'arrêtent là. Vous obtenez un mur de mots et la même quantité de travail devant vous. HABOS fait quelque chose de fondamentalement différent.",
+    "body2": "Le Smart Router prend un seul enregistrement vocal et classe chaque phrase en intentions — tâches, événements de calendrier, mises à jour CRM, notes d'inventaire, messages, demandes de recherche — puis extrait des données structurées pour chacune et les route vers la bonne destination. Tout en moins de trois secondes."
+  },
+  "voiceNoteLabel": "Note vocale de 30 secondes",
+  "voiceNoteText": "« Terminé à Fjordview. Le compresseur de l'unité 3 montre une usure précoce, recommande un remplacement dans les six mois. Besoin de commander des filtres pour les unités 1 et 5, la référence est 4427-B. Rappelle-moi aussi de parler au directeur de l'hôtel du renouvellement de leur contrat de maintenance. »",
+  "voiceNoteActions": [
+    { "label": "Rapport", "text": "Inspection CVC remplie automatiquement avec les conclusions" },
+    { "label": "Bon de commande", "text": "Filtres réf. 4427-B → file d'attente des achats" },
+    { "label": "Tâche", "text": "Faire le suivi avec le directeur concernant le renouvellement du contrat" },
+    { "label": "Note CRM", "text": "Conclusion sur le compresseur enregistrée sur le dossier client" }
+  ],
+  "voiceNoteFooter": "4 taps pour approuver. 40 secondes au total. Ça aurait pris 20 minutes dans 4 applications.",
+  "voiceSurfacesPlaceholder": "Vue d'ensemble des surfaces vocales",
+  "section3": {
+    "heading": "Chaque surface parle",
+    "intro": "La voix n'est pas limitée à une seule fonctionnalité. C'est une saisie de premier ordre sur toute la plateforme :",
+    "items": [
+      { "label": "iPhone & Apple Watch", "body": "enregistrez des notes vocales en déplacement, recevez des cartes d'action sur votre poignet, confirmez d'un tap ou d'un mot" },
+      { "label": "Conversation en temps réel", "body": "voix bidirectionnelle avec l'assistant IA, latence voix-à-voix inférieure à 300 ms" },
+      { "label": "E-mail vocal", "body": "répondez à toute votre boîte de réception en parlant : « Réponds à Lars, dis-lui que je suis disponible jeudi »" },
+      { "label": "Rapports vocaux", "body": "remplissez des formulaires structurés par conversation au lieu de cliquer dans les champs" },
+      { "label": "Transcription de réunion", "body": "notes en direct, points d'action et questions suggérées, tout généré en temps réel" }
+    ]
+  },
+  "voiceFlowPlaceholder": "Schéma du flux vocal",
+  "section4": {
+    "heading": "Routage contextuel",
+    "body1": "Le Smart Router est conscient de la durée. Un enregistrement de 2 minutes mentionnant « réunion » est classé comme planification d'une réunion. Un enregistrement de 15 minutes mentionnant « réunion » est classé comme notes de réunion. Le système comprend que les enregistrements courts sont des commandes et que les enregistrements longs sont du contenu.",
+    "body2": "Il mappe également les indices au niveau du mot — afin que l'interface mobile puisse mettre en évidence exactement quels mots sont devenus quelles actions. Tapez « planifier une visite de site mardi prochain à 14h » dans la transcription et l'événement de calendrier créé à partir de ces mots exacts s'ouvre."
+  },
+  "quote": "« L'analogie la plus proche est un assistant exécutif humain qui écoute votre mise à jour rambling et crée quatre éléments différents dans quatre systèmes différents. Sauf que HABOS le fait en moins de trois secondes. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Un seul cerveau",
+    "nextLabel": "Suivant",
+    "nextTitle": "Des conseillers qui ne sont pas d'accord"
+  }
+}

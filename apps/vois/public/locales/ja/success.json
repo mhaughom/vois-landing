@@ -1,0 +1,14 @@
+{
+  "headline": "VIOSへようこそ。",
+  "subtitle": "サブスクリプションが有効になりました。さっそくはじめましょう。",
+  "nextStepsHeading": "次のステップ",
+  "steps": [
+    "領収書がメールで届いていることをご確認ください",
+    "App StoreからVOISをダウンロードしてください",
+    "メールアドレスでサインインして有効化してください"
+  ],
+  "downloadButton": "App Storeでダウンロード",
+  "discordButton": "Discordコミュニティに参加",
+  "backToHome": "ホームに戻る",
+  "logoAlt": "Vois"
+}

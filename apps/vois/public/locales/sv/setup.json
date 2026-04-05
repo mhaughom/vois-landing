@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Installationsguide"
+  },
+  "hero": {
+    "heading": "Konfigurera VOIS på dina enheter",
+    "description": "Lägg till VOIS på din Apple Watch-urtavla och iPhone-låsskärm för omedelbar enklicksinspelar."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "Steg 1: Installera VOIS på din klocka"
+    },
+    "step2": {
+      "heading": "Steg 2: Lägg till VOIS på din urtavla"
+    },
+    "installSteps": [
+      { "number": 1, "text": "Öppna Watch-appen på din iPhone" },
+      { "number": 2, "text": "Scrolla ner till \"Tillgängliga appar\"" },
+      { "number": 3, "text": "Tryck på Installera bredvid VOIS" }
+    ],
+    "faceSteps": [
+      "Håll länge på din urtavla",
+      "Tryck på \"Redigera\"",
+      "Tryck på en komplikationsplats",
+      "Välj VOIS"
+    ],
+    "availableAppsLabel": "Tillgängliga appar",
+    "installButton": "INSTALLERA"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone-låsskärm",
+    "step": {
+      "heading": "Lägg till VOIS-widget på din låsskärm"
+    },
+    "steps": [
+      "Håll länge på din låsskärm",
+      "Tryck på Anpassa",
+      "Tryck på + Lägg till widgets",
+      "Välj VOIS"
+    ]
+  }
+}

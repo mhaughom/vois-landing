@@ -1,0 +1,65 @@
+{
+  "badge": "Centro de marketing",
+  "hero": {
+    "title": "De la estrategia a los ingresos. Una plataforma.",
+    "description": "Defina una vez la voz de su marca y su posicionamiento. Cada campaña, creativo y oportunidad se ancla automáticamente a su estrategia. Rastree la atribución desde el primer clic hasta el acuerdo cerrado."
+  },
+  "body": "Defina una vez la voz de su marca, el posicionamiento, los ICPs objetivo y los puntos de prueba — cada campaña, activo creativo y oportunidad se ancla automáticamente a su perfil estratégico. El sistema analiza continuamente su mercado, competidores y datos de rendimiento para mostrar oportunidades que se perderían: brechas de precios, cambios de tendencia y ángulos de reutilización. Las sesiones de visitantes anónimos se rastrean desde el primer clic hasta la conversión, para que pueda ver qué creativo, campaña y canal impulsó cada lead, reserva y orden.",
+  "dashboard": {
+    "activeCampaigns": {
+      "label": "Campañas activas",
+      "count": "3",
+      "campaigns": ["Promo HVAC de primavera", "Servicios de emergencia", "Programa de referidos"]
+    },
+    "attribution": {
+      "label": "Atribución de pipeline",
+      "revenue": "$127K de ingresos rastreados",
+      "channels": [
+        { "name": "Sitio web 45%" },
+        { "name": "Correo 30%" },
+        { "name": "Social 25%" }
+      ]
+    },
+    "opportunities": {
+      "label": "Oportunidades de IA",
+      "items": [
+        { "tag": "Brecha", "text": "Brecha de competidor: posicionamiento de respuesta de emergencia" },
+        { "tag": "Tendencia", "text": "Demanda de integración de hogar inteligente +40%" }
+      ]
+    },
+    "creative": {
+      "label": "Pipeline creativo",
+      "summary": "12 activos en revisión",
+      "approved": "8 aprobados",
+      "pending": "3 pendientes",
+      "revision": "1 revisión"
+    },
+    "caption": "9 paneles en uno: estrategia, campañas, transmisiones, embudos, activos de prueba, creativos, calendario y análisis de ROI."
+  },
+  "benefits": [
+    {
+      "title": "Descubrimiento de oportunidades con IA",
+      "desc": "El sistema analiza su mercado, competidores y datos de rendimiento para mostrar oportunidades — cambios de tendencia, brechas de competidores y ángulos de reutilización que de otro modo pasaría por alto."
+    },
+    {
+      "title": "Atribución multitoque",
+      "desc": "Sesiones de visitantes anónimos rastreadas desde el primer clic hasta la conversión. Vea qué creativo, campaña y canal impulsó cada lead, reserva y orden."
+    },
+    {
+      "title": "Orquestación de ofertas",
+      "desc": "Vincule productos a campañas con precios dinámicos — porcentaje de descuento, precio fijo, paquetes. Controle dónde y cuándo aparecen las ofertas en todas sus superficies de marketing."
+    }
+  ],
+  "scenario": "Su competidor acaba de subir los precios en plomería de emergencia. HABOS muestra una oportunidad de IA: «Brecha de precios en servicio de emergencia — los competidores promedian $195/llamada, usted está en $150. Recomendación: aumentar a $175 y lanzar una campaña de "Emergencias 24/7".» Hace clic en «Crear campaña» — está prerrellenada con los datos de la oportunidad, vinculada a su producto de servicio de emergencia y lista para publicar.",
+  "techItems": [
+    "Anclaje de estrategia",
+    "Centro de mando de 9 paneles",
+    "Atribución multitoque",
+    "Puntuación de oportunidades con IA",
+    "Ingresos de ciclo cerrado"
+  ],
+  "cta": {
+    "heading": "Otras herramientas de marketing rastrean campañas. HABOS conecta campañas con ingresos.",
+    "button": "Unirse a la lista de espera"
+  }
+}

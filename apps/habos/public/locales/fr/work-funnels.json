@@ -1,0 +1,69 @@
+{
+  "badge": "Automatisation marketing",
+  "hero": {
+    "title": "Les leads arrivent. Le chiffre d'affaires sort.",
+    "description": "Soumission de formulaire → séquence de maturation générée par IA → SMS et e-mail → réservation ou vente. Basée sur la psychologie, respectueuse du consentement, et assez intelligente pour s'arrêter quand le lead répond."
+  },
+  "body": "Quand une soumission de formulaire arrive, les leads entrent automatiquement dans des séquences de maturation générées par IA. Tout le contenu suit un cadre de persuasion éprouvé en quatre étapes : personnalisation, autorité avec des chiffres précis, une offre quantifiée avec inversion du risque, et un appel à l'action spécifique. Les funnels s'arrêtent automatiquement quand le lead répond, atteint une étape CRM terminale ou se désabonne — évitant le sur-contact. Les envois par e-mail et SMS sont soumis au consentement explicite, avec les mots-clés STOP révoquant globalement.",
+  "sequence": {
+    "label": "Séquence de maturation",
+    "step1": "Formulaire soumis",
+    "step2": {
+      "label": "Immédiat : SMS de bienvenue",
+      "message": "\"Bonjour Sarah, merci pour votre demande concernant nos services CVC ! Je suis Mike de Henderson...\""
+    },
+    "wait1": "Attendre 2 heures",
+    "step3": {
+      "label": "E-mail : Autorité + preuves",
+      "message": "\"Objet : 94 % de nos clients économisent plus de 200 $ sur leurs factures d'énergie...\""
+    },
+    "wait2": "Attendre 1 jour",
+    "step4": {
+      "label": "SMS : Offre + appel à l'action",
+      "message": "\"Offre de printemps : mise au point climatisation à 99 $ (au lieu de 149 $). Réservez avant vendredi → habos.app/s/henderson-ac\""
+    },
+    "autostop": {
+      "label": "Arrêt automatique",
+      "desc": "Lead ayant répondu / réservé / gagné → la séquence s'arrête automatiquement"
+    },
+    "summary": "Cadre de persuasion en 4 étapes : Personnalisation → Autorité → Offre → Appel à l'action. 7 stratégies prédéfinies prêtes à déployer.",
+    "summaryFramework": "Personnalisation → Autorité → Offre → Appel à l'action."
+  },
+  "benefits": [
+    {
+      "title": "Consentement d'abord",
+      "desc": "E-mail et SMS soumis au consentement explicite. Les mots-clés STOP révoquent globalement. Le premier message opérationnel bénéficie d'une protection légale — les suivants nécessitent un opt-in."
+    },
+    {
+      "title": "Règles d'arrêt intelligentes",
+      "desc": "Les funnels s'arrêtent automatiquement quand le lead répond (SMS ou e-mail), atteint une étape CRM terminale (gagné/perdu/réservé) ou se désabonne. Aucun sur-contact."
+    },
+    {
+      "title": "7 stratégies intégrées",
+      "desc": "Suivi de lead chaud, prospection B2B à froid, maturation de formulaire, rappels de réservation, réactivation, upsell client et personnalisé. Chacune affinée pour son cas d'usage."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Sans HABOS",
+      "text": "Le lead remplit le formulaire. Vous le voyez 3 heures plus tard. Rédigez un e-mail. Envoyez-le. Attendez. Relancez manuellement. Oubliez 40 % des leads.",
+      "badge": "Délai de réponse moyen : plus de 3 heures"
+    },
+    "with": {
+      "label": "Avec HABOS",
+      "text": "Le lead remplit le formulaire. SMS de bienvenue immédiat. E-mail d'autorité 2 heures plus tard. Offre le lendemain. S'il répond ou réserve — la séquence s'arrête.",
+      "badge": "Délai de réponse : immédiat"
+    }
+  },
+  "techItems": [
+    "Messagerie basée sur la psychologie",
+    "Heures de silence + fuseau horaire",
+    "Détection de réponse entrante",
+    "Synchronisation étapes CRM",
+    "Orchestration multi-étapes"
+  ],
+  "cta": {
+    "heading": "Les autres outils d'automatisation envoient des messages. HABOS cultive des relations.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

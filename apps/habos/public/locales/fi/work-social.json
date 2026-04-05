@@ -1,0 +1,64 @@
+{
+  "badge": "Sosiaalinen media",
+  "hero": {
+    "title_part1": "Julkaise älykkäämmin.",
+    "title_part2": "Ei useammin.",
+    "description": "Hallinnoi Instagram-julkaisujasi tekoälyn luomilla kuvateksteillä, visuaalisella aikataulutuksella ja suorituskykymetriikalla — kaikki samalta alustalta, jossa liiketoimintadatasi asuu."
+  },
+  "feedManager": {
+    "label": "Sosiaalisen median hallinta",
+    "aiCaptionBadge": "Tekoälyn kuvateksti",
+    "postCards": [
+      {
+        "day": "Ma",
+        "time": "9:00",
+        "caption": "Uusi projekti valmis — pyyhkäise nähdäksesi ennen ja jälkeen...",
+        "aiGenerated": true
+      },
+      {
+        "day": "Ke",
+        "time": "14:00",
+        "caption": "Kulissien takana verstaallamme tällä viikolla...",
+        "aiGenerated": false
+      },
+      {
+        "day": "Pe",
+        "time": "11:00",
+        "caption": "Hyvää perjantaita! Tässä vilkaisu mitä on tulossa...",
+        "aiGenerated": false
+      }
+    ],
+    "metrics": [
+      { "label": "Tavoittavuus", "value": "2,4 K" },
+      { "label": "Sitoutuminen", "value": "340" },
+      { "label": "Seuraajat", "value": "+28" }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Tekoälyn kuvatekstit",
+      "desc": "Kuvaile julkaisu selkokielellä. VOIS kirjoittaa kuvatekstin, joka vastaa brändiäänesi, lisää hashtagit ja ehdottaa parhaan julkaisuajan."
+    },
+    {
+      "title": "Visuaalinen aikataulutus",
+      "desc": "Näe sisältökalenterisi yhdellä silmäyksellä. Vedä julkaisuja aikatauluttaaksesi uudelleen. Esikatsele miltä ruudukko näyttää ennen julkaisua."
+    },
+    {
+      "title": "Suorituskykymetriikat",
+      "desc": "Seuraa tavoittavuutta, sitoutumista ja seuraajien kasvua. Näe mitkä sisältötyypit toimivat parhaiten poistumatta VOIS:sta."
+    }
+  ],
+  "scenario": "Otat kuvan valmiista keittiöremontista. Sanot \"julkaise tämä kuvatekstillä muutoksesta.\" VOIS luo kolme kuvatekstivaihtoehtoa, ehdottaa julkaisua torstaina kello 11 sitoutumishistoriasi perusteella ja aikatauluttaa sen. Hyväksyt autosta.",
+  "techItems": [
+    "Instagram-integraatio",
+    "Tekoälyn kuvatekstien luominen",
+    "Julkaisujen aikataulutus",
+    "Sitoutumismetriikat",
+    "Brändiäänen sovittaminen",
+    "Sisältökalenteri"
+  ],
+  "cta": {
+    "title": "Someläsnäolosi,\nliiketoimintadatasi voimistamana.",
+    "button": "Liity odotuslistalle"
+  }
+}

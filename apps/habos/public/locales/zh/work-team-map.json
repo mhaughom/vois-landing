@@ -1,0 +1,69 @@
+{
+  "badge": "实时可见性",
+  "hero": {
+    "title": "实时查看你的整个团队。",
+    "description": "每位现场工作人员都在实时地图上——按项目、部门或运营进行颜色编码。了解谁在开车、谁在现场、谁有空。"
+  },
+  "body": "每位已打卡的团队成员都出现在通过 Supabase Realtime 每 30 秒更新一次的实时 Mapbox 地图上。当工作人员速度超过 3 公里/小时时，他们的图钉上会出现琥珀色的驾驶徽章——管理者立即知道谁在工作间隙。五种分组模式让你可以按项目、部门、运营、组织级别或所有人同时查看，每种模式都有确定性的颜色调色板，同一个人始终获得同一种颜色。",
+  "groupTabs": ["全部", "项目", "部门", "运营"],
+  "pins": [
+    {
+      "name": "Mike T.",
+      "label": "现场中 — Henderson",
+      "speed": 0
+    },
+    {
+      "name": "Sarah L.",
+      "label": "前往中 — Wilson",
+      "sublabel": "（驾驶中）",
+      "speed": 45
+    },
+    {
+      "name": "James K.",
+      "label": "现场中 — Garcia",
+      "speed": 0
+    },
+    {
+      "name": "Lisa M.",
+      "label": "有空",
+      "sublabel": "上次：Baker 办公室",
+      "speed": 0
+    }
+  ],
+  "mapCaption": "通过 Supabase Realtime 每约 30 秒更新一次。速度 > 3 公里/小时时出现驾驶徽章。",
+  "benefits": {
+    "grouping": {
+      "title": "5 种分组模式",
+      "description": "按全部、项目、部门、运营或组织级别查看。每种模式都有确定性的颜色调色板——同一个人，同一种颜色，每次。"
+    },
+    "driving": {
+      "title": "驾驶检测",
+      "description": "当工作人员速度超过 3 公里/小时时，他们的图钉上出现琥珀色车辆徽章。管理者立即看到谁在工作间隙。"
+    },
+    "route": {
+      "title": "路线叠加",
+      "description": "切换来自 Mapbox Directions API 的路线折线。查看计划路线与实际位置——立即发现偏差或延迟。"
+    }
+  },
+  "scenario": {
+    "quote1": "漏水越来越严重，有人能早点来吗？",
+    "narrative1": "你打开团队地图，看到 Mike 离 10 分钟路程并正在完成当前任务。你从调度看板将紧急任务重新分配给 Mike。他的手机更新，地图图钉变为",
+    "quote2": "前往中 — Johnson，",
+    "narrative2": "你告诉客户：",
+    "quote3": "Mike 将在 15 分钟内到达。",
+    "narrative3": "没有猜测，没有电话往返。"
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox GL",
+      "Supabase Realtime",
+      "约 30 秒刷新",
+      "GPS 航点",
+      "确定性颜色调色板"
+    ]
+  },
+  "cta": {
+    "heading": "其他工具向你展示工作人员曾在哪里。HABOS 向你展示他们现在在哪里。",
+    "button": "加入等待名单"
+  }
+}

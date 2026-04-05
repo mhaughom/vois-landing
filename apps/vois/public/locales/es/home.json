@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "El asistente ejecutivo que despeja su mente.",
+    "subheadline": "Capture todo. Organice nada.",
+    "definition": "TAREAS  ·  CALENDARIO  ·  IDEAS  ·  LISTAS  ·  APLICACIONES PERSONALIZADAS",
+    "cta": "Solicitar acceso",
+    "trustText": "Nada cambia sin su aprobación.",
+    "watchVideo": "Ver video",
+    "endVideo": "Finalizar video",
+    "joinWaitlist": "Unirse a la lista de espera",
+    "tryAgain": "Intentar de nuevo"
+  },
+  "problem": {
+    "title": "La mentira universal",
+    "body": [
+      "Todos cargamos un peso oculto. Son las 2:00 PM. Camina hacia su próxima reunión. En su cabeza está haciendo malabares con una lista de compras, una idea brillante para un proyecto, la preocupación por un correo que envió y el hecho de que hoy no ha bebido suficiente agua.",
+      "Podría detenerse, sacar el teléfono, desbloquearlo, abrir tres aplicaciones diferentes y escribirlo todo. Pero no lo hace. Se dice la mentira universal: «Solo lo voy a recordar».",
+      "(No lo recordará). Y ese desorden mental permanece con usted, robándole la concentración."
+    ]
+  },
+  "solution": {
+    "title": "Un reflejo diferente",
+    "body": "Ahora, imagine un reflejo diferente. En lugar de cargar ese peso, simplemente presiona el botón de su reloj (o teléfono). No elige las palabras. No mira una pantalla. Solo habla."
+  },
+  "demo": {
+    "input": "«Recuérdame llamar a Sarah sobre el contrato el martes. También me siento muy agobiado por la renovación de la casa, el ruido es demasiado. Y acabo de correr 5 km en 25 minutos, me siento bien.»",
+    "caption": "Suena desordenado. Suena humano. Suena como usted. Vois escucha el ruido. Pero guarda la señal."
+  },
+  "adapt": {
+    "title": "Su vida, sus categorías",
+    "body": "¿Necesita registrar sus dolores de cabeza? ¿Sus rachas de meditación? ¿Las frases graciosas de su hijo? Solo descríbalo. Vois crea un Espacio personalizado al instante. Usted no construye el sistema. Simplemente vive en él."
+  },
+  "privacy": {
+    "title": "Su mente, su control",
+    "body": "Vois organiza sus pensamientos de forma local y segura. Nada se finaliza hasta que usted lo aprueba. Nada se comparte. Usted es el único con la clave.",
+    "localFirst": "Local primero",
+    "encryptedSync": "Sincronización cifrada",
+    "privacyIllustrationAlt": "Privacidad y control",
+    "enterpriseTitle": "Seguridad de nivel empresarial",
+    "enterpriseBody": "Sus datos están protegidos por la misma infraestructura en la que confían las empresas más grandes del mundo. Utilizamos servicios líderes del sector para garantizar fiabilidad y seguridad.",
+    "securityIllustrationAlt": "Seguridad empresarial",
+    "awsServers": "Servidores AWS",
+    "supabase": "Supabase",
+    "soc2": "Cumple con SOC 2"
+  },
+  "footer": {
+    "headline": "Una mente despejada. Una vida ordenada.",
+    "subheadline": "Deje de hacer el trabajo administrativo de su propia existencia. Dé el caos a Vois. Quédese con la claridad para usted.",
+    "cta": "Iniciar la Beta",
+    "tagline": "Despeje su mente.",
+    "colProduct": "Producto",
+    "colSupport": "Soporte",
+    "colLegal": "Legal",
+    "colSocial": "Social",
+    "linkLogin": "Iniciar sesión",
+    "linkDownloadIphone": "Descargar para iPhone",
+    "linkDownloadWatch": "Descargar para Watch",
+    "linkDownloadMac": "Descargar para Mac",
+    "linkHabos": "HABOS para empresas",
+    "linkHelpFaq": "Ayuda y preguntas frecuentes",
+    "linkContactUs": "Contáctenos",
+    "linkSetupGuide": "Guía de configuración",
+    "linkPrivacyPolicy": "Política de privacidad",
+    "linkTerms": "Términos de servicio",
+    "linkRefund": "Política de reembolso",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "La vida no espera a que abra su aplicación de notas.",
+    "p1": "Entrando a la reunión. Bajo la ducha. A mitad del camino hacia la puerta.",
+    "p2": "Una invitación. Una tarea. Un pensamiento que no puede permitirse perder.",
+    "p3": "Se dice: «Solo lo voy a recordar».",
+    "p4": "(No lo recordará.)"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "Recupere a la velocidad del sonido.",
+    "bodyBefore": "Pregunte de forma natural y obtenga ",
+    "bodyHighlight": "respuestas instantáneas",
+    "bodyAfter": ". Su asistente de voz encuentra exactamente lo que necesita de todo lo que ha capturado."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cuál es la diferencia entre Personal y Trabajo?",
+        "answer": "Personal es para la vida cotidiana: capturar tareas, ideas, recordatorios y notas. Trabajo añade transcripción de reuniones, elementos de acción, herramientas de colaboración en equipo y soporte prioritario."
+      },
+      {
+        "question": "¿Son privados mis datos de voz?",
+        "answer": "Sí. Utilizamos una arquitectura local primero. Sus grabaciones se procesan de forma segura y no usamos sus pensamientos personales para entrenar nuestros modelos públicos. Su mente le pertenece."
+      },
+      {
+        "question": "¿Puedo cambiar de plan o cancelar en cualquier momento?",
+        "answer": "Por supuesto. Puede mejorar, reducir o cancelar su suscripción en cualquier momento. Si cancela, mantendrá el acceso hasta el final de su período de facturación actual."
+      },
+      {
+        "question": "¿Qué pasa si no me funciona?",
+        "answer": "Ofrecemos una garantía de reembolso de 30 días. Si Vois no le ayuda a despejar su mente en el primer mes, contáctenos para obtener un reembolso completo."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Elija su plan",
+    "subtitle": "Comience gratis. Mejore cuando esté listo.",
+    "billingMonthly": "Mensual",
+    "billingAnnual": "Anual",
+    "saveLabel": "Ahorre hasta un 40%",
+    "freePlanTitle": "Gratis",
+    "freePlanDescription": "Pruébelo, sin tarjeta requerida",
+    "freePlanPeriod": "siempre",
+    "freePlanCta": "Descargar gratis",
+    "personalPlanTitle": "Personal",
+    "personalPlanBadge": "Popular",
+    "personalPlanDescription": "Para organización de la vida cotidiana",
+    "personalPlanPeriod": "/mes",
+    "personalPlanCta": "Unirse a la lista de espera",
+    "personalPlanNote": "Cancele en cualquier momento. Garantía de reembolso de 30 días.",
+    "workPlanTitle": "Trabajo",
+    "workPlanDescription": "Para profesionales y equipos",
+    "workPlanPeriod": "/mes",
+    "workPlanCta": "Unirse a la lista de espera",
+    "workPlanNote": "Cancele en cualquier momento. Garantía de reembolso de 30 días."
+  }
+}

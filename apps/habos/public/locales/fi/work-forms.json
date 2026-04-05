@@ -1,0 +1,62 @@
+{
+  "badge": "Lomakerakentaja",
+  "hero": {
+    "title": "Rakenna lomake.\nSe hoitaa loput.",
+    "description": "21 kenttätyyppiä, vedä-ja-pudota-rakentaja ja reitityssäännöt, jotka luovat automaattisesti tiketit, CRM-liidit ja funnel-ilmoittautumiset lähettämisen yhteydessä."
+  },
+  "body": "Lomakkeet tukevat kolmea täyttötilaa: perinteinen klikkaa-ja-kirjoita, tekoälypohjainen chat, jossa asiakkaat kuvailevat tarpeitaan luonnollisesti, tai äänisyöttö, jossa he puhuvat vastauksensa ja tekoäly litteroi. Kun lomake lähetetään, reititysmottori arvioi ehdolliset säännöt — \"jos budjetti ylittää 50 000 $, luo korkean prioriteetin tiketti.\" CRM-yhteystiedot päivitetään automaattisesti sähköpostilla, tiketit luodaan älykkäällä kentän kartoituksella, liidit virtaavat hoitofunneleihin ja vahvistussähköpostit lähetetään — kaikki yhdessä atomisessa operaatiossa.",
+  "mockForm": {
+    "title": "Pyydä tarjous",
+    "badge": "3 täyttötilaa",
+    "fields": {
+      "fullName": "Koko nimi",
+      "fullNamePlaceholder": "John Henderson",
+      "email": "Sähköposti",
+      "emailPlaceholder": "john@example.com",
+      "serviceNeeded": "Tarvittava palvelu",
+      "servicePlaceholder": "Putkityö",
+      "budgetRange": "Budjettialue",
+      "budgetPlaceholder": "5 000 $+",
+      "projectDescription": "Kuvaile projektisi",
+      "projectPlaceholder": "Kylpyhuoneremontti, täydellinen purku ja uudelleenrakennus..."
+    },
+    "serviceOptions": ["Putkityö", "HVAC", "Sähkötyö"],
+    "budgetOptions": ["< 1 000 $", "1 000–5 000 $", "5 000 $+"],
+    "submit": "Lähetä",
+    "modes": {
+      "form": "Lomake",
+      "chat": "Chat",
+      "voice": "Ääni"
+    },
+    "caption": "Asiakkaat voivat täyttää perinteisesti, jutella tekoälychatbotin kanssa tai puhua vastauksensa. Sama lomake, kolme syöttötilaa."
+  },
+  "benefits": {
+    "crm": {
+      "title": "Auto-CRM + tiketit",
+      "desc": "Lähetykset päivittävät CRM-yhteystiedot automaattisesti (deduplikoitu sähköpostilla) ja luovat tiketit älykkäällä kentän kartoituksella ja reitityssäännöillä."
+    },
+    "routing": {
+      "title": "Ehdollinen reititys",
+      "desc": "Jos budjetti > 5 000 $ → luo tiketti prioriteetti: korkea. Jos palvelu = HVAC → nimeä Saralle. Säännöt ajetaan automaattisesti jokaisella lähetyksellä."
+    },
+    "embed": {
+      "title": "Verkkosivuston upotus",
+      "desc": "Upota HABOS-sivustollesi läpinäkyvällä taustalla ja automaattisella korkeudella. Eri alkuperien koon muutos viestinnällä pitää sen saumattomana."
+    }
+  },
+  "scenario": {
+    "label": "Todellinen skenaario",
+    "text": "Omakotitaloasiakas vierailee verkkosivustollasi ja täyttää tarjouspyynnön 8 000 $:n kylpyhuoneremonttia varten. HABOS luo korkean prioriteetin tiketin (budjetti > 5 000 $ -sääntö), päivittää heidät CRM:ään, ilmoittaa heidät \"lämmin liidi\" -funneliin ja lähettää vahvistussähköpostin — kaikki ennen kuin näet ilmoituksen. Kun avaat tiketin, heidän täydellinen CRM-profiilisi, projektiyhteytensä ja ehdotettu vastaus ovat jo siellä."
+  },
+  "techStrip": [
+    "21 kenttätyyppiä",
+    "3 täyttötilaa",
+    "Ehdollinen reititys",
+    "Auto-CRM-päivitys",
+    "Näyttö- ja konversiotilinpito"
+  ],
+  "closing": {
+    "title": "Muut lomaketyökalut keräävät dataa.\nHABOS toimii sen perusteella.",
+    "cta": "Liity odotuslistalle"
+  }
+}

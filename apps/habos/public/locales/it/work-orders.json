@@ -1,0 +1,52 @@
+{
+  "badge": "Gestione Ordini",
+  "hero": {
+    "title": "Dal preventivo al pagamento. Ogni fase tracciata.",
+    "description": "Gestione ordini completa del ciclo di vita con voci, tracciamento pagamenti e aggiustamenti automatici delle scorte — così niente cade nel vuoto."
+  },
+  "intro": "Gli ordini in VOIS sono il record centrale che collega i clienti CRM, i prodotti con varianti e l'inventario. Quando una prenotazione si completa o un lavoro finisce, un ordine viene creato automaticamente con le voci e i prezzi corretti. Lo stato del pagamento scorre da non pagato a parzialmente pagato a pagato a rimborsato — sempre visibile, sempre aggiornato. Ogni voce deduce dall'inventario prodotti in tempo reale, eliminando completamente i conteggi manuali delle scorte.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovation", "amount": "$12.500", "status": "Pagato ✓" },
+    { "id": "#1248", "client": "Baker HVAC Service", "amount": "$3.200", "status": "Parziale" },
+    { "id": "#1249", "client": "Wilson Emergency", "amount": "$890", "status": "Non pagato" }
+  ],
+  "lineItems": {
+    "heading": "Voci — Ordine #1247 · Henderson Renovation",
+    "items": [
+      { "item": "Piastrella in gres porcellanato (600x600)", "qty": 48, "unit": "$85,00", "total": "$4.080" },
+      { "item": "Adesivo per piastrelle (sacco 25kg)", "qty": 12, "unit": "$32,00", "total": "$384" },
+      { "item": "Manodopera — posa piastrelle (ore)", "qty": 24, "unit": "$95,00", "total": "$2.280" },
+      { "item": "Kit riscaldamento a pavimento", "qty": 1, "unit": "$1.850,00", "total": "$1.850" }
+    ],
+    "total": "Totale: $12.500",
+    "annotation": "Ordini creati automaticamente da prenotazioni e lavori. Le voci vengono estratte dal tuo catalogo prodotti con supporto varianti."
+  },
+  "benefitCards": [
+    {
+      "title": "Creato automaticamente dalle prenotazioni",
+      "desc": "Quando una prenotazione si completa, l'ordine viene generato automaticamente con le voci e i prezzi corretti. Nessuna duplicazione di dati, nessun addebito mancato."
+    },
+    {
+      "title": "Aggiustamenti scorte in tempo reale",
+      "desc": "Ogni voce dell'ordine deduce dall'inventario prodotti in tempo reale. Nessun conteggio manuale delle scorte. Gli avvisi di riordino scattano prima che le scorte esauriscano."
+    },
+    {
+      "title": "Ciclo di vita del pagamento",
+      "desc": "Traccia non pagato → parziale → pagato → rimborsato. Ogni cambio di stato viene registrato e collegato automaticamente alla tua piattaforma contabile."
+    }
+  ],
+  "scenario": "Un idraulico finisce un lavoro. Durante il viaggio di ritorno, dice a VOIS quali parti ha usato — due valvole a sfera, un tubo flessibile e tre ore di manodopera.",
+  "scenarioHighlight": "VOIS crea automaticamente l'ordine con le voci corrette, deduce le parti dall'inventario, collega l'ordine al cliente CRM e prepara la fattura — prima che sia tornato in ufficio.",
+  "techItems": [
+    "Deduzione automatica scorte",
+    "Varianti voci",
+    "Ciclo di vita pagamento",
+    "Collegamento cliente CRM",
+    "Pipeline prenotazione-ordine",
+    "Ordini acquisiti vocalmente"
+  ],
+  "cta": {
+    "title": "Smetti di inseguire la burocrazia.\nLascia che gli ordini si costruiscano da soli.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

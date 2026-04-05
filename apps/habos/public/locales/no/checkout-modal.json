@@ -1,0 +1,52 @@
+{
+  "quizCategories": [
+    "Arrangementer og kalender",
+    "Oppgaver og gjøremål",
+    "Handel og lister",
+    "Idéer og notater",
+    "Helse og velvære",
+    "Økonomi og budsjett",
+    "Mål og vaner",
+    "Mennesker og sosialt"
+  ],
+  "quizDevices": {
+    "watch": {
+      "label": "Apple Watch",
+      "desc": "Ta opp på håndleddet"
+    },
+    "phone": {
+      "label": "iPhone",
+      "desc": "Alltid i lommen"
+    },
+    "both": {
+      "label": "Begge",
+      "desc": "Den fulle opplevelsen"
+    }
+  },
+  "step1": {
+    "heading": "Hva ville du lagre?",
+    "subLabel": "Velg alt som opptar tankene dine."
+  },
+  "step2": {
+    "heading": "Hvordan vil du se det?",
+    "subLabel": "Velg din foretrukne enhet."
+  },
+  "step3": {
+    "heading": "Start abonnementet ditt",
+    "subLabel": "Skriv inn e-postadressen din for å fortsette til betaling.",
+    "emailLabel": "E-post",
+    "emailPlaceholder": "du@bedrift.com",
+    "perMonth": "/mnd",
+    "guarantee": "Avbestill når som helst. 30 dagers pengene-tilbake-garanti.",
+    "continueToPay": "Fortsett til betaling"
+  },
+  "back": "Tilbake",
+  "continue": "Fortsett",
+  "errors": {
+    "emailRequired": "Vennligst skriv inn e-postadressen din.",
+    "emailInvalid": "Vennligst skriv inn en gyldig e-postadresse.",
+    "tooManyAttempts": "For mange forsøk. Vent litt og prøv igjen.",
+    "unavailable": "Betaling er midlertidig utilgjengelig. Prøv igjen senere.",
+    "generic": "Noe gikk galt. Vennligst prøv igjen."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "badge": "AI Creatieve Studio",
+  "hero": {
+    "titlePart1": "Campagnebriefing in.",
+    "titlePart2": "Beoordeelde creatives uit.",
+    "description": "Beschrijf wat je nodig hebt. AI genereert concepten, rendert afbeeldingen gebaseerd op je echte producten en beoordeelt elke variant op 6 kwaliteitsdimensies. Zet de winnaars in."
+  },
+  "body": "De creatieve pijplijn is deterministisch: campagnecontext in, beoordeelde creatives uit. AI genereert concepten gebaseerd op je echte productfoto's, logo's en bewijs-assets — geen generieke stockfoto's. Elke variant wordt beoordeeld op zes dimensies: productgetrouwheid, merkgetrouwheid, leesbaarheid, authenticiteit, plaatsingsfit en beleidsconformiteit. Volg elke gegenereerde creative van creatie tot inzet tot klik tot conversie. Weet precies welke visuele invalshoeken omzet genereren.",
+  "pipelineLabel": "Generatiepijplijn",
+  "pipelineStages": [
+    { "label": "Briefing", "count": "1" },
+    { "label": "3 Concepten", "count": "3" },
+    { "label": "12 Varianten", "count": "12" },
+    { "label": "Top 4 Beoordeeld", "count": "4" }
+  ],
+  "creativeCards": [
+    { "channel": "Meta-advertentie", "score": "8,7/10" },
+    { "channel": "Instagram", "score": "9,1/10" },
+    { "channel": "Website", "score": "7,3/10" },
+    { "channel": "Google-advertentie", "score": "8,9/10" }
+  ],
+  "scoringCaption": "Elke variant beoordeeld op: productgetrouwheid, merkgetrouwheid, leesbaarheid, authenticiteit, plaatsingsfit en beleidsconformiteit.",
+  "benefits": [
+    {
+      "title": "Geworteld in jouw merk",
+      "desc": "AI verwijst naar je echte productfoto's, logo's en bewijs-assets. Geen generieke stockfoto's — afbeeldingen die eruitzien als jouw werkelijke bedrijf."
+    },
+    {
+      "title": "4 kanalen, één briefing",
+      "desc": "Meta-advertenties, sociale berichten, websitesecties en presentatieslides — allemaal gegenereerd vanuit één campagnebriefing. Aangepast en opgemaakt per platform."
+    },
+    {
+      "title": "Verkeningsmodus",
+      "desc": "Een winnaar gevonden? Verkeningsmodus genereert 10+ variaties van je beste concept voor A/B-testen. Vind de exacte invalshoek die converteert."
+    }
+  ],
+  "scoring": {
+    "heading": "Kwaliteitsbeoordelingsdimensies",
+    "dimensions": [
+      "Productgetrouwheid",
+      "Merkgetrouwheid",
+      "Leesbaarheid",
+      "Authenticiteit",
+      "Plaatsingsfit",
+      "Beleidsconformiteit"
+    ]
+  },
+  "scenario": "Je lanceert een lente-HVAC-promotie. Typ: \"Genereer creatives voor onze lente-AC-onderhoudsactie — €99 voor bestaande klanten.\" HABOS haalt je AC-servicefotos, merkkleuren en het campagneaanbod op. In 90 seconden: 3 concepten, 12 varianten voor Meta, Instagram en je website. De hoogst beoordeelde variant heeft een kwaliteitsrating van 9,1. Klik op \"Inzetten\" — het staat live op Meta en gepubliceerd op het campagneoppervlak van je website.",
+  "techItems": [
+    "7-staps deterministisch pijplijn",
+    "Multi-kanaal uitvoer",
+    "6-dimensie beoordeling",
+    "Gesloten lus attributie",
+    "Studio + Verkeningsmodi"
+  ],
+  "cta": {
+    "heading": "Andere tools genereren generieke afbeeldingen. HABOS genereert beoordeelde, merkklare campagnes.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

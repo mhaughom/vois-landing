@@ -1,0 +1,65 @@
+{
+  "badge": "Personkatalog",
+  "hero": {
+    "title": "Alle personer. Alle interaksjoner. Én visning.",
+    "description": "Taleopptak, e-poster, chatter, møter, CRM-tidslinje – HABOS samler alle kontaktpunkter med en person i én enkelt relasjonsprofil."
+  },
+  "intro": "Personkatalogen bygger seg selv fra hvordan du snakker om folk. Nevn noens navn i et talenotat og HABOS oppretter eller kobler dem automatisk med kontekst og stemningsanalyse. Person-huben samler alle interaksjoner: taleopptak der de nevnes, e-posttråder, chattsamtaler, møter der de snakket, CRM-tidslinjeelementer og personbaserte AI-sesjoner – alt returnert av ett enkelt databasekall. Vanlige emner utledes av AI, og stemningsutviklinger spores på tvers av alle kanaler.",
+  "profile": {
+    "name": "Sarah Henderson",
+    "sentiment": "Positiv",
+    "role": "Beslutningstaker hos Henderson Rør",
+    "interactions": "47 interaksjoner",
+    "lastContact": "Siste kontakt: for 2 dager siden",
+    "actionItems": "3 åpne handlingspunkter",
+    "annotation": "Personkatalogen bygger seg selv fra hvordan du snakker om folk. Nevn noen i et talenotat – de opprettes automatisk med kontekst."
+  },
+  "timeline": [
+    {
+      "title": "Sv: Kjøkkentidslinje",
+      "detail": "21. mar — Bekreftet revidert plan"
+    },
+    {
+      "title": "Talesamtale",
+      "detail": "20. mar — Diskuterte tillatelsegodkjenning, positiv stemning"
+    },
+    {
+      "title": "Slack #henderson",
+      "detail": "19. mar — Spurte om flisutvalget"
+    },
+    {
+      "title": "Teamsynkronisering",
+      "detail": "18. mar — 2 handlingspunkter tildelt Sarah"
+    },
+    {
+      "title": "Talenotatnevnelse",
+      "detail": "15. mar — «Sarah trenger budsjettoppdateringen innen fredag»"
+    }
+  ],
+  "benefitCards": [
+    {
+      "title": "Automatisk opprettet fra tale",
+      "body": "Nevn noens navn under et opptak eller en samtale, HABOS oppretter eller kobler dem i katalogen din med kontekst og stemning."
+    },
+    {
+      "title": "Flerrollers kobling",
+      "body": "Samme person kan være «Beslutningstaker» hos Bedrift A og «Teknisk leder» hos Bedrift B. Fleksibel rollesporing på tvers av alle CRM-kunder."
+    },
+    {
+      "title": "Re-indekseringspipeline",
+      "body": "Massebehandler alle opptak for å finne personnevnelser, opprette/deduplisere kontakter, analysere stemning og trekke ut vanlige emner."
+    }
+  ],
+  "scenario": "Du er i ferd med å ringe Sarah, men husker ikke hvor ting står. Åpne profilen hennes – se e-posten fra tirsdag om den reviderte tidslinjen, Slack-spørsmålet om flisutvalget og et talenotat fra forrige uke der du nevnte at hun trenger budsjettoppdateringen. Tre åpne handlingspunkter er opplistet. Du er fullt forberedt på 10 sekunder – uten å søke i én eneste app.",
+  "techItems": [
+    "get_person_hub() RPC",
+    "Tverrkanalsstemning",
+    "Talenevnelsedeteksjon",
+    "Auto-dedup etter navn",
+    "CRM ↔ Person-kobling"
+  ],
+  "cta": {
+    "tagline": "Andre apper sporer kontakter. HABOS sporer relasjoner.",
+    "button": "Bli med på ventelisten"
+  }
+}

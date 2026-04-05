@@ -1,0 +1,30 @@
+{
+  "banner": {
+    "title": "Vi verdsetter personvernet ditt",
+    "description": "Vi bruker analyse for å forstå hvordan besøkende samhandler med nettstedet vårt, slik at vi kan forbedre opplevelsen. Ingen data brukes til annonsering.",
+    "privacyPolicy": "Personvernpolicy",
+    "rejectAllAriaLabel": "Avvis alle informasjonskapsler",
+    "acceptAll": "Godta alle",
+    "rejectAll": "Avvis alle",
+    "manage": "Administrer",
+    "necessary": "Nødvendige",
+    "necessaryDescription": "Nødvendig for at nettstedet skal fungere. Kan ikke deaktiveres.",
+    "analytics": "Analyse",
+    "analyticsDescription": "Hjelper oss å forstå bruksmønstre via PostHog (EU-basert). Ingen annonsessporing.",
+    "analyticsToggleAriaLabel": "Slå analyse-sporing av/på",
+    "savePreferences": "Lagre innstillinger"
+  },
+  "settings": {
+    "triggerLabel": "Informasjonskapselinnstillinger",
+    "modalTitle": "Informasjonskapselpreferanser",
+    "description": "Kontroller hvilke informasjonskapsler og sporingsteknologier som er aktive.",
+    "privacyPolicy": "Personvernpolicy",
+    "necessary": "Nødvendige",
+    "necessaryDescription": "Nødvendig for at nettstedet skal fungere.",
+    "analytics": "Analyse",
+    "analyticsDescription": "PostHog-analyse (EU-basert). Ingen annonsessporing.",
+    "analyticsToggleAriaLabel": "Slå analyse av/på",
+    "savePreferences": "Lagre innstillinger",
+    "cancel": "Avbryt"
+  }
+}

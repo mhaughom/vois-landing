@@ -1,0 +1,44 @@
+{
+  "badge": "Funcionalidade Principal",
+  "hero": {
+    "title": "Entre em Cada Reunião",
+    "titleHighlight": "Preparado",
+    "description": "O VOIS lê seu calendário, pesquisa seu histórico e cria um resumo automaticamente. Você apenas o lê."
+  },
+  "intro": "Antes de cada reunião, o HABOS busca automaticamente as tarefas e marcos abertos do projeto vinculado, o status de saúde da operação relevante, reuniões anteriores com os mesmos participantes, histórico do cliente no CRM e seu conhecimento privado no Brain. Uma ferramenta de reunião standalone não tem acesso a nada disso. Como todos os módulos compartilham um banco de dados, o resumo sabe o que nenhuma ferramenta externa jamais poderia.",
+  "timeComparison": {
+    "before": {
+      "value": "20 min",
+      "description": "vasculhando e-mails, CRM e notas da última reunião"
+    },
+    "after": {
+      "value": "60 seg",
+      "description": "leia o resumo no celular enquanto caminha para a sala"
+    }
+  },
+  "briefPreview": {
+    "title": "O que está no resumo"
+  },
+  "benefitCards": [
+    {
+      "title": "Gerado automaticamente",
+      "description": "Os resumos aparecem antes mesmo de você pensar em se preparar. O calendário os aciona automaticamente."
+    },
+    {
+      "title": "Com referência cruzada",
+      "description": "Busca em e-mails, reuniões, CRM, notas de projeto e itens de ação anteriores. Nada é perdido."
+    },
+    {
+      "title": "Consciente dos participantes",
+      "description": "Veja as interações recentes de cada pessoa, sentimento e itens abertos. Saiba em que pé você está."
+    }
+  ],
+  "callout": {
+    "body": "Você está prestes a entrar em uma ligação com um cliente com quem não falou há 3 semanas. Em vez de pesquisar sua caixa de entrada, verificar o CRM e tentar lembrar o que foi discutido \u2014 você abre o VOIS e vê um resumo de uma página com todos os detalhes relevantes, organizados e prontos.",
+    "punchline": "São 20 minutos de volta no seu dia, todos os dias."
+  },
+  "closing": {
+    "tagline": "Outros aplicativos lembram você sobre reuniões. O VOIS prepara você para elas.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

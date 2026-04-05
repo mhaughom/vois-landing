@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "دليل الإعداد"
+  },
+  "hero": {
+    "heading": "إعداد VOIS على أجهزتك",
+    "description": "أضف VOIS إلى واجهة Apple Watch وشاشة قفل iPhone للتسجيل الفوري بنقرة واحدة."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "الخطوة 1: تثبيت VOIS على ساعتك"
+    },
+    "step2": {
+      "heading": "الخطوة 2: إضافة VOIS إلى واجهة الساعة"
+    },
+    "installSteps": [
+      { "number": 1, "text": "افتح تطبيق Watch على iPhone" },
+      { "number": 2, "text": "مرر للأسفل إلى «التطبيقات المتاحة»" },
+      { "number": 3, "text": "اضغط تثبيت بجانب VOIS" }
+    ],
+    "faceSteps": [
+      "اضغط مطولاً على واجهة الساعة",
+      "اضغط «تعديل»",
+      "اضغط على أحد مواضع المضاعفات",
+      "اختر VOIS"
+    ],
+    "availableAppsLabel": "التطبيقات المتاحة",
+    "installButton": "تثبيت"
+  },
+  "lockScreen": {
+    "sectionHeading": "شاشة قفل iPhone",
+    "step": {
+      "heading": "إضافة ودجت VOIS إلى شاشة القفل"
+    },
+    "steps": [
+      "اضغط مطولاً على شاشة القفل",
+      "اضغط تخصيص",
+      "اضغط + إضافة ودجات",
+      "اختر VOIS"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "category": "Filosofi",
+  "title": "To grænseflader, ét system",
+  "tagline": "Mennesker får skærme. Agenter får API'er. Samme værktøjer, samme data.",
+  "heroAlt": "To grænseflader — visuelle dashboards og strukturerede API'er",
+  "body1": "De fleste \"AI-drevne\" produkter falder i én af to fælder. Første: bolt en chatbot på eksisterende UI og lad AI'en klikke knapper, navigere menuer, læse skærme. Det forbrænder 15.000 tokens på at gøre, hvad et funktionskald håndterer i 200. Når UI'en ændrer sig, bryder agenten sammen. Anden: byg kun AI uden menneskelig interface. Agenten er hurtig — men den er en sort boks. Den \"håndterede\" din e-mail, men du kan ikke se, hvad den sendte.",
+  "humanInterface": {
+    "label": "Menneskelig interface",
+    "body": "Visuel ugevisning. Farvekodede begivenheder. Træk for at flytte. Rumlig ræsonnement om din tid."
+  },
+  "agentInterface": {
+    "label": "Agentinterface",
+    "code": "manage_calendar(action='create', date='Thu', time='14:00')",
+    "body": "Samme kalender. Samme begivenhed. Samme tilladelser."
+  },
+  "comparison": "Agent via web UI: 15.000 tokens. Agent via funktionskald: 200 tokens. 75x.",
+  "comparisonWebUI": "Agent via web UI:",
+  "comparisonWebUIStat": "15.000 tokens.",
+  "comparisonFunctionCall": "Agent via funktionskald:",
+  "comparisonFunctionCallStat": "200 tokens.",
+  "comparisonMultiplier": "75x.",
+  "quote": "\"At få AI til at klikke knapper er som at få en pilot til at gå. Giv hver intelligens den interface, den fortjener.\"",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Forslag, ikke menuer",
+    "nextLabel": "Næste",
+    "nextTitle": "Fang din hjerne"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "Kjernefunksjon",
+  "hero": {
+    "title": "Beskriv det. Agenten gjør resten.",
+    "description": "Gi en kompleks instruksjon på vanlig språk. En autonom agent planlegger, utfører på tvers av virksomheten din, og ber om tillatelse før alt som er risikabelt."
+  },
+  "intro": "Dette er ikke en chatbot med API-integrasjoner. Det er et autonomt agentramme med planlegging, godkjenningsporter, budsjettstyring, delegering og feilgjenoppretting — som opererer på tvers av 87 forretningsmoduler med radsikkerhet. Arkitekturen er sammenlignbar med bedriftsarbeidsflytmotorer som ServiceNow eller Salesforce Flow, men drevet av naturlig språk i stedet for dra-og-slipp-flytdiagrammer. Aktive kjøringer overlever til og med serveromstarter.",
+  "pipeline": {
+    "steps": [
+      { "label": "Beskriv" },
+      { "label": "Planlegg" },
+      { "label": "Utfør" },
+      { "label": "Godkjenn" },
+      { "label": "Ferdig" }
+    ],
+    "footer": "Agenten pauser ved «Godkjenn» for alt som er høyrisiko. Du har alltid det siste ordet."
+  },
+  "scenario": {
+    "title": "Se det i aksjon",
+    "instructionLabel": "Din instruksjon",
+    "instruction": "«Analyser Q1-omsetningen vår, finn de 3 svakest presterende produktene, og send lederskapet et sammendrag på e-post.»",
+    "agentLabel": "Hva agenten gjør",
+    "steps": [
+      { "text": "Spør økonomimodulen om Q1-omsetning per produkt" },
+      { "text": "Kryssrefererer produktkatalogen for kontekst" },
+      { "text": "Identifiserer de tre dårligste: Widget Pro (-23 %), Basisplan (-18 %), Startpakke (-12 %)" },
+      { "text": "Utarbeider sammendragse-post med grafer" },
+      { "text": "Pauser — viser deg e-postutkastet for godkjenning" },
+      { "text": "Du godkjenner → E-post sendt til lederskapet" }
+    ]
+  },
+  "stats": {
+    "title": "Hva dette betyr for deg",
+    "items": [
+      {
+        "big": "Timer → Minutter",
+        "desc": "Oppgaver som tok en halv dag tar nå én enkelt setning."
+      },
+      {
+        "big": "8 masterverktøy",
+        "desc": "Søk, planlegging, e-post, økonomi, bestillinger, forskning, oppgaver, rapporter — alt til agentens disposisjon."
+      },
+      {
+        "big": "3-nivå delegering",
+        "desc": "Agenter kan opprette underagenter med budsjettgrenser. Komplekst arbeid, fullstendig sporet."
+      }
+    ]
+  },
+  "trustSignals": [
+    "Kryptografiske godkjenningstokens",
+    "Budsjettsporing per kjøring",
+    "Fullstendig kjøringsspor",
+    "Overlever serveromstarter"
+  ],
+  "closing": {
+    "tagline": "Andre plattformer automatiserer enkle utløsere. VOIS-agenter tenker, planlegger og utfører.",
+    "cta": "Bli med på ventelisten"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "badge": "Kunnskapshåndtering",
+  "hero": {
+    "title": "Last opp én gang. Søkbart for alltid.",
+    "description": "Slipp inn en PDF, Word-dokument eller URL. AI renser, strukturerer og legger det inn i Brain. Dra mapper til avdelinger — alle som trenger det får tilgang automatisk."
+  },
+  "intro": "Last opp en PDF, Word-dokument eller URL — GPT-4o renser, strukturerer og trekker ut metadata automatisk. Hver spillebok deles i 512-dimensjonale vektorinnbygginger og indekseres i Brain. Spør om en prosedyre måneder senere og Brain finner den med referanser. Seks tillatelsesmodeller håndterer tilgang: avdelingsautosynkronisering, organisasjonsnivågruppering, prosjektkobling, driftskobling, tilpassede team og manuelle mapper. Dra en mappe til en avdeling og matchende teammedlemmer får tilgang umiddelbart.",
+  "library": {
+    "footer": "17 forhåndsinnstilte mapper opprettes automatisk ved oppsett. Dra en mappe til en avdeling, et prosjekt eller en drift — matchende teammedlemmer får tilgang umiddelbart.",
+    "folders": [
+      {
+        "name": "Bedriftshåndbok",
+        "meta": "12 dokumenter · Oppdatert for 2 dager siden",
+        "status": "Aktiv"
+      },
+      {
+        "name": "Onboarding-guide",
+        "meta": "8 dokumenter · Feltdrift-avd.",
+        "status": "Avdeling"
+      },
+      {
+        "name": "Sikkerhetsprosedyrer",
+        "meta": "15 dokumenter · Alle team",
+        "status": "Påkrevd"
+      },
+      {
+        "name": "API-dokumentasjon",
+        "meta": "6 dokumenter · Teknikk",
+        "status": "Teknisk"
+      },
+      {
+        "name": "Kundespillebøker",
+        "meta": "9 dokumenter · Salg + Support",
+        "status": "Delt"
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "AI-dokumentimport",
+      "description": "Last opp PDF, Word eller Markdown. GPT-4o renser, strukturerer og trekker ut metadata automatisk. Ingen formatering, ingen merking, ingen kjedelig manuell jobb."
+    },
+    {
+      "title": "Brain-indeksert",
+      "description": "Alle spillebøker delt i 512-dim vektorer. Spør Brain måneder senere — den finner svaret med referanser."
+    },
+    {
+      "title": "Tillatelsesarving",
+      "description": "Redaktører og lesere arver mappetilgang til undermapper. Ledere forblir eksplisitte. Granulær kontroll uten kompleksitet."
+    }
+  ],
+  "comparison": {
+    "before": {
+      "title": "Før spillebøker",
+      "items": [
+        "SOPer lever i Google Drive.",
+        "Ingen vet hvilken versjon som er gjeldende.",
+        "Nyansatte finner ingenting.",
+        "Kunnskap forlater bedriften når folk slutter."
+      ],
+      "footer": "30 min søking / uke"
+    },
+    "after": {
+      "title": "Med spillebøker",
+      "items": [
+        "SOPer lever i Spillebøker.",
+        "AI-indeksert, semantisk søkbar, automatisk tildelt etter avdeling.",
+        "Spør Brain: «Hva er vår nødresponseprosedyre?»",
+        "Øyeblikkelig svar."
+      ],
+      "footer": "30 sekunder"
+    }
+  },
+  "techStrip": [
+    "GPT-4o dokumentbehandling",
+    "512-dim vektorinnbygginger",
+    "6 tillatelsesmodeller",
+    "Dra-for-å-tildele",
+    "17 forhåndsinnstilte mapper"
+  ],
+  "closing": {
+    "tagline": "Andre kunnskapsbaser samler støv. HABOS kunnskapsbaser svarer på spørsmål.",
+    "cta": "Bli med på ventelisten"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Salg og betalinger",
+  "hero": {
+    "title": "Fra første kontakt til betalt faktura",
+    "description": "CRM, produkter, fakturering og betalinger i én flyt – bygget fra samtalene dine, ikke manuell dataregistrering."
+  },
+  "items": [
+    {
+      "title": "CRM",
+      "desc": "Kundeprofiler bygget automatisk fra alle interaksjoner med AI-foreslåtte neste steg."
+    },
+    {
+      "title": "Produkter",
+      "desc": "Produkter, priser, lager og bookbare tjenester koblet til nettstedet ditt."
+    },
+    {
+      "title": "Fakturering",
+      "desc": "Spor fordringer, gjeld og fortjeneste i sanntid."
+    },
+    {
+      "title": "Betalinger",
+      "desc": "Stripe-drevne betalinger med direkte bankutbetalinger."
+    }
+  ]
+}

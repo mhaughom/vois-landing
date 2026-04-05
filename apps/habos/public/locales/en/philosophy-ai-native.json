@@ -1,0 +1,47 @@
+{
+  "category": "Philosophy",
+  "title": "The End of Data Entry",
+  "tagline": "Every business tool you use today was designed before AI existed. HABOS was not. You'll feel the difference on day one — the forms, the fields, the copy-paste between apps — it's over.",
+  "heroPlaceholder": "Hero illustration",
+  "section1": {
+    "heading": "The bolt-on problem",
+    "body1": "Most software companies took products built over two decades and added an AI chatbot in the corner. The chatbot can answer questions about data it was never designed to access, suggest actions it has no authority to take, and search across systems that were never meant to share context.",
+    "body2": "The result is a veneer of intelligence on top of fundamentally unintelligent architecture. The AI sits beside the software. It doesn't live inside it."
+  },
+  "section2": {
+    "heading": "Built with intelligence at the foundation",
+    "body": "HABOS was designed from day one with AI as a structural element, not a feature. The three core systems that power the platform — the Smart Router, the Brain, and the Agent Orchestrator — are all AI-native. They don't wrap existing software in a chatbot. They are the software."
+  },
+  "systems": [
+    {
+      "title": "The Smart Router",
+      "desc": "A voice intent classification engine that takes a single 30-second recording and extracts multiple structured business actions — tasks, calendar events, CRM updates, inventory adjustments — all at once. Not speech-to-text. Speech-to-understanding."
+    },
+    {
+      "title": "The Brain",
+      "desc": "A unified semantic search layer across 19 data sources, queried in parallel. When you ask a question, HABOS searches your meetings, emails, CRM, projects, voice notes, documents, and playbooks simultaneously — and understands meaning, not just keywords."
+    },
+    {
+      "title": "The Agent Orchestrator",
+      "desc": "An autonomous planning-and-execution engine that can break complex tasks into steps, execute tools, pause for your approval on anything high-risk, and resume — even after server restarts. Not a chatbot with plugins. A full state machine with budget tracking and fault recovery."
+    }
+  ],
+  "architecturePlaceholder": "Architecture diagram",
+  "section3": {
+    "heading": "What AI-native actually means in practice",
+    "body1": "It means a plumber finishes a job, speaks for 30 seconds into his phone, and the system creates the job record, updates inventory, generates the invoice, notifies the office, and logs the time. That entire chain works because every module shares one AI-powered brain — not because someone wired 6 APIs together.",
+    "body2": "It means when the AI prepares you for a meeting, it pulls from your CRM, order history, meeting transcripts, voice notes, emails, playbooks, and open tickets — in one pass. Not because it searched 7 separate apps. Because all that data lives in one place and was designed to be reasoned over."
+  },
+  "section4": {
+    "heading": "The compound effect",
+    "body1": "An AI-native platform gets smarter the longer you use it. After six months, the system knows which clients reorder on predictable cycles, which operations consistently drift, which team members are overutilized, and what the average time-to-close is for different deal types.",
+    "body2": "That accumulated organizational intelligence is the moat. The data can be exported. The understanding cannot."
+  },
+  "quote": "\"AI shouldn't be something you go to. It should be something that's already there — woven into the way the software thinks, acts, and anticipates.\"",
+  "nav": {
+    "prevLabel": "Previous",
+    "prevTitle": "The Airlock",
+    "nextLabel": "Next",
+    "nextTitle": "One Brain"
+  }
+}

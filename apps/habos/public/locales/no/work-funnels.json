@@ -1,0 +1,69 @@
+{
+  "badge": "Markedsføringsautomatisering",
+  "hero": {
+    "title": "Leads kommer inn. Inntekter kommer ut.",
+    "description": "Skjemainnsending → AI-generert pleiesekvens → SMS og e-post → booking eller salg. Psykologisk forankret, samtykkebasert og smart nok til å stoppe når leadet svarer."
+  },
+  "body": "Når en skjemainnsending ankommer, flyter leads automatisk inn i AI-genererte pleiesekvenser. Alt innhold følger et velprøvd fire-trinns overbevisningsrammeverk: personalisering, autoritet med spesifikke tall, et kvantifisert tilbud med risikosnuing og en spesifikk oppfordring til handling. Trakter stopper automatisk når leadet svarer, når et terminalt CRM-stadium eller melder seg av – for å forhindre overkontakt. E-post- og SMS-sendinger er gated av eksplisitt samtykke, med STOP-nøkkelord som tilbakekaller globalt.",
+  "sequence": {
+    "label": "Pleiesekvens",
+    "step1": "Skjema sendt inn",
+    "step2": {
+      "label": "Øyeblikkelig: Velkomst-SMS",
+      "message": "\"Hei Sarah, takk for henvendelsen om HVAC-tjenestene våre! Jeg er Mike fra Henderson...\""
+    },
+    "wait1": "Vent 2 timer",
+    "step3": {
+      "label": "E-post: Autoritet + bevis",
+      "message": "\"Emne: 94% av kundene våre sparer kr 2 000+ på energiregninger...\""
+    },
+    "wait2": "Vent 1 dag",
+    "step4": {
+      "label": "SMS: Tilbud + oppfordring til handling",
+      "message": "\"Vårtilbud: kr 990 AC-innstilling (vanligvis kr 1 490). Book før fredag → habos.app/s/henderson-ac\""
+    },
+    "autostop": {
+      "label": "Auto-stopp",
+      "desc": "Lead svarte / booket / vunnet → sekvens stopper automatisk"
+    },
+    "summary": "4-trinns overbevisningsrammeverk: Personalisering → Autoritet → Tilbud → Oppfordring til handling. 7 forhåndsinnstilte strategier klare til bruk.",
+    "summaryFramework": "Personalisering → Autoritet → Tilbud → Oppfordring til handling."
+  },
+  "benefits": [
+    {
+      "title": "Samtykke-først",
+      "desc": "E-post og SMS gated av eksplisitt samtykke. STOP-nøkkelord tilbakekaller globalt. Første driftsmelding har juridisk sikker havn – oppfølginger krever opt-in."
+    },
+    {
+      "title": "Smarte stopperegler",
+      "desc": "Trakter stopper automatisk når leadet svarer (SMS eller e-post), når et terminalt CRM-stadium (vunnet/tapt/booket) eller melder seg av. Ingen overkontakt."
+    },
+    {
+      "title": "7 innebygde strategier",
+      "desc": "Varm lead-oppfølging, kald B2B-oppsøking, skjemanurturing, bookingpåminnelser, reaktivering, kundeoppgraderingssalg og tilpasset. Hver finjustert for sin brukssituasjon."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Uten HABOS",
+      "text": "Lead fyller ut skjema. Du ser det 3 timer senere. Lag en e-post. Send den. Vent. Følg opp manuelt. Glemmer 40% av leads.",
+      "badge": "Gjennomsnittlig responstid: 3+ timer"
+    },
+    "with": {
+      "label": "Med HABOS",
+      "text": "Lead fyller ut skjema. Øyeblikkelig velkomst-SMS. Autoritets-e-post 2 timer senere. Tilbud neste dag. Hvis de svarer eller booker – sekvens stopper.",
+      "badge": "Responstid: øyeblikkelig"
+    }
+  },
+  "techItems": [
+    "Psykologisk forankrede meldinger",
+    "Stille timer + tidssone",
+    "Inngående svardeteksjon",
+    "CRM-stadium-synkronisering",
+    "Flertrinn-orkestrering"
+  ],
+  "cta": {
+    "heading": "Andre automatiseringsverktøy sender meldinger. HABOS pleier relasjoner.",
+    "button": "Bli med på ventelisten"
+  }
+}

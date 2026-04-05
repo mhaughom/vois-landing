@@ -1,0 +1,44 @@
+{
+  "badge": "Ydinominaisuus",
+  "hero": {
+    "title": "Astu jokaiseen kokoukseen",
+    "titleHighlight": "valmistautuneena",
+    "description": "VOIS lukee kalenterisi, hakee historiasi ja rakentaa yhteenvedon automaattisesti. Sinun tarvitsee vain lukea se."
+  },
+  "intro": "Ennen jokaista kokousta HABOS hakee automaattisesti linkitetyn projektin avoimet tehtävät ja välitavoitteet, asiaankuuluvan toiminnon terveystilan, aiemmat kokoukset samojen osallistujien kanssa, CRM-asiakashistorian ja yksityisen Brain-tietosi. Erillisellä kokoustyökalulla ei ole pääsyä mihinkään näistä. Koska jokainen moduuli jakaa saman tietokannan, yhteenveto tietää asioita, joita mikään ulkoinen työkalu ei koskaan voisi tietää.",
+  "timeComparison": {
+    "before": {
+      "value": "20 min",
+      "description": "kiireistä sähköpostien, CRM:n ja edellisen kokouksen muistiinpanojen kaivamista"
+    },
+    "after": {
+      "value": "60 sek",
+      "description": "selaa yhteenveto puhelimellasi kävellessäsi kokoussaliin"
+    }
+  },
+  "briefPreview": {
+    "title": "Mitä yhteenveto sisältää"
+  },
+  "benefitCards": [
+    {
+      "title": "Automaattisesti luotu",
+      "description": "Yhteenvedot ilmestyvät ennen kuin muistat edes ajatella valmistautumista. Kalenteri käynnistää ne automaattisesti."
+    },
+    {
+      "title": "Ristiin tarkastettu",
+      "description": "Hakee sähköposteista, kokouksista, CRM:stä, projektimerkinnöistä ja aiemmista toimintakohteista. Ei jää mitään huomaamatta."
+    },
+    {
+      "title": "Osallistujatietoinen",
+      "description": "Näet jokaisen henkilön viimeisimmät vuorovaikutukset, tunnelmat ja avoimet asiat. Tiedät missä tilanteessa olet."
+    }
+  ],
+  "callout": {
+    "body": "Olet lähdössä puheluun asiakkaan kanssa, jonka kanssa et ole puhunut 3 viikkoon. Sen sijaan, että etsit postilaatikostasi, tarkistat CRM:n ja yrität muistaa mitä käsiteltiin — avaat VOIS:n ja näet yksisivuisen yhteenvedon kaikista olennaisista yksityiskohdista, järjestettynä ja valmiina.",
+    "punchline": "Se on 20 minuuttia takaisin päivässäsi, joka päivä."
+  },
+  "closing": {
+    "tagline": "Muut sovellukset muistuttavat sinua kokouksista. VOIS valmistaa sinut niihin.",
+    "cta": "Liity odotuslistalle"
+  }
+}

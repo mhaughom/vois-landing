@@ -1,0 +1,58 @@
+{
+  "category": "Filosofia",
+  "title": "O Airlock",
+  "tagline": "Todo concorrente vai totalmente autônomo ou totalmente manual. O HABOS é a única plataforma que transforma a pausa em uma funcionalidade. A IA propõe. Você aprova. Toda ação passa pelo Airlock — aplicado por código, não pelo bom julgamento da IA.",
+  "heroPlaceholder": "Ilustração principal",
+  "section1": {
+    "heading": "A regra de ferro",
+    "body1": "A IA não pode escrever no banco de dados sem que o usuário veja uma prévia e aprove explicitamente. Isso não é uma sugestão. Não é uma boa prática. Não é uma instrução de IA que pode ser manipulada. É um portão rígido no roteador de ferramentas que não pode ser contornado — não pela IA, não por um plugin, não por ninguém sem alterar o código-fonte.",
+    "body2": "Quando você diz \"enviar um e-mail para o Lars\", a IA o rascunha, mostra a você e aguarda. Quando você diz \"criar uma tarefa\", a IA mostra o cartão da tarefa e aguarda. Quando um agente completa uma missão de pesquisa de dez etapas e quer salvar os resultados — ele mostra o artefato a você e aguarda. Sempre."
+  },
+  "section2": {
+    "heading": "Três níveis de confiança"
+  },
+  "tiers": [
+    {
+      "tier": "Leitura",
+      "desc": "Busca, listagem, consulta de informações. A IA pode livremente coletar contexto para dar respostas melhores.",
+      "rule": "Execute imediatamente. Sem necessidade de aprovação."
+    },
+    {
+      "tier": "Escrita",
+      "desc": "Criação de tarefas, agendamento de eventos, atualização de registros. Qualquer coisa que altere o estado do seu negócio.",
+      "rule": "Prévia primeiro. Você vê exatamente o que aconteceria. Aprove ou descarte."
+    },
+    {
+      "tier": "Alto risco",
+      "desc": "Envio de e-mails, postagem no Slack, alterações financeiras. Ações visíveis a pessoas fora do sistema.",
+      "rule": "Prévia + aprovação adicional. Registro de auditoria durável. Sobrevive a reinicializações do servidor."
+    }
+  ],
+  "approvalFlowPlaceholder": "Diagrama do fluxo de aprovação",
+  "section3": {
+    "heading": "Confirmação criptográfica",
+    "body": "Cada ação de escrita gera um token de confirmação — criptográfico, com validade de 10 minutos, vinculado ao usuário específico e aos argumentos exatos. Se qualquer coisa mudar entre a prévia e a confirmação, um novo token é necessário. A IA não pode modificar a ação após mostrar a prévia a você. O que você viu é o que será executado."
+  },
+  "section4": {
+    "heading": "Política em nível de espaço de trabalho",
+    "intro": "Os administradores têm controles adicionais que substituem tudo o mais:",
+    "policies": [
+      "Bloquear ferramentas específicas totalmente — sem envio de e-mail por IA neste espaço de trabalho",
+      "Exigir aprovação adicional para tipos específicos de ação",
+      "Restringir quais modelos de IA são usados",
+      "Limitar orçamentos por execução — um agente não pode gastar mais do que você autorizou"
+    ],
+    "outro": "Tudo aplicado por código. Não por instruir a IA a se comportar. Não por esperar que ela siga instruções. Por portões na camada de execução que a IA não tem capacidade de contornar."
+  },
+  "approvalFlowScreenshotPlaceholder": "Captura de tela do fluxo de aprovação",
+  "section5": {
+    "heading": "Por que isso importa",
+    "body1": "A indústria de IA está correndo em direção à autonomia. Agentes totalmente autônomos que agem em seu nome sem perguntar. Acreditamos que isso é o inverso para software de negócios.",
+    "body2": "Um dono de negócio precisa confiar em suas ferramentas da mesma forma que confia em sua equipe: com delegação clara, ações visíveis e a capacidade de dizer não. O HABOS dá superpoderes a você — e mantém suas mãos no volante."
+  },
+  "quote": "\"A melhor IA não toma decisões por você. Ela faz com que você tome decisões mais rapidamente.\"",
+  "nav": {
+    "nextLabel": "Próximo",
+    "nextTitle": "O Fim da Entrada de Dados"
+  }
+}

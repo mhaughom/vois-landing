@@ -1,0 +1,58 @@
+{
+  "category": "Philosophie",
+  "title": "Die Luftschleuse",
+  "tagline": "Jeder Wettbewerber geht entweder vollständig autonom oder vollständig manuell vor. HABOS ist die einzige Plattform, die die Pause zu einer Funktion macht. KI schlägt vor. Sie genehmigen. Jede Aktion passiert die Luftschleuse – durch Code erzwungen, nicht durch das gute Urteil der KI.",
+  "heroPlaceholder": "Hero-Illustration",
+  "section1": {
+    "heading": "Die eiserne Regel",
+    "body1": "Die KI kann ohne eine Vorschau und ausdrückliche Genehmigung des Nutzers nicht in die Datenbank schreiben. Das ist kein Vorschlag. Keine bewährte Praxis. Keine KI-Anweisung, die umgangen werden kann. Es ist ein hartes Tor im Tool-Router, das nicht umgangen werden kann – weder von der KI, noch von einem Plugin, noch von irgendjemandem ohne Änderung des Quellcodes.",
+    "body2": "Wenn Sie sagen \"Sende eine E-Mail an Lars\", erstellt die KI einen Entwurf, zeigt ihn Ihnen und wartet. Wenn Sie sagen \"Erstelle eine Aufgabe\", zeigt die KI Ihnen die Aufgabenkarte und wartet. Wenn ein Agent eine zehnteilige Rechercheaufgabe abschließt und die Ergebnisse speichern möchte – zeigt er Ihnen das Artefakt und wartet. Immer."
+  },
+  "section2": {
+    "heading": "Drei Vertrauensstufen"
+  },
+  "tiers": [
+    {
+      "tier": "Lesen",
+      "desc": "Suchen, Auflisten, Nachschlagen von Informationen. Die KI kann frei Kontext sammeln, um Ihnen bessere Antworten zu geben.",
+      "rule": "Sofort ausführen. Keine Genehmigung erforderlich."
+    },
+    {
+      "tier": "Schreiben",
+      "desc": "Aufgaben erstellen, Ereignisse planen, Datensätze aktualisieren. Alles, was den Status Ihres Unternehmens ändert.",
+      "rule": "Zuerst Vorschau. Sie sehen genau, was passieren würde. Genehmigen oder ablehnen."
+    },
+    {
+      "tier": "Hochriskant",
+      "desc": "E-Mails senden, auf Slack posten, Finanzänderungen. Aktionen, die für Personen außerhalb des Systems sichtbar sind.",
+      "rule": "Vorschau + zusätzliche Genehmigung. Dauerhafter Prüfnachweis. Übersteht Serverabstürze."
+    }
+  ],
+  "approvalFlowPlaceholder": "Genehmigungsflussdiagramm",
+  "section3": {
+    "heading": "Kryptografische Bestätigung",
+    "body": "Jede Schreibaktion generiert einen Bestätigungstoken – kryptografisch, mit einer Gültigkeitsdauer von 10 Minuten, gebunden an den spezifischen Nutzer und die genauen Argumente. Wenn sich zwischen Vorschau und Bestätigung etwas ändert, ist ein neues Token erforderlich. Die KI kann die Aktion nach der Vorschau nicht mehr ändern. Was Sie gesehen haben, wird ausgeführt."
+  },
+  "section4": {
+    "heading": "Workspace-Richtlinien",
+    "intro": "Administratoren haben zusätzliche Kontrollen, die alles andere übersteuern:",
+    "policies": [
+      "Bestimmte Tools vollständig sperren – kein KI-E-Mail-Versand für diesen Workspace",
+      "Zusätzliche Genehmigung für bestimmte Aktionstypen erfordern",
+      "Einschränken, welche KI-Modelle verwendet werden",
+      "Budget pro Ausführung begrenzen – ein Agent kann nicht mehr ausgeben, als Sie autorisiert haben"
+    ],
+    "outro": "Alles durch Code erzwungen. Nicht durch Anweisungen an die KI, sich zu verhalten. Nicht durch die Hoffnung, dass sie Anweisungen befolgt. Durch Tore in der Ausführungsschicht, die die KI nicht umgehen kann."
+  },
+  "approvalFlowScreenshotPlaceholder": "Screenshot des Genehmigungsflusses",
+  "section5": {
+    "heading": "Warum das wichtig ist",
+    "body1": "Die KI-Branche bewegt sich in Richtung Autonomie. Vollständig autonome Agenten, die in Ihrem Namen handeln, ohne zu fragen. Wir glauben, das ist für Unternehmenssoftware rückwärts gewandt.",
+    "body2": "Ein Geschäftsinhaber muss seinen Tools vertrauen, wie er seinem Team vertraut: mit klarer Delegation, sichtbaren Aktionen und der Fähigkeit, Nein zu sagen. HABOS gibt Ihnen Superkräfte – und hält Ihre Hände am Steuer."
+  },
+  "quote": "\"Die beste KI trifft keine Entscheidungen für Sie. Sie macht Sie schneller bei der Entscheidungsfindung selbst.\"",
+  "nav": {
+    "nextLabel": "Weiter",
+    "nextTitle": "Das Ende der Dateneingabe"
+  }
+}

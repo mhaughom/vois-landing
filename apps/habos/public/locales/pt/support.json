@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Suporte"
+  },
+  "hero": {
+    "heading": "Como podemos ajudar?",
+    "description": "Estamos aqui para ajudá-lo a aproveitar ao máximo o Vois. Encontre respostas abaixo ou entre em contato diretamente."
+  },
+  "contact": {
+    "heading": "Fale Conosco",
+    "email": {
+      "label": "Suporte por E-mail",
+      "address": "hello@tryvois.com",
+      "note": "Para todas as dúvidas e solicitações de suporte"
+    },
+    "responseTime": {
+      "label": "Tempo de Resposta",
+      "value": "Em até 24 horas",
+      "note": "De segunda a sexta-feira"
+    }
+  },
+  "faq": {
+    "heading": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "O que é o Vois?",
+        "answer": "O Vois é um aplicativo de notas de voz com IA que ajuda você a capturar, organizar e agir sobre seus pensamentos. Disponível no iPhone, Apple Watch e Mac."
+      },
+      {
+        "question": "Quais dispositivos o Vois suporta?",
+        "answer": "O Vois está disponível no iPhone, Apple Watch e Mac. Você pode baixá-lo na Apple App Store. Seus dados sincronizam perfeitamente em todos os seus dispositivos."
+      },
+      {
+        "question": "Como funciona a cobrança?",
+        "answer": "O Vois oferece planos de assinatura cobrados mensalmente ou anualmente. Você pode gerenciar sua assinatura pela App Store no seu dispositivo Apple. Todos os pagamentos são processados com segurança pela Apple."
+      },
+      {
+        "question": "Como cancelo minha assinatura?",
+        "answer": "Você pode cancelar sua assinatura a qualquer momento pela App Store. Vá em Ajustes > ID Apple > Assinaturas no seu iPhone, encontre o Vois e toque em Cancelar. Você continuará tendo acesso até o fim do período de cobrança atual."
+      },
+      {
+        "question": "Posso solicitar reembolso?",
+        "answer": "Sim, oferecemos garantia de 30 dias. Se não estiver satisfeito, entre em contato pelo <email>hello@tryvois.com</email> ou consulte nossa <refund>Política de Reembolso</refund> completa."
+      },
+      {
+        "question": "Meus dados estão seguros?",
+        "answer": "Sua privacidade e segurança de dados são nossa prioridade máxima. Somos totalmente conformes ao RGPD e usamos criptografia para proteger seus dados. Leia nossa <privacy>Política de Privacidade</privacy> para mais detalhes."
+      },
+      {
+        "question": "Como reportar um bug ou solicitar uma funcionalidade?",
+        "answer": "Adoraríamos ouvir você! Envie um e-mail para <email>hello@tryvois.com</email> com uma descrição do problema ou sua ideia de funcionalidade e responderemos em breve."
+      }
+    ]
+  },
+  "company": {
+    "heading": "Informações da Empresa",
+    "companyLabel": "Empresa",
+    "companyValue": "VOIS AI AS",
+    "orgLabel": "CNPJ/Org.",
+    "orgValue": "936 920 594",
+    "locationLabel": "Localização",
+    "locationValue": "Alsvåg, Norway",
+    "emailLabel": "E-mail",
+    "emailValue": "hello@tryvois.com",
+    "websiteLabel": "Site",
+    "websiteValue": "tryvois.com"
+  },
+  "footer": {
+    "copyright": "Vois AI. Todos os direitos reservados.",
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfService": "Termos de Serviço"
+  }
+}

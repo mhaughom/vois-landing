@@ -1,0 +1,26 @@
+{
+  "category": "Philosophie",
+  "title": "Un seul assistant, pas cent outils",
+  "tagline": "VOIS connaît l'intégralité de votre entreprise. Demandez n'importe quoi, depuis n'importe où.",
+  "heroAlt": "Un seul assistant avec tout le contexte commercial",
+  "section1": {
+    "heading": "Vous êtes l'intégration",
+    "body": "Il est 21h. Un client envoie un e-mail pour demander si vous pouvez vous rencontrer jeudi. Pour répondre, vous avez besoin de vos disponibilités depuis Calendly, de votre historique depuis le CRM et de savoir s'ils ont payé leur dernière facture depuis la comptabilité. Trois applications. Trois identifiants. Cinq minutes de clics. Pour une réponse qui devrait prendre dix secondes."
+  },
+  "section2": {
+    "heading": "Ce que signifie un seul assistant",
+    "body1": "« Quel est mon historique avec Acme Corp ? » — VOIS recherche dans les e-mails, les transcriptions de réunions, les enregistrements vocaux, les notes CRM, les factures et les fichiers de projet. En deux secondes, une chronologie unifiée apparaît. 14 e-mails, 3 réunions avec transcriptions, dernière facture payée le 12 février, projet actif à 68 %. Essayez de faire ça à travers cinq applications séparées.",
+    "body2": "« Répondez à Sarah et dites-lui que jeudi c'est parfait. » — Une phrase en entrée. VOIS sait qui est Sarah (CRM), ce qu'elle a demandé (boîte de réception), que jeudi est libre (calendrier), et comment le plombier écrit habituellement (historique des envois). Un e-mail complet et personnalisé apparaît sous forme de carte d'aperçu. Rien n'est envoyé sans le Sas de Sécurité."
+  },
+  "section3": {
+    "heading": "Pas seulement un chatbot",
+    "body": "Il y a une plateforme complète derrière l'assistant. Vous pouvez ouvrir le calendrier directement, parcourir le CRM, modifier les factures, gérer les projets — tout via des interfaces traditionnelles. L'assistant est une façon d'entrer, pas la seule façon. Certaines choses sont plus rapides à dire. D'autres sont plus rapides à voir. VOIS vous donne les deux."
+  },
+  "quote": "« Vous ne devriez pas avoir à être votre propre secrétaire simplement parce que vous utilisez des logiciels professionnels. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Tout au même endroit",
+    "nextLabel": "Suivant",
+    "nextTitle": "Conçu pour les équipes"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "badge": "Gestión de órdenes",
+  "hero": {
+    "title": "De la cotización al pago. Cada paso rastreado.",
+    "description": "Gestión de órdenes de ciclo completo con partidas, seguimiento de pagos y ajustes automáticos de stock — para que nada se pierda."
+  },
+  "intro": "Las órdenes en VOIS son el registro central que conecta clientes del CRM, productos con variantes e inventario. Cuando se completa una reserva o termina un trabajo, se crea automáticamente una orden con las partidas y precios correctos. El estado del pago fluye de sin pagar a parcialmente pagado a pagado a reembolsado — siempre visible, siempre actualizado. Cada partida deduce del inventario del producto en tiempo real, eliminando completamente los conteos manuales de stock.",
+  "orders": [
+    { "id": "#1247", "client": "Renovación Henderson", "amount": "$12.500", "status": "Pagado ✓" },
+    { "id": "#1248", "client": "Servicio HVAC Baker", "amount": "$3.200", "status": "Parcial" },
+    { "id": "#1249", "client": "Emergencia Wilson", "amount": "$890", "status": "Sin pagar" }
+  ],
+  "lineItems": {
+    "heading": "Partidas — Orden #1247 · Renovación Henderson",
+    "items": [
+      { "item": "Baldosa de porcelana para suelo (600x600)", "qty": 48, "unit": "$85.00", "total": "$4.080" },
+      { "item": "Adhesivo para azulejos (saco 25kg)", "qty": 12, "unit": "$32.00", "total": "$384" },
+      { "item": "Mano de obra — alicatado (hrs)", "qty": 24, "unit": "$95.00", "total": "$2.280" },
+      { "item": "Kit de calefacción bajo suelo", "qty": 1, "unit": "$1.850.00", "total": "$1.850" }
+    ],
+    "total": "Total: $12.500",
+    "annotation": "Las órdenes se crean automáticamente desde reservas y trabajos. Las partidas extraen de su catálogo de productos con soporte de variantes."
+  },
+  "benefitCards": [
+    {
+      "title": "Creadas automáticamente desde reservas",
+      "desc": "Cuando se completa una reserva, la orden se genera automáticamente con las partidas y precios correctos. Sin duplicación de datos, sin cargos omitidos."
+    },
+    {
+      "title": "Ajustes de stock en vivo",
+      "desc": "Cada partida de orden deduce del inventario del producto en tiempo real. Sin conteos manuales de stock. Las alertas de reorden se activan antes de que se agoten."
+    },
+    {
+      "title": "Ciclo de vida del pago",
+      "desc": "Rastree sin pagar → parcial → pagado → reembolsado. Cada cambio de estado queda registrado y conectado automáticamente a su plataforma contable."
+    }
+  ],
+  "scenario": "Un plomero termina un trabajo. En el camino de regreso, le dice a VOIS qué piezas usó — dos llaves de bola, una manguera flexible y tres horas de trabajo.",
+  "scenarioHighlight": "VOIS crea automáticamente la orden con las partidas correctas, deduce las piezas del inventario, vincula la orden al cliente del CRM y prepara la factura — antes de que regrese a la oficina.",
+  "techItems": [
+    "Deducción automática de stock",
+    "Variantes de partidas",
+    "Ciclo de vida del pago",
+    "Vinculación de cliente del CRM",
+    "Pipeline de reserva a orden",
+    "Órdenes capturadas por voz"
+  ],
+  "cta": {
+    "title": "Deje de perseguir el papeleo.\nDeje que las órdenes se construyan solas.",
+    "button": "Unirse a la lista de espera"
+  }
+}

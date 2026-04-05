@@ -1,0 +1,68 @@
+{
+  "badge": "Medienbibliothek",
+  "hero": {
+    "title": "Hochladen.\nKI versteht es.",
+    "description": "Lade Bilder, Videos, Dokumente oder Audio hoch. KI extrahiert Produkte, Personen, Text und Bedeutung — und macht es nach Inhalt durchsuchbar, nicht nur nach Dateiname."
+  },
+  "intro": "Bilder, Videos, Dokumente oder Audio per Drag-and-Drop — Sharp generiert automatisch WebP-Miniaturansichten und GPT-4o-mini reichert alles asynchron an. Visionsanalyse extrahiert Produkte, Personen, Standorte, Farben und sichtbaren Text aus Bildern. Dokumente werden per OCR verarbeitet. Video und Audio werden transkribiert und zusammengefasst. Extrahierter Text wird in 512-dimensionale Embeddings aufgeteilt, sodass du nach Bedeutung suchen kannst — 'Sauna-Produktfoto' oder 'Henderson-Rechnung' — nicht nur nach Dateiname. Eine Medienbibliothek, gemeinsam genutzt von Produkten, Social Media, Marketing, Websites und Präsentationen.",
+  "grid": {
+    "annotation": "Suche nach Bedeutung: \"Sauna-Produktfoto\" oder \"Henderson-Rechnung\" — nicht nur nach Dateiname. Eine Bibliothek, gemeinsam genutzt von Produkten, Social Media, Marketing, Websites und Präsentationen."
+  },
+  "mediaItems": [
+    {
+      "filename": "product-photo-01.jpg",
+      "tag": "Produkt · Warmwasserbereiter",
+      "ai": "KI: Durchlaufgerät, Edelstahl, Wohnbereich"
+    },
+    {
+      "filename": "team-photo.jpg",
+      "tag": "Team · 4 Personen erkannt",
+      "ai": "KI: Büroumgebung, Marken-Uniformen"
+    },
+    {
+      "filename": "invoice-march.pdf",
+      "tag": "Dokument · OCR extrahiert",
+      "ai": "KI: Henderson Sanitär, 4.250 €, März 2026"
+    },
+    {
+      "filename": "job-walkthrough.mp4",
+      "tag": "Video · Transkribiert",
+      "ai": "KI: 3-Min-Rundgang, Badrenovierung"
+    },
+    {
+      "filename": "client-call.m4a",
+      "tag": "Audio · Transkribiert",
+      "ai": "KI: Sarah Henderson, Genehmigungsgespräch"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logo · Marken-Asset",
+      "ai": "KI: Primäres Logo, dunkle Variante"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "KI-Visionsanalyse",
+      "desc": "GPT-4o-mini erkennt Produkte, Personen, Farben und Text in Bildern. Dokumente werden per OCR verarbeitet. Video und Audio werden transkribiert."
+    },
+    {
+      "title": "Eine Bibliothek überall",
+      "desc": "Dieselbe Medienauswahl wird in Produkten, Social Media, Marketing, Websites und Präsentationen verwendet. Keine Duplikate."
+    },
+    {
+      "title": "Semantische Suche",
+      "desc": "Text in 512-dim-Embeddings aufgeteilt. Finde Medien nach Bedeutung, nicht nur nach Metadaten."
+    }
+  ],
+  "techItems": [
+    "GPT-4o-mini Vision",
+    "Sharp WebP-Miniaturansichten",
+    "512-dim-Embeddings",
+    "SHA-256-Deduplizierung",
+    "Auto-Rollen-Inferenz"
+  ],
+  "cta": {
+    "title": "Andere Dateimanager speichern Dateien.\nHABOS versteht sie.",
+    "button": "Warteliste beitreten"
+  }
+}

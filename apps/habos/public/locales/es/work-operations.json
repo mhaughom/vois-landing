@@ -1,0 +1,69 @@
+{
+  "badge": "Inteligencia operacional",
+  "hero": {
+    "title": "Los problemas emergen antes de que nadie los note.",
+    "description": "Defina las cadencias de su negocio. Los miembros del equipo reportan por voz. La IA puntúa la salud automáticamente y señala anomalías con acciones correctivas."
+  },
+  "body": "El módulo de Operaciones no espera a que alguien note los problemas — los detecta automáticamente. El administrador configura reglas por operación: «si la tasa de finalización cae por debajo del 90%, marcar amarillo; por debajo del 70%, marcar rojo». Cuando los miembros del equipo envían informes por voz, dictado, chat o formulario, el sistema evalúa cada regla, calcula puntuaciones de cumplimiento, produce el estado de salud y muestra inmediatamente los resultados en el panel. A través de múltiples ejecuciones de informes, rastrea tendencias y alerta sobre anomalías antes de que se conviertan en crisis.",
+  "dashboard": {
+    "title": "Panel de salud en vivo",
+    "items": {
+      "dailyRevenue": {
+        "name": "Informe de ingresos diarios",
+        "category": "Ventas"
+      },
+      "weeklySafety": {
+        "name": "Auditoría de seguridad semanal",
+        "category": "Operaciones de campo"
+      },
+      "monthlyEquipment": {
+        "name": "Revisión mensual de equipos",
+        "category": "Mantenimiento"
+      }
+    },
+    "aiAlert": {
+      "label": "Acción de IA:",
+      "message": "La finalización de la revisión de equipos cayó del 95% al 41% este mes. Recomendación: programar capacitación obligatoria + reasignar a técnico senior."
+    },
+    "footnote": "Las puntuaciones de salud se actualizan automáticamente cuando se envían informes. Sin seguimiento manual."
+  },
+  "benefits": {
+    "reporting": {
+      "title": "4 formas de reportar",
+      "description": "Entrevista de voz, dictado, chat o formulario tradicional. Los trabajadores de campo rellenan informes hablando en el camino de regreso. Sin portapapeles."
+    },
+    "rules": {
+      "title": "Las reglas detectan problemas",
+      "description": "Configure umbrales: «si ingresos_diarios < $5K, marcar ROJO». La puntuación de cumplimiento rastrea la puntualidad. Tarde = puntuación proporcionalmente más baja."
+    },
+    "ai": {
+      "title": "Acciones correctivas con IA",
+      "description": "Cuando la salud cae, la IA genera 3-5 acciones específicas con niveles de urgencia. No consejos vagos — próximos pasos concretos enrutados a las personas correctas."
+    }
+  },
+  "comparison": {
+    "without": {
+      "label": "Sin HABOS",
+      "description": "Viernes: «¿Cómo va la auditoría de seguridad?» «Eh, déjeme revisar.» Lunes: «Resulta que 3 sitios la omitieron.» Miércoles: informe de incidente.",
+      "outcome": "Problema descubierto: 5 días tarde"
+    },
+    "with": {
+      "label": "Con HABOS",
+      "description": "Martes: Alerta automática — «Finalización de auditoría de seguridad al 67%, 3 sitios con retraso. Sugerido: reasignar a inspectores de respaldo.» Acción tomada el mismo día.",
+      "outcome": "Problema señalado: el mismo día"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Diagramas de flujo estilo BPMN",
+      "Puntuación de salud basada en reglas",
+      "Gráficos de tendencia de 7 días",
+      "Acciones correctivas con IA",
+      "4 modos de relleno de informes"
+    ]
+  },
+  "cta": {
+    "heading": "Otras herramientas rastrean lo que pasó. HABOS detecta lo que está a punto de salir mal.",
+    "button": "Unirse a la lista de espera"
+  }
+}

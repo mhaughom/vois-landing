@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Oplossingen — Solo-ondernemers",
+    "title": "Je eerste medewerker kost $35\u00a0per\u00a0maand.",
+    "subtitle": "Freelancers, onafhankelijke consultants, solo-vaklieden, eenpersoonsagentschappen, coaches, solo-advocaten en iedereen die tegelijk CEO, verkoper, accountant, marketeer en klantenservicemedewerker is."
+  },
+  "body": {
+    "salutation": "Beste solo-ondernemer,",
+    "p1": "We weten hoe jouw ochtenden eruitzien. Het alarm gaat om 6:45 uur en voor je voeten de vloer raken, controleer je al je e-mail. Veertien berichten 's nachts. Drie hebben antwoorden nodig. Twee zijn facturen die je vorige week had moeten sturen. Één is een prospect met wie je al dagen opvolging had willen doen. Je voelt je achterstand voordat je uit bed bent.",
+    "p2": "We weten van de verhouding. Een klantgesprek van dertig minuten levert vijftien minuten administratie daarna op — notities typen, taken aanmaken, een samenvatting e-mailen. De helft van je werkende leven wordt besteed aan werk over het werk, in plaats van het werk zelf.",
+    "p3": "We weten van 14:00 uur. Je zou factureerbaar klantwerk moeten doen, maar je hebt het afgelopen uur besteed aan \"bedrijf\" — een factuur, vier e-mails, een website-update, een LinkedIn-bericht, een verzette vergadering. Niets is factureerbaar. Niets is de reden waarom je hiermee bent begonnen.",
+    "p4": "En we weten van zondagavonden. De spreadsheet-CRM. De achterstallige facturen. De follow-up e-mails die je maar blijft uitstellen. Twee uur onbetaald werk op je vrije dag. Elke. Enkele. Week.",
+    "divider": "Dit is wat er verandert.",
+    "briefing": {
+      "label": "6:45 — Je horloge",
+      "text": "\"2 facturen achterstallig — aanmanende e-mails opgesteld. 1 nieuwe prospect — reply klaar voor beoordeling. Vandaag: 10:00 Sarah Chen (briefing voorbereid — notities laatste vergadering, openstaand saldo, projectstatus), 14:00 ontdekkingsgesprek (bedrijfsonderzoek 's nachts voltooid). 3 taken vervallen.\"",
+      "note": "Je tikt verzenden bij de facturen en keurt de prospect-reply goed voordat je uit bed stapt."
+    },
+    "p5": "Je klantgesprek van 9 uur? Je luistert en praat gewoon. HABOS legt de transcriptie vast, trekt drie actiepunten eruit en stelt een follow-up e-mail op voor de klant. Je beoordeelt het op je telefoon, verandert één zin, tikt verzenden. Totale administratie: negentig seconden.",
+    "p6": "Om 14:00 uur doe je factureerbaar werk. De factuur was 's ochtends verstuurd — opgesteld op basis van je projectmijlpalen en uurtarief. De vier e-mails zijn tussen vergaderingen afgehandeld via meldingskaarten — drie waren door AI opgestelde replies die je met één tik hebt goedgekeurd, één was een planningsverzoek dat de AI heeft opgelost door je agenda te controleren. De LinkedIn-inhoud was opgesteld op basis van de inzichten van het ochtendgesprek.",
+    "p7": "Je hebt vandaag niet \"administratie gedaan\". Het is om je heen gebeurd.",
+    "p8": "Zondagavond? Je kijkt een film. Het CRM onderhoud zichzelf vanuit je e-mails en gesprekken. Achterstallige facturen stuurden vriendelijke herinneringen. Follow-up e-mails zijn opgesteld en ingepland voor maandagochtend. Je agenda, taken en projectdeadlines zitten in één systeem dat weet wat er daarna komt.",
+    "p9": "Zondagavonden zijn weer van jou.",
+    "emotional": {
+      "line1": "Het eenzaamste deel van een bedrijf alleen runnen is niet het werk — het is niemand hebben om aan te delegeren, niemand die je eraan herinnert, niemand die de ballen opvangt die je laat vallen.",
+      "line2": "VOIS vervangt geen menselijk contact. Maar het vervangt de menselijke administratieve arbeid die je weghoudt van het werk waar je van houdt en het leven waarvoor je dit bedrijf bent begonnen."
+    },
+    "section2": {
+      "heading": "Wat VOIS vervangt",
+      "p1": "Je hebt waarschijnlijk een versie van deze stack: ChatGPT voor denken, Calendly voor boekingen, Wave of QuickBooks voor facturering, Gmail voor alles, Notion of Trello voor taken, Mailchimp voor de occasionele e-mailcampagne en je eigen geheugen om bij te houden bij wie je een follow-up verschuldigd bent.",
+      "p2": "HABOS vervangt dit alles met één AI-assistent die jouw bedrijf werkelijk kent — je klanten, je projecten, je schema, je prijzen, je stem. ChatGPT kent het internet. VOIS kent jou.",
+      "p3": "Het bouwt je CRM op uit gesprekken zodat je nooit meer een spreadsheet hoeft bij te werken. Het stelt e-mails op in jouw stem en wacht op je goedkeuring. Het houdt toezeggingen die je doet in vergaderingen bij en herinnert je eraan voor je vergeet. Het geeft je vijf AI-adviseurs — Financiën, Strategie, Operaties, Marketing, Verkoop — die bewust van mening verschillen, want solo zijn hoeft niet te betekenen dat je elke beslissing alleen neemt.",
+      "p4": "En het draait op je Apple Watch, zodat je je dag kunt controleren, een e-mail kunt goedkeuren of een idee kunt vastleggen tussen vergaderingen, op een wandeling, in een lift.",
+      "p5": "Dit alles voor $35 per maand."
+    },
+    "stats": [
+      ["15 uur", "vrijgemaakt per week"],
+      ["$300+", "maandelijks bespaard"],
+      ["0", "gemiste follow-ups"],
+      ["0", "zondagse administratiesessies"]
+    ],
+    "testimonial": {
+      "quote": "\"Ik bracht elke zondagavond door met de administratie die ik niet in de werkweek kon inpassen. Nu regelt VOIS mijn facturering, mijn follow-ups en mijn planning terwijl ik klantwerk doe. De AI-adviseurs zijn verrassend nuttig — vorige maand stelde de Strategie-adviseur voor me te richten op een niche die ik niet had overwogen. Ik landde er twee nieuwe klanten door. Voor het eerst in zes jaar consultancy heb ik het gevoel dat ik een team heb.\"",
+      "attribution": "— Camilla, 42 · Onafhankelijk managementconsultant · Amsterdam"
+    },
+    "cta": {
+      "heading": "Neem je eerste medewerker in dienst voor $35/maand.",
+      "button": "Aanmelden voor wachtlijst"
+    }
+  }
+}

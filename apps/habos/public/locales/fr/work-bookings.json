@@ -1,0 +1,54 @@
+{
+  "badge": "Réservations",
+  "hero": {
+    "title": "Zéro double réservation.\nGaranti.",
+    "description": "Le client choisit un créneau, le système le verrouille de façon atomique, crée la commande, met à jour le contact CRM et notifie votre équipe — en une seule transaction."
+  },
+  "body": "Les verrous consultatifs PostgreSQL empêchent les doubles réservations même sous une charge concurrente extrême. Si deux personnes cliquent sur le même créneau à la même milliseconde, l'une réussit — l'autre voit instantanément « créneau pris ». Lorsqu'une réservation est confirmée, HABOS crée ou relie atomiquement un client CRM, génère une commande avec des articles, déduit le stock et notifie le membre d'équipe assigné. Annulation ? L'inventaire est restauré et la commande mise à jour. Transaction unique, pas de délais de webhook, pas d'enregistrements orphelins.",
+  "grid": {
+    "serviceTitle": "Entretien CVC",
+    "serviceMeta": "60 min · 150 $",
+    "selectedPrefix": "Sélectionné :",
+    "confirmButton": "Confirmer la réservation"
+  },
+  "confirmationSteps": [
+    "Réservation confirmée",
+    "Commande n°1248 créée",
+    "Sarah Henderson ajoutée au CRM",
+    "Équipe notifiée"
+  ],
+  "advisoryLock": "Les verrous consultatifs PostgreSQL empêchent les doubles réservations même sous une charge concurrente extrême. Si deux personnes cliquent sur le même créneau à la même milliseconde, l'une réussit — l'autre voit instantanément « créneau pris ».",
+  "benefits": {
+    "bookOrder": {
+      "title": "Réservation → commande → CRM",
+      "body": "Une réservation crée tout : commande avec articles, mise à jour du contact CRM, notification du personnel et e-mail de confirmation au client. Zéro étape manuelle."
+    },
+    "stock": {
+      "title": "Réservation intelligente du stock",
+      "body": "Inventaire suivi du flux en attente → confirmé → terminé. Pas de survente, pas de vérifications manuelles du stock."
+    },
+    "api": {
+      "title": "APIs publiques + internes",
+      "body": "Le personnel réserve depuis le tableau de bord. Les clients réservent depuis votre site ou vos liens de planification. Même protection atomique, même pool de disponibilités."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Sans HABOS",
+    "withoutText": "Le client envoie un e-mail pour réserver. Vous vérifiez votre calendrier. Vous répondez avec les créneaux disponibles. Il en choisit un. Vous créez le rendez-vous, la facture et l'ajoutez à vos contacts. 8 étapes, 3 applications.",
+    "withoutStat": "~15 min par réservation",
+    "withTitle": "Avec HABOS",
+    "withText": "Le client choisit un créneau sur votre site. C'est tout. La commande, l'entrée CRM, la notification et l'e-mail de confirmation se font automatiquement.",
+    "withStat": "~30 secondes (son temps, pas le vôtre)"
+  },
+  "techStrip": [
+    "Verrous consultatifs PostgreSQL",
+    "Protection atomique des créneaux",
+    "Création automatique de commandes",
+    "Sécurité contre les conditions de concurrence",
+    "Liens d'annulation autonomes"
+  ],
+  "closing": {
+    "title": "Les autres outils de réservation sont un simple calendrier séparé.\nLes réservations HABOS sont connectées à l'ensemble de votre entreprise.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

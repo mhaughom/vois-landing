@@ -1,0 +1,26 @@
+{
+  "category": "Filosofie",
+  "title": "Één assistent, niet honderd tools",
+  "tagline": "VOIS kent je hele bedrijf. Vraag alles, van overal.",
+  "heroAlt": "Één assistent met volledige bedrijfscontext",
+  "section1": {
+    "heading": "Jij bent de integratie",
+    "body": "Het is 21:00 uur. Een klant mailt om te vragen of je donderdag beschikbaar bent. Om te antwoorden heb je je beschikbaarheid van Calendly nodig, je geschiedenis van het CRM en of ze hun laatste factuur hebben betaald uit de boekhouding. Drie apps. Drie logins. Vijf minuten klikken. Voor een antwoord dat tien seconden zou moeten duren."
+  },
+  "section2": {
+    "heading": "Wat één assistent betekent",
+    "body1": "\"Wat is mijn geschiedenis met Acme Corp?\" — VOIS doorzoekt e-mails, vergadertranscripties, stemopnames, CRM-notities, facturen en projectbestanden. In twee seconden verschijnt een uniforme tijdlijn. 14 e-mails, 3 vergaderingen met transcripties, laatste factuur betaald op 12 feb., actief project op 68%. Probeer dat maar eens in vijf afzonderlijke apps.",
+    "body2": "\"Antwoord Sarah en vertel haar dat donderdag werkt.\" — Één zin ingevoerd. VOIS weet wie Sarah is (CRM), wat ze vroeg (postvak IN), dat donderdag vrij is (agenda) en hoe de loodgieter normaal schrijft (verzendgeschiedenis). Een complete, gepersonaliseerde e-mail verschijnt als een voorbeeldkaart. Niets wordt verzonden zonder de Luchtsluis."
+  },
+  "section3": {
+    "heading": "Niet alleen een chatbot",
+    "body": "Achter de assistent zit een volledig platform. Je kunt de agenda direct openen, door het CRM bladeren, facturen bewerken, projecten beheren — allemaal via traditionele interfaces. De assistent is één manier naar binnen, niet de enige. Sommige dingen zijn sneller te zeggen. Sommige dingen zijn sneller te zien. VOIS geeft je beide."
+  },
+  "quote": "\"Je zou niet je eigen secretaresse moeten zijn alleen omdat je bedrijfssoftware gebruikt.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Alles op één plek",
+    "nextLabel": "Volgende",
+    "nextTitle": "Gebouwd voor teams"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "badge": "Inteligência de Projetos por IA",
+  "hero": {
+    "title": "Saiba Sempre o que Está Bloqueando o Progresso.",
+    "description": "O HABOS analisa continuamente cada tarefa, dependência e prazo para identificar o caminho crítico. Você vê os gargalos antes que se tornem problemas."
+  },
+  "body": "O sistema de projetos usa análise por IA para identificar continuamente o caminho crítico. O GPT-4o examina todos os itens do plano, dependências e status atual, identificando gargalos e cadeias de bloqueio. Itens do caminho crítico recebem automaticamente maior prioridade no mecanismo de agendamento — quando blocos de foco são preenchidos, as tarefas do caminho crítico entram primeiro. As dependências impõem ordenação topológica, de modo que as tarefas predecessoras são sempre agendadas antes de suas dependentes.",
+  "criticalPath": {
+    "heading": "Reforma da Cozinha Henderson — Caminho Crítico",
+    "items": {
+      "permitsApproved": {
+        "title": "Alvarás aprovados",
+        "date": "Concluído em 20 mar"
+      },
+      "plumbingRoughIn": {
+        "title": "Tubulação preliminar",
+        "date": "Concluído em 23 mar"
+      },
+      "tileSelection": {
+        "title": "Seleção de cerâmica",
+        "status": "BLOQUEANDO — aguardando entrega de amostras (prevista para 28 mar)"
+      },
+      "tileInstallation": {
+        "title": "Instalação de cerâmica",
+        "blockedBy": "Bloqueado por: Seleção de cerâmica"
+      },
+      "finalInspection": {
+        "title": "Inspeção final",
+        "blockedBy": "Bloqueado por: Instalação de cerâmica"
+      }
+    },
+    "note": "A IA identificou \"Seleção de cerâmica\" como o gargalo 3 dias antes da equipe perceber. Itens do caminho crítico são automaticamente promovidos à maior prioridade na sua agenda."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Gargalos encontrados automaticamente",
+      "description": "A IA examina todos os itens do plano, dependências e status. Ela define critical_rank nos itens que formam a cadeia de bloqueio — e seu calendário os prioriza imediatamente."
+    },
+    "dependencies": {
+      "title": "Dependências impostas",
+      "description": "Se um predecessor não estiver concluído, a tarefa dependente é marcada como bloqueada e não pode ser iniciada. Sem mais trabalhar na coisa errada."
+    },
+    "connected": {
+      "title": "Cada fonte conectada",
+      "description": "E-mails, reuniões, notas de voz e documentos são automaticamente vinculados a projetos. Pergunte \"por que isso está atrasado?\" e obtenha uma resposta real."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Sem o HABOS",
+      "description": "Daily de segunda: \"Algum bloqueio?\" Silêncio. Quinta-feira: \"Por que a cerâmica não foi instalada?\" \"Ah, as amostras nunca chegaram.\" Três dias perdidos.",
+      "badge": "Gargalo descoberto: 3 dias atrasado"
+    },
+    "with": {
+      "heading": "Com o HABOS",
+      "description": "Terça de manhã: notificação — \"Seleção de cerâmica é agora o gargalo do caminho crítico. A entrega das amostras está a 2 dias. Recomendação: escalonar com o fornecedor.\" Ação tomada no mesmo dia.",
+      "badge": "Gargalo sinalizado: 3 dias adiantado"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Análise do caminho crítico com GPT-4o",
+      "Ordenação topológica de dependências",
+      "Elevação automática de prioridade",
+      "Marcação de dados entre módulos"
+    ]
+  },
+  "cta": {
+    "heading": "Outras ferramentas de projeto mostram tarefas. O HABOS mostra o que importa.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "Tuote",
+    "solutions": "Ratkaisut",
+    "philosophy": "Filosofia",
+    "communication": {
+      "label": "Viestintä",
+      "desc": "Sähköposti, pikaviestimet, puhelin, tukiticketit"
+    },
+    "scheduling": {
+      "label": "Aikataulutus ja varaukset",
+      "desc": "Kalenteri, varaukset, aikataulutuslinkkit"
+    },
+    "jobsOperations": {
+      "label": "Työt ja toiminnot",
+      "desc": "Lähettäminen, reitit, projektit, tehtävät, ajanseuranta"
+    },
+    "salesPayments": {
+      "label": "Myynti ja maksut",
+      "desc": "CRM, tuotteet, laskutus, maksut"
+    },
+    "voiceAi": {
+      "label": "Ääni ja tekoäly",
+      "desc": "Äänimuistiinpanot, kokousmuistiinpanot, assistentti, käsikirjat"
+    },
+    "websiteMarketing": {
+      "label": "Verkkosivusto ja markkinointi",
+      "desc": "Verkkosivustonrakentaja, sosiaalinen media, sähköpostikampanjat"
+    },
+    "serviceBusinesses": {
+      "label": "Palveluyritykset",
+      "desc": "Putkimiehistä konsultteihin ja terapeutteihin"
+    },
+    "productBusinesses": {
+      "label": "Tuoteyritykset",
+      "desc": "Kaupoista verkkokauppaan ja valmistajiin"
+    },
+    "creativeBusinesses": {
+      "label": "Luovat yritykset",
+      "desc": "Toimistoista valokuvaajiin ja studioihin"
+    },
+    "fieldOperations": {
+      "label": "Kenttätoiminnot",
+      "desc": "Rakentamisesta toimitukseen ja kiinteistönhallintaan"
+    },
+    "teamsStartups": {
+      "label": "Tiimit ja startuppit",
+      "desc": "Yrityksen rakentaminen 2–50 henkilölle"
+    },
+    "soloFounders": {
+      "label": "Yksinyrittäjät",
+      "desc": "Freelancereista yhden henkilön yrityksiin"
+    },
+    "intelligenceYouControl": "Hallitsemasi älykkyys",
+    "securityFirst": {
+      "label": "Tietoturva ensin",
+      "desc": "Tekoäly rajoin. Sinun rajojesi mukaan."
+    },
+    "oneAssistant": {
+      "label": "Yksi assistentti",
+      "desc": "Kysy mitä tahansa, mistä tahansa"
+    },
+    "captureYourBrain": {
+      "label": "Tallenna aivosi",
+      "desc": "Nappaa ideat ennen kuin ne katoavat"
+    },
+    "fastByDesign": "Nopea suunnittelultaan",
+    "suggestionsNotMenus": {
+      "label": "Ehdotuksia, ei valikoita",
+      "desc": "Lue. Napauta. Valmis."
+    },
+    "twoInterfaces": {
+      "label": "Kaksi käyttöliittymää",
+      "desc": "Näytöt sinulle, API:t agenteille"
+    },
+    "speedOfThought": {
+      "label": "Ajatuksen nopeus",
+      "desc": "Ääni sisään, napautus ulos"
+    },
+    "alwaysWithinReach": {
+      "label": "Aina ulottuvilla",
+      "desc": "Kello, puhelin, lukitusnäyttö"
+    },
+    "builtForYourBusiness": "Rakennettu yrityksellesi",
+    "everythingInOnePlace": {
+      "label": "Kaikki yhdessä paikassa",
+      "desc": "Yksi kirjautuminen, kaikki työkalut"
+    },
+    "builtForTeams": {
+      "label": "Rakennettu tiimeille",
+      "desc": "Sama totuus, eri näkökulmat"
+    },
+    "yourSoftwareYourWay": {
+      "label": "Sinun ohjelmistosi, sinun tavallasi",
+      "desc": "Joustava suunnittelultaan"
+    },
+    "ctaLabel": "Liity odotuslistalle",
+    "betaLogin": "Beta-kirjautuminen"
+  },
+  "vois": {
+    "features": "Ominaisuudet",
+    "resources": "Resurssit",
+    "voiceCapture": {
+      "label": "Äänen tallennus",
+      "desc": "Puhu, me hoidamme loput"
+    },
+    "aiAssistant": {
+      "label": "Tekoälyassistentti",
+      "desc": "Henkilökohtainen tekoälykumppanisi"
+    },
+    "calendar": {
+      "label": "Kalenteri",
+      "desc": "Täytä keskittymislohkot automaattisesti"
+    },
+    "tasks": {
+      "label": "Tehtävät",
+      "desc": "Tekoälyn priorisointi"
+    },
+    "watch": {
+      "label": "Kello",
+      "desc": "Täysi tekoäly ranteellasi"
+    },
+    "customApps": {
+      "label": "Omat sovellukset",
+      "desc": "Rakenna omat tilasi"
+    },
+    "habosForWork": {
+      "label": "HABOS työkäyttöön",
+      "desc": "Täydellinen liiketoiminta-alusta"
+    },
+    "support": {
+      "label": "Tuki",
+      "desc": "Saa apua tiimiltämme"
+    },
+    "privacyPolicy": {
+      "label": "Tietosuojakäytäntö",
+      "desc": "Miten suojaamme tietosi"
+    },
+    "termsOfService": {
+      "label": "Palveluehdot",
+      "desc": "Palvelusopimuksemme"
+    },
+    "ctaLabel": "Liity odotuslistalle",
+    "workLabel": "HABOS työkäyttöön",
+    "tryNow": "Kokeile nyt",
+    "betaLogin": "Beta-kirjautuminen"
+  },
+  "clusters": {
+    "communication": {
+      "email": "Sähköposti",
+      "messenger": "Pikaviestimet",
+      "phone": "Puhelin",
+      "supportTickets": "Tukiticketit"
+    },
+    "schedulingBookings": {
+      "calendar": "Kalenteri",
+      "bookings": "Varaukset",
+      "schedulingLinks": "Aikataulutuslinkkit"
+    },
+    "jobsOperations": {
+      "dispatch": "Lähettäminen",
+      "routes": "Reitit",
+      "projects": "Projektit",
+      "tasks": "Tehtävät",
+      "timeTracking": "Ajanseuranta"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "Tuotteet",
+      "invoicing": "Laskutus",
+      "payments": "Maksut"
+    },
+    "voiceAi": {
+      "voiceNotes": "Äänimuistiinpanot",
+      "meetingNotes": "Kokousmuistiinpanot",
+      "assistant": "Assistentti",
+      "playbooks": "Käsikirjat"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "Verkkosivustonrakentaja",
+      "creativeStudio": "Luova studio",
+      "marketing": "Markkinointi"
+    }
+  },
+  "mobile": {
+    "overview": "Yleiskatsaus"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "Liity odotuslistalle",
+      "workLabel": "HABOS työkäyttöön",
+      "tagline": "HABOSilta"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "Liity odotuslistalle",
+      "tagline": "Tekoälyn voima, ihmisen hallinta"
+    }
+  },
+  "clusterPages": {
+    "email": "Sähköposti",
+    "messenger": "Pikaviestimet",
+    "telephony": "Puhelin",
+    "tickets": "Tukiticketit",
+    "calendar": "Kalenteri",
+    "bookings": "Varaukset",
+    "scheduling-links": "Aikataulutuslinkkit",
+    "dispatch": "Lähettäminen",
+    "routes": "Reitit",
+    "projects": "Projektit",
+    "tasks": "Tehtävät",
+    "time-tracking": "Ajanseuranta",
+    "crm": "CRM",
+    "products": "Tuotteet",
+    "finance": "Laskutus",
+    "payments": "Maksut",
+    "voice-notes": "Äänimuistiinpanot",
+    "meeting-notes": "Kokousmuistiinpanot",
+    "assistant": "Assistentti",
+    "playbooks": "Käsikirjat",
+    "website-builder": "Verkkosivustonrakentaja",
+    "creative-studio": "Luova studio",
+    "marketing": "Markkinointi"
+  },
+  "clusterGroupNames": {
+    "communication": "Viestintä",
+    "schedulingBookings": "Aikataulutus ja varaukset",
+    "jobsOperations": "Työt ja toiminnot",
+    "salesPayments": "Myynti ja maksut",
+    "voiceAi": "Ääni ja tekoäly",
+    "websiteMarketing": "Verkkosivusto ja markkinointi"
+  }
+}

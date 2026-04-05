@@ -1,0 +1,62 @@
+{
+  "userTypes": ["パーソナル", "ワーク", "両方"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "友人・知人",
+    "検索エンジン",
+    "YouTube",
+    "Reddit",
+    "その他"
+  ],
+  "useCases": [
+    "個人のタスク＆リマインダー",
+    "仕事のミーティング＆メモ",
+    "アイデア＆ブレインストーミング",
+    "ショッピング＆リスト",
+    "カスタムトラッキング（健康、習慣など）"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "VOISをどのように使いますか？",
+    "subLabel": "当てはまるものをすべて選択してください",
+    "stepIndicator": "ステップ 1／5"
+  },
+  "stepUserType": {
+    "heading": "VOISをどのように利用しますか？",
+    "subLabel": "1つ選んでください",
+    "stepIndicator": "ステップ 2／5"
+  },
+  "stepDevices": {
+    "heading": "どのデバイスを使用しますか？",
+    "subLabel": "当てはまるものをすべて選択してください",
+    "stepIndicator": "ステップ 3／5"
+  },
+  "stepReferral": {
+    "heading": "VOISをどこで知りましたか？",
+    "subLabel": "コミュニティを理解するためにご協力ください",
+    "stepIndicator": "ステップ 4／5"
+  },
+  "stepEmail": {
+    "heading": "メールアドレスをお知らせください",
+    "subLabel": "リリース時に早期アクセス案内をお送りします",
+    "placeholder": "メールアドレスを入力",
+    "joining": "登録中...",
+    "joinWaitlist": "ウェイトリストに登録",
+    "stepIndicator": "ステップ 4／5"
+  },
+  "stepSuccess": {
+    "heading": "リストに追加されました！",
+    "willSendEmail": "以下のアドレスにメールをお送りします",
+    "whatsNext": "次のステップ",
+    "whatsNextBody": "まもなくローンチします！早期アクセスと限定アップデートを最初にお届けします。",
+    "done": "完了"
+  },
+  "continue": "続ける",
+  "errors": {
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "emailExists": "このメールアドレスはすでにウェイトリストに登録されています！",
+    "joinFailed": "ウェイトリストへの登録に失敗しました"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "category": "Filosofie",
+  "title": "Supercharge je team",
+  "tagline": "HABOS is er niet om je medewerkers te vervangen — het is er om elke medewerker dramatisch capabeler te maken. De beste teams zijn niet kleiner. Ze zijn versterkt.",
+  "heroPlaceholder": "Held-illustratie",
+  "section1": {
+    "heading": "Één agent per medewerker",
+    "body1": "Elk teamlid krijgt zijn eigen AI-assistent — geen gedeelde chatbot, maar een persoonlijke agent die zijn rol, zijn projecten, zijn schrijfstijl en zijn geschiedenis kent. De agent van de monteur weet van HVAC-systemen en inspectieprocedures. De agent van de officemanager weet van planningsconflicten en klantvoorkeuren. De agent van de oprichter weet alles.",
+    "body2": "Het gaat er niet om iedereen hetzelfde hulpmiddel te geven. Het gaat erom iedereen de juiste copiloot te geven voor de manier waarop hij werkt."
+  },
+  "section2": {
+    "heading": "Dezelfde vergadering, verschillende intelligentie",
+    "body1": "Wanneer je team in dezelfde vergadering zit, genereert HABOS voor elke persoon andere AI-notities op basis van hun rol, verantwoordelijkheden en projecten. Een junior ontwikkelaar en een VP zien volledig verschillende voorgestelde vragen. De verkooplead krijgt follow-uptaken gerelateerd aan de pijplijn. De projectmanager krijgt tijdlijnrisico's uitgelicht.",
+    "body2": "Nadat de vergadering eindigt, krijgt elke persoon actiepunten die zijn afgestemd op hun domein — vooraf toegewezen, vooraf gedateerd en gekoppeld aan het juiste project. Niemand hoeft te bedenken \"wat betekende dat voor mij?\" De AI weet het al."
+  },
+  "roles": [
+    {
+      "role": "De buitendiensttechnicus",
+      "before": "Besteedt 20 minuten per klus aan papierwerk. Vergeet follow-ups te loggen. Werkt het CRM twee dagen te laat bij.",
+      "after": "Spreekt 30 seconden. Het systeem maakt de opdrachtregistratie aan, werkt de voorraad bij, markeert de follow-up en logt alles. Ze rijden al naar de volgende klus."
+    },
+    {
+      "role": "De officemanager",
+      "before": "Wisselt de hele dag tussen 8 apps. Controleert handmatig wie beschikbaar is. Stuurt e-mails door naar de juiste mensen.",
+      "after": "Krijgt een ochtendbriefing van wat er aandacht nodig heeft. AI behandelt planningsconflicten, routeert berichten en brengt de dingen naar voren die werkelijk een menselijke beslissing vereisen."
+    },
+    {
+      "role": "De verkooplead",
+      "before": "Vergeet follow-ups te doen. Gaat vergaderingen in zonder voorbereiding. Verliest het overzicht over dealfasen bij 30 klanten.",
+      "after": "Krijgt door AI gegenereerde briefings voor elk gesprek. CRM is altijd actueel omdat stemnotities het automatisch bijwerken. Verlopen deals worden automatisch gemarkeerd."
+    },
+    {
+      "role": "De oprichter",
+      "before": "Verdrinkt in operationele details. Kan het strategische beeld niet zien. Neemt beslissingen met onvolledige informatie.",
+      "after": "Krijgt de Strategische Raad — concurrerende AI-perspectieven op groeibeslissingen. Ochtendbriefings brengen cross-teampatronen naar voren. Problemen vinden hem voordat hij problemen vindt."
+    }
+  ],
+  "beforeLabel": "Voorheen",
+  "withHabosLabel": "Met HABOS",
+  "teamVisualPlaceholder": "Visueel teamversterking",
+  "section3": {
+    "heading": "E-mails die klinken zoals jij",
+    "body1": "Wanneer de AI een antwoord opstelt, past het bij jouw schrijfstijl — niet een generieke zakelijke toon. HABOS bouwt een profiel op uit je vroegere berichten: formaliteitsniveau, zinslengte, emoji-gebruik, hoe je ondertekent. De concepten van de verkooplead klinken als de verkooplead. De concepten van de oprichter klinken als de oprichter.",
+    "body2": "Drie antwoordopties verschijnen — Kort & Duidelijk, Warm & Professioneel, Uitvoerend — elk passend bij jouw stem. Je kiest er één, bewerkt desgewenst een zin en verstuurt. Wat vroeger vijf minuten staren naar een leeg opstelvenster kostte, duurt nu tien seconden."
+  },
+  "section4": {
+    "heading": "Structuur die zich aanpast aan hoe mensen werkelijk werken",
+    "body1": "Niet iedereen werkt op dezelfde manier. Sommige mensen zijn gedisciplineerd met hun takenlijsten. Anderen denken in stemnotities en verspreide ideeën. Sommigen gedijen bij gestructureerde roosters. Anderen hebben flexibiliteit nodig.",
+    "body2": "HABOS dwingt geen enkele workflow op. De stem-eerst-vastlegging ontmoet mensen waar ze zijn. De AI organiseert de chaos daarna — rommelende stemnotities worden gestructureerde acties, de juiste informatie op het juiste moment naar voren gebracht en processen die er toe doen zachtjes afgedwongen zonder te micromanagen over de processen die dat niet doen."
+  },
+  "section5": {
+    "heading": "De vermenigvuldiger, niet de vervanger",
+    "body1": "De AI-industrie spreekt graag over het vervangen van banen. Wij denken dat dit het punt mist. Een geweldige medewerker met AI-ondersteuning wordt niet vervangbaar — ze worden onmisbaar. De monteur die 8 klussen per dag kan doen in plaats van 5. De verkooplead die nooit een follow-up vergeet. De officemanager die problemen opvangt voordat ze escaleren.",
+    "body2": "HABOS maakt de mensen in je team de beste versie van zichzelf op het werk. Dat is geen functie. Dat is het hele punt."
+  },
+  "quote": "\"De belofte was nooit 'AI zal jouw werk doen.' De belofte is 'AI zal je buitengewoon goed maken in jouw werk.'\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Hefboomwerking voor kleine teams",
+    "backLabel": "Terug naar",
+    "backTitle": "HABOS"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "headline": "Velkommen til VOIS.",
+  "subtitle": "Abonnementet ditt er aktivt. La oss komme i gang.",
+  "nextStepsHeading": "Hva skjer videre",
+  "steps": [
+    "Sjekk e-posten din for kvittering",
+    "Last ned VOIS fra App Store",
+    "Logg inn med e-posten din for å aktivere"
+  ],
+  "downloadButton": "Last ned fra App Store",
+  "discordButton": "Bli med i Discord-fellesskapet",
+  "backToHome": "Tilbake til forsiden",
+  "logoAlt": "Vois"
+}

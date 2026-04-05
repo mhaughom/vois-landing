@@ -1,0 +1,56 @@
+{
+  "category": "Philosophie",
+  "title": "Des conseillers qui ne sont pas d'accord",
+  "tagline": "Tous les autres produits IA promettent le consensus. HABOS promet un désaccord productif. Parce que les meilleures décisions viennent d'entendre l'argument qu'on ne voulait pas entendre.",
+  "heroPlaceholder": "Illustration principale",
+  "section1": {
+    "heading": "Le problème de la machine à acquiescer",
+    "body1": "La plupart des assistants IA sont des flagorneurs. Posez une mauvaise question, obtenez une réponse enthousiaste. Proposez une stratégie défaillante, obtenez des points d'appui favorables. L'IA est d'accord avec vous parce qu'elle est optimisée pour être utile, et l'utilité a été confondue avec l'accord.",
+    "body2": "C'est parfait pour rédiger des e-mails. C'est dangereux pour prendre des décisions commerciales. Un fondateur qui n'entend que « excellente idée » est un fondateur qui fonce dans les murs."
+  },
+  "section2": {
+    "heading": "Le Conseil Stratégique",
+    "body": "HABOS ne vous donne pas une perspective IA. Il vous en donne plusieurs — chacune avec un mandat différent, une tolérance au risque différente et un ensemble de priorités différent. Nous l'appelons le Conseil Stratégique."
+  },
+  "advisors": [
+    {
+      "name": "L'Opérateur",
+      "desc": "Axé sur l'exécution, les délais et les contraintes de ressources. Demande : « Pouvons-nous vraiment faire ça avec ce que nous avons ? »"
+    },
+    {
+      "name": "Le Stratège",
+      "desc": "Axé sur le positionnement à long terme, la dynamique du marché et l'avantage concurrentiel. Demande : « Devrions-nous faire ça du tout ? »"
+    },
+    {
+      "name": "Le Contradicteur",
+      "desc": "Argumente délibérément la position opposée. Met les hypothèses à l'épreuve. Demande : « Et si vous aviez tort là-dessus ? »"
+    },
+    {
+      "name": "La Voix du Client",
+      "desc": "Représente la perspective de vos clients basée sur les données CRM, les retours et l'historique des conversations. Demande : « Que voudraient vraiment vos clients ? »"
+    }
+  ],
+  "councilPlaceholder": "Visualisation du débat du Conseil",
+  "section3": {
+    "heading": "Le désaccord structuré",
+    "body1": "Lorsque vous soumettez une décision au Conseil — « Devrions-nous nous développer sur le marché de Bergen ? » ou « Devrions-nous embaucher un deuxième technicien ? » — vous n'obtenez pas une seule réponse. Vous obtenez un débat structuré. Chaque conseiller présente son argumentaire, répond aux autres et soulève des risques que les autres n'ont pas mentionnés.",
+    "body2": "Le résultat n'est pas une recommandation. C'est un rapport de décision : les arguments les plus forts pour et contre, les incertitudes clés, les points de données les plus importants et les questions auxquelles vous devriez répondre avant de vous engager. Vous prenez la décision. Le Conseil s'assure que vous avez tout entendu d'abord."
+  },
+  "section4": {
+    "heading": "Pourquoi c'est plus difficile qu'il n'y paraît",
+    "body1": "Construire une IA qui se dispute avec elle-même est véritablement difficile. Cela nécessite de donner à chaque conseiller un cadre de raisonnement distinct, de les empêcher de tomber dans le consensus, d'ancrer leurs arguments dans les données réelles de votre entreprise, et de présenter le désaccord d'une manière utile plutôt que confuse.",
+    "body2": "La plupart des entreprises d'IA ne le tenteront pas car le consensus est plus facile à développer et plus facile à commercialiser. Mais le consensus est aussi moins précieux. Tout l'intérêt d'avoir des conseillers est qu'ils voient des choses que vous ne voyez pas — y compris des choses que vous ne voulez pas voir."
+  },
+  "section5": {
+    "heading": "Calibré sur votre entreprise",
+    "body1": "Le Conseil n'est pas générique. L'Opérateur connaît la capacité réelle de votre équipe parce qu'il lit vos données de ressources. Le Stratège connaît votre paysage concurrentiel parce qu'il lit vos études de marché. La Voix du Client connaît les véritables préoccupations de vos clients parce qu'elle lit votre CRM et vos tickets d'assistance.",
+    "body2": "Après six mois, les arguments du Conseil sont ancrés dans les modèles de votre entreprise spécifique — pas des cadres théoriques de MBA."
+  },
+  "quote": "« La chose la plus dangereuse qu'une IA puisse faire est de vous dire ce que vous voulez entendre. La chose la plus précieuse qu'elle puisse faire est de vous dire ce que vous devez entendre. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Votre voix, pas la nôtre",
+    "nextLabel": "Suivant",
+    "nextTitle": "La mémoire qui se cumule"
+  }
+}

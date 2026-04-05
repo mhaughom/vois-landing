@@ -1,0 +1,54 @@
+{
+  "badge": "E-mail por Voz",
+  "hero": {
+    "title": "Limpe Sua Caixa de Entrada Falando.",
+    "description": "Diga \"leia minha caixa de entrada\" ao dirigir. Dite respostas. A IA gera 3 opções de tom por e-mail. Envie a que preferir."
+  },
+  "body": "Diga 'leia minha caixa de entrada' ao dirigir. O HABOS resume seus e-mails mais importantes, lê em voz alta os urgentes e gera três rascunhos de resposta em diferentes tons — Curto e Direto, Cordial e Profissional, e Executivo. Você diz 'envie o segundo' e está feito. Cada e-mail também recebe itens de ação extraídos por IA: prazos viram tarefas, solicitações de reunião viram eventos no calendário, e acompanhamentos são sinalizados — tudo sem você digitar uma única palavra.",
+  "conversation": {
+    "userAsk": "O que tem na minha caixa de entrada?",
+    "aiSummary": "Você tem 5 novos e-mails. O mais importante é de Sarah Henderson sobre o cronograma da reforma — ela precisa de uma confirmação até o final do dia. Quer que eu leia?",
+    "userReply": "Sim, e elabore uma resposta",
+    "aiDraftsIntro": "Aqui estão 3 opções:",
+    "draft1": {
+      "label": "Curto e Direto",
+      "text": "Olá Sarah, confirmado — estamos no prazo para o cronograma de março. Enviarei o cronograma atualizado até amanhã."
+    },
+    "draft2": {
+      "label": "Cordial e Profissional",
+      "text": "Olá Sarah, obrigado pelo contato. Fico feliz em confirmar que estamos no prazo. Enviarei o cronograma detalhado até amanhã pela manhã."
+    },
+    "draft3": {
+      "label": "Executivo",
+      "text": "Sarah — Confirmado para março. Cronograma atualizado a seguir amanhã. Avise-me se precisar de mais alguma coisa."
+    },
+    "userSend": "Envie o segundo",
+    "confirmation": "E-mail enviado. Zero digitação. Zero tempo de tela."
+  },
+  "benefits": {
+    "time": {
+      "title": "30 e-mails → 5 minutos",
+      "description": "O modo de voz lê os importantes, ignora o ruído e permite que você responda com sua voz natural. O trajeto se torna produtivo."
+    },
+    "tone": {
+      "title": "3 opções de tom por resposta",
+      "description": "Curto e Direto, Cordial e Profissional, Executivo. Escolha o que se encaixa, ou peça à IA para ajustar. Sua voz, aprimorada."
+    },
+    "actions": {
+      "title": "Ações extraídas automaticamente",
+      "description": "Quando um e-mail menciona um prazo, reunião ou tarefa — cartões de ação aparecem. Toque para criar sem sair da sua caixa de entrada."
+    }
+  },
+  "scenario": "São 7h45. Você está dirigindo para o primeiro local de trabalho. Você diz \"leia minha caixa de entrada.\" O HABOS resume 5 e-mails, lê o urgente do seu cliente e elabora uma resposta no seu tom. Você diz \"envie.\" Quando você estaciona, sua caixa de entrada está limpa e seu cliente já tem uma resposta. Você não tocou no celular.",
+  "integrations": {
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "workspace": "E-mail corporativo",
+    "unified": "Caixa de entrada unificada",
+    "actions": "Itens de ação extraídos automaticamente"
+  },
+  "closing": {
+    "tagline": "Outros aplicativos de e-mail querem que você digite mais rápido. O HABOS permite que você pare de digitar completamente.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

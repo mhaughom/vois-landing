@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Guide de configuration"
+  },
+  "hero": {
+    "heading": "Configurez VOIS sur vos appareils",
+    "description": "Ajoutez VOIS à votre cadran Apple Watch et à l'écran de verrouillage de votre iPhone pour un enregistrement instantané en un seul tap."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "step1": {
+      "heading": "Étape 1 : Installez VOIS sur votre montre"
+    },
+    "step2": {
+      "heading": "Étape 2 : Ajoutez VOIS à votre cadran"
+    },
+    "installSteps": [
+      { "number": 1, "text": "Ouvrez l'application Watch sur votre iPhone" },
+      { "number": 2, "text": "Faites défiler vers « Applications disponibles »" },
+      { "number": 3, "text": "Appuyez sur Installer à côté de VOIS" }
+    ],
+    "faceSteps": [
+      "Appuyez longuement sur votre cadran de montre",
+      "Appuyez sur « Modifier »",
+      "Appuyez sur un emplacement de complication",
+      "Sélectionnez VOIS"
+    ],
+    "availableAppsLabel": "Applications disponibles",
+    "installButton": "INSTALLER"
+  },
+  "lockScreen": {
+    "sectionHeading": "Écran de verrouillage iPhone",
+    "step": {
+      "heading": "Ajoutez le widget VOIS à votre écran de verrouillage"
+    },
+    "steps": [
+      "Appuyez longuement sur votre écran de verrouillage",
+      "Appuyez sur Personnaliser",
+      "Appuyez sur + Ajouter des widgets",
+      "Sélectionnez VOIS"
+    ]
+  }
+}

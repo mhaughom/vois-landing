@@ -1,0 +1,21 @@
+{
+  "category": "Filosofia",
+  "title": "Velocidade do Pensamento",
+  "tagline": "Sua entrada mais rápida é sua voz. Sua saída mais rápida é um toque.",
+  "heroAlt": "Velocidade do Pensamento",
+  "speedLines": {
+    "typing": "Digitação: 40 PPM.",
+    "speaking": "Fala: 150 PPM.",
+    "reading": "Leitura: 250 PPM.",
+    "tapping": "Toque: instantâneo."
+  },
+  "body1": "Uma reunião de 30 minutos produz dez decisões. Então alguém passa 45 minutos digitando essas decisões em uma ferramenta de gestão de projetos. O cérebro opera na velocidade do pensamento. O software opera na velocidade da digitação. Essa incompatibilidade custa horas todos os dias.",
+  "body2": "Considere uma resposta de e-mail. Ler três variantes geradas por IA: 10 segundos. Tocar em enviar na certa: 0,1 segundo. Total: 10,1 segundos. Escrever do zero: 3–5 minutos. Isso é 20 vezes mais rápido. Em 20 e-mails por dia, é a diferença entre uma hora e quatro minutos.",
+  "quote": "\"Não aceleramos a digitação. Eliminamos a necessidade dela.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Capture Seu Pensamento",
+    "nextLabel": "Próximo",
+    "nextTitle": "Sempre ao Alcance"
+  }
+}

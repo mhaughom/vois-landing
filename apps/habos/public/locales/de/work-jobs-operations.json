@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Aufträge & Betrieb",
+  "hero": {
+    "title": "Betrieb per Sprache steuern",
+    "description": "Aufträge einteilen, Routen planen, Projekte verfolgen, Aufgaben verwalten und Zeit erfassen — vom Feld oder Büro aus, ohne Papierkram."
+  },
+  "items": [
+    {
+      "title": "Einsatzplanung",
+      "desc": "Tages-Auftragsboard mit Statusablauf, Teamzuweisung und Kundenbenachrichtigungen."
+    },
+    {
+      "title": "Routen",
+      "desc": "Intelligente Haltepunktreihenfolge mit Kartenintegration für dein Außendienstteam."
+    },
+    {
+      "title": "Projekte",
+      "desc": "Sieh, welche Projekte Aufmerksamkeit brauchen — ins Stocken geratene Arbeit wird markiert, bevor sie eskaliert."
+    },
+    {
+      "title": "Aufgaben",
+      "desc": "Deine wichtigsten Aufgaben kommen zuerst, erstellt aus Sprache oder Meetings."
+    },
+    {
+      "title": "Zeiterfassung",
+      "desc": "Vom Handy einstempeln, fakturierbare Stunden pro Auftrag verfolgen, mit Lohnbuchhaltung verknüpfen."
+    }
+  ]
+}

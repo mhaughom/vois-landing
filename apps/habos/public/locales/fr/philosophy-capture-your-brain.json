@@ -1,0 +1,23 @@
+{
+  "category": "Philosophie",
+  "title": "Capturez votre cerveau",
+  "tagline": "Vos meilleures idées surgissent entre les réunions. Nous les saisissons.",
+  "heroAlt": "Capturez votre cerveau",
+  "body1": "C'est lundi matin. Vous savez que vous avez eu des pensées importantes durant le week-end — vous les sentez, juste hors de portée. Vos post-its sont tombés du moniteur. L'astuce du « m'envoyer un e-mail » est enfouie sous 40 messages. Vous avez 47 mémos vocaux sans étiquette et aucun temps pour en écouter un seul. Le potentiel créatif s'évapore chaque jour, non pas parce que les gens manquent d'idées, mais parce que l'outil de capture était trop loin.",
+  "body2": "Un plombier finit son intervention chez Johnson et parle à VOIS durant le trajet de retour. Trente secondes : « Le chauffe-eau doit être remplacé, pas réparé. Proposez-leur un devis pour un Bosch 27i, 18 000 couronnes. Rappelle-moi de commander la pièce demain. » Le temps qu'il se gare, le rapport de mission est mis à jour, le CRM reflète le changement, un devis est rédigé et un rappel est défini pour 9h. Les mains n'ont jamais quitté le volant.",
+  "stat": {
+    "withoutLabel": "Sans capture",
+    "withoutCount": "23 idées",
+    "withoutSub": "3 concrétisées",
+    "withLabel": "Avec capture",
+    "withCount": "23 capturées",
+    "withSub": "14 réalisées d'ici vendredi"
+  },
+  "quote": "« Votre cerveau n'a jamais été le goulot d'étranglement. C'était votre outil de capture. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Deux interfaces, un système",
+    "nextLabel": "Suivant",
+    "nextTitle": "À la vitesse de la pensée"
+  }
+}

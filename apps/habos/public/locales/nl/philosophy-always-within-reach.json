@@ -1,0 +1,21 @@
+{
+  "category": "Filosofie",
+  "title": "Altijd binnen handbereik",
+  "tagline": "Horloge. Telefoon. Vergrendelscherm. Een telefoongesprek. Waar je ook bent.",
+  "heroAlt": "Altijd binnen handbereik",
+  "body": "Een elektricien op een ladder. Handen met draad. Er flitst een gedachte over de volgende klus. Zijn telefoon zit in zijn zak. Tegen de tijd dat hij naar beneden klimt, de telefoon ontgrendelt, de app opent en naar het juiste scherm navigeert — zijn er drie minuten voorbij. Waarschijnlijker is de gedachte volledig verdwenen. Bedrijfssoftware is gebouwd voor bureaus. De helft van de beroepsbevolking heeft er geen.",
+  "surfaces": [
+    { "name": "Horloge", "detail": "Onder 300ms. Pols omhoog, spreken, klaar." },
+    { "name": "Vergrendelscherm", "detail": "Één tik start de opname. Geen ontgrendeling." },
+    { "name": "Telefoongesprek", "detail": "Bel je VOIS-nummer. Elke telefoon, elk netwerk." },
+    { "name": "Melding", "detail": "Tik een antwoordoptie zonder de app te openen." }
+  ],
+  "funnelNote": "Elke extra tik is een lek in de vastleggingstrechter.",
+  "quote": "\"Als je een app moet openen om hem te gebruiken, ben je al te laat.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Snelheid van gedachte",
+    "nextLabel": "Volgende",
+    "nextTitle": "Terug naar HABOS"
+  }
+}

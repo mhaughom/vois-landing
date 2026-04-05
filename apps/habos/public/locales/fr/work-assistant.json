@@ -1,0 +1,59 @@
+{
+  "badge": "Fonctionnalité clé",
+  "hero": {
+    "title": "Parlez à votre entreprise",
+    "description": "Posez une question, donnez une instruction, ou pensez à voix haute\u00a0— l'assistant gère le reste en moins de 300 ms."
+  },
+  "heroPills": ["Réponse en 300 ms", "8 outils intégrés", "Voix + texte"],
+  "intro": "Quand vous parlez à l'assistant HABOS, il connaît déjà vos projets, votre calendrier, votre équipe et vos conversations récentes. Il n'a pas besoin que vous expliquiez le contexte — il l'a. Demandez « comment se présentent les créances ? » et il interroge vos données financières. Dites « rédige un suivi à Sarah » et il tire le dernier fil d'e-mails, vos notes CRM et sa tendance de sentiment. Ensuite il rédige le brouillon et attend votre approbation avant d'envoyer. Une conversation remplace cinq applications et dix clics.",
+  "mockConversation": {
+    "userMessage": "Qu'est-ce que j'ai au calendrier demain et rédige un e-mail de suivi à Sarah concernant le devis de rénovation",
+    "assistantMessage": "Vous avez 3 réunions demain. La première est à 9\u00a0h avec l'équipe Henderson. J'ai rédigé un suivi pour Sarah\u00a0— voici un aperçu :",
+    "emailTo": "À : sarah@...",
+    "emailSubject": "Objet : Suivi rénovation cuisine",
+    "emailBody": "Bonjour Sarah, je reviens sur le devis dont nous avons discuté...",
+    "footer": "Une seule phrase. Deux systèmes mis à jour. Zéro changement d'application."
+  },
+  "savings": {
+    "title": "Ce que ça vous économise",
+    "items": [
+      {
+        "stat": "45 min/jour",
+        "text": "Temps moyen économisé en remplaçant le changement d'application par des commandes vocales. Demandez au lieu de cliquer."
+      },
+      {
+        "stat": "5 applis → 1",
+        "text": "Calendrier, e-mail, tâches, CRM et recherche — tous accessibles dans une seule conversation."
+      },
+      {
+        "stat": "0 formulaire rempli",
+        "text": "Dites « enregistre 3 heures sur la mission Henderson » et la feuille de temps, le projet et la facturation se mettent à jour d'eux-mêmes."
+      }
+    ]
+  },
+  "capabilities": [
+    "Rechercher vos données",
+    "Créer des tâches",
+    "Planifier des événements",
+    "Rédiger des e-mails",
+    "Vérifier les finances",
+    "Gérer les réservations",
+    "Faire des recherches",
+    "Remplir des rapports"
+  ],
+  "context": {
+    "title": "Connaît toujours votre contexte",
+    "description": "L'assistant reconstruit son contexte à chaque session\u00a0— votre profil, vos projets actifs, vos événements à venir, la structure de votre équipe et les données disponibles. Vous n'avez jamais besoin d'expliquer qui vous êtes ou sur quoi vous travaillez.",
+    "items": [
+      "Votre calendrier",
+      "Projets actifs",
+      "Équipe & rôles",
+      "Conversations récentes",
+      "Données commerciales"
+    ]
+  },
+  "closing": {
+    "tagline": "D'autres applications vous donnent un chatbot. VOIS vous donne un partenaire commercial.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

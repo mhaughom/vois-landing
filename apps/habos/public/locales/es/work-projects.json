@@ -1,0 +1,72 @@
+{
+  "badge": "Inteligencia de proyectos con IA",
+  "hero": {
+    "title": "Sepa siempre qué está bloqueando el progreso.",
+    "description": "HABOS analiza continuamente cada tarea, dependencia y plazo para identificar la ruta crítica. Usted ve los cuellos de botella antes de que se conviertan en problemas."
+  },
+  "body": "El sistema de proyectos usa análisis de IA para identificar continuamente la ruta crítica. GPT-4o examina todos los elementos del plan, las dependencias y el estado actual, luego identifica cuellos de botella y cadenas de bloqueo. Los elementos de ruta crítica reciben automáticamente mayor prioridad en el motor de programación — cuando se llenan los bloques de enfoque, las tareas de ruta crítica se insertan primero. Las dependencias aplican orden topológico, de modo que las tareas predecesoras siempre se programan antes que sus dependientes.",
+  "criticalPath": {
+    "heading": "Renovación de cocina Henderson — Ruta crítica",
+    "items": {
+      "permitsApproved": {
+        "title": "Permisos aprobados",
+        "date": "Completado 20 mar"
+      },
+      "plumbingRoughIn": {
+        "title": "Instalación provisional de plomería",
+        "date": "Completado 23 mar"
+      },
+      "tileSelection": {
+        "title": "Selección de azulejos",
+        "status": "BLOQUEANDO — esperando entrega de muestra (vence 28 mar)"
+      },
+      "tileInstallation": {
+        "title": "Instalación de azulejos",
+        "blockedBy": "Bloqueado por: Selección de azulejos"
+      },
+      "finalInspection": {
+        "title": "Inspección final",
+        "blockedBy": "Bloqueado por: Instalación de azulejos"
+      }
+    },
+    "note": "La IA identificó «Selección de azulejos» como el cuello de botella 3 días antes de que el equipo lo notara. Los elementos de ruta crítica se promueven automáticamente a la mayor prioridad en su horario."
+  },
+  "benefits": {
+    "bottlenecks": {
+      "title": "Cuellos de botella encontrados automáticamente",
+      "description": "La IA examina todos los elementos del plan, dependencias y estado. Establece critical_rank en los elementos que forman la cadena de bloqueo — y su calendario los prioriza de inmediato."
+    },
+    "dependencies": {
+      "title": "Dependencias aplicadas",
+      "description": "Si un predecesor no está completo, la tarea dependiente se marca como bloqueada y no puede iniciarse. No más trabajar en lo equivocado."
+    },
+    "connected": {
+      "title": "Cada fuente conectada",
+      "description": "Los correos, reuniones, notas de voz y documentos se etiquetan automáticamente a los proyectos. Pregunte «¿por qué va atrasado esto?» y obtenga una respuesta real."
+    }
+  },
+  "comparison": {
+    "without": {
+      "heading": "Sin HABOS",
+      "description": "Standup del lunes: «¿Algún bloqueo?» Silencio. Jueves: «¿Por qué no están instalados los azulejos?» «Ah, las muestras nunca llegaron.» Tres días perdidos.",
+      "badge": "Cuello de botella descubierto: 3 días tarde"
+    },
+    "with": {
+      "heading": "Con HABOS",
+      "description": "Martes por la mañana: notificación — «Selección de azulejos es ahora el cuello de botella de la ruta crítica. La entrega de muestras está a 2 días. Recomendación: escalar con el proveedor.» Acción tomada el mismo día.",
+      "badge": "Cuello de botella señalado: 3 días antes"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Análisis de ruta crítica GPT-4o",
+      "Ordenación topológica de dependencias",
+      "Elevación automática de prioridad",
+      "Etiquetado de datos entre módulos"
+    ]
+  },
+  "cta": {
+    "heading": "Otras herramientas de proyectos le muestran tareas. HABOS le muestra lo que importa.",
+    "button": "Unirse a la lista de espera"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Communication",
+  "hero": {
+    "title": "Every Conversation, One Place",
+    "description": "Email, messaging, phone, and support tickets — unified with AI that drafts replies, routes messages, and never lets anything slip."
+  },
+  "items": [
+    {
+      "title": "Email",
+      "desc": "Clear your inbox by talking — AI drafts replies in your tone."
+    },
+    {
+      "title": "Messenger",
+      "desc": "Every channel merged per person — email, chat, SMS in one stream."
+    },
+    {
+      "title": "Phone",
+      "desc": "AI receptionist that books appointments and answers questions 24/7."
+    },
+    {
+      "title": "Support Tickets",
+      "desc": "Tickets created from forms or email with priority levels and auto-escalation."
+    }
+  ]
+}

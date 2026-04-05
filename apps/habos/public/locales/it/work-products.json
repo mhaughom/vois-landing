@@ -1,0 +1,59 @@
+{
+  "badge": "Commerce",
+  "hero": {
+    "title": "Prodotti, Ordini e Pagamenti. Tutto Connesso.",
+    "description": "Servizi, prodotti fisici, pacchetti e abbonamenti — tutti con inventario a livello di variante, prezzi automatizzati e checkout Stripe integrato."
+  },
+  "body": "Quattro tipi di prodotto in un unico sistema: servizi, prodotti fisici, pacchetti e abbonamenti — tutti con tracciamento scorte a livello di variante, avvisi di scorte basse e deduzioni automatiche. Trasforma qualsiasi prodotto in un appuntamento prenotabile con durata, capacità, orari e giorni lavorativi configurabili. Incorpora un carrello acquisti o un calendario di prenotazione direttamente nel tuo sito web — nessuna piattaforma separata necessaria. Il calcolo delle voci lato server previene le frodi lato client su tutti i canali.",
+  "productTypes": [
+    { "label": "Servizi", "desc": "Prezzi orari o fissi" },
+    { "label": "Prodotti Fisici", "desc": "Scorte a livello di variante" },
+    { "label": "Pacchetti", "desc": "Raggruppa più articoli" },
+    { "label": "Abbonamenti", "desc": "Fatturazione ricorrente" }
+  ],
+  "catalogCaption": "Un unico sistema di catalogo gestisce tutti e quattro. Trasforma qualsiasi prodotto in un appuntamento prenotabile o un widget per sito web.",
+  "orderSteps": ["Preventivo", "In attesa", "Confermato", "In corso", "Completato"],
+  "order": {
+    "heading": "Ordine #1247 — Henderson Kitchen Renovation",
+    "tableHeaders": {
+      "product": "Prodotto",
+      "qty": "Qtà",
+      "unit": "Unità",
+      "total": "Totale"
+    },
+    "lineItems": [
+      { "product": "Armadi personalizzati (noce)", "qty": "1", "unit": "$2.400", "total": "$2.400" },
+      { "product": "Piano lavoro — quarzo 60\"", "qty": "2", "unit": "$650", "total": "$1.300" },
+      { "product": "Manodopera installazione (4 ore)", "qty": "1", "unit": "$550", "total": "$550" }
+    ],
+    "subtotal": "Subtotale: $4.250",
+    "paymentConfirmed": "Pagamento Stripe: ✓ Confermato",
+    "deposit": "Acconto: $1.000 pagato"
+  },
+  "orderCaption": "Gli ordini vengono generati automaticamente da prenotazioni, acquisti sul sito web o creazione manuale. Le voci vengono calcolate lato server — nessuna frode lato client.",
+  "benefits": [
+    {
+      "title": "Le scorte non mentono mai",
+      "desc": "L'inventario a livello di variante si deduce alla conferma dell'ordine. Gli avvisi di scorte basse si attivano automaticamente. I rimborsi ripristinano le scorte."
+    },
+    {
+      "title": "Stripe in 3 clic",
+      "desc": "Sessioni di checkout, fatture, link di pagamento e rimborsi — tutto tramite Stripe Connect. Il denaro va sul tuo conto, non a un intermediario."
+    },
+    {
+      "title": "Sito web → ordine → CRM",
+      "desc": "Il cliente acquista sul tuo sito HABOS. Ordine creato. Contatto CRM aggiornato. Ricevuta inviata. Zero inserimento dati manuale."
+    }
+  ],
+  "techItems": [
+    "4 tipi di prodotto",
+    "Scorte a livello di variante",
+    "Stripe Connect Express",
+    "Voci lato server",
+    "Sincronizzazione prenotazione ↔ ordine"
+  ],
+  "cta": {
+    "heading": "Gli altri strumenti commerce sono una piattaforma separata. Il commerce HABOS è integrato in tutto.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

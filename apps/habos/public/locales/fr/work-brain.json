@@ -1,0 +1,77 @@
+{
+  "badge": "Fonctionnalité principale",
+  "hero": {
+    "title": "Une question. Dix-neuf sources.\nUne seconde.",
+    "description": "Posez n'importe quelle question sur votre entreprise et obtenez une réponse citée avant de finir votre café."
+  },
+  "intro": "Quand vous demandez « qu'avons-nous discuté au sujet du projet Johnson ? » — HABOS ne cherche pas dans une seule application. Il recherche simultanément dans les transcriptions de réunions, les notes de projet, les fils d'e-mails, la chronologie CRM, les commentaires de tâches et les messages de discussion. Une entreprise utilisant des outils séparés pour chacun de ces éléments — Notion, HubSpot, Gmail, Slack, Asana — devrait chercher dans cinq produits et synthétiser mentalement les résultats. HABOS retourne une réponse classée, appuyée par des citations, en moins d'une seconde.",
+  "sources": {
+    "label": "Toutes recherchées simultanément",
+    "items": [
+      "Enregistrements vocaux",
+      "Documents",
+      "E-mails",
+      "Contacts",
+      "Messages de discussion",
+      "Guides de procédures",
+      "Produits",
+      "Commandes",
+      "Réservations",
+      "Dossiers CRM",
+      "Tickets",
+      "Soumissions de formulaires",
+      "Emplois & visites",
+      "Itinéraires",
+      "Sites web",
+      "Publications sociales",
+      "Présentations",
+      "Notes de projet",
+      "Transcriptions de réunions"
+    ]
+  },
+  "comparison": {
+    "without": {
+      "title": "Sans VOIS Brain",
+      "painPoints": [
+        "Chercher dans Gmail... rien",
+        "Vérifier Slack... peut-être ?",
+        "Ouvrir le CRM... défiler, défiler, défiler",
+        "Demander à un collègue... il est en réunion",
+        "Abandonner et improviser"
+      ],
+      "footer": "~20 minutes. Réponse partielle."
+    },
+    "with": {
+      "title": "Avec VOIS Brain",
+      "query": "« Qu'avons-nous discuté au sujet du projet Johnson ? »",
+      "foundLabel": "Trouvé dans 4 sources :",
+      "sources": "transcription de réunion (12 mars) · fil d'e-mail (15 mars) · note CRM (18 mars) · mise à jour du projet (20 mars)",
+      "answer": "La rénovation de cuisine Johnson est sur la bonne voie avec les permis approuvés...",
+      "footer": "0,8 secondes. Vue d'ensemble complète."
+    }
+  },
+  "techStats": [
+    "Embeddings 512 dimensions",
+    "Index vectoriels HNSW",
+    "Hybride sémantique + mots-clés",
+    "11 fonctions de recherche"
+  ],
+  "scenarios": [
+    {
+      "question": "Où en sommes-nous avec l'affaire Henderson ?",
+      "answer": "Pipeline CRM, 3 fils d'e-mails, notes de la dernière réunion"
+    },
+    {
+      "question": "Qu'a dit Sarah au sujet du budget ?",
+      "answer": "Transcription d'enregistrement vocal, commentaire de projet, message Slack"
+    },
+    {
+      "question": "Trouver tout ce qui concerne les retards de permis",
+      "answer": "2 notes de projet, 1 chaîne d'e-mails, 1 soumission de formulaire, 1 journal de travail"
+    }
+  ],
+  "closing": {
+    "tagline": "Les autres plateformes recherchent dans une application à la fois. VOIS recherche dans toute votre entreprise d'un seul coup.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "category": "Philosophie",
+  "title": "Hebelwirkung für kleine Teams",
+  "tagline": "Sie sollten keine 50 Mitarbeiter benötigen, um wie ein ernsthaftes Unternehmen zu operieren. HABOS gibt kleinen Teams die operative Infrastruktur, die früher ganze Abteilungen erforderte.",
+  "heroPlaceholder": "Hero-Illustration",
+  "section1": {
+    "heading": "Die Unternehmenslücke",
+    "body1": "Unternehmenssoftware wurde für Unternehmen gebaut. CRM-Plattformen gehen davon aus, dass Sie ein Sales-Ops-Team haben, das sie konfiguriert. Projektmanagement-Tools gehen davon aus, dass Sie ein PMO haben. Operations-Plattformen gehen davon aus, dass Sie Prozessingenieure haben. Selbst \"einfache\" Tools wie Planungssoftware gehen davon aus, dass jemand Zeit hat, sie einzurichten und zu warten.",
+    "body2": "Kleine Unternehmen – der Klempner mit 5 Technikern, die Beratungsfirma mit 3 Partnern, die Zahnarztpraxis mit 8 Mitarbeitern – haben diese Personen nicht. Sie haben jeden mit vier Hüten, der den ganzen Tag den Kontext wechselt und Informationen in den Lücken zwischen ihren 12 verschiedenen Apps verliert."
+  },
+  "section2": {
+    "heading": "Eine Plattform. Keine Abteilungen erforderlich.",
+    "body1": "HABOS ersetzt den gesamten Stack. CRM, Projektmanagement, Aufgaben-Tracking, Kalender, E-Mail, Dokumente, Rechnungsstellung, Buchungen, Betriebsüberwachung, Teammanagement, Marketing und Analysen – alles auf einer Plattform, alle teilen ein Gehirn, alle per Sprache zugänglich.",
+    "body2": "Aber es geht nicht nur um Konsolidierung. Es geht um die Dinge, die möglich werden, wenn alles verbunden ist und KI die Lücken füllt, wo Sie keine Mitarbeiter haben."
+  },
+  "withoutLabel": "Ohne HABOS",
+  "withoutItems": [
+    "Außendiensttechniker beendet Auftrag, fährt ins Büro, um Formulare auszufüllen",
+    "Inhaber prüft 5 Apps, um sich auf ein Kundengespräch vorzubereiten",
+    "Verpasste Inspektion erst entdeckt, als der Prüfer eintrifft",
+    "Vertragsverlängerung vergessen, bis der Kunde anruft, um zu kündigen",
+    "20 Minuten Verwaltung pro abgeschlossenem Auftrag"
+  ],
+  "withLabel": "Mit HABOS",
+  "withItems": [
+    "30-Sekunden-Sprachnotiz aus dem Van erstellt alle Datensätze",
+    "KI-Briefing erscheint 7 Minuten vor jedem Meeting",
+    "Watchdog warnt beim zweiten verpassten Inspektionstermin",
+    "Proaktive Erinnerung 3 Wochen vor Vertragsablauf",
+    "40 Sekunden Verwaltung pro abgeschlossenem Auftrag"
+  ],
+  "platformPlaceholder": "Plattformübersicht-Screenshot",
+  "section3": {
+    "heading": "Das Morgen-Briefing",
+    "body1": "Jeden Morgen fasst HABOS zusammen, was Ihre Aufmerksamkeit erfordert. Kein Dashboard, das Sie interpretieren müssen. Ein prägnantes Briefing: drei wichtige Dinge für heute, warum sie wichtig sind, was das Playbook zu tun empfiehlt, und eine Ein-Tippen-Aktion zum Genehmigen der vorgeschlagenen Antwort.",
+    "body2": "Betriebsgesundheit von Grün auf Gelb gefallen? Sie wissen es, bevor Ihr Team es tut. Ein Vertrag läuft ab und niemand hat mit der Erneuerung begonnen? Das System informiert Sie, verlinkt den CRM-Datensatz und bietet an, den Erneuerungsworkflow auszulösen. Zwei neue Buchungen im selben Stadtviertel? Es schlägt vor, sie als Route zu kombinieren, um Reisezeit zu sparen.",
+    "body3": "Das sind Dinge, die ein Betriebsleiter bemerken würde – wenn Sie einen hätten. HABOS gibt Ihnen den Betriebsleiter ohne die zusätzliche Stelle."
+  },
+  "dashboardPlaceholder": "Dashboard-Screenshot",
+  "section4": {
+    "heading": "Das Unternehmen wachsen lassen, nicht den Overhead",
+    "body1": "Der traditionelle Wachstumspfad für ein kleines Unternehmen ist: mehr Arbeit bekommen, mehr Menschen einstellen, um die Arbeit zu bewältigen, mehr Menschen einstellen, um die Menschen zu managen. Jeder Mitarbeiter erhöht die operative Komplexität – mehr Koordination, mehr Übergaben, mehr Dinge, die durch die Ritzen fallen.",
+    "body2": "HABOS ändert die Gleichung. Statt eine Verwaltungskraft für die Terminplanung einzustellen, lassen Sie die KI das erledigen. Statt einen Marketing-Koordinator einzustellen, lassen Sie die Plattform Ihre Kampagnen ausführen. Statt einen Betriebsleiter zur Compliance-Überwachung einzustellen, lassen Sie den Watchdog es 24/7 überwachen.",
+    "body3": "Das Ergebnis: ein 5-Personen-Unternehmen, das mit der Raffinesse und Zuverlässigkeit eines zehnmal so großen operiert."
+  },
+  "quote": "\"Für den Klempner in Bergen bedeutet Erfolg: Er spricht 30 Sekunden in sein Telefon und die richtigen Dinge passieren über sechs Systeme. Er geht in Meetings vorbereitet, ohne jede Vorbereitung gemacht zu haben. Probleme finden ihn, bevor er sie findet.\"",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Gedächtnis, das sich aufbaut",
+    "nextLabel": "Weiter",
+    "nextTitle": "Ihr Team auf Hochtouren bringen"
+  }
+}

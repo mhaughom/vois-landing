@@ -1,0 +1,85 @@
+{
+  "badge": "Route Management",
+  "hero": {
+    "title": "Routes That Build Themselves.",
+    "description": "Assign jobs to a technician and HABOS auto-generates their route for the day — geocoded stops, optimized order, and one-tap navigation to Google Maps."
+  },
+  "body": "When you assign a job visit to a technician, their managed route updates automatically with geocoded stops from Mapbox. Edit manually and it detaches to prevent automation overwrites. Every route captures GPS waypoints at five-second intervals, with Haversine distance computed server-side for accurate mileage billing. Field workers mark stops as completed or skipped from their phone — the office sees progress in real-time without a single phone call.",
+  "routeCard": {
+    "heading": "Mike Torres — Wednesday Route",
+    "subheading": "5 stops · 47 mi estimated",
+    "navigate": "Navigate",
+    "footnote": "Stops auto-geocoded via Mapbox. Drag to reorder. Tap 'Navigate' for turn-by-turn directions."
+  },
+  "stops": [
+    {
+      "name": "Henderson Residence",
+      "time": "9:00 AM",
+      "task": "Water heater install",
+      "statusLabel": "Completed"
+    },
+    {
+      "name": "Baker Office",
+      "time": "11:00 AM",
+      "task": "HVAC maintenance",
+      "statusLabel": "Completed"
+    },
+    {
+      "name": "Wilson Home",
+      "time": "1:00 PM",
+      "task": "Plumbing repair",
+      "statusLabel": "In progress"
+    },
+    {
+      "name": "Garcia Apartment",
+      "time": "3:00 PM",
+      "task": "Electrical inspection",
+      "statusLabel": "Pending"
+    },
+    {
+      "name": "Johnson Property",
+      "time": "4:30 PM",
+      "task": "Emergency leak",
+      "statusLabel": "Added today"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Auto-sync from dispatch",
+      "desc": "When you assign a job visit to a tech, their managed route updates automatically. Edit manually and it detaches — no accidental overwrites."
+    },
+    {
+      "title": "Stop status tracking",
+      "desc": "Field workers mark stops as completed or skipped from their phone. The office sees progress in real-time without calling."
+    },
+    {
+      "title": "GPS mileage tracking",
+      "desc": "Every route captures GPS waypoints (5-sec intervals). Haversine distance computed server-side. Accurate mileage for billing and reimbursement."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Without HABOS",
+      "description": "Morning: print job list. Manually enter addresses into Google Maps one at a time. Hope the order makes sense. Call the office for changes. Log mileage on paper.",
+      "outcome": "~30 min wasted daily"
+    },
+    "with": {
+      "label": "With HABOS",
+      "description": "Morning: open app. Route is ready with all stops, optimized order, and one-tap navigation. Mark stops done as you go. Mileage logged automatically.",
+      "outcome": "0 min planning"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox geocoding + directions",
+      "Managed route auto-sync",
+      "GPS waypoints every 5s",
+      "Haversine distance",
+      "Google Maps deep link"
+    ]
+  },
+  "cta": {
+    "heading": "Other tools make you plan routes. HABOS plans them for you.",
+    "button": "Join Waitlist"
+  }
+}

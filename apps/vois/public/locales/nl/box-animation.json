@@ -1,0 +1,15 @@
+{
+  "panelLabels": ["Agenda", "Database", "Facturen", "E-mail", "Analyse", "Taken", "Chat", "Website", "Documenten"],
+  "widgetLabels": {
+    "Calendar": "Agenda",
+    "CRM": "CRM",
+    "Website": "Website",
+    "Notes": "Notities",
+    "Email": "E-mail",
+    "Tasks": "Taken",
+    "Analytics": "Analyse",
+    "Documents": "Documenten",
+    "Chat": "Chat",
+    "Invoices": "Facturen"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "badge": "Reservas",
+  "hero": {
+    "title": "Zero Reservas Duplicadas.\nGarantido.",
+    "description": "O cliente escolhe um horário, o sistema o bloqueia atomicamente, cria o pedido, faz upsert no contato do CRM e notifica sua equipe — tudo em uma única transação."
+  },
+  "body": "Os bloqueios consultivos do PostgreSQL previnem reservas duplicadas mesmo sob carga simultânea extrema. Se duas pessoas clicarem no mesmo horário no mesmo milissegundo, uma ganha — a outra vê 'horário indisponível' instantaneamente. Quando uma reserva é confirmada, o HABOS cria ou vincula atomicamente um cliente no CRM, gera um pedido com itens de linha, deduz o estoque e notifica o membro da equipe responsável. Cancelou? O inventário é restaurado e o pedido é atualizado. Transação única, sem atrasos de webhook, sem registros órfãos.",
+  "grid": {
+    "serviceTitle": "Manutenção de HVAC",
+    "serviceMeta": "60 min · $150",
+    "selectedPrefix": "Selecionado:",
+    "confirmButton": "Confirmar Reserva"
+  },
+  "confirmationSteps": [
+    "Reserva confirmada",
+    "Pedido #1248 criado",
+    "Sarah Henderson adicionada ao CRM",
+    "Equipe notificada"
+  ],
+  "advisoryLock": "Os bloqueios consultivos do PostgreSQL previnem reservas duplicadas mesmo sob carga simultânea extrema. Se duas pessoas clicarem no mesmo horário no mesmo milissegundo, uma ganha — a outra vê \"horário indisponível\" instantaneamente.",
+  "benefits": {
+    "bookOrder": {
+      "title": "Reserva → pedido → CRM",
+      "body": "Uma reserva cria tudo: pedido com itens de linha, upsert de contato no CRM, notificação à equipe e e-mail de confirmação ao cliente. Zero etapas manuais."
+    },
+    "stock": {
+      "title": "Reserva inteligente de estoque",
+      "body": "Inventário rastreado no fluxo pendente → confirmado → concluído. Sem vendas excessivas, sem verificações manuais de estoque."
+    },
+    "api": {
+      "title": "APIs pública e interna",
+      "body": "A equipe reserva pelo painel. Os clientes reservam pelo seu site ou links de agendamento. A mesma proteção atômica, o mesmo pool de disponibilidade."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Sem o HABOS",
+    "withoutText": "O cliente envia e-mail para reservar. Você verifica seu calendário. Responde com horários disponíveis. Eles escolhem um. Você cria o agendamento, a fatura e os adiciona aos contatos. 8 etapas, 3 aplicativos.",
+    "withoutStat": "~15 min por reserva",
+    "withTitle": "Com o HABOS",
+    "withText": "O cliente escolhe um horário no seu site. Pronto. Pedido, entrada no CRM, notificação e e-mail de confirmação acontecem automaticamente.",
+    "withStat": "~30 segundos (o tempo deles, não o seu)"
+  },
+  "techStrip": [
+    "Bloqueios consultivos PostgreSQL",
+    "Proteção atômica de horários",
+    "Criação automática de pedidos",
+    "Proteção contra condição de corrida",
+    "Links de autocancelamento"
+  ],
+  "closing": {
+    "title": "Outras ferramentas de reserva são um calendário separado.\nAs reservas do HABOS estão integradas em todo o seu negócio.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

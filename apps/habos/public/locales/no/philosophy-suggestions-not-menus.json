@@ -1,0 +1,24 @@
+{
+  "category": "Filosofi",
+  "title": "Forslag, ikke menyer",
+  "tagline": "Les. Trykk. Ferdig.",
+  "heroAlt": "Forslagskort erstatter komplekse menyer",
+  "body1": "En bedriftseier stirrer på et oppgavebord og prøver å finne ut hva som er viktig akkurat nå. En selger leser en e-post og tenker «jeg burde opprette en oppfølging» — men gjør det ikke, fordi det betyr å bytte app, finne riktig prosjekt og fylle seks felt. Tanken dør i gapet mellom å erkjenne hva som må gjøres og faktisk gjøre det.",
+  "body2Prefix": "E-post om planomlegging ankommer.",
+  "body2Body": "VOIS leser den og presenter tre trykkbare alternativer: flytt til fredag klokken 10 (luka er ledig), skyv til neste uke (3 åpne luker vist), eller avslå og foreslå en samtale i stedet. Ett trykk. Møte flyttet, kalendere oppdatert, bekreftelse sendt.",
+  "body3Prefix": "Møtet avsluttes.",
+  "body3Body": "VOIS ekstraherer fire handlingspunkter fra transkripsjonen. Hvert vises som et kort — mottaker foreslått fra hvem som sa hva, forfallsdato utledet fra samtalen, prosjekt koblet automatisk. Gjennomgå på 30 sekunder, juster én mottaker, trykk bekreft. Fire oppgaver opprettet, fire personer varslet, null skjemaer fylt.",
+  "comparisonTraditional": "Tradisjonell:",
+  "comparisonTraditionalStat": "3 minutter per handling.",
+  "comparisonSuggestions": "Forslag:",
+  "comparisonSuggestionsStat": "5 sekunder.",
+  "comparisonResult": "Over 20 daglige handlinger er det",
+  "comparisonResultStat": "60 minutter tilbake.",
+  "quote": "«Du burde ikke trenge å betjene forretningsprogramvaren din. Den burde betjene seg selv og be om ditt skjønn.»",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Bygget for team",
+    "nextLabel": "Neste",
+    "nextTitle": "To grensesnitt, ett system"
+  }
+}

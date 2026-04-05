@@ -1,0 +1,62 @@
+{
+  "badge": "AI-præsentationer",
+  "hero": {
+    "title_part1": "Beskriv dit dæk.",
+    "title_part2": "Det bygger sig selv.",
+    "description": "Fortæl HABOS, hvad du skal præsentere. AI genererer et komplet dæk ved hjælp af dit brand, dine data og dine produkter — med live diagrammer, der opdateres automatisk."
+  },
+  "intro": "Præsentationsgeneratoren opretter dæk fra din arbejdsområdekontekst med live databinding. Først genererer det et dispositionsudkast ved at analysere din prompt, søge i Brain og hente fra projektkontekst, produktkatalog og brandguide. Derefter bygger det hvert dias parallelt — op til fem samtidige — med layoutspecifikke blokke: metrics, diagrammer, tabeller og billeder. Omsætningstal hentes fra Finans. Produktgittere hentes fra dit katalog. Når de underliggende data ændres, afspejler præsentationen det.",
+  "slidePreview": {
+    "title": "Q1-omsætningsresumé",
+    "metrics": [
+      { "change": "+18%", "value": "kr. 889K", "label": "Omsætning" },
+      { "change": "+12%", "value": "89", "label": "Ordrer" },
+      { "change": "-4%", "value": "kr. 9.996", "label": "Gns. ordre" }
+    ],
+    "slideNumber": "Dias 3 af 12"
+  },
+  "caption": {
+    "prefix": "Genereret fra:",
+    "prompt": "\"Byg en Q1-investoropdatering med omsætningstendenser og topprodukter.\"",
+    "suffix": "Omsætningstallene er live — de opdateres, når dine data ændres."
+  },
+  "benefitCards": [
+    {
+      "title": "Prompt → dæk på 60 sekunder",
+      "desc": "Beskriv, hvad du har brug for. AI genererer en disposition og bygger derefter hvert dias parallelt. 12 kortlayouts, brandbevidste farver, rigtige fotos fra Unsplash."
+    },
+    {
+      "title": "Live databinding",
+      "desc": "Omsætningsmetrics hentes fra Finans. Produktgittere hentes fra dit katalog. Når de underliggende data ændres, opdateres præsentationen. Ingen manuel diagramgenskabelse."
+    },
+    {
+      "title": "Dit brand, automatisk",
+      "desc": "Temafarver, skrifttyper og logo hentes fra dine arbejdsområde-brandindstillinger. Hvert dæk ser ud som dit, ikke som en skabelon."
+    }
+  ],
+  "layouts": {
+    "heading": "12 kortlayouts, intelligent blandet",
+    "items": [
+      "Titel", "Tekst + Billede", "Metrikgitter", "Diagramfokus", "Sammenligning",
+      "Tidslinje", "Citat", "3-Kolonne", "Punktfremhævning", "Produktgitter",
+      "Teamroster", "CTA"
+    ]
+  },
+  "scenario": {
+    "part1": "Dit investormøde er om 2 timer. I stedet for at bruge 90 minutter på at bygge dias, skriver du:",
+    "prompt": "\"Q1-investoropdatering — omsætningstendenser, topprodukter, kundevækst og næste kvartal roadmap.\"",
+    "part2": "HABOS henter live tal fra Finans, produkter fra dit katalog og vækstdata fra CRM. Du har et poleret, brandmæssigt korrekt dæk på 60 sekunder.",
+    "closing": "Omsætningsdiagrammet vil stadig være nøjagtigt, når du præsenterer det."
+  },
+  "techItems": [
+    "GPT-4o disposition + parallel build",
+    "Unsplash + Gemini billedgenerering",
+    "12 håndhævede layouts",
+    "Live databinding",
+    "Brandbevidst tematisering"
+  ],
+  "cta": {
+    "tagline": "Andre slideværktøjer giver dig skabeloner. HABOS giver dig et færdigt dæk.",
+    "button": "Tilmeld venteliste"
+  }
+}

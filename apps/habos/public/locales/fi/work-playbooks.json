@@ -1,0 +1,85 @@
+{
+  "badge": "Tietohallinta",
+  "hero": {
+    "title": "Lataa kerran. Haettavissa ikuisesti.",
+    "description": "Pudota PDF, Word-dokumentti tai URL. Tekoäly puhdistaa, jäsentää ja upottaa sen Brainiin. Vedä kansiot osastoihin \u2014 kaikki, jotka tarvitsevat sen, saavat pääsyn automaattisesti."
+  },
+  "intro": "Lataa PDF, Word-dokumentti tai URL \u2014 GPT-4o puhdistaa, jäsentää ja poimii metatiedot automaattisesti. Jokainen toimintaohje pilkotaan 512-ulotteisiksi vektoriupotuksiksi ja indeksoidaan Brainiin. Kysy menettelytavasta kuukausia myöhemmin ja Brain löytää sen viittauksilla. Kuusi käyttöoikeusmallia käsittelee pääsyn: osaston automaattinen synkronointi, organisaatiotason ryhmittely, projektilinkkaus, toiminnon linkkaus, mukautetut tiimit ja manuaaliset kansiot. Vedä kansio osastoon ja vastaavat tiimin jäsenet saavat pääsyn välittömästi.",
+  "library": {
+    "footer": "17 esiasennettua kansiota luotu automaattisesti asennuksen yhteydessä. Vedä mikä tahansa kansio osastoon, projektiin tai toimintoon \u2014 vastaavat tiimin jäsenet saavat pääsyn välittömästi.",
+    "folders": [
+      {
+        "name": "Yrityksen käsikirja",
+        "meta": "12 dokumenttia \u00b7 Päivitetty 2 päivää sitten",
+        "status": "Aktiivinen"
+      },
+      {
+        "name": "Perehdytysopas",
+        "meta": "8 dokumenttia \u00b7 Kenttätoiminnot-osasto",
+        "status": "Osasto"
+      },
+      {
+        "name": "Turvallisuusmenettelyt",
+        "meta": "15 dokumenttia \u00b7 Kaikki tiimit",
+        "status": "Pakollinen"
+      },
+      {
+        "name": "API-dokumentaatio",
+        "meta": "6 dokumenttia \u00b7 Suunnittelu",
+        "status": "Tekninen"
+      },
+      {
+        "name": "Asiakkaan toimintaohjeet",
+        "meta": "9 dokumenttia \u00b7 Myynti + Tuki",
+        "status": "Jaettu"
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Tekoälyn dokumenttituonti",
+      "description": "Lataa PDF, Word tai Markdown. GPT-4o puhdistaa, jäsentää ja poimii metatiedot automaattisesti. Ei muotoilua, ei merkintää, ei turhaa työtä."
+    },
+    {
+      "title": "Brain-indeksoitu",
+      "description": "Jokainen toimintaohje pilkottu 512-ulotteisiksi vektoreiksi. Kysy Brainilta kuukausia myöhemmin \u2014 se löytää vastauksen viittauksilla."
+    },
+    {
+      "title": "Käyttöoikeuksien periminen",
+      "description": "Toimittajat ja katsojat perivät kansion pääsyn alikansioihin. Johtajat pysyvät eksplisiittisinä. Yksityiskohtainen hallinta ilman monimutkaisuutta."
+    }
+  ],
+  "comparison": {
+    "before": {
+      "title": "Ennen toimintaohjeita",
+      "items": [
+        "SOP:t asuvat Google Drivessa.",
+        "Kukaan ei tiedä mikä versio on ajantasainen.",
+        "Uudet työntekijät eivät löydä mitään.",
+        "Tieto lähtee kun ihmiset lähtevät."
+      ],
+      "footer": "30 min hakemista / viikko"
+    },
+    "after": {
+      "title": "Toimintaohjeiden kanssa",
+      "items": [
+        "SOP:t asuvat Toimintaohjeissa.",
+        "Tekoäly-indeksoitu, semanttisesti haettavissa, automaattisesti jaettu osastoittain.",
+        "Kysy Brainilta: \u201cMikä on hätätilanteen toimintaohjeeemme?\u201d",
+        "Välitön vastaus."
+      ],
+      "footer": "30 sekuntia"
+    }
+  },
+  "techStrip": [
+    "GPT-4o dokumenttien käsittely",
+    "512-ulotteiset vektoriupotukset",
+    "6 käyttöoikeusmallia",
+    "Vedä-ja-osoita",
+    "17 esiasennettua kansiota"
+  ],
+  "closing": {
+    "tagline": "Muut tietokannat keräävät pölyä. HABOS:n tietokannat vastaavat kysymyksiin.",
+    "cta": "Liity odotuslistalle"
+  }
+}

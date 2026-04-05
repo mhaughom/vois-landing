@@ -1,0 +1,74 @@
+{
+  "badge": "Aplicaciones personalizadas",
+  "hero": {
+    "title": "Descríbalo.\nVOIS lo construye.",
+    "description": "Cree sus propias mini-aplicaciones con una sola frase. La IA genera el esquema, el panel y el enrutamiento de voz — su empresa obtiene herramientas que ningún proveedor construiría para usted."
+  },
+  "heroPills": [
+    "Creación en lenguaje natural",
+    "Generación de esquema con IA",
+    "Paneles automáticos"
+  ],
+  "demo": {
+    "steps": [
+      {
+        "label": "Usted describe",
+        "prompt": "«Quiero una aplicación para rastrear inspecciones de equipos»"
+      },
+      {
+        "label": "La IA genera el esquema",
+        "fields": [
+          { "field": "Equipo", "type": "Texto" },
+          { "field": "Ubicación", "type": "Ubicación" },
+          { "field": "Condición", "type": "Selección" },
+          { "field": "Foto", "type": "Imagen" },
+          { "field": "Próxima fecha de servicio", "type": "Fecha" }
+        ]
+      },
+      {
+        "label": "Panel instantáneo",
+        "entries": [
+          { "equip": "Unidad 3 — Compresor", "status": "Bien" },
+          { "equip": "Unidad 7 — HVAC", "status": "Regular" },
+          { "equip": "Unidad 12 — Generador", "status": "Necesita reparación" }
+        ],
+        "legend": [
+          "Bien",
+          "Regular",
+          "Necesita reparación"
+        ]
+      }
+    ],
+    "annotation": "De una sola frase a una aplicación funcional. Sin código. Sin esperas."
+  },
+  "benefitCards": [
+    {
+      "title": "Datos enrutados por voz",
+      "body": "Diga «inspeccioné la unidad 3, el compresor muestra desgaste» y se enruta automáticamente a su aplicación de Inspecciones de equipos. Las palabras clave se aprenden de su esquema."
+    },
+    {
+      "title": "Campos impulsados por IA",
+      "body": "Algunos campos se rellenan solos. Un campo «Recomendación de IA» en su aplicación de inspección podría generar «Programar reemplazo del compresor en 6 meses» a partir de sus notas."
+    },
+    {
+      "title": "Paneles instantáneos",
+      "body": "Cada aplicación personalizada obtiene gráficos, filtros e información de IA de forma predeterminada. Vea tendencias en sus datos sin construir nada."
+    }
+  ],
+  "scenario": {
+    "heading": "Escenario del mundo real",
+    "body": "Su empresa de limpieza necesita rastrear puntuaciones de calidad de sitios. Dice «crea una aplicación para auditorías de calidad de sitio». VOIS genera campos para sitio, auditor, puntuación, fotos y notas. Un campo de IA genera automáticamente sugerencias de mejora. En un minuto tiene un sistema de seguimiento de calidad que enruta las notas de voz del campo directamente a registros estructurados."
+  },
+  "techItems": [
+    "Creación en lenguaje natural",
+    "Generación de esquema con IA",
+    "Enrutamiento de intención de voz",
+    "Paneles automáticos",
+    "Campos de generación de IA",
+    "Compartir en el mercado"
+  ],
+  "cta": {
+    "tagline": "Su empresa es única. Sus herramientas también deberían serlo.",
+    "button": "Unirse a la lista de espera"
+  }
+}

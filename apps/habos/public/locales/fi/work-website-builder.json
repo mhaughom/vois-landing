@@ -1,0 +1,63 @@
+{
+  "badge": "Tekoälyn verkkosivustorakentaja",
+  "hero": {
+    "title": "Kuvaile sivustosi. Se rakentaa itsensä.",
+    "description": "Kerro HABOS:lle mitä tarvitset. Tekoäly luo täydellisen monisivuisen React-sivuston brändilläsi, tuotteilla, varauksilla ja lomakkeilla — julkaistuna live-URL:lle välittömästi."
+  },
+  "body": "Syötä kilpailijan tai viiteverkkosivuston URL. Selainautomaatio tallentaa koko sivun kuvakaappaukset, poimii DOM-sisällön, jäsentää CSS-suunnittelutokenit ja havaitsee logot ja kuvat. Ennen tekoälyn rakentamista HABOS injektoi kymmenen kerrosta työtilakontekstia: bränditokenit, tuoteluettelo, varauswidgetit, kauppakomponentit, lomakeupotukset, kampanjapinnat ja omaisuusluettelo. HABOS:ssa lisätyt tuotteet ilmestyvät verkkosivustolla automaattisesti. Varaukset virtaavat kalenteriin. Lomakelähetykset reititetään tiketteihin tai CRM-liideihin.",
+  "mockSite": {
+    "urlBar": "henderson-plumbing.habos.site",
+    "brandName": "Henderson Plumbing",
+    "navLinks": ["Palvelut", "Tietoa meistä", "Yhteystiedot"],
+    "bookButton": "Varaa nyt",
+    "tagline": "Lisensioitu ja vakuutettu vuodesta 1985",
+    "services": [
+      { "name": "Hätäkorjaus" },
+      { "name": "Vesilämmitys" },
+      { "name": "Kylpyhuoneremontti" }
+    ]
+  },
+  "caption": {
+    "prefix": "Luotu: ",
+    "prompt": "Rakenna putkiyrityksen verkkosivusto palveluillamme ja varauswidgetillä.",
+    "suffix": " Brändivärit, tuotteet ja saatavuus haetaan työtilastasi automaattisesti."
+  },
+  "benefits": [
+    {
+      "title": "Kloonaa ja paranna",
+      "body": "Syötä kilpailijan URL. HABOS tallentaa kuvakaappaukset, poimii suunnittelutokenit ja rakentaa uudelleen modernina React-sovelluksena brändilläsi ja live-kauppawidgeteillä."
+    },
+    {
+      "title": "10 rikastamiskerrosta",
+      "body": "Bränditokenit, tuoteluettelo, varauswidgetit, kauppakomponentit, lomakeupotukset, kampanjapinnat, omaisuusluettelo — kaikki injektoitu ennen tekoälyn rakentamista."
+    },
+    {
+      "title": "Yhdellä klikkauksella palautus",
+      "body": "Luo rajoittamaton määrä versioita. Esikatsele ennen julkaisemista. Palaa mihin tahansa aiempaan versioon välittömästi. Live-sivustosi ei ole koskaan vaarassa."
+    }
+  ],
+  "widgetsLabel": "Live-widgetit, jotka yhdistyvät taustapalveluusi",
+  "widgets": [
+    { "label": "Tuoteluettelo" },
+    { "label": "Varauskalenteri" },
+    { "label": "Ostoskori" },
+    { "label": "Kassa" },
+    { "label": "Yhteydenottolomake" },
+    { "label": "Kampanjatarjoukset" }
+  ],
+  "scenario": {
+    "heading": "Kuinka se toimii käytännössä",
+    "body": "Uusi asiakas rekisteröityy ja syöttää nykyisen verkkosivustonsa URL:n. HABOS ryömii sivuston — tallentaa suunnittelun, sisällön, kuvat ja bränditokenit. Alle 2 minuutissa uudelleenrakennettu versio ilmestyy HABOS-kaupalla, varauksella ja lomakkeilla kytkettyinä. Kojelaudalla lisätyt tuotteet ilmestyvät verkkosivustolla automaattisesti. Varaukset virtaavat kalenteriin. Lomakelähetykset luovat tikettejä. Yksi datakerta, kaikkialla."
+  },
+  "techItems": [
+    "VibeSDK Cloudflare Workers:illa",
+    "Monisivuinen React Router",
+    "Bränditokeni-injektio",
+    "Web-komponenttiwidgetit",
+    "Mukautetun verkkotunnuksen tuki"
+  ],
+  "cta": {
+    "heading": "Muut verkkosivustorakentajat ovat vedä-ja-pudota. HABOS rakentaa sen puolestasi.",
+    "button": "Liity odotuslistalle"
+  }
+}

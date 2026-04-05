@@ -1,0 +1,85 @@
+{
+  "badge": "Rutthantering",
+  "hero": {
+    "title": "Rutter som bygger sig själva.",
+    "description": "Tilldela jobb till en tekniker och HABOS autogenererar deras rutt för dagen — geokodade stopp, optimerad ordning och ett-trycks-navigering till Google Maps."
+  },
+  "body": "När du tilldelar ett jobbbesök till en tekniker uppdateras deras hanterade rutt automatiskt med geokodade stopp från Mapbox. Redigera manuellt och den kopplas ifrån för att förhindra automationsöverskrivningar. Varje rutt fångar GPS-waypoints med fem sekunders intervall, med Haversine-avstånd beräknat på serversidan för korrekt milersättningsfakturering. Fältarbetare markerar stopp som slutförda eller hoppade över från telefonen — kontoret ser framsteg i realtid utan ett enda telefonsamtal.",
+  "routeCard": {
+    "heading": "Mike Torres — Onsdagsrutt",
+    "subheading": "5 stopp · 75 km uppskattat",
+    "navigate": "Navigera",
+    "footnote": "Stopp automatgeokodas via Mapbox. Dra för att sortera om. Tryck 'Navigera' för steg-för-steg-anvisningar."
+  },
+  "stops": [
+    {
+      "name": "Henderson-fastigheten",
+      "time": "09:00",
+      "task": "Installation av varmvattenberedare",
+      "statusLabel": "Slutförd"
+    },
+    {
+      "name": "Baker-kontoret",
+      "time": "11:00",
+      "task": "HVAC-underhåll",
+      "statusLabel": "Slutförd"
+    },
+    {
+      "name": "Wilson-hemmet",
+      "time": "13:00",
+      "task": "VVS-reparation",
+      "statusLabel": "Pågår"
+    },
+    {
+      "name": "Garcia-lägenheten",
+      "time": "15:00",
+      "task": "El-inspektion",
+      "statusLabel": "Väntande"
+    },
+    {
+      "name": "Johnson-fastigheten",
+      "time": "16:30",
+      "task": "Akut läcka",
+      "statusLabel": "Tillagd idag"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Autosynk från dispatch",
+      "desc": "När du tilldelar ett jobbbesök till en tekniker uppdateras deras hanterade rutt automatiskt. Redigera manuellt och den kopplas ifrån — inga oavsiktliga överskrivningar."
+    },
+    {
+      "title": "Stoppstatusspårning",
+      "desc": "Fältarbetare markerar stopp som slutförda eller hoppade över från telefonen. Kontoret ser framsteg i realtid utan att ringa."
+    },
+    {
+      "title": "GPS-milspårning",
+      "desc": "Varje rutt fångar GPS-waypoints (5 sekunders intervall). Haversine-avstånd beräknat på serversidan. Korrekt körsträcka för fakturering och ersättning."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Utan HABOS",
+      "description": "Morgon: skriv ut jobblista. Ange adresser manuellt i Google Maps en och en. Hoppas att ordningen är logisk. Ring kontoret för ändringar. Logga körsträcka på papper.",
+      "outcome": "~30 min bortslösade dagligen"
+    },
+    "with": {
+      "label": "Med HABOS",
+      "description": "Morgon: öppna appen. Rutten är klar med alla stopp, optimerad ordning och ett-trycks-navigering. Markera stopp som klara när du åker. Körsträcka loggas automatiskt.",
+      "outcome": "0 min planering"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Mapbox geokodning + riktningar",
+      "Hanterad rutt autosynk",
+      "GPS-waypoints var 5:e sekund",
+      "Haversine-avstånd",
+      "Google Maps djuplänk"
+    ]
+  },
+  "cta": {
+    "heading": "Andra verktyg låter dig planera rutter. HABOS planerar dem åt dig.",
+    "button": "Gå med i väntelistan"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "headline": "مرحباً بك في VOIS.",
+  "subtitle": "اشتراكك نشط. لنبدأ.",
+  "nextStepsHeading": "ما الذي سيحدث بعد ذلك",
+  "steps": [
+    "تحقق من بريدك الإلكتروني لاستلام الإيصال",
+    "حمّل VOIS من App Store",
+    "سجّل الدخول ببريدك الإلكتروني لتفعيل الحساب"
+  ],
+  "downloadButton": "حمّل من App Store",
+  "discordButton": "انضم إلى مجتمع Discord",
+  "backToHome": "العودة إلى الرئيسية",
+  "logoAlt": "Vois"
+}

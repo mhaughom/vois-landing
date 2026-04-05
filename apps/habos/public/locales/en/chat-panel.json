@@ -1,0 +1,17 @@
+{
+  "introMessage": "Hi! I can help you explore HABOS. Ask about any feature — email, CRM, tasks, calendar — and I'll take you there.",
+  "header": "HABOS Chat",
+  "placeholder": "Ask about any feature...",
+  "openChatAriaLabel": "Open chat",
+  "closeChatAriaLabel": "Close chat",
+  "sendMessageAriaLabel": "Send message",
+  "talkToTeam": "Talk to our team",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo",
+  "returnGreeting": "Welcome back! What can I help you with today?",
+  "returnGreetingWithPages": "Welcome back! Last time you were checking out {{pages}}. Want to pick up where you left off?"
+}

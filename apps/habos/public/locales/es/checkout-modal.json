@@ -1,0 +1,52 @@
+{
+  "quizCategories": [
+    "Eventos y Calendario",
+    "Tareas y Pendientes",
+    "Compras y Listas",
+    "Ideas y Notas",
+    "Salud y Bienestar",
+    "Finanzas y Presupuesto",
+    "Metas y Hábitos",
+    "Personas y Social"
+  ],
+  "quizDevices": {
+    "watch": {
+      "label": "Apple Watch",
+      "desc": "Capture en su muñeca"
+    },
+    "phone": {
+      "label": "iPhone",
+      "desc": "Siempre en su bolsillo"
+    },
+    "both": {
+      "label": "Ambos",
+      "desc": "La experiencia completa"
+    }
+  },
+  "step1": {
+    "heading": "¿Qué guardaría?",
+    "subLabel": "Seleccione todo lo que ocupa su mente."
+  },
+  "step2": {
+    "heading": "¿Cómo lo visualizaría?",
+    "subLabel": "Elija su dispositivo preferido."
+  },
+  "step3": {
+    "heading": "Inicie su suscripción",
+    "subLabel": "Ingrese su correo para continuar al pago.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "usted@empresa.com",
+    "perMonth": "/mes",
+    "guarantee": "Cancele cuando quiera. Garantía de reembolso de 30 días.",
+    "continueToPay": "Continuar al pago"
+  },
+  "back": "Volver",
+  "continue": "Continuar",
+  "errors": {
+    "emailRequired": "Por favor, ingrese su dirección de correo electrónico.",
+    "emailInvalid": "Por favor, ingrese una dirección de correo electrónico válida.",
+    "tooManyAttempts": "Demasiados intentos. Por favor, espere un momento y vuelva a intentarlo.",
+    "unavailable": "El pago no está disponible temporalmente. Por favor, inténtelo más tarde.",
+    "generic": "Algo salió mal. Por favor, inténtelo de nuevo."
+  }
+}

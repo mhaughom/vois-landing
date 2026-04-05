@@ -1,0 +1,52 @@
+{
+  "badge": "Jetzt verfügbar im VOIS for Work Plan",
+  "hero": {
+    "title": "Meeting-Notizen",
+    "description": "Live-Transkription mit Aktionskarten, die erscheinen, wenn Personen sprechen. Sieh zu, wie dein Meeting in Echtzeit zu strukturierten Notizen wird."
+  },
+  "intro": "Live-Transkription mit Aktionskarten, die erscheinen, wenn Personen sprechen. Wenn jemand sagt 'wir müssen ein Follow-up planen' oder 'John, kannst du das übernehmen?' — erscheinen Aktionspunkte inline im Dokument. HABOS erkennt, wenn Aufgaben dir zugewiesen werden und hebt sie in deiner persönlichen Ansicht hervor. Teile Meeting-Notizen über einen sicheren Link — Empfänger sehen das vollständige Transkript und das Briefing, ohne ein Konto zu erstellen. Dieser geteilte Link ist auch eine Wachstumsmaschine: Er erfasst Leads, demonstriert das Produkt und konvertiert mit gezielten Angeboten.",
+  "features": [
+    {
+      "title": "Live-Aktionskarten",
+      "description": "Wenn jemand sagt \"wir müssen ein Follow-up planen\" oder \"John, kannst du das übernehmen?\", erscheinen Aktionskarten inline im Dokument. Weise Aufgaben zu, setze Erinnerungen oder speichere Elemente direkt aus dem Live-Transkript."
+    },
+    {
+      "title": "Uhr-zu-Computer-Übergabe",
+      "description": "Starte die Aufnahme auf deiner Apple Watch und übergib nahtlos an deinen Mac, wenn du das Live-Dokument sehen möchtest. Die Transkription läuft ohne Unterbrechung weiter, genau da, wo du aufgehört hast."
+    },
+    {
+      "title": "Persönliche Aktionspunkte",
+      "description": "VOIS erkennt, wenn Aufgaben dir zugewiesen werden und hebt sie in deiner persönlichen Ansicht hervor. Tippe, um sie direkt zu deiner Aufgabenliste hinzuzufügen oder sie sofort zu bearbeiten. Es ist magisch zuzusehen, wie deine Aufgaben automatisch während des Meetings erscheinen."
+    },
+    {
+      "title": "Mundpropaganda-Design",
+      "description": "Wenn Kollegen in Echtzeit auf deinem Bildschirm erscheinende Aktionspunkte in Meetings sehen, werden auch sie es wollen. Diese Funktion ist darauf ausgelegt, organisch zu wachsen — von einzelnen Fachleuten zu kleinen Teams bis hin zu ganzen Unternehmen."
+    }
+  ],
+  "howItWorks": {
+    "title": "So funktioniert es",
+    "steps": [
+      {
+        "title": "Aufnahme starten",
+        "description": "Tippe die Aufnahme-Schaltfläche auf deiner Uhr oder öffne VOIS auf deinem Mac. Die Transkription beginnt sofort."
+      },
+      {
+        "title": "Der Magie zusehen",
+        "description": "Wenn Personen sprechen, erscheinen Wörter auf dem Bildschirm. Wenn Aktionspunkte erwähnt werden, erscheinen KI-generierte Karten inline mit Vorschlägen für nächste Schritte."
+      },
+      {
+        "title": "Auf Elemente reagieren",
+        "description": "Tippe Karten, um Aufgaben zu deiner Liste hinzuzufügen, Follow-ups zu planen oder wichtige Informationen zu speichern. Deine persönlichen Elemente werden automatisch hervorgehoben."
+      },
+      {
+        "title": "Teilen & Exportieren",
+        "description": "Meeting vorbei? Exportiere das vollständige Transkript mit Aktionspunkten oder teile bestimmte Abschnitte mit deinem Team."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bereit, deine Meetings zu transformieren?",
+    "description": "Meeting-Notizen sind im VOIS for Work Plan enthalten.",
+    "button": "Preise ansehen"
+  }
+}

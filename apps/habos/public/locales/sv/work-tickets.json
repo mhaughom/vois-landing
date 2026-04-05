@@ -1,0 +1,92 @@
+{
+  "badge": "Support & ärenden",
+  "hero": {
+    "title": "SLA-timers. Automatisk eskalering.\nNoll brott.",
+    "description": "Varje ärende får en SLA-nedräkning. Brott­varning triggar 30 minuter innan deadline. Om det bryter, tilldelas automatiskt till nästa tillgängliga handläggare."
+  },
+  "body": "Varje ärende får en SLA-nedräkning med konfigurerbara förstarespons- och lösningsmål per prioritet. Visuella timers varnar 30 minuter innan brott. Om ett ärende bryter mot sitt SLA aktiveras automatisk eskalering — tilldelning till nästa tillgängliga handläggare. Ärenden kan skapas från formulär, mejl, röstsamtal, API eller manuell inmatning med automatisk deduplicering. Kundmejl visas som konversationstrådar med interna anteckningar synliga enbart för handläggare, och AI föreslår svar baserat på kontext.",
+  "queue": {
+    "header": "Aktiv kö",
+    "countLabel": "ärenden · 1 brottvarning",
+    "tickets": [
+      {
+        "priority": "urgent",
+        "title": "Akut: Johnson rörbrott",
+        "assignee": "Mike T.",
+        "sla": "23 min kvar"
+      },
+      {
+        "priority": "high",
+        "title": "HVAC kyler inte — Baker-kontoret",
+        "assignee": "Sarah L.",
+        "sla": "2 tim 15 min kvar"
+      },
+      {
+        "priority": "normal",
+        "title": "Offertförfrågan: badrumrenovering",
+        "assignee": "Ej tilldelad",
+        "sla": "7 tim kvar"
+      },
+      {
+        "priority": "normal",
+        "title": "Schemalägg årsinspektion",
+        "assignee": "Autotilldelad",
+        "sla": "Löst på 1 tim 20 min",
+        "resolved": true
+      }
+    ],
+    "priorityLabels": {
+      "urgent": "Brådskande",
+      "high": "Hög",
+      "normal": "Normal"
+    },
+    "automation": {
+      "breach30": "30 minuter innan brott",
+      "breach30Action": "varningsavisering",
+      "onBreach": "Vid brott",
+      "onBreachAction": "automatisk omdelegering till nästa tillgängliga",
+      "postResolution": "Efter lösning",
+      "postResolutionAction": "CSAT-enkät skickas automatiskt"
+    }
+  },
+  "benefits": {
+    "multiSource": {
+      "title": "Flekkällsskapning",
+      "desc": "Från formulär, mejl, röstsamtal, API eller manuellt. Automatisk deduplicering av relaterade förfrågningar."
+    },
+    "pipeline": {
+      "title": "Ärende → åtgärdspipeline",
+      "desc": "Koppla till projekt, fältjobb och uppgifter. Ett ärende kan starta hela arbetsflöden."
+    },
+    "csat": {
+      "title": "CSAT-insamling",
+      "desc": "Automatisk enkät efter lösning för nöjdhetspoängsättning och trendspårning."
+    }
+  },
+  "sourceIcons": {
+    "email": "Mejl",
+    "voice": "Röst",
+    "webForm": "Webbformulär",
+    "voiceNote": "Röstanteckning",
+    "api": "API"
+  },
+  "beforeAfter": {
+    "beforeLabel": "Tidigare",
+    "beforeText": "Kunden mejlar. Du ser det 3 timmar senare. Tilldelar det. Spårar det i ett kalkylblad. Hoppas att ingen tappar det. SLA? Vilket SLA?",
+    "beforeStat": "Genomsnittlig svarstid: 3+ timmar",
+    "afterLabel": "Efter",
+    "afterText": "Kunden mejlar. Ärende skapas automatiskt. SLA-timer startar. Varning vid 30 min. Automatisk eskalering vid brott. CSAT-enkät efter lösning.",
+    "afterStat": "Genomsnittlig svarstid: alltid inom SLA"
+  },
+  "techStrip": [
+    "SLA-tillämpning",
+    "Automatisk eskalering",
+    "Mejltrådning",
+    "AI-svarsförslag",
+    "CSAT-enkäter"
+  ],
+  "closing": {
+    "title": "Andra ärendeverktyg spårar problem.\nHABOS löser dem.",
+    "cta": "Gå med i väntelistan"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "category": "Philosophie",
+  "title": "Un seul cerveau",
+  "tagline": "Sans cela, « nous faisons tout » ressemble à Zoho. Avec cela, ça ressemble à une intelligence cumulative. Le CRM est au courant de la note vocale. La note vocale est au courant du calendrier. Chaque fonctionnalité est plus intelligente qu'elle ne pourrait l'être seule.",
+  "heroPlaceholder": "Illustration principale",
+  "sources": [
+    "Enregistrements vocaux", "Documents", "Fils d'e-mails", "Contacts",
+    "Historique de chat", "Playbooks & SOPs", "Produits", "Commandes",
+    "Réservations", "Clients CRM", "Tickets d'assistance", "Soumissions de formulaires",
+    "Missions & visites", "Itinéraires", "Sites web", "Publications sur les réseaux sociaux",
+    "Présentations", "Projets", "Événements de calendrier"
+  ],
+  "sourcesLabel": "19 sources. Une seule recherche.",
+  "section1": {
+    "heading": "La taxe de la fragmentation",
+    "body1": "Dans une pile d'outils traditionnelle, votre calendrier ne connaît pas vos tâches. Vos notes de réunion n'alimentent pas votre outil de suivi de projet. Vos mémos vocaux restent non traités. Votre e-mail est une île. Votre CRM ignore ce qui a été dit en réunion.",
+    "body2": "Chaque fois que vous changez d'application pour trouver du contexte, vous payez une taxe — en temps, en attention et en décisions prises sans le tableau complet. Le travailleur de la connaissance moyen change d'application 1 200 fois par jour. Ce n'est pas de la productivité. C'est de la friction déguisée en travail."
+  },
+  "section2": {
+    "heading": "Une seule base de données. Une compréhension partagée.",
+    "body1": "HABOS stocke tout dans une couche de données unifiée. Une seule requête SQL peut joindre les contacts CRM avec les transcriptions de réunions, les lignes de commande avec les tickets d'assistance, les événements de calendrier avec les dépendances de tâches, les fils d'e-mails avec les jalons de projet, et les transcriptions de notes vocales avec les SOPs des playbooks.",
+    "body2": "Cela signifie que lorsque l'IA vous prépare pour une réunion, elle ne vérifie pas seulement votre calendrier. Elle tire l'historique d'achat du client, ses tickets ouverts, ce qui a été discuté lors des trois dernières réunions, ce que dit votre playbook de vente à ce stade de l'affaire, et une note vocale que vous avez enregistrée en promenant votre chien où vous avez mentionné leur PDG."
+  },
+  "dataFlowPlaceholder": "Schéma du flux de données",
+  "brainSearchPlaceholder": "Visualisation de la recherche du Cerveau",
+  "section3": {
+    "heading": "Ce que ça donne en pratique",
+    "query": "« Où en sommes-nous avec Nordic Fishing ? »",
+    "body": "En moins de trois secondes, vous obtenez : leur statut CRM (phase de négociation), leurs trois dernières commandes (47 000 $ au total), le ticket d'assistance ouvert sur les délais de livraison, ce que Lars a dit sur l'expansion lors de la dernière réunion, et un rappel que le renouvellement du contrat arrive en avril. Chaque information renvoie à sa source. Vous n'avez pas ouvert cinq applications différentes."
+  },
+  "section4": {
+    "heading": "Sémantique, pas seulement des mots-clés",
+    "body1": "Le Cerveau utilise des embeddings vectoriels de 512 dimensions sur chaque source de données. La recherche de « projections de revenus » trouve une note vocale intitulée « perspectives financières T3 ». La recherche de « ce truc HVAC mentionné par Jonas » trouve la transcription de la réunion où il a parlé de l'usure du compresseur à l'Hôtel Fjordview.",
+    "body2": "Les 19 sources sont interrogées simultanément. Latence typique : moins d'une seconde pour une recherche complète cross-plateforme. L'IA ne se contente pas de faire correspondre des mots-clés — elle comprend vos données sémantiquement."
+  },
+  "section5": {
+    "heading": "Le fossé qui s'approfondit",
+    "body1": "Les concurrents peuvent déplacer des données entre les applications. Ils peuvent construire des ponts API et des pipelines de synchronisation. Ce qu'ils ne peuvent pas reproduire, c'est la compréhension partagée — la capacité de chaque partie du système à raisonner sur chaque autre partie, parce que tout a été conçu pour vivre ensemble.",
+    "body2": "Plus votre équipe utilise HABOS longtemps, plus cela devient puissant. Après six mois, l'IA connaît des modèles qu'aucun humain ne pourrait suivre à travers autant de systèmes : quels clients commandent à nouveau de manière prévisible, quelles opérations dérivent constamment, quels playbooks ne sont jamais suivis."
+  },
+  "quote": "« D'autres plateformes peuvent synchroniser vos données. Une seule plateforme peut penser à travers elles. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "La fin de la saisie de données",
+    "nextLabel": "Suivant",
+    "nextTitle": "Votre voix, pas la nôtre"
+  }
+}

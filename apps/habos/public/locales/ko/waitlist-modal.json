@@ -1,0 +1,62 @@
+{
+  "userTypes": ["개인", "업무", "둘 다"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "지인/동료",
+    "검색 엔진",
+    "YouTube",
+    "Reddit",
+    "기타"
+  ],
+  "useCases": [
+    "개인 태스크 및 알림",
+    "업무 회의 및 노트",
+    "아이디어 및 브레인스토밍",
+    "쇼핑 및 목록",
+    "맞춤 추적 (건강, 습관 등)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "VOIS를 어떤 용도로 사용하실 건가요?",
+    "subLabel": "해당하는 것을 모두 선택하세요",
+    "stepIndicator": "1/5단계"
+  },
+  "stepUserType": {
+    "heading": "VOIS를 어떻게 사용하실 건가요?",
+    "subLabel": "하나를 선택하세요",
+    "stepIndicator": "2/5단계"
+  },
+  "stepDevices": {
+    "heading": "어떤 기기를 사용하실 건가요?",
+    "subLabel": "해당하는 것을 모두 선택하세요",
+    "stepIndicator": "3/5단계"
+  },
+  "stepReferral": {
+    "heading": "VOIS를 어떻게 알게 되셨나요?",
+    "subLabel": "커뮤니티를 이해하는 데 도움이 됩니다",
+    "stepIndicator": "4/5단계"
+  },
+  "stepEmail": {
+    "heading": "이메일 주소가 어떻게 되세요?",
+    "subLabel": "출시 시 얼리 액세스를 보내드리겠습니다",
+    "placeholder": "이메일 입력",
+    "joining": "등록 중...",
+    "joinWaitlist": "대기자 명단 등록",
+    "stepIndicator": "4/5단계"
+  },
+  "stepSuccess": {
+    "heading": "명단에 등록되셨습니다!",
+    "willSendEmail": "이메일을 보내드리겠습니다:",
+    "whatsNext": "다음은 무엇인가요?",
+    "whatsNextBody": "곧 출시됩니다! 얼리 액세스와 독점 업데이트를 가장 먼저 받으실 것입니다.",
+    "done": "완료"
+  },
+  "continue": "계속",
+  "errors": {
+    "emailInvalid": "올바른 이메일 주소를 입력해 주세요",
+    "emailExists": "이 이메일은 이미 대기자 명단에 등록되어 있습니다!",
+    "joinFailed": "대기자 명단 등록에 실패했습니다"
+  }
+}

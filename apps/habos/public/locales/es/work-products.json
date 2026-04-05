@@ -1,0 +1,59 @@
+{
+  "badge": "Comercio",
+  "hero": {
+    "title": "Productos, órdenes y pagos. Todo conectado.",
+    "description": "Servicios, bienes físicos, paquetes y suscripciones — todos con inventario a nivel de variante, precios automatizados y pago con Stripe integrado."
+  },
+  "body": "Cuatro tipos de productos en un sistema: servicios, bienes físicos, paquetes y suscripciones — todos con seguimiento de stock a nivel de variante, alertas de bajo stock y deducciones automáticas. Convierta cualquier producto en una cita reservable con duración, capacidad, horarios y días hábiles configurables. Incruste un carrito de compras o calendario de reservas directamente en su sitio web — sin necesidad de una plataforma separada. El cálculo de partidas del lado del servidor previene el fraude del lado del cliente en todos los canales.",
+  "productTypes": [
+    { "label": "Servicios", "desc": "Precios por hora o fijos" },
+    { "label": "Bienes físicos", "desc": "Stock a nivel de variante" },
+    { "label": "Paquetes", "desc": "Agrupe múltiples artículos" },
+    { "label": "Suscripciones", "desc": "Facturación recurrente" }
+  ],
+  "catalogCaption": "Un sistema de catálogo gestiona los cuatro. Convierta cualquier producto en una cita reservable o un widget de sitio web.",
+  "orderSteps": ["Cotización", "Pendiente", "Confirmado", "En progreso", "Completado"],
+  "order": {
+    "heading": "Orden #1247 — Renovación de cocina Henderson",
+    "tableHeaders": {
+      "product": "Producto",
+      "qty": "Cant.",
+      "unit": "Precio unit.",
+      "total": "Total"
+    },
+    "lineItems": [
+      { "product": "Gabinetes personalizados (nogal)", "qty": "1", "unit": "$2.400", "total": "$2.400" },
+      { "product": "Encimera — cuarzo 60\"", "qty": "2", "unit": "$650", "total": "$1.300" },
+      { "product": "Mano de obra de instalación (4 h)", "qty": "1", "unit": "$550", "total": "$550" }
+    ],
+    "subtotal": "Subtotal: $4.250",
+    "paymentConfirmed": "Pago Stripe: ✓ Confirmado",
+    "deposit": "Depósito: $1.000 pagado"
+  },
+  "orderCaption": "Las órdenes se generan automáticamente desde reservas, compras en el sitio web o creación manual. Partidas calculadas del lado del servidor — sin fraude del lado del cliente.",
+  "benefits": [
+    {
+      "title": "El stock nunca miente",
+      "desc": "El inventario a nivel de variante se deduce al confirmar la orden. Las alertas de bajo stock se activan automáticamente. Los reembolsos restauran el stock."
+    },
+    {
+      "title": "Stripe en 3 clics",
+      "desc": "Sesiones de pago, facturas, enlaces de pago y reembolsos — todo a través de Stripe Connect. El dinero va a su banco, no a un intermediario."
+    },
+    {
+      "title": "Sitio web → orden → CRM",
+      "desc": "El cliente compra en su sitio web HABOS. Orden creada. Contacto del CRM actualizado. Recibo enviado. Cero entrada manual de datos."
+    }
+  ],
+  "techItems": [
+    "4 tipos de productos",
+    "Stock a nivel de variante",
+    "Stripe Connect Express",
+    "Partidas del lado del servidor",
+    "Sincronización reserva ↔ orden"
+  ],
+  "cta": {
+    "heading": "Otras herramientas de comercio son una plataforma separada. El comercio de HABOS está integrado en todo.",
+    "button": "Unirse a la lista de espera"
+  }
+}

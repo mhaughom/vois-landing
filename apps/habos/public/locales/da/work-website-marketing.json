@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Website og marketing",
+  "hero": {
+    "title": "Dit brand, forstærket af AI",
+    "description": "Byg websites, skab indhold og kør kampagner — alt drevet af dine forretningsdata, ikke generiske skabeloner."
+  },
+  "items": [
+    {
+      "title": "Websitebygger",
+      "desc": "Beskriv din virksomhed, få et website — AI skriver teksten, forbinder betalinger og booking."
+    },
+    {
+      "title": "Creative Studio",
+      "desc": "Generer marketingindhold, der matcher dit brand fra din forretningskontekst."
+    },
+    {
+      "title": "Marketing",
+      "desc": "E-mail og SMS-kampagner med AI-skrevet tekst og smarte målgruppesegmenter."
+    }
+  ]
+}

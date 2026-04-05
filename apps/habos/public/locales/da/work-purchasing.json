@@ -1,0 +1,62 @@
+{
+  "badge": "Indkøb",
+  "hero": {
+    "title": "Leverandører, ordrer og lager.\nForbundet.",
+    "description": "Administrer leverandører, opret indkøbsordrer, modtag varer og se lagerniveauer justere automatisk — ingen regneark, ingen dobbeltindtastning."
+  },
+  "mockPO": {
+    "title": "IO #0042 — Nordic Supply Co",
+    "status": "Afventer levering",
+    "tableHeaders": {
+      "item": "Vare",
+      "qty": "Antal",
+      "unit": "Enhed",
+      "total": "I alt"
+    },
+    "lineItems": [
+      { "product": "Flexforbindere x20", "qty": 20, "unit": "kr. 119", "total": "kr. 2.380" },
+      { "product": "Kobbertube 15 mm x50 m", "qty": 50, "unit": "kr. 125", "total": "kr. 6.250" },
+      { "product": "Tætningskassetter x12", "qty": 12, "unit": "kr. 91", "total": "kr. 1.092" }
+    ],
+    "totalsRow": {
+      "total": "I alt: kr. 9.722",
+      "lineCount": "3 linjeposter"
+    },
+    "received": {
+      "heading": "Modtaget (2 af 3)",
+      "items": [
+        { "product": "Flexforbindere x20", "checked": true },
+        { "product": "Kobbertube 15 mm x50 m", "checked": true },
+        { "product": "Tætningskassetter x12", "checked": false }
+      ]
+    },
+    "annotation": "Indkøbsordrer linker direkte til dit produktkatalog. Modtagelse opdaterer lager i realtid — selv ved delvise leveringer."
+  },
+  "benefits": [
+    {
+      "title": "Leverandørkatalog",
+      "desc": "Spor leverandører, kontaktoplysninger, betalingsbetingelser og ordrehistorik. Vid, hvem der leverer hvad og hvornår."
+    },
+    {
+      "title": "Indkøbsordrer",
+      "desc": "Opret IO'er fra advarsler om lavt lager eller manuelle anmodninger. Linjeposter linker til dit produktkatalog."
+    },
+    {
+      "title": "Modtagelse og lager",
+      "desc": "Markér varer som modtaget. Lagerniveauer opdateres automatisk. Delvise leveringer spores."
+    }
+  ],
+  "scenario": "Dit lager markerer lavt lager på flexforbindere. VOIS opretter et IO-udkast til din foretrukne leverandør med de rigtige mængder og prissætning fra din seneste ordre. Du godkender med ét tryk. Når leveringen ankommer, markerer dit team varer som modtaget og lageret opdateres øjeblikkeligt.",
+  "techItems": [
+    "Leverandørstyring",
+    "Indkøbsordrer",
+    "Delvis modtagelse",
+    "Auto-lagerjustering",
+    "Fakturaregistrering",
+    "Advarsler om lavt lager"
+  ],
+  "cta": {
+    "title": "Fra genbestilling til fyldt lager.\nÉt system.",
+    "button": "Tilmeld venteliste"
+  }
+}

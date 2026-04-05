@@ -1,0 +1,21 @@
+{
+  "category": "Philosophie",
+  "title": "Immer griffbereit",
+  "tagline": "Uhr. Telefon. Sperrbildschirm. Ein Anruf. Wo immer Sie sind.",
+  "heroAlt": "Immer griffbereit",
+  "body": "Ein Elektriker auf einer Leiter. Hände halten Kabel. Ein Gedanke blitzt über den nächsten Auftrag auf. Sein Telefon steckt in der Tasche. Bis er herunterklettert, es entsperrt, die App öffnet und zum richtigen Bildschirm navigiert – sind drei Minuten vergangen. Wahrscheinlicher ist der Gedanke vollständig verschwunden. Unternehmenssoftware wurde für Schreibtische entwickelt. Die Hälfte der Belegschaft hat keinen.",
+  "surfaces": [
+    { "name": "Uhr", "detail": "Unter 300 ms. Handgelenk heben, sprechen, fertig." },
+    { "name": "Sperrbildschirm", "detail": "Ein Tippen startet die Aufnahme. Kein Entsperren." },
+    { "name": "Telefonanruf", "detail": "Rufen Sie Ihre VOIS-Nummer an. Jedes Telefon, jedes Netzwerk." },
+    { "name": "Benachrichtigung", "detail": "Tippen Sie auf eine Antwortoption, ohne die App zu öffnen." }
+  ],
+  "funnelNote": "Jedes zusätzliche Tippen ist ein Leck im Erfassungstrichter.",
+  "quote": "\"Wenn Sie eine App öffnen müssen, um sie zu nutzen, haben Sie bereits verloren.\"",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Gedankengeschwindigkeit",
+    "nextLabel": "Weiter",
+    "nextTitle": "Zurück zu HABOS"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "category": "Filosofie",
+  "title": "Leg je brein vast",
+  "tagline": "Je beste ideeën komen tussen vergaderingen door. Wij vangen ze op.",
+  "heroAlt": "Leg je brein vast",
+  "body1": "Het is maandagochtend. Je weet dat je in het weekend belangrijke gedachten had — je kunt ze voelen, net buiten bereik. Je plakbriefjes zijn van de monitor gevallen. De 'e-mail mezelf'-truc is begraven onder 40 berichten. Je hebt 47 naamloos stemopnames en geen tijd om er naar te luisteren. Creatief potentieel verdampt elke dag, niet omdat mensen geen ideeën hebben, maar omdat het vastlegginstrument te ver weg was.",
+  "body2": "Een loodgieter rondt een klus af bij het huis van de Jansens en praat met VOIS tijdens de rit naar huis. Dertig seconden: \"Boiler moet vervangen worden, niet gerepareerd. Geef ze een offerte voor een Bosch 27i, 18.000 kroon. Herinner me morgen het onderdeel te bestellen.\" Tegen de tijd dat hij parkeert, is het opdrachtrapport bijgewerkt, weerspiegelt het CRM de wijziging, is een offerte opgesteld en is er een herinnering ingesteld voor 9 uur. Handen nooit van het stuur.",
+  "stat": {
+    "withoutLabel": "Zonder vastlegging",
+    "withoutCount": "23 ideeën",
+    "withoutSub": "3 in actie omgezet",
+    "withLabel": "Met vastlegging",
+    "withCount": "23 vastgelegd",
+    "withSub": "14 afgerond voor vrijdag"
+  },
+  "quote": "\"Je brein was nooit de bottleneck. Je vastlegginstrument was dat.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Twee interfaces, één systeem",
+    "nextLabel": "Volgende",
+    "nextTitle": "Snelheid van gedachte"
+  }
+}

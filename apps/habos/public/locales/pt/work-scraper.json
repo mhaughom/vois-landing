@@ -1,0 +1,49 @@
+{
+  "badge": "Inteligência Empresarial",
+  "hero": {
+    "title": "Uma URL. Todo o Seu Negócio, Extraído.",
+    "description": "Digite a URL do seu site. O HABOS o rastreia, extrai sua identidade de marca, produtos, equipe e perfis sociais — depois alimenta todo o seu espaço de trabalho com dados reais. Pronto para trabalhar em minutos."
+  },
+  "body": "Digite a URL do site da sua empresa e o HABOS executa um fluxo de trabalho de inteligência em sete etapas: resolução de identidade, revisão humana, análise de fontes internas, pesquisa externa via Perplexity, coleta de dados financeiros, expansão de perfis sociais e aprovação final. Cada dado carrega uma pontuação de confiança — dados da API do Shopify pontuam 1,0, dados estruturados 0,94, extração de markdown 0,58. O sistema então gera dados de espaço de trabalho em quatorze domínios a partir da inteligência da sua empresa, para que você entre em um sistema funcionando, não em uma casca vazia.",
+  "extraction": {
+    "urlPlaceholder": "hendersonplumbing.com",
+    "extractingLabel": "Extraindo...",
+    "rows": [
+      { "label": "Tokens de marca", "detail": "Cores: #1E40AF, #F59E0B · Fonte: Inter · Logotipo detectado" },
+      { "label": "Produtos", "detail": "8 serviços encontrados (Reparo de Emergência, Aquecedor de Água, etc.)" },
+      { "label": "Equipe", "detail": "4 membros da equipe identificados na página Sobre" },
+      { "label": "Perfis sociais", "detail": "Instagram, Facebook, Google Meu Negócio vinculados" },
+      { "label": "Avaliações", "detail": "47 avaliações do Google importadas (média 4,8★)" },
+      { "label": "Concorrentes", "detail": "3 concorrentes locais identificados via Perplexity" },
+      { "label": "Informações de contato", "detail": "Telefone, e-mail, 2 endereços georreferenciados" }
+    ],
+    "confidenceNote": "Cada dado carrega uma pontuação de confiança. Dados da API do Shopify: 1,0. Dados estruturados: 0,94. Extração de markdown: 0,58. Você revisa os itens de alta confiança primeiro."
+  },
+  "benefits": [
+    {
+      "title": "14 domínios alimentados",
+      "desc": "Projetos, tarefas, leads, campanhas, produtos, operações, estrutura de equipe — tudo gerado a partir da inteligência da sua empresa. Seu espaço de trabalho é produtivo desde o primeiro dia."
+    },
+    {
+      "title": "Injeção de marca",
+      "desc": "Cores, fontes e tokens de design extraídos são automaticamente injetados em qualquer site que você construa no HABOS. Seus sites parecem seus, não um modelo."
+    },
+    {
+      "title": "Rastreamento antes do cadastro",
+      "desc": "Os visitantes podem começar antes de criar uma conta. Os resultados são armazenados em cache e reivindicados via token seguro após o cadastro. Veja o valor antes de se comprometer."
+    }
+  ],
+  "scenario": "Um novo encanador se cadastra e insere hendersonplumbing.com. Em 90 segundos, o HABOS extrai a marca, 8 serviços, fotos da equipe, avaliações do Google e perfis sociais. Quando eles chegam no espaço de trabalho, ele já está populado — projetos para trabalhos ativos, produtos para seus serviços, leads do formulário de contato e um rascunho de site com a marca. Eles não configuraram nada. O software se configurou sozinho.",
+  "scenarioHighlight": "O software se configurou sozinho.",
+  "techItems": [
+    "Extração com pontuação de confiança",
+    "Detecção multi-plataforma",
+    "Fluxo de trabalho de inteligência em 7 etapas",
+    "Expansão de perfis sociais",
+    "Alimentação determinística do espaço de trabalho"
+  ],
+  "cta": {
+    "heading": "Outras plataformas começam vazias. O HABOS começa com o seu negócio já dentro.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

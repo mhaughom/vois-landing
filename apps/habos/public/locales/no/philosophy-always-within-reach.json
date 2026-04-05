@@ -1,0 +1,21 @@
+{
+  "category": "Filosofi",
+  "title": "Alltid innen rekkevidde",
+  "tagline": "Klokke. Telefon. Låseskjerm. En telefonsamtale. Uansett hvor du er.",
+  "heroAlt": "Alltid innen rekkevidde",
+  "body": "En elektriker på en stige. Hender som holder ledning. En tanke tenner om neste oppdrag. Telefonen er i lommen. Innen han klatrer ned, låser den opp, åpner appen og navigerer til riktig skjerm — har tre minutter gått. Mer sannsynlig er tanken helt borte. Forretningsprogramvare ble bygget for kontorer. Halvparten av arbeidsstyrken har ikke et.",
+  "surfaces": [
+    { "name": "Klokke", "detail": "Under 300 ms. Løft håndleddet, snakk, ferdig." },
+    { "name": "Låseskjerm", "detail": "Ett trykk starter opptak. Ingen opplåsing." },
+    { "name": "Telefonsamtale", "detail": "Ring VOIS-nummeret ditt. Hvilken som helst telefon, hvilket som helst nettverk." },
+    { "name": "Varsling", "detail": "Trykk et svaralternativ uten å åpne appen." }
+  ],
+  "funnelNote": "Hvert ekstra trykk er en lekkasje i opptakstrakten.",
+  "quote": "«Hvis du må åpne en app for å bruke den, har du allerede tapt.»",
+  "nav": {
+    "prevLabel": "Forrige",
+    "prevTitle": "Tankens hastighet",
+    "nextLabel": "Neste",
+    "nextTitle": "Tilbake til HABOS"
+  }
+}

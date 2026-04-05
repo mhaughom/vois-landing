@@ -1,0 +1,53 @@
+{
+  "category": "Filosofía",
+  "title": "Apalancamiento de equipos pequeños",
+  "tagline": "No debería necesitar 50 empleados para operar como una empresa seria. HABOS da a los equipos pequeños la infraestructura operativa que antes requería departamentos enteros.",
+  "heroPlaceholder": "Ilustración principal",
+  "section1": {
+    "heading": "La brecha empresarial",
+    "body1": "El software empresarial fue construido para grandes empresas. Las plataformas de CRM asumen que tiene un equipo de operaciones de ventas para configurarlas. Las herramientas de gestión de proyectos asumen que tiene una PMO. Las plataformas de operaciones asumen que tiene ingenieros de procesos. Incluso las herramientas «simples» como el software de programación asumen que alguien tiene tiempo para configurarlo y mantenerlo.",
+    "body2": "Las pequeñas empresas — el fontanero con 5 técnicos, la firma consultora con 3 socios, el consultorio dental con 8 empleados — no tienen esas personas. Tienen a todos desempeñando cuatro roles, cambiando de contexto todo el día y perdiendo información en los espacios entre sus 12 aplicaciones diferentes."
+  },
+  "section2": {
+    "heading": "Una plataforma. Sin departamentos requeridos.",
+    "body1": "HABOS reemplaza toda la pila. CRM, gestión de proyectos, seguimiento de tareas, calendario, correo electrónico, documentos, facturación, reservas, monitoreo de operaciones, gestión de equipos, marketing y análisis — todo en una plataforma, todo compartiendo un cerebro, todo accesible por voz.",
+    "body2": "Pero no se trata solo de consolidación. Se trata de lo que se vuelve posible cuando todo está conectado y la IA llena los vacíos donde no tiene personal."
+  },
+  "withoutLabel": "Sin HABOS",
+  "withoutItems": [
+    "El técnico de campo termina el trabajo, conduce a la oficina a llenar el papeleo",
+    "El propietario verifica 5 aplicaciones para prepararse para una llamada con un cliente",
+    "Inspección perdida descubierta cuando llega el auditor",
+    "Renovación del contrato olvidada hasta que el cliente llama para cancelar",
+    "20 minutos de administración por trabajo completado"
+  ],
+  "withLabel": "Con HABOS",
+  "withItems": [
+    "Una nota de voz de 30 segundos desde la furgoneta crea todos los registros",
+    "El resumen de IA aparece 7 minutos antes de cada reunión",
+    "Alerta de supervisión en la segunda inspección perdida",
+    "Recordatorio proactivo 3 semanas antes de que venza el contrato",
+    "40 segundos de administración por trabajo completado"
+  ],
+  "platformPlaceholder": "Captura de pantalla del resumen de la plataforma",
+  "section3": {
+    "heading": "El resumen matutino",
+    "body1": "Cada mañana, HABOS resume lo que necesita su atención. No es un panel que tenga que interpretar. Es un resumen conciso: tres cosas que importan hoy, por qué importan, qué dice el manual que hay que hacer y una acción de un toque para aprobar la respuesta sugerida.",
+    "body2": "¿La salud de las operaciones bajó de verde a amarillo? Lo sabe antes que su equipo. ¿Un contrato está por vencer y nadie ha comenzado la renovación? El sistema le informa, vincula el registro del CRM y ofrece activar el flujo de renovación. ¿Dos nuevas reservas están en el mismo vecindario? Sugiere combinarlas como una ruta para ahorrar tiempo de desplazamiento.",
+    "body3": "Estas son cosas que un gerente de operaciones detectaría — si tuviera uno. HABOS le da el gerente de operaciones sin el gasto de personal."
+  },
+  "dashboardPlaceholder": "Captura de pantalla del panel",
+  "section4": {
+    "heading": "Haga crecer el negocio, no los gastos generales",
+    "body1": "La trayectoria de crecimiento tradicional para una pequeña empresa es: conseguir más trabajo, contratar más personas para manejar el trabajo, contratar más personas para gestionar a las personas. Cada empleado añade complejidad operativa — más coordinación, más traspasos, más cosas que se pierden en las grietas.",
+    "body2": "HABOS cambia la ecuación. En lugar de contratar un asistente administrativo para gestionar la programación, deje que la IA lo haga. En lugar de contratar a un coordinador de marketing, deje que la plataforma ejecute sus campañas. En lugar de contratar a un gerente de operaciones para rastrear el cumplimiento, deje que el Watchdog lo monitoree 24/7.",
+    "body3": "El resultado: una empresa de 5 personas que opera con la sofisticación y fiabilidad de una 10 veces más grande."
+  },
+  "quote": "«Para el fontanero en Bergen, el éxito significa: habla en su teléfono durante 30 segundos y las cosas correctas ocurren en seis sistemas. Entra a las reuniones preparado sin hacer ninguna preparación. Los problemas lo encuentran a él antes de que él los encuentre.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Memoria que se acumula",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Potencie su equipo"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "category": "Filosofía",
+  "title": "El fin de la entrada de datos",
+  "tagline": "Todas las herramientas empresariales que utiliza hoy fueron diseñadas antes de que existiera la IA. HABOS no. Notará la diferencia desde el primer día — los formularios, los campos, los copiar y pegar entre aplicaciones — se acabó.",
+  "heroPlaceholder": "Ilustración principal",
+  "section1": {
+    "heading": "El problema del complemento",
+    "body1": "La mayoría de las empresas de software tomaron productos construidos durante dos décadas y les añadieron un chatbot de IA en un rincón. El chatbot puede responder preguntas sobre datos a los que nunca fue diseñado para acceder, sugerir acciones para las que no tiene autoridad y buscar en sistemas que nunca fueron pensados para compartir contexto.",
+    "body2": "El resultado es un barniz de inteligencia sobre una arquitectura fundamentalmente no inteligente. La IA se sienta junto al software. No vive dentro de él."
+  },
+  "section2": {
+    "heading": "Construido con inteligencia en los cimientos",
+    "body": "HABOS fue diseñado desde el primer día con la IA como elemento estructural, no como una función. Los tres sistemas centrales que impulsan la plataforma — el Enrutador Inteligente, el Cerebro y el Orquestador de Agentes — son todos nativos de IA. No envuelven software existente en un chatbot. Son el software."
+  },
+  "systems": [
+    {
+      "title": "El Enrutador Inteligente",
+      "desc": "Un motor de clasificación de intenciones de voz que toma una grabación de 30 segundos y extrae múltiples acciones empresariales estructuradas — tareas, eventos de calendario, actualizaciones de CRM, ajustes de inventario — todo a la vez. No es voz a texto. Es voz a comprensión."
+    },
+    {
+      "title": "El Cerebro",
+      "desc": "Una capa de búsqueda semántica unificada en 19 fuentes de datos, consultada en paralelo. Cuando hace una pregunta, HABOS busca simultáneamente en sus reuniones, correos, CRM, proyectos, notas de voz, documentos y manuales — y comprende el significado, no solo las palabras clave."
+    },
+    {
+      "title": "El Orquestador de Agentes",
+      "desc": "Un motor autónomo de planificación y ejecución que puede desglosar tareas complejas en pasos, ejecutar herramientas, pausar para su aprobación en acciones de alto riesgo y reanudar — incluso después de reinicios del servidor. No es un chatbot con plugins. Es una máquina de estados completa con seguimiento de presupuesto y recuperación de fallos."
+    }
+  ],
+  "architecturePlaceholder": "Diagrama de arquitectura",
+  "section3": {
+    "heading": "Qué significa realmente ser nativo de IA en la práctica",
+    "body1": "Significa que un fontanero termina un trabajo, habla durante 30 segundos en su teléfono y el sistema crea el registro del trabajo, actualiza el inventario, genera la factura, notifica a la oficina y registra el tiempo. Toda esa cadena funciona porque cada módulo comparte un cerebro impulsado por IA — no porque alguien conectara 6 APIs.",
+    "body2": "Significa que cuando la IA lo prepara para una reunión, extrae información del CRM, historial de pedidos, transcripciones de reuniones, notas de voz, correos electrónicos, manuales y tickets abiertos — en una sola pasada. No porque buscara en 7 aplicaciones separadas. Porque todos esos datos viven en un solo lugar y fueron diseñados para ser razonados."
+  },
+  "section4": {
+    "heading": "El efecto compuesto",
+    "body1": "Una plataforma nativa de IA se vuelve más inteligente cuanto más tiempo la usa. Después de seis meses, el sistema sabe qué clientes reordenan en ciclos predecibles, qué operaciones derivan consistentemente, qué miembros del equipo están sobreutilizados y cuál es el tiempo promedio de cierre para diferentes tipos de acuerdos.",
+    "body2": "Esa inteligencia organizacional acumulada es el foso defensivo. Los datos pueden exportarse. La comprensión no."
+  },
+  "quote": "«La IA no debería ser algo a lo que usted vaya. Debería ser algo que ya está ahí — tejido en la forma en que el software piensa, actúa y anticipa.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "La Esclusa",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Un solo Cerebro"
+  }
+}

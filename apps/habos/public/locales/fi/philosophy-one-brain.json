@@ -1,0 +1,48 @@
+{
+  "category": "Filosofia",
+  "title": "Yksi aivosto",
+  "tagline": "Ilman tätä \"teemme kaiken\" kuulostaa Zoholta. Tämän kanssa se kuulostaa kertautuvalta älykkäydeltä. CRM tietää äänimuistiinpanosta. Äänimuistiinpano tietää kalenterista. Jokainen ominaisuus on älykkäämpi kuin se olisi yksin.",
+  "heroPlaceholder": "Hero-kuva",
+  "sources": [
+    "Äänitallenteet", "Asiakirjat", "Sähköpostiketjut", "Yhteystiedot",
+    "Chat-historia", "Käsikirjat ja SOPt", "Tuotteet", "Tilaukset",
+    "Varaukset", "CRM-asiakkaat", "Tukiticketit", "Lomake-lähetykset",
+    "Työt ja käynnit", "Reitit", "Verkkosivustot", "Sosiaalisen median julkaisut",
+    "Esitykset", "Projektit", "Kalenteritapahtumat"
+  ],
+  "sourcesLabel": "19 lähdettä. Yksi haku.",
+  "section1": {
+    "heading": "Pirstoutumisen vero",
+    "body1": "Perinteisessä työkalupinosssa kalenteri ei tiedä tehtävistäsi. Kokousmuistiinpanot eivät syötä projektiasi seurantajärjestelmään. Äänimuistiinpanosi ovat käsittelemättä. Sähköpostisi on saari. CRM:ssäsi ei ole aavistustakaan, mitä kokouksissa sanottiin.",
+    "body2": "Jokainen kerta kun vaihdat sovellusta löytääksesi kontekstin, maksat veron — ajassa, huomiossa ja päätöksissä tehtynä ilman täyttä kuvaa. Tyypillinen tietotyöntekijä vaihtaa sovellusten välillä 1 200 kertaa päivässä. Se ei ole tuottavuutta. Se on kitkaa, joka naamioituu työksi."
+  },
+  "section2": {
+    "heading": "Yksi tietokanta. Jaettu ymmärrys.",
+    "body1": "HABOS tallentaa kaiken yhteen yhtenäiseen datakerrokseen. Yksi SQL-kysely voi liittää CRM-yhteystiedot kokouslitterointeihin, tilaustietueet tukiticketteihin, kalenteritapahtumat tehtäväriippuvuuksiin, sähköpostiketjut projektin virstanpylväisiin ja äänimuistiinpanojen litteroinnit käsikirjojen SOPeihin.",
+    "body2": "Tämä tarkoittaa, että kun tekoäly valmistelee sinua kokoukseen, se ei tarkista vain kalenteriasi. Se hakee asiakkaan ostohistorian, avoimet tiketit, mitä kolmessa viimeisessä kokouksessa keskusteltiin, mitä myyntikäsikirjasi sanoo tehtäväksi tässä kauppavaiheessa ja äänimuistiinpanon, jonka tallensit kävellessäsi koiraasi missä mainitsit heidän toimitusjohtajansa."
+  },
+  "dataFlowPlaceholder": "Tietovuon kaavio",
+  "brainSearchPlaceholder": "Aivojen haun visualisointi",
+  "section3": {
+    "heading": "Miltä tämä näyttää käytännössä",
+    "query": "\"Mitä Nordic Fishingille kuuluu?\"",
+    "body": "Kolmen sekunnin sisällä saat: heidän CRM-statuksensa (neuvotteluvaihe), viimeiset kolme tilaustaan (yhteensä 47 000 $), avoimen tiketin toimitusaikataulusta, mitä Lars sanoi laajentumisesta viimeisessä kokouksessa ja muistutuksen siitä, että sopimuksen uusiminen on tulossa huhtikuussa. Jokainen tietopala linkittyy takaisin lähteeseen. Et avannut viittä eri sovellusta."
+  },
+  "section4": {
+    "heading": "Semanttinen, ei vain avainsanahaku",
+    "body1": "Aivot käyttää 512-dimensionaalisia vektoriupotuksia kaikissa tietolähteissä. \"Tuottoprojektioiden\" hakeminen löytää äänimuistiinpanon nimeltä \"Q3:n taloudellinen näkymä\". \"Jonaksen mainitsema HVAC-asia\" -hakeminen löytää kokouslitteroinnin, jossa hän puhui kompressorin kulumisesta Fjordview Hotelissa.",
+    "body2": "Kaikki 19 lähdettä kysellään samanaikaisesti. Tyypillinen latenssi: alle yksi sekunti täydelle alustahaulle. Tekoäly ei vain täsmäytä avainsanoja — se ymmärtää datasi semanttisesti."
+  },
+  "section5": {
+    "heading": "Syvenevä vallihauta",
+    "body1": "Kilpailijat voivat siirtää dataa sovellusten välillä. He voivat rakentaa API-siltoja ja synkrointiputkistoja. Mitä he eivät voi toistaa on jaettu ymmärrys — kyky kunkin järjestelmän osan päätellä kaikkien muiden osien yli, koska se kaikki on suunniteltu elämään yhdessä.",
+    "body2": "Mitä pidempään tiimisi käyttää HABOSia, sitä voimakkaammaksi tämä tulee. Kuuden kuukauden jälkeen tekoäly tietää malleja, joita yksikään ihminen ei voisi seurata niin monessa järjestelmässä: mitkä asiakkaat tilaavat ennustettavasti, mitkä toiminnot ajautuvat jatkuvasti, mitä käsikirjoja ei koskaan noudateta."
+  },
+  "quote": "\"Muut alustat voivat synkronoida datasi. Vain yksi alusta voi ajatella sen yli.\"",
+  "nav": {
+    "prevLabel": "Edellinen",
+    "prevTitle": "Tietosyötön loppu",
+    "nextLabel": "Seuraava",
+    "nextTitle": "Sinun äänesi, ei meidän"
+  }
+}

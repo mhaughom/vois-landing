@@ -1,0 +1,23 @@
+{
+  "category": "Filosofia",
+  "title": "Capture Seu Pensamento",
+  "tagline": "Suas melhores ideias acontecem entre reuniões. Nós as capturamos.",
+  "heroAlt": "Capture Seu Pensamento",
+  "body1": "É segunda-feira de manhã. Você sabe que teve pensamentos importantes no fim de semana — você pode senti-los, mas estão fora de alcance. Seus post-its caíram do monitor. O truque de \"enviar e-mail para si mesmo\" está enterrado sob 40 mensagens. Você tem 47 mensagens de voz sem rótulo e sem tempo para ouvir nenhuma. O potencial criativo evapora todos os dias, não porque as pessoas não tenham ideias, mas porque a ferramenta de captura estava longe demais.",
+  "body2": "Um encanador termina na casa Johnson e fala com o VOIS durante o trajeto de volta. Trinta segundos: \"O aquecedor de água precisa de substituição, não de reparo. Faça um orçamento para um Bosch 27i, 18.000 coroas. Me lembra de pedir a peça amanhã.\" Quando ele estaciona, o relatório do trabalho está atualizado, o CRM reflete a mudança, um orçamento foi redigido e um lembrete foi definido para as 9h. As mãos nunca saíram do volante.",
+  "stat": {
+    "withoutLabel": "Sem captura",
+    "withoutCount": "23 ideias",
+    "withoutSub": "3 realizadas",
+    "withLabel": "Com captura",
+    "withCount": "23 capturadas",
+    "withSub": "14 concluídas até sexta"
+  },
+  "quote": "\"Seu cérebro nunca foi o gargalo. Sua ferramenta de captura era.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Duas Interfaces, Um Sistema",
+    "nextLabel": "Próximo",
+    "nextTitle": "Velocidade do Pensamento"
+  }
+}

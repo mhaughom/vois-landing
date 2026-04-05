@@ -1,0 +1,76 @@
+{
+  "category": "Filosofi",
+  "title": "Luftslussen",
+  "tagline": "AI föreslår. Du bestämmer.",
+  "heroAlt": "Luftslussen",
+  "section1": {
+    "heading": "Problemet ingen pratar om",
+    "body1": "Det farligaste med AI är inte att den gör fel. Det är att den agerar innan du kan kontrollera. En försäljningsbot erbjuder 40% rabatt som bryter mot marginalspolicyn. Ett bokningssystem dubbelbokare för att det optimerade för densitet utan att förstå körtid. Det här är inte hypotetiska scenarier.",
+    "body2": "Bara 6% av företag säger att de fullt ut litar på autonoma AI-agenter. De andra 94% har rätt att vara försiktiga. Vi byggde motsatsen: varje åtgärd AI:n tar passerar genom det vi kallar Luftslussen — en obligatorisk förhandsvisning där du ser exakt vad som är på väg att hända innan det händer."
+  },
+  "section2": {
+    "heading": "Jämförelsen"
+  },
+  "comparison": [
+    { "action": "E-postutskick", "auto": "Skickades omedelbart. VD:n hittar ett stavfel efter att 200 personer läst det.", "airlock": "Utkastet visas som ett kort. Du fixar stavfelet, trycker skicka." },
+    { "action": "Kalenderändringar", "auto": "Dubbelbokad tisdag — checkade inte din personliga kalender.", "airlock": "Förhandsvisningen visar konflikten. Du väljer rätt slot." },
+    { "action": "Uppgiftsskapande", "auto": "14 uppgifter från ett möte. 6 är dubbletter.", "airlock": "Föreslagen lista. Du sammanfogar två, tar bort en, godkänner resten." },
+    { "action": "Kundkommunikation", "auto": "Svarade med en kupong du inte längre erbjuder.", "airlock": "Svaret visas som förhandsvisning. Du justerar erbjudandet, sedan skickar du." }
+  ],
+  "tableHeaders": {
+    "action": "Åtgärd",
+    "auto": "Fullt autonomt",
+    "airlock": "Luftslussen"
+  },
+  "section3": {
+    "heading": "Inte ett UI-mönster. Ett säkerhetsprotokoll.",
+    "body": "Varje skrivåtgärd genererar en HMAC-SHA256-signerad bekräftelsetoken som binder användaren, den exakta åtgärden och de precisa argumenten — ner till enskilda tecken i ett e-postutkast. Tokens löper ut på 10 minuter. Om något ändras mellan förhandsvisning och bekräftelse, ogiltigförklaras token. AI:n kan inte ändra åtgärden efter att ha visat den för dig. Det du godkände är exakt vad som utförs."
+  },
+  "quote": "\"Pausen är inte en begränsning. Det är anledningen till att du kommer lita på detta med ditt företag.\"",
+  "section4": {
+    "heading": "Dina data. Din infrastruktur. Dina regler.",
+    "body": "Förtroende handlar inte bara om vad AI:n gör — det handlar om var dina data finns. HABOS kör var du än behöver det: vårt moln, dina servrar, eller helt luftgapat utan internetberoende. Samma plattform, samma funktioner, var dina data än behöver vara."
+  },
+  "deploymentOptions": [
+    {
+      "title": "Moln",
+      "body": "Railway för beräkning, Supabase för databas och de stora hyperscalerna för LLM. Produktionsklar från dag ett.",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "On-premise",
+      "body": "Driftsätt hela bakänden på din plats. Kör Qwen-modeller på standard Mac-hårdvara för lokal AI — inget GPU-kluster krävs.",
+      "badges": ["Qwen-modeller", "Mac-kompatibel", "Självhostad databas"]
+    },
+    {
+      "title": "Luftgapat datacenter",
+      "body": "För maximal isolering, driftsätt ett lokalt datacenter med modeller som Kimi K2. Fullständiga AI-kapaciteter utan internetberoende.",
+      "badges": ["Kimi K2", "Luftgapat", "Noll utgående"]
+    }
+  ],
+  "section5": {
+    "heading": "Säkerhet på varje nivå"
+  },
+  "securityItems": [
+    {
+      "title": "Kryptografiska godkännandetokens",
+      "body": "Varje AI-åtgärd är signerad och manipuleringssäker."
+    },
+    {
+      "title": "Säkerhet på radnivå i varje tabell",
+      "body": "Användare ser bara data de har behörighet att komma åt."
+    },
+    {
+      "title": "Budgetspårning per körning",
+      "body": "AI-utgifter spåras och begränsas per agent, per uppgift."
+    },
+    {
+      "title": "Fullständigt revisionslogg",
+      "body": "Varje åtgärd, varje beslut, permanent loggat."
+    }
+  ],
+  "nav": {
+    "nextLabel": "Nästa",
+    "nextTitle": "Allt på ett ställe"
+  }
+}

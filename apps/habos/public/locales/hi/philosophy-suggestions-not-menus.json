@@ -1,0 +1,24 @@
+{
+  "category": "दर्शन",
+  "title": "सुझाव, मेनू नहीं",
+  "tagline": "पढ़ें। टैप करें। हो गया।",
+  "heroAlt": "Complex menus की जगह Suggestion cards",
+  "body1": "एक business owner task board को देखकर यह पता लगाने की कोशिश करता है कि अभी क्या महत्वपूर्ण है। एक sales rep एक ईमेल पढ़ता है और सोचता है \"मुझे follow-up बनाना चाहिए\" — लेकिन नहीं करता, क्योंकि इसका मतलब है ऐप switch करना, सही project ढूंढना, छह fields भरना। विचार उसके recognizing करने और actually करने के बीच की खाई में मर जाता है।",
+  "body2Prefix": "Email reschedule अनुरोध आता है।",
+  "body2Body": "VOIS इसे पढ़ता है और तीन tappable options सामने रखता है: शुक्रवार 10am (slot खाली है), अगले सप्ताह के लिए push करें (3 खुले slots दिखाए), या decline करें और इसके बजाय call suggest करें। एक tap। मीटिंग moved, calendars updated, confirmation sent।",
+  "body3Prefix": "मीटिंग खत्म होती है।",
+  "body3Body": "VOIS transcript से चार action items निकालता है। प्रत्येक एक card के रूप में दिखाई देता है — assignee suggested करता है कि किसने क्या कहा, due date बातचीत से inferred, project automatically linked। 30 सेकंड में review करें, एक assignee adjust करें, confirm tap करें। चार tasks बनाए, चार लोग notified, zero forms भरे।",
+  "comparisonTraditional": "Traditional:",
+  "comparisonTraditionalStat": "प्रति action 3 मिनट।",
+  "comparisonSuggestions": "Suggestions:",
+  "comparisonSuggestionsStat": "5 सेकंड।",
+  "comparisonResult": "20 daily actions में, यह है",
+  "comparisonResultStat": "60 मिनट वापस।",
+  "quote": "\"आपको अपने business software को operate नहीं करना चाहिए। इसे खुद operate होना चाहिए और आपके judgment माँगना चाहिए।\"",
+  "nav": {
+    "prevLabel": "पिछला",
+    "prevTitle": "टीमों के लिए बनाया गया",
+    "nextLabel": "अगला",
+    "nextTitle": "दो इंटरफेस, एक सिस्टम"
+  }
+}

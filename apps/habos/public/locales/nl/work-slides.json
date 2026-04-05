@@ -1,0 +1,62 @@
+{
+  "badge": "AI-presentaties",
+  "hero": {
+    "title_part1": "Beschrijf je presentatie.",
+    "title_part2": "Die bouwt zichzelf.",
+    "description": "Vertel HABOS wat je wilt presenteren. AI genereert een complete diadeck met jouw merk, jouw data en jouw producten — met live grafieken die automatisch worden bijgewerkt."
+  },
+  "intro": "De presentatiegenerator maakt decks vanuit je werkruimtecontext met live databinding. Eerst genereert hij een overzicht door je prompt te analyseren, de Brain te doorzoeken en projectcontext, productcatalogus en merkgids te raadplegen. Vervolgens bouwt hij elke dia parallel — tot vijf tegelijkertijd — met layoutspecifieke blokken: statistieken, grafieken, tabellen en afbeeldingen. Omzetcijfers worden uit Finance gehaald. Productgrids worden uit je catalogus gehaald. Wanneer de onderliggende data verandert, weerspiegelt de presentatie dit.",
+  "slidePreview": {
+    "title": "Q1 Omzetsamenvatting",
+    "metrics": [
+      { "change": "+18%", "value": "€127K", "label": "Omzet" },
+      { "change": "+12%", "value": "89", "label": "Orders" },
+      { "change": "-4%", "value": "€1.428", "label": "Gem. order" }
+    ],
+    "slideNumber": "Dia 3 van 12"
+  },
+  "caption": {
+    "prefix": "Gegenereerd vanuit:",
+    "prompt": "\"Bouw een Q1-investeerdersupdate met omzettrends en topproducten.\"",
+    "suffix": "De omzetcijfers zijn live — ze worden bijgewerkt wanneer je data verandert."
+  },
+  "benefitCards": [
+    {
+      "title": "Prompt → deck in 60 seconden",
+      "desc": "Beschrijf wat je nodig hebt. AI genereert een overzicht, bouwt vervolgens elke dia parallel. 12 kaartopmaak, merkbewuste kleuren, echte fotografie van Unsplash."
+    },
+    {
+      "title": "Live databinding",
+      "desc": "Omzetstatistieken worden uit Finance gehaald. Productgrids worden uit je catalogus gehaald. Wanneer de onderliggende data verandert, wordt de presentatie bijgewerkt. Geen handmatig grafiekopnieuw aanmaken."
+    },
+    {
+      "title": "Jouw merk, automatisch",
+      "desc": "Thema-kleuren, lettertypen en logo worden opgehaald uit je werkruimtemerk-instellingen. Elke deck ziet eruit als die van jou, niet als een sjabloon."
+    }
+  ],
+  "layouts": {
+    "heading": "12 kaartopmaak, intelligent gemengd",
+    "items": [
+      "Titel", "Tekst + Afbeelding", "Statistiekenraster", "Grafiekfocus", "Vergelijking",
+      "Tijdlijn", "Citaat", "3-kolommen", "Opsommingsmarkering", "Productraster",
+      "Teamroster", "CTA"
+    ]
+  },
+  "scenario": {
+    "part1": "Je investeerdersvergadering is over 2 uur. In plaats van 90 minuten aan het bouwen van dia's te besteden, typ je:",
+    "prompt": "\"Q1 investeerdersupdate — omzettrends, topproducten, klantgroei en stappenplan voor het volgende kwartaal.\"",
+    "part2": "HABOS haalt live cijfers uit Finance, producten uit je catalogus en groeidata uit CRM. Je hebt een gepolijste, merkconforme deck in 60 seconden.",
+    "closing": "De omzetgrafiek is nog steeds accuraat wanneer je hem presenteert."
+  },
+  "techItems": [
+    "GPT-4o overzicht + parallelle bouw",
+    "Unsplash + Gemini beeldgeneratie",
+    "12 afgedwongen opmaak",
+    "Live databinding",
+    "Merkbewuste thema's"
+  ],
+  "cta": {
+    "tagline": "Andere diatools geven je sjablonen. HABOS geeft je een afgewerkte deck.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Vertrieb & Zahlungen",
+  "hero": {
+    "title": "Vom ersten Kontakt bis zur bezahlten Rechnung",
+    "description": "CRM, Produkte, Rechnungsstellung und Zahlungen in einem Ablauf — aufgebaut aus deinen Gesprächen, nicht manueller Dateneingabe."
+  },
+  "items": [
+    {
+      "title": "CRM",
+      "desc": "Kundenprofile automatisch aus jeder Interaktion aufgebaut mit KI-vorgeschlagenen nächsten Schritten."
+    },
+    {
+      "title": "Produkte",
+      "desc": "Produkte, Preise, Lagerbestand und buchbare Dienste mit deiner Website verbunden."
+    },
+    {
+      "title": "Rechnungsstellung",
+      "desc": "Forderungen, Verbindlichkeiten und Gewinn in Echtzeit verfolgen."
+    },
+    {
+      "title": "Zahlungen",
+      "desc": "Stripe-gestützte Zahlungen mit direkten Bankauszahlungen."
+    }
+  ]
+}

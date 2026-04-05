@@ -1,0 +1,85 @@
+{
+  "badge": "Gestion des connaissances",
+  "hero": {
+    "title": "Importez une fois. Consultable pour toujours.",
+    "description": "Déposez un PDF, un document Word ou une URL. L'IA nettoie, structure et l'intègre dans le Brain. Faites glisser des dossiers vers des départements — ceux qui en ont besoin y accèdent automatiquement."
+  },
+  "intro": "Importez un PDF, un document Word ou une URL — GPT-4o nettoie, structure et extrait les métadonnées automatiquement. Chaque playbook est découpé en embeddings vectoriels de 512 dimensions et indexé dans le Brain. Interrogez une procédure des mois plus tard et le Brain la retrouve avec des citations. Six modèles de permissions gèrent les accès : synchronisation automatique par département, regroupement au niveau de l'organisation, liaison aux projets, liaison aux opérations, équipes personnalisées et dossiers manuels. Faites glisser un dossier vers un département et les membres d'équipe correspondants y accèdent instantanément.",
+  "library": {
+    "footer": "17 dossiers prédéfinis créés automatiquement lors de la configuration. Faites glisser n'importe quel dossier vers un département, un projet ou une opération — les membres d'équipe correspondants y accèdent instantanément.",
+    "folders": [
+      {
+        "name": "Manuel de l'entreprise",
+        "meta": "12 documents · Mis à jour il y a 2 jours",
+        "status": "Actif"
+      },
+      {
+        "name": "Guide d'intégration",
+        "meta": "8 documents · Dept. Opérations terrain",
+        "status": "Département"
+      },
+      {
+        "name": "Procédures de sécurité",
+        "meta": "15 documents · Toutes les équipes",
+        "status": "Obligatoire"
+      },
+      {
+        "name": "Documentation API",
+        "meta": "6 documents · Ingénierie",
+        "status": "Technique"
+      },
+      {
+        "name": "Playbooks clients",
+        "meta": "9 documents · Ventes + Support",
+        "status": "Partagé"
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Import de document IA",
+      "description": "Importez PDF, Word ou Markdown. GPT-4o nettoie, structure et extrait les métadonnées automatiquement. Pas de mise en forme, pas de balisage, pas de travail fastidieux."
+    },
+    {
+      "title": "Indexé dans le Brain",
+      "description": "Chaque playbook découpé en vecteurs 512 dimensions. Interrogez le Brain des mois plus tard — il trouve la réponse avec des citations."
+    },
+    {
+      "title": "Héritage des permissions",
+      "description": "Les éditeurs et lecteurs héritent de l'accès aux sous-dossiers depuis le dossier parent. Les managers restent explicites. Contrôle granulaire sans complexité."
+    }
+  ],
+  "comparison": {
+    "before": {
+      "title": "Avant Playbooks",
+      "items": [
+        "Les SOPs vivent dans Google Drive.",
+        "Personne ne sait quelle version est à jour.",
+        "Les nouveaux arrivants ne trouvent rien.",
+        "La connaissance part quand les gens partent."
+      ],
+      "footer": "30 min de recherche / semaine"
+    },
+    "after": {
+      "title": "Avec Playbooks",
+      "items": [
+        "Les SOPs vivent dans Playbooks.",
+        "Indexées par IA, consultables sémantiquement, assignées automatiquement par département.",
+        "Interrogez le Brain : « Quelle est notre procédure d'intervention d'urgence ? »",
+        "Réponse instantanée."
+      ],
+      "footer": "30 secondes"
+    }
+  },
+  "techStrip": [
+    "Traitement de documents GPT-4o",
+    "Embeddings vectoriels 512 dimensions",
+    "6 modèles de permissions",
+    "Glisser-pour-assigner",
+    "17 dossiers prédéfinis"
+  ],
+  "closing": {
+    "tagline": "Les autres bases de connaissances accumulent la poussière. Les bases de connaissances HABOS répondent aux questions.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

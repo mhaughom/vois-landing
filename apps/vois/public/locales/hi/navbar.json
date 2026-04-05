@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "उत्पाद",
+    "solutions": "समाधान",
+    "philosophy": "दर्शन",
+    "communication": {
+      "label": "संचार",
+      "desc": "ईमेल, मैसेंजर, फ़ोन, सहायता टिकट"
+    },
+    "scheduling": {
+      "label": "शेड्यूलिंग और बुकिंग",
+      "desc": "कैलेंडर, बुकिंग, शेड्यूलिंग लिंक"
+    },
+    "jobsOperations": {
+      "label": "काम और संचालन",
+      "desc": "डिस्पैच, रूट्स, प्रोजेक्ट, टास्क, समय ट्रैकिंग"
+    },
+    "salesPayments": {
+      "label": "बिक्री और भुगतान",
+      "desc": "CRM, उत्पाद, इनवॉइसिंग, भुगतान"
+    },
+    "voiceAi": {
+      "label": "वॉइस और AI",
+      "desc": "वॉइस नोट्स, मीटिंग नोट्स, असिस्टेंट, प्लेबुक"
+    },
+    "websiteMarketing": {
+      "label": "वेबसाइट और मार्केटिंग",
+      "desc": "वेबसाइट बिल्डर, सोशल, ईमेल अभियान"
+    },
+    "serviceBusinesses": {
+      "label": "सेवा व्यवसाय",
+      "desc": "प्लंबर से सलाहकार से थेरेपिस्ट तक"
+    },
+    "productBusinesses": {
+      "label": "उत्पाद व्यवसाय",
+      "desc": "दुकानों से e-commerce से निर्माताओं तक"
+    },
+    "creativeBusinesses": {
+      "label": "रचनात्मक व्यवसाय",
+      "desc": "एजेंसियों से फोटोग्राफरों से स्टूडियो तक"
+    },
+    "fieldOperations": {
+      "label": "फील्ड ऑपरेशंस",
+      "desc": "निर्माण से डिलीवरी से संपत्ति प्रबंधन तक"
+    },
+    "teamsStartups": {
+      "label": "टीम और स्टार्टअप",
+      "desc": "2-50 लोगों के साथ कंपनी बनाना"
+    },
+    "soloFounders": {
+      "label": "सोलो फाउंडर",
+      "desc": "फ्रीलांसर से एकल व्यक्ति कंपनियों तक"
+    },
+    "intelligenceYouControl": "आपके नियंत्रण की बुद्धिमत्ता",
+    "securityFirst": {
+      "label": "सुरक्षा प्रथम",
+      "desc": "AI, सीमाओं के साथ। आपकी सीमाएं।"
+    },
+    "oneAssistant": {
+      "label": "एक असिस्टेंट",
+      "desc": "कहीं से भी, कुछ भी पूछें"
+    },
+    "captureYourBrain": {
+      "label": "अपना दिमाग कैप्चर करें",
+      "desc": "विचारों को फीके पड़ने से पहले पकड़ें"
+    },
+    "fastByDesign": "डिज़ाइन से तेज़",
+    "suggestionsNotMenus": {
+      "label": "सुझाव, मेनू नहीं",
+      "desc": "पढ़ें। टैप करें। हो गया।"
+    },
+    "twoInterfaces": {
+      "label": "दो इंटरफेस",
+      "desc": "आपके लिए स्क्रीन, agents के लिए API"
+    },
+    "speedOfThought": {
+      "label": "विचार की गति",
+      "desc": "आवाज़ में, टैप आउट"
+    },
+    "alwaysWithinReach": {
+      "label": "हमेशा पहुँच में",
+      "desc": "Watch, फोन, lock screen"
+    },
+    "builtForYourBusiness": "आपके व्यवसाय के लिए बनाया गया",
+    "everythingInOnePlace": {
+      "label": "सब कुछ एक जगह",
+      "desc": "एक लॉगिन, हर टूल"
+    },
+    "builtForTeams": {
+      "label": "टीमों के लिए बनाया गया",
+      "desc": "एक सच्चाई, अलग नज़रिए"
+    },
+    "yourSoftwareYourWay": {
+      "label": "आपका सॉफ़्टवेयर, आपके तरीके से",
+      "desc": "डिज़ाइन से लचीला"
+    },
+    "ctaLabel": "वेटलिस्ट में शामिल हों",
+    "betaLogin": "बीटा लॉगिन"
+  },
+  "vois": {
+    "features": "फीचर्स",
+    "resources": "संसाधन",
+    "voiceCapture": {
+      "label": "वॉइस कैप्चर",
+      "desc": "बोलें, बाकी हम संभालते हैं"
+    },
+    "aiAssistant": {
+      "label": "AI असिस्टेंट",
+      "desc": "आपका निजी AI साझीदार"
+    },
+    "calendar": {
+      "label": "कैलेंडर",
+      "desc": "फोकस ब्लॉक ऑटो-भरें"
+    },
+    "tasks": {
+      "label": "टास्क",
+      "desc": "AI प्राथमिकता निर्धारण"
+    },
+    "watch": {
+      "label": "Watch",
+      "desc": "कलाई पर पूरा AI"
+    },
+    "customApps": {
+      "label": "कस्टम ऐप्स",
+      "desc": "अपने स्वयं के स्पेस बनाएं"
+    },
+    "habosForWork": {
+      "label": "काम के लिए HABOS",
+      "desc": "पूरा व्यापार प्लेटफॉर्म"
+    },
+    "support": {
+      "label": "सहायता",
+      "desc": "हमारी टीम से मदद लें"
+    },
+    "privacyPolicy": {
+      "label": "गोपनीयता नीति",
+      "desc": "हम आपके डेटा की कैसे सुरक्षा करते हैं"
+    },
+    "termsOfService": {
+      "label": "सेवा की शर्तें",
+      "desc": "हमारा सेवा अनुबंध"
+    },
+    "ctaLabel": "वेटलिस्ट में शामिल हों",
+    "workLabel": "काम के लिए HABOS",
+    "tryNow": "अभी आज़माएं",
+    "betaLogin": "बीटा लॉगिन"
+  },
+  "clusters": {
+    "communication": {
+      "email": "ईमेल",
+      "messenger": "मैसेंजर",
+      "phone": "फोन",
+      "supportTickets": "सहायता टिकट"
+    },
+    "schedulingBookings": {
+      "calendar": "कैलेंडर",
+      "bookings": "बुकिंग",
+      "schedulingLinks": "शेड्यूलिंग लिंक"
+    },
+    "jobsOperations": {
+      "dispatch": "डिस्पैच",
+      "routes": "रूट्स",
+      "projects": "प्रोजेक्ट",
+      "tasks": "टास्क",
+      "timeTracking": "समय ट्रैकिंग"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "उत्पाद",
+      "invoicing": "इनवॉइसिंग",
+      "payments": "भुगतान"
+    },
+    "voiceAi": {
+      "voiceNotes": "वॉइस नोट्स",
+      "meetingNotes": "मीटिंग नोट्स",
+      "assistant": "असिस्टेंट",
+      "playbooks": "प्लेबुक"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "वेबसाइट बिल्डर",
+      "creativeStudio": "क्रिएटिव स्टूडियो",
+      "marketing": "मार्केटिंग"
+    }
+  },
+  "mobile": {
+    "overview": "अवलोकन"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "वेटलिस्ट में शामिल हों",
+      "workLabel": "काम के लिए HABOS",
+      "tagline": "HABOS द्वारा"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "वेटलिस्ट में शामिल हों",
+      "tagline": "AI शक्ति, मानव नियंत्रण"
+    }
+  },
+  "clusterPages": {
+    "email": "ईमेल",
+    "messenger": "मैसेंजर",
+    "telephony": "फोन",
+    "tickets": "सहायता टिकट",
+    "calendar": "कैलेंडर",
+    "bookings": "बुकिंग",
+    "scheduling-links": "शेड्यूलिंग लिंक",
+    "dispatch": "डिस्पैच",
+    "routes": "रूट्स",
+    "projects": "प्रोजेक्ट",
+    "tasks": "टास्क",
+    "time-tracking": "समय ट्रैकिंग",
+    "crm": "CRM",
+    "products": "उत्पाद",
+    "finance": "इनवॉइसिंग",
+    "payments": "भुगतान",
+    "voice-notes": "वॉइस नोट्स",
+    "meeting-notes": "मीटिंग नोट्स",
+    "assistant": "असिस्टेंट",
+    "playbooks": "प्लेबुक",
+    "website-builder": "वेबसाइट बिल्डर",
+    "creative-studio": "क्रिएटिव स्टूडियो",
+    "marketing": "मार्केटिंग"
+  },
+  "clusterGroupNames": {
+    "communication": "संचार",
+    "schedulingBookings": "शेड्यूलिंग और बुकिंग",
+    "jobsOperations": "काम और संचालन",
+    "salesPayments": "बिक्री और भुगतान",
+    "voiceAi": "वॉइस और AI",
+    "websiteMarketing": "वेबसाइट और मार्केटिंग"
+  }
+}

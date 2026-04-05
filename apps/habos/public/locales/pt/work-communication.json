@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Comunicação",
+  "hero": {
+    "title": "Cada Conversa, Um Só Lugar",
+    "description": "E-mail, mensagens, telefone e tickets de suporte — unificados com IA que rascunha respostas, roteia mensagens e nunca deixa nada passar."
+  },
+  "items": [
+    {
+      "title": "E-mail",
+      "desc": "Esvazie sua caixa de entrada falando — a IA rascunha respostas no seu tom."
+    },
+    {
+      "title": "Mensageiro",
+      "desc": "Todos os canais mesclados por pessoa — e-mail, chat, SMS em uma única linha."
+    },
+    {
+      "title": "Telefone",
+      "desc": "Recepcionista de IA que agenda compromissos e responde perguntas 24/7."
+    },
+    {
+      "title": "Tickets de Suporte",
+      "desc": "Tickets criados a partir de formulários ou e-mail com níveis de prioridade e escalonamento automático."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Ratkaisut — Palveluyritykset",
+    "title": "Johda palveluyritystäsi äänelläsi.",
+    "subtitle": "Työkohteelta laskuun — ilman näppäimistöä.",
+    "description": "Putkimiehet, sähköasentajat, siistijät, konsultit, terapeutit, kirjanpitäjät, valmentajat ja kaikki, jotka myyvät aikaa, osaamista tai työtä."
+  },
+  "story": {
+    "dayLabel": "Larsin tiistai",
+    "section1": {
+      "heading": "7:30 — Kahvi ja päiväsuunnitelma",
+      "p1": "Lars on mestariputkimies Tromsøssa. Neljä työntekijää. Ennen HABOS:ia aamuisin piti tarkistaa Google Calendar, laskentataulukko työtiedoilla ja WhatsApp viime hetken peruutuksista. Tänään hän avaa yhden sovelluksen. Aikataulu on siinä — asiakashistoria, osoitteet ja muistiinpanot jokaisesta työstä. Asiakas siirsi aikaa yöllä sähköpostilla — tekoäly oli jo siirtänyt tapaamisen, muuttanut reittiä ja laatinut vahvistuksen. Lars napauttaa \"vahvista\" kun kahvi on vielä liian kuumaa juotavaksi."
+    },
+    "section2": {
+      "heading": "11:45 — Pakettiauto",
+      "p1": "Lars on juuri vaihtanut sulkuventtiilin Johnssonin talossa. Ennen HABOS:ia tämä hetki oli musta aukko — hän tekstasi itselleen \"Johnsson — vaihdettu venttiili, tilaa uusi liitin\" eikä koskaan ehtinyt laskuttaa sitä kunnolla. Nyt hän nostaa ranteensa:",
+      "voiceNote": "\"VOIS, Johnssonin työ valmis. Vaihdettu sulkuventtiili ja tulovesijohto. Tilaa Grohe-sekoittajahana Backerilta, 3 200 kruunua. Tarjoaa heille 4 800 asennettuna.\"",
+      "voiceResult": "Kaksikymmentä sekuntia. Työraportti arkistoitu. CRM päivitetty. Ostotilaus laadittu. Tarjous valmiina tarkistettavaksi.",
+      "p2": "Hän kävelee autoon. Siinä kaikki. Järjestelmä muunsi hänen äänensä jäsennellyksi dataksi — käytetyt osat, kustannukset, jatkotoimet, asiakastunnelma — ja reititti jokaisen kappaleen oikeaan paikkaan. Ei kirjoittamista. Ei kannettavaa. Ei \"teen sen illalla\"."
+    },
+    "section3": {
+      "heading": "15:20 — Ajossa",
+      "p1": "Lars ajaa. Jaettuun postilaatikkoon saapuu uusi tiedustelu — omakotitaloasiakas kysyy kylpyhuoneremonttia. Ennen HABOS:ia tämä sähköposti istuisi useita tunteja vastaamattomana. Kello 17 mennessä prospekti olisi varannut jonkin muun palvelun. Tutkimukset osoittavat, että 78 % asiakkaista valitsee ensimmäisen yrityksen, joka vastaa.",
+      "p2": "Sen sijaan tekoäly arvioi tiedustelun, luokittelee sen uudeksi liidiksi ja laatii vastauksen Larsin äänellä. Punaisissa valoissa ilmoitus näyttää: \"Uusi liidi — kylpyhuoneremontti. Vastaus valmiina.\" Lars vilkaisee luonnosta: \"Kiitos yhteydenotosta. Tulisin mielelläni katsomaan. Minulla on aikaa toukokuun puolivälistä — sopisivatko paikan päällä käynti 15. tai 16. päivänä?\" Hän napauttaa lähetä. Kaksi minuuttia. Prospekti on vaikuttunut. Larsin kilpailija ei ole vielä avannut sähköpostia."
+    },
+    "section4": {
+      "heading": "21:15 — Sohvalla",
+      "p1": "Ennen HABOS:ia tämä oli hallinnointitunti. Laskutus muistinvaraisesti. Kuuden sähköpostin vastaaminen. CRM:n päivittäminen, jonka ylläpitämisen hän lopetti helmikuussa. Huomisen aikatauluttaminen. Kaksi tuntia palkatonta työtä joka ilta.",
+      "p2": "Tänä iltana Lars katsoo televisiota. Johnssonin työn lasku laadittiin hänen äänimuistiinpanostaan, tarkistettiin puhelimella kello 18 ja lähetettiin yhdellä napautuksella. Neljä sähköpostia hoidettiin ilmoituskorttien kautta töiden välissä. Huominen aikataulu on asetettu. Grohe-sekoittajan ostotilaus odottaa toimittajan vahvistusta.",
+      "p3": "Hänen iltansa kuuluu perheelle."
+    },
+    "section5": {
+      "heading": "Mistä Lars aiemmin maksoi",
+      "p1": "Ennen HABOS:ia Larsilla oli Calendly varauksia varten, Fiken kirjanpitoa varten, puolittain ylläpidetty HubSpot CRM, Todoist tehtäviä varten, Gmail asiakassähköposteja varten, WhatsApp viestintään ja hän harkitsi Jobberia työnohjaukseen. Yhteensä: yli 300 dollaria kuukaudessa tilauksina, joista useimpia käytettiin vain vähän.",
+      "p2": "HABOS korvaa ne kaikki. Aikataulutus Stripe-maksuilla ja kaksoisvarausten estolla. Taloushallinto äänellä tapahtuvalla kulukirjauksella. CRM, joka rakentuu itse keskusteluista. Tehtävät poimittuna äänimuistiinpanoista. Yhdistetty postilaatikko tekoälyvastauksilla hänen äänellään. Lähetys ja reittien suunnittelu. Yksi alusta. 35 dollaria kuukaudessa."
+    },
+    "section6": {
+      "heading": "Mitä muuttui hänen liiketoiminnassaan",
+      "p1": "Hallinnointityö putosi neljästätoista tunnista neljään viikossa. Uusien tiedustelujen keskimääräinen vasteaika laski neljästä tunnista viiteen minuuttiin. Viime kuussa tiimi varasi kahdeksan työtä sähköpostitiedusteluista, jotka olisivat aiemmin menneet ohi — koska HABOS vastasi, kun he olivat vielä tikkailla.",
+      "p2": "Nolla unohdettua laskua. Nolla hävittyjä liidejä hitaan vastaajan takia. Nolla iltoja kannettavan ääressä."
+    },
+    "testimonial": {
+      "quote": "\"Aiemmin vietin joka ilta laskujen ja sähköpostien parissa. Nyt puhun kellolleni jokaisen työn jälkeen ja kaikki on valmis päivälliselle. Viime kuussa varattiin 8 työtä, jotka olisivat menneet ohi — koska HABOS vastasi 2 minuutissa kun olin vielä tikkailla.\"",
+      "attribution": "— Lars, 41 · Mestariputkimies · 4 työntekijää · Tromsø"
+    },
+    "cta": {
+      "heading": "Viimeinen palkatun hallinnointisi ilta alkaa nyt.",
+      "button": "Liity odotuslistalle"
+    }
+  }
+}

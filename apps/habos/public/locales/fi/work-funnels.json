@@ -1,0 +1,69 @@
+{
+  "badge": "Markkinointiautomaatio",
+  "hero": {
+    "title": "Liidit tulevat. Tulot lähtevät.",
+    "description": "Lomakelähetys → tekoälyn luoma hoitosarja → SMS ja sähköposti → varaus tai myynti. Psykologiapohjainen, suostumus ensin ja tarpeeksi älykäs pysähtymään kun liidi vastaa."
+  },
+  "body": "Kun lomakelähetys saapuu, liidit virtaavat automaattisesti tekoälyn luomiin hoitosarjoihin. Kaikki sisältö noudattaa todistettua neljän vaiheen suostuttelukehystä: personointi, auktoriteetti tietyillä numeroilla, kvantifioitu tarjous riskinkäännöllä ja tietty toimintakutsu. Funnelit pysähtyvät automaattisesti kun liidi vastaa, saavuttaa terminaalisen CRM-vaiheen tai peruuttaa tilauksen — estäen yliyhteydenpidon. Sähköpostin ja SMS:n lähetykset on portitettu eksplisiittisellä suostumuksella, ja STOP-avainsanat peruuttavat sen globaalisti.",
+  "sequence": {
+    "label": "Hoitosarja",
+    "step1": "Lomake lähetetty",
+    "step2": {
+      "label": "Välittömästi: Tervetulia-SMS",
+      "message": "\"Hei Sara, kiitos tiedustelustasi HVAC-palveluistamme! Olen Mike Hendersonilta...\""
+    },
+    "wait1": "Odota 2 tuntia",
+    "step3": {
+      "label": "Sähköposti: Auktoriteetti + todistus",
+      "message": "\"Aihe: 94 % asiakkaistamme säästää 200 $+ energialaskuissa...\""
+    },
+    "wait2": "Odota 1 päivä",
+    "step4": {
+      "label": "SMS: Tarjous + toimintakutsu",
+      "message": "\"Kevätetu: 99 $ ilmastoinnin viritys (norm. 149 $). Varaa ennen perjantaita → habos.app/s/henderson-ac\""
+    },
+    "autostop": {
+      "label": "Automaattinen pysäytys",
+      "desc": "Liidi vastasi / varasi / voitettu → sarja pysähtyy automaattisesti"
+    },
+    "summary": "4-vaiheinen suostuttelukehys: Personointi → Auktoriteetti → Tarjous → Toimintakutsu. 7 esiasennettua strategiaa valmiina käyttöön.",
+    "summaryFramework": "Personointi → Auktoriteetti → Tarjous → Toimintakutsu."
+  },
+  "benefits": [
+    {
+      "title": "Suostumus ensin",
+      "desc": "Sähköposti ja SMS portitettu eksplisiittisellä suostumuksella. STOP-avainsanat peruuttavat globaalisti. Ensimmäisellä toimintaviestillä on laillinen turvasatama — jatkot vaativat opt-in:n."
+    },
+    {
+      "title": "Älykkäät pysäytyssäännöt",
+      "desc": "Funnelit pysähtyvät automaattisesti kun liidi vastaa (SMS tai sähköposti), saavuttaa terminaalisen CRM-vaiheen (voitettu/hävitty/varattu) tai peruuttaa tilauksen. Ei yliyhteydenpidon."
+    },
+    {
+      "title": "7 strategiaa sisäänrakennettu",
+      "desc": "Lämmin liidiseuranta, kylmä B2B-lähtöpiste, lomakehoito, varausmuistutukset, uudelleenaktivointiin, asiakkaan lisämyynti ja mukautettu. Jokainen viritetty käyttötapaustaan varten."
+    }
+  ],
+  "comparison": {
+    "without": {
+      "label": "Ilman HABOS:ia",
+      "text": "Liidi täyttää lomakkeen. Näet sen 3 tuntia myöhemmin. Kirjoita sähköposti. Lähetä se. Odota. Seuraa manuaalisesti. Unohda 40 % liideistä.",
+      "badge": "Keskimääräinen vasteaika: yli 3 tuntia"
+    },
+    "with": {
+      "label": "HABOS:lla",
+      "text": "Liidi täyttää lomakkeen. Välitön tervetulia-SMS. Auktoriteettiviesti 2 tuntia myöhemmin. Tarjous seuraavana päivänä. Jos he vastaavat tai varaavat — sarja pysähtyy.",
+      "badge": "Vasteaika: välitön"
+    }
+  },
+  "techItems": [
+    "Psykologiapohjainen viestintä",
+    "Hiljaiset tunnit + aikavyöhyke",
+    "Saapuvien vastausten tunnistus",
+    "CRM-vaiheen synkronointi",
+    "Monivaiheinen orkestrointi"
+  ],
+  "cta": {
+    "heading": "Muut automaatiotyökalut lähettävät viestejä. HABOS hoitaa suhteita.",
+    "button": "Liity odotuslistalle"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "Product",
+    "solutions": "Solutions",
+    "philosophy": "Philosophy",
+    "communication": {
+      "label": "Communication",
+      "desc": "Email, Messenger, Phone, Support Tickets"
+    },
+    "scheduling": {
+      "label": "Scheduling & Bookings",
+      "desc": "Calendar, Bookings, Scheduling Links"
+    },
+    "jobsOperations": {
+      "label": "Jobs & Operations",
+      "desc": "Dispatch, Routes, Projects, Tasks, Time Tracking"
+    },
+    "salesPayments": {
+      "label": "Sales & Payments",
+      "desc": "CRM, Products, Invoicing, Payments"
+    },
+    "voiceAi": {
+      "label": "Voice & AI",
+      "desc": "Voice Notes, Meeting Notes, Assistant, Playbooks"
+    },
+    "websiteMarketing": {
+      "label": "Website & Marketing",
+      "desc": "Website Builder, Social, Email Campaigns"
+    },
+    "serviceBusinesses": {
+      "label": "Service Businesses",
+      "desc": "Plumbers to consultants to therapists"
+    },
+    "productBusinesses": {
+      "label": "Product Businesses",
+      "desc": "Shops to e-commerce to manufacturers"
+    },
+    "creativeBusinesses": {
+      "label": "Creative Businesses",
+      "desc": "Agencies to photographers to studios"
+    },
+    "fieldOperations": {
+      "label": "Field Operations",
+      "desc": "Construction to delivery to property mgmt"
+    },
+    "teamsStartups": {
+      "label": "Teams & Startups",
+      "desc": "Building a company with 2-50 people"
+    },
+    "soloFounders": {
+      "label": "Solo Founders",
+      "desc": "Freelancers to one-person companies"
+    },
+    "intelligenceYouControl": "Intelligence You Control",
+    "securityFirst": {
+      "label": "Security First",
+      "desc": "AI with limits. Your limits."
+    },
+    "oneAssistant": {
+      "label": "One Assistant",
+      "desc": "Ask anything, from anywhere"
+    },
+    "captureYourBrain": {
+      "label": "Capture Your Brain",
+      "desc": "Catch ideas before they fade"
+    },
+    "fastByDesign": "Fast by Design",
+    "suggestionsNotMenus": {
+      "label": "Suggestions, Not Menus",
+      "desc": "Read. Tap. Done."
+    },
+    "twoInterfaces": {
+      "label": "Two Interfaces",
+      "desc": "Screens for you, APIs for agents"
+    },
+    "speedOfThought": {
+      "label": "Speed of Thought",
+      "desc": "Voice in, tap out"
+    },
+    "alwaysWithinReach": {
+      "label": "Always Within Reach",
+      "desc": "Watch, phone, lock screen"
+    },
+    "builtForYourBusiness": "Built for Your Business",
+    "everythingInOnePlace": {
+      "label": "Everything in One Place",
+      "desc": "One login, every tool"
+    },
+    "builtForTeams": {
+      "label": "Built for Teams",
+      "desc": "Same truth, different lenses"
+    },
+    "yourSoftwareYourWay": {
+      "label": "Your Software, Your Way",
+      "desc": "Flexible by design"
+    },
+    "ctaLabel": "Join Waitlist",
+    "betaLogin": "Beta Login"
+  },
+  "vois": {
+    "features": "Features",
+    "resources": "Resources",
+    "voiceCapture": {
+      "label": "Voice Capture",
+      "desc": "Talk, we handle the rest"
+    },
+    "aiAssistant": {
+      "label": "AI Assistant",
+      "desc": "Your personal AI partner"
+    },
+    "calendar": {
+      "label": "Calendar",
+      "desc": "Auto-fill focus blocks"
+    },
+    "tasks": {
+      "label": "Tasks",
+      "desc": "AI prioritization"
+    },
+    "watch": {
+      "label": "Watch",
+      "desc": "Full AI on your wrist"
+    },
+    "customApps": {
+      "label": "Custom Apps",
+      "desc": "Build your own spaces"
+    },
+    "habosForWork": {
+      "label": "HABOS for Work",
+      "desc": "The full business platform"
+    },
+    "support": {
+      "label": "Support",
+      "desc": "Get help from our team"
+    },
+    "privacyPolicy": {
+      "label": "Privacy Policy",
+      "desc": "How we protect your data"
+    },
+    "termsOfService": {
+      "label": "Terms of Service",
+      "desc": "Our service agreement"
+    },
+    "ctaLabel": "Join Waitlist",
+    "workLabel": "HABOS for Work",
+    "tryNow": "Try Now",
+    "betaLogin": "Beta Login"
+  },
+  "clusters": {
+    "communication": {
+      "email": "Email",
+      "messenger": "Messenger",
+      "phone": "Phone",
+      "supportTickets": "Support Tickets"
+    },
+    "schedulingBookings": {
+      "calendar": "Calendar",
+      "bookings": "Bookings",
+      "schedulingLinks": "Scheduling Links"
+    },
+    "jobsOperations": {
+      "dispatch": "Dispatch",
+      "routes": "Routes",
+      "projects": "Projects",
+      "tasks": "Tasks",
+      "timeTracking": "Time Tracking"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "Products",
+      "invoicing": "Invoicing",
+      "payments": "Payments"
+    },
+    "voiceAi": {
+      "voiceNotes": "Voice Notes",
+      "meetingNotes": "Meeting Notes",
+      "assistant": "Assistant",
+      "playbooks": "Playbooks"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "Website Builder",
+      "creativeStudio": "Creative Studio",
+      "marketing": "Marketing"
+    }
+  },
+  "mobile": {
+    "overview": "Overview"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "Join Waitlist",
+      "workLabel": "HABOS for Work",
+      "tagline": "by HABOS"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "Join Waitlist",
+      "tagline": "AI Power, Human Control"
+    }
+  },
+  "clusterPages": {
+    "email": "Email",
+    "messenger": "Messenger",
+    "telephony": "Phone",
+    "tickets": "Support Tickets",
+    "calendar": "Calendar",
+    "bookings": "Bookings",
+    "scheduling-links": "Scheduling Links",
+    "dispatch": "Dispatch",
+    "routes": "Routes",
+    "projects": "Projects",
+    "tasks": "Tasks",
+    "time-tracking": "Time Tracking",
+    "crm": "CRM",
+    "products": "Products",
+    "finance": "Invoicing",
+    "payments": "Payments",
+    "voice-notes": "Voice Notes",
+    "meeting-notes": "Meeting Notes",
+    "assistant": "Assistant",
+    "playbooks": "Playbooks",
+    "website-builder": "Website Builder",
+    "creative-studio": "Creative Studio",
+    "marketing": "Marketing"
+  },
+  "clusterGroupNames": {
+    "communication": "Communication",
+    "schedulingBookings": "Scheduling & Bookings",
+    "jobsOperations": "Jobs & Operations",
+    "salesPayments": "Sales & Payments",
+    "voiceAi": "Voice & AI",
+    "websiteMarketing": "Website & Marketing"
+  }
+}

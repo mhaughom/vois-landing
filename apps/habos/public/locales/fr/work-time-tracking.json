@@ -1,0 +1,50 @@
+{
+  "badge": "Temps & Paie",
+  "hero": {
+    "title": "Pointez. Nous gérons les calculs.",
+    "description": "Suivi du temps vérifié par GPS avec calcul automatique des heures supplémentaires, suivi des pauses et facturation prête pour la paie — pas de feuilles de temps, pas de tableurs."
+  },
+  "body": "Le suivi de localisation ne s'active que pendant une session de travail — pas de session signifie pas d'accès GPS. Confidentialité intégrée. Le système capture des points GPS, calcule les heures régulières versus les heures supplémentaires par jour calendaire, et déclenche des notifications asynchrones au manager quand les seuils journaliers sont dépassés. En fin de mois, les heures de chaque membre d'équipe sont déjà calculées, les heures supplémentaires ventilées et les montants de facturation calculés avec des taux horaires et de majoration configurables. Export vers la paie en un clic.",
+  "timecard": {
+    "heading": "Mike Torres — Cette semaine",
+    "summary": "36,5 h régulières · 4,5 h supplémentaires",
+    "days": [
+      { "day": "Lun", "range": "7h00 → 15h30", "hours": "8,0 h", "badge": "Régulier" },
+      { "day": "Mar", "range": "6h45 → 16h15", "hours": "9,0 h", "badge": "1,0 HS" },
+      { "day": "Mer", "range": "7h00 → 17h00", "hours": "9,5 h", "badge": "1,5 HS" },
+      { "day": "Jeu", "range": "7h15 → 15h45", "hours": "8,0 h", "badge": "Régulier" },
+      { "day": "Ven", "range": "7h00 → 13h30", "hours": "6,5 h", "badge": "Demi-journée" }
+    ],
+    "totalLine": "Total : 41,0 h | Régulier : 36,5 × 45 $/h = 1 642,50 $ | HS : 4,5 × 67,50 $/h = 303,75 $ | Total : 1 946,25 $",
+    "footnote": "Heures supplémentaires calculées automatiquement par jour calendaire. Manager notifié quand le seuil journalier est dépassé."
+  },
+  "benefits": {
+    "gps": {
+      "title": "GPS respectueux de la vie privée",
+      "description": "Le suivi de localisation ne s'active que pendant une session de travail. Pas de session = pas d'accès GPS. Les travailleurs contrôlent quand ils sont suivis."
+    },
+    "pause": {
+      "title": "Pause/reprise",
+      "description": "Enregistrez les pauses au sein d'une session. Le système calcule automatiquement le temps régulier versus le temps en pause. Aucune déduction manuelle nécessaire."
+    },
+    "alerts": {
+      "title": "Alertes manager",
+      "description": "Le pointage de sortie déclenche une vérification asynchrone des heures supplémentaires. Si les heures journalières dépassent le seuil (8h par défaut), le manager est notifié via la hiérarchie de l'organigramme."
+    }
+  },
+  "scenario": "Fin de mois. Au lieu de collecter des feuilles de temps papier, corriger des erreurs de calcul et croiser avec les journaux de missions — vous ouvrez HABOS. Les heures de chaque membre d'équipe sont déjà calculées, les heures supplémentaires ventilées, les montants de facturation calculés. Export vers la paie en un clic. C'est 4 heures de travail administratif, envolées.",
+  "scenarioHighlight": "C'est 4 heures de travail administratif, envolées.",
+  "techStrip": {
+    "items": [
+      "Sessions à accès GPS limité",
+      "Kilométrage Haversine",
+      "Calcul HS par jour",
+      "Taux HS par défaut 1,5×",
+      "Export prêt pour la paie"
+    ]
+  },
+  "cta": {
+    "heading": "Les autres trackers de temps font pleurer votre comptable. HABOS rend la paie indolore.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

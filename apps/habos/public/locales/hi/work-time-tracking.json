@@ -1,0 +1,50 @@
+{
+  "badge": "समय और पेरोल",
+  "hero": {
+    "title": "Clock In करें। हम गणना संभालते हैं।",
+    "description": "स्वचालित overtime गणना, break ट्रैकिंग, और payroll-तैयार बिलिंग के साथ GPS-सत्यापित समय ट्रैकिंग — कोई timesheet नहीं, कोई स्प्रेडशीट नहीं।"
+  },
+  "body": "लोकेशन ट्रैकिंग केवल work session के दौरान सक्रिय होती है — कोई session नहीं का मतलब कोई GPS एक्सेस नहीं। डिज़ाइन से गोपनीयता। सिस्टम GPS waypoints कैप्चर करता है, प्रति calendar दिन regular बनाम overtime घंटे की गणना करता है, और जब दैनिक threshold पार हो तो async मैनेजर नोटिफिकेशन ट्रिगर करता है। महीने के अंत में, हर टीम सदस्य के घंटे पहले से गणित, overtime अलग, और बिलिंग राशि कॉन्फिगर करने योग्य प्रति घंटे और overtime दरों के साथ गणित। एक क्लिक में payroll को एक्सपोर्ट करें।",
+  "timecard": {
+    "heading": "Mike Torres — इस सप्ताह",
+    "summary": "36.5 घंटे regular · 4.5 घंटे overtime",
+    "days": [
+      { "day": "सोम", "range": "सुबह 7:00 → दोपहर 3:30", "hours": "8.0 घंटे", "badge": "Regular" },
+      { "day": "मंगल", "range": "सुबह 6:45 → शाम 4:15", "hours": "9.0 घंटे", "badge": "1.0 OT" },
+      { "day": "बुध", "range": "सुबह 7:00 → शाम 5:00", "hours": "9.5 घंटे", "badge": "1.5 OT" },
+      { "day": "गुरु", "range": "सुबह 7:15 → दोपहर 3:45", "hours": "8.0 घंटे", "badge": "Regular" },
+      { "day": "शुक्र", "range": "सुबह 7:00 → दोपहर 1:30", "hours": "6.5 घंटे", "badge": "आधा दिन" }
+    ],
+    "totalLine": "कुल: 41.0 घंटे | Regular: 36.5 × $45/घंटा = $1,642.50 | OT: 4.5 × $67.50/घंटा = $303.75 | कुल: $1,946.25",
+    "footnote": "Overtime प्रति calendar दिन ऑटो-गणित। दैनिक threshold पार होने पर मैनेजर को सूचित।"
+  },
+  "benefits": {
+    "gps": {
+      "title": "गोपनीयता-प्रथम GPS",
+      "description": "लोकेशन ट्रैकिंग केवल work session के दौरान सक्रिय। कोई session नहीं = कोई GPS एक्सेस नहीं। वर्कर नियंत्रित करते हैं कब उन्हें ट्रैक किया जाए।"
+    },
+    "pause": {
+      "title": "Pause/resume",
+      "description": "session के भीतर break रिकॉर्ड करें। सिस्टम regular बनाम paused समय स्वचालित रूप से गणित करता है। कोई मैन्युअल कटौती नहीं चाहिए।"
+    },
+    "alerts": {
+      "title": "मैनेजर अलर्ट",
+      "description": "Clock-out async overtime जाँच ट्रिगर करता है। यदि दैनिक घंटे threshold पार करें (डिफ़ॉल्ट 8 घंटे), मैनेजर को org chart hierarchy के जरिए सूचित किया जाता है।"
+    }
+  },
+  "scenario": "महीने का अंत। कागजी timesheet एकत्र करने, गणित की गलतियाँ ठीक करने, और job log से cross-reference करने की बजाय — आप HABOS खोलते हैं। हर टीम सदस्य के घंटे पहले से गणित, overtime अलग, बिलिंग राशि गणित। एक क्लिक में payroll को एक्सपोर्ट करें। यह 4 घंटे का एडमिन काम है, चला गया।",
+  "scenarioHighlight": "यह 4 घंटे का एडमिन काम है, चला गया।",
+  "techStrip": {
+    "items": [
+      "GPS-gated sessions",
+      "Haversine माइलेज",
+      "प्रति-दिन overtime calc",
+      "1.5× डिफ़ॉल्ट OT दर",
+      "Payroll-ready export"
+    ]
+  },
+  "cta": {
+    "heading": "अन्य time tracker आपके अकाउंटेंट को रुलाते हैं। HABOS payroll को दर्दरहित बनाता है।",
+    "button": "वेटलिस्ट में शामिल हों"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "badge": "Attività con Punteggio AI",
+  "hero": {
+    "title": "Tu Cattura. L'AI Prioritizza.",
+    "description": "Crea attività con la voce, dalle riunioni o dall'email. Ogni attività riceve un punteggio calcolato dall'AI che si inserisce direttamente nel tuo programma."
+  },
+  "body": "Ogni attività riceve due punteggi calcolati dall'AI: importanza (quanto conta per i tuoi obiettivi) e urgenza (quanto è sensibile al tempo). L'AI valuta scadenze, salute del progetto, dipendenze, contesto di dominio e i tuoi pattern personali. Le attività con punteggio alto vengono pianificate per prime quando l'AI pianifica la tua giornata. Il rumore a basso punteggio rimane fuori dal tuo tempo di concentrazione. Le attività fluiscono da note vocali, trascrizioni di riunioni, email e output degli agenti — tu catturi, HABOS prioritizza.",
+  "tasks": [
+    {
+      "title": "Finalizza proposta Henderson",
+      "source": "dal progetto"
+    },
+    {
+      "title": "Rispondi all'email di Sarah sui campioni di piastrelle",
+      "source": "dall'email"
+    },
+    {
+      "title": "Revisiona report operazioni settimanale",
+      "source": "dalla riunione"
+    },
+    {
+      "title": "Aggiorna organigramma team",
+      "source": "dalla nota vocale"
+    }
+  ],
+  "taskList": {
+    "note": "Le attività vengono valutate dall'AI ponderando scadenze, contesto di progetto, dipendenze e i tuoi pattern. Punteggi alti → pianificati per primi."
+  },
+  "sources": {
+    "heading": "Da dove provengono le attività",
+    "labels": ["Note vocali", "Riunioni", "Email", "Agenti AI"],
+    "destinationLabel": "Coda Priorità AI"
+  },
+  "benefits": {
+    "capture": {
+      "title": "30 sec per catturare",
+      "description": "Di' \"ricordami di fare follow-up con Henderson sulla proposta entro venerdì\". Fatto. Titolo, scadenza, progetto e assegnatario estratti."
+    },
+    "sorting": {
+      "title": "0 ordinamento manuale",
+      "description": "Smetti di spendere 20 minuti ogni mattina a classificare la tua lista di attività. I punteggi AI si aggiornano man mano che il contesto cambia — le scadenze si avvicinano, le dipendenze si completano, la salute del progetto cambia."
+    },
+    "meeting": {
+      "title": "Riunione → attività automaticamente",
+      "description": "Quando qualcuno dice \"John, puoi occuparti dell'ordine delle piastrelle?\" in una riunione, un'attività appare nella coda di John. Nessuno deve ricordarsi di scriverla."
+    }
+  },
+  "scoring": {
+    "label": "Dettaglio del punteggio",
+    "factors": [
+      "Ordine manuale",
+      "Etichetta priorità",
+      "Importanza AI",
+      "Urgenza AI",
+      "Scadenza",
+      "Adattabilità al calendario",
+      "Data di creazione"
+    ]
+  },
+  "cta": {
+    "heading": "Le altre app per attività ti fanno ordinare. HABOS ordina per te.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

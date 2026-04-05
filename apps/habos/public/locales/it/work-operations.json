@@ -1,0 +1,69 @@
+{
+  "badge": "Intelligence Operativa",
+  "hero": {
+    "title": "I Problemi Emergono Prima che Qualcuno li Noti.",
+    "description": "Definisci le cadenze della tua azienda. I membri del team fanno report vocalmente. L'AI valuta automaticamente la salute e segnala le anomalie con azioni correttive."
+  },
+  "body": "Il modulo Operazioni non aspetta che qualcuno noti i problemi — li rileva automaticamente. L'amministratore configura regole per operazione: 'se il tasso di completamento scende sotto il 90%, segnala giallo; sotto il 70%, segnala rosso.' Quando i membri del team inviano report tramite voce, dettatura, chat o modulo, il sistema valuta ogni regola, calcola i punteggi di conformità, produce lo stato di salute e visualizza immediatamente i risultati sulla dashboard. Attraverso più esecuzioni di report, tiene traccia dei trend e avvisa sulle anomalie prima che diventino crisi.",
+  "dashboard": {
+    "title": "Dashboard Salute Live",
+    "items": {
+      "dailyRevenue": {
+        "name": "Report Ricavi Giornaliero",
+        "category": "Vendite"
+      },
+      "weeklySafety": {
+        "name": "Audit Sicurezza Settimanale",
+        "category": "Operazioni Campo"
+      },
+      "monthlyEquipment": {
+        "name": "Controllo Mensile Attrezzature",
+        "category": "Manutenzione"
+      }
+    },
+    "aiAlert": {
+      "label": "Azione AI:",
+      "message": "Il completamento del controllo attrezzature è sceso dal 95% al 41% questo mese. Raccomandazione: pianifica una formazione obbligatoria + riassegna al tecnico senior."
+    },
+    "footnote": "I punteggi di salute si aggiornano automaticamente quando vengono inviati i report. Nessun tracciamento manuale."
+  },
+  "benefits": {
+    "reporting": {
+      "title": "4 modi per fare report",
+      "description": "Intervista vocale, dettatura, chat o modulo tradizionale. I lavoratori sul campo compilano i report parlando durante il viaggio di ritorno. Niente appunti su carta."
+    },
+    "rules": {
+      "title": "Le regole catturano i problemi",
+      "description": "Configura le soglie: \"se ricavi_giornalieri < $5K, segnala ROSSO\". Il punteggio di conformità traccia la puntualità. In ritardo = punteggio proporzionalmente più basso."
+    },
+    "ai": {
+      "title": "Azioni correttive AI",
+      "description": "Quando la salute cala, l'AI genera 3-5 azioni specifiche con livelli di urgenza. Non consigli vaghi — prossimi passi concreti instradati alle persone giuste."
+    }
+  },
+  "comparison": {
+    "without": {
+      "label": "Senza HABOS",
+      "description": "Venerdì: \"Com'è andato l'audit di sicurezza?\" \"Ehm, fammi controllare.\" Lunedì: \"Si è scoperto che 3 siti lo hanno saltato.\" Mercoledì: rapporto incidente.",
+      "outcome": "Problema scoperto: 5 giorni dopo"
+    },
+    "with": {
+      "label": "Con HABOS",
+      "description": "Martedì: Avviso automatico — \"Completamento audit sicurezza al 67%, 3 siti in ritardo. Suggerito: riassegna agli ispettori di backup.\" Azione intrapresa lo stesso giorno.",
+      "outcome": "Problema segnalato: lo stesso giorno"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Diagrammi di flusso stile BPMN",
+      "Punteggio salute basato su regole",
+      "Sparkline trend 7 giorni",
+      "Azioni correttive AI",
+      "4 modalità compilazione report"
+    ]
+  },
+  "cta": {
+    "heading": "Gli altri strumenti tracciano ciò che è successo. HABOS rileva ciò che sta per andare storto.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

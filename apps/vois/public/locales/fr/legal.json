@@ -1,0 +1,431 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "Mentions légales"
+  },
+  "sidebar": {
+    "documentsLabel": "Documents légaux",
+    "lastUpdatedLabel": "Dernière mise à jour :"
+  },
+  "mobile": {
+    "jumpToSection": "Aller à la section",
+    "tableOfContents": "Table des matières"
+  },
+  "sections": {
+    "terms": "Conditions d'utilisation",
+    "refund": "Politique de remboursement",
+    "privacy": "Politique de confidentialité",
+    "eula": "CLUF (iOS)"
+  },
+  "footer": {
+    "description": "Vois est une application de notes vocales propulsée par l'IA qui vous aide à capturer, organiser et agir sur vos pensées en toute simplicité.",
+    "companyInfoHeading": "Informations sur l'entreprise",
+    "operatedBy": "Vois est exploité par",
+    "orgNumber": "Numéro d'organisation (Org.nr) :",
+    "orgValue": "936 920 594",
+    "address": "Adresse :",
+    "addressValue": "Alsvåg, Norway",
+    "contact": "Contact :",
+    "contactEmail": "hello@tryvois.com",
+    "copyright": "Vois. Tous droits réservés.",
+    "madeIn": "Fièrement fabriqué en Norvège",
+    "gdpr": "Conforme au RGPD",
+    "logoAlt": "Vois"
+  },
+  "terms": {
+    "title": "Conditions d'utilisation",
+    "subtitle": "Veuillez lire attentivement ces conditions avant d'utiliser Vois.",
+    "s1": {
+      "title": "1. Acceptation des conditions",
+      "p1": "En accédant ou en utilisant Vois (« le Service »), vous acceptez d'être lié par ces Conditions d'utilisation (« Conditions »). Si vous n'acceptez pas ces Conditions, veuillez ne pas utiliser le Service.",
+      "p2": "Vois est exploité par VOIS AI AS (Org.nr. 936 920 594), une société enregistrée en Norvège. Ces Conditions constituent un accord juridiquement contraignant entre vous et VOIS AI AS."
+    },
+    "s2": {
+      "title": "2. Description du Service",
+      "p1": "Vois est une application de notes vocales propulsée par l'IA qui vous aide à capturer, transcrire et organiser vos pensées. Le Service comprend :",
+      "features": [
+        "Enregistrement vocal et transcription par IA",
+        "Extraction automatique des tâches, événements et idées",
+        "Chat propulsé par l'IA pour interagir avec vos notes",
+        "Intégration calendrier et rappels"
+      ]
+    },
+    "s3": {
+      "title": "3. Abonnements",
+      "p1": "Vois propose les forfaits d'abonnement à renouvellement automatique suivants via l'Apple App Store :",
+      "tableHeaders": ["Abonnement", "Prix", "Durée", "Essai gratuit"],
+      "rows": [
+        ["Personnel Mensuel", "$14,99", "1 mois (renouvellement automatique mensuel)", "Pas d'essai gratuit"],
+        ["Personnel Annuel", "$79,99 (~$6,67/mois)", "1 an (renouvellement automatique annuel)", "Essai gratuit de 3 jours"],
+        ["Professionnel Mensuel", "$34,99", "1 mois (renouvellement automatique mensuel)", "Pas d'essai gratuit"],
+        ["Professionnel Annuel", "$249,99 (~$20,83/mois)", "1 an (renouvellement automatique annuel)", "Essai gratuit de 3 jours"]
+      ],
+      "freeTierNote": "Vois propose également un niveau Gratuit avec une utilisation limitée (5 enregistrements vocaux, 5 messages de chat, 1 application personnalisée, et jusqu'à 3 minutes par enregistrement) sans frais.",
+      "autoRenewal": {
+        "title": "Conditions de renouvellement automatique",
+        "items": [
+          "Le paiement sera débité sur votre Apple ID lors de la confirmation de l'achat (achats intégrés) ou via Stripe (achats sur le web).",
+          "Les périodes d'essai gratuit (disponibles uniquement sur les forfaits annuels) commencent au moment de l'achat. Si vous n'annulez pas avant la fin de l'essai gratuit, votre abonnement se renouvellera automatiquement et vous serez facturé du montant de l'abonnement.",
+          "Les abonnements se renouvellent automatiquement sauf annulation au moins 24 heures avant la fin de la période en cours.",
+          "Votre compte sera débité pour le renouvellement dans les 24 heures précédant la fin de la période en cours, au tarif de votre forfait sélectionné.",
+          "Vous pouvez gérer et annuler vos abonnements dans les paramètres de votre compte Apple ID à tout moment."
+        ]
+      },
+      "refundLink": "Politique de remboursement",
+      "refundNote": "Consultez notre Politique de remboursement pour plus d'informations sur les remboursements.",
+      "privacyLink": "Politique de confidentialité",
+      "eulaLink": "CLUF",
+      "moreDetailsNote": "Pour plus de détails, consultez notre Politique de confidentialité et notre CLUF."
+    },
+    "s4": {
+      "title": "4. Responsabilités de l'utilisateur",
+      "intro": "Vous acceptez de :",
+      "items": [
+        "N'utiliser le Service qu'à des fins légales",
+        "Ne pas tenter de rétro-ingénierie ou d'exploitation du Service",
+        "Ne pas utiliser le Service pour traiter des contenus illégaux ou nuisibles",
+        "Protéger la sécurité de vos identifiants de compte"
+      ]
+    },
+    "s5": {
+      "title": "5. Votre contenu",
+      "p1": "Votre contenu vous appartient. Vous conservez tous les droits sur les enregistrements vocaux, les transcriptions et les notes que vous créez avec Vois. Nous ne revendiquons aucune propriété sur votre contenu personnel.",
+      "p2": "En utilisant Vois, vous nous accordez une licence limitée pour traiter votre contenu uniquement afin de fournir le Service (transcription, analyse par IA, stockage et synchronisation)."
+    },
+    "s6": {
+      "title": "6. Contenu généré par l'IA",
+      "p1": "Vois utilise l'IA pour transcrire et analyser vos enregistrements. Vous reconnaissez que :",
+      "items": [
+        "Les transcriptions générées par l'IA peuvent contenir des erreurs",
+        "Vous êtes responsable de la vérification du contenu généré par l'IA",
+        "Les fonctionnalités d'IA sont fournies sans garantie d'exactitude"
+      ]
+    },
+    "s7": {
+      "title": "7. Limitation de responsabilité",
+      "p1": "Dans la limite maximale autorisée par la loi norvégienne, VOIS AI AS ne sera pas responsable des dommages indirects, accessoires, spéciaux ou consécutifs, y compris la perte de données ou de bénéfices."
+    },
+    "s8": {
+      "title": "8. Droit applicable",
+      "p1": "Ces Conditions sont régies par les lois de la Norvège. Tout litige sera soumis à la juridiction exclusive des tribunaux norvégiens."
+    },
+    "s9": {
+      "title": "9. Modifications des conditions",
+      "p1": "Nous pouvons modifier ces Conditions à tout moment. Nous vous informerons des modifications importantes via l'application ou par e-mail. La poursuite de l'utilisation après les modifications constitue une acceptation."
+    },
+    "s10": {
+      "title": "10. Contact",
+      "p1": "Des questions ? Contactez-nous à hello@tryvois.com"
+    }
+  },
+  "refund": {
+    "title": "Politique de remboursement",
+    "subtitle": "Comment fonctionnent les remboursements pour les abonnements Vois.",
+    "s1": {
+      "title": "Achats via l'App Store",
+      "p1": "Tous les abonnements Vois sont traités via l'Apple App Store. Nous ne pouvons pas traiter directement les remboursements pour les achats effectués sur l'App Store.",
+      "howToTitle": "Pour demander un remboursement :",
+      "steps": [
+        "Visitez reportaproblem.apple.com",
+        "Connectez-vous avec votre Apple ID",
+        "Trouvez votre achat Vois",
+        "Sélectionnez « Demander un remboursement »"
+      ],
+      "note": "Toutes les décisions de remboursement sont prises par Apple conformément à leurs conditions."
+    },
+    "s2": {
+      "title": "Des questions ?",
+      "p1": "Contactez-nous à hello@tryvois.com"
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "subtitle": "Comment nous collectons, utilisons et protégeons vos données personnelles conformément au RGPD.",
+    "s1": {
+      "title": "1. Responsable du traitement des données",
+      "companyLabel": "Entreprise :",
+      "companyValue": "VOIS AI AS",
+      "locationLabel": "Localisation :",
+      "locationValue": "Alsvåg, Norway (EEE)",
+      "contactLabel": "Contact :",
+      "contactEmail": "hello@tryvois.com",
+      "p1": "VOIS AI AS est le responsable du traitement de vos données personnelles collectées via l'application Vois et le site web."
+    },
+    "s2": {
+      "title": "2. Données que nous collectons",
+      "accountHeading": "Informations de compte :",
+      "accountItems": [
+        "Adresse e-mail (pour la création de compte et la communication)",
+        "Nom (facultatif, pour la personnalisation)",
+        "Informations de paiement (traitées par Apple pour les achats intégrés et Stripe pour les achats sur le web ; nous ne stockons pas les détails de carte)"
+      ],
+      "usageHeading": "Données d'utilisation :",
+      "usageItems": [
+        "Analytique d'utilisation de l'application (anonymisée, collectée uniquement avec votre consentement via PostHog, hébergé en UE)",
+        "Données d'interaction avec les fonctionnalités",
+        "Journaux d'erreurs et rapports de plantage",
+        "Identifiants d'appareils (identifiant anonyme pour les utilisateurs non connectés)"
+      ],
+      "contentHeading": "Données de contenu :",
+      "contentItems": [
+        "Enregistrements vocaux et fichiers audio (traités pour la transcription)",
+        "Texte transcrit, notes et transcriptions de réunions",
+        "Messages de chat envoyés aux assistants IA",
+        "Événements calendrier et contenu de tâches extraits des notes",
+        "Images téléchargées pour l'extraction et l'analyse de texte",
+        "Résumés, tâches et brouillons d'e-mails générés par l'IA"
+      ]
+    },
+    "s3": {
+      "title": "3. Politique d'entraînement de l'IA",
+      "boxTitle": "Vos données ne sont PAS utilisées pour l'entraînement de l'IA",
+      "boxText": "Nous N'utilisons PAS vos notes vocales privées, vos transcriptions ou tout contenu personnel pour entraîner des modèles d'IA. Vos données restent votre propriété. Aucun de nos fournisseurs d'IA tiers — Deepgram, OpenAI, Anthropic, Google, xAI ou Perplexity — n'utilise vos données envoyées via VOIS à des fins d'entraînement de modèles.",
+      "p1": "Lorsque nous traitons vos données via des services d'IA tiers, elles sont :",
+      "items": [
+        "Envoyées en toute sécurité via des connexions API chiffrées au fournisseur concerné",
+        "Traitées et renvoyées en temps réel",
+        "Non conservées par un fournisseur d'IA à des fins d'entraînement",
+        "Soumises à nos accords de traitement des données avec chaque sous-traitant",
+        "Traitées conformément aux conditions d'API commerciales de chaque fournisseur, qui interdisent l'entraînement sur les données des clients"
+      ]
+    },
+    "s4": {
+      "title": "4. Architecture local-first",
+      "boxTitle": "Confidentialité par conception",
+      "boxIntro": "Vois utilise une architecture local-first. Cela signifie :",
+      "items": [
+        "Les enregistrements vocaux sont traités et stockés en toute sécurité dans votre base de données cloud personnelle (Supabase).",
+        "Les fichiers audio sont conservés pour permettre la lecture et le retraitement. Vous pouvez supprimer vos enregistrements à tout moment depuis l'application.",
+        "Vos notes et transcriptions se synchronisent en toute sécurité sur votre compte mais restent chiffrées."
+      ]
+    },
+    "s5": {
+      "title": "5. Services d'IA tiers",
+      "boxTitle": "Divulgation du partage de données IA",
+      "boxText": "VOIS utilise des services d'intelligence artificielle tiers pour fournir les fonctionnalités principales de l'application. Votre consentement explicite est demandé avant tout partage de données personnelles avec ces services. Vous trouverez ci-dessous une description détaillée des données reçues par chaque fournisseur et pourquoi.",
+      "dataSentHeading": "Données que nous envoyons aux services d'IA :",
+      "dataSentItems": [
+        "Enregistrements vocaux et fichiers audio pour la transcription",
+        "Texte transcrit pour l'extraction de tâches, la création d'événements calendrier et les résumés",
+        "Messages de chat pour les réponses de l'assistant IA",
+        "Audio de réunions et transcriptions pour la génération de notes en direct",
+        "Images pour l'extraction et l'analyse de texte"
+      ],
+      "providersHeading": "Services qui reçoivent vos données :",
+      "providers": [
+        {
+          "name": "Deepgram, Inc.",
+          "dataReceived": "Enregistrements vocaux et données audio.",
+          "purpose": "Transcription voix-texte en temps réel et enregistrée, y compris l'identification des intervenants lors des réunions.",
+          "policyLabel": "Politique de confidentialité de Deepgram",
+          "policyUrl": "https://deepgram.com/privacy"
+        },
+        {
+          "name": "OpenAI, L.L.C.",
+          "dataReceived": "Texte transcrit, messages de chat, images, transcriptions de réunions et contenu de tâches.",
+          "purpose": "Analyse de texte, extraction de tâches et événements, réponses de l'assistant chat, génération de notes de réunion, rédaction d'e-mails et analyse d'images.",
+          "policyLabel": "Politique de confidentialité d'OpenAI",
+          "policyUrl": "https://openai.com/privacy"
+        },
+        {
+          "name": "Anthropic, PBC (Claude)",
+          "dataReceived": "Messages de chat et texte transcrit.",
+          "purpose": "Réponses de l'assistant chat IA lorsque Claude est sélectionné comme modèle actif.",
+          "policyLabel": "Politique de confidentialité d'Anthropic",
+          "policyUrl": "https://www.anthropic.com/privacy"
+        },
+        {
+          "name": "Google LLC (Gemini)",
+          "dataReceived": "Messages de chat et texte transcrit.",
+          "purpose": "Réponses de l'assistant chat IA lorsque Gemini est sélectionné comme modèle actif.",
+          "policyLabel": "Politique de confidentialité de Google",
+          "policyUrl": "https://policies.google.com/privacy"
+        },
+        {
+          "name": "xAI Corp. (Grok)",
+          "dataReceived": "Messages de chat et texte transcrit.",
+          "purpose": "Réponses de l'assistant chat IA lorsque Grok est sélectionné comme modèle actif.",
+          "policyLabel": "Politique de confidentialité de xAI",
+          "policyUrl": "https://x.ai/legal/privacy-policy"
+        },
+        {
+          "name": "Perplexity AI, Inc.",
+          "dataReceived": "Requêtes de recherche et contexte associé provenant de notes ou de tâches.",
+          "purpose": "Recherche web et récupération d'informations lorsque vous utilisez la fonctionnalité Recherche au sein de l'agent IA.",
+          "policyLabel": "Politique de confidentialité de Perplexity",
+          "policyUrl": "https://www.perplexity.ai/privacy"
+        }
+      ],
+      "dataReceivedLabel": "Données reçues :",
+      "purposeLabel": "Finalité :",
+      "protectionHeading": "Comment nous protégeons vos données avec ces fournisseurs :",
+      "protectionItems": [
+        "Toutes les données sont transmises en toute sécurité via des connexions API chiffrées (TLS/SSL).",
+        "Nous utilisons l'API commerciale officielle de chaque fournisseur, ce qui signifie que vos données sont traitées conformément à leurs conditions de traitement des données commerciales et ne sont pas utilisées pour entraîner leurs modèles d'IA.",
+        "Chaque fournisseur listé ci-dessus est contractuellement ou par politique tenu de fournir la même protection ou une protection équivalente de vos données personnelles, telle que décrite dans cette Politique de confidentialité."
+      ],
+      "choicesHeading": "Vos choix :",
+      "choicesText": "Votre consentement explicite est demandé avant tout partage de données avec des services d'IA tiers. Vous pouvez révoquer ce consentement à tout moment dans les paramètres de l'application sous « Partage de données IA ». Si vous refusez le consentement IA, les fonctionnalités qui reposent sur le traitement IA tiers (transcription, chat, notes de réunion, extraction de tâches) seront indisponibles, mais vous pourrez continuer à utiliser d'autres fonctionnalités de l'application."
+    },
+    "s6": {
+      "title": "6. Sous-traitants et infrastructure",
+      "p1": "Nous utilisons les services tiers suivants pour exploiter Vois :",
+      "tableHeaders": ["Service", "Finalité", "Localisation"],
+      "rows": [
+        ["Deepgram", "Transcription vocale", "États-Unis (Accord de traitement des données UE)"],
+        ["OpenAI", "Intelligence IA (Analyse de texte, Chat, Notes de réunion, Analyse d'images)", "États-Unis (Accord de traitement des données UE)"],
+        ["Anthropic", "Assistant chat IA (Claude)", "États-Unis (Accord de traitement des données UE)"],
+        ["Google", "Assistant chat IA (Gemini)", "États-Unis (Accord de traitement des données UE)"],
+        ["xAI", "Assistant chat IA (Grok)", "États-Unis"],
+        ["Perplexity AI", "Recherche IA et récupération d'informations", "États-Unis"],
+        ["Supabase", "Base de données, authentification et stockage de fichiers", "UE (Francfort)"],
+        ["Railway", "Hébergement d'applications backend", "États-Unis"],
+        ["Vercel", "Hébergement d'applications web et CDN", "CDN mondial"],
+        ["Stripe", "Traitement des paiements (Web)", "États-Unis (Accord de traitement des données UE)"],
+        ["RevenueCat", "Gestion des abonnements", "États-Unis (Accord de traitement des données UE)"],
+        ["Apple", "Paiements App Store et Connexion avec Apple", "États-Unis (Accord de traitement des données UE)"],
+        ["PostHog", "Analytique du site web et enregistrement de sessions (basé sur le consentement)", "UE (Francfort)"]
+      ],
+      "footnote": "Tous les sous-traitants et fournisseurs d'infrastructure listés ci-dessus sont contractuellement tenus de fournir la même protection ou une protection équivalente de vos données personnelles, telle que décrite dans cette Politique de confidentialité."
+    },
+    "s7": {
+      "title": "7. Cookies et suivi du site web",
+      "p1": "Notre site web (vois.app) utilise les technologies suivantes :",
+      "necessaryHeading": "Stockage strictement nécessaire",
+      "necessaryItems": [
+        "Votre préférence de consentement aux cookies (stockée dans localStorage)",
+        "Jetons d'authentification pour les utilisateurs connectés"
+      ],
+      "necessaryNote": "Ces éléments ne nécessitent pas de consentement car ils sont essentiels au fonctionnement du site web.",
+      "analyticsHeading": "Analytique (consentement requis)",
+      "analyticsItems": [
+        "PostHog — Utilisé pour l'analytique du site web et l'enregistrement de sessions. Les données sont hébergées en UE (Francfort). PostHog n'est activé qu'après votre consentement via notre bandeau de cookies.",
+        "Les données collectées comprennent : les pages vues, les clics, la profondeur de défilement, les enregistrements de sessions anonymisés (avec tous les champs de saisie masqués), le type d'appareil et la source de référence.",
+        "Aucune donnée n'est partagée avec des annonceurs ni utilisée pour le ciblage publicitaire."
+      ],
+      "cookieSettingsNote": "Vous pouvez modifier vos préférences de suivi à tout moment via le lien Paramètres des cookies dans le pied de page de notre site web."
+    },
+    "s8": {
+      "title": "8. Base légale du traitement (Article 6 RGPD)",
+      "items": [
+        "Exécution du contrat : Traitement nécessaire pour fournir le service Vois que vous avez demandé.",
+        "Intérêt légitime : Améliorations du service et surveillance de la sécurité (avec des garanties appropriées).",
+        "Consentement : Partage de données avec des services d'IA tiers (vous pouvez révoquer le consentement IA à tout moment dans les Paramètres), analytique du site web via PostHog (vous pouvez gérer vos préférences de cookies à tout moment via le lien Paramètres des cookies dans notre pied de page), et communications marketing (vous pouvez retirer votre consentement à tout moment).",
+        "Obligation légale : Registres fiscaux et conformité aux lois applicables."
+      ]
+    },
+    "s9": {
+      "title": "9. Vos droits (RGPD)",
+      "p1": "En vertu du Règlement général sur la protection des données, vous avez le droit de :",
+      "items": [
+        "Accès : Demander une copie de vos données personnelles",
+        "Rectification : Corriger des données personnelles inexactes",
+        "Effacement : Demander la suppression de vos données (« Droit à l'oubli »)",
+        "Portabilité : Recevoir vos données dans un format lisible par machine",
+        "Restriction : Limiter la façon dont nous traitons vos données",
+        "Opposition : Vous opposer au traitement fondé sur des intérêts légitimes",
+        "Retrait du consentement : Retirer votre consentement à tout moment"
+      ],
+      "contactNote": "Pour exercer ces droits, contactez-nous à hello@tryvois.com. Nous répondrons dans un délai de 30 jours."
+    },
+    "s10": {
+      "title": "10. Conservation des données",
+      "items": [
+        "Comptes actifs : Données conservées pendant la durée de votre compte",
+        "Comptes supprimés : Données effacées dans les 30 jours suivant la suppression du compte",
+        "Dossiers financiers : Conservés pendant 7 ans conformément à la loi norvégienne"
+      ]
+    },
+    "s11": {
+      "title": "11. Sécurité des données",
+      "p1": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données :",
+      "items": [
+        "Chiffrement TLS/SSL pour toutes les données en transit",
+        "Chiffrement AES-256 pour les données au repos",
+        "Audits de sécurité réguliers et tests de pénétration",
+        "Contrôles d'accès des employés et formations"
+      ]
+    },
+    "s12": {
+      "title": "12. Contact et réclamations",
+      "p1": "Pour les questions relatives à la confidentialité :",
+      "privacyContactLabel": "Contact confidentialité :",
+      "privacyContactEmail": "hello@tryvois.com",
+      "p2": "Si vous estimez que vos droits ont été violés, vous avez le droit de déposer une plainte auprès de :",
+      "authorityName": "Datatilsynet (Autorité norvégienne de protection des données)",
+      "authorityWebsiteLabel": "Site web :",
+      "authorityWebsiteUrl": "https://www.datatilsynet.no",
+      "authorityWebsiteDisplay": "www.datatilsynet.no"
+    }
+  },
+  "eula": {
+    "title": "Contrat de licence d'utilisateur final (CLUF)",
+    "subtitle": "Conditions d'utilisation de Vois sur les appareils iOS.",
+    "s1": {
+      "title": "1. Application sous licence Apple",
+      "p1": "Votre utilisation de Vois sur les appareils iOS est régie par le Contrat de licence d'utilisateur final standard d'Apple pour les applications sous licence (CLUF), en plus de ces Conditions d'utilisation.",
+      "boxTitle": "CLUF standard Apple",
+      "boxText": "Pour les conditions complètes du CLUF Apple, veuillez consulter :",
+      "eulaUrl": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+    },
+    "s2": {
+      "title": "2. Reconnaissances",
+      "intro": "Vous reconnaissez que :",
+      "items": [
+        "Ce CLUF est conclu entre vous et VOIS AI AS uniquement, et non avec Apple Inc.",
+        "VOIS AI AS, et non Apple, est seul responsable de l'Application sous licence (Vois) et de son contenu.",
+        "Apple n'a aucune obligation de fournir des services de maintenance ou d'assistance pour Vois.",
+        "En cas de défaillance de Vois à se conformer à une garantie applicable, vous pouvez en informer Apple, et Apple remboursera le prix d'achat (le cas échéant) de l'application. Dans la limite maximale autorisée par la loi applicable, Apple n'a aucune autre obligation de garantie envers Vois.",
+        "Apple n'est pas responsable du traitement de toute réclamation de votre part ou de tiers relative à Vois ou à votre possession et utilisation de Vois.",
+        "Apple et ses filiales sont des bénéficiaires tiers de ce CLUF, et dès votre acceptation, Apple aura le droit de faire respecter ce CLUF contre vous en tant que bénéficiaire tiers."
+      ]
+    },
+    "s3": {
+      "title": "3. Propriété intellectuelle",
+      "p1": "En cas de réclamation par un tiers selon laquelle Vois ou votre possession et utilisation de Vois porte atteinte aux droits de propriété intellectuelle de ce tiers, VOIS AI AS, et non Apple, sera seul responsable de l'enquête, de la défense, du règlement et de la résolution de toute réclamation pour atteinte à la propriété intellectuelle."
+    },
+    "s4": {
+      "title": "4. Conformité légale",
+      "intro": "Vous déclarez et garantissez que :",
+      "items": [
+        "Vous ne vous trouvez pas dans un pays soumis à un embargo du gouvernement américain.",
+        "Vous ne figurez sur aucune liste de parties interdites ou restreintes du gouvernement américain.",
+        "Vous respecterez toutes les conditions d'accord tiers applicables lors de l'utilisation de Vois."
+      ]
+    },
+    "s5": {
+      "title": "5. Forfaits d'abonnement",
+      "p1": "Vois propose les forfaits d'abonnement à renouvellement automatique suivants, gérés via l'Apple App Store :",
+      "tableHeaders": ["Abonnement", "Prix", "Durée", "Essai gratuit"],
+      "rows": [
+        ["Personnel Mensuel", "$14,99", "1 mois (renouvellement automatique mensuel)", "Pas d'essai gratuit"],
+        ["Personnel Annuel", "$79,99 (~$6,67/mois)", "1 an (renouvellement automatique annuel)", "Essai gratuit de 3 jours"],
+        ["Professionnel Mensuel", "$34,99", "1 mois (renouvellement automatique mensuel)", "Pas d'essai gratuit"],
+        ["Professionnel Annuel", "$249,99 (~$20,83/mois)", "1 an (renouvellement automatique annuel)", "Essai gratuit de 3 jours"]
+      ],
+      "freeTierNote": "Un niveau Gratuit est également disponible sans frais, avec une utilisation limitée (5 enregistrements vocaux, 5 messages de chat, 1 application personnalisée, jusqu'à 3 minutes par enregistrement).",
+      "autoRenewal": {
+        "title": "Renouvellement automatique et annulation",
+        "items": [
+          "Le paiement est débité sur votre Apple ID lors de la confirmation de l'achat.",
+          "Les périodes d'essai gratuit commencent au moment de l'achat. Si vous n'annulez pas avant la fin de l'essai, votre abonnement se renouvellera automatiquement au prix indiqué.",
+          "Les abonnements se renouvellent automatiquement sauf annulation au moins 24 heures avant la fin de la période en cours.",
+          "Vous pouvez gérer et annuler vos abonnements à tout moment dans les paramètres de votre compte Apple ID."
+        ]
+      },
+      "termsLink": "Conditions d'utilisation",
+      "privacyLink": "Politique de confidentialité",
+      "fullDetailsNote": "Pour tous les détails, consultez nos Conditions d'utilisation et notre Politique de confidentialité."
+    },
+    "s6": {
+      "title": "6. Coordonnées",
+      "p1": "Pour toute question ou préoccupation concernant l'application iOS ou ce CLUF, veuillez contacter :",
+      "developerLabel": "Développeur :",
+      "developerValue": "VOIS AI AS",
+      "emailLabel": "E-mail :",
+      "emailValue": "hello@tryvois.com",
+      "addressLabel": "Adresse :",
+      "addressValue": "Alsvåg, Norway"
+    }
+  }
+}

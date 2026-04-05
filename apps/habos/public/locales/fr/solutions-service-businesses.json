@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Solutions — Entreprises de services",
+    "title": "Gérez votre entreprise de services avec votre voix.",
+    "subtitle": "Du chantier à la facture — sans toucher un clavier.",
+    "description": "Plombiers, électriciens, nettoyeurs, consultants, thérapeutes, comptables, coachs, et toute personne qui vend du temps, de l'expertise ou de la main-d'œuvre."
+  },
+  "story": {
+    "dayLabel": "Le mardi de Lars",
+    "section1": {
+      "heading": "7h30 — Café et le plan",
+      "p1": "Lars est maître plombier à Tromsø. Quatre employés. Avant HABOS, les matins signifiaient vérifier Google Agenda, un tableur avec les détails des missions et WhatsApp pour les annulations de dernière minute. Aujourd'hui il ouvre une seule application. Son planning est là, avec l'historique client, les adresses et les notes pour chaque mission. Un client a reprogrammé la nuit via e-mail — l'IA a déjà déplacé le rendez-vous, ajusté l'itinéraire et rédigé une confirmation. Lars appuie sur « confirmer » pendant que son café est encore trop chaud pour être bu."
+    },
+    "section2": {
+      "heading": "11h45 — La camionnette",
+      "p1": "Lars vient de finir de remplacer un robinet d'arrêt chez Johnson. Avant HABOS, ce moment était un trou noir — il s'envoyait un SMS « Johnson — robinet remplacé, commander nouveau raccord » et ne l'enregistrait jamais correctement en facture. Maintenant il lève le poignet :",
+      "voiceNote": "« VOIS, mission Johnson terminée. J'ai remplacé le robinet d'arrêt et la conduite d'alimentation. Besoin de commander un mitigeur Grohe chez Backer, 3 200 couronnes. Devis-les à 4 800 installé. »",
+      "voiceResult": "Vingt secondes. Rapport de mission enregistré. CRM mis à jour. Bon de commande rédigé. Devis prêt à réviser.",
+      "p2": "Il marche vers la camionnette. C'est tout. Le système a analysé sa voix en données structurées — pièces utilisées, coûts, suivis, sentiment client — et a routé chaque élément au bon endroit. Pas de frappe. Pas d'ordinateur. Pas de « je le ferai ce soir »."
+    },
+    "section3": {
+      "heading": "15h20 — En route",
+      "p1": "Lars conduit. Une nouvelle demande arrive dans la boîte de réception partagée — un propriétaire qui demande une rénovation de salle de bain. Avant HABOS, cet e-mail resterait sans réponse pendant des heures. À 17h, le prospect aurait réservé quelqu'un d'autre. Les études montrent que 78 % des clients choisissent la première entreprise qui répond.",
+      "p2": "Au lieu de ça, l'IA évalue la demande, la classe comme un nouveau prospect et rédige une réponse à la voix de Lars. À un feu rouge, une notification apparaît : « Nouveau prospect — rénovation de salle de bain. Réponse prête. » Lars jette un œil au brouillon : « Merci de nous avoir contactés. Je serais ravi de jeter un coup d'œil. J'ai des disponibilités à partir de mi-mai — une visite sur site le 15 ou 16 vous conviendrait-il ? » Il appuie sur envoyer. Deux minutes. Le prospect est impressionné. Le concurrent de Lars n'a pas encore ouvert l'e-mail."
+    },
+    "section4": {
+      "heading": "21h15 — Le canapé",
+      "p1": "Avant HABOS, c'était l'heure de l'administration. Facturation de mémoire. Répondre à six e-mails. Mettre à jour le CRM qu'il avait arrêté de maintenir en février. Planifier le lendemain. Deux heures de travail non payé, chaque soir.",
+      "p2": "Ce soir, Lars regarde la télé. La facture pour la mission Johnson a été rédigée à partir de sa note vocale, révisée sur son téléphone à 18h et envoyée en un tap. Quatre e-mails ont été traités via des cartes de notification entre les missions. Le planning du lendemain est défini. Le bon de commande pour le mitigeur Grohe attend la confirmation du fournisseur.",
+      "p3": "Sa soirée appartient à sa famille."
+    },
+    "section5": {
+      "heading": "Ce que Lars payait autrefois",
+      "p1": "Avant HABOS, Lars avait Calendly pour les réservations, Fiken pour la comptabilité, un CRM HubSpot à moitié maintenu, Todoist pour les tâches, Gmail pour les e-mails clients, WhatsApp pour la messagerie, et envisageait Jobber pour le dispatch. Total : plus de 300 $ par mois en abonnements, la plupart sous-utilisés.",
+      "p2": "HABOS les remplace tous. Planification avec paiements Stripe et prévention des doubles réservations. Finance avec capture des dépenses par voix et conformité norvégienne. CRM qui se construit lui-même à partir des conversations. Tâches extraites des notes vocales. Une boîte de réception unifiée avec réponses IA à sa voix. Dispatch et planification d'itinéraires. Une seule plateforme. 35 $ par mois."
+    },
+    "section6": {
+      "heading": "Ce qui a changé pour son entreprise",
+      "p1": "L'administration est passée de quatorze heures par semaine à quatre. Le temps de réponse moyen aux nouvelles demandes est passé de quatre heures à cinq minutes. Le mois dernier, son équipe a réservé huit missions provenant de demandes par e-mail qu'ils auraient perdues avant — parce que HABOS a répondu pendant qu'ils étaient encore sur des échelles.",
+      "p2": "Zéro facture oubliée. Zéro prospect perdu à cause d'une réponse lente. Zéro soirée passée sur un ordinateur portable."
+    },
+    "testimonial": {
+      "quote": "« Je passais chaque soir à faire des factures et des e-mails. Maintenant je parle à ma montre après chaque mission et tout est fait avant le dîner. Le mois dernier nous avons réservé 8 missions que nous aurions perdues — parce que HABOS a répondu en 2 minutes pendant que j'étais encore sur une échelle. »",
+      "attribution": "— Lars, 41 ans · Maître plombier · 4 employés · Tromsø"
+    },
+    "cta": {
+      "heading": "Votre dernière soirée d'administration non payée commence maintenant.",
+      "button": "Rejoindre la liste d'attente"
+    }
+  }
+}

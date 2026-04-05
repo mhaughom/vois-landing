@@ -1,0 +1,92 @@
+{
+  "badge": "Tuki ja tiketit",
+  "hero": {
+    "title": "SLA-ajastimet. Automaattinen eskalointi.\nNolla rikkomusta.",
+    "description": "Jokainen tiketti saa SLA-lähtölaskennan. Rikkomusvaroitus laukeaa 30 minuuttia ennen aikarajaa. Jos rikkominen tapahtuu, automaattinen uudelleennimeäminen seuraavalle saatavilla olevalle agentille."
+  },
+  "body": "Jokainen tiketti saa SLA-lähtölaskennan muokattavilla ensivastaus- ja ratkaisutavoitteilla prioriteetin mukaan. Visuaaliset ajastimet varoittavat 30 minuuttia ennen rikkomusta. Jos tiketti rikkoo SLA:nsa, automaattinen eskalointi käynnistyy — uudelleennimetään seuraavalle saatavilla olevalle agentille. Tikettejä voidaan luoda lomakkeista, sähköposteista, äänipuheluista, API:sta tai manuaalisesti automaattisella deduplikoinnilla. Asiakassähköpostit näkyvät keskusteluketjuina sisäisillä muistiinpanoilla, jotka ovat näkyvissä vain agenteille, ja tekoäly ehdottaa vastauksia asiayhteytensä perusteella.",
+  "queue": {
+    "header": "Aktiivinen jono",
+    "countLabel": "tikettejä · 1 rikkomusvaroitus",
+    "tickets": [
+      {
+        "priority": "kiireellinen",
+        "title": "Hätätilanne: Johnson putki puhjennut",
+        "assignee": "Mike T.",
+        "sla": "23 min jäljellä"
+      },
+      {
+        "priority": "korkea",
+        "title": "HVAC ei viilennyä — Baker toimisto",
+        "assignee": "Sarah L.",
+        "sla": "2 t 15 min jäljellä"
+      },
+      {
+        "priority": "normaali",
+        "title": "Tarjouspyyntö: kylpyhuoneremontti",
+        "assignee": "Nimeämätön",
+        "sla": "7 t jäljellä"
+      },
+      {
+        "priority": "normaali",
+        "title": "Aikatauluta vuosittainen tarkastus",
+        "assignee": "Automaattisesti nimetty",
+        "sla": "Ratkaistu 1 t 20 min",
+        "resolved": true
+      }
+    ],
+    "priorityLabels": {
+      "urgent": "Kiireellinen",
+      "high": "Korkea",
+      "normal": "Normaali"
+    },
+    "automation": {
+      "breach30": "30 minuuttia ennen rikkomusta",
+      "breach30Action": "varoitusilmoitus",
+      "onBreach": "Rikkomisen yhteydessä",
+      "onBreachAction": "automaattinen uudelleennimeäminen seuraavalle saatavilla olevalle",
+      "postResolution": "Ratkaisun jälkeen",
+      "postResolutionAction": "CSAT-kysely lähetetään automaattisesti"
+    }
+  },
+  "benefits": {
+    "multiSource": {
+      "title": "Monilähteinen luonti",
+      "desc": "Lomakkeista, sähköposteista, äänipuheluista, API:sta tai manuaalisesti. Automaattinen deduplikaatio liittyvistä pyynnöistä."
+    },
+    "pipeline": {
+      "title": "Tiketti → toimenpideputki",
+      "desc": "Linkitä projekteihin, kenttätöihin ja tehtäviin. Yksi tiketti voi käynnistää kokonaisia työnkulkuja."
+    },
+    "csat": {
+      "title": "CSAT-keräys",
+      "desc": "Automaattinen kysely ratkaisun jälkeen tyytyväisyyspisteytystä ja trendiseurantaa varten."
+    }
+  },
+  "sourceIcons": {
+    "email": "Sähköposti",
+    "voice": "Ääni",
+    "webForm": "Verkkolomake",
+    "voiceNote": "Äänimuistiinpano",
+    "api": "API"
+  },
+  "beforeAfter": {
+    "beforeLabel": "Ennen",
+    "beforeText": "Asiakas lähettää sähköpostia. Näet sen 3 tuntia myöhemmin. Nimeät sen. Seuraat sitä laskentataulukossa. Toivot, ettei kukaan tiputa sitä. SLA? Mikä SLA?",
+    "beforeStat": "Keskimääräinen vasteaika: yli 3 tuntia",
+    "afterLabel": "Jälkeen",
+    "afterText": "Asiakas lähettää sähköpostia. Tiketti luodaan automaattisesti. SLA-ajastin käynnistyy. Varoitus 30 min. Automaattinen eskalointi rikkomisessa. CSAT-kysely ratkaisun jälkeen.",
+    "afterStat": "Keskimääräinen vasteaika: aina SLA:n alla"
+  },
+  "techStrip": [
+    "SLA-valvonta",
+    "Automaattinen eskalointi",
+    "Sähköpostiketjutus",
+    "Tekoälyn vastausehdotukset",
+    "CSAT-kyselyt"
+  ],
+  "closing": {
+    "title": "Muut tikettityökalut seuraavat ongelmia.\nHABOS ratkaisee ne.",
+    "cta": "Liity odotuslistalle"
+  }
+}

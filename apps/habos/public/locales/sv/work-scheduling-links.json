@@ -1,0 +1,49 @@
+{
+  "badge": "Schemaläggningslänkar",
+  "hero": {
+    "title": "Din egen Calendly.\nInbyggd.",
+    "description": "Skapa delbara bokningslänkar som låter vem som helst schemalägga tid med dig — med smart platsgenerering, bufferttid och skydd mot tävlingsvillkor."
+  },
+  "body": "Skapa obegränsat antal schemaläggningslänkar — URL:er som habos.app/s/mathias-30min — där gäster bokar med noll friktion och inget konto krävs. Smart platsgenerering tar hänsyn till varaktighet, öppettider, bufferttid och befintliga kalenderhändelser. Konfigurerbar för- och eftermötesutfyllnad blockerar överlappande platser automatiskt. Serversidans omkontroller förhindrar dubbelbokningar även under parallella förfrågningar. Gäster får bekräftelsemejl med avbokningslänkar med ett klick.",
+  "mockCard": {
+    "name": "Mathias Haughom",
+    "meetingType": "30 minuters konsultation",
+    "url": "habos.app/s/mathias-30min",
+    "selectedTime": "Tisdag 10:00",
+    "confirmButton": "Bekräfta bokning",
+    "caption": "Dela länken var som helst — mejlsignatur, webbplats, social-bio. Gäster bokar utan att skapa ett konto."
+  },
+  "benefits": {
+    "slotGeneration": {
+      "title": "Smart platsgenerering",
+      "desc": "Varaktighet, öppettider, bufferttid och befintliga kalenderhändelser vägs in. Bara verkligt lediga platser visas — ingen fram-och-tillbaka."
+    },
+    "buffer": {
+      "title": "15 min buffert inbyggd",
+      "desc": "Konfigurerbar för- och eftermötesutfyllnad blockerar överlappande platser automatiskt. Inga mer back-to-back samtal utan paus."
+    },
+    "selfService": {
+      "title": "Gästsjälvservice",
+      "desc": "Bekräftelsemejlet innehåller en avbokningslänk med ett klick. Gäster avbokar eller schemalägger om utan att kontakta dig. Du meddelas."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Utan HABOS",
+    "withoutText": "Betala $12/mån för Calendly. Kopiera tillgänglighet från din kalender. Hoppas den synkroniserar. Lägg manuellt till bokningen i ditt CRM. Skicka fakturan separat.",
+    "withoutStat": "3 verktyg, $12/mån extra",
+    "withTitle": "Med HABOS",
+    "withText": "Skapa en schemaläggningslänk. Dela den. Gäst bokar. Kalender, CRM, order och avisering uppdateras alla automatiskt. Ingår redan i din plan.",
+    "withStat": "1 verktyg, $0 extra"
+  },
+  "techStrip": [
+    "Smart platsgenerering",
+    "Bufferttidshantering",
+    "Skydd mot tävlingsvillkor",
+    "Självavbokningslänkar",
+    "Produktintegration"
+  ],
+  "closing": {
+    "title": "Andra schemaläggningsverktyg är en separat prenumeration.\nHABOS schemaläggning är inbyggt.",
+    "cta": "Gå med i väntelistan"
+  }
+}

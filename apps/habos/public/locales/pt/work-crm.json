@@ -1,0 +1,65 @@
+{
+  "badge": "CRM e Vendas",
+  "hero": {
+    "title": "Cada Relacionamento. Cada Negócio. Uma Visão.",
+    "description": "Acompanhe clientes do primeiro contato ao fechamento com pipeline de arrastar e soltar, estratégia gerada por IA e progressão automática do ciclo de vida."
+  },
+  "body": "Cada interação com um cliente em todos os canais alimenta uma única linha do tempo — gravações de voz, e-mails, chats, reuniões, entradas do CRM e sessões de IA por pessoa. O módulo Consultor analisa seu pipeline em cinco dimensões estratégicas — financeiro, marketing, vendas, liderança e produtos — e gera oportunidades acionáveis com estimativas de esforço e pontuações de alinhamento com objetivos de negócio. Clique em 'Criar Campanha' em uma oportunidade e ela é pré-preenchida em Marketing.",
+  "pipeline": {
+    "label": "Pipeline de Vendas",
+    "caption": "Arraste negócios entre etapas. Quando um negócio chega em \"Fechado\", o cliente é automaticamente promovido a ativo. A IA gera sugestões de estratégia por etapa."
+  },
+  "columns": [
+    {
+      "stage": "Lead",
+      "deals": [
+        { "company": "Garcia Elétrica", "value": "$12K" },
+        { "company": "Wilson Encanamento", "value": "$8K" }
+      ]
+    },
+    {
+      "stage": "Proposta",
+      "deals": [
+        { "company": "Henderson Reforma", "value": "$45K" }
+      ]
+    },
+    {
+      "stage": "Negociação",
+      "deals": [
+        { "company": "Baker HVAC", "value": "$28K" }
+      ]
+    },
+    {
+      "stage": "Fechado",
+      "deals": [
+        { "company": "Torres Paisagismo", "value": "$15K" }
+      ]
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Visão 360° do cliente",
+      "desc": "Um clique mostra projetos vinculados, operações, relatórios, e-mails, reuniões e documentos. Cada interação em cada canal, por pessoa."
+    },
+    {
+      "title": "Ciclo de vida automático",
+      "desc": "Lead → prospect → ativo → inativo. Feche um negócio e o cliente avança automaticamente. Sem alterações manuais de status."
+    },
+    {
+      "title": "Estratégia de vendas por IA",
+      "desc": "O módulo Consultor analisa seu pipeline, identifica públicos prioritários e gera oportunidades acionáveis com estimativas de esforço."
+    }
+  ],
+  "scenario": "Você está se preparando para uma ligação com Henderson. Abra o cartão de CRM deles — veja cada e-mail, nota de reunião, gravação de voz e atualização de projeto em uma linha do tempo. O resumo de IA informa que o sentimento é positivo, há um item de ação aberto da semana passada e a proposta está $3K abaixo do orçamento declarado deles. Você entra armado com contexto que nenhum concorrente tem.",
+  "techItems": [
+    "Etapas de pipeline configuráveis",
+    "Contatos com múltiplos papéis",
+    "Campos personalizados",
+    "Exportação CSV",
+    "Sincronização com funil de marketing"
+  ],
+  "cta": {
+    "heading": "Outros CRMs rastreiam contatos. O HABOS rastreia relacionamentos.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

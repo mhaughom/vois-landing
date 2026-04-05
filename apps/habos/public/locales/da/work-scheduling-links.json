@@ -1,0 +1,49 @@
+{
+  "badge": "Planlægningslinks",
+  "hero": {
+    "title": "Dit eget Calendly.\nByggget ind.",
+    "description": "Opret delbare bookinglinks, der lader nogen planlægge tid med dig — med smart slot-generering, buffertid og race condition-beskyttelse."
+  },
+  "body": "Opret ubegrænsede planlægningslinks — URL'er som habos.app/s/mathias-30min — hvor gæster booker med nul friktion og uden konto krævet. Smart slot-generering tager hensyn til varighed, åbningstider, buffertid og eksisterende kalenderbegivenheder. Konfigurerbar for- og eftermøde-polstring blokerer overlappende slots automatisk. Serverside-genkontrol forhindrer dobbeltbookinger selv under samtidige anmodninger. Gæster får bekræftelsese-mails med et-klik annulleringslinks.",
+  "mockCard": {
+    "name": "Mathias Haughom",
+    "meetingType": "30 minutters konsultation",
+    "url": "habos.app/s/mathias-30min",
+    "selectedTime": "Tirsdag 10:00",
+    "confirmButton": "Bekræft booking",
+    "caption": "Del linket overalt — e-mailsignatur, website, socialt bio. Gæster booker uden at oprette en konto."
+  },
+  "benefits": {
+    "slotGeneration": {
+      "title": "Smart slot-generering",
+      "desc": "Varighed, åbningstider, buffertid og eksisterende kalenderbegivenheder tages alle i betragtning. Kun virkelig tilgængelige slots vises — ingen frem-og-tilbage."
+    },
+    "buffer": {
+      "title": "15 min buffer indbygget",
+      "desc": "Konfigurerbar for- og eftermøde-polstring blokerer overlappende slots automatisk. Ingen flere back-to-back opkald uden pause."
+    },
+    "selfService": {
+      "title": "Gæst selvbetjening",
+      "desc": "Bekræftelsesmail inkluderer et et-klik annulleringslink. Gæster annullerer eller omplanlægger uden at kontakte dig. Du notificeres."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Uden HABOS",
+    "withoutText": "Betal kr. 84/md for Calendly. Kopier tilgængelighed fra din kalender. Håb, det synkroniserer. Tilføj manuelt bookingen til dit CRM. Send fakturaen separat.",
+    "withoutStat": "3 værktøjer, kr. 84/md ekstra",
+    "withTitle": "Med HABOS",
+    "withText": "Opret et planlægningslink. Del det. Gæst booker. Kalender, CRM, ordre og notifikation opdateres automatisk. Allerede inkluderet i din plan.",
+    "withStat": "1 værktøj, kr. 0 ekstra"
+  },
+  "techStrip": [
+    "Smart slot-generering",
+    "Buffertidsstyring",
+    "Race condition-beskyttelse",
+    "Selvbetjeningsannulleringslinks",
+    "Produktintegration"
+  ],
+  "closing": {
+    "title": "Andre planlægningsværktøjer er et separat abonnement.\nHABOS-planlægning er indbygget.",
+    "cta": "Tilmeld venteliste"
+  }
+}

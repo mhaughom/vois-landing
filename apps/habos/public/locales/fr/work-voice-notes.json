@@ -1,0 +1,75 @@
+{
+  "badge": "Smart Router",
+  "hero": {
+    "title": "Un enregistrement.\nQuatre systèmes mis à jour.",
+    "description": "Parlez 30 secondes de votre journée. HABOS détecte chaque intention et route chacune au bon endroit."
+  },
+  "heroPills": ["11 types d'intentions", "< 3 s de traitement", "Mappage au niveau du mot"],
+  "intro": "Ce n'est pas de la reconnaissance vocale suivie d'un remplissage de formulaire. C'est de la parole vers la compréhension vers l'orchestration multi-système. L'analogie la plus proche est un assistant exécutif humain qui écoute votre mise à jour décousue et crée quatre éléments différents dans quatre systèmes différents — sauf que HABOS le fait en moins de trois secondes. Le système comprend même la durée : un enregistrement de deux minutes mentionnant « réunion » est classé comme planification. Un enregistrement de quinze minutes mentionnant « réunion » est classé comme notes de réunion.",
+  "demo": {
+    "transcript": "« Rappelle-moi de faire un suivi avec Sarah sur le devis cuisine, planifie une visite de site mardi prochain à 14h, on a utilisé trois boîtes de carrelage de l'inventaire, et dis à Mike que les permis sont arrivés. »",
+    "cards": [
+      {
+        "label": "Tâche créée",
+        "detail": "Suivi avec Sarah — Rénovation cuisine"
+      },
+      {
+        "label": "Événement planifié",
+        "detail": "Visite de site — Mardi 14h00"
+      },
+      {
+        "label": "Inventaire mis à jour",
+        "detail": "Carrelage — 3 boîtes déduites"
+      },
+      {
+        "label": "Message rédigé",
+        "detail": "À Mike : Les permis sont arrivés"
+      }
+    ],
+    "footer": "Tout depuis une seule phrase. Zéro changement d'application."
+  },
+  "benefitCards": [
+    {
+      "title": "15 min → 30 s",
+      "body": "La mise à jour du matin qui nécessitait d'ouvrir 4 applications et de taper dans chacune ? Parlez simplement."
+    },
+    {
+      "title": "Zéro élément manqué",
+      "body": "Le scoring de confiance détecte les intentions à faible certitude et les route vers une boîte de réception pour votre révision."
+    },
+    {
+      "title": "Fonctionne partout",
+      "body": "Enregistrez sur votre téléphone, votre montre ou votre Mac. Le Smart Router traite de manière identique sur chaque appareil."
+    }
+  ],
+  "confidence": {
+    "title": "Comment fonctionne la confiance",
+    "rows": [
+      {
+        "range": "≥ 85 %",
+        "label": "Créé automatiquement",
+        "detail": "Les éléments à haute confiance vont directement à leur destination."
+      },
+      {
+        "range": "50–84 %",
+        "label": "Révision en boîte de réception",
+        "detail": "Les éléments à confiance moyenne attendent votre confirmation."
+      },
+      {
+        "range": "< 50 %",
+        "label": "Déversement de Brain",
+        "detail": "Les éléments à faible confiance sont sauvegardés comme notes. Rien n'est perdu."
+      }
+    ]
+  },
+  "techStrip": [
+    "Transcription Deepgram Nova-3",
+    "Routage tenant compte de la durée",
+    "Mappage d'index au niveau du mot",
+    "11 types d'intentions"
+  ],
+  "closing": {
+    "tagline": "Les autres applications vous laissent enregistrer des mémos vocaux. HABOS les comprend.",
+    "cta": "Rejoindre la liste d'attente"
+  }
+}

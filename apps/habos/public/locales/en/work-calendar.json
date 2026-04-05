@@ -1,0 +1,71 @@
+{
+  "badge": "AI Scheduling",
+  "hero": {
+    "title": "Say 'Plan My Day.'\nWatch It Fill.",
+    "description": "HABOS analyzes your tasks, priorities, and deadlines — then proposes a full schedule. You approve before anything moves."
+  },
+  "body": "The calendar doesn't just display your schedule — it's an intelligent scheduling engine that auto-places tasks into focus blocks. Each block has an affinity filter: a project focus block only fills with tasks from that project. The auto-fill engine uses a greedy algorithm that respects dependency order through topological sort, so predecessor tasks are always scheduled before their dependents. Critical path items from your projects slot in first, automatically.",
+  "schedule": {
+    "dateLabel": "Wednesday, March 26",
+    "blocks": [
+      {
+        "time": "9:00 – 10:30",
+        "type": "Deep Work",
+        "tasks": "Henderson proposal (critical path) + Review contract draft"
+      },
+      {
+        "time": "10:30 – 11:00",
+        "type": "Admin",
+        "tasks": "Reply to 3 flagged emails + Approve invoice"
+      },
+      {
+        "time": "11:00 – 12:00",
+        "type": "Meeting",
+        "tasks": "Team sync (brief auto-generated)"
+      },
+      {
+        "time": "1:00 – 2:30",
+        "type": "Project",
+        "tasks": "Kitchen renovation — tile selection + vendor calls"
+      },
+      {
+        "time": "2:30 – 3:00",
+        "type": "Operations",
+        "tasks": "Review daily reports + flag anomalies"
+      }
+    ],
+    "caption": "Generated in 2 seconds. Every task placed by AI priority score."
+  },
+  "benefits": {
+    "priority": {
+      "title": "7-factor priority",
+      "description": "Manual rank, priority label, AI importance, AI urgency, due date, calendar fit, creation date. Tasks aren't just sorted — they're understood."
+    },
+    "focusBlocks": {
+      "title": "Focus blocks",
+      "description": "Deep work, admin, project, personal — each block has an affinity filter. Critical path tasks always slot first."
+    },
+    "dependency": {
+      "title": "Dependency-aware",
+      "description": "Topological sort ensures predecessors are scheduled before dependents. The calendar respects your project's logic."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Without HABOS",
+    "withoutText": "Sunday night: stare at empty calendar. Try to remember what's urgent. Manually block time for each task. Get interrupted. Reschedule everything.",
+    "withoutStat": "~45 min of planning",
+    "withTitle": "With HABOS",
+    "withText": "\"Plan my day.\" Review the proposed schedule. Drag one block to adjust. Approve.",
+    "withStat": "~30 seconds"
+  },
+  "techStrip": [
+    "Greedy auto-fill algorithm",
+    "Topological dependency sort",
+    "BroadcastChannel sync",
+    "Google + Outlook + iOS calendars"
+  ],
+  "closing": {
+    "tagline": "Motion auto-schedules without asking. HABOS proposes — you decide.",
+    "cta": "Join Waitlist"
+  }
+}

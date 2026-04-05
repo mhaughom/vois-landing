@@ -1,0 +1,49 @@
+{
+  "badge": "Företagsintelligens",
+  "hero": {
+    "title": "En URL. Hela din verksamhet, extraherad.",
+    "description": "Ange din webbplats. HABOS crawlar den, extraherar din varumärkesidentitet, produkter, team och sociala profiler — och fyller sedan hela din arbetsyta med verklig data. Redo att arbeta på minuter."
+  },
+  "body": "Ange din företagswebbplats-URL och HABOS kör ett sju-stegs intelligensarbetsflöde: identitetsupplösning, mänsklig granskning, intern källanalys, extern research via Perplexity, finansiell datainsamling, utvidgning av sociala profiler och slutgodkännande. Varje datapunkt har en förtroendepoäng — Shopify API-data poängsätts 1,0, strukturerad data 0,94, markdown-extraktion 0,58. Systemet genererar sedan fjorton domäner av arbetsplatsdata från din företagsintelligens, så att du kliver in i ett fungerande system, inte ett tomt skal.",
+  "extraction": {
+    "urlPlaceholder": "hendersonplumbing.com",
+    "extractingLabel": "Extraherar...",
+    "rows": [
+      { "label": "Varumärkestokens", "detail": "Färger: #1E40AF, #F59E0B · Typsnitt: Inter · Logotyp identifierad" },
+      { "label": "Produkter", "detail": "8 tjänster hittade (Akutreparation, Varmvattenberedare, etc.)" },
+      { "label": "Team", "detail": "4 teammedlemmar identifierade från Om-sidan" },
+      { "label": "Sociala profiler", "detail": "Instagram, Facebook, Google Business länkade" },
+      { "label": "Recensioner", "detail": "47 Google-recensioner importerade (4,8★ i snitt)" },
+      { "label": "Konkurrenter", "detail": "3 lokala konkurrenter identifierade via Perplexity" },
+      { "label": "Kontaktinfo", "detail": "Telefon, mejl, 2 adresser geokodade" }
+    ],
+    "confidenceNote": "Varje datapunkt har en förtroendepoäng. Shopify API-data: 1,0. Strukturerad data: 0,94. Markdown-extraktion: 0,58. Du granskar de högförtroendeposterna först."
+  },
+  "benefits": [
+    {
+      "title": "14 domäner seedade",
+      "desc": "Projekt, uppgifter, leads, kampanjer, produkter, verksamheter, teamstruktur — alla genererade från din företagsintelligens. Din arbetsyta är produktiv från dag ett."
+    },
+    {
+      "title": "Varumärkesinjektion",
+      "desc": "Extraherade färger, typsnitt och designtokens injekteras automatiskt i alla webbplatser du bygger i HABOS. Dina webbplatser ser ut som dina, inte en mall."
+    },
+    {
+      "title": "Skrapning före registrering",
+      "desc": "Besökare kan börja innan de skapar ett konto. Resultaten cachas och hävdas via säker token efter registrering. Se värde innan du förbinder dig."
+    }
+  ],
+  "scenario": "En ny rörmokare registrerar sig och anger hendersonplumbing.com. På 90 sekunder extraherar HABOS deras varumärke, 8 tjänster, teamfoton, Google-recensioner och sociala profiler. När de landar i sin arbetsyta är den redan ifylld — projekt för aktiva jobb, produkter för deras tjänster, leads från deras kontaktformulär och ett varumärket webbplatsutkast. De konfigurerade ingenting. Programvaran konfigurerade sig själv.",
+  "scenarioHighlight": "Programvaran konfigurerade sig själv.",
+  "techItems": [
+    "Förtroendepoängsatt extraktion",
+    "Detektering av flera plattformar",
+    "7-stegs intelligensarbetsflöde",
+    "Utvidgning av sociala profiler",
+    "Deterministisk arbetsplatsseeding"
+  ],
+  "cta": {
+    "heading": "Andra plattformar startar tomma. HABOS startar med din verksamhet redan inuti.",
+    "button": "Gå med i väntelistan"
+  }
+}

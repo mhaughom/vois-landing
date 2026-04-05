@@ -1,0 +1,59 @@
+{
+  "badge": "Documentos",
+  "hero": {
+    "title_part1": "Escreva uma vez.",
+    "title_part2": "Encontre para sempre",
+    "description": "Um editor de texto rico com modelos, busca em texto completo e escrita assistida por IA que extrai informações de todo o seu espaço de trabalho."
+  },
+  "demoSection": {
+    "heading": "Escreva e encontre em um só lugar",
+    "editorTitle": "Hotel Fjordview — Proposta de Manutenção",
+    "aiAssist": "Assistência por IA",
+    "searchQuery": "contrato de manutenção",
+    "searchResults": "3 resultados",
+    "results": [
+      {
+        "title": "Hotel Fjordview — Proposta de Manutenção",
+        "snippet": "...contrato anual de manutenção cobrindo climatização, encanamento e elétrica..."
+      },
+      {
+        "title": "Revisão de Serviços T1 — Fjordview",
+        "snippet": "...renovação do contrato prevista para 15 de abril. O escopo atual de manutenção inclui..."
+      },
+      {
+        "title": "Tabela de Preços de Fornecedores 2026",
+        "snippet": "...nível de contrato padrão de manutenção: NOK 45.000/mês..."
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "Editor rico",
+      "desc": "Formatação completa com títulos, listas, tabelas, imagens e incorporações. Baseado no TipTap — rápido e familiar."
+    },
+    {
+      "title": "Modelos",
+      "desc": "Comece com modelos comprovados para propostas, SOPs, pautas de reuniões e contratos. Personalize uma vez, reutilize em qualquer lugar."
+    },
+    {
+      "title": "Busca em texto completo",
+      "desc": "Cada palavra é indexada. Busque em todos os documentos instantaneamente. Os resultados exibem contexto e destacam as correspondências."
+    }
+  ],
+  "scenario": {
+    "body": "Você precisa de uma proposta de manutenção para o Hotel Fjordview. Em vez de começar do zero, você escolhe o modelo \"Proposta de Serviço\". A IA preenche os dados do cliente a partir do CRM, os achados recentes da inspeção a partir dos seus relatórios e os preços do seu catálogo de produtos. Você edita duas frases e envia.",
+    "closing": "Da página em branco à proposta enviada em menos de dois minutos."
+  },
+  "techItems": [
+    "Editor TipTap",
+    "Sistema de modelos",
+    "Busca em texto completo",
+    "Elaboração assistida por IA",
+    "Vinculação a projetos",
+    "Pesquisável no Brain"
+  ],
+  "cta": {
+    "tagline": "Documentos que conhecem o seu negócio.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

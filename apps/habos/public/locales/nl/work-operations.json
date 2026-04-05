@@ -1,0 +1,69 @@
+{
+  "badge": "Operationele intelligentie",
+  "hero": {
+    "title": "Problemen worden gesignaleerd voordat iemand het merkt.",
+    "description": "Definieer je bedrijfscadansen. Teamleden rapporteren via spraak. AI scoort de gezondheid automatisch en markeert anomalieën met corrigerende acties."
+  },
+  "body": "De Operatiesmodule wacht niet tot iemand problemen opmerkt — hij detecteert ze automatisch. Admin configureert regels per operatie: 'als voltooiingspercentage onder 90% daalt, markeer geel; onder 70%, markeer rood.' Wanneer teamleden rapporten indienen via spraak, dictaat, chat of formulier, evalueert het systeem elke regel, berekent nalevingsscores, produceert gezondheidsstatus en presenteert resultaten direct op het dashboard. Over meerdere rapportrondes heen worden trends gevolgd en worden anomalieën gesignaleerd voordat ze crises worden.",
+  "dashboard": {
+    "title": "Live gezondheidsdashboard",
+    "items": {
+      "dailyRevenue": {
+        "name": "Dagelijks omzetrapport",
+        "category": "Sales"
+      },
+      "weeklySafety": {
+        "name": "Wekelijkse veiligheidsaudit",
+        "category": "Veldoperaties"
+      },
+      "monthlyEquipment": {
+        "name": "Maandelijkse apparaatcontrole",
+        "category": "Onderhoud"
+      }
+    },
+    "aiAlert": {
+      "label": "AI-actie:",
+      "message": "Voltooiing apparaatcontrole gedaald van 95% naar 41% deze maand. Aanbeveling: verplichte training inplannen + toewijzen aan senior technicus."
+    },
+    "footnote": "Gezondheidsscores worden automatisch bijgewerkt wanneer rapporten worden ingediend. Geen handmatige tracking."
+  },
+  "benefits": {
+    "reporting": {
+      "title": "4 manieren om te rapporteren",
+      "description": "Spraakinterview, dictaat, chat of traditioneel formulier. Veldwerkers vullen rapporten in door te praten op de terugweg. Geen klemborden."
+    },
+    "rules": {
+      "title": "Regels vangen problemen",
+      "description": "Drempelwaarden configureren: \"als dagomzet < €5K, markeer ROOD.\" Nalevingsscoring volgt tijdigheid. Te laat = proportioneel lagere score."
+    },
+    "ai": {
+      "title": "AI-corrigerende acties",
+      "description": "Wanneer de gezondheid daalt, genereert AI 3-5 specifieke acties met urgentieniveaus. Geen vage adviezen — concrete vervolgstappen gerouteerd naar de juiste personen."
+    }
+  },
+  "comparison": {
+    "without": {
+      "label": "Zonder HABOS",
+      "description": "Vrijdag: \"Hoe staat het met de veiligheidsaudit?\" \"Uhm, laat me even kijken.\" Maandag: \"Blijkt dat 3 locaties hem overgeslagen hebben.\" Woensdag: incidentrapport.",
+      "outcome": "Probleem ontdekt: 5 dagen te laat"
+    },
+    "with": {
+      "label": "Met HABOS",
+      "description": "Dinsdag: Automatische melding — \"Voltooiing veiligheidsaudit op 67%, 3 locaties achterstallig. Suggestie: toewijzen aan reserveinspecteurs.\" Actie ondernomen dezelfde dag.",
+      "outcome": "Probleem gesignaleerd: dag zelf"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "BPMN-stijl stroomdiagrammen",
+      "Regelgebaseerde gezondheidsscoring",
+      "7-daagse trendsparklines",
+      "AI-corrigerende acties",
+      "4 rapportinvulmodi"
+    ]
+  },
+  "cta": {
+    "heading": "Andere tools volgen wat er is gebeurd. HABOS vangt wat er op het punt staat fout te gaan.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

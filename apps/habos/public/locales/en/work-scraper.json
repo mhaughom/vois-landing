@@ -1,0 +1,49 @@
+{
+  "badge": "Company Intelligence",
+  "hero": {
+    "title": "One URL. Your Entire Business, Extracted.",
+    "description": "Enter your website. HABOS crawls it, extracts your brand identity, products, team, and social profiles — then seeds your entire workspace with real data. Ready to work in minutes."
+  },
+  "body": "Enter your company website URL and HABOS runs a seven-step intelligence workflow: identity resolution, human review, internal source analysis, external research via Perplexity, financial data gathering, social profile expansion, and final approval. Every data point carries a confidence score — Shopify API data scores 1.0, structured data 0.94, markdown extraction 0.58. The system then generates fourteen domains of workspace data from your company intelligence, so you walk into a working system, not an empty shell.",
+  "extraction": {
+    "urlPlaceholder": "hendersonplumbing.com",
+    "extractingLabel": "Extracting...",
+    "rows": [
+      { "label": "Brand tokens", "detail": "Colors: #1E40AF, #F59E0B · Font: Inter · Logo detected" },
+      { "label": "Products", "detail": "8 services found (Emergency Repair, Water Heater, etc.)" },
+      { "label": "Team", "detail": "4 team members identified from About page" },
+      { "label": "Social profiles", "detail": "Instagram, Facebook, Google Business linked" },
+      { "label": "Reviews", "detail": "47 Google reviews imported (4.8★ average)" },
+      { "label": "Competitors", "detail": "3 local competitors identified via Perplexity" },
+      { "label": "Contact info", "detail": "Phone, email, 2 addresses geocoded" }
+    ],
+    "confidenceNote": "Every data point carries a confidence score. Shopify API data: 1.0. Structured data: 0.94. Markdown extraction: 0.58. You review the high-confidence items first."
+  },
+  "benefits": [
+    {
+      "title": "14 domains seeded",
+      "desc": "Projects, tasks, leads, campaigns, products, operations, team structure — all generated from your company intelligence. Your workspace is productive from day one."
+    },
+    {
+      "title": "Brand injection",
+      "desc": "Extracted colors, fonts, and design tokens automatically inject into any website you build in HABOS. Your sites look like yours, not a template."
+    },
+    {
+      "title": "Pre-signup scraping",
+      "desc": "Visitors can start before creating an account. Results are cached and claimed via secure token after signup. See value before committing."
+    }
+  ],
+  "scenario": "A new plumber signs up and enters hendersonplumbing.com. In 90 seconds, HABOS extracts their brand, 8 services, team photos, Google reviews, and social profiles. When they land in their workspace, it's already populated — projects for active jobs, products for their services, leads from their contact form, and a branded website draft. They didn't configure anything. The software configured itself.",
+  "scenarioHighlight": "The software configured itself.",
+  "techItems": [
+    "Confidence-scored extraction",
+    "Multi-platform detection",
+    "7-step intelligence workflow",
+    "Social profile expansion",
+    "Deterministic workspace seeding"
+  ],
+  "cta": {
+    "heading": "Other platforms start empty. HABOS starts with your business already inside.",
+    "button": "Join Waitlist"
+  }
+}

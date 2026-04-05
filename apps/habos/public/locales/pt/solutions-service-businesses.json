@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "category": "Soluções — Empresas de Serviços",
+    "title": "Gerencie sua empresa de serviços com sua voz.",
+    "subtitle": "Do local do serviço à fatura — sem tocar no teclado.",
+    "description": "Encanadores, eletricistas, faxineiros, consultores, terapeutas, contadores, coaches e qualquer pessoa que vende tempo, expertise ou mão de obra."
+  },
+  "story": {
+    "dayLabel": "A terça-feira de Lars",
+    "section1": {
+      "heading": "7h30 — Café e o plano",
+      "p1": "Lars é mestre encanador em Tromsø. Quatro funcionários. Antes do HABOS, as manhãs significavam verificar o Google Calendar, uma planilha de detalhes de trabalho e o WhatsApp para cancelamentos de última hora. Hoje ele abre um aplicativo. Seu horário está lá, com histórico do cliente, endereços e notas para cada trabalho. Um cliente reagendou durante a noite por e-mail — a IA já moveu o compromisso, ajustou a rota e redigiu uma confirmação. Lars toca em \"confirmar\" enquanto o café ainda está quente demais para beber."
+    },
+    "section2": {
+      "heading": "11h45 — A van",
+      "p1": "Lars acabou de substituir uma torneira de fechamento na casa Johnson. Antes do HABOS, esse momento era um buraco negro — ele mandaria uma mensagem para si mesmo \"Johnson — substituiu torneira, pedir conector novo\" e nunca conseguiria faturar corretamente. Agora ele levanta o pulso:",
+      "voiceNote": "\"VOIS, trabalho Johnson concluído. Substituí a torneira de fechamento e a linha de alimentação. Preciso pedir uma torneira misturadora Grohe da Backer, 3.200 coroas. Faça um orçamento de 4.800 instalada.\"",
+      "voiceResult": "Vinte segundos. Relatório do trabalho arquivado. CRM atualizado. Ordem de compra rascunhada. Orçamento pronto para revisão.",
+      "p2": "Ele está caminhando para a van. É isso. O sistema analisou sua voz em dados estruturados — peças usadas, custos, acompanhamentos, sentimento do cliente — e roteou cada parte para o lugar certo. Sem digitação. Sem laptop. Sem \"farei isso à noite\"."
+    },
+    "section3": {
+      "heading": "15h20 — Na estrada",
+      "p1": "Lars está dirigindo. Uma nova consulta chega na caixa de entrada compartilhada — um proprietário perguntando sobre uma reforma de banheiro. Antes do HABOS, esse e-mail ficaria sem resposta por horas. Até às 17h, o prospect teria contratado outra pessoa. Pesquisas mostram que 78% dos clientes vão com o primeiro negócio que responde.",
+      "p2": "Em vez disso, a IA avalia a consulta, a classifica como um novo lead e rascunha uma resposta na voz de Lars. No semáforo vermelho, uma notificação aparece: \"Novo lead — reforma de banheiro. Resposta pronta.\" Lars dá uma olhada no rascunho: \"Obrigado pelo contato. Ficaria feliz em dar uma olhada. Tenho disponibilidade a partir de meados de maio — uma visita ao local no dia 15 ou 16 funcionaria?\" Ele toca em enviar. Dois minutos. O prospect fica impressionado. O concorrente de Lars ainda não abriu o e-mail."
+    },
+    "section4": {
+      "heading": "21h15 — O sofá",
+      "p1": "Antes do HABOS, essa era a hora do administrativo. Faturamento de memória. Respondendo seis e-mails. Atualizando o CRM que parou de manter em fevereiro. Agendando para amanhã. Duas horas de trabalho não remunerado, toda noite.",
+      "p2": "Esta noite, Lars está assistindo TV. A fatura para o trabalho Johnson foi rascunhada a partir de sua nota de voz, revisada no celular às 18h e enviada com um toque. Quatro e-mails foram tratados por cartões de notificação entre trabalhos. O horário de amanhã está definido. A ordem de compra para a misturadora Grohe aguarda confirmação do fornecedor.",
+      "p3": "Sua noite pertence à família."
+    },
+    "section5": {
+      "heading": "O que Lars costumava pagar",
+      "p1": "Antes do HABOS, Lars tinha o Calendly para reservas, o Fiken para contabilidade, um CRM HubSpot meio mantido, o Todoist para tarefas, o Gmail para e-mails de clientes, o WhatsApp para mensagens e estava considerando o Jobber para despacho. Combinado: mais de $300 por mês em assinaturas, a maioria subutilizada.",
+      "p2": "O HABOS substitui todos eles. Agendamento com pagamentos Stripe e prevenção de reservas duplas. Finanças com captura de despesas por voz e conformidade norueguesa. CRM que se constrói a partir de conversas. Tarefas extraídas de notas de voz. Caixa de entrada unificada com respostas de IA na sua voz. Despacho e planejamento de rotas. Uma plataforma. $35 por mês."
+    },
+    "section6": {
+      "heading": "O que mudou para o negócio dele",
+      "p1": "O administrativo caiu de quatorze horas por semana para quatro. O tempo médio de resposta a novas consultas foi de quatro horas para cinco minutos. No último mês, sua equipe reservou oito trabalhos de consultas por e-mail que teria perdido antes — porque o HABOS respondeu enquanto ainda estavam em escadas.",
+      "p2": "Zero faturas esquecidas. Zero leads perdidos por resposta lenta. Zero noites passadas no laptop."
+    },
+    "testimonial": {
+      "quote": "\"Eu costumava passar todas as noites fazendo faturas e e-mails. Agora falo com meu relógio depois de cada trabalho e tudo está feito antes do jantar. No último mês reservamos 8 trabalhos que teríamos perdido — porque o HABOS respondeu em 2 minutos enquanto eu ainda estava em uma escada.\"",
+      "attribution": "— Lars, 41 · Mestre encanador · 4 funcionários · Tromsø"
+    },
+    "cta": {
+      "heading": "Sua última noite de administrativo não remunerado começa agora.",
+      "button": "Entrar na lista de espera"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "Kärnfunktion",
+  "hero": {
+    "title": "Beskriv det. Agenten gör resten.",
+    "description": "Ge en komplex instruktion på vanlig svenska. En autonom agent planerar det, utför det i hela din verksamhet och ber om tillstånd innan något riskabelt görs."
+  },
+  "intro": "Det här är inte en chatbot med API-integrationer. Det är ett autonomt agentramverk med planering, godkännandeportar, budgetspårning, delegering och felåterställning — som opererar i 87 affärsmoduler med radnivåsäkerhet. Arkitekturen är jämförbar med arbetsflödesmotorer i företagsklass som ServiceNow eller Salesforce Flow, men drivs av naturligt språk i stället för dra-och-släpp-flödesscheman. Aktiva körningar överlever till och med serveromstarter.",
+  "pipeline": {
+    "steps": [
+      { "label": "Beskriv" },
+      { "label": "Planera" },
+      { "label": "Utför" },
+      { "label": "Godkänn" },
+      { "label": "Klart" }
+    ],
+    "footer": "Agenten pausar vid \"Godkänn\" för allt med hög risk. Du har alltid sista ordet."
+  },
+  "scenario": {
+    "title": "Se det i praktiken",
+    "instructionLabel": "Din instruktion",
+    "instruction": "\u201cAnalysera vår Q1-intäkt, hitta de 3 sämst presterande produkterna och mejla ledningsteamet en sammanfattning.\u201d",
+    "agentLabel": "Vad agenten gör",
+    "steps": [
+      { "text": "Frågar ekonomimodulen om Q1-intäkter per produkt" },
+      { "text": "Korshänvisar produktkatalogen för kontext" },
+      { "text": "Identifierar de tre sämsta: Widget Pro (-23%), Basplan (-18%), Startkit (-12%)" },
+      { "text": "Utkastas ett sammanfattningsmejl med diagram" },
+      { "text": "Pausar — visar dig mejlutkastet för godkännande" },
+      { "text": "Du godkänner \u2192 Mejl skickat till ledningen" }
+    ]
+  },
+  "stats": {
+    "title": "Vad detta innebär för dig",
+    "items": [
+      {
+        "big": "Timmar \u2192 Minuter",
+        "desc": "Uppgifter som tog en förmiddag tar nu en enda mening."
+      },
+      {
+        "big": "8 huvudverktyg",
+        "desc": "Sök, schemalägg, mejla, ekonomi, bokningar, research, uppgifter, rapporter — allt tillgängligt för agenten."
+      },
+      {
+        "big": "3-nivås delegering",
+        "desc": "Agenter kan skapa underagenter med budgettak. Komplext arbete, fullständigt spårat."
+      }
+    ]
+  },
+  "trustSignals": [
+    "Kryptografiska godkännandetokens",
+    "Budgetspårning per körning",
+    "Fullständig körningsspårning",
+    "Överlever serveromstarter"
+  ],
+  "closing": {
+    "tagline": "Andra plattformar automatiserar enkla triggers. VOIS agenter tänker, planerar och utför.",
+    "cta": "Gå med i väntelistan"
+  }
+}

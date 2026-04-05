@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Trabalhos & Operações",
+  "hero": {
+    "title": "Gerencie Suas Operações por Voz",
+    "description": "Despache trabalhos, planeje rotas, acompanhe projetos, gerencie tarefas e registre horas — do campo ou do escritório, sem nenhuma papelada."
+  },
+  "items": [
+    {
+      "title": "Despacho",
+      "desc": "Quadro de trabalhos do dia com fluxo de status, atribuição de equipe e notificações ao cliente."
+    },
+    {
+      "title": "Rotas",
+      "desc": "Ordenação inteligente de paradas com integração de mapas para sua equipe no campo."
+    },
+    {
+      "title": "Projetos",
+      "desc": "Veja quais projetos precisam de atenção — trabalhos paralisados sinalizados antes de escalar."
+    },
+    {
+      "title": "Tarefas",
+      "desc": "Suas tarefas mais importantes aparecem primeiro, criadas por voz ou reuniões."
+    },
+    {
+      "title": "Controle de Horas",
+      "desc": "Registre a entrada pelo celular, acompanhe horas faturáveis por trabalho, vincule à folha de pagamento."
+    }
+  ]
+}

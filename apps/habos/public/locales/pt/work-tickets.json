@@ -1,0 +1,92 @@
+{
+  "badge": "Suporte & Tickets",
+  "hero": {
+    "title": "Temporizadores de SLA. Escalonamento Automático.\nZero Violações.",
+    "description": "Cada ticket recebe uma contagem regressiva de SLA. O aviso de violação dispara 30 minutos antes do prazo. Se violar, reatribuição automática ao próximo agente disponível."
+  },
+  "body": "Cada ticket recebe uma contagem regressiva de SLA com metas configuráveis de primeira resposta e resolução por prioridade. Temporizadores visuais avisam 30 minutos antes da violação. Se um ticket violar seu SLA, o escalonamento automático é acionado — reatribuindo ao próximo agente disponível. Tickets podem ser criados a partir de formulários, e-mails, chamadas de voz, API ou entrada manual com deduplicação automática. Os e-mails dos clientes aparecem como threads de conversa com notas internas visíveis apenas para os agentes, e a IA sugere respostas com base no contexto.",
+  "queue": {
+    "header": "Fila Ativa",
+    "countLabel": "tickets · 1 aviso de violação",
+    "tickets": [
+      {
+        "priority": "urgent",
+        "title": "Emergência: cano estourado Johnson",
+        "assignee": "Mike T.",
+        "sla": "23 min restantes"
+      },
+      {
+        "priority": "high",
+        "title": "Climatização não resfria — escritório Baker",
+        "assignee": "Sarah L.",
+        "sla": "2h 15min restantes"
+      },
+      {
+        "priority": "normal",
+        "title": "Solicitação de orçamento: reforma de banheiro",
+        "assignee": "Não atribuído",
+        "sla": "7h restantes"
+      },
+      {
+        "priority": "normal",
+        "title": "Agendar inspeção anual",
+        "assignee": "Atribuído automaticamente",
+        "sla": "Resolvido em 1h 20min",
+        "resolved": true
+      }
+    ],
+    "priorityLabels": {
+      "urgent": "Urgente",
+      "high": "Alta",
+      "normal": "Normal"
+    },
+    "automation": {
+      "breach30": "30 minutos antes da violação",
+      "breach30Action": "notificação de aviso",
+      "onBreach": "Na violação",
+      "onBreachAction": "reatribuição automática ao próximo disponível",
+      "postResolution": "Pós-resolução",
+      "postResolutionAction": "pesquisa CSAT enviada automaticamente"
+    }
+  },
+  "benefits": {
+    "multiSource": {
+      "title": "Criação multi-origem",
+      "desc": "De formulários, e-mails, chamadas de voz, API ou manual. Deduplicação automática de solicitações relacionadas."
+    },
+    "pipeline": {
+      "title": "Pipeline ticket → ação",
+      "desc": "Vincule a projetos, trabalhos de campo e tarefas. Um único ticket pode gerar fluxos de trabalho completos."
+    },
+    "csat": {
+      "title": "Coleta de CSAT",
+      "desc": "Pesquisa automática pós-resolução para pontuação de satisfação e rastreamento de tendências."
+    }
+  },
+  "sourceIcons": {
+    "email": "E-mail",
+    "voice": "Voz",
+    "webForm": "Formulário web",
+    "voiceNote": "Nota de voz",
+    "api": "API"
+  },
+  "beforeAfter": {
+    "beforeLabel": "Antes",
+    "beforeText": "Cliente envia e-mail. Você vê 3 horas depois. Atribui. Rastreia em uma planilha. Torce para ninguém deixar cair. SLA? Que SLA?",
+    "beforeStat": "Tempo médio de resposta: mais de 3 horas",
+    "afterLabel": "Depois",
+    "afterText": "Cliente envia e-mail. Ticket criado automaticamente. Temporizador de SLA inicia. Aviso em 30 min. Escalonamento automático na violação. Pesquisa CSAT pós-resolução.",
+    "afterStat": "Tempo médio de resposta: sempre dentro do SLA"
+  },
+  "techStrip": [
+    "Cumprimento de SLA",
+    "Escalonamento automático",
+    "Threading de e-mail",
+    "Sugestões de resposta por IA",
+    "Pesquisas CSAT"
+  ],
+  "closing": {
+    "title": "Outras ferramentas de tickets rastreiam problemas.\nO HABOS os resolve.",
+    "cta": "Entrar na Lista de Espera"
+  }
+}

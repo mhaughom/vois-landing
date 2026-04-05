@@ -1,0 +1,77 @@
+{
+  "badge": "Kernfunctie",
+  "hero": {
+    "title": "Één vraag. Negentien bronnen.\nÉén seconde.",
+    "description": "Vraag alles over je bedrijf en krijg een geciteerd antwoord voor je koffie op is."
+  },
+  "intro": "Wanneer je vraagt 'wat hebben we besproken over het Johnson-project?' \u2014 zoekt HABOS niet in één app. Het doorzoekt vergadertranscripties, projectnotities, e-mailthreads, CRM-tijdlijn, taakcommentaar en chatberichten gelijktijdig. Een bedrijf dat afzonderlijke tools gebruikt voor elk hiervan \u2014 Notion, HubSpot, Gmail, Slack, Asana \u2014 zou vijf producten moeten doorzoeken en de resultaten mentaal moeten synthetiseren. HABOS geeft in minder dan een seconde een gerangschikte, geciteerde aantworden.",
+  "sources": {
+    "label": "Allemaal gelijktijdig doorzocht",
+    "items": [
+      "Stemopnames",
+      "Documenten",
+      "E-mails",
+      "Contacten",
+      "Chatberichten",
+      "Draaiboeken",
+      "Producten",
+      "Bestellingen",
+      "Boekingen",
+      "CRM-records",
+      "Tickets",
+      "Formulierinzendingen",
+      "Opdrachten & bezoeken",
+      "Routes",
+      "Websites",
+      "Sociale berichten",
+      "Presentaties",
+      "Projectnotities",
+      "Vergadertranscripties"
+    ]
+  },
+  "comparison": {
+    "without": {
+      "title": "Zonder VOIS Brain",
+      "painPoints": [
+        "Gmail doorzoeken... niets",
+        "Slack controleren... misschien?",
+        "CRM openen... scrollen scrollen scrollen",
+        "Een collega vragen... die zit in een vergadering",
+        "Opgeven en improviseren"
+      ],
+      "footer": "~20 minuten. Gedeeltelijk antwoord."
+    },
+    "with": {
+      "title": "Met VOIS Brain",
+      "query": "\u201cWat hebben we besproken over het Johnson-project?\u201d",
+      "foundLabel": "Gevonden in 4 bronnen:",
+      "sources": "vergadertranscriptie (12 mrt) \u00b7 e-mailthread (15 mrt) \u00b7 CRM-notitie (18 mrt) \u00b7 projectupdate (20 mrt)",
+      "answer": "De Johnson-keukenrenovatie loopt op schema met goedgekeurde vergunningen...",
+      "footer": "0,8 seconden. Volledig beeld."
+    }
+  },
+  "techStats": [
+    "512-dim embeddings",
+    "HNSW-vectorindexen",
+    "Hybride semantisch + trefwoord",
+    "11 zoekfuncties"
+  ],
+  "scenarios": [
+    {
+      "question": "Waar staan we met de Henderson-deal?",
+      "answer": "CRM-pijplijn, 3 e-mailthreads, notities laatste vergadering"
+    },
+    {
+      "question": "Wat zei Sarah over het budget?",
+      "answer": "Stemopnametranscriptie, projectcommentaar, Slack-bericht"
+    },
+    {
+      "question": "Vind alles over vergunningsvertragingen",
+      "answer": "2 projectnotities, 1 e-mailketen, 1 formulierinzending, 1 opdrachtlog"
+    }
+  ],
+  "closing": {
+    "tagline": "Andere platforms doorzoeken één app tegelijk. VOIS doorzoekt je hele bedrijf tegelijk.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

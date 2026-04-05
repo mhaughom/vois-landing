@@ -1,0 +1,64 @@
+{
+  "badge": "Sociale medier",
+  "hero": {
+    "title_part1": "Post klogere.",
+    "title_part2": "Ikke oftere.",
+    "description": "Administrer dine Instagram-opslag med AI-genererede billedtekster, visuel planlægning og præstationsmetrics — alt fra den samme platform, hvor dine forretningsdata lever."
+  },
+  "feedManager": {
+    "label": "Social Feed Manager",
+    "aiCaptionBadge": "AI-billedtekst",
+    "postCards": [
+      {
+        "day": "Man",
+        "time": "9",
+        "caption": "Nyt projekt afsluttet — swipe for at se før & efter...",
+        "aiGenerated": true
+      },
+      {
+        "day": "Ons",
+        "time": "14",
+        "caption": "Bag kulisserne i vores værksted denne uge...",
+        "aiGenerated": false
+      },
+      {
+        "day": "Fre",
+        "time": "11",
+        "caption": "God weekend! Her er et kig på, hvad der kommer næste...",
+        "aiGenerated": false
+      }
+    ],
+    "metrics": [
+      { "label": "Rækkevidde", "value": "2,4K" },
+      { "label": "Engagement", "value": "340" },
+      { "label": "Følgere", "value": "+28" }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "AI-billedtekster",
+      "desc": "Beskriv opslaget på hverdagssprog. VOIS skriver en billedtekst, der matcher din brandtone, tilføjer hashtags og foreslår det bedste posttidspunkt."
+    },
+    {
+      "title": "Visuel planlægning",
+      "desc": "Se din indholdskalender med ét blik. Træk opslag for at omplanlægge. Forhåndsvis, hvordan dit gitter ser ud, inden du publicerer."
+    },
+    {
+      "title": "Præstationsmetrics",
+      "desc": "Spor rækkevidde, engagement og følgervækst. Se, hvilke indholdstyper præsterer bedst uden at forlade VOIS."
+    }
+  ],
+  "scenario": "Du tager et foto af en afsluttet køkkenrenovering. Du siger \"post dette med en billedtekst om transformationen.\" VOIS genererer tre billedtekstmuligheder, foreslår at poste torsdag kl. 11 baseret på din engagementshistorik og planlægger det. Du godkender fra bilen.",
+  "techItems": [
+    "Instagram-integration",
+    "AI-billedtekstgenerering",
+    "Postplanlægning",
+    "Engagementsmetrics",
+    "Brandtonematching",
+    "Indholdskalender"
+  ],
+  "cta": {
+    "title": "Din sociale tilstedeværelse,\ndrevet af dine forretningsdata.",
+    "button": "Tilmeld venteliste"
+  }
+}

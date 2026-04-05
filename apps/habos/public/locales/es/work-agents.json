@@ -1,0 +1,59 @@
+{
+  "badge": "Función principal",
+  "hero": {
+    "title": "Descríbalo. El agente hace el resto.",
+    "description": "Dé una instrucción compleja en lenguaje natural. Un agente autónomo la planifica, la ejecuta en toda su empresa y pide permiso antes de cualquier acción arriesgada."
+  },
+  "intro": "Esto no es un chatbot con integraciones de API. Es un marco de agentes autónomos con planificación, puertas de aprobación, seguimiento de presupuesto, delegación y recuperación de fallos — operando en 87 módulos empresariales con seguridad a nivel de fila. La arquitectura es comparable a los motores de flujo de trabajo empresarial como ServiceNow o Salesforce Flow, pero impulsada por lenguaje natural en lugar de diagramas de flujo de arrastrar y soltar. Las ejecuciones activas incluso sobreviven a los reinicios del servidor.",
+  "pipeline": {
+    "steps": [
+      { "label": "Describir" },
+      { "label": "Planificar" },
+      { "label": "Ejecutar" },
+      { "label": "Aprobar" },
+      { "label": "Listo" }
+    ],
+    "footer": "El agente hace pausa en «Aprobar» para cualquier acción de alto riesgo. Usted siempre tiene la última palabra."
+  },
+  "scenario": {
+    "title": "Véalo en acción",
+    "instructionLabel": "Su instrucción",
+    "instruction": "«Analiza los ingresos del T1, encuentra los 3 productos con peor rendimiento y envía un resumen por correo al equipo directivo.»",
+    "agentLabel": "Lo que hace el agente",
+    "steps": [
+      { "text": "Consulta el módulo de Finanzas para los ingresos del T1 por producto" },
+      { "text": "Cruza referencias con el catálogo de Productos para obtener contexto" },
+      { "text": "Identifica los 3 últimos: Widget Pro (-23%), Plan Básico (-18%), Kit Inicial (-12%)" },
+      { "text": "Redacta un correo de resumen con gráficos" },
+      { "text": "Hace pausa — le muestra el borrador del correo para su aprobación" },
+      { "text": "Usted aprueba → Correo enviado al equipo directivo" }
+    ]
+  },
+  "stats": {
+    "title": "Lo que esto significa para usted",
+    "items": [
+      {
+        "big": "Horas → Minutos",
+        "desc": "Las tareas que tomaban una mañana ahora requieren una sola frase."
+      },
+      {
+        "big": "8 herramientas maestras",
+        "desc": "Búsqueda, programación, correo, finanzas, reservas, investigación, tareas, informes — todas a disposición del agente."
+      },
+      {
+        "big": "Delegación en 3 niveles",
+        "desc": "Los agentes pueden generar subagentes con límites de presupuesto. Trabajo complejo, totalmente rastreado."
+      }
+    ]
+  },
+  "trustSignals": [
+    "Tokens de aprobación criptográficos",
+    "Seguimiento de presupuesto por ejecución",
+    "Registro de ejecución completo",
+    "Sobrevive a reinicios del servidor"
+  ],
+  "closing": {
+    "tagline": "Otras plataformas automatizan disparadores simples. Los agentes de VOIS piensan, planifican y ejecutan.",
+    "cta": "Unirse a la lista de espera"
+  }
+}

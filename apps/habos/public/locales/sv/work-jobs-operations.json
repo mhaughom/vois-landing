@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Jobb & drift",
+  "hero": {
+    "title": "Kör din verksamhet med rösten",
+    "description": "Dispatcha jobb, planera rutter, spåra projekt, hantera uppgifter och logga tid — från fältet eller kontoret, utan pappersarbete."
+  },
+  "items": [
+    {
+      "title": "Dispatch",
+      "desc": "Dagsbräda för jobb med statusflöde, teamtilldelning och kundnotiser."
+    },
+    {
+      "title": "Rutter",
+      "desc": "Smart stoppordning med kartsintegration för ditt team i fältet."
+    },
+    {
+      "title": "Projekt",
+      "desc": "Se vilka projekt som behöver uppmärksamhet — stoppat arbete flaggas innan det eskalerar."
+    },
+    {
+      "title": "Uppgifter",
+      "desc": "Dina viktigaste uppgifter visas först, skapade från röst eller möten."
+    },
+    {
+      "title": "Tidsspårning",
+      "desc": "Stämpla in från mobilen, spåra fakturerbara timmar per jobb, koppla till lön."
+    }
+  ]
+}

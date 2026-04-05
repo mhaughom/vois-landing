@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "category": "Lösungen — Außendienst",
+    "title": "Von der Baustelle ins Büro in 30 Sekunden.",
+    "subtitle": "Eine Sprachnotiz vor Ort wird zu einem abgeschlossenen Bericht, einem aktualisierten Projekt und einer gesendeten Rechnung – bevor der Van die Auffahrt verlässt.",
+    "description": "Bauwesen, Lieferung, Immobilienverwaltung, Installation, Inspektion, Landschaftsbau, Solar, Schädlingsbekämpfung und jedes Unternehmen, bei dem die Lücke zwischen Außendienst und Büro Ihre größte Verschwendungsquelle ist."
+  },
+  "body": {
+    "section1": {
+      "heading": "Sechs Probleme. Sechs Lösungen.",
+      "problem1": {
+        "problem": "Der Disponent hat ein Whiteboard und ein Telefon, das nicht aufhört zu klingeln. Ein Auftrag wird über Nacht per E-Mail umgeplant. Niemand sieht es. Techniker 2 fährt zur falschen Adresse. Vierzig Minuten verschwendet.",
+        "fix": "HABOS verarbeitet die Umplanungs-E-Mail über Nacht. Auftrag verschoben. Kunde benachrichtigt. Route neu berechnet. Jeder Techniker sieht um 7 Uhr seine optimierte Route auf seinem Telefon. Keine Anrufe. Kein Whiteboard."
+      },
+      "problem2": {
+        "problem": "Techniker beendet einen Auftrag. Macht Fotos mit seinem persönlichen Telefon. Schreibt dem Büro eine SMS \"Johnson fertig, hat länger gedauert als erwartet.\" Keine strukturierten Daten. Fotos bleiben wochenlang auf seinem Telefon.",
+        "fixIntro": "Tippen Sie auf \"Auftrag abschließen\" in HABOS. Fotos machen – im Auftragsdatensatz gespeichert. Eine dreißigsekündige Sprachnotiz aufnehmen:",
+        "voiceNote": "\"Installation abgeschlossen. Musste den Befestigungsbügel ersetzen – habe einen Hilti KB-TZ verwendet, 340 Kronen. Kunde ist zufrieden, aber die Verkleidung an der Südwand braucht eine Nachverfolgung nächste Woche.\"",
+        "fixResult": "Geparst als: Auftrag abgeschlossen, Teile protokolliert (340 NOK), Nachfolgebesuch erstellt, Sentiment positiv. Das Büro sieht es in Echtzeit."
+      },
+      "problem3": {
+        "problem": "Kunde ruft an: \"Wo ist der Techniker?\" Disponent ruft den Techniker an – keine Antwort, er ist auf einem Dach. Ruft den Kunden zurück: \"Er sollte bald da sein.\" Der Kunde ist frustriert. Der Techniker war fünf Minuten entfernt.",
+        "fix": "Der Disponent wirft einen Blick auf die Team-GPS-Karte. Grüner Punkt, zwei Straßen entfernt, ETA vier Minuten. \"Er ist in etwa fünf Minuten bei Ihnen.\" Fertig. Kein Telefonketten-Spiel."
+      },
+      "problem4": {
+        "problem": "17:30 Uhr. Der Projektmanager verbringt neunzig Minuten damit, SMS-Nachrichten und Notizen zu transkribieren. Die Hälfte der Daten fehlt. Drei Fotos wurden nie gesendet. Ein Auftrag hat überhaupt keinen Datensatz. Der Zeitplan für morgen wird aus dem Gedächtnis erstellt.",
+        "fix": "Jeder Auftrag hat einen Sprachbericht, Fotos, Zeitstempel und verwendete Teile. Die morgige Disposition wird aus KI-optimiertem Routing erstellt. Drei Rechnungen aus abgeschlossenen Aufträgen entworfen – in zehn Minuten überprüft und gesendet."
+      },
+      "problem5": {
+        "problem": "Routen werden nach Gefühl geplant. Crew 1 fährt kreuz und quer durch die Stadt. Crew 3 fährt am nächsten Auftrag von Crew 2 vorbei auf dem Weg zu ihrem eigenen. Sie verlieren täglich eine Stunde durch schlechtes Routing.",
+        "fix": "HABOS weist Aufträge nach Fähigkeiten, Standort und Verfügbarkeit zu. Routen werden automatisch berechnet. Crew 1 bekommt die Nordseiten-Schleife, Crew 2 das Stadtzentrum, Crew 3 die Südseite. 15–20 % effizienter als manuelle Planung."
+      },
+      "problem6": {
+        "problem": "Fahrstunden werden nicht protokolliert. Abrechenbare Zeit wird geschätzt. Niemand weiß, wer wo eingestempelt hat. Compliance ist ein Kopfschmerz.",
+        "fix": "GPS-Einstempeln bei Ankunft vor Ort. Ausstempeln beim Verlassen. Fahrstunden automatisch protokolliert. Abrechenbare Stunden berechnet und mit der Rechnungsstellung verknüpft."
+      }
+    },
+    "section2": {
+      "heading": "Was es kostet",
+      "p1": "ServiceTitan beginnt bei 145 $/Monat. Jobber bei 69 $. Fügen Sie Routific für Routing, Toggl für Zeiterfassung und Dropbox für Auftragsfotos hinzu und Sie sind deutlich über 250 $.",
+      "p2": "HABOS erledigt alles für 35 $ pro Monat. Disposition, Routing, Sprachberichte, GPS-Tracking, Zeitprotokollierung, Rechnungsstellung und ein Kundenportal – in einem System."
+    },
+    "stats": [
+      ["2 Std./Tag", "bei der Dateneingabe gespart"],
+      ["90 Min./Tag", "bei der Disposition gespart"],
+      ["15-20 %", "effizientere Routen"],
+      ["0", "verlorene Auftragsdatensätze"]
+    ],
+    "labels": {
+      "problem": "Problem",
+      "fix": "Lösung"
+    },
+    "testimonial": {
+      "quote": "\"Vor HABOS verbrachte ich jeden Abend Stunden damit, Techniker anzurufen, um herauszufinden, was heute passiert ist. Jetzt schaue ich mir das Dashboard um 17 Uhr an und jeder Auftrag hat einen Sprachbericht mit Fotos. Wir sind von 6 auf 7 Aufträge pro Tag gegangen, weil das Routing intelligenter ist und niemand Zeit mit Papierkram verschwendet.\"",
+      "attribution": "— Erik, 45 · Bauunternehmen · 12 Außendienstmitarbeiter · Stavanger"
+    },
+    "cta": {
+      "heading": "Schließen Sie die Lücke zwischen Ihrem Außendienst und Ihrem Büro – dauerhaft.",
+      "button": "Der Warteliste beitreten"
+    }
+  }
+}

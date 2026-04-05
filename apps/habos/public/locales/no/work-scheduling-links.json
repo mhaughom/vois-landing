@@ -1,0 +1,49 @@
+{
+  "badge": "Planleggingslenker",
+  "hero": {
+    "title": "Din egen Calendly.\nInnebygd.",
+    "description": "Opprett delbare bookinglenker som lar hvem som helst planlegge tid med deg – med smart tidsluke-generering, buffertid og beskyttelse mot dobbeltbooking."
+  },
+  "body": "Opprett ubegrensede planleggingslenker – URL-er som habos.app/s/mathias-30min – der gjester booker uten friksjon og uten å opprette en konto. Smart tidsluke-generering tar hensyn til varighet, åpningstider, buffertid og eksisterende kalenderoppføringer. Konfigurerbar for- og ettermøte-polstring blokkerer overlappende tidslots automatisk. Serversidesjekker forhindrer dobbeltbookinger selv under samtidige forespørsler. Gjester får bekreftelsese-poster med avbestillingslenker med ett klikk.",
+  "mockCard": {
+    "name": "Mathias Haughom",
+    "meetingType": "30 minutters konsultasjon",
+    "url": "habos.app/s/mathias-30min",
+    "selectedTime": "Tirsdag 10:00",
+    "confirmButton": "Bekreft booking",
+    "caption": "Del lenken hvor som helst – e-postsignatur, nettsted, sosial biografi. Gjester booker uten å opprette en konto."
+  },
+  "benefits": {
+    "slotGeneration": {
+      "title": "Smart tidsluke-generering",
+      "desc": "Varighet, åpningstider, buffertid og eksisterende kalenderoppføringer tas med i beregningen. Kun virkelig tilgjengelige tidslots vises – ingen frem-og-tilbake."
+    },
+    "buffer": {
+      "title": "15-min buffer innebygd",
+      "desc": "Konfigurerbar for- og ettermøte-polstring blokkerer overlappende tidslots automatisk. Aldri mer møter rett etter hverandre uten pause."
+    },
+    "selfService": {
+      "title": "Gjest selvbetjening",
+      "desc": "Bekreftelses-e-post inkluderer en avbestillingslenke med ett klikk. Gjester avbestiller eller ombooker uten å kontakte deg. Du får varsling."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Uten HABOS",
+    "withoutText": "Betal kr 120/mnd for Calendly. Kopier tilgjengelighet fra kalenderen din. Håp at det synkroniseres. Legg manuelt til bookingen i CRM. Send fakturaen separat.",
+    "withoutStat": "3 verktøy, kr 120/mnd ekstra",
+    "withTitle": "Med HABOS",
+    "withText": "Opprett en planleggingslenke. Del den. Gjest booker. Kalender, CRM, bestilling og varsling oppdateres automatisk. Allerede inkludert i planen.",
+    "withStat": "1 verktøy, kr 0 ekstra"
+  },
+  "techStrip": [
+    "Smart tidsluke-generering",
+    "Buffertidsadministrasjon",
+    "Beskyttelse mot dobbeltbooking",
+    "Selvavbestillingslenker",
+    "Produktintegrasjon"
+  ],
+  "closing": {
+    "title": "Andre planleggingsverktøy er et separat abonnement.\nHABOS-planlegging er innebygd.",
+    "cta": "Bli med på ventelisten"
+  }
+}

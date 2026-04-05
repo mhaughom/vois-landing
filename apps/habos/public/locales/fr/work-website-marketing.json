@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Site web & Marketing",
+  "hero": {
+    "title": "Votre marque, amplifiée par l'IA",
+    "description": "Créez des sites web, produisez du contenu et lancez des campagnes — tout propulsé par vos données business, pas par des modèles génériques."
+  },
+  "items": [
+    {
+      "title": "Créateur de site web",
+      "desc": "Décrivez votre activité, obtenez un site web — l'IA rédige le texte, connecte les paiements et les réservations."
+    },
+    {
+      "title": "Studio créatif",
+      "desc": "Générez du contenu marketing qui correspond à votre marque depuis votre contexte business."
+    },
+    {
+      "title": "Marketing",
+      "desc": "Campagnes e-mail et SMS avec textes rédigés par IA et segments d'audience intelligents."
+    }
+  ]
+}

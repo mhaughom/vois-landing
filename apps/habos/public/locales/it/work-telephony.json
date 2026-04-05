@@ -1,0 +1,60 @@
+{
+  "badge": "Telefonia AI",
+  "hero": {
+    "title": "Un Receptionist AI.\nUn Numero di Telefono Reale.",
+    "description": "HABOS fornisce un numero di telefono dedicato per la tua azienda. L'AI risponde alle chiamate, prenota riunioni, crea attività e smista alla persona giusta — 24/7."
+  },
+  "body": "HABOS fornisce numeri di telefono reali — sia linee aziendali dello spazio di lavoro tramite Telnyx sia numeri di assistente AI personale tramite Twilio. Quando qualcuno chiama, l'assistente AI risponde con accesso completo agli strumenti: controlla il calendario, crea attività, invia messaggi, cerca i contatti. Le azioni ad alto rischio come prenotazioni o pagamenti usano l'approvazione tramite SMS — un codice a quattro cifre inviato all'utente. Gli SMS in entrata al numero dell'assistente attivano una sessione AI conversazionale con le stesse capacità complete.",
+  "callFlow": {
+    "steps": [
+      {
+        "label": "Chiamata in entrata: (555) 234-5678"
+      },
+      {
+        "label": "L'AI risponde: 'Henderson Plumbing, come posso aiutarla?'"
+      },
+      {
+        "label": "Chiamante: 'Ho un tubo che perde, qualcuno può venire oggi?'"
+      },
+      {
+        "label": "L'AI controlla il calendario → trova uno slot disponibile alle 14:00"
+      },
+      {
+        "label": "AI: 'Posso programmare un tecnico alle 14:00 di oggi. Le va bene?'"
+      }
+    ],
+    "resultItems": {
+      "booking": "Prenotazione creata",
+      "ticket": "Ticket aperto",
+      "notify": "Mike notificato",
+      "sms": "Conferma SMS inviata"
+    },
+    "caption": "L'AI ha accesso completo agli strumenti — calendario, CRM, ticket, prenotazioni. Non è un menu IVR. È un vero assistente."
+  },
+  "benefits": {
+    "sms": {
+      "title": "Assistente SMS",
+      "body": "I messaggi in entrata attivano un'AI conversazionale che può controllare i programmi, creare attività e rispondere — tutto senza che un umano muova un dito."
+    },
+    "recording": {
+      "title": "Registrazione + trascrizione chiamate",
+      "body": "Ogni chiamata archiviata con trascrizione completa, ricercabile per interlocutore e parola chiave. Non perdere mai un dettaglio da una conversazione con un cliente."
+    },
+    "approval": {
+      "title": "Approvazione a 4 cifre",
+      "body": "Le azioni ad alto rischio come prenotazioni e pagamenti usano codici di conferma via SMS. L'AI può agire, ma gli umani rimangono in controllo."
+    }
+  },
+  "scenario": "È domenica. Un tubo scoppia. Il proprietario di casa chiama il tuo numero aziendale. L'AI risponde, comprende \"perdita di emergenza\", controlla il tuo programma di reperibilità e prenota il tecnico disponibile più vicino. Il proprietario riceve una conferma SMS con il nome del tecnico e il tempo di arrivo stimato. Tu non hai toccato il telefono.",
+  "techStrip": [
+    "Telnyx + Twilio",
+    "OpenAI Realtime V2",
+    "Accesso completo agli strumenti",
+    "Approvazione via SMS",
+    "Routing IVR personalizzato"
+  ],
+  "closing": {
+    "title": "Gli altri sistemi telefonici suonano musica di attesa.\nHABOS risolve i problemi.",
+    "cta": "Iscriviti alla lista d'attesa"
+  }
+}

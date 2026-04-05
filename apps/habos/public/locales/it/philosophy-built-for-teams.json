@@ -1,0 +1,30 @@
+{
+  "category": "Filosofia",
+  "title": "Pensato per i Team, Non Solo per Te",
+  "tagline": "Ognuno vede ciò che conta per lui. Tutti condividono la stessa verità.",
+  "heroAlt": "Coordinamento del team tramite intelligenza condivisa",
+  "body1": "Un progetto si ferma per 4 giorni perché qualcuno ha perso una domanda sepolta in un thread Slack. Il CEO chiede \"qual è lo stato del progetto Henderson?\" e riceve tre risposte diverse — perché ognuno mantiene la propria versione della verità. L'AI personale non risolve niente di tutto questo. Lo fa l'infrastruttura del team.",
+  "rolesLabel": "Stessi dati, tre prospettive",
+  "roles": [
+    {
+      "name": "Dispatcher",
+      "desc": "Percorsi, posizioni dei tecnici, lavori non assegnati. Bacheca a trascinamento."
+    },
+    {
+      "name": "Tecnico sul campo",
+      "desc": "Lavoro successivo con indicazioni, cronologia cliente, completamento con un tocco."
+    },
+    {
+      "name": "CEO",
+      "desc": "Ricavi, progetti attivi, problemi segnalati. Riepilogo AI settimanale."
+    }
+  ],
+  "body2": "La tassa più grande sulle piccole imprese non è il costo del lavoro. È la latenza di comunicazione. Una decisione di 5 minuti richiede 4 giorni a causa di catene di email, messaggi persi e \"me ne occupo quando torno alla scrivania.\" Ogni funzionalità in VOIS è progettata per ridurre il tempo tra \"qualcuno ha bisogno di una decisione\" e \"la decisione è presa.\"",
+  "quote": "\"Un'azienda non si muove alla velocità della persona più veloce. Si muove alla velocità del passaggio di consegne più lento.\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Un Solo Assistente",
+    "nextLabel": "Successivo",
+    "nextTitle": "Suggerimenti, Non Menu"
+  }
+}

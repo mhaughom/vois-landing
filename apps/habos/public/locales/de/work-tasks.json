@@ -1,0 +1,64 @@
+{
+  "badge": "KI-bewertete Aufgaben",
+  "hero": {
+    "title": "Du erfasst. KI priorisiert.",
+    "description": "Erstelle Aufgaben per Sprache, aus Meetings oder aus E-Mails. Jede Aufgabe erhält einen KI-berechneten Score, der direkt in deinen Zeitplan einfließt."
+  },
+  "body": "Jede Aufgabe erhält zwei KI-berechnete Scores: Wichtigkeit (wie viel sie für deine Ziele bedeutet) und Dringlichkeit (wie zeitkritisch sie ist). Die KI wägt Fristen, Projektgesundheit, Abhängigkeiten, Domain-Kontext und deine persönlichen Muster ab. Hochbewertete Aufgaben werden zuerst geplant, wenn die KI deinen Tag plant. Niedrig bewertetes Rauschen bleibt aus deiner Fokuszeit. Aufgaben fließen aus Sprachnotizen, Meeting-Transkripten, E-Mails und Agenten-Output ein — du erfasst, HABOS priorisiert.",
+  "tasks": [
+    {
+      "title": "Henderson-Angebot finalisieren",
+      "source": "aus Projekt"
+    },
+    {
+      "title": "Sarahs E-Mail zu Fliesenmustern beantworten",
+      "source": "aus E-Mail"
+    },
+    {
+      "title": "Wöchentlichen Betriebsbericht prüfen",
+      "source": "aus Meeting"
+    },
+    {
+      "title": "Team-Organigramm aktualisieren",
+      "source": "aus Sprachnotiz"
+    }
+  ],
+  "taskList": {
+    "note": "Aufgaben werden von KI bewertet, die Fristen, Projektkontext, Abhängigkeiten und deine Muster abwägt. Hohe Scores → zuerst geplant."
+  },
+  "sources": {
+    "heading": "Woher Aufgaben kommen",
+    "labels": ["Sprachnotizen", "Meetings", "E-Mail", "KI-Agenten"],
+    "destinationLabel": "KI-Prioritätswarteschlange"
+  },
+  "benefits": {
+    "capture": {
+      "title": "30 Sek. zum Erfassen",
+      "description": "Sage \"erinnere mich, Henderson wegen des Angebots bis Freitag nachzufassen.\" Erledigt. Titel, Fälligkeitsdatum, Projekt und Zugewiesener extrahiert."
+    },
+    "sorting": {
+      "title": "0 manuelles Sortieren",
+      "description": "Höre auf, jeden Morgen 20 Minuten damit zu verbringen, deine Aufgabenliste zu priorisieren. KI-Scores aktualisieren sich, wenn sich der Kontext ändert — Fristen nahen, Abhängigkeiten werden abgeschlossen, Projektgesundheit verschiebt sich."
+    },
+    "meeting": {
+      "title": "Meeting → Aufgaben automatisch",
+      "description": "Wenn jemand in einem Meeting sagt \"John, kannst du die Fliesenbestellung übernehmen?\", erscheint eine Aufgabe in Johns Warteschlange. Niemand muss daran denken, es aufzuschreiben."
+    }
+  },
+  "scoring": {
+    "label": "Bewertungsaufschlüsselung",
+    "factors": [
+      "Manuelle Rangfolge",
+      "Prioritätslabel",
+      "KI-Wichtigkeit",
+      "KI-Dringlichkeit",
+      "Fälligkeitsdatum",
+      "Kalenderpassung",
+      "Erstellungsdatum"
+    ]
+  },
+  "cta": {
+    "heading": "Andere Aufgaben-Apps lassen dich sortieren. HABOS sortiert für dich.",
+    "button": "Warteliste beitreten"
+  }
+}

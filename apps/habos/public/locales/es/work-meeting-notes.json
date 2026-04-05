@@ -1,0 +1,52 @@
+{
+  "badge": "Disponible ahora en el plan VOIS for Work",
+  "hero": {
+    "title": "Notas de reunión",
+    "description": "Transcripción en vivo con tarjetas de acción que aparecen a medida que las personas hablan. Vea cómo su reunión se convierte en notas estructuradas en tiempo real."
+  },
+  "intro": "Transcripción en vivo con tarjetas de acción que aparecen a medida que las personas hablan. Cuando alguien dice «necesitamos programar un seguimiento» o «Juan, ¿puedes encargarte de esto?» — los elementos de acción aparecen en línea en el documento. HABOS identifica cuándo las tareas se le asignan a usted y las resalta en su vista personal. Comparta notas de reunión mediante un enlace seguro — los destinatarios ven la transcripción completa y el resumen sin crear una cuenta. Ese enlace compartido también es un motor de crecimiento: capta leads, hace una demostración del producto y convierte con ofertas específicas.",
+  "features": [
+    {
+      "title": "Tarjetas de acción en vivo",
+      "description": "Cuando alguien dice «necesitamos programar un seguimiento» o «Juan, ¿puedes encargarte de esto?», las tarjetas de acción aparecen en línea en el documento. Asigne tareas, establezca recordatorios o guarde elementos directamente desde la transcripción en vivo."
+    },
+    {
+      "title": "Transferencia de reloj a computadora",
+      "description": "Inicie la grabación en su Apple Watch, luego transfiera sin interrupciones a su Mac cuando quiera ver el documento en vivo. La transcripción continúa sin interrupción, retomando exactamente donde lo dejó."
+    },
+    {
+      "title": "Elementos de acción personales",
+      "description": "VOIS identifica cuándo las tareas se le asignan a usted y las resalta en su vista personal. Toque para añadirlas directamente a su lista de tareas o editarlas en el momento. Es mágico ver cómo sus pendientes se completan automáticamente durante la reunión."
+    },
+    {
+      "title": "Diseño de boca a boca",
+      "description": "Cuando los colegas ven los elementos de acción apareciendo en tiempo real en su pantalla durante las reuniones, también lo querrán. Esta función está diseñada para expandirse orgánicamente — de profesionales individuales a equipos pequeños a empresas enteras."
+    }
+  ],
+  "howItWorks": {
+    "title": "Cómo funciona",
+    "steps": [
+      {
+        "title": "Iniciar grabación",
+        "description": "Toque el botón de grabación en su reloj o abra VOIS en su Mac. La transcripción comienza inmediatamente."
+      },
+      {
+        "title": "Vea la magia",
+        "description": "A medida que las personas hablan, las palabras aparecen en pantalla. Cuando se mencionan elementos de acción, las tarjetas generadas por IA aparecen en línea sugiriendo próximos pasos."
+      },
+      {
+        "title": "Actúe sobre los elementos",
+        "description": "Toque las tarjetas para añadir tareas a su lista, programar seguimientos o guardar información importante. Sus elementos personales se resaltan automáticamente."
+      },
+      {
+        "title": "Comparta y exporte",
+        "description": "¿Reunión terminada? Exporte la transcripción completa con elementos de acción o comparta secciones específicas con su equipo."
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para transformar sus reuniones?",
+    "description": "Notas de reunión está incluido en el plan VOIS for Work.",
+    "button": "Ver precios"
+  }
+}

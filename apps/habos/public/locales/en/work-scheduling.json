@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Scheduling & Bookings",
+  "hero": {
+    "title": "Your Calendar Runs Itself",
+    "description": "AI scheduling, online bookings, and shareable links — connected to your CRM and payments so nothing falls through."
+  },
+  "items": [
+    {
+      "title": "Calendar",
+      "desc": "Focus blocks filled automatically, meetings prepped with AI briefings."
+    },
+    {
+      "title": "Bookings",
+      "desc": "Clients book online, orders auto-created, payment collected in one step."
+    },
+    {
+      "title": "Scheduling Links",
+      "desc": "Shareable booking pages with availability sync and Stripe payments."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "badge": "文档",
+  "hero": {
+    "title_part1": "写一次。",
+    "title_part2": "永久查找",
+    "description": "富文本编辑器，配备模板、全文搜索和从整个工作区提取信息的 AI 辅助写作。"
+  },
+  "demoSection": {
+    "heading": "在一个地方写作和查找",
+    "editorTitle": "Fjordview Hotel — 维护提案",
+    "aiAssist": "AI 辅助",
+    "searchQuery": "维护合同",
+    "searchResults": "3 条结果",
+    "results": [
+      {
+        "title": "Fjordview Hotel — 维护提案",
+        "snippet": "……涵盖暖通、管道和电气的年度维护合同……"
+      },
+      {
+        "title": "Q1 服务评审 — Fjordview",
+        "snippet": "……合同续签截止 4 月 15 日。当前维护范围包括……"
+      },
+      {
+        "title": "2026 供应商定价表",
+        "snippet": "……标准维护合同层级：NOK 45,000/月……"
+      }
+    ]
+  },
+  "benefitCards": [
+    {
+      "title": "富文本编辑器",
+      "desc": "完整格式支持，包括标题、列表、表格、图像和嵌入。基于 TipTap——快速且熟悉。"
+    },
+    {
+      "title": "模板",
+      "desc": "从提案、标准操作程序、会议议程和合同的成熟模板开始。自定义一次，随处复用。"
+    },
+    {
+      "title": "全文搜索",
+      "desc": "每个词都被索引。即时搜索所有文档。结果显示上下文并高亮匹配内容。"
+    }
+  ],
+  "scenario": {
+    "body": "你需要为 Fjordview Hotel 撰写维护提案。无需从头开始，选择"服务提案"模板。AI 从 CRM 预填客户详情，从报告中提取最新检查结果，从产品目录中提取定价。你编辑两句话然后发送。",
+    "closing": "从空白页到发送提案，不到两分钟。"
+  },
+  "techItems": [
+    "TipTap 编辑器",
+    "模板系统",
+    "全文搜索",
+    "AI 辅助起草",
+    "项目关联",
+    "Brain 可搜索"
+  ],
+  "cta": {
+    "tagline": "了解你业务的文档。",
+    "button": "加入等待名单"
+  }
+}

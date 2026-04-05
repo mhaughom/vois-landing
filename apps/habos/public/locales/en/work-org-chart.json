@@ -1,0 +1,52 @@
+{
+  "badge": "Team Management",
+  "hero": {
+    "title": "Drag. Drop. Reorganize.",
+    "description": "Interactive org chart with sandbox drafts — model reorganizations, diff against current state, and apply atomically. Plus a 37-app permission matrix that auto-scopes by department and seniority."
+  },
+  "body": "The org chart renders as an interactive tree — drag nodes to reassign managers. Create org chart drafts to model reorganizations: snapshot the current structure, make changes, diff against the live state, and apply atomically when ready. A three-tier access control system manages 37 apps with per-department profile inheritance and direct overrides. Admins control which modules each person sees, whether they can approve actions, their hourly rates, and their monthly AI credit limits.",
+  "orgChart": {
+    "caption": "Create a draft, model the reorg, preview the diff, and apply when ready. No one sees changes until you publish."
+  },
+  "orgNodes": {
+    "ceo": { "name": "Elena Park", "role": "CEO" },
+    "vpOps": { "name": "James Okoro", "role": "VP Operations" },
+    "vpSales": { "name": "Lisa Chen", "role": "VP Sales" },
+    "fieldOpsLead": { "name": "Mike R.", "role": "Field Ops Lead", "draft": "Draft: moved from Sales" },
+    "logisticsCoord": { "name": "Sara T.", "role": "Logistics Coord." },
+    "accountExec": { "name": "David K.", "role": "Account Exec" },
+    "salesRep": { "name": "Amy J.", "role": "Sales Rep" }
+  },
+  "benefits": {
+    "permissions": {
+      "title": "37-app permissions",
+      "description": "Auto-scoped by department and org level. When someone moves, their permissions update instantly across every connected tool."
+    },
+    "raci": {
+      "title": "RACI tracking",
+      "description": "Define who owns, approves, consults, and gets informed for every process. Never wonder \"who signs off on this?\" again."
+    },
+    "dual": {
+      "title": "Dual reporting",
+      "description": "Matrix structures with primary and secondary managers. Dotted-line relationships are first-class citizens, not afterthoughts."
+    }
+  },
+  "scenario": {
+    "intro": "You're restructuring the field ops team.",
+    "narrative": "Instead of making live changes and confusing everyone, you create a draft. Drag Mike from Sales to Operations, add a new team lead position, and preview the diff. Three people moved, two reporting lines changed. You review, approve, and publish —",
+    "highlight": "the entire org updates atomically."
+  },
+  "techStrip": {
+    "items": [
+      "ReactFlow visualization",
+      "Sandbox drafts",
+      "Atomic apply",
+      "37-app permission matrix",
+      "RACI responsibility"
+    ]
+  },
+  "cta": {
+    "heading": "Other org charts are a static PDF. HABOS org charts are a live command center.",
+    "button": "Join Waitlist"
+  }
+}

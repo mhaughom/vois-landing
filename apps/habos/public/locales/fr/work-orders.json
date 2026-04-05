@@ -1,0 +1,52 @@
+{
+  "badge": "Gestion des commandes",
+  "hero": {
+    "title": "Du devis au paiement. Chaque étape suivie.",
+    "description": "Gestion du cycle de vie complet des commandes avec lignes d'articles, suivi des paiements et ajustements de stock automatiques — pour que rien ne passe entre les mailles."
+  },
+  "intro": "Les commandes dans VOIS sont l'enregistrement central reliant les clients CRM, les produits avec variantes et l'inventaire. Quand une réservation est complétée ou qu'une mission se termine, une commande est créée automatiquement avec les bonnes lignes d'articles et la bonne tarification. Le statut du paiement passe d'impayé à partiellement payé à payé à remboursé — toujours visible, toujours à jour. Chaque ligne d'article déduit du stock produit en temps réel, éliminant entièrement les comptages manuels.",
+  "orders": [
+    { "id": "#1247", "client": "Henderson Renovation", "amount": "12 500 $", "status": "Payé ✓" },
+    { "id": "#1248", "client": "Baker HVAC Service", "amount": "3 200 $", "status": "Partiel" },
+    { "id": "#1249", "client": "Wilson Emergency", "amount": "890 $", "status": "Impayé" }
+  ],
+  "lineItems": {
+    "heading": "Lignes d'articles — Commande #1247 · Henderson Renovation",
+    "items": [
+      { "item": "Carrelage en porcelaine (600x600)", "qty": 48, "unit": "85,00 $", "total": "4 080 $" },
+      { "item": "Adhésif à carrelage (sac 25 kg)", "qty": 12, "unit": "32,00 $", "total": "384 $" },
+      { "item": "Main-d'œuvre — pose carrelage (h)", "qty": 24, "unit": "95,00 $", "total": "2 280 $" },
+      { "item": "Kit plancher chauffant", "qty": 1, "unit": "1 850,00 $", "total": "1 850 $" }
+    ],
+    "total": "Total : 12 500 $",
+    "annotation": "Commandes créées automatiquement depuis les réservations et les missions. Les lignes d'articles proviennent de votre catalogue avec prise en charge des variantes."
+  },
+  "benefitCards": [
+    {
+      "title": "Création automatique depuis les réservations",
+      "desc": "Quand une réservation est complétée, la commande se génère automatiquement avec les bonnes lignes d'articles et la bonne tarification. Aucune double saisie, aucun oubli de facturation."
+    },
+    {
+      "title": "Ajustements de stock en direct",
+      "desc": "Chaque ligne d'article déduit du stock produit en temps réel. Aucun comptage manuel. Les alertes de réapprovisionnement se déclenchent avant que vous soyez à court."
+    },
+    {
+      "title": "Cycle de vie du paiement",
+      "desc": "Suivez impayé → partiel → payé → remboursé. Chaque changement de statut est enregistré et connecté automatiquement à votre plateforme comptable."
+    }
+  ],
+  "scenario": "Un plombier termine une mission. Sur le trajet retour, il dit à VOIS quelles pièces il a utilisées — deux robinets à bille, un flexible et trois heures de main-d'œuvre.",
+  "scenarioHighlight": "VOIS crée automatiquement la commande avec les bonnes lignes d'articles, déduit les pièces de l'inventaire, lie la commande au client CRM et prépare la facture — avant même qu'il soit de retour au bureau.",
+  "techItems": [
+    "Déduction automatique du stock",
+    "Variantes de lignes d'articles",
+    "Cycle de vie du paiement",
+    "Liaison client CRM",
+    "Pipeline réservation-vers-commande",
+    "Commandes capturées vocalement"
+  ],
+  "cta": {
+    "title": "Arrêtez de courir après la paperasse.\nLaissez les commandes se construire d'elles-mêmes.",
+    "button": "Rejoindre la liste d'attente"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "userTypes": ["Personale", "Lavoro", "Entrambi"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Amico/collega",
+    "Motore di ricerca",
+    "YouTube",
+    "Reddit",
+    "Altro"
+  ],
+  "useCases": [
+    "Attività personali e promemoria",
+    "Riunioni di lavoro e note",
+    "Idee e brainstorming",
+    "Acquisti e liste",
+    "Monitoraggio personalizzato (salute, abitudini, ecc.)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "Per cosa userai VOIS?",
+    "subLabel": "Seleziona tutto ciò che si applica",
+    "stepIndicator": "Passaggio 1 di 5"
+  },
+  "stepUserType": {
+    "heading": "Come userai VOIS?",
+    "subLabel": "Scegli uno",
+    "stepIndicator": "Passaggio 2 di 5"
+  },
+  "stepDevices": {
+    "heading": "Quali dispositivi utilizzerai?",
+    "subLabel": "Seleziona tutto ciò che si applica",
+    "stepIndicator": "Passaggio 3 di 5"
+  },
+  "stepReferral": {
+    "heading": "Come hai saputo di VOIS?",
+    "subLabel": "Questo ci aiuta a comprendere la nostra community",
+    "stepIndicator": "Passaggio 4 di 5"
+  },
+  "stepEmail": {
+    "heading": "Qual è la tua email?",
+    "subLabel": "Ti invieremo l'accesso anticipato al lancio",
+    "placeholder": "Inserisci la tua email",
+    "joining": "Iscrizione in corso...",
+    "joinWaitlist": "Unisciti alla Lista d'Attesa",
+    "stepIndicator": "Passaggio 4 di 5"
+  },
+  "stepSuccess": {
+    "heading": "Sei in lista!",
+    "willSendEmail": "Ti invieremo un'email a",
+    "whatsNext": "Cosa succede adesso?",
+    "whatsNextBody": "Lanceremo presto! Sarai tra i primi a ricevere accesso anticipato e aggiornamenti esclusivi.",
+    "done": "Fatto"
+  },
+  "continue": "Continua",
+  "errors": {
+    "emailInvalid": "Inserisci un indirizzo email valido",
+    "emailExists": "Questa email è già nella lista d'attesa!",
+    "joinFailed": "Iscrizione alla lista d'attesa non riuscita"
+  }
+}

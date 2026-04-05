@@ -1,0 +1,50 @@
+{
+  "category": "Filosofie",
+  "title": "Jouw stem, niet de onze",
+  "tagline": "AI hoeft niet iedereen hetzelfde te laten klinken. HABOS leert jouw schrijfstijl, jouw toon, jouw eigenaardigheid — zodat elk concept, elke e-mail, elk antwoord klinkt zoals jij. Niet een bedrijfschatbot. Jij.",
+  "heroPlaceholder": "Held-illustratie",
+  "section1": {
+    "heading": "Het toetsenbord is een bottleneck",
+    "body1": "Typen is uitgevonden voor typemachines. Tikken is uitgevonden voor telefoons. Geen van beide is uitgevonden voor het runnen van een bedrijf. Wanneer een buitendiensttechnicus een klus afrondt, is het laatste wat hij wil doen in de bus zitten en vier verschillende apps invullen. Wanneer een oprichter om 23:00 uur een idee heeft, willen ze geen laptop openen en drie menu's navigeren.",
+    "body2": "Stem is de snelste, meest wrijvingsloze manier om intentie vast te leggen. Je spreekt met circa 150 woorden per minuut. Je typt met 40. Dat is geen klein verschil — het is een 4x vermenigvuldiger op invoersnelheid, en het gat tussen het hebben van een idee en het verliezen ervan."
+  },
+  "section2": {
+    "heading": "Niet transcriptie. Begrip.",
+    "body1": "De meeste stemproducten transcriberen je spraak naar tekst en stoppen daar. Je krijgt een muur van woorden en net zoveel werk voor de boeg. HABOS doet iets fundamenteel anders.",
+    "body2": "De Smart Router neemt een enkele stemopname en classificeert elke zin in intenties — taken, agenda-evenementen, CRM-updates, voorraadnotities, berichten, onderzoeksverzoeken — extraheert vervolgens gestructureerde gegevens voor elk en routeert ze naar de juiste bestemming. Allemaal in minder dan drie seconden."
+  },
+  "voiceNoteLabel": "Stemnotitie van 30 seconden",
+  "voiceNoteText": "\"Klaar bij Fjordview. Compressor eenheid 3 vertoont vroeg slijtage, aanbeveel vervanging binnen zes maanden. Filter voor eenheden 1 en 5 bestellen, de SKU is 4427-B. Herinner me ook te praten met de hotelmanager over het verlengen van hun onderhoudscontract.\"",
+  "voiceNoteActions": [
+    { "label": "Rapport", "text": "HVAC-inspectie automatisch ingevuld met bevindingen" },
+    { "label": "Inkooporder", "text": "Filter SKU 4427-B → inkoopwachtrij" },
+    { "label": "Taak", "text": "Opvolging met manager over contractverlenging" },
+    { "label": "CRM-notitie", "text": "Compressorbevinding gelogd op klantrecord" }
+  ],
+  "voiceNoteFooter": "4 tikken om goed te keuren. 40 seconden totaal. Had 20 minuten over 4 apps geduurd.",
+  "voiceSurfacesPlaceholder": "Overzicht stemoppervlakken",
+  "section3": {
+    "heading": "Elk oppervlak spreekt",
+    "intro": "Stem is niet beperkt tot één functie. Het is een eerste-klas invoer over het hele platform:",
+    "items": [
+      { "label": "iPhone & Apple Watch", "body": "stemnotities opnemen onderweg, actiekaarten op je pols krijgen, bevestigen met een tik of een woord" },
+      { "label": "Realtime gesprek", "body": "bidirectionele stem met de AI-assistent, sub-300ms spraak-naar-spraak-latentie" },
+      { "label": "Stem-e-mail", "body": "beantwoord je hele inbox door te spreken: \"Antwoord Lars, vertel hem dat ik donderdag beschikbaar ben\"" },
+      { "label": "Stemrapporten", "body": "vul gestructureerde formulieren in via gesprek in plaats van te klikken door velden" },
+      { "label": "Vergadertranscriptie", "body": "live notities, actiepunten en voorgestelde vragen, allemaal in realtime gegenereerd" }
+    ]
+  },
+  "voiceFlowPlaceholder": "Stemstroomdiagram",
+  "section4": {
+    "heading": "Contextbewuste routing",
+    "body1": "De Smart Router is duuratiebewust. Een opname van 2 minuten die \"vergadering\" noemt, wordt geclassificeerd als het plannen van een vergadering. Een opname van 15 minuten die \"vergadering\" noemt, wordt geclassificeerd als vergadernotities. Het systeem begrijpt dat korte opnames opdrachten zijn en lange opnames inhoud.",
+    "body2": "Het brengt ook indexen op woordniveau in kaart — zodat de mobiele UI precies kan markeren welke woorden welke acties zijn geworden. Tik op \"plan een sitebezoek aanstaande dinsdag om 14:00 uur\" in de transcriptie en het opent het agenda-evenement dat van die exacte woorden is aangemaakt."
+  },
+  "quote": "\"De dichtstbijzijnde analogie is een menselijke uitvoerend assistent die naar je rommelige update luistert en vier verschillende items in vier verschillende systemen aanmaakt. Behalve dat HABOS dat in minder dan drie seconden doet.\"",
+  "nav": {
+    "prevLabel": "Vorige",
+    "prevTitle": "Één brein",
+    "nextLabel": "Volgende",
+    "nextTitle": "Adviseurs die het oneens zijn"
+  }
+}

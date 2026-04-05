@@ -1,0 +1,44 @@
+{
+  "badge": "Kernfunctie",
+  "hero": {
+    "title": "Loop elke vergadering in",
+    "titleHighlight": "voorbereid",
+    "description": "VOIS leest je agenda, doorzoekt je geschiedenis en bouwt automatisch een briefing. Jij leest die gewoon."
+  },
+  "intro": "Voor elke vergadering haalt HABOS automatisch op uit de openstaande taken en mijlpalen van het gekoppelde project, de gezondheidsstatus van de betreffende operatie, eerdere vergaderingen met dezelfde deelnemers, CRM-klantgeschiedenis en je privé Brain-kennis. Een zelfstandige vergadertool heeft toegang tot niets hiervan. Omdat elke module één database deelt, weet de briefing wat geen externe tool ooit zou kunnen weten.",
+  "timeComparison": {
+    "before": {
+      "value": "20 min",
+      "description": "woelen door e-mails, CRM en notities van de vorige vergadering"
+    },
+    "after": {
+      "value": "60 sec",
+      "description": "de briefing even doornemen op je telefoon terwijl je naar de vergaderzaal loopt"
+    }
+  },
+  "briefPreview": {
+    "title": "Wat er in de briefing staat"
+  },
+  "benefitCards": [
+    {
+      "title": "Automatisch gegenereerd",
+      "description": "Briefings verschijnen voor je zelfs aan voorbereiding denkt. De agenda activeert ze automatisch."
+    },
+    {
+      "title": "Kruisreferentie",
+      "description": "Haalt op uit e-mails, vergaderingen, CRM, projectnotities en eerdere actiepunten. Niets gemist."
+    },
+    {
+      "title": "Deelnemer-bewust",
+      "description": "Zie de recente interacties, het sentiment en de openstaande punten van elke persoon. Weet waar je staat."
+    }
+  ],
+  "callout": {
+    "body": "Je staat op het punt deel te nemen aan een gesprek met een klant met wie je al 3 weken niet hebt gesproken. In plaats van je postvak IN te doorzoeken, het CRM te controleren en te proberen te herinneren wat er is besproken \u2014 open je VOIS en zie je een briefing van één pagina met alle relevante details, georganiseerd en klaar.",
+    "punchline": "Dat is 20 minuten terug in je dag, elke dag."
+  },
+  "closing": {
+    "tagline": "Andere apps herinneren je aan vergaderingen. VOIS bereidt je voor.",
+    "cta": "Aanmelden voor wachtlijst"
+  }
+}

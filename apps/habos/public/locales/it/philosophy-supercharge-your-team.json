@@ -1,0 +1,63 @@
+{
+  "category": "Filosofia",
+  "title": "Potenzia il Tuo Team",
+  "tagline": "HABOS non è qui per sostituire i tuoi dipendenti — è qui per rendere ognuno di loro significativamente più capace. I migliori team non sono più piccoli. Sono amplificati.",
+  "heroPlaceholder": "Illustrazione hero",
+  "section1": {
+    "heading": "Un agente per ogni dipendente",
+    "body1": "Ogni membro del team riceve il proprio assistente AI — non un chatbot condiviso, ma un agente personale che conosce il suo ruolo, i suoi progetti, il suo stile di scrittura e la sua cronologia. L'agente del tecnico conosce i sistemi HVAC e i protocolli di ispezione. L'agente del responsabile ufficio conosce i conflitti di pianificazione e le preferenze dei clienti. L'agente del fondatore conosce tutto.",
+    "body2": "Non si tratta di dare a tutti lo stesso strumento. Si tratta di dare a tutti il copilota giusto per come lavorano."
+  },
+  "section2": {
+    "heading": "Stessa riunione, intelligenza diversa",
+    "body1": "Quando il tuo team siede nella stessa riunione, HABOS genera note AI diverse per ogni persona in base al loro ruolo, responsabilità e progetti. Un junior developer e un VP vedono domande suggerite completamente diverse. Il responsabile vendite riceve attività di follow-up relative alla pipeline. Il project manager vede i rischi di tempistica evidenziati.",
+    "body2": "Dopo la fine della riunione, ogni persona riceve elementi di azione limitati al proprio dominio — pre-assegnati, pre-datati e collegati al progetto giusto. Nessuno deve capire \"cosa significa per me?\" L'AI lo sa già."
+  },
+  "roles": [
+    {
+      "role": "Il Tecnico sul Campo",
+      "before": "Passa 20 minuti per lavoro sulla documentazione. Dimentica di registrare i follow-up. Aggiorna il CRM due giorni dopo.",
+      "after": "Parla per 30 secondi. Il sistema crea il registro del lavoro, aggiorna l'inventario, segnala il follow-up e registra tutto. Sta già guidando verso il lavoro successivo."
+    },
+    {
+      "role": "Il Responsabile Ufficio",
+      "before": "Cambia tra 8 app tutto il giorno. Controlla manualmente chi è disponibile. Inoltra le email alle persone giuste.",
+      "after": "Riceve un briefing mattutino di ciò che richiede attenzione. L'AI gestisce i conflitti di pianificazione, instrada i messaggi e fa emergere le cose che richiedono davvero una decisione umana."
+    },
+    {
+      "role": "Il Responsabile Vendite",
+      "before": "Dimentica di fare follow-up. Entra nelle riunioni senza preparazione. Perde traccia delle fasi delle trattative su 30 clienti.",
+      "after": "Riceve briefing generati dall'AI prima di ogni chiamata. Il CRM è sempre aggiornato perché le note vocali lo aggiornano automaticamente. Le trattative in stallo vengono segnalate automaticamente."
+    },
+    {
+      "role": "Il Fondatore",
+      "before": "Sommerso dai dettagli operativi. Non riesce a vedere il quadro strategico. Prende decisioni con informazioni incomplete.",
+      "after": "Riceve il Consiglio Strategico — prospettive AI in concorrenza sulle decisioni di crescita. I briefing mattutini evidenziano modelli cross-team. I problemi lo trovano prima che lui trovi i problemi."
+    }
+  ],
+  "beforeLabel": "Prima",
+  "withHabosLabel": "Con HABOS",
+  "teamVisualPlaceholder": "Immagine dell'amplificazione del team",
+  "section3": {
+    "heading": "Email che suonano come te",
+    "body1": "Quando l'AI bozza una risposta, corrisponde al tuo stile di scrittura — non a un tono aziendale generico. HABOS costruisce un profilo dai tuoi messaggi precedenti: livello di formalità, lunghezza delle frasi, utilizzo di emoji, come concludi. Le bozze del responsabile vendite suonano come il responsabile vendite. Le bozze del fondatore suonano come il fondatore.",
+    "body2": "Appaiono tre opzioni di risposta — Breve e Diretto, Cordiale e Professionale, Dirigenziale — ognuna corrispondente alla tua voce. Ne scegli una, modifichi una frase se vuoi, e invii. Quello che richiedeva cinque minuti a fissare una finestra di composizione vuota richiede dieci secondi."
+  },
+  "section4": {
+    "heading": "Struttura che si adatta a come le persone lavorano davvero",
+    "body1": "Non tutti lavorano allo stesso modo. Alcune persone sono disciplinate con le loro liste di attività. Altre pensano nelle note vocali e idee sparse. Alcune prosperano con orari strutturati. Altre hanno bisogno di flessibilità.",
+    "body2": "HABOS non impone un unico flusso di lavoro. La cattura voice-first incontra le persone dove si trovano. L'AI organizza il caos dopo — trasformando note vocali confuse in azioni strutturate, facendo emergere le informazioni giuste al momento giusto e applicando gentilmente i processi che contano senza micro-gestire quelli che non contano."
+  },
+  "section5": {
+    "heading": "Il moltiplicatore, non il sostituto",
+    "body1": "Il settore AI ama parlare di sostituire posti di lavoro. Pensiamo che questo manchi il punto. Un ottimo dipendente con assistenza AI non diventa sostituibile — diventa insostituibile. Il tecnico che può fare 8 lavori al giorno invece di 5. Il responsabile vendite che non dimentica mai un follow-up. Il responsabile ufficio che coglie i problemi prima che escalino.",
+    "body2": "HABOS rende gli umani nel tuo team la versione migliore di se stessi al lavoro. Questa non è una funzionalità. È tutto il punto."
+  },
+  "quote": "\"La promessa non era mai 'L'AI farà il tuo lavoro.' La promessa è 'L'AI ti renderà straordinario nel tuo lavoro.'\"",
+  "nav": {
+    "prevLabel": "Precedente",
+    "prevTitle": "Leva per il Team Piccolo",
+    "backLabel": "Torna a",
+    "backTitle": "HABOS"
+  }
+}

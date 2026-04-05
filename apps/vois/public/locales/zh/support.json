@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "logoAlt": "Vois",
+    "title": "支持"
+  },
+  "hero": {
+    "heading": "我们如何帮助您？",
+    "description": "我们随时为您提供帮助，让您充分发挥 Vois 的价值。请在下方查找答案或直接联系我们。"
+  },
+  "contact": {
+    "heading": "联系我们",
+    "email": {
+      "label": "邮件支持",
+      "address": "hello@tryvois.com",
+      "note": "适用于所有咨询和支持请求"
+    },
+    "responseTime": {
+      "label": "响应时间",
+      "value": "24小时内",
+      "note": "周一至周五"
+    }
+  },
+  "faq": {
+    "heading": "常见问题",
+    "items": [
+      {
+        "question": "Vois 是什么？",
+        "answer": "Vois 是一款人工智能语音笔记应用，帮助您捕捉、整理并付诸行动。支持 iPhone、Apple Watch 和 Mac。"
+      },
+      {
+        "question": "Vois 支持哪些设备？",
+        "answer": "Vois 支持 iPhone、Apple Watch 和 Mac，可从 Apple App Store 下载。您的数据可在所有设备间无缝同步。"
+      },
+      {
+        "question": "如何计费？",
+        "answer": "Vois 提供按月或按年计费的订阅套餐。您可以通过 Apple 设备上的 App Store 管理订阅，所有付款均通过 Apple 安全处理。"
+      },
+      {
+        "question": "如何取消订阅？",
+        "answer": "您可以随时通过 App Store 取消订阅。在 iPhone 上进入「设置」>「Apple ID」>「订阅」，找到 Vois，点击取消。您的访问权限将保留至当前计费周期结束。"
+      },
+      {
+        "question": "我可以申请退款吗？",
+        "answer": "可以，我们提供30天退款保障。如果您不满意，请联系 <email>hello@tryvois.com</email> 或查看我们完整的<refund>退款政策</refund>。"
+      },
+      {
+        "question": "我的数据安全吗？",
+        "answer": "您的隐私和数据安全是我们的首要任务。我们完全符合 GDPR 规定，并使用加密技术保护您的数据。详情请阅读我们的<privacy>隐私政策</privacy>。"
+      },
+      {
+        "question": "如何报告错误或请求新功能？",
+        "answer": "我们很乐意听取您的意见！请发送邮件至 <email>hello@tryvois.com</email>，描述问题或您的功能想法，我们会尽快回复。"
+      }
+    ]
+  },
+  "company": {
+    "heading": "公司信息",
+    "companyLabel": "公司",
+    "companyValue": "VOIS AI AS",
+    "orgLabel": "组织编号",
+    "orgValue": "936 920 594",
+    "locationLabel": "所在地",
+    "locationValue": "Alsvåg, Norway",
+    "emailLabel": "邮箱",
+    "emailValue": "hello@tryvois.com",
+    "websiteLabel": "网站",
+    "websiteValue": "tryvois.com"
+  },
+  "footer": {
+    "copyright": "Vois AI 版权所有。",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "habos": {
+    "product": "Producto",
+    "solutions": "Soluciones",
+    "philosophy": "Filosofía",
+    "communication": {
+      "label": "Comunicación",
+      "desc": "Correo electrónico, Messenger, Teléfono, Tickets de soporte"
+    },
+    "scheduling": {
+      "label": "Programación y reservas",
+      "desc": "Calendario, Reservas, Enlaces de programación"
+    },
+    "jobsOperations": {
+      "label": "Trabajos y operaciones",
+      "desc": "Despacho, Rutas, Proyectos, Tareas, Registro de tiempo"
+    },
+    "salesPayments": {
+      "label": "Ventas y pagos",
+      "desc": "CRM, Productos, Facturación, Pagos"
+    },
+    "voiceAi": {
+      "label": "Voz e IA",
+      "desc": "Notas de voz, Notas de reuniones, Asistente, Manuales"
+    },
+    "websiteMarketing": {
+      "label": "Sitio web y marketing",
+      "desc": "Constructor de sitios web, Social, Campañas de correo"
+    },
+    "serviceBusinesses": {
+      "label": "Empresas de servicios",
+      "desc": "De fontaneros a consultores y terapeutas"
+    },
+    "productBusinesses": {
+      "label": "Empresas de productos",
+      "desc": "Tiendas, comercio electrónico y fabricantes"
+    },
+    "creativeBusinesses": {
+      "label": "Empresas creativas",
+      "desc": "Agencias, fotógrafos y estudios"
+    },
+    "fieldOperations": {
+      "label": "Operaciones de campo",
+      "desc": "Construcción, reparto y gestión de propiedades"
+    },
+    "teamsStartups": {
+      "label": "Equipos y startups",
+      "desc": "Construyendo una empresa con 2 a 50 personas"
+    },
+    "soloFounders": {
+      "label": "Fundadores independientes",
+      "desc": "Freelancers y empresas unipersonales"
+    },
+    "intelligenceYouControl": "Inteligencia que usted controla",
+    "securityFirst": {
+      "label": "Seguridad primero",
+      "desc": "IA con límites. Sus límites."
+    },
+    "oneAssistant": {
+      "label": "Un asistente",
+      "desc": "Pregunte cualquier cosa, desde cualquier lugar"
+    },
+    "captureYourBrain": {
+      "label": "Capture su mente",
+      "desc": "Atrape ideas antes de que se desvanezcan"
+    },
+    "fastByDesign": "Rápido por diseño",
+    "suggestionsNotMenus": {
+      "label": "Sugerencias, no menús",
+      "desc": "Leer. Tocar. Listo."
+    },
+    "twoInterfaces": {
+      "label": "Dos interfaces",
+      "desc": "Pantallas para usted, APIs para agentes"
+    },
+    "speedOfThought": {
+      "label": "Velocidad del pensamiento",
+      "desc": "Voz de entrada, toque de salida"
+    },
+    "alwaysWithinReach": {
+      "label": "Siempre al alcance",
+      "desc": "Reloj, teléfono, pantalla de bloqueo"
+    },
+    "builtForYourBusiness": "Creado para su empresa",
+    "everythingInOnePlace": {
+      "label": "Todo en un solo lugar",
+      "desc": "Un inicio de sesión, todas las herramientas"
+    },
+    "builtForTeams": {
+      "label": "Creado para equipos",
+      "desc": "La misma verdad, diferentes perspectivas"
+    },
+    "yourSoftwareYourWay": {
+      "label": "Su software, a su manera",
+      "desc": "Flexible por diseño"
+    },
+    "ctaLabel": "Unirse a la lista de espera",
+    "betaLogin": "Acceso Beta"
+  },
+  "vois": {
+    "features": "Funciones",
+    "resources": "Recursos",
+    "voiceCapture": {
+      "label": "Captura de voz",
+      "desc": "Hable, nosotros hacemos el resto"
+    },
+    "aiAssistant": {
+      "label": "Asistente de IA",
+      "desc": "Su socio personal de IA"
+    },
+    "calendar": {
+      "label": "Calendario",
+      "desc": "Bloques de enfoque rellenos automáticamente"
+    },
+    "tasks": {
+      "label": "Tareas",
+      "desc": "Priorización con IA"
+    },
+    "watch": {
+      "label": "Reloj",
+      "desc": "IA completa en su muñeca"
+    },
+    "customApps": {
+      "label": "Aplicaciones personalizadas",
+      "desc": "Cree sus propios espacios"
+    },
+    "habosForWork": {
+      "label": "HABOS para el trabajo",
+      "desc": "La plataforma empresarial completa"
+    },
+    "support": {
+      "label": "Soporte",
+      "desc": "Obtenga ayuda de nuestro equipo"
+    },
+    "privacyPolicy": {
+      "label": "Política de privacidad",
+      "desc": "Cómo protegemos sus datos"
+    },
+    "termsOfService": {
+      "label": "Términos de servicio",
+      "desc": "Nuestro acuerdo de servicio"
+    },
+    "ctaLabel": "Unirse a la lista de espera",
+    "workLabel": "HABOS para el trabajo",
+    "tryNow": "Probar ahora",
+    "betaLogin": "Acceso Beta"
+  },
+  "clusters": {
+    "communication": {
+      "email": "Correo electrónico",
+      "messenger": "Messenger",
+      "phone": "Teléfono",
+      "supportTickets": "Tickets de soporte"
+    },
+    "schedulingBookings": {
+      "calendar": "Calendario",
+      "bookings": "Reservas",
+      "schedulingLinks": "Enlaces de programación"
+    },
+    "jobsOperations": {
+      "dispatch": "Despacho",
+      "routes": "Rutas",
+      "projects": "Proyectos",
+      "tasks": "Tareas",
+      "timeTracking": "Registro de tiempo"
+    },
+    "salesPayments": {
+      "crm": "CRM",
+      "products": "Productos",
+      "invoicing": "Facturación",
+      "payments": "Pagos"
+    },
+    "voiceAi": {
+      "voiceNotes": "Notas de voz",
+      "meetingNotes": "Notas de reuniones",
+      "assistant": "Asistente",
+      "playbooks": "Manuales"
+    },
+    "websiteMarketing": {
+      "websiteBuilder": "Constructor de sitios web",
+      "creativeStudio": "Estudio creativo",
+      "marketing": "Marketing"
+    }
+  },
+  "mobile": {
+    "overview": "Descripción general"
+  },
+  "brand": {
+    "vois": {
+      "name": "VOIS",
+      "ctaLabel": "Unirse a la lista de espera",
+      "workLabel": "HABOS para el trabajo",
+      "tagline": "por HABOS"
+    },
+    "habos": {
+      "name": "HABOS",
+      "ctaLabel": "Unirse a la lista de espera",
+      "tagline": "Poder de IA, control humano"
+    }
+  },
+  "clusterPages": {
+    "email": "Correo electrónico",
+    "messenger": "Messenger",
+    "telephony": "Teléfono",
+    "tickets": "Tickets de soporte",
+    "calendar": "Calendario",
+    "bookings": "Reservas",
+    "scheduling-links": "Enlaces de programación",
+    "dispatch": "Despacho",
+    "routes": "Rutas",
+    "projects": "Proyectos",
+    "tasks": "Tareas",
+    "time-tracking": "Registro de tiempo",
+    "crm": "CRM",
+    "products": "Productos",
+    "finance": "Facturación",
+    "payments": "Pagos",
+    "voice-notes": "Notas de voz",
+    "meeting-notes": "Notas de reuniones",
+    "assistant": "Asistente",
+    "playbooks": "Manuales",
+    "website-builder": "Constructor de sitios web",
+    "creative-studio": "Estudio creativo",
+    "marketing": "Marketing"
+  },
+  "clusterGroupNames": {
+    "communication": "Comunicación",
+    "schedulingBookings": "Programación y reservas",
+    "jobsOperations": "Trabajos y operaciones",
+    "salesPayments": "Ventas y pagos",
+    "voiceAi": "Voz e IA",
+    "websiteMarketing": "Sitio web y marketing"
+  }
+}

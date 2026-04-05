@@ -1,0 +1,65 @@
+{
+  "badge": "Personenregister",
+  "hero": {
+    "title": "Elke persoon. Elke interactie. Één overzicht.",
+    "description": "Spraakopnames, e-mails, chats, vergaderingen, CRM-tijdlijn — HABOS consolideert elk contactmoment met een persoon in één relatieprofiel."
+  },
+  "intro": "Het Personenregister bouwt zichzelf op vanuit hoe je over mensen praat. Noem iemands naam in een spraaknotitie en HABOS maakt automatisch een profiel aan of koppelt iemand met context en sentimentanalyse. De persoonshub aggregeert elke interactie: spraakopnames waarbij ze worden vermeld, e-mailthreads, chatgesprekken, vergaderingen waarbij ze spraken, CRM-tijdlijnvermeldingen en persoonsgebonden AI-sessies — allemaal teruggegeven door één database-aanroep. Gebruikelijke onderwerpen worden AI-afgeleid en sentimenttrends worden gevolgd over alle kanalen heen.",
+  "profile": {
+    "name": "Sarah Henderson",
+    "sentiment": "Positief",
+    "role": "Beslisser bij Henderson Loodgieterij",
+    "interactions": "47 interacties",
+    "lastContact": "Laatste contact: 2 dagen geleden",
+    "actionItems": "3 openstaande actiepunten",
+    "annotation": "Het Personenregister bouwt zichzelf op vanuit hoe je over mensen praat. Noem iemand in een spraaknotitie — ze worden automatisch aangemaakt met context."
+  },
+  "timeline": [
+    {
+      "title": "Re: Keuken tijdlijn",
+      "detail": "21 mrt — Herziene planning bevestigd"
+    },
+    {
+      "title": "Spraakgesprek",
+      "detail": "20 mrt — Vergunninglengesprek besproken, positief sentiment"
+    },
+    {
+      "title": "Slack #henderson",
+      "detail": "19 mrt — Gevraagd naar tegelstalen"
+    },
+    {
+      "title": "Teamsync",
+      "detail": "18 mrt — 2 actiepunten toegewezen aan Sarah"
+    },
+    {
+      "title": "Spraaknotitie vermelding",
+      "detail": "15 mrt — 'Sarah heeft de budgetupdate voor vrijdag nodig'"
+    }
+  ],
+  "benefitCards": [
+    {
+      "title": "Automatisch aangemaakt vanuit spraak",
+      "body": "Noem iemands naam tijdens een opname of gesprek, HABOS maakt of koppelt ze in je register met context en sentiment."
+    },
+    {
+      "title": "Meervoudige rolkoppeling",
+      "body": "Dezelfde persoon kan 'Beslisser' zijn bij Bedrijf A en 'Technisch Lead' bij Bedrijf B. Flexibele rolregistratie over alle CRM-klanten heen."
+    },
+    {
+      "title": "Herindexpijplijn",
+      "body": "Verwerk alle opnames in bulk om persoonsvermelding te vinden, contacten aan te maken/te dedupliceren, sentiment te analyseren en veelvoorkomende onderwerpen te extraheren."
+    }
+  ],
+  "scenario": "Je staat op het punt Sarah te bellen maar kunt je niet herinneren hoe de zaken ervoor staan. Open haar profiel — zie de e-mail van dinsdag over de herziene tijdlijn, de Slack-vraag over tegelstalen en een spraaknotitie van vorige week waarbij je vermeldde dat ze de budgetupdate nodig heeft. Drie openstaande actiepunten zijn vermeld. Je bent volledig voorbereid in 10 seconden — zonder één app te doorzoeken.",
+  "techItems": [
+    "get_person_hub() RPC",
+    "Kanaaloverstijgend sentiment",
+    "Detectie spraakvermelding",
+    "Automatisch dedupliceren op naam",
+    "CRM ↔ Personen koppeling"
+  ],
+  "cta": {
+    "tagline": "Andere apps volgen contacten. HABOS volgt relaties.",
+    "button": "Aanmelden voor wachtlijst"
+  }
+}

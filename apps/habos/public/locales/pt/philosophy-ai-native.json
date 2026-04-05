@@ -1,0 +1,47 @@
+{
+  "category": "Filosofia",
+  "title": "O Fim da Entrada de Dados",
+  "tagline": "Todas as ferramentas de negócios que você usa hoje foram projetadas antes da IA existir. O HABOS não foi. Você sentirá a diferença no primeiro dia — os formulários, os campos, o copiar e colar entre aplicativos — acabou.",
+  "heroPlaceholder": "Ilustração principal",
+  "section1": {
+    "heading": "O problema do bolt-on",
+    "body1": "A maioria das empresas de software pegou produtos construídos ao longo de duas décadas e adicionou um chatbot de IA no canto. O chatbot pode responder perguntas sobre dados para os quais nunca foi projetado para acessar, sugerir ações para as quais não tem autoridade e pesquisar em sistemas que nunca foram pensados para compartilhar contexto.",
+    "body2": "O resultado é um verniz de inteligência sobre uma arquitetura fundamentalmente sem inteligência. A IA fica ao lado do software. Ela não vive dentro dele."
+  },
+  "section2": {
+    "heading": "Construído com inteligência na fundação",
+    "body": "O HABOS foi projetado desde o primeiro dia com a IA como elemento estrutural, não como funcionalidade. Os três sistemas centrais que alimentam a plataforma — o Smart Router, o Brain e o Orquestrador de Agentes — são todos nativos de IA. Eles não envolvem software existente em um chatbot. Eles são o software."
+  },
+  "systems": [
+    {
+      "title": "O Smart Router",
+      "desc": "Um mecanismo de classificação de intenção de voz que pega uma única gravação de 30 segundos e extrai múltiplas ações de negócios estruturadas — tarefas, eventos de calendário, atualizações de CRM, ajustes de inventário — tudo de uma vez. Não é fala para texto. É fala para compreensão."
+    },
+    {
+      "title": "O Brain",
+      "desc": "Uma camada de busca semântica unificada em 19 fontes de dados, consultadas em paralelo. Quando você faz uma pergunta, o HABOS pesquisa suas reuniões, e-mails, CRM, projetos, notas de voz, documentos e playbooks simultaneamente — e entende significado, não apenas palavras-chave."
+    },
+    {
+      "title": "O Orquestrador de Agentes",
+      "desc": "Um mecanismo autônomo de planejamento e execução que pode dividir tarefas complexas em etapas, executar ferramentas, pausar para sua aprovação em qualquer coisa de alto risco e retomar — mesmo após reinicializações do servidor. Não é um chatbot com plugins. É uma máquina de estados completa com rastreamento de orçamento e recuperação de falhas."
+    }
+  ],
+  "architecturePlaceholder": "Diagrama de arquitetura",
+  "section3": {
+    "heading": "O que IA nativa significa na prática",
+    "body1": "Significa que um encanador termina um trabalho, fala por 30 segundos ao celular e o sistema cria o registro do trabalho, atualiza o inventário, gera a fatura, notifica o escritório e registra o tempo. Toda essa cadeia funciona porque cada módulo compartilha um único cérebro alimentado por IA — não porque alguém conectou 6 APIs.",
+    "body2": "Significa que quando a IA o prepara para uma reunião, ela busca no seu CRM, histórico de pedidos, transcrições de reuniões, notas de voz, e-mails, playbooks e tickets abertos — em uma única passagem. Não porque pesquisou 7 aplicativos separados. Porque todos esses dados vivem em um só lugar e foram projetados para serem raciocínados."
+  },
+  "section4": {
+    "heading": "O efeito cumulativo",
+    "body1": "Uma plataforma nativa de IA fica mais inteligente quanto mais você a usa. Depois de seis meses, o sistema sabe quais clientes recompram em ciclos previsíveis, quais operações consistentemente derivam, quais membros da equipe estão sobrecarregados e qual é o tempo médio para fechar diferentes tipos de negócio.",
+    "body2": "Essa inteligência organizacional acumulada é o fosso. Os dados podem ser exportados. A compreensão não."
+  },
+  "quote": "\"A IA não deveria ser algo a que você vai. Deveria ser algo que já está lá — tecido na forma como o software pensa, age e antecipa.\"",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "O Airlock",
+    "nextLabel": "Próximo",
+    "nextTitle": "Um Único Cérebro"
+  }
+}

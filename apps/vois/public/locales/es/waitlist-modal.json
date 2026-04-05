@@ -1,0 +1,62 @@
+{
+  "userTypes": ["Personal", "Trabajo", "Ambos"],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Amigo/colega",
+    "Motor de búsqueda",
+    "YouTube",
+    "Reddit",
+    "Otro"
+  ],
+  "useCases": [
+    "Tareas personales y recordatorios",
+    "Reuniones de trabajo y notas",
+    "Ideas y lluvia de ideas",
+    "Compras y listas",
+    "Seguimiento personalizado (salud, hábitos, etc.)"
+  ],
+  "devices": ["iPhone", "Apple Watch", "Mac"],
+  "stepUseCases": {
+    "heading": "¿Para qué usará VOIS?",
+    "subLabel": "Seleccione todas las opciones que apliquen",
+    "stepIndicator": "Paso 1 de 5"
+  },
+  "stepUserType": {
+    "heading": "¿Cómo usará VOIS?",
+    "subLabel": "Elija una opción",
+    "stepIndicator": "Paso 2 de 5"
+  },
+  "stepDevices": {
+    "heading": "¿Qué dispositivos usará?",
+    "subLabel": "Seleccione todas las opciones que apliquen",
+    "stepIndicator": "Paso 3 de 5"
+  },
+  "stepReferral": {
+    "heading": "¿Cómo se enteró de VOIS?",
+    "subLabel": "Esto nos ayuda a comprender nuestra comunidad",
+    "stepIndicator": "Paso 4 de 5"
+  },
+  "stepEmail": {
+    "heading": "¿Cuál es su correo electrónico?",
+    "subLabel": "Le enviaremos acceso anticipado cuando lancemos",
+    "placeholder": "Ingrese su correo electrónico",
+    "joining": "Uniéndose...",
+    "joinWaitlist": "Unirse a la lista de espera",
+    "stepIndicator": "Paso 4 de 5"
+  },
+  "stepSuccess": {
+    "heading": "¡Ya está en la lista!",
+    "willSendEmail": "Le enviaremos un correo a",
+    "whatsNext": "¿Qué sigue?",
+    "whatsNextBody": "¡Próximamente lanzamos! Usted será uno de los primeros en obtener acceso anticipado y actualizaciones exclusivas.",
+    "done": "Listo"
+  },
+  "continue": "Continuar",
+  "errors": {
+    "emailInvalid": "Por favor, ingrese una dirección de correo electrónico válida",
+    "emailExists": "¡Este correo ya está en la lista de espera!",
+    "joinFailed": "No se pudo unir a la lista de espera"
+  }
+}

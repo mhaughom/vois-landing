@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Taken & Operaties",
+  "hero": {
+    "title": "Beheer je operaties via spraak",
+    "description": "Dispatch taken, plan routes, volg projecten, beheer taken en log tijd — vanuit het veld of het kantoor, zonder papierwerk."
+  },
+  "items": [
+    {
+      "title": "Dispatch",
+      "desc": "Dagoverzicht met statusstroom, teamtoewijzing en klantmeldingen."
+    },
+    {
+      "title": "Routes",
+      "desc": "Slimme stopordering met kaartintegratie voor je team in het veld."
+    },
+    {
+      "title": "Projecten",
+      "desc": "Zie welke projecten aandacht nodig hebben — vastgelopen werk gesignaleerd voordat het escaleert."
+    },
+    {
+      "title": "Taken",
+      "desc": "Je belangrijkste taken komen als eerste naar boven, aangemaakt vanuit spraak of vergaderingen."
+    },
+    {
+      "title": "Tijdregistratie",
+      "desc": "Inklokken via mobiel, factureerbare uren per taak bijhouden, koppelen aan salarisadministratie."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "introMessage": "Hei! Jeg kan hjelpe deg med å utforske HABOS. Spør om en hvilken som helst funksjon — e-post, CRM, oppgaver, kalender — så tar jeg deg dit.",
+  "header": "HABOS Chat",
+  "placeholder": "Spør om en funksjon...",
+  "openChatAriaLabel": "Åpne chat",
+  "closeChatAriaLabel": "Lukk chat",
+  "sendMessageAriaLabel": "Send melding",
+  "talkToTeam": "Snakk med teamet",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
+}

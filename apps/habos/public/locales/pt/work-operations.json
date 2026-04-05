@@ -1,0 +1,69 @@
+{
+  "badge": "Inteligência Operacional",
+  "hero": {
+    "title": "Os Problemas Surgem Antes que Alguém Perceba.",
+    "description": "Defina as cadências do seu negócio. Os membros da equipe relatam por voz. A IA pontua a saúde automaticamente e sinaliza anomalias com ações corretivas."
+  },
+  "body": "O módulo de Operações não espera que alguém perceba os problemas — ele os detecta automaticamente. O administrador configura regras por operação: 'se a taxa de conclusão cair abaixo de 90%, sinalizar amarelo; abaixo de 70%, sinalizar vermelho.' Quando os membros da equipe enviam relatórios por voz, ditado, chat ou formulário, o sistema avalia cada regra, calcula pontuações de conformidade, produz status de saúde e exibe imediatamente os resultados no painel. Ao longo de múltiplos ciclos de relatórios, rastreia tendências e alerta sobre anomalias antes que se tornem crises.",
+  "dashboard": {
+    "title": "Painel de Saúde ao Vivo",
+    "items": {
+      "dailyRevenue": {
+        "name": "Relatório Diário de Receita",
+        "category": "Vendas"
+      },
+      "weeklySafety": {
+        "name": "Auditoria de Segurança Semanal",
+        "category": "Operações de Campo"
+      },
+      "monthlyEquipment": {
+        "name": "Verificação Mensal de Equipamentos",
+        "category": "Manutenção"
+      }
+    },
+    "aiAlert": {
+      "label": "Ação da IA:",
+      "message": "A conclusão da verificação de equipamentos caiu de 95% para 41% este mês. Recomendação: agendar treinamento obrigatório + reatribuir ao técnico sênior."
+    },
+    "footnote": "As pontuações de saúde são atualizadas automaticamente quando os relatórios são enviados. Sem rastreamento manual."
+  },
+  "benefits": {
+    "reporting": {
+      "title": "4 formas de relatar",
+      "description": "Entrevista por voz, ditado, chat ou formulário tradicional. Os trabalhadores de campo preenchem relatórios falando na volta do trabalho. Sem pranchetas."
+    },
+    "rules": {
+      "title": "Regras detectam problemas",
+      "description": "Configure limites: \"se receita_diária < $5K, sinalizar VERMELHO.\" A pontuação de conformidade rastreia a pontualidade. Atraso = pontuação proporcionalmente mais baixa."
+    },
+    "ai": {
+      "title": "Ações corretivas por IA",
+      "description": "Quando a saúde cai, a IA gera 3 a 5 ações específicas com níveis de urgência. Não conselhos vagos — próximos passos concretos roteados para as pessoas certas."
+    }
+  },
+  "comparison": {
+    "without": {
+      "label": "Sem o HABOS",
+      "description": "Sexta-feira: \"Como está a auditoria de segurança?\" \"Hmm, deixa eu verificar.\" Segunda-feira: \"Parece que 3 locais pularam.\" Quarta-feira: relatório de incidente.",
+      "outcome": "Problema descoberto: 5 dias depois"
+    },
+    "with": {
+      "label": "Com o HABOS",
+      "description": "Terça-feira: Alerta automático — \"Conclusão da auditoria de segurança em 67%, 3 locais em atraso. Sugerido: reatribuir a inspetores reservas.\" Ação tomada no mesmo dia.",
+      "outcome": "Problema sinalizado: no mesmo dia"
+    }
+  },
+  "techStrip": {
+    "items": [
+      "Diagramas de fluxo estilo BPMN",
+      "Pontuação de saúde baseada em regras",
+      "Sparklines de tendência de 7 dias",
+      "Ações corretivas por IA",
+      "4 modos de preenchimento de relatório"
+    ]
+  },
+  "cta": {
+    "heading": "Outras ferramentas rastreiam o que aconteceu. O HABOS detecta o que está prestes a dar errado.",
+    "button": "Entrar na Lista de Espera"
+  }
+}

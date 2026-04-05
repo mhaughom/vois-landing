@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "headline": "清空思绪的智能助理。",
+    "subheadline": "记录一切，整理交给我们。",
+    "definition": "任务 · 日历 · 想法 · 清单 · 自定义应用",
+    "cta": "申请访问",
+    "trustText": "未经您批准，一切不会改变。",
+    "watchVideo": "观看视频",
+    "endVideo": "结束视频",
+    "joinWaitlist": "加入候补名单",
+    "tryAgain": "重试"
+  },
+  "problem": {
+    "title": "普遍的谎言",
+    "body": [
+      "我们每个人都承受着隐形的重量。下午两点，你正走向下一个会议。脑子里同时转着购物清单、项目突破性想法、一封已发邮件的担忧，以及今天还没喝够水这件事。",
+      "你可以停下来，掏出手机，解锁，打开三个不同的应用，把这些全部输入。但你没有。你说出了那个普遍的谎言：「我记得住的。」",
+      "（你记不住的。）那些思维碎片会一直跟随你，偷走你的专注。"
+    ]
+  },
+  "solution": {
+    "title": "不同的反应",
+    "body": "现在，想象一种不同的反应。不再带着这份重量，而是直接按下手表（或手机）上的按钮。你不需要斟酌措辞，不需要盯着屏幕，只需开口说话。"
+  },
+  "demo": {
+    "input": "「好，提醒我周二联系 Sarah 谈合同。另外，我真的被房屋装修压得喘不过气，噪音太大了。哦，还有，我刚跑了5公里，用了25分钟，感觉不错。」",
+    "caption": "听起来很杂乱，听起来很人性化，这就是你的声音。Vois 倾听这些噪音，但它保存的是有价值的信号。"
+  },
+  "adapt": {
+    "title": "你的生活，你的空间",
+    "body": "想追踪头痛记录？冥想打卡？孩子的趣味语录？只需描述一下，Vois 立刻为你创建一个定制空间。系统由你来用，而不是由你来搭建。"
+  },
+  "privacy": {
+    "title": "你的思维，你做主",
+    "body": "Vois 在本地安全地整理你的想法。未经你批准，什么都不会确定。没有任何内容会被分享。只有你才拥有这把钥匙。",
+    "localFirst": "本地优先",
+    "encryptedSync": "加密同步",
+    "privacyIllustrationAlt": "隐私与控制",
+    "enterpriseTitle": "企业级安全",
+    "enterpriseBody": "你的数据受到全球最大企业信赖的同等基础设施保护。我们使用行业领先的服务确保可靠性与安全性。",
+    "securityIllustrationAlt": "企业安全",
+    "awsServers": "AWS 服务器",
+    "supabase": "Supabase",
+    "soc2": "SOC 2 合规"
+  },
+  "footer": {
+    "headline": "清醒的大脑，有序的生活。",
+    "subheadline": "停止为自己的存在做行政工作。把混乱交给 Vois，把清晰留给自己。",
+    "cta": "开始内测",
+    "tagline": "清空思绪。",
+    "colProduct": "产品",
+    "colSupport": "支持",
+    "colLegal": "法律",
+    "colSocial": "社交",
+    "linkLogin": "登录",
+    "linkDownloadIphone": "下载 iPhone 版",
+    "linkDownloadWatch": "下载 Watch 版",
+    "linkDownloadMac": "下载 Mac 版",
+    "linkHabos": "HABOS 企业版",
+    "linkHelpFaq": "帮助与常见问题",
+    "linkContactUs": "联系我们",
+    "linkSetupGuide": "设置指南",
+    "linkPrivacyPolicy": "隐私政策",
+    "linkTerms": "服务条款",
+    "linkRefund": "退款政策",
+    "linkTwitter": "X / Twitter",
+    "linkInstagram": "Instagram",
+    "linkTikTok": "TikTok",
+    "linkFacebook": "Facebook"
+  },
+  "videoTransition": {
+    "headline": "生活不会等你打开记事本。",
+    "p1": "走进会议室。站在淋浴间。即将出门的那一刻。",
+    "p2": "一个邀约，一项任务，一个你不能遗漏的想法。",
+    "p3": "你告诉自己：「我记得住的。」",
+    "p4": "（你记不住的。）"
+  },
+  "retrieve": {
+    "stepNumber": "3",
+    "headline": "以声音的速度检索。",
+    "bodyBefore": "自然提问，获得",
+    "bodyHighlight": "即时答案",
+    "bodyAfter": "。你的语音助理能从所有记录中精准找到你需要的内容。"
+  },
+  "faq": {
+    "title": "常见问题",
+    "items": [
+      {
+        "question": "个人版和工作版有什么区别？",
+        "answer": "个人版适用于日常生活——记录任务、想法、提醒和笔记。工作版额外提供会议转录、行动事项、团队协作工具和优先支持。"
+      },
+      {
+        "question": "我的语音数据是否私密？",
+        "answer": "是的。我们采用本地优先架构。您的录音经过安全处理，我们不会使用您的个人想法来训练公共模型。您的大脑是您自己的。"
+      },
+      {
+        "question": "我可以随时切换套餐或取消吗？",
+        "answer": "当然可以。您可以随时升级、降级或取消订阅。取消后，您的访问权限将保留至当前计费周期结束。"
+      },
+      {
+        "question": "如果不适合我怎么办？",
+        "answer": "我们提供30天退款保障。如果 Vois 在第一个月内无法帮助您清空思绪，请发送邮件给我们申请全额退款。"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "选择您的套餐",
+    "subtitle": "免费开始，准备好时再升级。",
+    "billingMonthly": "按月",
+    "billingAnnual": "按年",
+    "saveLabel": "最高节省40%",
+    "freePlanTitle": "免费版",
+    "freePlanDescription": "免费试用，无需信用卡",
+    "freePlanPeriod": "永久",
+    "freePlanCta": "免费下载",
+    "personalPlanTitle": "个人版",
+    "personalPlanBadge": "热门",
+    "personalPlanDescription": "适合日常生活管理",
+    "personalPlanPeriod": "/月",
+    "personalPlanCta": "加入候补名单",
+    "personalPlanNote": "随时取消，30天退款保障。",
+    "workPlanTitle": "工作版",
+    "workPlanDescription": "适合专业人士和团队",
+    "workPlanPeriod": "/月",
+    "workPlanCta": "加入候补名单",
+    "workPlanNote": "随时取消，30天退款保障。"
+  }
+}

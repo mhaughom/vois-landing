@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "category": "Soluções — Operações em Campo",
+    "title": "Do campo ao escritório em 30 segundos.",
+    "subtitle": "Uma nota de voz no local vira um relatório completo, um projeto atualizado e uma fatura enviada — antes da van sair da calçada.",
+    "description": "Construção, entrega, gestão de imóveis, instalação, inspeção, paisagismo, energia solar, controle de pragas e qualquer negócio onde a lacuna entre campo e escritório é sua maior fonte de desperdício."
+  },
+  "body": {
+    "section1": {
+      "heading": "Seis problemas. Seis soluções.",
+      "problem1": {
+        "problem": "O despachante tem um quadro branco e um telefone que não para de tocar. Um trabalho é reagendado à noite por e-mail. Ninguém vê. O técnico 2 dirige para o endereço errado. Quarenta minutos desperdiçados.",
+        "fix": "O HABOS processa o e-mail de reagendamento durante a noite. Trabalho movido. Cliente notificado. Rota recalculada. Cada técnico vê sua rota otimizada no celular às 7h. Sem ligações. Sem quadro branco."
+      },
+      "problem2": {
+        "problem": "O técnico termina um trabalho. Tira fotos com o celular pessoal. Manda mensagem ao escritório \"Johnson pronto, demorou mais do esperado.\" Sem dados estruturados. As fotos ficam no celular por semanas.",
+        "fixIntro": "Toque em \"Concluir trabalho\" no HABOS. Tire fotos — armazenadas no registro do trabalho. Grave uma nota de voz de trinta segundos:",
+        "voiceNote": "\"Instalação concluída. Tivemos que substituir o suporte de montagem — usamos um Hilti KB-TZ no lugar, 340 coroas. O cliente está feliz, mas o acabamento na parede sul precisa de acompanhamento na próxima semana.\"",
+        "fixResult": "Analisado em: trabalho concluído, peças registradas (340 NOK), visita de acompanhamento criada, sentimento positivo. O escritório vê em tempo real."
+      },
+      "problem3": {
+        "problem": "O cliente liga: \"Onde está o técnico?\" O despachante liga para o técnico — sem resposta, estão no telhado. Liga de volta para o cliente: \"Ele deve chegar em breve.\" O cliente está frustrado. O técnico estava a cinco minutos.",
+        "fix": "O despachante dá uma olhada no mapa GPS da equipe. Ponto verde, duas ruas de distância, ETA quatro minutos. \"Ele estará com você em cerca de cinco minutos.\" Pronto. Sem jogo de telefone."
+      },
+      "problem4": {
+        "problem": "17h30. O gerente de projeto passa noventa minutos transcrevendo textos e notas. Metade dos dados está faltando. Três fotos nunca foram enviadas. Um trabalho não tem registro algum. O horário de amanhã é construído de memória.",
+        "fix": "Cada trabalho tem um relatório de voz, fotos, carimbos de data/hora e peças usadas. O despacho de amanhã é construído a partir de roteamento otimizado por IA. Três faturas rascunhadas a partir de trabalhos concluídos — revisadas e enviadas em dez minutos."
+      },
+      "problem5": {
+        "problem": "As rotas são planejadas por intuição. A equipe 1 cruza a cidade de um lado ao outro. A equipe 3 passa pelo próximo trabalho da equipe 2 no caminho para o seu. Você perde uma hora por dia com roteamento ruim.",
+        "fix": "O HABOS atribui trabalhos por habilidade, localização e disponibilidade. Rotas calculadas automaticamente. A equipe 1 pega o loop do norte, a equipe 2 o centro, a equipe 3 o sul. 15–20% mais eficiente que o agendamento manual."
+      },
+      "problem6": {
+        "problem": "As horas de condução não são registradas. O tempo faturável é estimado. Ninguém sabe quem entrou onde. A conformidade é uma dor de cabeça.",
+        "fix": "GPS ao chegar ao local. Saída ao partir. Horas de condução registradas automaticamente. Horas faturáveis calculadas e vinculadas ao faturamento."
+      }
+    },
+    "section2": {
+      "heading": "O que custa",
+      "p1": "O ServiceTitan começa em $145/mês. O Jobber em $69. Adicione o Routific para roteamento, o Toggl para controle de tempo e o Dropbox para fotos de trabalho e você facilmente passa de $250.",
+      "p2": "O HABOS faz tudo isso por $35 por mês. Despacho, roteamento, relatórios de voz, rastreamento GPS, registro de tempo, faturamento e portal do cliente — em um sistema."
+    },
+    "stats": [
+      ["2 hrs/dia", "economizadas em entrada de dados"],
+      ["90 min/dia", "economizados em despacho"],
+      ["15-20%", "rotas mais eficientes"],
+      ["0", "registros de trabalho perdidos"]
+    ],
+    "labels": {
+      "problem": "Problema",
+      "fix": "Solução"
+    },
+    "testimonial": {
+      "quote": "\"Antes do HABOS, eu passava horas todas as noites ligando para os técnicos para saber o que havia acontecido hoje. Agora olho para o painel às 17h e cada trabalho tem um relatório de voz com fotos. Passamos de 6 trabalhos por dia para 7 porque o roteamento é mais inteligente e ninguém perde tempo com papelada.\"",
+      "attribution": "— Erik, 45 · Empresa de construção · 12 trabalhadores de campo · Stavanger"
+    },
+    "cta": {
+      "heading": "Feche a lacuna entre seu campo e seu escritório — permanentemente.",
+      "button": "Entrar na lista de espera"
+    }
+  }
+}

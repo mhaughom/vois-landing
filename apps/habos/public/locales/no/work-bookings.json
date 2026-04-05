@@ -1,0 +1,54 @@
+{
+  "badge": "Bestillinger",
+  "hero": {
+    "title": "Null dobbeltbestillinger.\nGarantert.",
+    "description": "Kunden velger en tid, systemet låser den atomisk, oppretter ordren, oppdaterer CRM-kontakten og varsler teamet — alt i én transaksjon."
+  },
+  "body": "PostgreSQL-rådgivningslåser forhindrer dobbeltbestillinger selv under ekstrem samtidig belastning. Hvis to personer klikker på samme tidsluke i samme millisekund, vinner én — den andre ser «tidsluke opptatt» umiddelbart. Når en bestilling bekreftes, oppretter eller kobler HABOS atomisk en CRM-klient, genererer en ordre med linjeartikler, trekker fra lager og varsler det tildelte teammedlemmet. Avbestilling? Lageret gjenopprettes og ordren oppdateres. Én transaksjon, ingen webhook-forsinkelser, ingen foreldreløse poster.",
+  "grid": {
+    "serviceTitle": "HVAC-vedlikehold",
+    "serviceMeta": "60 min · kr 1 500",
+    "selectedPrefix": "Valgt:",
+    "confirmButton": "Bekreft bestilling"
+  },
+  "confirmationSteps": [
+    "Bestilling bekreftet",
+    "Ordre #1248 opprettet",
+    "Sarah Henderson lagt til i CRM",
+    "Team varslet"
+  ],
+  "advisoryLock": "PostgreSQL-rådgivningslåser forhindrer dobbeltbestillinger selv under ekstrem samtidig belastning. Hvis to personer klikker på samme tidsluke i samme millisekund, vinner én — den andre ser «tidsluke opptatt» umiddelbart.",
+  "benefits": {
+    "bookOrder": {
+      "title": "Bestilling → ordre → CRM",
+      "body": "Én bestilling oppretter alt: ordre med linjeartikler, CRM-kontaktoppdatering, personalvarsel og kundebekreftelse på e-post. Null manuelle trinn."
+    },
+    "stock": {
+      "title": "Smart lagerreservasjon",
+      "body": "Beholdning sporet gjennom ventende → bekreftet → fullført. Ingen oversalg, ingen manuelle lagerkontroller."
+    },
+    "api": {
+      "title": "Offentlige + interne API-er",
+      "body": "Personalet bestiller fra dashbordet. Kunder bestiller fra nettstedet ditt eller planleggingslenker. Samme atomiske beskyttelse, samme tilgjengelighetspulje."
+    }
+  },
+  "beforeAfter": {
+    "withoutTitle": "Uten HABOS",
+    "withoutText": "Kunden sender e-post for å bestille. Du sjekker kalenderen. Svarer med ledige tider. De velger én. Du oppretter avtalen, fakturaen og legger dem til i kontaktene. 8 trinn, 3 apper.",
+    "withoutStat": "~15 min per bestilling",
+    "withTitle": "Med HABOS",
+    "withText": "Kunden velger en tid på nettstedet ditt. Ferdig. Ordre, CRM-oppføring, varsel og bekreftelse på e-post skjer automatisk.",
+    "withStat": "~30 sekunder (deres tid, ikke din)"
+  },
+  "techStrip": [
+    "PostgreSQL-rådgivningslåser",
+    "Atomisk tidslukebeskyttelse",
+    "Automatisk ordreoppretting",
+    "Sikker mot løpsforhold",
+    "Selvavbestillingslenker"
+  ],
+  "closing": {
+    "title": "Andre bestillingsverktøy er en separat kalender.\nHABOS-bestillinger er koblet til hele virksomheten din.",
+    "cta": "Bli med på ventelisten"
+  }
+}

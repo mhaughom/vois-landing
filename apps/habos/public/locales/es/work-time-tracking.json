@@ -1,0 +1,50 @@
+{
+  "badge": "Tiempo y nómina",
+  "hero": {
+    "title": "Fiche. Nosotros hacemos los cálculos.",
+    "description": "Seguimiento de tiempo verificado por GPS con cálculo automático de horas extra, seguimiento de pausas y facturación lista para nómina — sin hojas de tiempo, sin hojas de cálculo."
+  },
+  "body": "El seguimiento de ubicación solo se activa durante una sesión de trabajo — sin sesión significa sin acceso al GPS. Privacidad por diseño. El sistema captura puntos GPS, calcula horas regulares versus horas extra por día calendario y activa notificaciones asíncronas al gerente cuando se superan los umbrales diarios. Al final del mes, las horas de cada miembro del equipo ya están calculadas, las horas extra desglosadas y los importes de facturación calculados con tarifas por hora y de horas extra configurables. Exporte a nómina con un clic.",
+  "timecard": {
+    "heading": "Mike Torres — Esta semana",
+    "summary": "36,5 hrs regulares · 4,5 hrs extra",
+    "days": [
+      { "day": "Lun", "range": "7:00 AM → 3:30 PM", "hours": "8,0 hrs", "badge": "Regular" },
+      { "day": "Mar", "range": "6:45 AM → 4:15 PM", "hours": "9,0 hrs", "badge": "1,0 HE" },
+      { "day": "Mié", "range": "7:00 AM → 5:00 PM", "hours": "9,5 hrs", "badge": "1,5 HE" },
+      { "day": "Jue", "range": "7:15 AM → 3:45 PM", "hours": "8,0 hrs", "badge": "Regular" },
+      { "day": "Vie", "range": "7:00 AM → 1:30 PM", "hours": "6,5 hrs", "badge": "Medio día" }
+    ],
+    "totalLine": "Total: 41,0 hrs | Regular: 36,5 × $45/hr = $1.642,50 | HE: 4,5 × $67,50/hr = $303,75 | Total: $1.946,25",
+    "footnote": "Horas extra calculadas automáticamente por día calendario. El gerente es notificado cuando se supera el umbral diario."
+  },
+  "benefits": {
+    "gps": {
+      "title": "GPS con privacidad primero",
+      "description": "El seguimiento de ubicación solo se activa durante una sesión de trabajo. Sin sesión = sin acceso al GPS. Los trabajadores controlan cuándo se les rastrea."
+    },
+    "pause": {
+      "title": "Pausa/reanudación",
+      "description": "Registre pausas dentro de una sesión. El sistema calcula automáticamente el tiempo regular versus el tiempo en pausa. Sin deducciones manuales."
+    },
+    "alerts": {
+      "title": "Alertas al gerente",
+      "description": "El fichaje de salida activa una verificación asíncrona de horas extra. Si las horas diarias superan el umbral (8h por defecto), el gerente recibe notificación mediante la jerarquía del organigrama."
+    }
+  },
+  "scenario": "Fin de mes. En lugar de recoger hojas de tiempo en papel, corregir errores matemáticos y cruzar referencias con registros de trabajo — abre HABOS. Las horas de cada miembro del equipo ya están calculadas, las horas extra desglosadas, los importes de facturación calculados. Exporte a nómina con un clic. Son 4 horas de trabajo administrativo, eliminadas.",
+  "scenarioHighlight": "Son 4 horas de trabajo administrativo, eliminadas.",
+  "techStrip": {
+    "items": [
+      "Sesiones protegidas por GPS",
+      "Kilometraje Haversine",
+      "Cálculo de horas extra por día",
+      "Tasa HE predeterminada de 1,5×",
+      "Exportación lista para nómina"
+    ]
+  },
+  "cta": {
+    "heading": "Otros rastreadores de tiempo hacen llorar a su contador. HABOS hace la nómina sin dolor.",
+    "button": "Unirse a la lista de espera"
+  }
+}

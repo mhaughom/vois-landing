@@ -1,0 +1,63 @@
+{
+  "badge": "AI Website Builder",
+  "hero": {
+    "title": "Descrivi il Tuo Sito. Si Costruisce da Solo.",
+    "description": "Di' a HABOS cosa ti serve. L'AI genera un sito React multi-pagina completo con il tuo brand, prodotti, prenotazioni e moduli — distribuito immediatamente su un URL live."
+  },
+  "body": "Inserisci l'URL di un concorrente o di un sito di riferimento. L'automazione browser cattura screenshot a pagina intera, estrae il contenuto DOM, analizza i token di design CSS e rileva logo e immagini. Prima che l'AI costruisca, HABOS inietta dieci livelli di contesto dello spazio di lavoro: token brand, catalogo prodotti, widget di prenotazione, componenti shop, embed di moduli, superfici campagna e un manifest di asset. I prodotti aggiunti in HABOS appaiono automaticamente sul sito web. Le prenotazioni fluiscono nel tuo calendario. Gli invii dei moduli creano ticket o lead CRM.",
+  "mockSite": {
+    "urlBar": "henderson-plumbing.habos.site",
+    "brandName": "Henderson Plumbing",
+    "navLinks": ["Servizi", "Chi Siamo", "Contatti"],
+    "bookButton": "Prenota Ora",
+    "tagline": "Autorizzati e Assicurati dal 1985",
+    "services": [
+      { "name": "Riparazione di Emergenza" },
+      { "name": "Scaldabagno" },
+      { "name": "Ristrutturazione Bagno" }
+    ]
+  },
+  "caption": {
+    "prefix": "Generato da: ",
+    "prompt": "Costruisci un sito web per azienda idraulica con i nostri servizi e un widget di prenotazione.",
+    "suffix": " Colori brand, prodotti e disponibilità estratti automaticamente dal tuo spazio di lavoro."
+  },
+  "benefits": [
+    {
+      "title": "Clona e migliora",
+      "body": "Inserisci l'URL di un concorrente. HABOS cattura screenshot, estrae token di design e lo ricostruisce come app React moderna con il tuo brand e widget di commercio live."
+    },
+    {
+      "title": "10 livelli di arricchimento",
+      "body": "Token brand, catalogo prodotti, widget di prenotazione, componenti shop, embed di moduli, superfici campagna, manifest asset — tutti iniettati prima che l'AI costruisca."
+    },
+    {
+      "title": "Rollback con un clic",
+      "body": "Crea versioni illimitate. Visualizza l'anteprima prima di pubblicare. Torna a qualsiasi versione precedente immediatamente. Il tuo sito live non è mai a rischio."
+    }
+  ],
+  "widgetsLabel": "Widget live che si connettono al tuo backend",
+  "widgets": [
+    { "label": "Catalogo prodotti" },
+    { "label": "Calendario prenotazioni" },
+    { "label": "Carrello acquisti" },
+    { "label": "Checkout" },
+    { "label": "Modulo di contatto" },
+    { "label": "Offerte campagna" }
+  ],
+  "scenario": {
+    "heading": "Come funziona in pratica",
+    "body": "Un nuovo cliente si iscrive e inserisce l'URL del suo sito web attuale. HABOS lo scansiona — cattura design, contenuto, immagini e token brand. In meno di 2 minuti, appare una versione ricostruita con il commercio, le prenotazioni e i moduli HABOS integrati. I prodotti aggiunti nella dashboard appaiono automaticamente sul sito web. Le prenotazioni fluiscono nel calendario. Gli invii dei moduli creano ticket. Un unico livello dati, ovunque."
+  },
+  "techItems": [
+    "VibeSDK su Cloudflare Workers",
+    "React Router multi-pagina",
+    "Iniezione token brand",
+    "Widget web component",
+    "Supporto dominio personalizzato"
+  ],
+  "cta": {
+    "heading": "Gli altri website builder sono drag-and-drop. HABOS lo costruisce per te.",
+    "button": "Iscriviti alla lista d'attesa"
+  }
+}

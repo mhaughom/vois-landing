@@ -1,0 +1,26 @@
+{
+  "category": "Philosophy",
+  "title": "One Assistant, Not a Hundred Tools",
+  "tagline": "VOIS knows your entire business. Ask anything, from anywhere.",
+  "heroAlt": "One assistant with full business context",
+  "section1": {
+    "heading": "You are the integration",
+    "body": "It's 9pm. A client emails asking if you can meet Thursday. To reply, you need your availability from Calendly, your history from the CRM, and whether they've paid their last invoice from accounting. Three apps. Three logins. Five minutes of clicking. For a reply that should take ten seconds."
+  },
+  "section2": {
+    "heading": "What one assistant means",
+    "body1": "\"What's my history with Acme Corp?\" — VOIS searches emails, meeting transcripts, voice recordings, CRM notes, invoices, and project files. In two seconds, a unified timeline appears. 14 emails, 3 meetings with transcripts, last invoice paid Feb 12, active project at 68%. Try doing that across five separate apps.",
+    "body2": "\"Reply to Sarah and tell her Thursday works.\" — One sentence in. VOIS knows who Sarah is (CRM), what she asked about (inbox), that Thursday is open (calendar), and how the plumber usually writes (sent history). A complete, personalized email appears as a preview card. Nothing sends without the Airlock."
+  },
+  "section3": {
+    "heading": "Not just a chatbot",
+    "body": "There's a full platform behind the assistant. You can open the calendar directly, browse the CRM, edit invoices, manage projects — all through traditional interfaces. The assistant is one way in, not the only way in. Some things are faster to say. Some things are faster to see. VOIS gives you both."
+  },
+  "quote": "\"You shouldn't need to be your own secretary just because you use business software.\"",
+  "nav": {
+    "prevLabel": "Previous",
+    "prevTitle": "Everything in One Place",
+    "nextLabel": "Next",
+    "nextTitle": "Built for Teams"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "category": "Filosofi",
+  "title": "Luftsluset",
+  "tagline": "AI foreslår. Du beslutter.",
+  "heroAlt": "Luftsluset",
+  "section1": {
+    "heading": "Problemet ingen taler om",
+    "body1": "Det farligste ved AI er ikke, at den tager fejl. Det er, at den handler, inden du kan tjekke. En salgsbot tilbyder 40% rabat, der overtræder margenpolitikken. Et bookingsystem dobbeltbooker, fordi det optimerede for tæthed uden at forstå køretid. Dette er ikke hypotetiske scenarier.",
+    "body2": "Kun 6% af virksomheder siger, at de fuldt ud stoler på autonome AI-agenter. De andre 94% har ret i at være forsigtige. Vi har bygget det modsatte: enhver handling AI'en foretager, passerer igennem det, vi kalder Luftsluset — en obligatorisk forhåndsvisning, hvor du ser præcis, hvad der er ved at ske, inden det sker."
+  },
+  "section2": {
+    "heading": "Sammenligningen"
+  },
+  "comparison": [
+    { "action": "E-mailafsendelse", "auto": "Sendt med det samme. Direktøren finder en stavefejl, efter 200 har læst den.", "airlock": "Kladde vises som et kort. Du retter stavefejlen, trykker send." },
+    { "action": "Kalenderændringer", "auto": "Dobbeltbooket tirsdag — tjekkede ikke din personlige kalender.", "airlock": "Forhåndsvisning viser konflikten. Du vælger det rigtige tidspunkt." },
+    { "action": "Oprettelse af opgaver", "auto": "14 opgaver fra ét møde. 6 er dubletter.", "airlock": "Foreslået liste. Du fletter to, sletter én, godkender resten." },
+    { "action": "Kundekommunikation", "auto": "Svarede med en rabat, du ikke tilbyder længere.", "airlock": "Svar vises som forhåndsvisning. Du justerer tilbuddet, sender derefter." }
+  ],
+  "tableHeaders": {
+    "action": "Handling",
+    "auto": "Fuldt autonomt",
+    "airlock": "Luftsluset"
+  },
+  "section3": {
+    "heading": "Ikke et UI-mønster. En sikkerhedsprotokol.",
+    "body": "Enhver skrivehandling genererer et HMAC-SHA256-signeret bekræftelsestoken, der binder brugeren, den nøjagtige handling og de præcise argumenter — ned til enkeltzeichen i en e-mailkladde. Tokens udløber om 10 minutter. Hvis noget ændrer sig mellem forhåndsvisning og bekræftelse, ugyldiggøres tokenet. AI'en kan ikke ændre handlingen, efter den er vist for dig. Det, du godkendte, er præcis det, der udføres."
+  },
+  "quote": "\"Pausen er ikke en begrænsning. Det er grunden til, at du vil stole på dette med din virksomhed.\"",
+  "section4": {
+    "heading": "Dine data. Din infrastruktur. Dine regler.",
+    "body": "Tillid handler ikke kun om, hvad AI'en gør — det handler om, hvor dine data lever. HABOS kører, hvor du har brug for det: vores cloud, dine servere eller fuldstændig luftgappet uden internetafhængighed. Den samme platform, de samme funktioner, uanset hvor dine data skal befinde sig."
+  },
+  "deploymentOptions": [
+    {
+      "title": "Cloud",
+      "body": "Railway til beregning, Supabase til database og de store hyperscalere til LLM. Produktionsklar fra dag ét.",
+      "badges": ["Railway", "Supabase", "Cloudflare"]
+    },
+    {
+      "title": "On-Prem",
+      "body": "Deployer den fulde backend på din lokation. Kør Qwen-modeller på standard Mac-hardware til lokal AI — ingen GPU-klynge kræves.",
+      "badges": ["Qwen-modeller", "Mac-kompatibel", "Selvhostet DB"]
+    },
+    {
+      "title": "Luftgappet datacenter",
+      "body": "For maksimal isolation, deployer et lokalt datacenter med modeller som Kimi K2. Fulde AI-muligheder uden internetafhængighed.",
+      "badges": ["Kimi K2", "Luftgappet", "Nul egress"]
+    }
+  ],
+  "section5": {
+    "heading": "Sikkerhed på hvert lag"
+  },
+  "securityItems": [
+    {
+      "title": "Kryptografiske godkendelsestokens",
+      "body": "Enhver AI-handling er signeret og manipulationssikker."
+    },
+    {
+      "title": "Rækkebaseret sikkerhed på enhver tabel",
+      "body": "Brugere ser kun data, de er autoriseret til at tilgå."
+    },
+    {
+      "title": "Budgetsporing pr. kørsel",
+      "body": "AI-forbrug spores og begrænses pr. agent, pr. opgave."
+    },
+    {
+      "title": "Fuld revisionsspor",
+      "body": "Enhver handling, enhver beslutning, permanent logget."
+    }
+  ],
+  "nav": {
+    "nextLabel": "Næste",
+    "nextTitle": "Alt ét sted"
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "features": {
+    "yourAssistant": {
+      "headline": "一个了解你整个业务的 AI。",
+      "body": "VOIS 学习你的流程、偏好、历史和上下文。它不只是回答问题——它预判需求、起草回复，并代表你在每一个工具上采取行动。",
+      "closingLine": "其他助手需要指令。VOIS 早已知晓。"
+    },
+    "yourSuperAssistant": {
+      "headline": "语音、手表、收件箱、记忆——一个大脑。",
+      "body": "对着手表说话、在车里口述、转发一封邮件、或随手记录。每一个输入都进入同一个智能系统，自动路由、排优先级并永久记忆。",
+      "closingLine": "一个大脑。每一个界面。"
+    },
+    "yourDay": {
+      "headline": "每个早晨，已为你规划好。",
+      "body": "VOIS 在夜间梳理你的任务、日历、截止日期和优先级。每天早晨你将收到一份建议日程，包含主题时间块、会议准备笔记以及需要关注的重点事项。",
+      "closingLine": "你的一天不应以决策开始，而应以计划开始。"
+    },
+    "meetings": {
+      "headline": "充分准备。全程记录。即刻行动。",
+      "body": "每次会议前提供个性化简报。会议中进行实时转录并区分发言人。会议后提取行动事项，分配至正确的项目和负责人。",
+      "closingLine": "其他工具只做转录。VOIS 准备、捕获并行动。"
+    },
+    "projects": {
+      "headline": "在停滞之前，掌握它需要你的地方。",
+      "body": "AI 健康评分监控任务完成情况、活动规律和时间线进展。当项目陷入沉寂或里程碑延误时，VOIS 主动预警并建议下一步行动。",
+      "closingLine": "仪表盘展示已发生的事。VOIS 告诉你下一步该做什么。"
+    },
+    "operations": {
+      "headline": "你的业务自我监控。",
+      "body": "VOIS 监控 KPIs、工作流和周期性流程。当某项指标偏离正常——延迟交付、错过 SLA、预算超支——它会附带上下文和建议行动向你告警。",
+      "closingLine": "停止救火。开始预防。"
+    },
+    "clients": {
+      "headline": "每一段关系，完整上下文。",
+      "body": "VOIS 从每一次互动中构建丰富档案——会议、邮件、笔记、任务。在任何对话前，你都能看到完整历史、情绪趋势以及 AI 建议的谈话要点。",
+      "closingLine": "你的 CRM 不该是数据库，而应该是记忆。"
+    },
+    "documents": {
+      "headline": "口述需求，获取文档。",
+      "body": "描述你需要的内容——项目简报、提案、周报——VOIS 从你的语音中生成结构化文档，并从你的项目和数据中提取上下文。",
+      "closingLine": "停止盯着空白页。开始说话。"
+    },
+    "finance": {
+      "headline": "每一分钱，一目了然。",
+      "body": "收入、支出、发票和预测，统一呈现在一个 AI 驱动的仪表盘中。VOIS 自动归类交易、标记异常，并用自然语言回答关于财务数据的问题。",
+      "closingLine": "你的账本应该能自己解释。"
+    },
+    "website": {
+      "headline": "你的网站，由 AI 构建。",
+      "body": "描述你的业务，VOIS 生成完整网站——文案、布局、图片、SEO。用语音更新内容。无需写代码即可接入表单、预约和支付。",
+      "closingLine": "你的网站不需要开发者。"
+    },
+    "aiAgents": {
+      "headline": "你的前十名员工不需要薪水。",
+      "body": "在组织架构图中构建你的 AI 团队。为 Agent 分配角色——研究员、写手、分析师、运营。每个 Agent 都有职责、工具、预算和汇报关系。它们先规划再行动，遇到关键节点暂停等待审批。",
+      "closingLine": "ChatGPT 回答问题。VOIS 的 Agent 完成任务。"
+    },
+    "reports": {
+      "headline": "90 秒口述完成报告。",
+      "body": "上传模板，VOIS 自动提取每个字段。全程用语音填写——AI 逐字段引导采访，并预填已知数据。",
+      "closingLine": "十个问题。搞定。"
+    },
+    "yourTeam": {
+      "headline": "每一位员工，都有超级助手。",
+      "body": "为每位团队成员配备专属 AI 助手，了解公司上下文、流程和历史。入职引导、日常规划、知识查询、任务管理——按角色个性化定制。",
+      "closingLine": "将你的最佳实践扩展到每一个席位。"
+    },
+    "playbooks": {
+      "headline": "你的 SOPs，活跃且被执行。",
+      "body": "将标准操作程序转化为动态工作流。VOIS 监控合规情况，引导团队成员完成每个步骤，并在偏差成为问题之前发出预警。",
+      "closingLine": "SOPs 不该躺在文件夹里。它们应该自我运行。"
+    },
+    "fieldToOffice": {
+      "headline": "信息差，彻底消除。",
+      "body": "技术人员完成工作后口述 30 秒更新。办公室即刻看到——结构化、归档完毕，并链接至正确的项目、客户和发票。无需电话，无需手动录入。",
+      "closingLine": "现场永远不再落后一天。"
+    },
+    "theAirlock": {
+      "headline": "AI 能力。人类掌控。",
+      "body": "每一个 AI 操作都经过气闸——一张带有加密确认的预览卡。AI 提出方案，你审阅精确输出，然后批准。没有你的明确授权，任何内容都不会被发送、创建或修改。",
+      "closingLine": "信任不是一个设置。它是一种架构。"
+    },
+    "yourMemory": {
+      "headline": "询问你说过或读过的任何内容。",
+      "body": "跨全部 19 个数据源进行搜索——语音录音、邮件、文档、会议转录、CRM 笔记——采用语义搜索。即使你不记得内容在哪个应用里，VOIS 也能找到答案。",
+      "closingLine": "你的第二大脑，拥有完美记忆。"
+    },
+    "growthEngine": {
+      "headline": "分享一条会议记录。赢得一名客户。",
+      "body": "共享的会议记录成为增长渠道。接收者看到你的公司预览，获得促销优惠，并以预填了自己公司数据的工作区完成注册。",
+      "closingLine": "你的产品通过它完成的工作来销售自己。"
+    }
+  },
+  "panels": {
+    "yourAssistant": {
+      "badge": "全面感知",
+      "heading": "它早已了解你的业务。",
+      "description": "学习你的流程、偏好和历史。在你开口前预判你的需求。",
+      "tags": ["邮件", "会议", "项目", "CRM", "文档", "语音"],
+      "stat": "19",
+      "statLabel": "数据来源",
+      "statSub": "并行检索",
+      "statMore": "还有 13 个",
+      "statDesc": "语音、邮件、CRM、\n文档、聊天、项目，\n以及 {{count}} 个更多。",
+      "quote": "其他助手需要指令。\nVOIS 早已知晓。"
+    },
+    "yourSuperAssistant": {
+      "badge": "输入方式",
+      "voiceLabel": "语音",
+      "voiceDesc": "自然说话",
+      "watchLabel": "手表",
+      "watchDesc": "轻触手腕",
+      "emailLabel": "邮件",
+      "emailDesc": "直接转发",
+      "chatLabel": "聊天",
+      "chatDesc": "打字或发短信",
+      "slackLabel": "Slack",
+      "slackDesc": "发送指令",
+      "quote": "一个大脑。\n每一个界面。",
+      "mainBadge": "每个端，一个大脑",
+      "heading": "说、打、点、转发。\n一切汇聚一处。",
+      "description": "每一个输入都被路由、排序和记忆——无论你用哪个设备。",
+      "devices": ["手表", "手机", "桌面", "收件箱"]
+    },
+    "yourDay": {
+      "badge": "晨间简报",
+      "heading": "你的一天，\n在你醒来前已规划好。",
+      "description": "VOIS 在夜间梳理任务、日历和截止日期。你醒来时已有一份建议日程。",
+      "stat": "7 AM",
+      "statLabel": "你的计划已就绪",
+      "statSub": "在你熟睡时生成",
+      "statNote": "零决策负担",
+      "statDesc": "时间块、准备笔记，\n以及标记的优先事项。",
+      "quote": "你的一天应以计划开始，而非决策。"
+    },
+    "meetings": {
+      "badge": "完整闭环",
+      "heading": "充分准备。全程记录。\n即刻行动。",
+      "beforeLabel": "会议前",
+      "beforeDesc": "个性化简报",
+      "duringLabel": "会议中",
+      "duringDesc": "实时转录",
+      "afterLabel": "会议后",
+      "afterDesc": "行动事项分发",
+      "step1": "准备",
+      "step1Sub": "自动简报",
+      "step2": "记录",
+      "step2Sub": "实时转录",
+      "step3": "行动",
+      "step3Sub": "任务路由",
+      "quote": "其他工具只做转录。\nVOIS 准备、捕获，\n并采取行动。",
+      "stat": "0",
+      "statLabel": "人工跟进",
+      "statSub": "行动自动路由至项目"
+    },
+    "projects": {
+      "healthBadge": "健康度",
+      "statusOnTrack": "正常推进",
+      "statusAtRisk": "存在风险",
+      "statusStalled": "已停滞",
+      "pctOnTrack": "82%",
+      "pctAtRisk": "14%",
+      "pctStalled": "4%",
+      "badge": "主动，而非被动",
+      "heading": "在停滞之前，\n掌握它需要你的地方。",
+      "description": "AI 监控完成情况、活动和时间线。当项目陷入沉寂，VOIS 预警并建议下一步。",
+      "signals": ["停滞任务", "错过里程碑", "活动骤降", "时间线偏移"],
+      "quote": "仪表盘展示已发生的事。\nVOIS 告诉你下一步该做什么。"
+    },
+    "operations": {
+      "badge": "全时监控",
+      "heading": "你的业务\n自我监控。",
+      "description": "KPIs、工作流、周期性流程。一旦出现偏差，你立即获得上下文和修复建议。",
+      "trigger1": "延迟交付",
+      "action1": "自动通知客户",
+      "trigger2": "错过 SLA",
+      "action2": "升级至负责人",
+      "trigger3": "预算超支",
+      "action3": "标记审核",
+      "stat": "24/7",
+      "statLabel": "监控",
+      "statSub": "零人力占用",
+      "quote": "停止救火。\n开始预防。"
+    },
+    "clients": {
+      "badge": "全上下文 CRM",
+      "heading": "每一段关系，\n完整记忆。",
+      "description": "从每一次互动中构建丰富档案。任何通话前，查看完整历史和 AI 建议的谈话要点。",
+      "lastContactKey": "上次联系",
+      "lastContactVal": "3 天前 — 邮件",
+      "sentimentKey": "情绪",
+      "sentimentVal": "积极，投入",
+      "openItemsKey": "待处理事项",
+      "openItemsVal": "2 份提案待确认",
+      "nextStepKey": "下一步",
+      "nextStepVal": "跟进定价问题",
+      "callBadge": "每次通话前",
+      "callDesc": "历史、情绪、\n待处理事项、谈话要点\n——自动准备好。",
+      "callDescHighlight": "自动准备好",
+      "quote": "你的 CRM 应该是记忆，而非数据库。"
+    },
+    "documents": {
+      "stat": "语音",
+      "statLabel": "生成文档",
+      "types": ["简报", "提案", "报告", "更新"],
+      "quote": "停止盯着空白页。开始说话。",
+      "badge": "说，不要打字",
+      "heading": "描述你需要的。\n获取完整文档。",
+      "description": "VOIS 从你的项目中提取上下文，并根据你的语音生成结构化文档。",
+      "step1": "说话",
+      "step1Sub": "描述需求",
+      "step2": "AI",
+      "step2Sub": "起草",
+      "step3": "完成",
+      "step3Sub": "格式化"
+    },
+    "finance": {
+      "badge": "财务智能",
+      "heading": "每一分钱，\n一目了然。",
+      "description": "收入、支出、发票和预测，统一呈现在一个 AI 仪表盘中。用自然语言提问。",
+      "revenueLabel": "收入",
+      "revenueVal": "$48.2K",
+      "expensesLabel": "支出",
+      "expensesVal": "$31.7K",
+      "netLabel": "净利润",
+      "netVal": "$16.5K",
+      "quote": "你的账本应该能自己解释。",
+      "queryBadge": "随时提问",
+      "query1": "\"我们在营销上花了多少？\"",
+      "query2": "\"显示逾期发票\"",
+      "query3": "\"过去 6 个月的收入趋势\""
+    },
+    "website": {
+      "badge": "AI 构建网站",
+      "heading": "描述你的业务。\n获取一个网站。",
+      "description": "文案、布局、图片、SEO——自动生成。用语音更新。接入表单、预约和支付。",
+      "features": ["文案与 SEO", "布局", "表单", "预约", "支付", "分析"],
+      "quote": "你的网站不需要开发者。",
+      "stat": "0",
+      "statLabel": "行代码",
+      "statSub": "语音更新，始终上线"
+    },
+    "aiAgents": {
+      "badge": "你的 AI 组织架构",
+      "heading": "你的前十名员工\n不需要薪水。",
+      "description": "在组织架构图中构建 Agent。每个 Agent 都有职责、工具、预算和汇报关系。",
+      "role1": "研究员",
+      "role1Desc": "网络抓取、分析",
+      "role2": "写手",
+      "role2Desc": "内容、提案",
+      "role3": "分析师",
+      "role3Desc": "数据、预测",
+      "role4": "运营",
+      "role4Desc": "排期、路由",
+      "loopBadge": "工作循环",
+      "loopSteps": ["规划", "行动", "暂停", "交付"],
+      "loopNote": "始终掌控",
+      "loopDesc": "Agent 先规划再行动，\n等待你的审批。",
+      "quote": "ChatGPT 回答问题。\nVOIS 的 Agent 完成任务。"
+    },
+    "reports": {
+      "badge": "报告，重新想象",
+      "heading": "拨打助手电话。\n描述发生了什么。\n获取完整报告。",
+      "subHeading": "无需填表。无需电脑。只需一个电话。",
+      "description": "上传任意模板，VOIS 自动提取每个字段。然后用语音填写——AI 逐字段引导，并预填已知数据。",
+      "step1": "上传",
+      "step1Sub": "模板",
+      "step2": "拨打",
+      "step2Sub": "你的 AI",
+      "step3": "完成",
+      "step3Sub": "报告归档",
+      "stat": "90s",
+      "statLabel": "平均报告用时",
+      "statSub": "传统方式需 30 分钟",
+      "statSpeedNote": "快 10 倍",
+      "statDesc": "人说话比打字快 3-4 倍。\n再加上 AI 格式化，等于",
+      "voiceBadge": "语音优先",
+      "voiceHeading": "AI 提问。你回答。\n10 个问题。搞定。",
+      "phoneLabel": "电话",
+      "phoneDesc": "拨打你的助手",
+      "interviewLabel": "采访",
+      "interviewDesc": "AI 逐字段引导",
+      "dictationLabel": "口述",
+      "dictationDesc": "一条语音填满全部",
+      "chatLabel": "聊天",
+      "chatDesc": "对话式文字输入"
+    },
+    "yourTeam": {
+      "badge": "按角色定制 AI",
+      "heading": "每一个席位\n都有超级助手。",
+      "description": "公司上下文、流程和历史——按角色个性化定制。",
+      "stat": "1:1",
+      "statLabel": "每位员工配备 AI",
+      "statSub": "量身定制其角色",
+      "statNote": "专属助手",
+      "statDesc": "不是共享聊天机器人。\n一个真正了解他们工作的 AI。",
+      "perks": ["入职引导", "日常规划", "知识查询", "任务管理", "流程辅导", "会议准备"],
+      "perksBadge": "每位员工享有的权益"
+    },
+    "playbooks": {
+      "badge": "动态 SOPs",
+      "heading": "你的 Playbook\n自我运行。",
+      "description": "将流程转化为监控合规、引导每个步骤、标记偏差的工作流。",
+      "step1": "步骤 1",
+      "step1Desc": "引导团队成员",
+      "step2": "步骤 2",
+      "step2Desc": "验证合规",
+      "step3": "步骤 3",
+      "step3Desc": "标记偏差",
+      "quote": "SOPs 不该躺在文件夹里。它们应该自我运行。",
+      "complianceBadge": "合规评分",
+      "stat": "97%",
+      "statSub": "活跃 Playbook 平均分",
+      "statNote": "之前",
+      "statDesc": "实时监控。\n偏差在成为问题\n前被捕获。"
+    },
+    "fieldToOffice": {
+      "badge": "弥合差距",
+      "heading": "30 秒现场更新。\n办公室即刻可见。",
+      "description": "技术人员口述语音记录。内容被结构化、归档，并链接至正确的项目、客户和发票。",
+      "step1": "说话",
+      "step1Sub": "在现场",
+      "step2": "AI",
+      "step2Sub": "结构化",
+      "step3": "办公室",
+      "step3Sub": "即刻可见",
+      "stat": "30s",
+      "statLabel": "语音记录替代",
+      "statSub": "20 分钟纸质工作",
+      "linksBadge": "自动关联至",
+      "links": ["项目", "客户", "发票", "时间线"],
+      "quote": "现场永远\n不再落后一天。"
+    },
+    "theAirlock": {
+      "badge": "AI 安全层",
+      "heading": "AI 能力。\n人类掌控。",
+      "description": "每一个 AI 操作都经过预览卡审核。你看到精确输出，然后批准。没有你的授权，什么都不会发生。",
+      "step1": "AI",
+      "step1Sub": "提出方案",
+      "step2": "你",
+      "step2Sub": "审阅",
+      "step3": "批准",
+      "step3Sub": "或拒绝",
+      "stat": "100%",
+      "statLabel": "人工审批",
+      "statSub": "每一个操作，每一次",
+      "ironRuleBadge": "铁律",
+      "ironRuleHeading": "AI 提出。你审阅。\n你批准。始终如此。",
+      "quote": "信任不是一个设置。\n它是一种架构。"
+    },
+    "yourMemory": {
+      "badge": "语义搜索",
+      "heading": "询问你说过\n的任何内容。",
+      "description": "按语义而非关键词搜索。VOIS 跨所有数据源找到答案。",
+      "stat": "19",
+      "statLabel": "已索引数据源",
+      "statMore": "+ 还有 13 个",
+      "statSources": "语音 · 邮件 · 文档\nCRM · 聊天 · 笔记",
+      "queryBadge": "示例查询",
+      "query1": "\"Sarah 对预算说了什么？\"",
+      "query2": "\"找出所有关于许可证延误的内容\"",
+      "query3": "\"Henderson 那边进展如何？\"",
+      "quote": "你的第二大脑，\n拥有完美记忆。"
+    },
+    "growthEngine": {
+      "badge": "病毒式增长循环",
+      "heading": "分享一条会议记录。\n赢得一名客户。",
+      "description": "接收者看到你的公司，获得促销优惠，并以预填了自己数据的工作区完成注册。",
+      "stat": "90%",
+      "statLabel": "推荐折扣",
+      "statHighlight": "他们自己的数据",
+      "statDesc": "推荐注册用户获得\n一个预填了\n",
+      "flyWheelBadge": "飞轮效应",
+      "flyWheelSteps": ["分享", "发现", "注册", "分享"],
+      "flyWheelDesc": "你的产品通过\n它完成的工作来销售自己。",
+      "quote": "每一条会议记录\n都是一个增长渠道。"
+    }
+  }
+}

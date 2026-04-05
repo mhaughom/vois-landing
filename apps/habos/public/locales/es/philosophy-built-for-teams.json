@@ -1,0 +1,30 @@
+{
+  "category": "Filosofía",
+  "title": "Creado para equipos, no solo para usted",
+  "tagline": "Cada uno ve lo que le importa. Todos comparten la misma verdad.",
+  "heroAlt": "Coordinación del equipo a través de inteligencia compartida",
+  "body1": "Un proyecto se detiene durante 4 días porque alguien no vio una pregunta enterrada en un hilo de Slack. El CEO pregunta «¿cuál es el estado del proyecto Henderson?» y recibe tres respuestas diferentes — porque cada uno mantiene su propia versión de la verdad. La IA personal no soluciona nada de esto. La infraestructura de equipo sí.",
+  "rolesLabel": "Los mismos datos, tres perspectivas",
+  "roles": [
+    {
+      "name": "Despachador",
+      "desc": "Rutas, ubicaciones del equipo, trabajos sin asignar. Tablero de arrastrar y asignar."
+    },
+    {
+      "name": "Trabajador de campo",
+      "desc": "Siguiente trabajo con direcciones, historial del cliente, finalización con un toque."
+    },
+    {
+      "name": "CEO",
+      "desc": "Ingresos, proyectos activos, problemas marcados. Resumen semanal de IA."
+    }
+  ],
+  "body2": "El mayor costo para las pequeñas empresas no es el costo laboral. Es la latencia de comunicación. Una decisión de 5 minutos tarda 4 días debido a cadenas de correo, mensajes perdidos y «lo haré cuando regrese a mi escritorio». Cada función de VOIS está diseñada para reducir el tiempo entre «alguien necesita una decisión» y «la decisión está tomada».",
+  "quote": "«Una empresa no avanza a la velocidad de su persona más rápida. Avanza a la velocidad de su traspaso más lento.»",
+  "nav": {
+    "prevLabel": "Anterior",
+    "prevTitle": "Un asistente",
+    "nextLabel": "Siguiente",
+    "nextTitle": "Sugerencias, no menús"
+  }
+}

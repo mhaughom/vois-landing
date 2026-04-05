@@ -1,0 +1,65 @@
+{
+  "badge": "CRM & försäljning",
+  "hero": {
+    "title": "Varje relation. Varje affär. En vy.",
+    "description": "Spåra kunder från första kontakt till avslut med dra-och-släpp-pipeline, AI-genererad strategi och automatisk livscykelprogression."
+  },
+  "body": "Varje interaktion med en kund via alla kanaler flödar in i en tidslinje — röstinspelningar, mejl, chattar, möten, CRM-poster och personscoped AI-sessioner. Konsultantmodulen analyserar din pipeline i fem strategidimensioner — ekonomi, marknadsföring, försäljning, ledarskap och produkter — och genererar sedan handlingsbara möjligheter med ansträngningsuppskattningar och poäng för affärsmålspassning. Klicka 'Skapa kampanj' på en möjlighet och den förifylls i marknadsföringen.",
+  "pipeline": {
+    "label": "Försäljningspipeline",
+    "caption": "Dra affärer mellan stadier. När en affär når 'Vunnen' befordras kunden automatiskt till aktiv. AI genererar strategiförslag per stadium."
+  },
+  "columns": [
+    {
+      "stage": "Lead",
+      "deals": [
+        { "company": "Garcia Electric", "value": "$12K" },
+        { "company": "Wilson Plumbing", "value": "$8K" }
+      ]
+    },
+    {
+      "stage": "Förslag",
+      "deals": [
+        { "company": "Henderson Reno", "value": "$45K" }
+      ]
+    },
+    {
+      "stage": "Förhandling",
+      "deals": [
+        { "company": "Baker HVAC", "value": "$28K" }
+      ]
+    },
+    {
+      "stage": "Vunnen",
+      "deals": [
+        { "company": "Torres Landscaping", "value": "$15K" }
+      ]
+    }
+  ],
+  "benefits": [
+    {
+      "title": "360° kundvy",
+      "desc": "Ett klick visar länkade projekt, verksamheter, rapporter, mejl, möten och dokument. Varje interaktion via varje kanal, per person."
+    },
+    {
+      "title": "Automatisk livscykel",
+      "desc": "Lead → prospekt → aktiv → churnad. Stäng en affär och kunden befordras automatiskt. Inga manuella statusändringar."
+    },
+    {
+      "title": "AI-försäljningsstrategi",
+      "desc": "Konsultantmodulen analyserar din pipeline, identifierar prioriterade målgrupper och genererar handlingsbara möjligheter med ansträngningsuppskattningar."
+    }
+  ],
+  "scenario": "Du förbereder dig för ett samtal med Henderson. Öppna deras CRM-kort — se varje mejltråd, mötesanteckning, röstinspelning och projektuppdatering i en tidslinje. AI-briefen berättar att sentimentet är positivt, det finns en öppen åtgärdspunkt från förra veckan och förslaget är 3 000 dollar under deras angivna budget. Du går in beväpnad med kontext som ingen konkurrent har.",
+  "techItems": [
+    "Konfigurerbar pipeline-stadier",
+    "Flerrollskontakter",
+    "Anpassade fält",
+    "CSV-export",
+    "Synk med marknadsföringstratt"
+  ],
+  "cta": {
+    "heading": "Andra CRM-system spårar kontakter. HABOS spårar relationer.",
+    "button": "Gå med i väntelistan"
+  }
+}

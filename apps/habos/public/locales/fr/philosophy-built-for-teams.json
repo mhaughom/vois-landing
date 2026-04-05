@@ -1,0 +1,30 @@
+{
+  "category": "Philosophie",
+  "title": "Conçu pour les équipes, pas seulement pour vous",
+  "tagline": "Chacun voit ce qui le concerne. Chacun partage la même vérité.",
+  "heroAlt": "Coordination d'équipe grâce à l'intelligence partagée",
+  "body1": "Un projet est bloqué pendant 4 jours parce que quelqu'un a manqué une question enfouie dans un fil Slack. Le PDG demande « quel est l'état du projet Henderson ? » et obtient trois réponses différentes — parce que chacun maintient sa propre version de la vérité. L'IA personnelle ne résout rien de tout ça. L'infrastructure d'équipe, si.",
+  "rolesLabel": "Les mêmes données, trois perspectives",
+  "roles": [
+    {
+      "name": "Répartiteur",
+      "desc": "Itinéraires, emplacements des équipes, missions non assignées. Tableau de drag-to-assign."
+    },
+    {
+      "name": "Agent terrain",
+      "desc": "Prochaine mission avec itinéraire, historique client, complétion en un tap."
+    },
+    {
+      "name": "PDG",
+      "desc": "Chiffre d'affaires, projets actifs, problèmes signalés. Résumé hebdomadaire IA."
+    }
+  ],
+  "body2": "La plus grande taxe sur les petites entreprises n'est pas le coût de la main-d'œuvre. C'est la latence de communication. Une décision de 5 minutes prend 4 jours à cause des chaînes d'e-mails, des messages manqués et du « je m'en occuperai quand je serai de retour à mon bureau ». Chaque fonctionnalité de VOIS est conçue pour réduire le temps entre « quelqu'un a besoin d'une décision » et « la décision est prise ».",
+  "quote": "« Une entreprise ne se déplace pas à la vitesse de sa personne la plus rapide. Elle se déplace à la vitesse de sa transition la plus lente. »",
+  "nav": {
+    "prevLabel": "Précédent",
+    "prevTitle": "Un seul assistant",
+    "nextLabel": "Suivant",
+    "nextTitle": "Suggestions, pas menus"
+  }
+}

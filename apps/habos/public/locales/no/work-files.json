@@ -1,0 +1,68 @@
+{
+  "badge": "Mediebibliotek",
+  "hero": {
+    "title": "Last opp det.\nAI forstår det.",
+    "description": "Slipp inn bilder, video, dokumenter eller lyd. AI trekker ut produkter, personer, tekst og mening – og gjør det søkbart etter innhold, ikke bare filnavn."
+  },
+  "intro": "Dra og slipp bilder, video, dokumenter eller lyd – Sharp genererer automatisk WebP-miniatyrbilder og GPT-4o-mini beriker alt asynkront. Visjonsanalyse trekker ut produkter, personer, steder, farger og synlig tekst fra bilder. Dokumenter får OCR. Video og lyd får transkripsjon og oppsummering. Uttrukket tekst deles i 512-dimensjonale innbygginger slik at du kan søke etter mening – «badstue produktbilde» eller «Henderson faktura» – ikke bare filnavn. Ett mediebibliotek delt på tvers av Produkter, Sosialt, Markedsføring, Nettsteder og Presentasjoner.",
+  "grid": {
+    "annotation": "Søk etter mening: «badstue produktbilde» eller «Henderson faktura» – ikke bare filnavn. Ett bibliotek delt av Produkter, Sosialt, Markedsføring, Nettsteder og Presentasjoner."
+  },
+  "mediaItems": [
+    {
+      "filename": "produktbilde-01.jpg",
+      "tag": "Produkt · Varmtvannsbereder",
+      "ai": "AI: Berederenhet uten tank, rustfritt stål, bolig"
+    },
+    {
+      "filename": "lagbilde.jpg",
+      "tag": "Lag · 4 personer oppdaget",
+      "ai": "AI: Kontormiljø, merkede uniformer"
+    },
+    {
+      "filename": "faktura-mars.pdf",
+      "tag": "Dokument · OCR uttrukket",
+      "ai": "AI: Henderson Rør, kr 42 500, mars 2026"
+    },
+    {
+      "filename": "jobb-gjennomgang.mp4",
+      "tag": "Video · Transkribert",
+      "ai": "AI: 3 min gjennomgang, badrenovering"
+    },
+    {
+      "filename": "kundesamtale.m4a",
+      "tag": "Lyd · Transkribert",
+      "ai": "AI: Sarah Henderson, tillatelsesdiskusjon"
+    },
+    {
+      "filename": "logo.svg",
+      "tag": "Logo · Merkeressurs",
+      "ai": "AI: Primærlogo, mørk variant"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "AI-visjonsanalyse",
+      "desc": "GPT-4o-mini oppdager produkter, personer, farger og tekst i bilder. Dokumenter får OCR. Video og lyd får transkripsjon."
+    },
+    {
+      "title": "Ett bibliotek overalt",
+      "desc": "Samme medievalger brukes på tvers av Produkter, Sosialt, Markedsføring, Nettsteder, Presentasjoner. Ingen duplisering."
+    },
+    {
+      "title": "Semantisk søk",
+      "desc": "Tekst delt inn i 512-dim innbygginger. Finn media etter mening, ikke bare metadata."
+    }
+  ],
+  "techItems": [
+    "GPT-4o-mini visjon",
+    "Sharp WebP-miniatyrbilder",
+    "512-dim innbygginger",
+    "SHA-256 dedup",
+    "Automatisk rolleinferens"
+  ],
+  "cta": {
+    "title": "Andre filbehandlere lagrer filer.\nHABOS forstår dem.",
+    "button": "Bli med på ventelisten"
+  }
+}

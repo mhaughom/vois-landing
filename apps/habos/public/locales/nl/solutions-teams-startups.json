@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "category": "Oplossingen — Teams & Startups",
+    "title": "Één platform voor je hele bedrijf.",
+    "subtitle": "Vervang de 10 apps die je één voor één hebt aangenomen door één werkruimte die werkelijk samenwerkt.",
+    "description": "Tech-startups, groeiende bureaus, professionele dienstverleners en elk bedrijf van 2–50 mensen dat verdrinkt in tools."
+  },
+  "body": {
+    "section1": {
+      "heading": "Tel je abonnementen",
+      "p1": "Slack voor chat. Asana voor taken. Notion voor documenten. Google Workspace voor e-mail en agenda. HubSpot voor het CRM. Calendly voor planning. Zapier om ze aan elkaar te lijmen. Loom voor asynchrone video. Misschien Toggl voor tijdregistratie. Misschien Intercom voor support.",
+      "p2": "Een startup van 9 personen die per seat voor al deze tools betaalt, kijkt naar $4.200 per maand. Meer dan de meeste kantuurhuren. En geen van deze tools communiceert met elkaar zonder Zapier om ze bijeen te houden met ducttape."
+    },
+    "appTable": {
+      "colApp": "App",
+      "colCost": "Kosten",
+      "colReplaces": "HABOS vervangt met",
+      "footerLabel": "HABOS — alles bovenstaande, verbonden",
+      "footerPrice": "$35",
+      "footerPriceSuffix": "/gebruiker/mnd",
+      "apps": [
+        { "name": "Slack", "cost": "$12/gebruiker/mnd", "replaces": "Communicatie" },
+        { "name": "Asana", "cost": "$11/gebruiker/mnd", "replaces": "Projecten & Taken" },
+        { "name": "Notion", "cost": "$10/gebruiker/mnd", "replaces": "Documenten & Brain" },
+        { "name": "Google Workspace", "cost": "$12/gebruiker/mnd", "replaces": "Agenda, Docs, E-mail" },
+        { "name": "HubSpot", "cost": "$45/mnd", "replaces": "CRM" },
+        { "name": "Calendly", "cost": "$12/mnd", "replaces": "Planning" },
+        { "name": "Zapier", "cost": "$20/mnd", "replaces": "Automatiseringen" },
+        { "name": "Loom", "cost": "$13/gebruiker/mnd", "replaces": "Stem + Vergadernotities" }
+      ]
+    },
+    "section2": {
+      "heading": "Maar het geld is niet het echte probleem",
+      "p1": "De echte kosten zijn fragmentatie. Je CEO besteedt elke ochtend 45 minuten aan het scannen van Slack, Gmail, Asana en het CRM om te achterhalen wat er speelt. Drie berichten vereisen antwoorden en de context voor elk ervan staat in een andere tool.",
+      "p2": "Je wekelijkse teamvergadering duurt 45 minuten en de helft ervan zijn statusupdates — iedereen rapporteert waaraan ze werken omdat er geen gedeeld overzicht is. De andere helft genereert actiepunten die iemand op een whiteboard schrijft. Twee zijn tegen 14:00 uur vergeten.",
+      "p3": "Een nieuwe medewerker heeft weken nodig om productief te worden — niet omdat het werk moeilijk is, maar omdat ze toegang tot tien tools nodig hebben en moeten leren welke bron van waarheid ze moeten raadplegen voor welk type informatie.",
+      "p4": "En wanneer de CEO vraagt \"wat is de status van de Henderson-deal?\" — controleren drie mensen drie tools en geven drie verschillende antwoorden."
+    },
+    "section3": {
+      "heading": "Wat één platform verandert",
+      "briefingLabel": "De maandagochtendbriefing",
+      "briefing": "\"3 taken achterstallig — 2 wachten op de beoordeling van het Henderson-contract. 2 e-mails hebben jouw beslissing nodig. Omzet deze week is 12% boven prognose. Één teamlid markeerde gisteren om 18:00 uur een blocker.\"",
+      "briefingNote": "Vijf minuten. Volledig beeld. Nul van app wisselen.",
+      "p1": "Teamvergaderingen dalen van 45 naar 25 minuten. Een briefing vóór de vergadering wordt automatisch gegenereerd vanuit werkelijke projectgegevens. Live transcriptie legt alles vast. Actiepunten worden geëxtraheerd en toegewezen op basis van rol en werkbelasting. Niemand besteedt tijd aan statusupdates — het dashboard toont al alles.",
+      "p2": "Nieuwe medewerkers krijgen op dag één één login en een rolspecifiek dashboard. Wanneer ze VOIS vragen \"wat is het gebruikelijke proces voor het inwerken van een nieuwe klant?\" — vindt het het Draaiboek, de laatste drie klant-inwerk-projecten en een vergadertranscriptie waarbij het team verbeteringen besprak. Één vraag, één antwoord, volledige context.",
+      "p3": "Wanneer de CEO vraagt naar de Henderson-deal, is er één CRM-record met één waarheid: dealfase, laatste communicatie, projectvoltooiing, openstaande factuur en een AI-beoordeling — \"risicovol, klant heeft de prijsstelling niet bevestigd, bel vandaag.\"",
+      "p4": "Vijf AI-adviseurs — Financiën, Strategie, Operaties, Marketing, Verkoop — bieden perspectieven die bewust van mening verschillen. Want echte zakelijke beslissingen hebben afwegingen, en consensus van één AI is slechts een zelfverzekerde gok."
+    },
+    "stats": [
+      ["$300-500", "maandelijks bespaard op SaaS"],
+      ["5 uur/wk", "bespaard per persoon"],
+      ["3 uur/wk", "bespaard op vergaderingen"],
+      ["Dagen", "om in te werken (niet weken)"]
+    ],
+    "testimonial": {
+      "quote": "\"We betaalden meer voor softwareabonnementen dan voor onze kantuurhuur. Slack, Notion, Asana, HubSpot, Calendly, Toggl, Google Workspace, Zapier — $4.200 per maand. HABOS verving ze allemaal voor $315. Maar de echte winst is niet het geld — het is dat wanneer ik een vraag stel over een klant, ik één antwoord krijg in plaats van drie.\"",
+      "attribution": "— Anders, 31 · Medeoprichter · SaaS-startup van 9 personen · Oslo"
+    },
+    "cta": {
+      "heading": "Één platform voor je hele team. Eindelijk.",
+      "button": "Aanmelden voor wachtlijst"
+    }
+  }
+}

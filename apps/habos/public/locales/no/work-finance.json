@@ -1,0 +1,58 @@
+{
+  "badge": "Finansielt kommandosenter",
+  "hero": {
+    "title": "Penger inn. Penger ut. Én sannhet.",
+    "description": "Fordringer fra regnskapsplattformen din, driftskostnader fra HABOS, talefangede utgifter fra feltet – alt avstemt i ett dashbord."
+  },
+  "body": "Finansmodulen gir en samlet visning av alle penger som strømmer gjennom virksomheten. Fordringer synkroniseres fra regnskapsplattformen din med fakturastatus – utkast, sendt, delvis betalt, betalt, forfalt. Utgifter fanges med tale: si «brukte kr 450 på flisklister på byggevarehandelen» og Smart Router oppretter en utgiftspost med leverandør, beløp og prosjektallokering. Månedlige inntektsoversikter bygges automatisk for kontantstrømsynlighet.",
+  "metrics": [
+    { "label": "Fakturert", "value": "kr 472 500" },
+    { "label": "Mottatt", "value": "kr 381 000" },
+    { "label": "Utestående", "value": "kr 91 500" },
+    { "label": "Forfalt", "value": "kr 23 000" }
+  ],
+  "moneyIn": {
+    "heading": "Penger inn",
+    "rows": [
+      { "client": "Henderson Renovering", "amount": "kr 125 000", "status": "Betalt" },
+      { "client": "Baker HVAC", "amount": "kr 82 000", "status": "Utestående" },
+      { "client": "Wilson Rør", "amount": "kr 23 000", "status": "Forfalt (14 dager)" }
+    ]
+  },
+  "moneyOut": {
+    "heading": "Penger ut",
+    "rows": [
+      { "item": "Flisforsyninger", "amount": "kr 18 500", "status": "Betalt" },
+      { "item": "Kjøretøydrivstoff", "amount": "kr 4 200", "status": "Talefanget" },
+      { "item": "Underleverandør", "amount": "kr 32 000", "status": "Ventende" }
+    ]
+  },
+  "dashboardCaption": "Fordringer synkroniseres fra regnskapsplattformen din. Utgifter fanget med tale, kvittering eller manuell oppføring. Månedlige inntektsoversikter bygges automatisk.",
+  "benefits": [
+    {
+      "title": "Taleopptak av utgifter",
+      "desc": "Si «brukte kr 1 800 på flis» mens du kjører. HABOS oppretter utgiften, matcher leverandøren automatisk og foreslår kontokoden."
+    },
+    {
+      "title": "Fakturaautomatisering",
+      "desc": "Gjør HABOS-bestillinger og tidsposter om til regnskapsfakturaer. Smart enhetsoppløsning kobler CRM-kunder til regnskapskontakter automatisk."
+    },
+    {
+      "title": "Månedlige oversikter",
+      "desc": "Fakturert, mottatt, utestående og forfalt totaler bygges månedlig. Se kontantstrømstrender uten et regneark."
+    }
+  ],
+  "scenario": "Slutten av måneden. Regnskapsføreren spør: «Hva er utestående saldo og hvilke kunder er forfalt?» I stedet for å eksportere fra 3 systemer og krysskontrollere i Excel – åpner du HABOS Finans. kr 91 500 utestående, kr 23 000 forfalt fra Wilson Rør (14 dager). Én skjerm, ekte tall fra regnskapsplattformen din, null avstemning.",
+  "scenarioHighlight": "kr 91 500 utestående, kr 23 000 forfalt fra Wilson Rør (14 dager). Én skjerm, ekte tall fra regnskapsplattformen din, null avstemning.",
+  "techItems": [
+    "Synkronisering av regnskapsplattform",
+    "Enhetsoppløsning",
+    "Idempotente operasjoner",
+    "Taleopptak av utgifter",
+    "Månedlig inntektsbygging"
+  ],
+  "cta": {
+    "heading": "Andre dashbord viser estimater. HABOS viser regnskapssannheten.",
+    "button": "Bli med på ventelisten"
+  }
+}

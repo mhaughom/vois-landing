@@ -1,0 +1,72 @@
+{
+  "category": "दर्शन",
+  "title": "वह स्मृति जो बढ़ती है",
+  "tagline": "हर बातचीत अगली को स्मार्ट बनाती है। जितना लंबे समय तक आप HABOS का उपयोग करते हैं, उतना अधिक यह आपके व्यवसाय को समझता है — और वह समझ कहीं और replicateकरना कठिन होती जाती है।",
+  "heroPlaceholder": "Hero illustration",
+  "section1": {
+    "heading": "पहला दिन बनाम 180वाँ दिन",
+    "body1": "पहले दिन, HABOS एक सक्षम उपकरण है। यह आपकी voice notes प्रोसेस करता है, आपके tasks प्रबंधित करता है, आपके ईमेल संभालता है। यह तेज़ है और काम करता है। लेकिन यह अभी आपको नहीं जानता।",
+    "body2": "180वें दिन तक, सिस्टम जानता है कि कौन से ग्राहक अनुमानित cycles पर reorder करते हैं। यह जानता है कि आपकी बुधवार की दोपहर की मीटिंग हमेशा लंबी चलती है। यह जानता है कि जब आप \"Bergen project\" का उल्लेख करते हैं तो आपका मतलब Fjordview Hotel account है। यह आपकी writing style, आपके निर्णय पैटर्न, आपके operational rhythms जानता है।",
+    "body3": "वह संचित समझ कोई feature नहीं है जिसे आप install कर सकते हैं। यह वह बुद्धिमत्ता है जो अर्जित की गई थी — बातचीत दर बातचीत, निर्णय दर निर्णय।"
+  },
+  "section2": {
+    "heading": "क्या बढ़ता है"
+  },
+  "periods": [
+    {
+      "period": "सप्ताह 1",
+      "items": [
+        "Basic voice routing काम करता है",
+        "Email drafts generic लेकिन functional हैं",
+        "Brain search आपके द्वारा enter किए गए को cover करता है"
+      ]
+    },
+    {
+      "period": "महीना 1",
+      "items": [
+        "Writing style हर team member के लिए calibrated है",
+        "Meeting briefs संबंधित इतिहास खींचते हैं",
+        "Smart Router accuracy आपके सुधारों से improve होती है"
+      ]
+    },
+    {
+      "period": "महीना 3",
+      "items": [
+        "उसके द्वारा observe किए गए पैटर्न के आधार पर proactive alerts",
+        "Strategic Council आपके वास्तविक business data में आधारित",
+        "Cross-source connections जो मनुष्य miss करेंगे"
+      ]
+    },
+    {
+      "period": "महीना 6+",
+      "items": [
+        "Reorder timing, deal-stage durations, seasonal patterns की भविष्यवाणी",
+        "Operational drift को समस्या बनने से पहले पकड़ता है",
+        "Institutional knowledge जो employee turnover से बचता है"
+      ]
+    }
+  ],
+  "curvePlaceholder": "Compounding intelligence curve",
+  "section3": {
+    "heading": "वह moat जो उपयोग से बनती है",
+    "body1": "अधिकांश सॉफ़्टवेयर में data export से परे zero switching cost है। आपका project management tool जितना लंबे समय तक आप इसका उपयोग करते हैं उतना स्मार्ट नहीं होता। आपका CRM आपके sales patterns नहीं सीखता। आपका calendar आपकी scheduling preferences का अनुमान नहीं लगाता।",
+    "body2": "HABOS अलग है क्योंकि intelligence layer बढ़ती है। छह महीने बाद, आपके व्यवसाय की सिस्टम की समझ वास्तव में अनूठी है — आपकी बातचीत, आपके निर्णयों, आपके पैटर्न, आपके सुधारों से बनी। वह समझ CSV के रूप में export नहीं की जा सकती। यह किसी एकल database table में नहीं है। यह embeddings, style profiles, routing models, और behavioral patterns में वितरित है।"
+  },
+  "section4": {
+    "heading": "Institutional memory जो छोड़ती नहीं",
+    "body1": "जब कोई प्रमुख कर्मचारी चला जाता है, वे अपना ज्ञान साथ ले जाते हैं। Client preferences जो उन्होंने याद किए थे, processes जो उन्होंने invented किए, relationships जो उन्होंने बनाए — सब चला गया।",
+    "body2": "HABOS उस institutional knowledge को उसके होने के साथ ही capture करता है। हर voice note, हर मीटिंग, हर client interaction Brain को feed करता है। जब कोई नया जुड़ता है, वे न केवल data बल्कि समझ inherit करते हैं — AI उन्हें client इतिहास पर brief कर सकता है, बता सकता है कि कुछ निर्णय क्यों लिए गए, और वे playbooks surface कर सकता है जो पिछले व्यक्ति ने विकसित किए।"
+  },
+  "section5": {
+    "heading": "एक लाभ, trap नहीं",
+    "body1": "हम data hostage-taking के माध्यम से lock-in नहीं बना रहे। आपका data हमेशा exportable है। आप इसके मालिक हैं। लेकिन intelligence — patterns, predictions, contextual understanding — यह आपके निवेश किए गए समय पर compound interest है। यह हर महीने को पिछले से अधिक मूल्यवान बनाता है।",
+    "body2": "एक prospect के लिए सवाल यह नहीं है \"HABOS प्रति माह कितना खर्च करता है?\" यह है \"छह महीने की compounded business intelligence कितनी worth है?\""
+  },
+  "quote": "\"आपका data copy किया जा सकता है। आपकी समझ नहीं। HABOS का हर दिन उपयोग करने से, दोनों के बीच की खाई बढ़ती है।\"",
+  "nav": {
+    "prevLabel": "पिछला",
+    "prevTitle": "असहमत सलाहकार",
+    "nextLabel": "अगला",
+    "nextTitle": "छोटी टीम का लाभ"
+  }
+}

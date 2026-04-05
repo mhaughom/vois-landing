@@ -1,0 +1,15 @@
+{
+  "introMessage": "¡Hola! Puedo ayudarle a explorar HABOS. Pregunte sobre cualquier función — correo electrónico, CRM, tareas, calendario — y le llevaré allí.",
+  "header": "Chat de HABOS",
+  "placeholder": "Pregunte sobre cualquier función...",
+  "openChatAriaLabel": "Abrir chat",
+  "closeChatAriaLabel": "Cerrar chat",
+  "sendMessageAriaLabel": "Enviar mensaje",
+  "talkToTeam": "Habla con nuestro equipo",
+  "emailPlaceholder": "you@company.com",
+  "emailSubmit": "Join",
+  "emailSuccess": "You're on the list!",
+  "emailInvalid": "Enter a valid email",
+  "emailExists": "You're already signed up!",
+  "bookDemo": "Book a 15-min demo"
+}

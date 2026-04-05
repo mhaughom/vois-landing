@@ -1,0 +1,44 @@
+{
+  "category": "Philosophie",
+  "title": "Ihre Software, Ihre Art",
+  "tagline": "Keine zwei Unternehmen sind gleich. Ihr Betriebssystem sollte nicht so tun, als wären sie es.",
+  "body1": "Die meiste Software verlangt von Ihnen, sich an sie anzupassen. Sie lernen ihre Menüstruktur, merken sich ihre Shortcuts und bauen Workarounds für die Dinge, die sie fast tut, aber nicht ganz. Mit der Zeit bemerken Sie nicht mehr, wie viel Ihres Prozesses durch die Einschränkungen des Tools statt durch Ihre tatsächlichen Bedürfnisse geprägt ist.",
+  "body2": "Wir bauen VOIS so, dass es sich in die andere Richtung biegt.",
+  "quote1": "\"Das beste Tool ist das, das in die Hand passt, die es hält.\"",
+  "section1": {
+    "heading": "Dedizierte Stunden, die Ihnen gewidmet sind",
+    "body": "Während VOIS wächst, verpflichten wir uns zu etwas Seltenen: dedizierten Mitarbeiterstunden für Ihr Unternehmen. Keine generische Support-Warteschlange. Kein Chatbot. Echte Menschen in unserem Team, die Ihre Workflows verstehen und die Software härter für Sie arbeiten lassen. Ob das bedeutet, das Verhalten einer Funktion anzupassen, eine benutzerdefinierte Ansicht zu erstellen oder eine Integration zu verdrahten, die nur in Ihrer Branche Sinn ergibt – wir erledigen die Arbeit."
+  },
+  "practiceLabel": "Wie das in der Praxis aussieht",
+  "practiceItems": [
+    {
+      "name": "Benutzerdefinierte Apps",
+      "desc": "Erstellen oder anfordern von Apps, die in VOIS leben und auf die tatsächliche Arbeitsweise Ihres Teams zugeschnitten sind."
+    },
+    {
+      "name": "Bezahlte Anpassung",
+      "desc": "Beauftragen Sie Funktionen, Workflows oder Integrationen, die speziell für Ihr Unternehmen entwickelt wurden."
+    },
+    {
+      "name": "Funktionsvorschläge",
+      "desc": "Schlagen Sie Funktionen vor, die nur auf Sie zutreffen – und sehen Sie, wie sie in Ihre Instanz eingebaut werden."
+    },
+    {
+      "name": "Offene Plattform",
+      "desc": "Wenn wir reifen, öffnen wir das System, damit Sie es selbst erweitern oder Ihre eigenen Entwickler einbringen können."
+    }
+  ],
+  "section2": {
+    "heading": "Software, die mit Ihnen wächst",
+    "body1": "Das typische SaaS-Playbook ist, ein Produkt zu bauen und es auf dieselbe Weise an alle zu verkaufen. Das funktioniert für einfache Tools. Aber VOIS ist kein einfaches Tool – es ist Ihr Betriebssystem. Und ein Betriebssystem sollte das Unternehmen widerspiegeln, das es betreibt, nicht umgekehrt.",
+    "body2": "Ein Landschaftsunternehmen braucht nicht dasselbe Dashboard wie eine Designagentur. Ein Solo-Berater braucht nicht dieselben Workflows wie ein 40-köpfiges Außendienstteam. Statt alle durch denselben Trichter zu zwingen, geben wir Ihnen lieber die Bausteine und den Support, um etwas zusammenzubauen, das genuín Ihres ist."
+  },
+  "quote2": "\"Wir wollen nicht die Software sein, mit der Sie sich abfinden. Wir wollen die Software sein, die Sie selbst gebaut hätten – wenn Sie die Zeit gehabt hätten.\"",
+  "body3": "Das ist ein langfristiges Engagement, kein Launch-Day-Versprechen. Wir bauen jetzt das Fundament, damit wenn wir es öffnen, jedes Unternehmen auf VOIS es wirklich zu seinem eigenen machen kann.",
+  "nav": {
+    "prevLabel": "Zurück",
+    "prevTitle": "Immer griffbereit",
+    "nextLabel": "Weiter",
+    "nextTitle": "Die Luftschleuse"
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "heroBusinesses": [
+    "Luovat toimistot",
+    "Putkimiehet",
+    "Hammaslääkärit",
+    "Konsultointiyritykset",
+    "Parturi-kampaajat ja kylpylät",
+    "Rakennusyritykset",
+    "Kiinteistönvälittäjät",
+    "Ravintolat",
+    "Siivousyritykset",
+    "Verkkokaupat",
+    "Kiinteistönisännöitsijät"
+  ],
+  "heroVideo": {
+    "madeFor": "Tehty kaikenlaisille yrityksille."
+  },
+  "heroStories": [
+    { "label": "Ongelma",         "headline": "Yrityksesi data on sirpaloitunut\nkymmeniin eri työkaluihin." },
+    { "label": "Hinta",           "headline": "Työntekijät käyttävät päivänsä\ndatan siirtämiseen — ei arvon luomiseen." },
+    { "label": "Katkaisupiste",   "headline": "Mitä nopeammin kasvet,\nsitä pahemmin se hajoaa." },
+    { "label": "Ratkaisu",        "headline": "Joten rakensimme yhden alustan\nkaikkeen." },
+    { "label": "HABOS",           "headline": "Sinun työkalusi. Sinun datasi.\nKaikki toimii yhtenä." },
+    { "label": "loppu",           "headline": "" }
+  ],
+  "heroHeadlines": [
+    { "label": "Maailman ensimmäinen",    "bold": "Ihmisestä agentille",      "light": "Liiketoiminnan\nhallintajärjestelmä" },
+    { "label": "Liiketoiminta paketissa", "bold": "Liiketoiminta paketissa",  "light": "Kaikki mitä tarvitset" },
+    { "label": "Kaikki yhdessä alustassa","bold": "Kaikki ohjelmistosi",      "light": "Yksi alusta" },
+    { "label": "Yksi kirjautuminen",      "bold": "Jokainen tarvitsemasi työkalu", "light": "Yhden kirjautumisen takana" },
+    { "label": "Korvaa pinosi",           "bold": "Yksi järjestelmä",         "light": "Kymmenien sijaan" },
+    { "label": "Ajatteleva ohjelmisto",   "bold": "Tekoälynatiivi ohjelmisto","light": "Rakennettu alusta asti" }
+  ],
+  "heroGlowLabel": "Maailman ensimmäinen",
+  "heroSubtitle": "Kaikki ohjelmistosi, yksi alusta.\nSupercharge-tehosta työntekijäsi tekoälyavulla, jonka meille aina luvattiin mutta jota ei koskaan saatu.",
+  "heroButtons": {
+    "joinWaitlist": "Liity odotuslistalle",
+    "playVideo":    "Toista video",
+    "back":         "Takaisin"
+  },
+  "animPhase": {
+    "dot":      "Yksi mieli, joka oppii koko liiketoimintasi.",
+    "split":    "Se yhdistää kaiken mitä teet.",
+    "cube":     "Rakenne muodostuu ympärillesi — ei toisin päin.",
+    "hexMorph": "Jokainen pinta on työtila. Jokainen toimenpide ennakoitu.",
+    "idle":     "Klikkaa mitä tahansa pintaa tutkiaksesi."
+  },
+  "explore": {
+    "heading":     "Yksi alusta. Jokainen työkalu.",
+    "description": "Klikkaa mitä tahansa pintaa tutkiaksesi mitä HABOS voi tehdä liiketoiminnallesi."
+  },
+  "smartRouter": {
+    "statusDetected": "Älykäs reititin — 2 aihetta havaittu",
+    "statusRecording": "Nauhoitetaan...",
+    "statusReady":     "Valmis",
+    "transcriptLabel": "Litterointi",
+    "listening":       "Kuunnellaan..."
+  },
+  "meetingNotes": {
+    "statusEnded":    "Kokous päättyi — 3 toimintakohdetta",
+    "statusRecording":"Nauhoitetaan — Tiimin strategiakokous",
+    "statusReady":    "Valmis",
+    "transcriptLabel":"Live-litterointi",
+    "actionsLabel":   "Toimintakohteet poimittu"
+  },
+  "meetingLines": [
+    { "speaker": "Sinä",   "text": "Aloitetaan Q1-luvuista. Liikevaihto kasvoi 12 %.",          "time": "0:15" },
+    { "speaker": "Sara",   "text": "Putki näyttää vahvalta, mutta toimitusaikataulut huolettavat.", "time": "0:42" },
+    { "speaker": "Sinä",   "text": "Hyvä huomio. Entä jos lisäisimme puskuriviikon jokaiselle välitavoitteelle?", "time": "1:08" },
+    { "speaker": "Tekoäly","text": "Ehdotettu: \"Mikä on varasuunnitelma jos Q2-tavoitteet liukuvat?\"", "time": "1:15" }
+  ],
+  "meetingActions": [
+    { "text": "Lähetä päivitetty aikataulu Saralle perjantaihin mennessä" },
+    { "text": "Aikatauluta seuranta teknisen johtajan kanssa" },
+    { "text": "Valmistele riskiarviointi Q2:n hallituskokoukseen" }
+  ],
+  "agentPhilosophy": {
+    "badge":       "Agenttifilosofia",
+    "heading":     "Jokainen työntekijä saa superagentin.",
+    "description": "Autonominen tekoälykumppani, jolla on pääsy samaan dataan, asiayhteyteen ja käyttöoikeuksiin kuin henkilöllä, jota se palvelee. Se nostaa esiin arvokkaimman tiedon, kirjoittaa vastauksia, ehdottaa aikatauluja ja merkitsee riskit — mutta ei koskaan toimi yksin.",
+    "footer":      "Tekoälyteho, ihmisvalvonta. Jokainen luonnos tarkistettu. Jokainen toimenpide hyväksytty. Jokainen päätös sinun."
+  },
+  "agentTabs": [
+    {
+      "title": "Tekoälyassistentti",
+      "desc":  "Chatta täydellä liiketoimintakontekstilla. Agenttisi päättelee projekteissa, sähköposteissa, kalenterissa, CRM:ssä ja keskusteluissa samanaikaisesti — hakien kaikista tietokannoista, joihin sinulla on pääsy."
+    },
+    {
+      "title": "Älykäs reititin",
+      "desc":  "Puhu luonnollisesti — agentti jäsentää äänesi jäsennellyiksi toimenpiteiksi. Seurannat muuttuvat tehtäviksi, kokoukset kirjautuvat kalenteriin ja jokainen aikomus reititetään oikeaan paikkaan."
+    },
+    {
+      "title": "Kokousmuistiinpanot",
+      "desc":  "Live-litterointi, joka tallentaa päätökset, toimintakohteet ja seurannat kun ne tapahtuvat. Jokainen kokous tuottaa jäsennellyn yhteenvedon — ei manuaalista muistiinpanoa tarvita."
+    }
+  ],
+  "replacesSection": {
+    "heading":     "Mitä HABOS korvaa.",
+    "description": "Jaettu asiayhteys tekee jokaisesta ominaisuudesta älykkäämmän kuin mikään itsenäinen työkalu.",
+    "colCategory": "Kategoria",
+    "colReplaces": "Korvaa",
+    "colAdvantage": "HABOS:n etu",
+    "mobileReplaces": "Korvaa"
+  },
+  "replacements": [
+    { "tool": "Otter.ai / Fireflies",        "category": "Kokousmuistiinpanot",       "vois": "Yhteenvedot ennen jokaista kokousta, live-litterointi aikana, toimintakohteet poimittu ja lähetetty oikeille ihmisille jälkeen",                                    "group": "Tuottavuus" },
+    { "tool": "Todoist / Trello",            "category": "Tehtävienhallinta",          "vois": "Tärkeimmät tehtäväsi nousevat aina ensin — luotu äänellä, kokouksista tai sähköpostista älykkäällä aikataulutuksella sisäänrakennettu",                             "group": "Tuottavuus" },
+    { "tool": "Motion / Reclaim",            "category": "Tekoälyaikataulutus",        "vois": "Kalenterisi täyttyy itsestään fokustyöjaksoilla, prioriteetin ja aikarajan mukaan järjestettynä — vain hyväksy ja mene",                                             "group": "Tuottavuus" },
+    { "tool": "Asana / Jira / Monday.com",  "category": "Projektiseuranta",           "vois": "Näe mitkä projektit ovat terveitä ja mitkä tarvitsevat huomiota — pysähtynyt työ ja myöhästyneet aikarajat merkitty ennen eskaloitumista",                            "group": "Tuottavuus" },
+    { "tool": "Google Docs / Notion",        "category": "Dokumentit",                 "vois": "Puhu se ulos, saa dokumentti takaisin — tekoäly hakee asiayhteyden projekteistasi ja datasta automaattisesti",                                                       "group": "Tuottavuus" },
+    { "tool": "Trainual / Process Street",   "category": "Toimintaohjeet ja SOP:t",    "vois": "Elävät työnkulut, jotka ohjaavat tiimiäsi askel askeleelta ja hälyttävät sinulle kun jokin tehdään väärin",                                                          "group": "Tuottavuus" },
+    { "tool": "HubSpot / Salesforce",        "category": "CRM ja myynti",              "vois": "Asiakasprofiilit rakennettu automaattisesti jokaisesta keskustelusta, sähköpostista ja kokouksesta — tekoälyn ehdottamilla seuraavilla askeleilla",                   "group": "Kauppa ja asiakkaat" },
+    { "tool": "Shopify / WooCommerce",       "category": "Tuotteet ja tilaukset",      "vois": "Tuotteet, hinnoittelu, varasto ja varattavat palvelut — kaikki yhdistetty verkkosivustoosi ja tekoälyassistenttiin",                                                 "group": "Kauppa ja asiakkaat" },
+    { "tool": "Calendly / Acuity",           "category": "Varaukset",                  "vois": "Asiakkaat varaavat verkossa, tilaukset luodaan automaattisesti, maksu kerätään — yksi vaihe, ei manuaalista työtä",                                                  "group": "Kauppa ja asiakkaat" },
+    { "tool": "Mailchimp / ActiveCampaign",  "category": "Markkinointi ja funneleet",  "vois": "Sähköposti- ja SMS-kampanjat tekoälyn kirjoittamalla tekstillä, älykkäillä kohderyhmäsegmenteillä ja automaattisilla seurantasarjoilla",                              "group": "Kauppa ja asiakkaat" },
+    { "tool": "Later / Hootsuite",           "category": "Sosiaalinen media",          "vois": "Aikatauluta julkaisuja, hanki tekoälyn kirjoittamat kuvatekstit ja seuraa mikä toimii — yhdistetty brändiisi ja sisältökirjastoosi",                                 "group": "Kauppa ja asiakkaat" },
+    { "tool": "Canva / Adobe Express",       "category": "Luova studio",               "vois": "Luo markkinointisisältöä liiketoimintakontekstistasi — somepostaukset, mainokset ja visuaalit, jotka vastaavat brändiäsi",                                          "group": "Kauppa ja asiakkaat" },
+    { "tool": "Superhuman / Spark",          "category": "Tekoälysähköposti",          "vois": "Vastaa postilaatikkoon äänellä, hanki kolme vastausvaihtoehtoa jotka kuulostavat sinulta, äläkä koskaan menetä seurantaa",                                           "group": "Viestintä ja sisältö" },
+    { "tool": "Gmail / Outlook / Slack",     "category": "Yhtenäinen viestintä",       "vois": "Jokainen keskustelu henkilön kanssa — sähköposti, chat, SMS — yhdellä aikajanalla tekoälyn kirjoittamilla vastauksilla",                                            "group": "Viestintä ja sisältö" },
+    { "tool": "Squarespace / Wix",           "category": "Verkkosivustorakentaja",     "vois": "Kuvaile liiketoimintasi ja saa verkkosivusto — tekoäly kirjoittaa tekstin, yhdistää varauksen ja maksut automaattisesti",                                           "group": "Viestintä ja sisältö" },
+    { "tool": "PowerPoint / Google Slides",  "category": "Esitykset",                  "vois": "Tekoälyn luomat diaesitykset, jotka hakevat oikeita lukuja liiketoiminnastasi — valmiit esitettäväksi, ei vain kauniita malleja",                                   "group": "Viestintä ja sisältö" },
+    { "tool": "Zapier / Make",               "category": "Prosessiautomaatio",         "vois": "Työnkulut, jotka käynnistyvät kaikkialla — ei kolmannen osapuolen työkaluja, ei viiveitä, koska kaikki asuu yhdessä järjestelmässä",                                 "group": "Toiminnot ja kenttä" },
+    { "tool": "ClickUp / Monday.com",        "category": "Toiminnot",                  "vois": "Saa hälytys kun prosessi jää jälkeen ennen kuin siitä tulee ongelma — ehdotetuilla korjauksilla, ei vain varoituksilla",                                             "group": "Toiminnot ja kenttä" },
+    { "tool": "Zendesk / Freshdesk",         "category": "Tukitiketit",                "vois": "Tiketit luodaan automaattisesti lomakkeista tai sähköpostista, prioriteettitasoilla, ajastimilla ja eskaloinnilla oikealle henkilölle",                              "group": "Toiminnot ja kenttä" },
+    { "tool": "ServiceTitan / Jobber",       "category": "Kenttätoiminnot",            "vois": "Työt, lähetys, reitit, tiimin GPS, ajanseuranta — 30 sekunnin äänimuistiinpano pakettiautosta korvaa kaikki paperityöt",                                             "group": "Toiminnot ja kenttä" },
+    { "tool": "Routific / Circuit",          "category": "Reittien suunnittelu",       "vois": "Vedä-ja-pudota reitin suunnittelu älykkäällä pysäkkien järjestyksellä ja Google Maps -linkeillä kenttätiimillesi",                                                  "group": "Toiminnot ja kenttä" },
+    { "tool": "Google Forms / SurveyMonkey", "category": "Raportit",                   "vois": "Täytä mikä tahansa raportti äänellä 90 sekunnissa — tekoäly esittää kysymykset, sinä vastaat ja raportti arkistoidaan",                                             "group": "Toiminnot ja kenttä" },
+    { "tool": "QuickBooks / Xero",           "category": "Talous",                     "vois": "Kirjaa kulut äänellä, seuraa laskuja ja maksuja, näe voitto reaaliajassa — yhdistetty Stripeen",                                                                    "group": "Talous ja hallinto" },
+    { "tool": "Procurify / Coupa",           "category": "Hankinta ja toimittajat",    "vois": "Ostotilaukset, toimittajien seuranta ja varastonhallinta osittaisen maksun tuella ja laskujen täsmäytyksellä",                                                      "group": "Talous ja hallinto" },
+    { "tool": "Toggl / Clockify",            "category": "Ajanseuranta",               "vois": "Leimaa sisään ja ulos puhelimestasi, seuraa laskutettavia tunteja per työ ja linkitä tuntimerkinnät lähetykseen ja palkkahallintoon",                                "group": "Talous ja hallinto" },
+    { "tool": "BambooHR / Gusto",            "category": "Tiimi ja organisaatiokaavio","vois": "Näe koko tiimisi rakenne, hallinnoi rooleja ja pääsyä, suunnittele muutoksia — kaikki vedä-ja-pudota",                                                               "group": "Talous ja hallinto" },
+    { "tool": "Typeform / JotForm",          "category": "Lomakkeet",                  "vois": "Rakenna mikä tahansa lomake, reitittää lähetykset CRM:ään tai tiketteihin automaattisesti ja lähetä välittömät vahvistusviestit",                                    "group": "Talous ja hallinto" },
+    { "tool": "Confluence / Guru",           "category": "Tietohaku",                  "vois": "Esitä kysymys ja saa vastaus koko liiketoiminnastasi — äänimuistiinpanot, sähköpostit, dokumentit, kokoukset, kaikki",                                              "group": "Talous ja hallinto" },
+    { "tool": "Google Drive / Dropbox",      "category": "Tiedostot ja media",         "vois": "Yksi paikka kaikille tiedostoillesi tekoälymerkinnöillä, kokotekstihaulilla ja lukijalla joka lukee dokumentit ääneen",                                             "group": "Talous ja hallinto" },
+    { "tool": "Virtuaalinen johtoassistentti","category": "Tekoälyassistenttisi",       "vois": "Tuntee koko liiketoimintasi, ennakoi mitä tarvitset ja toimii kaikkien työkalujen yli — äänellä, kellolla, puhelimella tai postilaatikolla",                        "group": "Tekoäly ja ääni" },
+    { "tool": "ChatGPT / Copilot",           "category": "Tekoälychat",                "vois": "Tekoäly, joka tuntee todellisen liiketoimintadatasi — ei vain internetiä — ja voi toimia hyväksyntäsi kanssa",                                                     "group": "Tekoäly ja ääni" },
+    { "tool": "Mukautettu kehitys / Toimisto","category": "Tekoälyagentit",            "vois": "Tekoälytyöntekijät, jotka suunnittelevat monivaiheisia tehtäviä, käyttävät työkalujasi ja pysähtyvät hyväksyntääsi varten ennen tärkeää",                           "group": "Tekoäly ja ääni" },
+    { "tool": "Perplexity / SearchGPT",      "category": "Tekoälytutkimus",            "vois": "Syvällinen verkkohaku lähteineen — delegoitu erikoistuneelle tekoälylle ja tallennettu tietokantaasi",                                                             "group": "Tekoäly ja ääni" },
+    { "tool": "Liikkeenjohdon konsultit",    "category": "Strategia-analyysi",         "vois": "Analysoi tuloasi, asiakkaitasi, tuotteitasi ja kilpailijoitasi — nostaa esiin mahdollisuuksia, jotka olisit muuten missannut",                                      "group": "Tekoäly ja ääni" },
+    { "tool": "Siri / Google Assistant",     "category": "Äänentietoisuus",            "vois": "Yksi äänimuistiinpano luo tehtäviä, tapahtumia, varastopäivityksiä ja viestejä — reititetty oikeaan paikkaan automaattisesti",                                     "group": "Tekoäly ja ääni" },
+    { "tool": "Apple Watch -sovellukset",    "category": "Kellon assistentti",         "vois": "Täydellinen tekoälyassistentti ranteellasi — puhu, saa vastauksia, hyväksy toimenpiteitä, kaikki ilman puhelimen ottamista esille",                                "group": "Tekoäly ja ääni" },
+    { "tool": "Vastauspalvelu",              "category": "Tekoälypuhelin ja SMS",      "vois": "Oikea puhelinnumero, jota tekoälysi vastaa — varaa tapaamisia, vastaa kysymyksiin ja käsittelee viestejä 24/7",                                                    "group": "Tekoäly ja ääni" }
+  ],
+  "pricing": {
+    "heading":     "Yksinkertainen, läpinäkyvä hinnoittelu.",
+    "description": "Personal saa täydellisen ääni-toimenpide-silmukan. Work lisää kolme ammatillista pilaria.",
+    "billingMonthly": "Kuukausittain",
+    "billingAnnual":  "Vuosittain",
+    "saveLabel":      "Säästä jopa 40 %",
+    "featureColHeader": "Ominaisuus",
+    "personalColHeader": "Personal",
+    "workColHeader":     "Work",
+    "personal": {
+      "name":        "Personal",
+      "description": "Jokapäiväisen elämän järjestelyyn",
+      "priceAnnual": "6,67 $",
+      "priceMonthly":"14,99 $",
+      "perMonth":    "/kuukausi",
+      "cta":         "Aloita ilmainen kokeilujakso",
+      "guarantee":   "30 päivän rahat takaisin -takuu"
+    },
+    "work": {
+      "name":        "Work",
+      "description": "Ammattilaisille ja tiimeille",
+      "priceAnnual": "29 $",
+      "priceMonthly":"39 $",
+      "perMonth":    "/kuukausi",
+      "badge":       "Suositeltu",
+      "cta":         "Aloita ilmainen kokeilujakso",
+      "guarantee":   "30 päivän rahat takaisin -takuu"
+    }
+  },
+  "pricingFeatures": [
+    { "feature": "Äänitallennukset ja älykäs reititin" },
+    { "feature": "Tekoälychat-assistentti" },
+    { "feature": "Tehtävienhallinta tekoälyn pisteytyksellä" },
+    { "feature": "Kalenteri tekoälyaikataulutuksella" },
+    { "feature": "Mukautetut sovellukset ja markkinapaikka" },
+    { "feature": "Elämän alueet ja automaatiot" },
+    { "feature": "Live-kokouslitterointi" },
+    { "feature": "Kokousyhteenvedot ja valmistautuminen" },
+    { "feature": "Yksityiset tekoälymuistiinpanot per osallistuja" },
+    { "feature": "Projektit ja seuranta" },
+    { "feature": "Raportit ja työkatsaukset" },
+    { "feature": "Tekoälyagentit ja tutkimus" },
+    { "feature": "Sähköpostiintegraatio" },
+    { "feature": "Työpöytäsovellus (Live Guide)" }
+  ],
+  "cta": {
+    "heading":     "Aloita puhuminen työpäivällesi.",
+    "description": "Yksi ääni. Yksi aivot. Kaikki yhdistetty.",
+    "waitlistDescription": "Liity odotuslistalle varhaiskäyttöä varten HABOS for Work -palveluun.",
+    "emailPlaceholder": "Syötä työsähköpostisi",
+    "submitButton":  "Hanki varhaiskäyttö",
+    "noSpam":        "Ei roskapostia. Ei luottokorttia. Vain päivityksiä HABOS for Work -palvelusta.",
+    "successMessage":"Olet listalla! Olemme pian yhteydessä."
+  },
+  "footer": {
+    "logoAlt": "HABOS",
+    "brandName": "HABOS",
+    "tagline": "Tekoälypäiväsi.",
+    "product": {
+      "heading":       "Tuote",
+      "login":         "Kirjaudu sisään",
+      "pricing":       "Hinnoittelu",
+      "platform":      "Alusta",
+      "voisPersonal":  "VOIS Personal"
+    },
+    "support": {
+      "heading":       "Tuki",
+      "helpFaq":       "Ohje ja UKK",
+      "contactSales":  "Ota yhteyttä myyntiin",
+      "setupGuide":    "Asennusopas"
+    },
+    "legal": {
+      "heading":       "Juridinen",
+      "privacyPolicy": "Tietosuojakäytäntö",
+      "termsOfService":"Käyttöehdot",
+      "refundPolicy":  "Palautuskäytäntö"
+    },
+    "social": {
+      "heading":   "Some",
+      "xTwitter":  "X / Twitter",
+      "instagram": "Instagram",
+      "tiktok":    "TikTok",
+      "facebook":  "Facebook"
+    },
+    "copyright": "© {{year}} Vois AI. Kaikki oikeudet pidätetään."
+  }
+}
