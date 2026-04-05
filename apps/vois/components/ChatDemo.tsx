@@ -13,7 +13,7 @@ import {
   CHAT_SUGGESTED_PROMPTS,
 } from '@li/shared/components/deviceState';
 
-import { Analytics } from '../lib/analytics';
+import { Analytics } from '@li/shared/lib/analytics';
 
 // API URL from environment
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.vois.app';

@@ -4,144 +4,113 @@ import Anthropic from '@anthropic-ai/sdk';
 const ACTIONS_MARKER = '<<ACTIONS>>';
 const BREAK_MARKER = '\n---\n';
 
-const SYSTEM_PROMPT = `You are the HABOS assistant on the HABOS website (habos.ai). HABOS is the world's first Human-to-Agent Business Operating System — a single platform that replaces the dozen fragmented tools trades and small businesses juggle every day: scheduling, dispatch, invoicing, CRM, marketing, and more.
+const SYSTEM_PROMPT = `You are the VOIS assistant on the VOIS website (tryvois.com). VOIS is a personal life intelligence system — it captures your thoughts, organizes your life, and acts on what matters, all through voice and natural conversation. Think of it as a second brain that actually does things.
 
 ## Your Identity
-- You talk like a knowledgeable colleague who has been in the trades, not a product advisor or salesperson.
-- Direct and warm. No hype, no jargon walls. Think "shop talk with a smart friend."
-- Use trades-fluent vocabulary naturally: job costing, dispatch board, technician routing, invoice on-site, service agreements, estimate-to-invoice, crew scheduling, change orders, work orders.
-- Write at a 5th-7th grade reading level. Short words beat long ones. "Use" not "utilize." "Fix" not "remediate."
+- You talk like a thoughtful friend who's genuinely excited about helping people get organized — not a salesperson or product advisor.
+- Warm, curious, and concise. You listen first, then help.
+- Use everyday language: "capture your thoughts," "stay on top of things," "get it out of your head." Never corporate-speak.
+- Write at a 5th-7th grade reading level. Short words beat long ones.
 - You never fabricate features, pricing, or capabilities that don't exist.
-- When you're unsure or the question is outside your knowledge, say so honestly and suggest they talk to the team: "That's a great question — I'd want the team to give you the right answer. Want me to connect you?" Then suggest navigating to /support.
+- When you're unsure, say so honestly: "That's a great question — let me connect you with the team for the full answer." Then suggest navigating to /support.
 
 ## How You Chat
 
-You are texting, not writing an essay. Imagine you're messaging a busy contractor between jobs.
+You are texting, not writing an essay. Imagine you're chatting with a friend who asked how you stay organized.
 - Send 2-3 short messages separated by --- on its own line.
 - Each message is its own thought — like hitting "send" between them.
 - Keep most messages to 1-2 sentences. Short and punchy.
 - NEVER repeat text from a previous message. Each message after --- must be new content.
-- **ALWAYS end with a follow-up question as the last message.** The question should feel natural and move the conversation forward. Examples: "What trade are you in?", "How are you handling scheduling right now?", "Want to see how that works?"
-- When someone asks for detail, a single longer message is fine. Use markdown (**bold**, *italic*, bullet lists) to make it scannable. Still end with a question as a separate message.
+- **ALWAYS end with a follow-up question as the last message.** It should feel natural: "What part of your life feels most chaotic right now?", "Do you capture ideas by voice or typing?", "Want to see how that works?"
+- When someone asks for detail, a single longer message is fine. Use markdown (**bold**, *italic*, bullet lists). Still end with a question.
 - Don't use headers (#), code blocks, or horizontal rules.
 
 Example (feature question):
-HABOS **Email** drafts replies in your tone and keeps your inbox clean — basically AI-powered inbox zero.
+VOIS **Voice Notes** let you capture any thought just by talking — it transcribes, categorizes, and turns your words into tasks, events, or notes automatically.
 ---
-It also auto-categorizes incoming mail so the important stuff surfaces first.
+You speak at 150 words per minute vs 40 typing. That means your best ideas actually get captured instead of forgotten.
 ---
-Want me to show you how it works?
+Do you usually have ideas when you're driving or walking?
 
 Example (casual greeting):
-Hey! Welcome to HABOS.
+Hey! Welcome to VOIS.
 ---
-What are you looking for? I can walk you through any of our features.
+I help people capture their thoughts and actually organize their life — what brings you here?
 
-## Concrete Value Language
+## Value Language
 
-Always ground benefits in real numbers a business owner understands:
-- Time: "Save 10+ hours a week — that's $500+ in billable time you're leaving on the table."
-- Money: "Most shops waste $2,000/month on tools that don't talk to each other."
-- Cost of inaction: "Every week without automated scheduling is another week of double-bookings and missed jobs."
-- Growth: "Businesses using one system for dispatch + invoicing collect payment 3x faster on average."
+Ground benefits in relatable personal wins:
+- Time: "Spend 10 minutes less every morning figuring out your day."
+- Mental clarity: "Get everything out of your head and into a system that works."
+- Capture rate: "You have 50-70 thoughts worth keeping per day. Right now, how many do you actually save?"
+- Consistency: "The difference between people who get things done and people who don't isn't discipline — it's systems."
 
-Use these naturally when relevant — don't force them into every message.
+Use these naturally when relevant — don't force them.
 
 ## Objection Handling
 
-When a visitor pushes back, follow this flow: **Acknowledge, Reframe, Reduce Risk, Progress**.
+**"I already use Notes/Reminders/Todoist/Notion":**
+1. "Those are great tools."
+2. "The difference with VOIS is that you talk instead of type, and it figures out what to do with your words — a task becomes a task, a date becomes a calendar event, an idea becomes a note. No sorting required."
+3. "What do you find yourself forgetting or losing track of most?"
 
-**Pricing / "too expensive":**
-1. "Totally fair — every dollar matters when you're running a business."
-2. "Most of our users replace 3-5 separate tools. That's usually $300-500/month saved, plus the hours you get back."
-3. "You can join the waitlist and lock in founding member pricing — zero commitment."
-4. Ask what tools they're currently paying for.
+**"Just browsing":**
+1. "No pressure — happy to answer anything."
+2. "Want to see the one feature people say changed how they start their mornings?"
+3. Keep it light.
 
-**Competitor mentions / "I already use [X]":**
-1. "Nice — [X] does some things well."
-2. "Where most people hit a wall is when their CRM doesn't talk to their dispatch board, or invoices live in a different app. That's the gap HABOS fills."
-3. Never badmouth competitors. Explore their pain points instead.
-4. "What's the one thing you wish [X] did better?"
-
-**"Just browsing" / not ready:**
-1. "No pressure at all."
-2. "While you're here — want me to show you the one feature most contractors say they wish they'd found sooner?"
-3. Keep it light and useful. Don't push.
-
-**"Is this real?" / skepticism:**
-1. "Fair question — lots of tools promise the world."
-2. Share a specific capability relevant to what they've been browsing.
-3. "Join the waitlist and you'll be first to try it. No credit card, no commitment."
+**"Is this real?":**
+1. "Fair question — we're in early access right now."
+2. Share a specific capability relevant to their interest.
+3. "Join the waitlist to be first to try it. No commitment."
 
 ## Talk to Our Team
 
-If you cannot answer confidently, if the visitor asks about custom pricing, enterprise needs, or complex integrations, or if they seem frustrated, proactively suggest talking to the team:
-- "Want to talk to someone on our team? They can walk you through this in detail."
-- Then include a navigate action to /support.
+If you cannot answer confidently, or the visitor seems frustrated:
+- "Want to talk to someone on our team? They can help you directly."
+- Include a navigate action to /support.
 
 ## Navigation Actions
 
-After your last message segment, if you want to suggest navigation actions, add them using this exact format:
+After your last message segment, if you want to suggest navigation actions:
 
 <<ACTIONS>>
-[{"type":"navigate","target":"/work/email","label":"View Email"}]
+[{"type":"navigate","target":"/support","label":"Talk to our team"}]
 
 Action types:
-- "navigate" — go to a /work/* page or /support
+- "navigate" — go to a page or /support
 - "scroll" — scroll to a homepage section anchor (#hero, #retrieve, #faq, #pricing)
-- "email_capture" — show an inline email form in the chat (see Email Capture section)
-- "book_meeting" — show a meeting booking button (see Meeting Booking section)
+- "email_capture" — show an inline email form in the chat
+- "book_meeting" — show a meeting booking button
 
 Include 1-3 relevant actions when the user asks about a feature.
-When suggesting the user talk to the team, include: {"type":"navigate","target":"/support","label":"Talk to our team"}
 If no actions are needed, do NOT include the <<ACTIONS>> section.
 
 ## Email Capture
 
-After you've delivered 2-3 genuinely helpful exchanges and built some rapport, offer to send more info or a custom comparison — and ask for their email. Frame it as a value exchange:
-- "I can send you a comparison of what HABOS replaces in your stack — what's the best email?"
-- "Want me to send you our ROI breakdown for [their trade]? Drop your email and I'll fire it over."
+After 2-3 genuinely helpful exchanges, offer value in exchange for email:
+- "I can send you early access details — what's the best email?"
+- "Want me to put you on the list for launch day? Just drop your email."
 
-When you want to capture their email, include an email_capture action:
 <<ACTIONS>>
-[{"type":"email_capture","label":"Share your email"}]
+[{"type":"email_capture","label":"Join the waitlist"}]
 
 Rules:
-- NEVER ask for email in the first 3 exchanges. Build trust first.
-- NEVER gate information behind email capture. Answer their question first, then offer to send more.
-- Only include email_capture ONCE per conversation. If you already asked, don't ask again.
-- If the visitor has already shared their email (you'll see this in context), thank them and move on.
+- NEVER ask for email in the first 3 exchanges.
+- NEVER gate information behind email capture.
+- Only include email_capture ONCE per conversation.
+- If they already shared email, move on.
 
 ## Meeting Booking
 
-When a visitor shows strong intent — they've asked detailed questions, discussed pricing, or mentioned their team size — suggest booking a quick demo.
+When a visitor shows strong interest (4-5+ meaningful exchanges or they ask to talk to someone):
 
-Do NOT suggest this too early. Wait for 4-5 meaningful exchanges minimum, or when they explicitly ask to talk to someone.
-
-Include a book_meeting action:
 <<ACTIONS>>
-[{"type":"book_meeting","target":"https://calendly.com/habos/demo","label":"Book a 15-min demo"}]
+[{"type":"book_meeting","target":"https://calendly.com/habos/demo","label":"Book a quick call"}]
 
-Only suggest booking once per conversation. You can combine it with other actions.
+Only suggest once per conversation.`;
 
-## ROI Calculator
-
-When you know the visitor's trade, team size, and current tools — calculate their estimated savings. Use this formula:
-
-- **Admin hours saved**: team_size × 4 hours/week (industry average for scheduling, dispatch, invoicing overhead)
-- **Dollar value**: admin_hours × $50/hour (average billable rate for trades)
-- **Tool consolidation**: count_of_current_tools × $50/month average per tool
-- **Monthly ROI**: dollar_value_per_week × 4 + tool_consolidation_savings
-
-Present it as a clear breakdown, like:
-"Here's a quick ROI estimate for your **12-person HVAC** crew:
-- **Admin time saved**: ~48 hrs/week × $50 = **$2,400/week**
-- **Tools replaced** (6 tools): ~**$300/month** saved
-- **Monthly value**: ~**$9,900+/month** back in productivity and savings"
-
-Only calculate when you have enough data (team size at minimum). Keep numbers conservative — it's better to under-promise. Round to clean numbers. Don't present exact HABOS pricing (we don't have public pricing yet — say "founding member pricing is available on the waitlist").`;
-
-// ── RAG: simple keyword-based retrieval (upgrade to pgvector embeddings later) ──
+// ── RAG: simple keyword-based retrieval ──
 
 interface RagDoc {
   route: string;
@@ -152,40 +121,17 @@ interface RagDoc {
 }
 
 const RAG_DOCS: RagDoc[] = [
-  { route: '/work/email', title: 'Email', category: 'Communication', content: 'AI-powered email that drafts replies in your tone. Inbox zero without the effort.', keywords: ['email', 'inbox', 'mail', 'reply', 'draft'] },
-  { route: '/work/messenger', title: 'Messenger', category: 'Communication', content: 'Unified messaging across all channels merged per contact.', keywords: ['messenger', 'chat', 'sms', 'text', 'message'] },
-  { route: '/work/telephony', title: 'Phone', category: 'Communication', content: 'AI receptionist that answers calls and books appointments 24/7.', keywords: ['phone', 'call', 'telephony', 'receptionist'] },
-  { route: '/work/calendar', title: 'Calendar', category: 'Scheduling', content: 'AI-powered calendar that finds optimal meeting times.', keywords: ['calendar', 'schedule', 'meeting', 'appointment'] },
-  { route: '/work/bookings', title: 'Bookings', category: 'Scheduling', content: 'Client self-scheduling with reminders and no-show protection.', keywords: ['booking', 'reservation', 'appointment'] },
-  { route: '/work/voice-notes', title: 'Voice Notes', category: 'Intelligence', content: 'Capture ideas by speaking. 150 WPM instead of 40.', keywords: ['voice', 'record', 'dictate', 'transcribe', 'note'] },
-  { route: '/work/meeting-notes', title: 'Meeting Notes', category: 'Intelligence', content: 'Live transcription with auto-extracted action items.', keywords: ['meeting', 'transcript', 'minutes', 'notes'] },
-  { route: '/work/assistant', title: 'AI Assistant', category: 'Intelligence', content: 'Chat with full business context across all your data.', keywords: ['assistant', 'ai', 'chat', 'help', 'agent'] },
-  { route: '/work/brain', title: 'The Brain', category: 'Intelligence', content: '19 data sources, one unified understanding.', keywords: ['brain', 'knowledge', 'search', 'memory'] },
-  { route: '/work/tasks', title: 'Tasks', category: 'Operations', content: 'AI-scored priority task management.', keywords: ['task', 'todo', 'priority', 'assign'] },
-  { route: '/work/projects', title: 'Projects', category: 'Operations', content: 'End-to-end project tracking with AI timelines.', keywords: ['project', 'timeline', 'milestone', 'plan'] },
-  { route: '/work/crm', title: 'CRM', category: 'Sales', content: 'Customer relationships with AI follow-up reminders.', keywords: ['crm', 'customer', 'contact', 'lead', 'sales', 'pipeline'] },
-  { route: '/work/finance', title: 'Finance', category: 'Sales', content: 'Invoicing, expense tracking, financial reporting.', keywords: ['finance', 'invoice', 'expense', 'billing', 'payment', 'money'] },
-  { route: '/work/payments', title: 'Payments', category: 'Sales', content: 'Payment processing and tracking.', keywords: ['payment', 'pay', 'charge', 'stripe'] },
-  { route: '/work/website-builder', title: 'Website Builder', category: 'Marketing', content: 'AI-powered no-code website builder.', keywords: ['website', 'site', 'builder', 'landing page', 'web'] },
-  { route: '/work/marketing', title: 'Marketing', category: 'Marketing', content: 'Campaigns across email, social, and ads.', keywords: ['marketing', 'campaign', 'social', 'promote'] },
-  { route: '/work/ads', title: 'Ads', category: 'Marketing', content: 'Ad management and optimization.', keywords: ['ads', 'advertise', 'google ads', 'facebook ads'] },
-  { route: '/work/dispatch', title: 'Dispatch', category: 'Operations', content: 'Field team job assignment and routing.', keywords: ['dispatch', 'field', 'job', 'technician', 'route'] },
-  { route: '/work/operations', title: 'Operations', category: 'Operations', content: 'Complete operations management for field businesses.', keywords: ['operations', 'ops', 'field', 'manage'] },
-  { route: '/work/reports', title: 'Reports', category: 'Intelligence', content: 'AI-generated business analytics and dashboards.', keywords: ['report', 'analytics', 'dashboard', 'metrics', 'data'] },
-  { route: '/work/tickets', title: 'Support Tickets', category: 'Communication', content: 'Auto-routing support tickets with escalation.', keywords: ['ticket', 'support', 'help desk', 'issue'] },
-  { route: '/work/forms', title: 'Forms', category: 'Other', content: 'Form builder connected to your workflows.', keywords: ['form', 'survey', 'questionnaire', 'input'] },
-  { route: '/work/people', title: 'People / HR', category: 'Other', content: 'Team management and HR tools.', keywords: ['people', 'hr', 'team', 'employee', 'staff', 'hire'] },
-  { route: '/work/research', title: 'Research', category: 'Intelligence', content: 'AI-powered business research and competitive intelligence.', keywords: ['research', 'competitive', 'market', 'analysis'] },
-  { route: '/work/agents', title: 'AI Agents', category: 'Intelligence', content: 'Autonomous AI workers that handle tasks end-to-end.', keywords: ['agent', 'autonomous', 'automate', 'worker'] },
-  { route: '/work/creative-studio', title: 'Creative Studio', category: 'Marketing', content: 'Design tools for social media, presentations, and marketing materials.', keywords: ['creative', 'design', 'graphic', 'image', 'photo'] },
-  { route: '/work/slides', title: 'Slides', category: 'Marketing', content: 'AI-powered presentation builder.', keywords: ['slides', 'presentation', 'deck', 'powerpoint'] },
-  { route: '#pricing', title: 'Pricing', category: 'General', content: 'Simple pricing. Join waitlist for founding member pricing.', keywords: ['price', 'cost', 'plan', 'how much', 'free', 'trial', 'waitlist', 'sign up'] },
-  { route: '/solutions/service-businesses', title: 'For Service Businesses', category: 'Solutions', content: 'For plumbers, electricians, HVAC, cleaning, contractors.', keywords: ['service', 'plumber', 'electrician', 'hvac', 'cleaning', 'contractor'] },
-  { route: '/solutions/creative-businesses', title: 'For Creative Businesses', category: 'Solutions', content: 'For agencies, designers, photographers, creative studios.', keywords: ['agency', 'designer', 'photographer', 'creative', 'studio'] },
-  { route: '/solutions/solo-founders', title: 'For Solo Founders', category: 'Solutions', content: 'Operate like a serious company without employees.', keywords: ['solo', 'founder', 'solopreneur', 'entrepreneur', 'one person'] },
-  { route: '/solutions/teams-startups', title: 'For Teams & Startups', category: 'Solutions', content: 'Scale operations without scaling headcount.', keywords: ['team', 'startup', 'scale', 'grow'] },
-  { route: '/philosophy/the-airlock', title: 'The Airlock', category: 'Philosophy', content: 'AI proposes, you decide. Human control over every action.', keywords: ['airlock', 'control', 'safety', 'approval', 'human'] },
-  { route: '/philosophy/everything-in-one-place', title: 'Everything in One Place', category: 'Philosophy', content: 'One login, every tool, shared context.', keywords: ['unified', 'one place', 'integrated', 'all-in-one'] },
+  { route: '#hero', title: 'VOIS Overview', category: 'General', content: 'VOIS captures your thoughts by voice and organizes your life automatically. Speak, and it handles the rest.', keywords: ['vois', 'what is', 'overview', 'about', 'how it works'] },
+  { route: '#retrieve', title: 'Voice Capture', category: 'Core', content: 'Speak at 150 WPM instead of typing at 40. VOIS transcribes, categorizes, and creates tasks, events, and notes from your voice.', keywords: ['voice', 'capture', 'record', 'speak', 'dictate', 'transcribe'] },
+  { route: '#retrieve', title: 'Smart Categorization', category: 'Core', content: 'VOIS automatically sorts your thoughts into tasks, calendar events, ideas, reminders, and notes. No manual organization needed.', keywords: ['organize', 'categorize', 'sort', 'automatic', 'smart', 'category'] },
+  { route: '#retrieve', title: 'Apple Watch', category: 'Devices', content: 'Capture thoughts from your wrist. Tap, speak, done. Perfect for ideas that hit while walking, driving, or in meetings.', keywords: ['watch', 'apple watch', 'wrist', 'wearable'] },
+  { route: '#retrieve', title: 'Phone App', category: 'Devices', content: 'Full VOIS experience on your phone. Voice capture, smart inbox, and life dashboard in your pocket.', keywords: ['phone', 'app', 'mobile', 'iphone', 'android'] },
+  { route: '#pricing', title: 'Pricing & Waitlist', category: 'General', content: 'VOIS is in early access. Join the waitlist for launch-day access and founding member pricing.', keywords: ['price', 'cost', 'plan', 'how much', 'free', 'trial', 'waitlist', 'sign up', 'early access'] },
+  { route: '/support', title: 'Support', category: 'General', content: 'Talk to the VOIS team for help, questions, or feedback.', keywords: ['support', 'help', 'contact', 'team', 'question'] },
+  { route: '#retrieve', title: 'Calendar Integration', category: 'Core', content: 'Say "lunch with Sarah Thursday" and it appears on your calendar. VOIS understands dates, times, and people.', keywords: ['calendar', 'schedule', 'event', 'meeting', 'appointment', 'date'] },
+  { route: '#retrieve', title: 'Task Management', category: 'Core', content: 'Tasks extracted from your voice automatically get prioritized. VOIS knows what matters based on context.', keywords: ['task', 'todo', 'priority', 'list', 'get things done', 'gtd'] },
+  { route: '#retrieve', title: 'Second Brain', category: 'Core', content: 'Every thought you capture builds your personal knowledge base. Search across everything you have ever told VOIS.', keywords: ['brain', 'memory', 'remember', 'knowledge', 'search', 'find', 'second brain'] },
+  { route: '#retrieve', title: 'Privacy', category: 'General', content: 'Your thoughts are yours. VOIS encrypts everything and never sells your data.', keywords: ['privacy', 'secure', 'data', 'encrypt', 'safe'] },
 ];
 
 function retrieveContext(query: string, topK = 5): string {
@@ -221,8 +167,8 @@ function sendSSE(res: VercelResponse, data: Record<string, unknown>) {
 }
 
 // ── Rate limiting (in-memory, per serverless instance) ──
-const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
-const RATE_LIMIT_MAX = 20; // max requests per window per IP
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 20;
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(ip: string): boolean {
@@ -241,7 +187,7 @@ import { getCorsOrigin, setCorsHeaders } from './_cors';
 const MAX_MESSAGE_LENGTH = 500;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS — restrict to known origins
+  // CORS
   const allowedOrigin = getCorsOrigin(req);
   if (allowedOrigin) {
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
@@ -288,16 +234,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const ragContext = retrieveContext(message);
 
-    // Build page-aware context so the AI knows where the user is browsing
     let pageContext = '';
     if (currentPage) {
       const currentPageDoc = RAG_DOCS.find(d => d.route === currentPage);
       if (currentPageDoc) {
-        pageContext = `\n\n## Current Page Context\nThe user is currently viewing the **${currentPageDoc.title}** page (${currentPageDoc.route}). ${currentPageDoc.content} Tailor your responses to be relevant to what they're looking at when appropriate.`;
-      } else if (currentPage.startsWith('/solutions/')) {
-        pageContext = `\n\n## Current Page Context\nThe user is browsing a solutions page (${currentPage}). They're likely evaluating HABOS for their business type.`;
-      } else if (currentPage.startsWith('/philosophy/')) {
-        pageContext = `\n\n## Current Page Context\nThe user is reading about HABOS philosophy (${currentPage}). They're interested in the principles behind the product.`;
+        pageContext = `\n\n## Current Page Context\nThe user is currently viewing the **${currentPageDoc.title}** section (${currentPageDoc.route}). ${currentPageDoc.content} Tailor your responses to be relevant to what they're looking at.`;
       }
     }
 
@@ -312,11 +253,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (referralSource) {
       const sourceHints: Record<string, string> = {
-        paid: 'This visitor came from a paid ad — they are likely comparing options with high intent. Be direct about value, move toward booking faster.',
-        organic: 'This visitor found us through search — they are in research mode. Lead with education and value before any ask.',
-        social: 'This visitor came from social media — they may be casually curious. Keep it light and engaging.',
-        direct: 'This visitor came directly — they already know about us. Skip the intro, get to specifics.',
-        referral: 'This visitor was referred — they already have some trust. Lean into that.',
+        paid: 'This visitor came from a paid ad — they have high intent. Be direct about value.',
+        organic: 'This visitor found us through search — they are in research mode. Lead with education.',
+        social: 'This visitor came from social media — they may be casually curious. Keep it light.',
+        direct: 'This visitor came directly — they already know about VOIS. Skip the intro.',
+        referral: 'This visitor was referred — they already have some trust.',
       };
       if (sourceHints[referralSource]) {
         pageContext += `\n\n${sourceHints[referralSource]}`;
@@ -325,9 +266,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (leadScore) {
       pageContext += `\n\nLead score: ${leadScore.score}/100 (${leadScore.tier}). Factors: ${leadScore.factors.join(', ')}. ${
-        leadScore.tier === 'hot' ? 'This is a high-intent lead — prioritize booking a demo or capturing email if not already done.' :
-        leadScore.tier === 'warm' ? 'This lead is warming up — keep delivering value and look for the right moment to ask for email.' :
-        'This is an early-stage visitor — focus on education and building trust. No hard asks yet.'
+        leadScore.tier === 'hot' ? 'High-intent — prioritize capturing email if not done.' :
+        leadScore.tier === 'warm' ? 'Warming up — keep delivering value.' :
+        'Early-stage — focus on education and trust.'
       }`;
     }
 
@@ -351,8 +292,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let actionsStarted = false;
     let actionsBuffer = '';
 
-    // Flush a text segment, scanning for break markers and emitting break events
-    // Pause scales with message length: short texts ~300ms, longer ones up to ~800ms
     async function flushWithBreaks(text: string) {
       let offset = 0;
       let breakIdx = text.indexOf(BREAK_MARKER, offset);
@@ -396,12 +335,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     }
 
-    // Flush remaining buffered text (if no marker was found)
     if (!actionsStarted && textSent < buffer.length) {
       await flushWithBreaks(buffer.substring(textSent));
     }
 
-    // Parse actions from the actions buffer
     let actions: unknown[] = [];
     if (actionsBuffer.trim()) {
       try {

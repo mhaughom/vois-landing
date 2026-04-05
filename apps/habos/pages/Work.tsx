@@ -17,7 +17,7 @@ import {
   Watch, FolderOpen, UserCog,
   ShieldCheck, ChevronLeft, ChevronRight, X,
 } from 'lucide-react';
-import { Analytics } from '../lib/analytics';
+import { Analytics } from '@li/shared/lib/analytics';
 import { WorkHero3D, AnimPhase } from '../components/WorkHero3D';
 import { Navbar } from '@li/shared/components/Navbar';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';

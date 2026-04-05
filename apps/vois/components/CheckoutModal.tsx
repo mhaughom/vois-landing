@@ -5,7 +5,7 @@ import {
   Heart, Wallet, Target, Users, ChevronLeft, Watch, Smartphone,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Analytics } from '../lib/analytics';
+import { Analytics } from '@li/shared/lib/analytics';
 import { PLANS } from '../lib/tiers';
 
 const CHECKOUT_API = import.meta.env.VITE_API_URL || 'https://voisbackend-production.up.railway.app';

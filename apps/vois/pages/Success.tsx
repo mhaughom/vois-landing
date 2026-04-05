@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Check, ExternalLink } from 'lucide-react';
-import { Analytics } from '../lib/analytics';
+import { Analytics } from '@li/shared/lib/analytics';
 
 const Success = () => {
   const { t } = useTranslation('success');

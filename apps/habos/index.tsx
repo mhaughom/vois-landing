@@ -4,20 +4,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ChatPanel from '@li/shared/components/ChatPanel';
 import './index.css';
 import '@li/shared/lib/i18n';
-import { bootConsent } from './lib/consent';
+import { configureConsent, bootConsent, isPostHogReady } from '@li/shared/lib/consent';
 import { initAnalytics } from '@li/shared/lib/analytics';
-import { configureConsent } from '@li/shared/lib/consent';
 import { configureWaitlist } from '@li/shared/lib/supabase';
 import { configureVisitorProfile } from '@li/shared/lib/visitorProfile';
-import { isPostHogReady } from './lib/consent';
 
 // Configure shared services for HABOS
 configureConsent('habos_cookie_consent');
 initAnalytics(isPostHogReady);
 configureWaitlist('habos');
 configureVisitorProfile('habos-visitor-profile', ['/work/crm', '/work/dispatch', '/work/finance', '/work/operations']);
-
-// Boot consent
 bootConsent();
 
 // Lazy-load pages

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Check, Loader2, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { waitlistService, type WaitlistEntry } from '../lib/supabase';
-import { Analytics } from '../lib/analytics';
+import { waitlistService, type WaitlistEntry } from '@li/shared/lib/supabase';
+import { Analytics } from '@li/shared/lib/analytics';
 
 interface WaitlistModalProps {
   isOpen: boolean;

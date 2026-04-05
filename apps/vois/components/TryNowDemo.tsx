@@ -22,7 +22,7 @@ import {
   setOnStopRecordClick,
 } from '@li/shared/components/deviceState';
 
-import { Analytics } from '../lib/analytics';
+import { Analytics } from '@li/shared/lib/analytics';
 import { DemoWebSocketManager, WSMessage } from '@li/shared/lib/websocketManager';
 import { MockDemoWebSocket } from '../lib/mockWebSocket';
 import { DeepgramStreamingManager } from '../lib/deepgramStreamingManager';

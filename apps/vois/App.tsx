@@ -22,7 +22,7 @@ import { CheckoutModal } from './components/CheckoutModal';
 import { CookieConsent, CookieSettingsTrigger } from '@li/shared/components/CookieConsent';
 import { FREE_FEATURES, PERSONAL_FEATURES, WORK_FEATURES } from './lib/tiers';
 import { useIsMobile } from './hooks/useIsMobile';
-import { Analytics } from './lib/analytics';
+import { Analytics } from '@li/shared/lib/analytics';
 import { ActionCards } from '@li/shared/components/ActionCards';
 import { ContextualChat } from '@li/shared/components/ContextualChat';
 import { LifeAreas } from './components/LifeAreas';
