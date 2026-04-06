@@ -6,8 +6,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
   const env = {};
   try {
+    // Load all env vars (no prefix filter) from .env files
     const loaded = loadEnv(mode, process.cwd(), '');
     Object.assign(env, loaded);
+    // Also inject into process.env so API handlers can access them (e.g. ANTHROPIC_API_KEY)
+    Object.assign(process.env, loaded);
   } catch (e) {
     console.warn("Could not load .env files, proceeding with empty env.");
   }
@@ -16,16 +19,47 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
       host: '0.0.0.0',
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3001',
-          changeOrigin: true,
-        },
-      },
     },
     publicDir: path.resolve(__dirname, '../../public'),
     plugins: [
       react(),
+      // Dev-only: serve /api/* routes by dynamically importing the Vercel function handlers
+      {
+        name: 'api-dev-server',
+        configureServer(server: any) {
+          server.middlewares.use(async (req: any, res: any, next: any) => {
+            const url = (req.url || '').split('?')[0];
+            if (!url.startsWith('/api/')) return next();
+            // Map /api/chat → ./api/chat.ts etc.
+            const route = url.replace('/api/', '');
+            const handlerPath = path.resolve(__dirname, 'api', `${route}.ts`);
+            if (!fs.existsSync(handlerPath)) return next();
+            try {
+              // Collect body
+              const chunks: Buffer[] = [];
+              for await (const chunk of req) chunks.push(chunk);
+              const bodyStr = Buffer.concat(chunks).toString();
+              req.body = bodyStr ? JSON.parse(bodyStr) : {};
+              // Load handler via Vite's SSR module loader
+              const mod = await server.ssrLoadModule(handlerPath);
+              const handler = mod.default;
+              // Adapt to Vercel-style req/res
+              req.method = req.method || 'POST';
+              const origEnd = res.end.bind(res);
+              res.flushHeaders = () => res.writeHead(res.statusCode || 200, res.getHeaders());
+              res.json = (data: any) => { res.setHeader('Content-Type', 'application/json'); origEnd(JSON.stringify(data)); };
+              res.status = (code: number) => { res.statusCode = code; return res; };
+              await handler(req, res);
+            } catch (e: any) {
+              console.error('API handler error:', e);
+              if (!res.headersSent) {
+                res.statusCode = 500;
+                res.end(JSON.stringify({ error: e.message }));
+              }
+            }
+          });
+        },
+      },
       // After build, copy app-specific public/ overrides on top of shared assets
       {
         name: 'copy-app-overrides',

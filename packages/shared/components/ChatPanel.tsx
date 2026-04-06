@@ -1251,13 +1251,26 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                           </div>
                         )}
                         <p className="text-[10px] text-gray-400 mb-2.5">{t('helpNote', 'Your conversations stay private and are not shared with anyone.')}</p>
-                        <div className="border-t border-gray-100 pt-2">
-                          <p className="text-[10px] text-gray-400 mb-1">{t('helpHumanLabel', 'Prefer a human?')}</p>
+                        <div className="border-t border-gray-100 pt-2 flex items-center justify-between">
+                          <div>
+                            <p className="text-[10px] text-gray-400 mb-1">{t('helpHumanLabel', 'Prefer a human?')}</p>
+                            <button
+                              onClick={() => { setShowHelp(false); navigate('/support'); }}
+                              className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                            >
+                              {t('talkToTeam')}
+                            </button>
+                          </div>
                           <button
-                            onClick={() => { setShowHelp(false); navigate('/support'); }}
-                            className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                            onClick={() => {
+                              setMessages([]);
+                              try { localStorage.removeItem(STORAGE_KEY_MESSAGES); } catch {}
+                              conversationIdRef.current = null;
+                              setShowHelp(false);
+                            }}
+                            className="text-[10px] text-gray-400 hover:text-red-500 transition-colors"
                           >
-                            {t('talkToTeam')}
+                            {t('resetChat', 'Reset chat')}
                           </button>
                         </div>
                       </motion.div>

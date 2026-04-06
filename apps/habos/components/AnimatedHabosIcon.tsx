@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
  *   3. Explode faces outward (3D), hold, smash back
  *   4. 2D pizza wave — 6 triangular slices spread out one-by-one, snap back
  *   5. Cube → cuboctahedron crossfade with rotation, then back
+ *   6. Pizza peel — slices disappear one-by-one, then reappear
  * Returns to static isometric pose after animation completes.
  */
 
@@ -198,19 +199,20 @@ function computeFaces(rotY: number, rotX: number, explode: number): FaceData[] {
 // Phase 2: 3D explode/hold/smash — 2100ms
 // Phase 3: 2D pizza wave — 2400ms
 // Phase 4: cube → cuboctahedron crossfade with rotation — 2400ms
-const PHASE_DURATIONS = [1800, 1800, 2100, 2400, 2400];
+// Phase 5: pizza peel — slices vanish one-by-one then reappear — 2800ms
+const PHASE_DURATIONS = [1800, 1800, 2100, 2400, 2400, 2900];
 
-function computePhase(phase: number, ms: number) {
+function computePhase(phase: number, ms: number, dir: number) {
   let rotY = ISO_Y;
   let rotX = ISO_X;
   let spin2d = 0;
   let explode = 0;
 
   if (phase === 0) {
-    spin2d = easeInOutCubic(ms / 1800) * Math.PI * 2;
+    spin2d = easeInOutCubic(ms / 1800) * Math.PI * 2 * dir;
   } else if (phase === 1) {
     const p = easeInOutCubic(ms / 1800);
-    rotY = ISO_Y + p * Math.PI * 2;
+    rotY = ISO_Y + p * Math.PI * 2 * dir;
     rotX = ISO_X + Math.sin(p * Math.PI * 2) * 0.4;
   } else if (phase === 2) {
     if (ms < 900) {
@@ -241,27 +243,70 @@ function computePhase(phase: number, ms: number) {
   return { faces: faceData, explode };
 }
 
-// Compute per-slice pizza offset amounts
+// Compute pizza slice offsets — all slices move together with a double-pulse
 function computePizzaSlices(ms: number): number[] {
-  const amounts = new Array(6).fill(0);
-  const STAGGER = 150;
-  const SLIDE_DUR = 350;
-  const HOLD_START = 6 * STAGGER + SLIDE_DUR; // ~1250ms
-  const HOLD_END = HOLD_START + 250;           // ~1500ms
+  // Two pulses: out → little in → a bit further out → back in
+  let amt: number;
+  if (ms < 350) {
+    amt = easeOutCubic(ms / 350) * 0.85;            // first pulse out to 85%
+  } else if (ms < 600) {
+    amt = 0.85 - easeOutCubic((ms - 350) / 250) * 0.25; // retract to 60%
+  } else if (ms < 1000) {
+    amt = 0.6 + easeOutCubic((ms - 600) / 400) * 0.4;   // second pulse to 100%
+  } else {
+    const p = (ms - 1000) / (2400 - 1000);
+    amt = Math.max(0, 1 - easeOutBack(p));           // snap back in
+  }
 
-  for (let i = 0; i < 6; i++) {
-    const start = i * STAGGER;
-    if (ms < HOLD_START) {
-      const localT = Math.max(0, Math.min(1, (ms - start) / SLIDE_DUR));
-      amounts[i] = easeOutCubic(localT);
-    } else if (ms < HOLD_END) {
-      amounts[i] = 1;
-    } else {
-      const p = (ms - HOLD_END) / (2400 - HOLD_END);
-      amounts[i] = Math.max(0, 1 - easeOutBack(p));
+  return new Array(6).fill(amt);
+}
+
+// Compute per-slice opacity for the peel animation (phase 5).
+// order: array of 6 slice indices in removal order (randomized start).
+// Returns { opacities, sweepEdge } — sweepEdge is the slice index whose
+// leading edge (the radial line between it and the next slice) stays visible
+// as a "sweep hand" during transitions.
+interface PeelState {
+  opacities: number[];
+  sweepEdge: number; // slice index whose trailing radial edge is the sweep line
+}
+
+function computePeelSlices(ms: number, order: number[]): PeelState {
+  const opacities = new Array(6).fill(1);
+  const REMOVE_STAGGER = 180;
+  const FADE_DUR = 220;
+  const REMOVE_TOTAL = 5 * REMOVE_STAGGER + FADE_DUR; // all 6 gone by ~1120ms
+  const HOLD_DUR = 350;
+  const RESTORE_START = REMOVE_TOTAL + HOLD_DUR; // ~1470ms
+  const RESTORE_STAGGER = 180;
+  const RESTORE_DUR = 220;
+
+  // Track which step the sweep is at (for the visible edge)
+  let sweepStep = 0;
+
+  for (let step = 0; step < 6; step++) {
+    const sliceIdx = order[step];
+
+    // Remove phase: all 6 slices vanish one by one
+    const removeStart = step * REMOVE_STAGGER;
+    if (ms > removeStart) {
+      const t = Math.min(1, (ms - removeStart) / FADE_DUR);
+      opacities[sliceIdx] = 1 - easeOutCubic(t);
+      if (t >= 0.5) sweepStep = step + 1;
+    }
+
+    // Restore phase: slices reappear continuing the same direction
+    const restoreStart = RESTORE_START + step * RESTORE_STAGGER;
+    if (ms > restoreStart) {
+      const t = Math.min(1, (ms - restoreStart) / RESTORE_DUR);
+      opacities[sliceIdx] = easeOutCubic(t);
     }
   }
-  return amounts;
+
+  // The sweep edge is the leading edge of the current removal/restore front
+  const sweepEdge = order[Math.min(sweepStep, 5)];
+
+  return { opacities, sweepEdge };
 }
 
 // ─── Component ─────────────────────────────────────────────────────────────
@@ -278,6 +323,9 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
   const [pizzaSlices, setPizzaSlices] = useState<number[]>([]);
   const [hexFrame, setHexFrame] = useState<HexFrame | null>(null);
   const [hexFade, setHexFade] = useState(0); // 0 = cube visible, 1 = cuboctahedron visible
+  const [peelState, setPeelState] = useState<PeelState | null>(null);
+  const peelOrderRef = useRef<number[]>([0,1,2,3,4,5]);
+  const dirRef = useRef(1); // 1 or -1: random rotation direction per animation
   const [activePhase, setActivePhase] = useState(-1);
   const rafRef = useRef(0);
   const startRef = useRef(0);
@@ -287,7 +335,7 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
   const pickPhase = useCallback(() => {
     let next: number;
     do {
-      next = Math.floor(Math.random() * 5);
+      next = Math.floor(Math.random() * 6);
     } while (next === lastPhaseRef.current && lastPhaseRef.current !== -1);
     lastPhaseRef.current = next;
     return next;
@@ -302,6 +350,15 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
     animatingRef.current = true;
     startRef.current = performance.now();
 
+    // Randomize rotation direction for this animation
+    dirRef.current = Math.random() < 0.5 ? 1 : -1;
+
+    // For phase 5 (peel), pick a random starting slice and build removal order
+    if (phase === 5) {
+      const start = Math.floor(Math.random() * 6);
+      peelOrderRef.current = Array.from({ length: 6 }, (_, i) => (start + i) % 6);
+    }
+
     const duration = PHASE_DURATIONS[phase];
 
     const tick = (now: number) => {
@@ -310,6 +367,8 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
 
       if (phase === 3) {
         setPizzaSlices(computePizzaSlices(ms));
+      } else if (phase === 5) {
+        setPeelState(computePeelSlices(ms, peelOrderRef.current));
       } else if (phase === 4) {
         // Crossfade cube → cuboctahedron, rotate 180°, crossfade back
         // 0–400ms: fade cube out, cuboctahedron in
@@ -324,14 +383,16 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
           fade = 1 - easeInOutCubic((ms - 2000) / 400);
         }
         setHexFade(fade);
-        // Smooth 180° Y rotation over full duration
+        // Smooth full 360° Y rotation (continuous loop back to start)
+        const dir = dirRef.current;
         const p = easeInOutCubic(ms / 2400);
-        const rotY = ISO_Y + p * Math.PI;
-        setHexFrame(computeHexFrame(rotY, ISO_X));
+        const rotY = ISO_Y + p * Math.PI * 2 * dir;
+        const rotX = ISO_X + Math.sin(p * Math.PI * 2) * 0.3;
+        setHexFrame(computeHexFrame(rotY, rotX));
         // Also update cube faces with matching rotation so crossfade blends
-        setFaces(computeFaces(rotY, ISO_X, 0));
+        setFaces(computeFaces(rotY, rotX, 0));
       } else {
-        const { faces: faceData, explode } = computePhase(phase, ms);
+        const { faces: faceData, explode } = computePhase(phase, ms, dirRef.current);
         setFaces(faceData);
         setExplodeAmt(explode);
         setBreatheT(now);
@@ -343,6 +404,7 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
         setFaces(computeFaces(ISO_Y, ISO_X, 0));
         setExplodeAmt(0);
         setPizzaSlices([]);
+        setPeelState(null);
         setHexFrame(null);
         setHexFade(0);
         setActivePhase(-1);
@@ -375,6 +437,47 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
   useEffect(() => {
     return () => { cancelAnimationFrame(rafRef.current); };
   }, []);
+
+  // ─── Peel render (phase 5 — slices vanish/reappear in place) ────────────
+  if (activePhase === 5 && peelState) {
+    const { opacities: peelOp, sweepEdge } = peelState;
+    // The sweep edge: the trailing radial line of the sweep slice stays visible.
+    // This is the shared edge between slice `sweepEdge` and the next one.
+    const sweepV2 = HEX_VERTS[(sweepEdge + 1) % 6];
+
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none">
+        {/* Slices with opacity */}
+        {HEX_VERTS.map((v1, i) => {
+          const v2 = HEX_VERTS[(i + 1) % 6];
+          const op = peelOp[i];
+          if (op < 0.01) return null;
+
+          return (
+            <g key={i} opacity={op}>
+              {/* Radial edges */}
+              <line x1={CX} y1={CY} x2={v1[0]} y2={v1[1]}
+                stroke={COLOR} strokeWidth={STROKE_W} strokeLinecap="round" opacity={0.7} />
+              <line x1={CX} y1={CY} x2={v2[0]} y2={v2[1]}
+                stroke={COLOR} strokeWidth={STROKE_W} strokeLinecap="round" opacity={0.7} />
+              {/* Outer edge */}
+              <line x1={v1[0]} y1={v1[1]} x2={v2[0]} y2={v2[1]}
+                stroke={COLOR} strokeWidth={STROKE_W} strokeLinecap="round" opacity={0.85} />
+              {/* Outer nodes */}
+              <circle cx={v1[0]} cy={v1[1]} r={NODE_PX} fill={COLOR} />
+              <circle cx={v2[0]} cy={v2[1]} r={NODE_PX} fill={COLOR} />
+            </g>
+          );
+        })}
+        {/* Sweep line — always visible: radial edge + outer dot at the sweep front */}
+        <line x1={CX} y1={CY} x2={sweepV2[0]} y2={sweepV2[1]}
+          stroke={COLOR} strokeWidth={STROKE_W} strokeLinecap="round" opacity={0.7} />
+        <circle cx={sweepV2[0]} cy={sweepV2[1]} r={NODE_PX} fill={COLOR} />
+        {/* Center dot — always visible */}
+        <circle cx={CX} cy={CY} r={NODE_PX * 1.1} fill={COLOR} />
+      </svg>
+    );
+  }
 
   // ─── Pizza render (6 triangular slices) ────────────────────────────────
   if (activePhase === 3 && pizzaSlices.length > 0) {
