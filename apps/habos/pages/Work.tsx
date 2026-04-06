@@ -803,6 +803,8 @@ const Work: React.FC = () => {
   const [muted, setMuted] = useState(false);
   const [geoVisible, setGeoVisible] = useState(false);
   const [geoPaused, setGeoPaused] = useState(false);
+  const [scrollLocked, setScrollLocked] = useState(false);
+  const scrollLockedRef = useRef(false);
   const geoSectionRef = useRef<HTMLDivElement>(null);
   // Inline display style avoids Tailwind CDN race condition where R3F Canvas
   // mounts inside a display:none container and never initializes its render loop.
@@ -939,6 +941,54 @@ const Work: React.FC = () => {
       console.log('[HERO DEBUG] Work component UNMOUNTED');
     };
   }, []);
+
+  // Activate 3D section + lock scroll when it enters viewport from below
+  useEffect(() => {
+    const el = geoSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(el);
+        setGeoVisible(true);
+        const rect = entry.boundingClientRect;
+        // Only lock if the section is entering from below (not already visible on load)
+        if (rect.top > 0) {
+          window.scrollTo({ top: window.scrollY + rect.top, behavior: 'instant' });
+          scrollLockedRef.current = true;
+          setScrollLocked(true);
+        }
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Apply scroll lock — block wheel, touch, and keyboard scroll-down
+  useEffect(() => {
+    if (!scrollLocked) return;
+    const prevent = (e: Event) => e.preventDefault();
+    const preventKeys = (e: KeyboardEvent) => {
+      if (['ArrowDown', 'PageDown', ' '].includes(e.key)) e.preventDefault();
+    };
+    window.addEventListener('wheel', prevent, { passive: false });
+    window.addEventListener('touchmove', prevent, { passive: false });
+    window.addEventListener('keydown', preventKeys);
+    return () => {
+      window.removeEventListener('wheel', prevent);
+      window.removeEventListener('touchmove', prevent);
+      window.removeEventListener('keydown', preventKeys);
+    };
+  }, [scrollLocked]);
+
+  // Release scroll lock when animation reaches idle (shape fully formed + videos visible)
+  useEffect(() => {
+    if (animPhase === 'idle' && scrollLockedRef.current) {
+      scrollLockedRef.current = false;
+      setScrollLocked(false);
+    }
+  }, [animPhase]);
 
   // Pause hex 3D videos when section scrolls off-screen
   useEffect(() => {
@@ -1352,7 +1402,6 @@ const Work: React.FC = () => {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            onViewportEnter={() => setGeoVisible(true)}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative w-full mx-auto"
