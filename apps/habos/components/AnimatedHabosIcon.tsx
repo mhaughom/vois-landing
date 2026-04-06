@@ -194,13 +194,8 @@ function computeFaces(rotY: number, rotX: number, explode: number): FaceData[] {
 
 // ─── Animation phase configs ───────────────────────────────────────────────
 
-// Phase 0: flat 2D spin — 1800ms
-// Phase 1: 3D tumble — 1800ms
-// Phase 2: 3D explode/hold/smash — 2100ms
-// Phase 3: 2D pizza wave — 2400ms
-// Phase 4: cube → cuboctahedron crossfade with rotation — 2400ms
-// Phase 5: pizza peel — slices vanish one-by-one then reappear — 2800ms
-const PHASE_DURATIONS = [1800, 1800, 2100, 2400, 2400, 2900];
+// All animations are 2400ms
+const PHASE_DURATIONS = [2400, 2400, 2400, 2400, 2400, 2400];
 
 function computePhase(phase: number, ms: number, dir: number) {
   let rotY = ISO_Y;
@@ -209,18 +204,18 @@ function computePhase(phase: number, ms: number, dir: number) {
   let explode = 0;
 
   if (phase === 0) {
-    spin2d = easeInOutCubic(ms / 1800) * Math.PI * 2 * dir;
+    spin2d = easeInOutCubic(ms / 2400) * Math.PI * 2 * dir;
   } else if (phase === 1) {
-    const p = easeInOutCubic(ms / 1800);
+    const p = easeInOutCubic(ms / 2400);
     rotY = ISO_Y + p * Math.PI * 2 * dir;
     rotX = ISO_X + Math.sin(p * Math.PI * 2) * 0.4;
   } else if (phase === 2) {
-    if (ms < 900) {
-      explode = easeOutCubic(ms / 900);
-    } else if (ms < 1200) {
+    if (ms < 1000) {
+      explode = easeOutCubic(ms / 1000);
+    } else if (ms < 1400) {
       explode = 1;
     } else {
-      const p = (ms - 1200) / 900;
+      const p = (ms - 1400) / 1000;
       explode = Math.max(0, 1 - easeOutBack(p));
     }
   }
@@ -273,13 +268,13 @@ interface PeelState {
 
 function computePeelSlices(ms: number, order: number[]): PeelState {
   const opacities = new Array(6).fill(1);
-  const REMOVE_STAGGER = 180;
-  const FADE_DUR = 220;
-  const REMOVE_TOTAL = 5 * REMOVE_STAGGER + FADE_DUR; // all 6 gone by ~1120ms
-  const HOLD_DUR = 350;
-  const RESTORE_START = REMOVE_TOTAL + HOLD_DUR; // ~1470ms
-  const RESTORE_STAGGER = 180;
-  const RESTORE_DUR = 220;
+  const REMOVE_STAGGER = 140;
+  const FADE_DUR = 180;
+  const REMOVE_TOTAL = 5 * REMOVE_STAGGER + FADE_DUR; // all 6 gone by ~880ms
+  const HOLD_DUR = 280;
+  const RESTORE_START = REMOVE_TOTAL + HOLD_DUR; // ~1160ms
+  const RESTORE_STAGGER = 140;
+  const RESTORE_DUR = 180;
 
   // Track which step the sweep is at (for the visible edge)
   let sweepStep = 0;

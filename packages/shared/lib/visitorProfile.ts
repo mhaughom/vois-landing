@@ -5,6 +5,14 @@
 
 export type ReferralSource = 'paid' | 'organic' | 'social' | 'direct' | 'referral' | 'unknown';
 
+export interface GeoLocation {
+  country: string;
+  region: string;
+  city: string;
+  latitude: string;
+  longitude: string;
+}
+
 export interface VisitorProfile {
   visitorId: string;
   firstVisit: string;
@@ -17,6 +25,7 @@ export interface VisitorProfile {
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  geo?: GeoLocation;
 }
 
 export interface LeadScore {
@@ -171,6 +180,13 @@ export function createVisitorProfileManager(storageKey: string, highIntentPages:
       const tier = score >= 60 ? 'hot' : score >= 30 ? 'warm' : 'cold';
       return { score, tier, factors };
     },
+
+    setVisitorGeo(geo: GeoLocation): void {
+      const profile = read();
+      if (!profile) return;
+      profile.geo = geo;
+      write(profile);
+    },
   };
 }
 
@@ -192,3 +208,4 @@ export const updateVisitorChatCount = (count: number) => _manager.updateVisitorC
 export const setVisitorEmail = (email: string) => _manager.setVisitorEmail(email);
 export const getReferralSource = () => _manager.getReferralSource();
 export const calculateLeadScore = () => _manager.calculateLeadScore();
+export const setVisitorGeo = (geo: GeoLocation) => _manager.setVisitorGeo(geo);

@@ -29,10 +29,14 @@ const COUNTRY_TO_LANG: Record<string, string> = {
 };
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
-  const country = (req.headers['x-vercel-ip-country'] as string) || 'US';
+  const country = (req.headers['x-vercel-ip-country'] as string) || '';
+  const region = (req.headers['x-vercel-ip-country-region'] as string) || '';
+  const city = decodeURIComponent((req.headers['x-vercel-ip-city'] as string) || '');
+  const latitude = (req.headers['x-vercel-ip-latitude'] as string) || '';
+  const longitude = (req.headers['x-vercel-ip-longitude'] as string) || '';
   const lang = COUNTRY_TO_LANG[country] || 'en';
 
-  res.setHeader('Cache-Control', 'public, max-age=86400'); // cache 24h
+  res.setHeader('Cache-Control', 'no-store'); // per-user, don't cache
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.json({ country, lang });
+  res.json({ country, region, city, latitude, longitude, lang });
 }

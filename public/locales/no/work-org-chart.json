@@ -4,7 +4,7 @@
     "title": "Dra. Slipp. Omorganiser.",
     "description": "Interaktivt organisasjonskart med sandkasseutkast – modelér omorganiseringer, sammenlign mot gjeldende tilstand og bruk atomisk. Pluss en 37-app tillatelsesmatrise som automatisk tilpasses etter avdeling og ansiennitet."
   },
-  "body": "Organisasjonskartet gjengis som et interaktivt tre – dra noder for å omtildele ledere. Opprett organisasjonsutkast for å modellere omorganiseringer: ta et øyeblikksbilde av gjeldende struktur, gjør endringer, sammenlign mot livetilstanden og bruk atomisk når du er klar. Et tretrinns tilgangskontrollsystem administrerer 37 apper med per-avdelings profilarving og direkte overstyringer. Adminstratorerer kontrollerer hvilke moduler hver person ser, om de kan godkjenne handlinger, timeprisene deres og månedlige AI-kredittgrenser.",
+  "body": "Organisasjonskartet gjengis som et interaktivt tre – dra noder for å omtildele ledere. Opprett organisasjonsutkast for å modellere omorganiseringer: ta et øyeblikksbilde av gjeldende struktur, gjør endringer, sammenlign mot livetilstanden og bruk atomisk når du er klar. Et tretrinns tilgangskontrollsystem administrerer 37 apper med per-avdelings profilarving og direkte overstyringer. Administratorer kontrollerer hvilke moduler hver person ser, om de kan godkjenne handlinger, timeprisene deres og månedlige AI-kredittgrenser.",
   "orgChart": {
     "caption": "Opprett et utkast, modeller omorganiseringen, forhåndsvis differansen og bruk når du er klar. Ingen ser endringer før du publiserer."
   },

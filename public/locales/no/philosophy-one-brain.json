@@ -34,9 +34,9 @@
     "body2": "Alle 19 kilder spørres parallelt. Typisk latens: under ett sekund for et fullstendig kryssplattform-søk. AI-en matcher ikke bare nøkkelord — den forstår dataene dine semantisk."
   },
   "section5": {
-    "heading": "Vollgravet som dypner",
+    "heading": "Vollgraven som dypner",
     "body1": "Konkurrenter kan flytte data mellom apper. De kan bygge API-broer og synkroniseringspipelines. Det de ikke kan replikere er delt forståelse — evnen for hver del av systemet til å resonnere over hver annen del, fordi det hele ble designet for å leve sammen.",
-    "body2": "Jo lenger teamet ditt bruker HABOS, desto kraftigere blir dette. Etter seks måneder kjenner AI-en mønstre ingen menneskene kunne spore på tvers av så mange systemer: hvilke kunder bestiller forutsigbart, hvilke operasjoner driver konsekvent, hvilke arbeidsflyter aldri følges."
+    "body2": "Jo lenger teamet ditt bruker HABOS, desto kraftigere blir dette. Etter seks måneder kjenner AI-en mønstre ingen mennesker kunne spore på tvers av så mange systemer: hvilke kunder bestiller forutsigbart, hvilke operasjoner konsekvent sklir, hvilke arbeidsflyter aldri følges."
   },
   "quote": "«Andre plattformer kan synkronisere dataene dine. Bare én plattform kan tenke på tvers av dem.»",
   "nav": {

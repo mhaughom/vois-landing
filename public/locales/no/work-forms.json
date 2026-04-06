@@ -4,7 +4,7 @@
     "title": "Bygg et skjema.\nDet gjør resten.",
     "description": "21 felttyper, dra-og-slipp-bygger og rutingsregler som automatisk oppretter saker, CRM-leads og trakttilmeldinger ved innsending."
   },
-  "body": "Skjemaer støtter tre utfyllingsmodi: tradisjonell klikk-og-skriv, AI-drevet chat der kunder beskriver behovene sine naturlig, eller taleinput der de snakker svar og AI transkriberer. Når et skjema sendes inn, evaluerer rutingsmotoren betingede regler – «hvis budsjett overstiger kr 500 000, opprett en høyprioritets sak.» CRM-kontakter opprettes/oppdateres automatisk med e-post som nøkkel, saker opprettes med smart feltmapping, leads flyter inn i pleiesttrakter og bekreftelsese-poster sendes – alt i én atomisk operasjon.",
+  "body": "Skjemaer støtter tre utfyllingsmodi: tradisjonell klikk-og-skriv, AI-drevet chat der kunder beskriver behovene sine naturlig, eller taleinput der de snakker svar og AI transkriberer. Når et skjema sendes inn, evaluerer rutingsmotoren betingede regler – «hvis budsjett overstiger kr 500 000, opprett en høyprioritets sak.» CRM-kontakter opprettes/oppdateres automatisk med e-post som nøkkel, saker opprettes med smart feltmapping, leads flyter inn i pleietrakter og bekreftelsese-poster sendes – alt i én atomisk operasjon.",
   "mockForm": {
     "title": "Be om et tilbud",
     "badge": "3 utfyllingsmodi",

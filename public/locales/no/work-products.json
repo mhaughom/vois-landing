@@ -8,7 +8,7 @@
   "productTypes": [
     { "label": "Tjenester", "desc": "Time- eller fastpris" },
     { "label": "Fysiske varer", "desc": "Lager på variantnivå" },
-    { "label": "Pakker", "desc": "Buntfler elementer" },
+    { "label": "Pakker", "desc": "Bunt flere elementer" },
     { "label": "Abonnementer", "desc": "Gjentakende fakturering" }
   ],
   "catalogCaption": "Ett katalogsystem håndterer alle fire. Gjør ethvert produkt om til en bookbar avtale eller en nettstedwidget.",

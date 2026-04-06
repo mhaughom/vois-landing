@@ -4,7 +4,7 @@
     "title": "Ruter som bygger seg selv.",
     "description": "Tildel jobber til en tekniker og HABOS genererer automatisk ruten for dagen – geokodede stopp, optimert rekkefølge og ett-trykks navigasjon til Google Maps."
   },
-  "body": "Når du tildeler et jobbbesøk til en tekniker, oppdateres den administrerte ruten automatisk med geokodede stopp fra Mapbox. Rediger manuelt og den kobles fra for å forhindre automatiske overskrivinger. Hver rute fanger GPS-punkter med fem-sekunders intervaller, med Haversine-avstand beregnet på serversiden for nøyaktig kilometerbiiling. Feltarbeidere markerer stopp som fullstøpt eller hoppet over fra telefonen – kontoret ser fremdriften i sanntid uten en eneste telefonsamtale.",
+  "body": "Når du tildeler et jobbbesøk til en tekniker, oppdateres den administrerte ruten automatisk med geokodede stopp fra Mapbox. Rediger manuelt og den kobles fra for å forhindre automatiske overskrivinger. Hver rute fanger GPS-punkter med fem-sekunders intervaller, med Haversine-avstand beregnet på serversiden for nøyaktig kilometerbiiling. Feltarbeidere markerer stopp som fullført eller hoppet over fra telefonen – kontoret ser fremdriften i sanntid uten en eneste telefonsamtale.",
   "routeCard": {
     "heading": "Mike Torres — Onsdags-rute",
     "subheading": "5 stopp · 75 km estimert",
@@ -50,7 +50,7 @@
     },
     {
       "title": "Stopstatus-sporing",
-      "desc": "Feltarbeidere markerer stopp som fullstøpt eller hoppet over fra telefonen. Kontoret ser fremdriften i sanntid uten å ringe."
+      "desc": "Feltarbeidere markerer stopp som fullført eller hoppet over fra telefonen. Kontoret ser fremdriften i sanntid uten å ringe."
     },
     {
       "title": "GPS-kilometerssporing",

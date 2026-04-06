@@ -31,16 +31,24 @@ i18n
     },
   });
 
-// Geo-IP language detection: runs once on first visit when no stored preference exists
-if (typeof window !== 'undefined' && !localStorage.getItem('i18nextLng')) {
+// Geo-IP detection: fetches location on every visit, saves to visitor profile.
+// Language is only auto-set on first visit (no stored preference).
+if (typeof window !== 'undefined') {
   fetch('/api/geo')
     .then(r => r.json())
-    .then(({ lang }) => {
-      if (lang && SUPPORTED_LANGS.includes(lang) && lang !== i18n.language) {
+    .then(({ country, region, city, latitude, longitude, lang }) => {
+      // Save geo to visitor profile (every visit — location may change)
+      if (country) {
+        import('./visitorProfile').then(({ setVisitorGeo }) => {
+          setVisitorGeo({ country, region, city, latitude, longitude });
+        });
+      }
+      // Auto-set language only on first visit
+      if (!localStorage.getItem('i18nextLng') && lang && SUPPORTED_LANGS.includes(lang) && lang !== i18n.language) {
         i18n.changeLanguage(lang);
       }
     })
-    .catch(() => { /* geo detection failed, keep browser default */ });
+    .catch(() => { /* geo detection failed */ });
 }
 
 export default i18n;
