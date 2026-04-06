@@ -299,7 +299,8 @@ const DEFAULT_PROACTIVE_DELAY_MS = 25000;
 const MIN_TIME_ON_PAGE_MS = 10000;
 
 // Conversion-oriented CTAs — rotated into the pill alongside page suggestions
-const CTA_SUGGESTIONS = [
+// English fallback; overridden by translated ctaSuggestions from chat-panel namespace
+const CTA_SUGGESTIONS_FALLBACK = [
   'Book a free intro call',
   'Schedule a quick demo',
   'Get a personalized walkthrough',
@@ -477,6 +478,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
   const fallbackMessage = config?.fallbackMessage || "I can help you explore our features. Try asking about what interests you!";
   const { t, i18n } = useTranslation('chat-panel');
   const translatedPageSuggestions = t('pageSuggestions', { returnObjects: true, defaultValue: PAGE_SUGGESTIONS }) as Record<string, PageSuggestion>;
+  const ctaSuggestions = t('ctaSuggestions', { returnObjects: true, defaultValue: CTA_SUGGESTIONS_FALLBACK }) as string[];
   const activePageSuggestions = config?.pageSuggestions || translatedPageSuggestions;
   const navigate = useNavigate();
   const location = useLocation();
@@ -738,7 +740,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
       setShowCta(prev => {
         if (!prev) {
           // Picking a new random CTA each time we switch to CTA
-          setCtaIndex(Math.floor(Math.random() * CTA_SUGGESTIONS.length));
+          setCtaIndex(Math.floor(Math.random() * ctaSuggestions.length));
         }
         return !prev;
       });
@@ -874,7 +876,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
 
   // Active suggestion text for the pill extension on the chat button
   const activeSuggestionText = showProactive && currentSuggestion
-    ? (showCta ? CTA_SUGGESTIONS[ctaIndex] : currentSuggestion.suggestion)
+    ? (showCta ? ctaSuggestions[ctaIndex] : currentSuggestion.suggestion)
     : showExitIntent && currentSuggestion?.exitSuggestion
       ? currentSuggestion.exitSuggestion
       : null;

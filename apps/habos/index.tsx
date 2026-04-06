@@ -9,6 +9,7 @@ import { configureConsent, bootConsent, isPostHogReady } from '@li/shared/lib/co
 import { initAnalytics } from '@li/shared/lib/analytics';
 import { configureWaitlist } from '@li/shared/lib/supabase';
 import { configureVisitorProfile } from '@li/shared/lib/visitorProfile';
+import { initAutoTracker } from '@li/shared/lib/autoTracker';
 
 // Configure shared services for HABOS
 configureConsent('habos_cookie_consent');
@@ -16,6 +17,7 @@ initAnalytics(isPostHogReady);
 configureWaitlist('habos');
 configureVisitorProfile('habos-visitor-profile', ['/work/crm', '/work/dispatch', '/work/finance', '/work/operations']);
 bootConsent();
+initAutoTracker();
 
 const habosChat = {
   pageNames: {

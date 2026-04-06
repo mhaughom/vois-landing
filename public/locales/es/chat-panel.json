@@ -26,6 +26,13 @@
   "fallbackQ1": "¿Qué puede hacer HABOS por mi negocio?",
   "fallbackQ2": "¿En qué se diferencia HABOS de otras herramientas?",
   "fallbackQ3": "¿Cómo son los precios?",
+  "ctaSuggestions": [
+    "Reserva una llamada introductoria gratuita",
+    "Agenda una demo rápida",
+    "Obtén un recorrido personalizado",
+    "Habla con nuestro equipo",
+    "Véalo en acción — agenda una demo"
+  ],
   "returnGreeting": "¡Bienvenido de vuelta! ¿En qué puedo ayudarte hoy?",
   "returnGreetingWithPages": "¡Bienvenido de vuelta! ¿Interesado en {{pages}}? Puedo ayudarte a profundizar.",
   "pageSuggestions": {

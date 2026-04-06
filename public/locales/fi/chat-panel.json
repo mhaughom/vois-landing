@@ -26,6 +26,13 @@
   "fallbackQ1": "Mitä HABOS voi tehdä yritykselleni?",
   "fallbackQ2": "Miten HABOS eroaa muista työkaluista?",
   "fallbackQ3": "Miltä hinnoittelu näyttää?",
+  "ctaSuggestions": [
+    "Varaa ilmainen esittelypuhelu",
+    "Varaa nopea demo",
+    "Saat henkilökohtaisen esittelyn",
+    "Puhu tiimimme kanssa",
+    "Katso se toiminnassa — varaa demo"
+  ],
   "returnGreeting": "Tervetuloa takaisin! Miten voin auttaa sinua tänään?",
   "returnGreetingWithPages": "Tervetuloa takaisin! Kiinnostunut aiheesta {{pages}}? Voin auttaa sinua syventymään.",
   "pageSuggestions": {

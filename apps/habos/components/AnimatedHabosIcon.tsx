@@ -351,7 +351,8 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
     // For phase 5 (peel), pick a random starting slice and build removal order
     if (phase === 5) {
       const start = Math.floor(Math.random() * 6);
-      peelOrderRef.current = Array.from({ length: 6 }, (_, i) => (start + i) % 6);
+      const d = dirRef.current; // 1 = CW, -1 = CCW
+      peelOrderRef.current = Array.from({ length: 6 }, (_, i) => ((start + i * d) % 6 + 6) % 6);
     }
 
     const duration = PHASE_DURATIONS[phase];

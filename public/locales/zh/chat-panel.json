@@ -26,6 +26,13 @@
   "fallbackQ1": "HABOS能为我的业务做什么？",
   "fallbackQ2": "HABOS与其他工具有何不同？",
   "fallbackQ3": "定价是怎样的？",
+  "ctaSuggestions": [
+    "预约免费介绍电话",
+    "预约快速演示",
+    "获取个性化演示",
+    "与我们的团队交谈",
+    "实际体验 — 预约演示"
+  ],
   "returnGreeting": "欢迎回来！今天我能帮助您什么？",
   "returnGreetingWithPages": "欢迎回来！对{{pages}}感兴趣？我可以帮您深入了解。",
   "pageSuggestions": {

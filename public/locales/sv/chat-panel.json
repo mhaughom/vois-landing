@@ -26,6 +26,13 @@
   "fallbackQ1": "Vad kan HABOS göra för mitt företag?",
   "fallbackQ2": "Hur skiljer sig HABOS från andra verktyg?",
   "fallbackQ3": "Hur ser priserna ut?",
+  "ctaSuggestions": [
+    "Boka ett gratis introduktionssamtal",
+    "Boka en snabb demo",
+    "Få en personlig genomgång",
+    "Prata med vårt team",
+    "Se det i aktion — boka en demo"
+  ],
   "returnGreeting": "Välkommen tillbaka! Hur kan jag hjälpa dig idag?",
   "returnGreetingWithPages": "Välkommen tillbaka! Intresserad av {{pages}}? Jag kan hjälpa dig att fördjupa dig.",
   "pageSuggestions": {

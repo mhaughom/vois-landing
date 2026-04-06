@@ -26,6 +26,13 @@
   "fallbackQ1": "HABOSは私のビジネスに何ができますか？",
   "fallbackQ2": "HABOSは他のツールと何が違いますか？",
   "fallbackQ3": "価格はどのようになっていますか？",
+  "ctaSuggestions": [
+    "無料の紹介電話を予約する",
+    "クイックデモを予約する",
+    "パーソナライズされたご案内を受ける",
+    "チームに相談する",
+    "実際に見てみる — デモを予約"
+  ],
   "returnGreeting": "おかえりなさい！今日はどのようにお手伝いできますか？",
   "returnGreetingWithPages": "おかえりなさい！{{pages}}に興味がありますか？詳しくご説明します。",
   "pageSuggestions": {

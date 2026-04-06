@@ -8,6 +8,7 @@ import { configureConsent, bootConsent, isPostHogReady } from '@li/shared/lib/co
 import { initAnalytics } from '@li/shared/lib/analytics';
 import { configureWaitlist } from '@li/shared/lib/supabase';
 import { configureVisitorProfile } from '@li/shared/lib/visitorProfile';
+import { initAutoTracker } from '@li/shared/lib/autoTracker';
 
 // Configure shared services for VOIS
 configureConsent('vois_cookie_consent');
@@ -15,6 +16,7 @@ initAnalytics(isPostHogReady);
 configureWaitlist('vois');
 configureVisitorProfile('vois-visitor-profile');
 bootConsent();
+initAutoTracker();
 
 // VOIS chat configuration
 const voisChatConfig: ChatPanelConfig = {

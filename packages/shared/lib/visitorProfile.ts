@@ -13,19 +13,39 @@ export interface GeoLocation {
   longitude: string;
 }
 
+export interface DeviceInfo {
+  type: 'mobile' | 'tablet' | 'desktop';
+  os: string;
+  browser: string;
+  screenWidth: number;
+  screenHeight: number;
+  browserLanguage: string;
+  timezone: string;
+}
+
 export interface VisitorProfile {
   visitorId: string;
   firstVisit: string;
   lastVisit: string;
   visitCount: number;
   lastPages: string[];
+  totalPagesViewed: number;
   chatMessageCount: number;
   capturedEmail: string | null;
   referralSource: ReferralSource;
+  referringUrl: string | null;
+  landingPage: string | null;
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  gclid?: string;
+  fbclid?: string;
+  msclkid?: string;
   geo?: GeoLocation;
+  device?: DeviceInfo;
+  maxScrollDepth: Record<string, number>;
+  sessionDurationMs: number;
+  sessionStart?: string;
 }
 
 export interface LeadScore {
@@ -78,6 +98,50 @@ export function createVisitorProfileManager(storageKey: string, highIntentPages:
     return result;
   }
 
+  function getAdClickIds(): { gclid?: string; fbclid?: string; msclkid?: string } {
+    const params = new URLSearchParams(window.location.search);
+    const result: { gclid?: string; fbclid?: string; msclkid?: string } = {};
+    const gclid = params.get('gclid');
+    const fbclid = params.get('fbclid');
+    const msclkid = params.get('msclkid');
+    if (gclid) result.gclid = gclid;
+    if (fbclid) result.fbclid = fbclid;
+    if (msclkid) result.msclkid = msclkid;
+    return result;
+  }
+
+  function detectDevice(): DeviceInfo {
+    const ua = navigator.userAgent;
+    const isTablet = /iPad|Android(?!.*Mobile)/i.test(ua);
+    const isMobile = /iPhone|iPod|Android.*Mobile|webOS|BlackBerry|Windows Phone/i.test(ua);
+    const type = isTablet ? 'tablet' : isMobile ? 'mobile' : 'desktop';
+
+    let os = 'Unknown';
+    if (/Windows/i.test(ua)) os = 'Windows';
+    else if (/Mac/i.test(ua)) os = 'macOS';
+    else if (/iPhone|iPad/i.test(ua)) os = 'iOS';
+    else if (/Android/i.test(ua)) os = 'Android';
+    else if (/Linux/i.test(ua)) os = 'Linux';
+    else if (/CrOS/i.test(ua)) os = 'ChromeOS';
+
+    let browser = 'Unknown';
+    if (/Edg\//i.test(ua)) browser = 'Edge';
+    else if (/Chrome/i.test(ua)) browser = 'Chrome';
+    else if (/Safari/i.test(ua)) browser = 'Safari';
+    else if (/Firefox/i.test(ua)) browser = 'Firefox';
+    else if (/Opera|OPR/i.test(ua)) browser = 'Opera';
+
+    return {
+      type,
+      os,
+      browser,
+      screenWidth: window.screen.width,
+      screenHeight: window.screen.height,
+      browserLanguage: navigator.language || 'en',
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown',
+    };
+  }
+
   return {
     getVisitorProfile(): VisitorProfile | null {
       return read();
@@ -90,20 +154,32 @@ export function createVisitorProfileManager(storageKey: string, highIntentPages:
       if (existing) {
         existing.lastVisit = now;
         existing.visitCount += 1;
+        existing.sessionStart = now;
+        // Update device info each visit (browser/screen may change)
+        existing.device = detectDevice();
         write(existing);
         return existing;
       }
 
+      const referrer = document.referrer || null;
       const profile: VisitorProfile = {
         visitorId: crypto.randomUUID(),
         firstVisit: now,
         lastVisit: now,
         visitCount: 1,
         lastPages: [],
+        totalPagesViewed: 0,
         chatMessageCount: 0,
         capturedEmail: null,
         referralSource: detectReferralSource(),
+        referringUrl: referrer,
+        landingPage: window.location.pathname,
         ...getUtmParams(),
+        ...getAdClickIds(),
+        device: detectDevice(),
+        maxScrollDepth: {},
+        sessionDurationMs: 0,
+        sessionStart: now,
       };
       write(profile);
       return profile;
@@ -126,6 +202,25 @@ export function createVisitorProfileManager(storageKey: string, highIntentPages:
       const pages = profile.lastPages.filter(p => p !== page);
       pages.push(page);
       profile.lastPages = pages.slice(-5);
+      profile.totalPagesViewed = (profile.totalPagesViewed || 0) + 1;
+      write(profile);
+    },
+
+    updateScrollDepth(page: string, depth: number): void {
+      const profile = read();
+      if (!profile) return;
+      if (!profile.maxScrollDepth) profile.maxScrollDepth = {};
+      const current = profile.maxScrollDepth[page] || 0;
+      if (depth > current) {
+        profile.maxScrollDepth[page] = Math.round(depth * 100) / 100;
+        write(profile);
+      }
+    },
+
+    updateSessionDuration(): void {
+      const profile = read();
+      if (!profile || !profile.sessionStart) return;
+      profile.sessionDurationMs = Date.now() - new Date(profile.sessionStart).getTime();
       write(profile);
     },
 
@@ -206,6 +301,8 @@ export const isReturningVisitor = () => _manager.isReturningVisitor();
 export const updateVisitorPages = (page: string) => _manager.updateVisitorPages(page);
 export const updateVisitorChatCount = (count: number) => _manager.updateVisitorChatCount(count);
 export const setVisitorEmail = (email: string) => _manager.setVisitorEmail(email);
+export const updateScrollDepth = (page: string, depth: number) => _manager.updateScrollDepth(page, depth);
+export const updateSessionDuration = () => _manager.updateSessionDuration();
 export const getReferralSource = () => _manager.getReferralSource();
 export const calculateLeadScore = () => _manager.calculateLeadScore();
 export const setVisitorGeo = (geo: GeoLocation) => _manager.setVisitorGeo(geo);
