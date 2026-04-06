@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Tous droits réservés."
+  },
+  "philosophyBreather": {
+    "heading": "Puissance IA. Contrôle humain.",
+    "body": "Chaque brouillon est relu. Chaque action est approuvée. Chaque décision vous appartient. HABOS vous donne un effet de levier surhumain sans lâcher le volant.",
+    "imageAlt": "Modules d'affaires interconnectés"
   }
 }

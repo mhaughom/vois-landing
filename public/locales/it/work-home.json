@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Tutti i diritti riservati."
+  },
+  "philosophyBreather": {
+    "heading": "Potenza AI. Controllo umano.",
+    "body": "Ogni bozza viene revisionata. Ogni azione viene approvata. Ogni decisione è tua. HABOS ti dà una leva sovrumana senza rinunciare al volante.",
+    "imageAlt": "Moduli aziendali interconnessi"
   }
 }

@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Alle rettigheder forbeholdes."
+  },
+  "philosophyBreather": {
+    "heading": "AI-kraft. Menneskelig kontrol.",
+    "body": "Hvert udkast gennemgås. Hver handling godkendes. Hver beslutning er din. HABOS giver dig overmenneskelig løftestang uden at slippe rattet.",
+    "imageAlt": "Indbyrdes forbundne forretningsmoduler"
   }
 }

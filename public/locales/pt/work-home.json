@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Todos os direitos reservados."
+  },
+  "philosophyBreather": {
+    "heading": "Poder de IA. Controle humano.",
+    "body": "Cada rascunho é revisado. Cada ação é aprovada. Cada decisão é sua. HABOS oferece alavancagem sobre-humana sem largar o volante.",
+    "imageAlt": "Módulos de negócio interconectados"
   }
 }

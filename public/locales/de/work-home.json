@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Alle Rechte vorbehalten."
+  },
+  "philosophyBreather": {
+    "heading": "KI-Leistung. Menschliche Kontrolle.",
+    "body": "Jeder Entwurf wird überprüft. Jede Aktion wird genehmigt. Jede Entscheidung gehört Ihnen. HABOS gibt Ihnen übermenschliche Hebelwirkung, ohne das Steuer aus der Hand zu geben.",
+    "imageAlt": "Vernetzte Geschäftsmodule"
   }
 }

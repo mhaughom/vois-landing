@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Alle rechten voorbehouden."
+  },
+  "philosophyBreather": {
+    "heading": "AI-kracht. Menselijke controle.",
+    "body": "Elk concept wordt beoordeeld. Elke actie wordt goedgekeurd. Elke beslissing is van jou. HABOS geeft je bovenmenselijke hefboomwerking zonder het stuur los te laten.",
+    "imageAlt": "Onderling verbonden bedrijfsmodules"
   }
 }

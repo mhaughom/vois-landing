@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. Kaikki oikeudet pidätetään."
+  },
+  "philosophyBreather": {
+    "heading": "Tekoälyvoimaa. Ihmisen hallinta.",
+    "body": "Jokainen luonnos tarkistetaan. Jokainen toiminto hyväksytään. Jokainen päätös on sinun. HABOS antaa sinulle ylivertaisen vipuvaikutuksen ilman, että luovut ohjauspyörästä.",
+    "imageAlt": "Toisiinsa yhdistettyjä liiketoimintamoduuleja"
   }
 }

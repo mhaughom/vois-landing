@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. All rights reserved."
+  },
+  "philosophyBreather": {
+    "heading": "AI power. Human control.",
+    "body": "Every draft is reviewed. Every action is approved. Every decision is yours. HABOS gives you superhuman leverage without giving up the steering wheel.",
+    "imageAlt": "Interconnected business modules"
   }
 }

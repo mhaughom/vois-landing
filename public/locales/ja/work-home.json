@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. All rights reserved."
+  },
+  "philosophyBreather": {
+    "heading": "AIの力。人間のコントロール。",
+    "body": "すべての草稿がレビューされます。すべてのアクションが承認されます。すべての決定はあなたのものです。HABOSはハンドルを手放すことなく、超人的なレバレッジを提供します。",
+    "imageAlt": "相互接続されたビジネスモジュール"
   }
 }

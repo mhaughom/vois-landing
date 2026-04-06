@@ -233,5 +233,10 @@
       "facebook":  "Facebook"
     },
     "copyright": "© {{year}} Vois AI. 保留所有权利。"
+  },
+  "philosophyBreather": {
+    "heading": "AI 力量。人类掌控。",
+    "body": "每份草稿都经过审核。每项操作都经过批准。每个决定都由您做主。HABOS 为您提供超凡的杠杆力量，同时始终让您掌控方向盘。",
+    "imageAlt": "相互关联的业务模块"
   }
 }

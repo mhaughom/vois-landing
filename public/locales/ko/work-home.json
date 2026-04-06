@@ -510,5 +510,10 @@
       "facebook": "Facebook"
     },
     "copyright": "© {{year}} Vois AI. 모든 권리 보유."
+  },
+  "philosophyBreather": {
+    "heading": "AI의 힘. 인간의 통제.",
+    "body": "모든 초안이 검토됩니다. 모든 행동이 승인됩니다. 모든 결정은 당신의 것입니다. HABOS는 핸들을 놓지 않고도 초인적인 레버리지를 제공합니다.",
+    "imageAlt": "상호 연결된 비즈니스 모듈"
   }
 }
