@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
  *   2. 3D cube tumble
  *   3. Explode faces outward (3D), hold, smash back
  *   4. 2D pizza wave — 6 triangular slices spread out one-by-one, snap back
- *   5. Cube → cuboctahedron morph with rotation, then back
+ *   5. Cube → cuboctahedron crossfade with rotation, then back
  * Returns to static isometric pose after animation completes.
  */
 
@@ -74,57 +74,83 @@ const SLICE_DIRS: [number, number][] = HEX_VERTS.map((v, i) => {
 
 const PIZZA_DIST = 2.8;
 
-// ─── Cuboctahedron geometry (midpoints of cube edges at S=1) ───────────────
-// Same coordinate system as the cube — no scale or orientation mismatch.
+// ─── Cuboctahedron geometry (matching WorkHero3D/geometry.ts) ─────────────
+// This is the HABOS cuboctahedron — 12 vertices (2 poles + 8 equatorial + 2 hubs),
+// 28 edges. From the right angle, projects to the same hexagonal shape as the logo.
 
-const COCT_VERTS: [number, number, number][] = [
-  [S, S, 0],    // 0: mid of cube edge [6,7]
-  [-S, S, 0],   // 1: mid of cube edge [2,3]
-  [S, -S, 0],   // 2: mid of cube edge [4,5]
-  [-S, -S, 0],  // 3: mid of cube edge [0,1]
-  [0, S, -S],   // 4: mid of cube edge [2,6]
-  [0, S, S],    // 5: mid of cube edge [3,7]
-  [0, -S, -S],  // 6: mid of cube edge [0,4]
-  [0, -S, S],   // 7: mid of cube edge [1,5]
-  [S, 0, -S],   // 8: mid of cube edge [4,6]
-  [S, 0, S],    // 9: mid of cube edge [5,7]
-  [-S, 0, -S],  // 10: mid of cube edge [0,2]
-  [-S, 0, S],   // 11: mid of cube edge [1,3]
+const HEX_A = 0.9; // equatorial compression factor, same as WorkHero3D
+
+// Cuboctahedron vertices, pre-rotated so the front hub (Fh) aligns with the
+// cube's top vertex and back hub (Bh) with the bottom. The poles (T/B) sit
+// near-center in depth. Found via interactive alignment tool.
+// Euler angles: (-54°, 133°, 2°)
+const CUBOCTA_VERTS: [number, number, number][] = (() => {
+  // Scale circumradius to match cube's bounding sphere (√3 instead of 2√(2/3))
+  // so the hexagonal outlines have equal size in projection.
+  const R = Math.sqrt(3);
+  const a = HEX_A;
+  const hr = (a * R) / 2;
+  const w = (a * R * Math.sqrt(3)) / 2;
+  const d = R * Math.sqrt(1 - a * a);
+  const cd = R;
+
+  // Base vertices (pole axis along Y)
+  const base: [number, number, number][] = [
+    [0, R, 0],       // 0: top pole
+    [0, -R, 0],      // 1: bottom pole
+    [w, hr, d],       // 2
+    [w, hr, -d],      // 3
+    [w, -hr, d],      // 4
+    [w, -hr, -d],     // 5
+    [-w, -hr, d],     // 6
+    [-w, -hr, -d],    // 7
+    [-w, hr, d],      // 8
+    [-w, hr, -d],     // 9
+    [0, 0, cd],       // 10: front hub
+    [0, 0, -cd],      // 11: back hub
+  ];
+
+  // Pre-rotation matrix from Euler(-54°, 133°, 2°), ZYX order.
+  const r00 = -0.6815829051, r01 = -0.6118305490, r02 =  0.4013827635;
+  const r10 = -0.0238013995, r11 =  0.5667779399, r12 =  0.8235267210;
+  const r20 = -0.7313537016, r21 =  0.5517482634, r22 = -0.4008685781;
+
+  return base.map(([x, y, z]) => [
+    r00 * x + r01 * y + r02 * z,
+    r10 * x + r11 * y + r12 * z,
+    r20 * x + r21 * y + r22 * z,
+  ] as [number, number, number]);
+})();
+
+const CUBOCTA_EDGES: [number, number][] = [
+  // front ring
+  [0, 2], [2, 4], [4, 1], [1, 6], [6, 8], [8, 0],
+  // back ring
+  [0, 3], [3, 5], [5, 1], [1, 7], [7, 9], [9, 0],
+  // front hub spokes
+  [10, 0], [10, 2], [10, 4], [10, 1], [10, 6], [10, 8],
+  // back hub spokes
+  [11, 0], [11, 3], [11, 5], [11, 1], [11, 7], [11, 9],
+  // equatorial pairs (front↔back)
+  [2, 3], [4, 5], [6, 7], [8, 9],
 ];
 
-// 24 edges — 4 per cube face (midpoints on each face form a square)
-const COCT_EDGES: [number, number][] = [
-  // face x=-1: 3,11,1,10
-  [3,11],[11,1],[1,10],[10,3],
-  // face x=+1: 2,9,0,8
-  [2,9],[9,0],[0,8],[8,2],
-  // face y=-1: 3,7,2,6
-  [3,7],[7,2],[2,6],[6,3],
-  // face y=+1: 1,5,0,4
-  [1,5],[5,0],[0,4],[4,1],
-  // face z=-1: 10,4,8,6
-  [10,4],[4,8],[8,6],[6,10],
-  // face z=+1: 11,5,9,7
-  [11,5],[5,9],[9,7],[7,11],
-];
-
-interface MorphFrame {
+interface HexFrame {
   nodes: [number, number, number][];
   edges: [number, number][];
 }
 
-function computeMorphFrame(rotY: number, rotX: number): MorphFrame {
+function computeHexFrame(rotY: number, rotX: number): HexFrame {
   const cy = Math.cos(rotY), sy = Math.sin(rotY);
   const cx = Math.cos(rotX), sx = Math.sin(rotX);
-  // Same scale as cube renderer (3.6) — same coordinate system
-  const nodes = COCT_VERTS.map(([vx, vy, vz]) => {
+  const nodes = CUBOCTA_VERTS.map(([vx, vy, vz]) => {
     const x1 = vx * cy + vz * sy;
     const z1 = -vx * sy + vz * cy;
     const y2 = vy * cx - z1 * sx;
     const z2 = vy * sx + z1 * cx;
     return [CX + x1 * 3.6, CY - y2 * 3.6, z2] as [number, number, number];
   });
-  return { nodes, edges: COCT_EDGES };
+  return { nodes, edges: CUBOCTA_EDGES };
 }
 
 // ─── Easing ────────────────────────────────────────────────────────────────
@@ -171,7 +197,7 @@ function computeFaces(rotY: number, rotX: number, explode: number): FaceData[] {
 // Phase 1: 3D tumble — 1800ms
 // Phase 2: 3D explode/hold/smash — 2100ms
 // Phase 3: 2D pizza wave — 2400ms
-// Phase 4: cube→cuboctahedron morph + rotation — 2400ms
+// Phase 4: cube → cuboctahedron crossfade with rotation — 2400ms
 const PHASE_DURATIONS = [1800, 1800, 2100, 2400, 2400];
 
 function computePhase(phase: number, ms: number) {
@@ -197,6 +223,7 @@ function computePhase(phase: number, ms: number) {
     }
   }
   // Phase 3 (pizza) handled separately — it renders 6 triangles, not cube faces
+  // Phase 4 (cuboctahedron morph) handled separately in tick
 
   const faceData = computeFaces(rotY, rotX, explode);
 
@@ -249,8 +276,8 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
   const [explodeAmt, setExplodeAmt] = useState(0);
   const [breatheT, setBreatheT] = useState(0);
   const [pizzaSlices, setPizzaSlices] = useState<number[]>([]);
-  const [morphFrame, setMorphFrame] = useState<MorphFrame | null>(null);
-  const [morphFade, setMorphFade] = useState(0); // 0 = cube visible, 1 = cuboctahedron visible
+  const [hexFrame, setHexFrame] = useState<HexFrame | null>(null);
+  const [hexFade, setHexFade] = useState(0); // 0 = cube visible, 1 = cuboctahedron visible
   const [activePhase, setActivePhase] = useState(-1);
   const rafRef = useRef(0);
   const startRef = useRef(0);
@@ -284,10 +311,10 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
       if (phase === 3) {
         setPizzaSlices(computePizzaSlices(ms));
       } else if (phase === 4) {
-        // Crossfade cube→cuboctahedron, rotate 180°, crossfade back
-        // 0-400ms: fade cube out, cuboctahedron in
-        // 400-2000ms: cuboctahedron rotates
-        // 2000-2400ms: fade cuboctahedron out, cube back in
+        // Crossfade cube → cuboctahedron, rotate 180°, crossfade back
+        // 0–400ms: fade cube out, cuboctahedron in
+        // 400–2000ms: cuboctahedron rotates
+        // 2000–2400ms: fade cuboctahedron out, cube back in
         let fade: number;
         if (ms < 400) {
           fade = easeInOutCubic(ms / 400);
@@ -296,14 +323,13 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
         } else {
           fade = 1 - easeInOutCubic((ms - 2000) / 400);
         }
-        setMorphFade(fade);
+        setHexFade(fade);
         // Smooth 180° Y rotation over full duration
         const p = easeInOutCubic(ms / 2400);
         const rotY = ISO_Y + p * Math.PI;
-        setMorphFrame(computeMorphFrame(rotY, ISO_X));
+        setHexFrame(computeHexFrame(rotY, ISO_X));
         // Also update cube faces with matching rotation so crossfade blends
-        const cubeData = computeFaces(rotY, ISO_X, 0);
-        setFaces(cubeData);
+        setFaces(computeFaces(rotY, ISO_X, 0));
       } else {
         const { faces: faceData, explode } = computePhase(phase, ms);
         setFaces(faceData);
@@ -317,8 +343,8 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
         setFaces(computeFaces(ISO_Y, ISO_X, 0));
         setExplodeAmt(0);
         setPizzaSlices([]);
-        setMorphFrame(null);
-        setMorphFade(0);
+        setHexFrame(null);
+        setHexFade(0);
         setActivePhase(-1);
         animatingRef.current = false;
         // If a hover happened while we were animating, play it now
@@ -399,16 +425,16 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
   );
 
   // Cuboctahedron layer data (for crossfade during phase 4)
-  const showMorph = morphFade > 0.01 && morphFrame;
-  let mZMin = 0, mZMax = 1, mZRange = 1;
-  if (showMorph && morphFrame) {
-    const mAllZ = morphFrame.nodes.map(n => n[2]);
-    mZMin = Math.min(...mAllZ);
-    mZMax = Math.max(...mAllZ);
-    mZRange = mZMax - mZMin || 1;
+  const showHex = hexFade > 0.01 && hexFrame;
+  let hZMin = 0, hZMax = 1, hZRange = 1;
+  if (showHex && hexFrame) {
+    const hAllZ = hexFrame.nodes.map(n => n[2]);
+    hZMin = Math.min(...hAllZ);
+    hZMax = Math.max(...hAllZ);
+    hZRange = hZMax - hZMin || 1;
   }
 
-  const cubeOpacity = 1 - morphFade;
+  const cubeOpacity = 1 - hexFade;
 
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none">
@@ -479,18 +505,18 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
       )}
 
       {/* Cuboctahedron wireframe layer (crossfade during phase 4) */}
-      {showMorph && morphFrame && (
-        <g opacity={morphFade}>
-          {[...morphFrame.edges]
-            .map(([a, b]) => ({ a, b, z: (morphFrame.nodes[a][2] + morphFrame.nodes[b][2]) / 2 }))
+      {showHex && hexFrame && (
+        <g opacity={hexFade}>
+          {[...hexFrame.edges]
+            .map(([a, b]) => ({ a, b, z: (hexFrame.nodes[a][2] + hexFrame.nodes[b][2]) / 2 }))
             .sort((a, b) => a.z - b.z)
             .map(({ a, b, z }, i) => {
-              const depth = (z - mZMin) / mZRange;
+              const depth = (z - hZMin) / hZRange;
               return (
                 <line
                   key={i}
-                  x1={morphFrame.nodes[a][0]} y1={morphFrame.nodes[a][1]}
-                  x2={morphFrame.nodes[b][0]} y2={morphFrame.nodes[b][1]}
+                  x1={hexFrame.nodes[a][0]} y1={hexFrame.nodes[a][1]}
+                  x2={hexFrame.nodes[b][0]} y2={hexFrame.nodes[b][1]}
                   stroke={COLOR}
                   strokeWidth={STROKE_W}
                   strokeLinecap="round"
@@ -498,10 +524,10 @@ export const AnimatedHabosIcon: React.FC<AnimatedHabosIconProps> = ({ className,
                 />
               );
             })}
-          {[...morphFrame.nodes.entries()]
+          {[...hexFrame.nodes.entries()]
             .sort(([, a], [, b]) => a[2] - b[2])
             .map(([ni, n]) => {
-              const depth = (n[2] - mZMin) / mZRange;
+              const depth = (n[2] - hZMin) / hZRange;
               return (
                 <circle
                   key={ni}

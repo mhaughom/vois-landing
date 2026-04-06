@@ -3,6 +3,13 @@
   box-sizing: border-box;
 }
 
+/* Smooth resize when switching languages */
+html.lang-transition *:not(video):not(canvas):not(svg *) {
+  transition: width 0.35s ease, min-width 0.35s ease, max-width 0.35s ease,
+              padding 0.35s ease, margin 0.35s ease, font-size 0.35s ease,
+              gap 0.35s ease, flex 0.35s ease !important;
+}
+
 /* Subtle shadow on cards/panels/images sitting directly on the grain background */
 [class*="rounded-2xl"][class*="border"],
 [class*="rounded-xl"][class*="border"],
@@ -25,25 +32,13 @@ body {
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  /* Grain background with baked-in gradient — shared across all pages & ChatPanel */
-  background: url("/work-bg.jpg") top / 100% auto no-repeat, #F8F9FA;
+  /* Original image on top, flipped copy below it (image is 1:6 aspect → 600vw tall at 100% width) */
+  background:
+    url("/work-bg.jpg") top / 100% auto no-repeat,
+    url("/work-bg-flipped.jpg") 0 600vw / 100% auto no-repeat,
+    #F8F9FA;
 }
 
-/* Mirrored copy of the background — picks up seamlessly where the first image ends */
-body::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  /* Image is 1440×8640 → 6:1 ratio → height = 600vw at 100% width */
-  top: calc(100vw * 6);
-  height: calc(100vw * 6);
-  background: url("/work-bg.jpg") top / 100% auto no-repeat;
-  transform: scaleY(-1);
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* Film grain - disabled globally, applied per-page on background layer only */
 

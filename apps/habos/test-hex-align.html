@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background: #f0f0f0; padding: 20px; font-family: sans-serif; margin: 0; }
+  .row { display: flex; gap: 20px; margin-bottom: 20px; }
+  .box { background: white; padding: 20px; border-radius: 8px; text-align: center; }
+  svg { border: 1px solid #eee; }
+  h3 { margin: 0 0 10px; font-size: 16px; }
+  .controls { background: white; padding: 20px; border-radius: 8px; }
+  .control-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .control-row label { width: 120px; text-align: right; font-size: 13px; }
+  .control-row input[type=range] { flex: 1; }
+  .control-row .val { width: 60px; font-size: 13px; font-family: monospace; }
+  .overlay { position: relative; }
+  .overlay svg:last-child { position: absolute; top: 0; left: 0; }
+  .info { font-size: 11px; color: #666; margin-top: 8px; word-break: break-all; }
+  button { padding: 6px 16px; border-radius: 4px; border: 1px solid #ccc; background: white; cursor: pointer; font-size: 13px; }
+  button:hover { background: #f0f0f0; }
+  .matrix-output { background: #f8f8f8; padding: 12px; border-radius: 4px; font-family: monospace; font-size: 12px; margin-top: 12px; word-break: break-all; }
+</style>
+</head>
+<body>
+
+<div class="row">
+  <div class="box">
+    <h3>Cube (the logo) — fixed</h3>
+    <svg id="cube" viewBox="0 0 24 24" width="200" height="200" fill="none"></svg>
+  </div>
+
+  <div class="box">
+    <h3>Cuboctahedron — adjust rotation</h3>
+    <svg id="hex" viewBox="0 0 24 24" width="200" height="200" fill="none"></svg>
+  </div>
+
+  <div class="box">
+    <h3>Overlay (red=cube, blue=hex)</h3>
+    <div class="overlay">
+      <svg id="ov-cube" viewBox="0 0 24 24" width="200" height="200" fill="none"></svg>
+      <svg id="ov-hex" viewBox="0 0 24 24" width="200" height="200" fill="none"></svg>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <h3>Pre-rotation of cuboctahedron (applied BEFORE isometric view)</h3>
+  <div class="control-row">
+    <label>Rotate X (pitch):</label>
+    <input type="range" id="rx" min="-180" max="180" value="0" step="0.5">
+    <span class="val" id="rx-val">0°</span>
+  </div>
+  <div class="control-row">
+    <label>Rotate Y (yaw):</label>
+    <input type="range" id="ry" min="-180" max="180" value="0" step="0.5">
+    <span class="val" id="ry-val">0°</span>
+  </div>
+  <div class="control-row">
+    <label>Rotate Z (roll):</label>
+    <input type="range" id="rz" min="-180" max="180" value="0" step="0.5">
+    <span class="val" id="rz-val">0°</span>
+  </div>
+  <div class="control-row" style="margin-top: 12px;">
+    <label></label>
+    <button id="btn-reset">Reset (0,0,0)</button>
+    <button id="btn-copy">Copy matrix to clipboard</button>
+    <button id="btn-best">Auto-find best alignment</button>
+  </div>
+  <div class="matrix-output" id="matrix-out">Matrix will appear here...</div>
+</div>
+
+<script>
+const S = 1, CX = 12, CY = 12, SCALE = 3.6, NODE_PX = 1.35, STROKE_W = 1.15;
+const ISO_Y = Math.PI / 4;
+const ISO_X = Math.atan(1 / Math.sqrt(2));
+
+// ─── CUBE ─────────────────────────────────────────────────────
+const cubeV = [
+  [-S,-S,-S], [-S,-S,S], [-S,S,-S], [-S,S,S],
+  [S,-S,-S],  [S,-S,S],  [S,S,-S],  [S,S,S],
+];
+const FACES = [
+  { vi: [4,5,7,6], n: [1,0,0] },
+  { vi: [0,2,3,1], n: [-1,0,0] },
+  { vi: [2,6,7,3], n: [0,1,0] },
+  { vi: [0,1,5,4], n: [0,-1,0] },
+  { vi: [1,3,7,5], n: [0,0,1] },
+  { vi: [0,4,6,2], n: [0,0,-1] },
+];
+
+function isoProject(verts) {
+  const cy = Math.cos(ISO_Y), sy = Math.sin(ISO_Y);
+  const cx = Math.cos(ISO_X), sx = Math.sin(ISO_X);
+  return verts.map(([vx,vy,vz]) => {
+    const x1 = vx*cy + vz*sy;
+    const z1 = -vx*sy + vz*cy;
+    const y2 = vy*cx - z1*sx;
+    const z2 = vy*sx + z1*cx;
+    return [CX + x1*SCALE, CY - y2*SCALE, z2];
+  });
+}
+
+// ─── CUBOCTAHEDRON ────────────────────────────────────────────
+const HEX_A = 0.9;
+function makeBaseHexVerts() {
+  const R = Math.sqrt(3);
+  const a = HEX_A;
+  const hr = (a*R)/2, w = (a*R*Math.sqrt(3))/2;
+  const d = R*Math.sqrt(1 - a*a), cd = R;
+  return [
+    [0, R, 0], [0, -R, 0],
+    [w, hr, d], [w, hr, -d], [w, -hr, d], [w, -hr, -d],
+    [-w, -hr, d], [-w, -hr, -d], [-w, hr, d], [-w, hr, -d],
+    [0, 0, cd], [0, 0, -cd],
+  ];
+}
+const HEX_EDGES = [
+  [0,2],[2,4],[4,1],[1,6],[6,8],[8,0],
+  [0,3],[3,5],[5,1],[1,7],[7,9],[9,0],
+  [10,0],[10,2],[10,4],[10,1],[10,6],[10,8],
+  [11,0],[11,3],[11,5],[11,1],[11,7],[11,9],
+  [2,3],[4,5],[6,7],[8,9],
+];
+
+// Build rotation matrix from Euler angles (XYZ order)
+function eulerMatrix(xDeg, yDeg, zDeg) {
+  const xr = xDeg*Math.PI/180, yr = yDeg*Math.PI/180, zr = zDeg*Math.PI/180;
+  const cx = Math.cos(xr), sx = Math.sin(xr);
+  const cy = Math.cos(yr), sy = Math.sin(yr);
+  const cz = Math.cos(zr), sz = Math.sin(zr);
+  // Rz * Ry * Rx
+  return [
+    cy*cz, cz*sx*sy - cx*sz, cx*cz*sy + sx*sz,
+    cy*sz, cx*cz + sx*sy*sz, -cz*sx + cx*sy*sz,
+    -sy,   cy*sx,             cx*cy,
+  ];
+}
+
+function applyMatrix(mat, verts) {
+  const [r00,r01,r02, r10,r11,r12, r20,r21,r22] = mat;
+  return verts.map(([x,y,z]) => [
+    r00*x+r01*y+r02*z, r10*x+r11*y+r12*z, r20*x+r21*y+r22*z
+  ]);
+}
+
+// ─── RENDERING ────────────────────────────────────────────────
+function clearSvg(id) { document.getElementById(id).innerHTML = ''; }
+
+function drawCubeWireframe(svgId, color, projected) {
+  const svg = document.getElementById(svgId);
+  const allZ = projected.map(p=>p[2]);
+  const zMin = Math.min(...allZ), zMax = Math.max(...allZ), zR = zMax-zMin||1;
+
+  FACES.forEach(({vi}) => {
+    for (let i=0;i<4;i++) {
+      const a=projected[vi[i]], b=projected[vi[(i+1)%4]];
+      const depth = ((a[2]+b[2])/2-zMin)/zR;
+      const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',a[0]); l.setAttribute('y1',a[1]);
+      l.setAttribute('x2',b[0]); l.setAttribute('y2',b[1]);
+      l.setAttribute('stroke',color); l.setAttribute('stroke-width',STROKE_W);
+      l.setAttribute('stroke-linecap','round');
+      l.setAttribute('opacity', 0.35+depth*0.65);
+      svg.appendChild(l);
+    }
+  });
+  projected.forEach((p,i) => {
+    const depth = (p[2]-zMin)/zR;
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]);
+    c.setAttribute('r', NODE_PX*(0.9+depth*0.2));
+    c.setAttribute('fill',color); c.setAttribute('opacity',0.4+depth*0.6);
+    svg.appendChild(c);
+  });
+}
+
+function drawHexWireframe(svgId, color, projected, showLabels) {
+  const svg = document.getElementById(svgId);
+  const allZ = projected.map(p=>p[2]);
+  const zMin = Math.min(...allZ), zMax = Math.max(...allZ), zR = zMax-zMin||1;
+
+  HEX_EDGES.forEach(([ai,bi]) => {
+    const a=projected[ai], b=projected[bi];
+    const depth = ((a[2]+b[2])/2-zMin)/zR;
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',a[0]); l.setAttribute('y1',a[1]);
+    l.setAttribute('x2',b[0]); l.setAttribute('y2',b[1]);
+    l.setAttribute('stroke',color); l.setAttribute('stroke-width',STROKE_W);
+    l.setAttribute('stroke-linecap','round');
+    l.setAttribute('opacity', 0.3+depth*0.7);
+    svg.appendChild(l);
+  });
+  projected.forEach((p,i) => {
+    const depth = (p[2]-zMin)/zR;
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]);
+    c.setAttribute('r', NODE_PX*(0.85+depth*0.3));
+    c.setAttribute('fill',color); c.setAttribute('opacity',0.35+depth*0.65);
+    svg.appendChild(c);
+    if (showLabels) {
+      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x', p[0]+1.5); t.setAttribute('y', p[1]-1);
+      t.setAttribute('font-size','1.8'); t.setAttribute('fill','#999');
+      const names = ['T','B','2','3','4','5','6','7','8','9','Fh','Bh'];
+      t.textContent = names[i] || i;
+      svg.appendChild(t);
+    }
+  });
+}
+
+// ─── STATE & UPDATE ───────────────────────────────────────────
+const cubeProj = isoProject(cubeV);
+let currentMatrix = null;
+
+function update() {
+  const rx = parseFloat(document.getElementById('rx').value);
+  const ry = parseFloat(document.getElementById('ry').value);
+  const rz = parseFloat(document.getElementById('rz').value);
+  document.getElementById('rx-val').textContent = rx + '°';
+  document.getElementById('ry-val').textContent = ry + '°';
+  document.getElementById('rz-val').textContent = rz + '°';
+
+  const mat = eulerMatrix(rx, ry, rz);
+  currentMatrix = mat;
+  const baseVerts = makeBaseHexVerts();
+  const rotatedVerts = applyMatrix(mat, baseVerts);
+  const hexProj = isoProject(rotatedVerts);
+
+  // Clear and redraw
+  clearSvg('cube'); clearSvg('hex'); clearSvg('ov-cube'); clearSvg('ov-hex');
+
+  drawCubeWireframe('cube', '#1e293b', cubeProj);
+  drawHexWireframe('hex', '#1e293b', hexProj, true);
+  drawCubeWireframe('ov-cube', '#cc3333', cubeProj);
+  drawHexWireframe('ov-hex', '#3333cc', hexProj, false);
+
+  // Show matrix
+  const matStr = mat.map(v => v.toFixed(6)).join(', ');
+  document.getElementById('matrix-out').textContent =
+    `Euler: (${rx}, ${ry}, ${rz})\nMatrix: [${matStr}]` +
+    `\n\nPole top → (${hexProj[0][0].toFixed(1)}, ${hexProj[0][1].toFixed(1)})  |  Cube top → (${cubeProj[6][0].toFixed(1)}, ${cubeProj[6][1].toFixed(1)})` +
+    `\nPole bot → (${hexProj[1][0].toFixed(1)}, ${hexProj[1][1].toFixed(1)})  |  Cube bot → (${cubeProj[1][0].toFixed(1)}, ${cubeProj[1][1].toFixed(1)})`;
+}
+
+document.getElementById('rx').addEventListener('input', update);
+document.getElementById('ry').addEventListener('input', update);
+document.getElementById('rz').addEventListener('input', update);
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  document.getElementById('rx').value = 0;
+  document.getElementById('ry').value = 0;
+  document.getElementById('rz').value = 0;
+  update();
+});
+
+document.getElementById('btn-copy').addEventListener('click', () => {
+  if (currentMatrix) {
+    const txt = `const r00 = ${currentMatrix[0]}, r01 = ${currentMatrix[1]}, r02 = ${currentMatrix[2]};\nconst r10 = ${currentMatrix[3]}, r11 = ${currentMatrix[4]}, r12 = ${currentMatrix[5]};\nconst r20 = ${currentMatrix[6]}, r21 = ${currentMatrix[7]}, r22 = ${currentMatrix[8]};`;
+    navigator.clipboard.writeText(txt);
+    document.getElementById('matrix-out').textContent += '\n\n✓ Copied to clipboard!';
+  }
+});
+
+document.getElementById('btn-best').addEventListener('click', () => {
+  // Brute-force search for best alignment
+  const outerCubeIdx = [0,1,2,5,6,7];
+  let bestRx=0, bestRy=0, bestRz=0, bestErr=Infinity;
+
+  for (let rx=-180; rx<180; rx+=5) {
+    for (let ry=-180; ry<180; ry+=5) {
+      for (let rz=-180; rz<180; rz+=5) {
+        const mat = eulerMatrix(rx,ry,rz);
+        const verts = applyMatrix(mat, makeBaseHexVerts());
+        const proj = isoProject(verts);
+        let err = 0;
+        for (const ci of outerCubeIdx) {
+          let minD = Infinity;
+          for (let hi=0;hi<proj.length;hi++) {
+            const dx=cubeProj[ci][0]-proj[hi][0], dy=cubeProj[ci][1]-proj[hi][1];
+            minD = Math.min(minD, dx*dx+dy*dy);
+          }
+          err += minD;
+        }
+        if (err < bestErr) { bestErr=err; bestRx=rx; bestRy=ry; bestRz=rz; }
+      }
+    }
+  }
+  // Fine-tune
+  for (let rx=bestRx-5; rx<=bestRx+5; rx+=0.5) {
+    for (let ry=bestRy-5; ry<=bestRy+5; ry+=0.5) {
+      for (let rz=bestRz-5; rz<=bestRz+5; rz+=0.5) {
+        const mat = eulerMatrix(rx,ry,rz);
+        const verts = applyMatrix(mat, makeBaseHexVerts());
+        const proj = isoProject(verts);
+        let err = 0;
+        for (const ci of outerCubeIdx) {
+          let minD = Infinity;
+          for (let hi=0;hi<proj.length;hi++) {
+            const dx=cubeProj[ci][0]-proj[hi][0], dy=cubeProj[ci][1]-proj[hi][1];
+            minD = Math.min(minD, dx*dx+dy*dy);
+          }
+          err += minD;
+        }
+        if (err < bestErr) { bestErr=err; bestRx=rx; bestRy=ry; bestRz=rz; }
+      }
+    }
+  }
+
+  document.getElementById('rx').value = bestRx;
+  document.getElementById('ry').value = bestRy;
+  document.getElementById('rz').value = bestRz;
+  update();
+  document.getElementById('matrix-out').textContent += `\n\nAuto-fit error: ${bestErr.toFixed(4)}`;
+});
+
+// Initial render
+update();
+</script>
+</body>
+</html>

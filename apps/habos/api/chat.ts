@@ -259,10 +259,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(429).json({ error: 'Too many requests. Please wait a moment.' });
   }
 
-  const { message, history, currentPage, emailCaptured, returningVisitor, referralSource, leadScore } = req.body as {
+  const { message, history, currentPage, language, emailCaptured, returningVisitor, referralSource, leadScore } = req.body as {
     message: string;
     history?: { role: 'user' | 'assistant'; text: string }[];
     currentPage?: string;
+    language?: string;
     emailCaptured?: boolean;
     returningVisitor?: { visitCount: number; lastPages: string[] };
     referralSource?: string;
@@ -331,6 +332,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }`;
     }
 
+    // Language instruction — respond in the user's interface language
+    const LOCALE_TO_LANGUAGE: Record<string, string> = {
+      no: 'Norwegian (Norsk)', sv: 'Swedish (Svenska)', da: 'Danish (Dansk)',
+      de: 'German (Deutsch)', fr: 'French (Français)', es: 'Spanish (Español)',
+      nl: 'Dutch (Nederlands)', fi: 'Finnish (Suomi)', it: 'Italian (Italiano)',
+      pt: 'Portuguese (Português)', ar: 'Arabic (العربية)', hi: 'Hindi (हिन्दी)',
+      ja: 'Japanese (日本語)', ko: 'Korean (한국어)', zh: 'Chinese Simplified (简体中文)',
+    };
+    const userLanguage = language ? LOCALE_TO_LANGUAGE[language] : undefined;
+    if (userLanguage) {
+      pageContext += `\n\n**LANGUAGE REQUIREMENT**: The user's interface is in **${userLanguage}**. You MUST write every response entirely in ${userLanguage}. This includes all messages, questions, and action labels.`;
+    }
+
     const recentHistory = (history || []).slice(-30).map((h) => ({
       role: h.role as 'user' | 'assistant',
       content: h.text,
@@ -359,9 +373,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       while (breakIdx !== -1) {
         const before = text.substring(offset, breakIdx);
         if (before) sendSSE(res, { type: 'delta', text: before });
-        const pauseMs = Math.min(800, 300 + before.length * 3);
         sendSSE(res, { type: 'break' });
-        await new Promise((r) => setTimeout(r, pauseMs));
         offset = breakIdx + BREAK_MARKER.length;
         breakIdx = text.indexOf(BREAK_MARKER, offset);
       }

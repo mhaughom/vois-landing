@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Globe } from 'lucide-react';
+import { Globe, Check } from 'lucide-react';
 
 const dropdownVariants = {
   hidden: { opacity: 0 },
@@ -60,8 +60,10 @@ export const LanguageSwitcher: React.FC<{ className?: string; navPill?: boolean 
   }, []);
 
   const handleSelect = (code: string) => {
+    document.documentElement.classList.add('lang-transition');
     i18n.changeLanguage(code);
     setOpen(false);
+    setTimeout(() => document.documentElement.classList.remove('lang-transition'), 600);
   };
 
   return (
@@ -77,7 +79,7 @@ export const LanguageSwitcher: React.FC<{ className?: string; navPill?: boolean 
         }
         aria-label="Change language"
       >
-        <div className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-slate-50/80 transition-colors">
+        <div className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-slate-50/80 transition-colors">
           <Globe size={16} />
         </div>
         {!navPill && <span>{current.code.toUpperCase()}</span>}
@@ -121,9 +123,10 @@ export const LanguageSwitcher: React.FC<{ className?: string; navPill?: boolean 
                     }`}
                   >
                     <span className="text-base leading-none">{lang.flag}</span>
-                    <span className={`text-[13px] ${lang.code === current.code ? 'font-medium' : ''}`}>
+                    <span className={`text-[13px] flex-1 ${lang.code === current.code ? 'font-medium' : ''}`}>
                       {lang.label}
                     </span>
+                    {lang.code === current.code && <Check size={14} className="text-slate-500" />}
                   </motion.button>
                 ))}
               </motion.div>

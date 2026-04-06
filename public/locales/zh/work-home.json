@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "一个平台。",
+    "headingItalic": "所有工具。",
+    "description": "您的企业所需的{{count}}个应用 — 全部集于一个平台。",
+    "replaces": "替代："
+  },
   "heroBusinesses": [
     "创意机构",
     "水管工",
@@ -67,7 +73,7 @@
     { "speaker": "你",    "text": "我们从 Q1 数据开始。收入增长了 12%。",       "time": "0:15" },
     { "speaker": "Sarah", "text": "销售管道看起来不错，但交付时间线让我担忧。", "time": "0:42" },
     { "speaker": "你",    "text": "说得有理。如果我们在每个里程碑增加一周缓冲期怎么样？", "time": "1:08" },
-    { "speaker": "AI",    "text": "建议提问："如果 Q2 目标滑落，应急方案是什么？"",   "time": "1:15" }
+    { "speaker": "AI",    "text": "建议提问：「如果 Q2 目标滑落，应急方案是什么？」",   "time": "1:15" }
   ],
   "meetingActions": [
     { "text": "周五前将更新的时间表发给 Sarah" },

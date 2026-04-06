@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "ひとつのプラットフォーム。",
+    "headingItalic": "すべてのツール。",
+    "description": "ビジネスに必要な{{count}}のアプリ — すべてひとつのプラットフォームで。",
+    "replaces": "代替ツール："
+  },
   "heroBusinesses": [
     "クリエイティブエージェンシー",
     "配管業者",

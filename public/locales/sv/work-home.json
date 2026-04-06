@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "En plattform.",
+    "headingItalic": "Alla verktyg.",
+    "description": "{{count}} appar som ditt företag behöver — allt i en plattform.",
+    "replaces": "Ersätter:"
+  },
   "heroBusinesses": [
     "Kreativa byråer",
     "Rörmokare",

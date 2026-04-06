@@ -1437,9 +1437,9 @@ const WPlaceholder = (letter: string) => {
   return Comp;
 };
 
-type AppCategory = { category: string; items: AppDef[] };
+export type AppCategory = { category: string; items: AppDef[] };
 
-const appCategories: AppCategory[] = [
+export const appCategories: AppCategory[] = [
   {
     category: 'Communication & Support',
     items: [
@@ -1793,6 +1793,7 @@ export const AppGridBox: React.FC = () => {
   const [hoveredApp, setHoveredApp] = useState<AppDef | null>(null);
   const [hoverRect, setHoverRect] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
   const boxRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
   const arcTargets = useRef<Map<string, { dx: number; dy: number }>>(new Map());
 
@@ -1869,7 +1870,7 @@ export const AppGridBox: React.FC = () => {
       </div>
 
       {/* Card grid — categorized rows with headers */}
-      <div className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-6">
+      <div ref={gridRef} className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-6">
         {appCategories.map(cat => (
           <div key={cat.category}>
             <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-3 text-center">{cat.category}</h3>
@@ -1989,10 +1990,13 @@ export const AppGridBox: React.FC = () => {
         {/* Hover popup */}
         <AnimatePresence>
           {hoveredApp && hoverRect && (() => {
+            const gr = gridRef.current?.getBoundingClientRect();
+            if (!gr) return null;
             const vw = typeof window !== 'undefined' ? window.innerWidth : 1200;
             const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
             const popW = Math.min(480, Math.max(280, vw * 0.35));
-            const spaceAbove = hoverRect.y - 16;
+            const navH = 80; // reserve space for fixed navbar
+            const spaceAbove = hoverRect.y - navH - 16;
             const spaceBelow = vh - (hoverRect.y + hoverRect.h + 16);
             const spaceRight = vw - (hoverRect.x + hoverRect.w / 2 + 16);
             const spaceLeft = hoverRect.x - hoverRect.w / 2 - 16;
@@ -2004,8 +2008,8 @@ export const AppGridBox: React.FC = () => {
             let initY = 0;
 
             if (spaceAbove > 320) {
-              // Place above
-              bottom = vh - spaceAbove;
+              // Place above — clamp so popover doesn't go behind navbar
+              bottom = Math.min(vh - hoverRect.y + 12, vh - navH);
               left = Math.max(12, Math.min(hoverRect.x - popW / 2, vw - popW - 12));
               initY = 8;
             } else if (spaceBelow > 320) {
@@ -2026,6 +2030,11 @@ export const AppGridBox: React.FC = () => {
               initY = 0;
             }
 
+            // Convert from viewport coords to container-relative for absolute positioning
+            left = left - gr.left;
+            if (top !== undefined) top = top - gr.top;
+            if (bottom !== undefined) bottom = gr.height - vh + bottom + gr.top;
+
             return (
               <motion.div
                 key={hoveredApp.label}
@@ -2033,7 +2042,7 @@ export const AppGridBox: React.FC = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.18 }}
-                className="fixed z-[60] pointer-events-none"
+                className="absolute z-[60] pointer-events-none"
                 style={{ left, top, bottom, width: popW }}
               >
                 <div className="rounded-2xl border bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden" style={{ borderColor: `${hoveredApp.color}30` }}>

@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Yksi alusta.",
+    "headingItalic": "Kaikki työkalut.",
+    "description": "{{count}} sovellusta, joita yrityksesi tarvitsee — kaikki yhdellä alustalla.",
+    "replaces": "Korvaa:"
+  },
   "heroBusinesses": [
     "Luovat toimistot",
     "Putkimiehet",

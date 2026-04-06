@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Én platform.",
+    "headingItalic": "Alle værktøjer.",
+    "description": "{{count}} apps din virksomhed har brug for — alt i én platform.",
+    "replaces": "Erstatter:"
+  },
   "heroBusinesses": [
     "Kreative bureauer",
     "VVS-firmaer",

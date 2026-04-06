@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "منصة واحدة.",
+    "headingItalic": "كل الأدوات.",
+    "description": "{{count}} تطبيقاً يحتاجها عملك — كل ذلك في منصة واحدة.",
+    "replaces": "يستبدل:"
+  },
   "heroBusinesses": [
     "الوكالات الإبداعية",
     "السباكون",

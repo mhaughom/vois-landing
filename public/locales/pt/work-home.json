@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Uma plataforma.",
+    "headingItalic": "Todas as ferramentas.",
+    "description": "{{count}} aplicações de que o seu negócio precisa — tudo numa única plataforma.",
+    "replaces": "Substitui:"
+  },
   "heroBusinesses": [
     "Agências Criativas",
     "Encanadores",

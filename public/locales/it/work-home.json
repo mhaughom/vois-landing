@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Una sola piattaforma.",
+    "headingItalic": "Tutti gli strumenti.",
+    "description": "{{count}} app di cui la tua azienda ha bisogno — tutto in un'unica piattaforma.",
+    "replaces": "Sostituisce:"
+  },
   "heroBusinesses": [
     "Agenzie Creative",
     "Idraulici",

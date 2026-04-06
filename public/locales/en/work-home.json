@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "One platform.",
+    "headingItalic": "Every tool.",
+    "description": "{{count}} apps your business needs — all in a single box.",
+    "replaces": "Replaces:"
+  },
   "heroBusinesses": [
     "Creative Agencies",
     "Plumbers",

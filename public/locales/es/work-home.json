@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Una plataforma.",
+    "headingItalic": "Todas las herramientas.",
+    "description": "{{count}} aplicaciones que su empresa necesita — todo en una plataforma.",
+    "replaces": "Reemplaza:"
+  },
   "heroBusinesses": [
     "Agencias creativas",
     "Plomeros",

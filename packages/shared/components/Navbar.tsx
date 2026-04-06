@@ -596,7 +596,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                 navigate(item.href);
                               } : undefined}
                               variants={itemVariant}
-                              className={`group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-3 py-2.5 ${isCluster ? 'cursor-pointer' : ''}`}
+                              className={`group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-3 py-2.5 ${isCluster ? 'cursor-pointer' : ''} ${location.pathname === item.href ? 'bg-slate-50/80' : ''}`}
                             >
                               <item.icon
                                 size={16}
@@ -604,7 +604,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                 style={{ color: item.color || '#94a3b8' }}
                               />
                               <div className="min-w-0 pt-0.5">
-                                <p className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-[13px]">
+                                <p className={`font-medium group-hover:text-slate-900 transition-colors text-[13px] ${location.pathname === item.href ? 'text-slate-900' : 'text-slate-700'}`}>
                                   {item.label}
                                 </p>
                                 <p className="text-slate-400 group-hover:text-slate-500 mt-0.5 transition-colors text-[11px] leading-relaxed">
@@ -783,7 +783,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                   key={item.label}
                                   href={item.href}
                                   variants={itemVariant}
-                                  className="group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-1.5 py-1.5"
+                                  className={`group flex items-start gap-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-150 px-1.5 py-1.5 ${location.pathname === item.href ? 'bg-slate-50/80' : ''}`}
                                 >
                                   <div className="flex-shrink-0 rounded-lg bg-slate-50 border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 flex items-center justify-center transition-all duration-200 w-7 h-7">
                                     <item.icon
@@ -792,7 +792,7 @@ export const Navbar: React.FC<NavbarProps> = ({ variant = 'habos', onOpenWaitlis
                                     />
                                   </div>
                                   <div className="min-w-0 pt-0.5">
-                                    <p className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-[12px] leading-tight">
+                                    <p className={`font-medium group-hover:text-slate-900 transition-colors text-[12px] leading-tight ${location.pathname === item.href ? 'text-slate-900' : 'text-slate-700'}`}>
                                       {item.label}
                                     </p>
                                     <p className="text-slate-400 group-hover:text-slate-500 mt-0.5 leading-snug transition-colors text-[10px]">

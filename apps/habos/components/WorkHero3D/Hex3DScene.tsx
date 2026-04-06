@@ -445,7 +445,7 @@ export const Hex3DScene: React.FC<{
               onPointerOut={() => { document.body.style.cursor = ''; }}
             >
               <meshStandardMaterial
-                color={isFocusMode && isBestFace ? '#a5b4fc' : '#b8c4d8'}
+                color={isFocusMode && isBestFace ? '#dbe4ff' : '#edf0f5'}
                 transparent
                 opacity={faceOpacity}
                 roughness={0.4}
@@ -457,15 +457,14 @@ export const Hex3DScene: React.FC<{
               <>
                 {/* Lit video — fades out as focus increases */}
                 <mesh geometry={geo} renderOrder={1}>
-                  <meshStandardMaterial
+                  <meshBasicMaterial
                     map={faceEntry!.texture}
                     transparent
-                    opacity={faceVideoOpacity * (1 - (isBestFace ? focus : 0))}
+                    opacity={faceVideoOpacity * 0.85 * (1 - (isBestFace ? focus : 0))}
                     side={THREE.DoubleSide}
-                    roughness={0.3}
-                    metalness={0.05}
                     depthWrite={false}
                     fog={false}
+                    toneMapped={false}
                   />
                 </mesh>
                 {/* True-color video — fades in as focus increases */}

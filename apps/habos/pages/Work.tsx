@@ -24,7 +24,8 @@ import { AnimatedHabosIcon } from '../components/AnimatedHabosIcon';
 import { Footer } from '../components/Footer';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';
 import { BoxAnimation } from '@li/shared/components/BoxAnimation';
-import { AppGridBox } from '@li/shared/components/AppGridBox';
+import { appCategories } from '@li/shared/components/AppGridBox';
+import { CategoryShowcase } from '../components/CategoryShowcase';
 import { WaitlistModal } from '@li/shared/components/WaitlistModal';
 
 import FeatureSection from './work/features/FeatureSection';
@@ -987,14 +988,6 @@ const Work: React.FC = () => {
   return (
     <div className="min-h-screen relative overflow-x-hidden">
 
-      {/* Top white gradient fade — softer entry from the top */}
-      <div
-        className="fixed top-0 left-0 right-0 pointer-events-none z-30"
-        style={{
-          height: 'calc(env(safe-area-inset-top, 0px) + 160px)',
-          background: 'linear-gradient(to bottom, rgba(248,249,250,0.95) 0%, rgba(248,249,250,0.6) 40%, transparent 100%)',
-        }}
-      />
 
       {/* ═══════════════════════════════════════════════════════════════════
           NAVIGATION — outside content wrapper so z-50 stacks above overlay
@@ -1232,14 +1225,57 @@ const Work: React.FC = () => {
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          APP GRID BOX — Every app in an Excel-like grid with absorb animation
+          CATEGORY SHOWCASE — Alternating image + app grid per category
           ═══════════════════════════════════════════════════════════════════ */}
-      <AppGridBox />
+      <CategoryShowcase categories={appCategories} />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          PHILOSOPHY BREATHER — Simple image + text between heavy sections
+          ═══════════════════════════════════════════════════════════════════ */}
+      <Section className="pt-8 pb-24 md:pt-12 md:pb-36 px-6 md:px-12">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative overflow-hidden rounded-2xl mb-12">
+              <img
+                src="/philosophy-breather.png"
+                alt={t('philosophyBreather.imageAlt', 'Interconnected business modules')}
+                className="w-full"
+              />
+              <div
+                className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-50"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+                  backgroundSize: '300px 300px',
+                }}
+              />
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
+              {t('philosophyBreather.heading', 'AI power. Human control.')}
+            </h2>
+            <p className="text-lg text-slate-500 leading-relaxed">
+              {t('philosophyBreather.body', 'Every draft is reviewed. Every action is approved. Every decision is yours. HABOS gives you superhuman leverage without giving up the steering wheel.')}
+            </p>
+          </motion.div>
+        </div>
+      </Section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           INTERACTIVE 3D SECTION — No container, floats on page background
           ═══════════════════════════════════════════════════════════════════ */}
-      <div ref={geoSectionRef} id="explore" className="relative h-screen min-h-screen flex flex-col justify-center">
+      <div ref={geoSectionRef} id="explore" className="relative h-screen min-h-screen flex flex-col justify-center pt-24 md:pt-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1264,6 +1300,54 @@ const Work: React.FC = () => {
           </motion.p>
         </motion.div>
 
+        {/* Story text — in normal flow ABOVE the 3D model, can never overlap */}
+        <div className="text-center px-4 md:px-6 mb-8 md:mb-12 flex justify-center items-center gap-3 min-h-[3em]">
+          <motion.p
+            key={focusLabel || animPhase}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-serif italic text-slate-950 max-w-2xl leading-snug text-center"
+          >
+            {focusLabel
+              ? focusLabel
+              : <>
+                  {animPhase === 'dot' && t('animPhase.dot')}
+                  {animPhase === 'split' && t('animPhase.split')}
+                  {animPhase === 'cube' && t('animPhase.cube')}
+                  {animPhase === 'hex-morph' && t('animPhase.hexMorph')}
+                  {animPhase === 'idle' && t('animPhase.idle')}
+                </>
+            }
+          </motion.p>
+          {focusLabel && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={() => setMuted(m => !m)}
+              className="flex-shrink-0 flex items-center justify-center w-9 h-9 bg-white/70 backdrop-blur-xl rounded-full border border-slate-200/50 shadow-sm hover:bg-white/90 transition-all"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500">
+                {muted ? (
+                  <>
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                  </>
+                ) : (
+                  <>
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                  </>
+                )}
+              </svg>
+            </motion.button>
+          )}
+        </div>
+
+        {/* 3D model — below the text, can never collide */}
         <div className="flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -1275,62 +1359,6 @@ const Work: React.FC = () => {
             style={{ maxWidth: 'min(42rem, 62vh)' }}
           >
             {geoVisible && <WorkHero3D onPhaseChange={setAnimPhase} onFocusChange={setFocusLabel} unfocusRef={unfocusRef} muted={muted} paused={geoPaused} onToggleMute={() => setMuted(m => !m)} />}
-
-            {/* Story text + sound button — positioned above the 3D geometry */}
-            <div className="absolute left-0 right-0 -top-[16%] md:-top-[22%] z-20 px-4 md:px-6 flex justify-center items-center gap-3">
-              {/* White cloud behind text — only in focused/zoomed state */}
-              <div
-                className="absolute pointer-events-none transition-opacity duration-700 ease-in-out"
-                style={{
-                  opacity: focusLabel ? 1 : 0,
-                  inset: '-220% -30%',
-                  background: 'radial-gradient(ellipse 60% 70% at center, rgba(248,249,250,0.97) 0%, rgba(248,249,250,0.8) 30%, rgba(248,249,250,0.4) 55%, transparent 80%)',
-                }}
-              />
-              <motion.p
-                key={focusLabel || animPhase}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="relative text-lg sm:text-2xl md:text-4xl lg:text-5xl font-serif italic text-slate-950 max-w-2xl leading-snug text-center pointer-events-none"
-              >
-                {focusLabel
-                  ? focusLabel
-                  : <>
-                      {animPhase === 'dot' && t('animPhase.dot')}
-                      {animPhase === 'split' && t('animPhase.split')}
-                      {animPhase === 'cube' && t('animPhase.cube')}
-                      {animPhase === 'hex-morph' && t('animPhase.hexMorph')}
-                      {animPhase === 'idle' && t('animPhase.idle')}
-                    </>
-                }
-              </motion.p>
-              {focusLabel && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  onClick={() => setMuted(m => !m)}
-                  className="flex-shrink-0 flex items-center justify-center w-9 h-9 bg-white/70 backdrop-blur-xl rounded-full border border-slate-200/50 shadow-sm hover:bg-white/90 transition-all"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500">
-                    {muted ? (
-                      <>
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                        <line x1="23" y1="9" x2="17" y2="15" />
-                        <line x1="17" y1="9" x2="23" y2="15" />
-                      </>
-                    ) : (
-                      <>
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                      </>
-                    )}
-                  </svg>
-                </motion.button>
-              )}
-            </div>
           </motion.div>
         </div>
       </div>

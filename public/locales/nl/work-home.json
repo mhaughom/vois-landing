@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Één platform.",
+    "headingItalic": "Alle tools.",
+    "description": "{{count}} apps die uw bedrijf nodig heeft — alles in één platform.",
+    "replaces": "Vervangt:"
+  },
   "heroBusinesses": [
     "Creatieve bureaus",
     "Loodgieters",

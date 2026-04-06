@@ -298,6 +298,15 @@ const PAGE_SUGGESTIONS: Record<string, PageSuggestion> = {
 const DEFAULT_PROACTIVE_DELAY_MS = 25000;
 const MIN_TIME_ON_PAGE_MS = 10000;
 
+// Conversion-oriented CTAs — rotated into the pill alongside page suggestions
+const CTA_SUGGESTIONS = [
+  'Book a free intro call',
+  'Schedule a quick demo',
+  'Get a personalized walkthrough',
+  'Talk to our team',
+  'See it in action — book a demo',
+];
+
 // ═══════════════════════════════════════════════════════════════════
 // Inline Email Capture — rendered inside chat when AI triggers email_capture
 // ═══════════════════════════════════════════════════════════════════
@@ -463,17 +472,20 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
   const STORAGE_KEY_EXIT_DISMISSED = `${storagePrefix}-chat-exit-dismissed-routes`;
   const STORAGE_KEY_CAPTURED_EMAIL = `${storagePrefix}-chat-captured-email`;
   const activeIntentPatterns = config?.intentPatterns || INTENT_PATTERNS;
-  const activePageSuggestions = config?.pageSuggestions || PAGE_SUGGESTIONS;
   const activePageNames = config?.pageNames || {};
   const productName = config?.productName || 'our';
   const fallbackMessage = config?.fallbackMessage || "I can help you explore our features. Try asking about what interests you!";
-  const { t } = useTranslation('chat-panel');
+  const { t, i18n } = useTranslation('chat-panel');
+  const translatedPageSuggestions = t('pageSuggestions', { returnObjects: true, defaultValue: PAGE_SUGGESTIONS }) as Record<string, PageSuggestion>;
+  const activePageSuggestions = config?.pageSuggestions || translatedPageSuggestions;
   const navigate = useNavigate();
   const location = useLocation();
   const currentSuggestion = activePageSuggestions[location.pathname] || null;
   const [isOpen, setIsOpen] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [showProactive, setShowProactive] = useState(false);
+  const [showCta, setShowCta] = useState(false);
+  const [ctaIndex, setCtaIndex] = useState(0);
   const dismissedRoutesRef = useRef<Set<string>>(loadDismissedRoutes(STORAGE_KEY_DISMISSED));
   const proactiveTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [messages, setMessages] = useState<ChatMessageData[]>(() => {
@@ -718,6 +730,22 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     };
   }, [location.pathname, isOpen]);
 
+  // CTA rotation — alternate between page suggestion and conversion CTA every ~10s
+  useEffect(() => {
+    if (!showProactive) { setShowCta(false); return; }
+    // Show page suggestion first, then start rotating after 10s
+    const interval = setInterval(() => {
+      setShowCta(prev => {
+        if (!prev) {
+          // Picking a new random CTA each time we switch to CTA
+          setCtaIndex(Math.floor(Math.random() * CTA_SUGGESTIONS.length));
+        }
+        return !prev;
+      });
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [showProactive]);
+
   // Exit-intent detection — desktop only, fires when mouse leaves viewport top
   useEffect(() => {
     setShowExitIntent(false);
@@ -743,12 +771,23 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     return () => document.documentElement.removeEventListener('mouseleave', handleMouseLeave);
   }, [location.pathname, isOpen, showProactive]);
 
+  // Scroll to bottom when messages change or chat opens
+  const scrollToBottom = useCallback((behavior: ScrollBehavior = 'smooth') => {
+    messagesEndRef.current?.scrollIntoView({ behavior });
+  }, []);
+
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollToBottom();
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen) setTimeout(() => inputRef.current?.focus(), 350);
+    if (isOpen) {
+      // Wait for the panel spring animation to finish, then scroll + focus
+      setTimeout(() => {
+        scrollToBottom('instant');
+        inputRef.current?.focus();
+      }, 350);
+    }
   }, [isOpen]);
 
   // Push page content left when chat opens — desktop only (smooth transition)
@@ -818,9 +857,9 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
 
     // 3. General fallback questions
     candidates.push(
-      'What can HABOS do for my business?',
-      'How is HABOS different from other tools?',
-      'What does pricing look like?',
+      t('fallbackQ1', 'What can HABOS do for my business?'),
+      t('fallbackQ2', 'How is HABOS different from other tools?'),
+      t('fallbackQ3', 'What does pricing look like?'),
     );
 
     // Deduplicate and filter out already-asked questions
@@ -835,7 +874,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
 
   // Active suggestion text for the pill extension on the chat button
   const activeSuggestionText = showProactive && currentSuggestion
-    ? currentSuggestion.suggestion
+    ? (showCta ? CTA_SUGGESTIONS[ctaIndex] : currentSuggestion.suggestion)
     : showExitIntent && currentSuggestion?.exitSuggestion
       ? currentSuggestion.exitSuggestion
       : null;
@@ -871,10 +910,10 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     let buffering = false;
     let pendingText = '';
 
-    // Helper: reveal a buffered bubble with a delay based on its own length
+    // Helper: reveal a buffered bubble with a short pause between bubbles
     const revealPending = async (actions?: ChatAction[]) => {
       if (!pendingText.trim()) return;
-      const delay = Math.min(800 + pendingText.length * 18, 3500);
+      const delay = Math.min(150 + pendingText.length * 2, 400);
       setIsStreaming(false);
       setIsLoading(true);
       await new Promise((r) => setTimeout(r, delay));
@@ -901,6 +940,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
           message: trimmed,
           history,
           currentPage: location.pathname,
+          language: i18n.language,
           emailCaptured: !!capturedEmail,
           returningVisitor: isReturningVisitor() ? {
             visitCount: getVisitorProfile()?.visitCount ?? 1,
@@ -944,10 +984,8 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             // Reveal the buffered bubble with a length-based delay
             if (pendingText.trim()) {
               if (!receivedFirstDelta) {
-                // First bubble — reveal with delay, no streaming
+                // First bubble — reveal quickly
                 receivedFirstDelta = true;
-                const delay = Math.min(800 + pendingText.length * 18, 3500);
-                await new Promise((r) => setTimeout(r, delay));
                 setIsLoading(false);
                 streamingMsgIdRef.current = currentMsgId;
                 setMessages((prev) => [...prev, {
@@ -965,7 +1003,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             if (pendingText.trim()) {
               if (!receivedFirstDelta) {
                 receivedFirstDelta = true;
-                const delay = Math.min(800 + pendingText.length * 18, 3500);
+                const delay = Math.min(300 + pendingText.length * 5, 800);
                 await new Promise((r) => setTimeout(r, delay));
                 setIsLoading(false);
                 setMessages((prev) => [...prev, {
@@ -1067,7 +1105,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
               toggle(true);
-              handleSend(`Explain this: "${text}"`);
+              handleSend(`${t('explainPrefix', 'Explain this')}: "${text}"`);
             }}
             className="fixed z-[100] flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-900 text-white text-xs font-medium shadow-lg hover:bg-gray-800 transition-colors"
             style={{
@@ -1077,7 +1115,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             }}
           >
             <MessageCircle size={12} />
-            Explain
+            {t('explainButton', 'Explain')}
           </motion.button>
         )}
       </AnimatePresence>
@@ -1090,42 +1128,45 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-0"
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-0 group/chat"
           >
-            {/* Suggestion pill — extends left from the button */}
-            <AnimatePresence>
-              {activeSuggestionText && (
-                <motion.button
-                  initial={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
-                  animate={{ width: 'auto', opacity: 1, paddingLeft: 16, paddingRight: 12 }}
-                  exit={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  onClick={() => {
-                    const text = activeSuggestionText;
-                    setShowProactive(false);
-                    setShowExitIntent(false);
-                    if (currentSuggestion) {
-                      dismissedRoutesRef.current.add(location.pathname);
-                      persistDismissed();
-                    }
-                    toggle(true);
-                    handleSend(text);
-                  }}
-                  className="h-14 overflow-hidden whitespace-nowrap rounded-l-full text-[13px] font-medium text-gray-700 shadow-lg border border-r-0"
-                  style={{ backgroundColor: '#C8DCED', borderColor: '#b4cfe0' }}
-                >
-                  {activeSuggestionText}
-                </motion.button>
-              )}
-            </AnimatePresence>
-            {/* Chat button */}
             <button
-              onClick={() => toggle(true)}
-              className={`flex h-14 w-14 items-center justify-center shadow-lg transition-colors shrink-0 ${activeSuggestionText ? 'rounded-r-full rounded-l-none' : 'rounded-full'}`}
+              onClick={() => {
+                if (activeSuggestionText) {
+                  const text = activeSuggestionText;
+                  setShowProactive(false);
+                  setShowExitIntent(false);
+                  if (currentSuggestion) {
+                    dismissedRoutesRef.current.add(location.pathname);
+                    persistDismissed();
+                  }
+                  toggle(true);
+                  handleSend(text);
+                } else {
+                  toggle(true);
+                }
+              }}
+              className="flex h-14 items-center rounded-full shadow-lg transition-transform duration-300 group-hover/chat:scale-105"
               style={{ backgroundColor: '#C8DCED', borderColor: '#b4cfe0', borderWidth: 1, borderStyle: 'solid' }}
               aria-label={t('openChatAriaLabel')}
             >
-              <MessageCircle size={24} className="text-gray-700" />
+              <AnimatePresence mode="wait">
+                {activeSuggestionText && (
+                  <motion.span
+                    key={activeSuggestionText}
+                    initial={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
+                    animate={{ width: 'auto', opacity: 1, paddingLeft: 20, paddingRight: 4 }}
+                    exit={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    className="overflow-hidden whitespace-nowrap text-[13px] font-medium text-gray-700"
+                  >
+                    {activeSuggestionText}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              <div className="flex h-14 w-14 items-center justify-center shrink-0">
+                <MessageCircle size={24} className="text-gray-700 transition-transform duration-500 group-hover/chat:rotate-[360deg]" />
+              </div>
             </button>
           </motion.div>
         )}
@@ -1156,7 +1197,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               <div className="w-10 h-1 rounded-full bg-gray-300" />
             </div>
             {/* Header */}
-            <div className="relative z-10 flex items-center justify-between px-5 py-4 md:py-4 border-b border-gray-100 md:bg-white/60 md:backdrop-blur-sm md:rounded-t-2xl">
+            <div className="relative z-10 flex items-center justify-between px-5 py-4 md:py-4 bg-white md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
@@ -1233,8 +1274,13 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               </div>
             </div>
 
+            {/* Messages + floating input wrapper */}
+            <div className="flex-1 relative overflow-hidden">
+            {/* Gradient fade below header */}
+            <div className="pointer-events-none absolute top-0 left-0 right-0 h-6 z-[5]" style={{ background: 'linear-gradient(to bottom, white, transparent)' }} />
+
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
+            <div className="absolute inset-0 overflow-y-auto px-5 pt-4 pb-20 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
@@ -1277,12 +1323,6 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                       )}
                     </div>
                   </div>
-                  {/* Debug: bubble count */}
-                  {msg._debugBubbleCount != null && (
-                    <div className="text-[10px] text-gray-400 mt-1 ml-1 font-mono">
-                      [{msg._debugBubbleCount} bubble{msg._debugBubbleCount !== 1 ? 's' : ''}]
-                    </div>
-                  )}
                   {/* Action chips + special action types */}
                   {msg.actions && msg.actions.length > 0 && (
                     <div className="mt-2 ml-1 space-y-2">
@@ -1343,27 +1383,31 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
-            <div className="border-t border-gray-100 px-4 py-3 md:bg-white/60 md:backdrop-blur-sm md:rounded-b-2xl">
-              <div className="flex items-center gap-2 rounded-xl bg-gray-50 border border-gray-200 px-3 py-2 focus-within:border-gray-400 transition-colors">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder={t('placeholder')}
-                  className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none"
-                />
+            {/* Bottom gradient + floating input — overlays the messages */}
+            <div className="absolute bottom-0 left-0 right-0 z-[6] pointer-events-none md:rounded-b-2xl">
+              {/* Floating input row — gradient starts from bottom, fades out halfway through the pill */}
+              <div className="pointer-events-auto flex items-center gap-2 px-4 pb-3 pt-4" style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.95) 50%, transparent 100%)' }}>
+                <div className="flex-1 flex items-center rounded-full bg-white/90 border border-gray-200 px-4 py-3 shadow-sm backdrop-blur-sm focus-within:border-gray-400 transition-colors">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder={t('placeholder')}
+                    className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none"
+                  />
+                </div>
                 <button
                   onClick={() => handleSend()}
                   disabled={!input.trim()}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="group flex h-11 w-11 items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-gray-700 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors shrink-0"
                   aria-label={t('sendMessageAriaLabel')}
                 >
-                  <Send size={16} />
+                  <Send size={16} className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:-translate-x-0.5 group-hover:rotate-[-12deg] group-disabled:transform-none" />
                 </button>
               </div>
+            </div>
             </div>
 
           </motion.aside>

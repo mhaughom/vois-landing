@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "एक प्लेटफ़ॉर्म.",
+    "headingItalic": "सभी टूल्स.",
+    "description": "{{count}} ऐप्स जो आपके व्यवसाय को चाहिए — सब एक प्लेटफ़ॉर्म पर.",
+    "replaces": "प्रतिस्थापित करता है:"
+  },
   "heroBusinesses": [
     "क्रिएटिव एजेंसियाँ",
     "प्लंबर",

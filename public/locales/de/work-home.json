@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Eine Plattform.",
+    "headingItalic": "Alle Tools.",
+    "description": "{{count}} Apps, die Ihr Unternehmen braucht — alles in einer Plattform.",
+    "replaces": "Ersetzt:"
+  },
   "heroBusinesses": [
     "Kreativagenturen",
     "Klempner",

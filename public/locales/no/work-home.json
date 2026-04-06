@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "Én plattform.",
+    "headingItalic": "Alle verktøy.",
+    "description": "{{count}} apper bedriften din trenger — alt i én pakke.",
+    "replaces": "Erstatter:"
+  },
   "heroBusinesses": [
     "Kreative byråer",
     "Rørleggere",

@@ -1,4 +1,10 @@
 {
+  "categoryShowcase": {
+    "heading": "하나의 플랫폼.",
+    "headingItalic": "모든 도구.",
+    "description": "비즈니스에 필요한 {{count}}개의 앱 — 모두 하나의 플랫폼에.",
+    "replaces": "대체:"
+  },
   "heroBusinesses": [
     "크리에이티브 에이전시",
     "배관 업체",

@@ -280,6 +280,14 @@ root.render(
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />
         </Routes>
+        {/* Top white gradient fade — softer entry from the top, shared across all pages */}
+        <div
+          className="fixed top-0 left-0 right-0 pointer-events-none z-30"
+          style={{
+            height: 'calc(env(safe-area-inset-top, 0px) + 160px)',
+            background: 'linear-gradient(to bottom, rgba(248,249,250,0.95) 0%, rgba(248,249,250,0.6) 40%, transparent 100%)',
+          }}
+        />
         <ChatPanel config={habosChat} />
         <CookieConsent />
       </Suspense>
