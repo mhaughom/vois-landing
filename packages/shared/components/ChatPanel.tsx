@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, createContext, useContext, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, ExternalLink, HelpCircle, Mail, Check, Loader2, Calendar } from 'lucide-react';
+import { MessageCircle, X, Send, ExternalLink, HelpCircle, Mail, Phone, Check, Loader2, Calendar } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Markdown from 'react-markdown';
@@ -309,13 +309,13 @@ const CTA_SUGGESTIONS_FALLBACK = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════
-// Inline Email Capture — rendered inside chat when AI triggers email_capture
+// Inline Contact Capture — rendered inside chat when AI triggers email_capture
 // ═══════════════════════════════════════════════════════════════════
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface InlineEmailCaptureProps {
-  onSubmit: (email: string) => Promise<void>;
+  onSubmit: (email: string, phone?: string) => Promise<void>;
   isSubmitted: boolean;
   t: (key: string) => string;
   currentPage: string;
@@ -323,6 +323,7 @@ interface InlineEmailCaptureProps {
 
 const InlineEmailCapture: React.FC<InlineEmailCaptureProps> = ({ onSubmit, isSubmitted, t, currentPage }) => {
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -342,7 +343,7 @@ const InlineEmailCapture: React.FC<InlineEmailCaptureProps> = ({ onSubmit, isSub
     setError('');
     setLoading(true);
     try {
-      await onSubmit(trimmed);
+      await onSubmit(trimmed, phone.trim() || undefined);
     } catch {
       setError('Something went wrong. Try again.');
     } finally {
@@ -361,14 +362,24 @@ const InlineEmailCapture: React.FC<InlineEmailCaptureProps> = ({ onSubmit, isSub
           placeholder={t('emailPlaceholder')}
           className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none min-w-0"
         />
-        <button
-          type="submit"
-          disabled={loading || !email.trim()}
-          className="shrink-0 px-3 py-1 text-xs font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-        >
-          {loading ? <Loader2 size={12} className="animate-spin" /> : t('emailSubmit')}
-        </button>
       </div>
+      <div className="flex items-center gap-1.5 rounded-xl bg-white border border-gray-200 px-2.5 py-1.5 focus-within:border-blue-400 transition-colors">
+        <Phone size={14} className="text-gray-400 shrink-0" />
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder={t('phonePlaceholder')}
+          className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none min-w-0"
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={loading || !email.trim()}
+        className="w-full px-3 py-1.5 text-xs font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+      >
+        {loading ? <Loader2 size={12} className="animate-spin" /> : t('emailSubmit')}
+      </button>
       {error && <p className="text-xs text-red-500 ml-1">{error}</p>}
     </form>
   );
@@ -563,11 +574,11 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
   });
   const [emailCaptureShown, setEmailCaptureShown] = useState(false);
 
-  const handleEmailSubmit = useCallback(async (email: string) => {
+  const handleEmailSubmit = useCallback(async (email: string, phone?: string) => {
     const result = await waitlistService.addToWaitlist({
       email,
       referral_source: 'chat',
-      metadata: { page: location.pathname, conversation_length: messages.length },
+      metadata: { page: location.pathname, conversation_length: messages.length, ...(phone ? { phone } : {}) },
     });
     if (!result.success) {
       if (result.error?.includes('already')) {
@@ -915,7 +926,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
     // Helper: reveal a buffered bubble with a short pause between bubbles
     const revealPending = async (actions?: ChatAction[]) => {
       if (!pendingText.trim()) return;
-      const delay = Math.min(150 + pendingText.length * 2, 400);
+      const delay = Math.min(50 + pendingText.length * 0.7, 135);
       setIsStreaming(false);
       setIsLoading(true);
       await new Promise((r) => setTimeout(r, delay));
@@ -1005,7 +1016,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             if (pendingText.trim()) {
               if (!receivedFirstDelta) {
                 receivedFirstDelta = true;
-                const delay = Math.min(300 + pendingText.length * 5, 800);
+                const delay = Math.min(100 + pendingText.length * 1.7, 270);
                 await new Promise((r) => setTimeout(r, delay));
                 setIsLoading(false);
                 setMessages((prev) => [...prev, {
@@ -1159,7 +1170,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                     initial={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
                     animate={{ width: 'auto', opacity: 1, paddingLeft: 20, paddingRight: 4 }}
                     exit={{ width: 0, opacity: 0, paddingLeft: 0, paddingRight: 0 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                     className="overflow-hidden whitespace-nowrap text-[13px] font-medium text-gray-700"
                   >
                     {activeSuggestionText}
@@ -1295,7 +1306,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
             <div className="pointer-events-none absolute top-0 left-0 right-0 h-6 z-[5]" style={{ background: 'linear-gradient(to bottom, white, transparent)' }} />
 
             {/* Messages */}
-            <div className="absolute inset-0 overflow-y-auto px-5 pt-4 pb-20 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
+            <div className="absolute inset-0 overflow-y-auto overscroll-contain px-5 pt-4 pb-20 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
@@ -1338,19 +1349,9 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                       )}
                     </div>
                   </div>
-                  {/* Action chips + special action types */}
-                  {msg.actions && msg.actions.length > 0 && (
+                  {/* Non-email action chips */}
+                  {msg.actions && msg.actions.some((a) => a.type !== 'email_capture') && (
                     <div className="mt-2 ml-1 space-y-2">
-                      {/* Email capture — inline form */}
-                      {msg.actions.some((a) => a.type === 'email_capture') && (
-                        <InlineEmailCapture
-                          onSubmit={handleEmailSubmit}
-                          isSubmitted={!!capturedEmail}
-                          t={t}
-                          currentPage={location.pathname}
-                        />
-                      )}
-
                       {/* Meeting booking — styled button */}
                       {msg.actions
                         .filter((a) => a.type === 'book_meeting')
@@ -1382,6 +1383,20 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
                             ))}
                         </div>
                       )}
+                    </div>
+                  )}
+                  {/* Email capture — separate bubble below the message */}
+                  {msg.actions && msg.actions.some((a) => a.type === 'email_capture') && (
+                    <div className="flex justify-start mt-3">
+                      <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-white/80 shadow-md px-4 py-3">
+                        <p className="text-sm text-gray-700 mb-2">{t('emailCapturePrompt')}</p>
+                        <InlineEmailCapture
+                          onSubmit={handleEmailSubmit}
+                          isSubmitted={!!capturedEmail}
+                          t={t}
+                          currentPage={location.pathname}
+                        />
+                      </div>
                     </div>
                   )}
                 </motion.div>

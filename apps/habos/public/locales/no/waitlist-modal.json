@@ -1,0 +1,85 @@
+{
+  "userTypes": [
+    "Soloentreprenør",
+    "Lite team (2-10)",
+    "Voksende bedrift (10-50)",
+    "Større bedrift (50+)",
+    "Byrå / Konsulentvirksomhet",
+    "Franchise"
+  ],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Venn/kollega",
+    "Søkemotor",
+    "YouTube",
+    "Reddit",
+    "Annet"
+  ],
+  "useCases": [
+    "Planlegging, utsending og jobbstyring",
+    "Fakturering, betalinger og økonomi",
+    "CRM og kundekommunikasjon",
+    "Markedsføring, annonser og nettside",
+    "AI-assistent og talenotater"
+  ],
+  "industries": [
+    "Rørlegger / VVS / Elektriker",
+    "Bygg / Entreprenør",
+    "Renhold / Vedlikehold",
+    "Hage / Utearbeid",
+    "Bil / Mekaniker / Lakk",
+    "Salong / Skjønnhet / Velvære",
+    "Restaurant / Servering",
+    "Konsulentvirksomhet / Profesjonelle tjenester",
+    "Eiendom / Eiendomsforvaltning",
+    "Netthandel / Butikk",
+    "Kreativt byrå / Design / Markedsføring",
+    "Annet"
+  ],
+  "stepUseCases": {
+    "heading": "Hva vil du bruke HABOS til?",
+    "subLabel": "Velg alt som gjelder",
+    "stepIndicator": "Trinn 1 av 5"
+  },
+  "stepUserType": {
+    "heading": "Hva beskriver bedriften din best?",
+    "subLabel": "Velg ett alternativ",
+    "stepIndicator": "Trinn 2 av 5"
+  },
+  "stepIndustry": {
+    "heading": "Hvilken bransje er du i?",
+    "subLabel": "Dette hjelper oss å tilpasse opplevelsen din",
+    "stepIndicator": "Trinn 3 av 5"
+  },
+  "stepReferral": {
+    "heading": "Hvordan hørte du om HABOS?",
+    "subLabel": "Dette hjelper oss å forstå fellesskapet vårt",
+    "stepIndicator": "Trinn 4 av 5"
+  },
+  "stepEmail": {
+    "heading": "Hva er e-postadressen din?",
+    "subLabel": "Vi sender deg tidlig tilgang når vi lanserer",
+    "placeholder": "Skriv inn jobb-e-posten din",
+    "phonePlaceholder": "Telefonnummer (valgfritt)",
+    "joining": "Melder på...",
+    "joinWaitlist": "Bli med på venteliste",
+    "stepIndicator": "Trinn 5 av 5"
+  },
+  "stepSuccess": {
+    "heading": "Du er på listen!",
+    "willSendEmail": "Vi sender deg en e-post til",
+    "whatsNext": "Hva skjer videre?",
+    "whatsNextBody": "Vi lanserer snart! Du vil være blant de første til å få tidlig tilgang og grunnleggerpriser.",
+    "done": "Ferdig",
+    "bookDemo": "Book en gratis demo",
+    "bookDemoSub": "Vil du ha en personlig gjennomgang? Book en 15-min samtale."
+  },
+  "continue": "Fortsett",
+  "errors": {
+    "emailInvalid": "Skriv inn en gyldig e-postadresse",
+    "emailExists": "Denne e-postadressen er allerede på ventelisten!",
+    "joinFailed": "Kunne ikke melde seg på ventelisten"
+  }
+}

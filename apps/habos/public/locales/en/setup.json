@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "logoAlt": "HABOS",
+    "title": "Setup Guide"
+  },
+  "hero": {
+    "heading": "Set up HABOS on your devices",
+    "description": "Add HABOS to your Apple Watch face and iPhone lock screen for instant one-tap access."
+  },
+  "watch": {
+    "sectionHeading": "Apple Watch",
+    "appName": "HABOS",
+    "step1": {
+      "heading": "Step 1: Install HABOS on your Watch"
+    },
+    "step2": {
+      "heading": "Step 2: Add HABOS to your watch face"
+    },
+    "installSteps": [
+      { "number": 1, "text": "Open the Watch app on your iPhone" },
+      { "number": 2, "text": "Scroll down to \"Available Apps\"" },
+      { "number": 3, "text": "Tap Install next to HABOS" }
+    ],
+    "faceSteps": [
+      "Long-press your watch face",
+      "Tap \"Edit\"",
+      "Tap a complication slot",
+      "Select HABOS"
+    ],
+    "availableAppsLabel": "Available Apps",
+    "installButton": "INSTALL"
+  },
+  "lockScreen": {
+    "sectionHeading": "iPhone Lock Screen",
+    "step": {
+      "heading": "Add HABOS widget to your lock screen"
+    },
+    "steps": [
+      "Long-press your lock screen",
+      "Tap Customize",
+      "Tap + Add Widgets",
+      "Select HABOS"
+    ]
+  }
+}

@@ -293,7 +293,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const stream = client.messages.stream({
       model: 'claude-sonnet-4-6',
-      max_tokens: 400,
+      max_tokens: 1024,
       system: SYSTEM_PROMPT + ragContext + pageContext,
       messages: [
         ...recentHistory,
@@ -302,55 +302,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     let buffer = '';
-    let textSent = 0;
     let actionsStarted = false;
     let actionsBuffer = '';
 
-    async function flushWithBreaks(text: string) {
-      let offset = 0;
-      let breakIdx = text.indexOf(BREAK_MARKER, offset);
-      while (breakIdx !== -1) {
-        const before = text.substring(offset, breakIdx);
-        if (before) sendSSE(res, { type: 'delta', text: before });
-        const pauseMs = Math.min(800, 300 + before.length * 3);
-        sendSSE(res, { type: 'break' });
-        await new Promise((r) => setTimeout(r, pauseMs));
-        offset = breakIdx + BREAK_MARKER.length;
-        breakIdx = text.indexOf(BREAK_MARKER, offset);
-      }
-      const remainder = text.substring(offset);
-      if (remainder) sendSSE(res, { type: 'delta', text: remainder });
-    }
+    // Accumulate the FULL response, then process once the stream ends.
+    // This avoids all marker-splitting issues across chunk boundaries.
 
     for await (const event of stream) {
       if (event.type !== 'content_block_delta' || event.delta.type !== 'text_delta') continue;
 
       const delta = event.delta.text;
-
-      if (actionsStarted) {
-        actionsBuffer += delta;
-        continue;
-      }
-
       buffer += delta;
-
-      const markerIdx = buffer.indexOf(ACTIONS_MARKER);
-      if (markerIdx !== -1) {
-        const remaining = buffer.substring(textSent, markerIdx).trimEnd();
-        if (remaining) await flushWithBreaks(remaining);
-        actionsStarted = true;
-        actionsBuffer = buffer.substring(markerIdx + ACTIONS_MARKER.length);
-      } else {
-        const safeEnd = buffer.length - ACTIONS_MARKER.length;
-        if (safeEnd > textSent) {
-          await flushWithBreaks(buffer.substring(textSent, safeEnd));
-          textSent = safeEnd;
-        }
-      }
     }
 
-    if (!actionsStarted && textSent < buffer.length) {
-      await flushWithBreaks(buffer.substring(textSent));
+    // Split off actions block if present
+    const actionsIdx = buffer.indexOf(ACTIONS_MARKER);
+    let textContent: string;
+    if (actionsIdx !== -1) {
+      textContent = buffer.substring(0, actionsIdx).trimEnd();
+      actionsBuffer = buffer.substring(actionsIdx + ACTIONS_MARKER.length);
+      actionsStarted = true;
+    } else {
+      textContent = buffer;
+    }
+
+    // Split on break markers and emit each bubble as delta + break
+    const segments = textContent.split(BREAK_MARKER);
+    for (let i = 0; i < segments.length; i++) {
+      const seg = segments[i].trim();
+      if (seg) sendSSE(res, { type: 'delta', text: seg });
+      if (i < segments.length - 1) sendSSE(res, { type: 'break' });
     }
 
     let actions: unknown[] = [];

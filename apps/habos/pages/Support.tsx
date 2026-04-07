@@ -1,40 +1,103 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail, MessageCircle, Clock, HelpCircle, RefreshCw, CreditCard, Smartphone, Shield } from 'lucide-react';
+import {
+  Mail, Clock, ChevronDown,
+  Zap, Users, CreditCard, Shield, Smartphone,
+  Bot, Wrench, CalendarCheck,
+} from 'lucide-react';
+import { Navbar } from '@li/shared/components/Navbar';
 import { Footer } from '../components/Footer';
+
+// ── FAQ category config ──
+
+const FAQ_CATEGORIES = [
+  { key: 'gettingStarted', icon: <Zap size={16} />, color: 'bg-indigo-50 text-indigo-600' },
+  { key: 'operations',     icon: <Wrench size={16} />, color: 'bg-amber-50 text-amber-600' },
+  { key: 'scheduling',     icon: <CalendarCheck size={16} />, color: 'bg-sky-50 text-sky-600' },
+  { key: 'ai',             icon: <Bot size={16} />, color: 'bg-violet-50 text-violet-600' },
+  { key: 'team',           icon: <Users size={16} />, color: 'bg-emerald-50 text-emerald-600' },
+  { key: 'billing',        icon: <CreditCard size={16} />, color: 'bg-rose-50 text-rose-600' },
+  { key: 'security',       icon: <Shield size={16} />, color: 'bg-slate-100 text-slate-600' },
+  { key: 'mobile',         icon: <Smartphone size={16} />, color: 'bg-cyan-50 text-cyan-600' },
+] as const;
+
+// ── Accordion item ──
+
+const AccordionItem = ({ question, answer, isOpen, onToggle }: {
+  question: string;
+  answer: React.ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
+}) => (
+  <div className="border-b border-slate-100 last:border-0">
+    <button
+      onClick={onToggle}
+      className="flex items-center justify-between w-full text-left py-4 px-1 group"
+    >
+      <span className="font-medium text-sm text-slate-900 pr-4">{question}</span>
+      <ChevronDown
+        size={16}
+        className={`text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+      />
+    </button>
+    <motion.div
+      initial={false}
+      animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+      transition={{ duration: 0.2, ease: 'easeInOut' }}
+      className="overflow-hidden"
+    >
+      <div className="pb-4 px-1 text-sm text-slate-600 leading-relaxed">
+        {answer}
+      </div>
+    </motion.div>
+  </div>
+);
+
+// ── Page ──
 
 const Support = () => {
   const { t } = useTranslation('support');
+  const [activeCategory, setActiveCategory] = useState('gettingStarted');
+  const [openItem, setOpenItem] = useState<string | null>(null);
+
+  // Get items for active category
+  const items: { question: string; answer: React.ReactNode }[] = [];
+  for (let i = 0; i < 10; i++) {
+    const q = t(`faq.categories.${activeCategory}.items.${i}.question`, { defaultValue: '' });
+    if (!q) break;
+
+    const key = `faq.categories.${activeCategory}.items.${i}.answer`;
+    const raw = t(key, { defaultValue: '' });
+    // If answer contains component markers, use Trans
+    const hasComponents = raw.includes('<email>') || raw.includes('<privacy>') || raw.includes('<refund>');
+    const answer = hasComponents ? (
+      <Trans
+        i18nKey={key}
+        t={t}
+        components={{
+          email: <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline" />,
+          privacy: <Link to="/Privacy" className="text-blue-600 hover:underline" />,
+          refund: <Link to="/legal#refund" className="text-blue-600 hover:underline" />,
+        }}
+      />
+    ) : raw;
+
+    items.push({ question: q, answer });
+  }
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-sm border-b border-slate-200" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 h-16">
-            <Link
-              to="/"
-              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors flex-shrink-0"
-            >
-              <ArrowLeft size={16} />
-            </Link>
-            <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
-              <img src="/Logo/habos-icon.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
-              <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-slate-50/50">
+      <Navbar />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h1 className="text-3xl md:text-4xl font-serif text-slate-900 mb-4">{t('hero.heading')}</h1>
           <p className="text-slate-500 text-lg max-w-xl mx-auto">
@@ -42,36 +105,33 @@ const Support = () => {
           </p>
         </motion.div>
 
-        {/* Contact Card */}
+        {/* Contact cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="bg-slate-50 rounded-2xl p-8 mb-16"
+          transition={{ duration: 0.4, delay: 0.08 }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16"
         >
-          <h2 className="text-xl font-serif text-slate-900 mb-6">{t('contact.heading')}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0 border border-slate-200">
-                <Mail size={18} className="text-slate-700" />
-              </div>
-              <div>
-                <h3 className="font-medium text-slate-900 text-sm mb-1">{t('contact.email.label')}</h3>
-                <a href={`mailto:${t('contact.email.address')}`} className="text-blue-600 hover:underline text-sm">
-                  {t('contact.email.address')}
-                </a>
-                <p className="text-slate-500 text-xs mt-1">{t('contact.email.note')}</p>
-              </div>
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 flex items-start gap-4">
+            <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center shrink-0">
+              <Mail size={18} className="text-indigo-600" />
             </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0 border border-slate-200">
-                <Clock size={18} className="text-slate-700" />
-              </div>
-              <div>
-                <h3 className="font-medium text-slate-900 text-sm mb-1">{t('contact.responseTime.label')}</h3>
-                <p className="text-slate-700 text-sm">{t('contact.responseTime.value')}</p>
-                <p className="text-slate-500 text-xs mt-1">{t('contact.responseTime.note')}</p>
-              </div>
+            <div>
+              <h3 className="font-medium text-slate-900 text-sm mb-1">{t('contact.email.label')}</h3>
+              <a href={`mailto:${t('contact.email.address')}`} className="text-blue-600 hover:underline text-sm">
+                {t('contact.email.address')}
+              </a>
+              <p className="text-slate-500 text-xs mt-1">{t('contact.email.note')}</p>
+            </div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 flex items-start gap-4">
+            <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shrink-0">
+              <Clock size={18} className="text-emerald-600" />
+            </div>
+            <div>
+              <h3 className="font-medium text-slate-900 text-sm mb-1">{t('contact.responseTime.label')}</h3>
+              <p className="text-slate-700 text-sm">{t('contact.responseTime.value')}</p>
+              <p className="text-slate-500 text-xs mt-1">{t('contact.responseTime.note')}</p>
             </div>
           </div>
         </motion.div>
@@ -80,46 +140,43 @@ const Support = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
           className="mb-16"
         >
-          <h2 className="text-xl font-serif text-slate-900 mb-8">{t('faq.heading')}</h2>
-          <div className="space-y-4">
-            <FAQItem
-              icon={<HelpCircle size={18} />}
-              question={t('faq.items.0.question')}
-              answer={t('faq.items.0.answer')}
-            />
-            <FAQItem
-              icon={<Smartphone size={18} />}
-              question={t('faq.items.1.question')}
-              answer={t('faq.items.1.answer')}
-            />
-            <FAQItem
-              icon={<CreditCard size={18} />}
-              question={t('faq.items.2.question')}
-              answer={t('faq.items.2.answer')}
-            />
-            <FAQItem
-              icon={<RefreshCw size={18} />}
-              question={t('faq.items.3.question')}
-              answer={t('faq.items.3.answer')}
-            />
-            <FAQItem
-              icon={<CreditCard size={18} />}
-              question={t('faq.items.4.question')}
-              answer={<Trans i18nKey="faq.items.4.answer" t={t} components={{ email: <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline" />, refund: <Link to="/legal#refund" className="text-blue-600 hover:underline" /> }} />}
-            />
-            <FAQItem
-              icon={<Shield size={18} />}
-              question={t('faq.items.5.question')}
-              answer={<Trans i18nKey="faq.items.5.answer" t={t} components={{ privacy: <Link to="/Privacy" className="text-blue-600 hover:underline" /> }} />}
-            />
-            <FAQItem
-              icon={<MessageCircle size={18} />}
-              question={t('faq.items.6.question')}
-              answer={<Trans i18nKey="faq.items.6.answer" t={t} components={{ email: <a href="mailto:hello@habos.ai" className="text-blue-600 hover:underline" /> }} />}
-            />
+          <h2 className="text-xl font-serif text-slate-900 mb-6">{t('faq.heading')}</h2>
+
+          {/* Category pills */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {FAQ_CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.key;
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => { setActiveCategory(cat.key); setOpenItem(null); }}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-medium transition-all ${
+                    isActive
+                      ? 'bg-slate-900 text-white shadow-sm'
+                      : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900'
+                  }`}
+                >
+                  <span className={isActive ? '' : cat.color.split(' ')[1]}>{cat.icon}</span>
+                  {t(`faq.categories.${cat.key}.label`)}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* FAQ list */}
+          <div className="bg-white rounded-2xl border border-slate-200 px-6">
+            {items.map((item, i) => (
+              <AccordionItem
+                key={`${activeCategory}-${i}`}
+                question={item.question}
+                answer={item.answer}
+                isOpen={openItem === `${activeCategory}-${i}`}
+                onToggle={() => setOpenItem(openItem === `${activeCategory}-${i}` ? null : `${activeCategory}-${i}`)}
+              />
+            ))}
           </div>
         </motion.div>
 
@@ -127,11 +184,11 @@ const Support = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
           className="border-t border-slate-200 pt-12"
         >
           <h2 className="text-xl font-serif text-slate-900 mb-6">{t('company.heading')}</h2>
-          <div className="bg-slate-50 rounded-2xl p-8">
+          <div className="bg-white rounded-2xl border border-slate-200 p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-slate-600">
               <div className="space-y-2">
                 <p><span className="font-medium text-slate-900">{t('company.companyLabel')}:</span> {t('company.companyValue')}</p>
@@ -151,26 +208,5 @@ const Support = () => {
     </div>
   );
 };
-
-const FAQItem = ({ icon, question, answer }: { icon: React.ReactNode; question: string; answer: React.ReactNode }) => (
-  <details className="group">
-    <summary className="flex items-center gap-3 cursor-pointer bg-slate-50 hover:bg-slate-100 rounded-xl px-5 py-4 transition-colors">
-      <span className="text-slate-400 group-open:text-slate-700 transition-colors shrink-0">{icon}</span>
-      <span className="font-medium text-slate-900 text-sm flex-1">{question}</span>
-      <svg
-        className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform shrink-0"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-      </svg>
-    </summary>
-    <div className="px-5 pb-4 pt-2 ml-8 text-sm text-slate-600 leading-relaxed">
-      {answer}
-    </div>
-  </details>
-);
 
 export default Support;

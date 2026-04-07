@@ -7,6 +7,8 @@
   "sendMessageAriaLabel": "Send message",
   "talkToTeam": "Talk to our team",
   "emailPlaceholder": "you@company.com",
+  "phonePlaceholder": "Phone (optional)",
+  "emailCapturePrompt": "Drop your details so we can keep you in the loop:",
   "emailSubmit": "Join",
   "emailSuccess": "You're on the list!",
   "emailInvalid": "Enter a valid email",

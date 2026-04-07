@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ChevronRight, Shield, FileText, Lock, Smartphone, ArrowLeft, Menu, X } from 'lucide-react';
+import { ChevronRight, Shield, FileText, Lock, Smartphone, Menu, X } from 'lucide-react';
+import { Navbar } from '@li/shared/components/Navbar';
 import { Footer } from '../components/Footer';
 
 // Legal section types
@@ -48,33 +49,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-sm border-b border-slate-200" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <Link
-                to="/"
-                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors flex-shrink-0"
-              >
-                <ArrowLeft size={16} />
-              </Link>
-              <div className="flex items-center gap-2.5 bg-slate-100 rounded-full pl-1.5 pr-4 py-1.5">
-                <img src="/Logo/habos-icon.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
-                <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
-              </div>
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
-            >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-12">
@@ -191,7 +166,7 @@ export const Legal = ({ defaultSection }: LegalProps) => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <img src="/Logo/habos-icon.svg" alt={t('footer.logoAlt')} className="h-8 w-8" />
-                <span className="font-semibold text-sm tracking-tight text-slate-900">VOIS</span>
+                <span className="font-semibold text-sm tracking-tight text-slate-900">{t('footer.brandName')}</span>
               </div>
               <p className="text-slate-600 text-sm leading-relaxed max-w-md">
                 {t('footer.description')}
@@ -313,9 +288,7 @@ const TermsOfService = () => {
           </table>
         </div>
 
-        <p className="mt-4">
-          Vois also offers a <strong>Free</strong> tier with limited usage (5 voice recordings, 5 chat messages, 1 custom app, and up to 3 minutes per recording) at no cost.
-        </p>
+        <p className="mt-4">{t('terms.s3.freeTierNote')}</p>
 
         <ImportantBox>
           <p className="font-semibold mb-2">{t('terms.s3.autoRenewal.title')}</p>

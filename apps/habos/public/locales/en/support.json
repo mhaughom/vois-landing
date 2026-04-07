@@ -8,10 +8,9 @@
     "description": "We're here to help you get the most out of HABOS. Find answers below or reach out directly."
   },
   "contact": {
-    "heading": "Contact Us",
     "email": {
       "label": "Email Support",
-      "address": "hello@tryvois.com",
+      "address": "hello@habos.ai",
       "note": "For all inquiries and support requests"
     },
     "responseTime": {
@@ -22,36 +21,160 @@
   },
   "faq": {
     "heading": "Frequently Asked Questions",
-    "items": [
-      {
-        "question": "What is HABOS?",
-        "answer": "HABOS is the world's first Human-to-Agent Business Operating System — a single platform that replaces the dozen fragmented tools businesses juggle every day."
+    "categories": {
+      "gettingStarted": {
+        "label": "Getting Started",
+        "items": [
+          {
+            "question": "What is HABOS?",
+            "answer": "HABOS is the world's first Human-to-Agent Business Operating System. It replaces the dozen fragmented tools businesses juggle every day — scheduling, dispatch, invoicing, CRM, marketing, and more — with a single AI-native platform where everything shares context."
+          },
+          {
+            "question": "Who is HABOS built for?",
+            "answer": "HABOS is built for service businesses (plumbing, HVAC, electrical, cleaning), solo founders, small teams, and creative agencies. If you're running a business with 1–50 people and tired of duct-taping tools together, HABOS is for you."
+          },
+          {
+            "question": "How do I get started?",
+            "answer": "Join the waitlist on our homepage. Once you're in, onboarding takes about 15 minutes — connect your email, import your contacts, and HABOS starts learning your business immediately."
+          },
+          {
+            "question": "Do I need technical skills to set it up?",
+            "answer": "Not at all. HABOS is designed for business owners, not developers. If you can send an email and use a calendar, you can run HABOS. The AI assistant walks you through setup."
+          }
+        ]
       },
-      {
-        "question": "Which devices does HABOS support?",
-        "answer": "HABOS works on any modern web browser. Access it from your desktop, laptop, tablet, or phone. Your data syncs seamlessly across all your devices."
+      "operations": {
+        "label": "Operations & Dispatch",
+        "items": [
+          {
+            "question": "How does dispatch work?",
+            "answer": "Assign jobs to field technicians from a visual dispatch board. HABOS optimizes routes, avoids double-bookings, and notifies your team in real time. Technicians see their schedule, job details, and customer history on their phone."
+          },
+          {
+            "question": "Can my team invoice from the field?",
+            "answer": "Yes. When a job is done, your technician can generate and send an invoice on-site — from their phone. No more paperwork piling up at the office."
+          },
+          {
+            "question": "How does the CRM connect to operations?",
+            "answer": "Everything is connected. When a customer calls, you see their full history — past jobs, invoices, communications. When you dispatch a job, the technician sees that same context. No information gets lost between tools."
+          },
+          {
+            "question": "Can I track my team's job progress?",
+            "answer": "Yes. See live job status updates, completion times, and notes from the field. HABOS gives you a clear overview of every active job across your entire team."
+          }
+        ]
       },
-      {
-        "question": "How does billing work?",
-        "answer": "HABOS offers subscription plans billed monthly or annually. Join the waitlist now for founding member pricing."
+      "scheduling": {
+        "label": "Scheduling & Bookings",
+        "items": [
+          {
+            "question": "How do clients book appointments?",
+            "answer": "Clients can self-book through a branded booking page. HABOS checks your availability, prevents double-bookings, and sends automatic confirmations and reminders."
+          },
+          {
+            "question": "Does the AI receptionist actually answer calls?",
+            "answer": "Yes. The AI receptionist picks up calls 24/7, answers common questions, and books appointments directly into your calendar. If a call needs human attention, it routes to the right person."
+          },
+          {
+            "question": "Can I manage multiple team members' schedules?",
+            "answer": "Absolutely. Each team member has their own availability, and HABOS coordinates across everyone. You see a unified view of your team's day, week, or month."
+          }
+        ]
       },
-      {
-        "question": "How do I cancel my subscription?",
-        "answer": "You can cancel your subscription at any time from your account settings. You'll continue to have access until the end of your current billing period."
+      "ai": {
+        "label": "AI & Automation",
+        "items": [
+          {
+            "question": "What is \"The Airlock\"?",
+            "answer": "The Airlock is our safety principle: AI proposes, you decide. HABOS never sends an email, books a meeting, or charges a customer without your explicit approval. You stay in control of every action."
+          },
+          {
+            "question": "What can the AI assistant do?",
+            "answer": "It drafts emails in your tone, prioritizes your tasks, summarizes meetings, generates invoices, suggests follow-ups, and answers questions using your full business context. Think of it as a smart assistant that actually knows your business."
+          },
+          {
+            "question": "How do voice notes work?",
+            "answer": "Speak at 150 words per minute instead of typing at 40. HABOS transcribes your voice, then automatically turns it into the right thing — a task, a calendar event, a note, or a follow-up. Just talk and it handles the rest."
+          },
+          {
+            "question": "What is The Brain?",
+            "answer": "The Brain connects data across all your HABOS tools — emails, CRM, invoices, calendar, notes — into one unified understanding. Ask it anything about your business and get an answer grounded in your actual data."
+          }
+        ]
       },
-      {
-        "question": "Can I get a refund?",
-        "answer": "Yes, we offer a 30-day money-back guarantee. If you're not satisfied, contact us at <email>hello@tryvois.com</email> or view our full <refund>Refund Policy</refund>."
+      "team": {
+        "label": "Team & People",
+        "items": [
+          {
+            "question": "How many team members can I add?",
+            "answer": "That depends on your plan. All plans support multiple team members. Join the waitlist to learn about founding member pricing and team limits."
+          },
+          {
+            "question": "Can I set roles and permissions?",
+            "answer": "Yes. Assign roles so technicians see their jobs, office staff sees the full board, and admins manage everything. Each person gets the right level of access."
+          },
+          {
+            "question": "Does HABOS handle time tracking?",
+            "answer": "Yes. Team members can clock in and out per job. You get clear reports on hours worked, job duration, and labor costs — all tied to specific customers and projects."
+          }
+        ]
       },
-      {
-        "question": "Is my data secure?",
-        "answer": "Your privacy and data security are our top priority. We are fully GDPR compliant and use encryption to protect your data. Read our <privacy>Privacy Policy</privacy> for full details."
+      "billing": {
+        "label": "Pricing & Billing",
+        "items": [
+          {
+            "question": "What does HABOS cost?",
+            "answer": "We're currently in early access. Join the waitlist to lock in founding member pricing — no commitment required."
+          },
+          {
+            "question": "Is there a free trial?",
+            "answer": "Yes. We offer a trial period so you can experience HABOS with your real business data before committing. Details are shared when you get off the waitlist."
+          },
+          {
+            "question": "Can I get a refund?",
+            "answer": "Yes, we offer a 30-day money-back guarantee. If HABOS isn't the right fit, contact us at <email>hello@habos.ai</email> or view our full <refund>Refund Policy</refund>."
+          },
+          {
+            "question": "What tools can HABOS replace?",
+            "answer": "Most businesses replace 3–8 separate tools: scheduling (Calendly), CRM (HubSpot), invoicing (QuickBooks), dispatch (ServiceTitan), email marketing (Mailchimp), project management (Asana), and more. That's typically $300–800/month in savings."
+          }
+        ]
       },
-      {
-        "question": "How do I report a bug or request a feature?",
-        "answer": "We'd love to hear from you! Send us an email at <email>hello@tryvois.com</email> with a description of the issue or your feature idea, and we'll get back to you."
+      "security": {
+        "label": "Security & Privacy",
+        "items": [
+          {
+            "question": "Is my data secure?",
+            "answer": "Your data security is our top priority. We use encryption in transit and at rest, and we're fully GDPR compliant. Read our <privacy>Privacy Policy</privacy> for full details."
+          },
+          {
+            "question": "Who can see my business data?",
+            "answer": "Only you and your authorized team members. We never sell, share, or use your data for advertising. Your business data stays yours."
+          },
+          {
+            "question": "Can I export my data?",
+            "answer": "Yes. You can export your contacts, invoices, and other data at any time. We believe in no lock-in — your data belongs to you."
+          }
+        ]
+      },
+      "mobile": {
+        "label": "Mobile & Devices",
+        "items": [
+          {
+            "question": "Does HABOS work on my phone?",
+            "answer": "Yes. HABOS works on any modern browser — desktop, tablet, or phone. Your team can manage jobs, send invoices, and communicate with customers from anywhere."
+          },
+          {
+            "question": "Is there a dedicated mobile app?",
+            "answer": "We're building native mobile apps for iOS and Android. In the meantime, the web app is fully optimized for mobile and works great on the go."
+          },
+          {
+            "question": "Can technicians use HABOS in the field without Wi-Fi?",
+            "answer": "The core features work on any cellular connection. We're working on offline support so your team can view job details and capture notes even without connectivity."
+          }
+        ]
       }
-    ]
+    }
   },
   "company": {
     "heading": "Company Information",
@@ -62,7 +185,7 @@
     "locationLabel": "Location",
     "locationValue": "Alsvåg, Norway",
     "emailLabel": "Email",
-    "emailValue": "hello@tryvois.com",
+    "emailValue": "hello@habos.ai",
     "websiteLabel": "Website",
     "websiteValue": "habos.ai"
   },

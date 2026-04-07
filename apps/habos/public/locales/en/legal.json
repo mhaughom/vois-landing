@@ -1,0 +1,409 @@
+{
+  "nav": {
+    "logoAlt": "HABOS",
+    "title": "Legal"
+  },
+  "sidebar": {
+    "documentsLabel": "Legal Documents",
+    "lastUpdatedLabel": "Last updated:"
+  },
+  "mobile": {
+    "jumpToSection": "Jump to Section",
+    "tableOfContents": "Table of Contents"
+  },
+  "sections": {
+    "terms": "Terms of Service",
+    "refund": "Refund Policy",
+    "privacy": "Privacy Policy",
+    "eula": "Acceptable Use Policy"
+  },
+  "footer": {
+    "description": "HABOS is the world's first Human-to-Agent Business Operating System — a single platform that replaces the dozen tools businesses juggle every day.",
+    "companyInfoHeading": "Company Information",
+    "operatedBy": "HABOS is operated by",
+    "orgNumber": "Organization Number (Org.nr):",
+    "orgValue": "936 920 594",
+    "address": "Address:",
+    "addressValue": "Alsvåg, Norway",
+    "contact": "Contact:",
+    "contactEmail": "hello@habos.ai",
+    "copyright": "HABOS AI. All rights reserved.",
+    "madeIn": "Proudly made in Norway",
+    "gdpr": "GDPR Compliant",
+    "logoAlt": "HABOS",
+    "brandName": "HABOS"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "subtitle": "Please read these terms carefully before using HABOS.",
+    "s1": {
+      "title": "1. Acceptance of Terms",
+      "p1": "By accessing or using HABOS (\"the Service\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree to these Terms, please do not use the Service.",
+      "p2": "HABOS is operated by HABOS AI AS (Org.nr. 936 920 594), a company registered in Norway. These Terms constitute a legally binding agreement between you and HABOS AI AS."
+    },
+    "s2": {
+      "title": "2. Description of Service",
+      "p1": "HABOS is an AI-native business operating system that helps businesses manage their operations, communications, and customer relationships from a single platform. The Service includes:",
+      "features": [
+        "AI-powered email, messaging, and phone communication",
+        "Scheduling, bookings, and calendar management",
+        "CRM, invoicing, and payment processing",
+        "Dispatch, job management, and field operations",
+        "Marketing, website building, and advertising tools",
+        "AI assistants, voice notes, and meeting transcription",
+        "Reports, analytics, and business intelligence",
+        "Team management, HR, and time tracking"
+      ]
+    },
+    "s3": {
+      "title": "3. Subscriptions & Pricing",
+      "p1": "HABOS offers subscription plans billed monthly or annually through our website. Pricing details are available on the HABOS website and may change with notice.",
+      "tableHeaders": ["Plan", "Billing", "Description", "Trial"],
+      "rows": [
+        ["Starter", "Monthly or Annual", "For solo founders and very small teams", "14-day free trial"],
+        ["Professional", "Monthly or Annual", "For growing businesses and field teams", "14-day free trial"],
+        ["Enterprise", "Custom", "For larger organizations with custom needs", "Contact sales"]
+      ],
+      "freeTierNote": "HABOS also offers a limited free plan for evaluation purposes. Feature availability on the free plan may vary.",
+      "autoRenewal": {
+        "title": "Auto-Renewal Terms",
+        "items": [
+          "Payment is charged via Stripe at the start of each billing cycle.",
+          "Free trial periods begin at the time of signup. If you do not cancel before the trial ends, your subscription will automatically renew and you will be charged.",
+          "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period.",
+          "You can manage and cancel your subscription from your HABOS account settings at any time."
+        ]
+      },
+      "refundLink": "Refund Policy",
+      "refundNote": "See our Refund Policy for information about refunds.",
+      "privacyLink": "Privacy Policy",
+      "eulaLink": "Acceptable Use Policy",
+      "moreDetailsNote": "For more details, see our Privacy Policy and Acceptable Use Policy."
+    },
+    "s4": {
+      "title": "4. User Responsibilities",
+      "intro": "You agree to:",
+      "items": [
+        "Use the Service only for lawful business purposes",
+        "Not attempt to reverse engineer, exploit, or disrupt the Service",
+        "Not use the Service to send spam, phishing, or other abusive communications",
+        "Keep your account credentials secure and not share them with unauthorized parties",
+        "Comply with all applicable laws regarding data protection and business communications"
+      ]
+    },
+    "s5": {
+      "title": "5. Your Content & Business Data",
+      "p1": "You retain all rights to the business data, communications, documents, and other content you create or store using HABOS. We do not claim ownership over your content.",
+      "p2": "By using HABOS, you grant us a limited license to process your content solely to provide the Service — including AI analysis, transcription, storage, and synchronization across your devices and team."
+    },
+    "s6": {
+      "title": "6. AI-Generated Content",
+      "p1": "HABOS uses AI throughout the platform to assist with drafting, analysis, and automation. You acknowledge that:",
+      "items": [
+        "AI-generated content (emails, summaries, suggestions) may contain errors and should be reviewed before acting on it",
+        "The Airlock feature presents AI-proposed actions for your approval — nothing is sent or executed without your confirmation",
+        "AI features are provided as assistive tools without guarantees of accuracy"
+      ]
+    },
+    "s7": {
+      "title": "7. Limitation of Liability",
+      "p1": "To the maximum extent permitted by Norwegian law, HABOS AI AS shall not be liable for any indirect, incidental, special, or consequential damages, including loss of data, revenue, or business opportunities."
+    },
+    "s8": {
+      "title": "8. Governing Law",
+      "p1": "These Terms are governed by the laws of Norway. Any disputes shall be subject to the exclusive jurisdiction of the courts of Norway."
+    },
+    "s9": {
+      "title": "9. Changes to Terms",
+      "p1": "We may modify these Terms at any time. We will notify you of material changes via the platform or email. Continued use after changes constitutes acceptance."
+    },
+    "s10": {
+      "title": "10. Contact",
+      "p1": "Questions? Contact us at hello@habos.ai"
+    }
+  },
+  "refund": {
+    "title": "Refund Policy",
+    "subtitle": "How refunds work for HABOS subscriptions.",
+    "s1": {
+      "title": "Subscription Refunds",
+      "p1": "We offer a 30-day money-back guarantee on all HABOS subscriptions. If you're not satisfied within the first 30 days, contact us for a full refund.",
+      "howToTitle": "To request a refund:",
+      "steps": [
+        "Email us at hello@habos.ai with your account email and reason for the refund",
+        "We will process your request within 3 business days",
+        "Refunds are issued to your original payment method via Stripe",
+        "After 30 days, remaining time on your subscription is non-refundable but you retain access until the end of your billing period"
+      ],
+      "note": "Enterprise customers: refund terms are governed by your individual agreement."
+    },
+    "s2": {
+      "title": "Questions?",
+      "p1": "Contact us at hello@habos.ai"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we collect, use, and protect your personal and business data under GDPR.",
+    "s1": {
+      "title": "1. Data Controller",
+      "companyLabel": "Company:",
+      "companyValue": "HABOS AI AS",
+      "locationLabel": "Location:",
+      "locationValue": "Alsvåg, Norway (EEA)",
+      "contactLabel": "Contact:",
+      "contactEmail": "hello@habos.ai",
+      "p1": "HABOS AI AS is the data controller responsible for your personal data collected through the HABOS platform and website."
+    },
+    "s2": {
+      "title": "2. Data We Collect",
+      "accountHeading": "Account Information:",
+      "accountItems": [
+        "Email address (for account creation and communication)",
+        "Name and business name (for personalization and invoicing)",
+        "Payment information (processed by Stripe; we do not store card details)",
+        "Phone number (optional, for AI receptionist and SMS features)"
+      ],
+      "usageHeading": "Usage Data:",
+      "usageItems": [
+        "Platform usage analytics (anonymized, collected with your consent via PostHog, EU-hosted)",
+        "Feature interaction data",
+        "Error logs and crash reports",
+        "Device and browser identifiers (anonymous)"
+      ],
+      "contentHeading": "Business Data:",
+      "contentItems": [
+        "Emails, messages, and communications sent and received through HABOS",
+        "Customer and contact records stored in CRM",
+        "Invoices, payments, and financial data",
+        "Calendar events, bookings, and scheduling data",
+        "Voice recordings, transcripts, and meeting notes",
+        "Tasks, projects, and operational data",
+        "AI-generated drafts, summaries, and suggestions"
+      ]
+    },
+    "s3": {
+      "title": "3. AI Training Policy",
+      "boxTitle": "Your Data is NOT Used for AI Training",
+      "boxText": "We do NOT use your business data, communications, or any personal content to train AI models. Your data remains your property. None of our third-party AI providers use your data sent through HABOS for model training purposes.",
+      "p1": "When we process your data through third-party AI services, it is:",
+      "items": [
+        "Sent securely via encrypted API connections to the relevant provider",
+        "Processed and returned to you in real time",
+        "Not retained by any AI provider for training purposes",
+        "Subject to our data processing agreements with each sub-processor",
+        "Handled under each provider's commercial API terms, which prohibit training on customer data"
+      ]
+    },
+    "s4": {
+      "title": "4. Data Architecture",
+      "boxTitle": "Privacy by Design",
+      "boxIntro": "HABOS employs secure cloud architecture with strict data isolation:",
+      "items": [
+        "Each business account's data is logically isolated from other accounts.",
+        "Business data is stored securely in our cloud infrastructure (Supabase, EU-hosted).",
+        "You can export or delete your data at any time from your account settings."
+      ]
+    },
+    "s5": {
+      "title": "5. Third-Party AI Services",
+      "boxTitle": "AI Data Sharing Disclosure",
+      "boxText": "HABOS uses third-party artificial intelligence services to power platform features. Below is a breakdown of what data each provider receives and why.",
+      "dataSentHeading": "Data we send to AI services:",
+      "dataSentItems": [
+        "Email drafts and communication context for AI-assisted writing",
+        "Voice recordings and audio for transcription",
+        "Business data context for AI assistant queries",
+        "Meeting audio and transcripts for note generation",
+        "Marketing copy and creative content for AI suggestions"
+      ],
+      "providersHeading": "Services that receive your data:",
+      "providers": [
+        {
+          "name": "Anthropic, PBC (Claude)",
+          "dataReceived": "Communications, business context, and text content.",
+          "purpose": "AI assistant responses, email drafting, content analysis, and business intelligence.",
+          "policyLabel": "Anthropic Privacy Policy",
+          "policyUrl": "https://www.anthropic.com/privacy"
+        },
+        {
+          "name": "Deepgram, Inc.",
+          "dataReceived": "Voice recordings and audio data.",
+          "purpose": "Real-time and recorded speech-to-text transcription.",
+          "policyLabel": "Deepgram Privacy Policy",
+          "policyUrl": "https://deepgram.com/privacy"
+        },
+        {
+          "name": "OpenAI, L.L.C.",
+          "dataReceived": "Text content, communications, and business data context.",
+          "purpose": "Text analysis, content generation, and AI feature support.",
+          "policyLabel": "OpenAI Privacy Policy",
+          "policyUrl": "https://openai.com/privacy"
+        }
+      ],
+      "dataReceivedLabel": "Data received:",
+      "purposeLabel": "Purpose:",
+      "protectionHeading": "How we protect your data with these providers:",
+      "protectionItems": [
+        "All data is transmitted securely via encrypted API connections (TLS/SSL).",
+        "We use each provider's commercial API, meaning your data is processed under commercial data processing terms and is not used for AI model training.",
+        "Each provider is contractually required to provide the same or equal protection of your personal data as described in this Privacy Policy."
+      ],
+      "choicesHeading": "Your choices:",
+      "choicesText": "AI features are integral to the HABOS platform. If you have concerns about specific data processing, contact us to discuss your options."
+    },
+    "s6": {
+      "title": "6. Sub-Processors & Infrastructure",
+      "p1": "We use the following third-party services to operate HABOS:",
+      "tableHeaders": ["Service", "Purpose", "Location"],
+      "rows": [
+        ["Anthropic", "AI Intelligence (Chat, Drafting, Analysis)", "USA (EU Data Processing Agreement)"],
+        ["Deepgram", "Voice Transcription", "USA (EU Data Processing Agreement)"],
+        ["OpenAI", "AI Intelligence (Text Analysis, Content Generation)", "USA (EU Data Processing Agreement)"],
+        ["Supabase", "Database, Authentication & File Storage", "EU (Frankfurt)"],
+        ["Vercel", "Web Application Hosting & CDN", "Global CDN"],
+        ["Stripe", "Payment Processing", "USA (EU Data Processing Agreement)"],
+        ["PostHog", "Website Analytics (consent-based)", "EU (Frankfurt)"]
+      ],
+      "footnote": "All sub-processors are contractually required to provide the same or equal protection of your personal data as described in this Privacy Policy."
+    },
+    "s7": {
+      "title": "7. Cookies & Website Tracking",
+      "p1": "The HABOS website (habos.ai) uses the following technologies:",
+      "necessaryHeading": "Strictly Necessary Storage",
+      "necessaryItems": [
+        "Your cookie consent preference (stored in localStorage)",
+        "Authentication tokens for logged-in users"
+      ],
+      "necessaryNote": "These do not require consent as they are essential for the website to function.",
+      "analyticsHeading": "Analytics (Consent Required)",
+      "analyticsItems": [
+        "PostHog — Used for website analytics. Data is hosted in the EU (Frankfurt). PostHog is only activated after you provide consent via our cookie banner.",
+        "Data collected includes: page views, clicks, scroll depth, device type, and referral source.",
+        "No data is shared with advertisers or used for ad targeting."
+      ],
+      "cookieSettingsNote": "You can change your tracking preferences at any time via the Cookie Settings link in our website footer."
+    },
+    "s8": {
+      "title": "8. Legal Basis for Processing (GDPR Article 6)",
+      "items": [
+        "Contract Performance: Processing necessary to provide the HABOS service you requested.",
+        "Legitimate Interest: Service improvements and security monitoring (with appropriate safeguards).",
+        "Consent: Website analytics via PostHog (manageable via Cookie Settings) and marketing communications (withdrawable at any time).",
+        "Legal Obligation: Tax records and compliance with applicable laws."
+      ]
+    },
+    "s9": {
+      "title": "9. Your Rights (GDPR)",
+      "p1": "Under the General Data Protection Regulation, you have the right to:",
+      "items": [
+        "Access: Request a copy of your personal data",
+        "Rectification: Correct inaccurate personal data",
+        "Erasure: Request deletion of your data (\"Right to be Forgotten\")",
+        "Portability: Receive your data in a machine-readable format",
+        "Restriction: Limit how we process your data",
+        "Objection: Object to processing based on legitimate interests",
+        "Withdraw Consent: Withdraw consent at any time"
+      ],
+      "contactNote": "To exercise these rights, contact us at hello@habos.ai. We will respond within 30 days."
+    },
+    "s10": {
+      "title": "10. Data Retention",
+      "items": [
+        "Active accounts: Data retained for the duration of your account",
+        "Deleted accounts: Data erased within 30 days of account deletion",
+        "Financial records: Retained for 7 years as required by Norwegian law"
+      ]
+    },
+    "s11": {
+      "title": "11. Data Security",
+      "p1": "We implement appropriate technical and organizational measures to protect your data:",
+      "items": [
+        "TLS/SSL encryption for all data in transit",
+        "AES-256 encryption for data at rest",
+        "Regular security audits",
+        "Role-based access controls and employee training"
+      ]
+    },
+    "s12": {
+      "title": "12. Contact & Complaints",
+      "p1": "For privacy-related inquiries:",
+      "privacyContactLabel": "Privacy Contact:",
+      "privacyContactEmail": "hello@habos.ai",
+      "p2": "If you believe your rights have been violated, you have the right to lodge a complaint with:",
+      "authorityName": "Datatilsynet (Norwegian Data Protection Authority)",
+      "authorityWebsiteLabel": "Website:",
+      "authorityWebsiteUrl": "https://www.datatilsynet.no",
+      "authorityWebsiteDisplay": "www.datatilsynet.no"
+    }
+  },
+  "eula": {
+    "title": "Acceptable Use Policy",
+    "subtitle": "Rules for using the HABOS platform responsibly.",
+    "s1": {
+      "title": "1. Purpose",
+      "p1": "This Acceptable Use Policy outlines the rules for using the HABOS platform. By using HABOS, you agree to comply with this policy.",
+      "boxTitle": "Fair Use",
+      "boxText": "HABOS is designed for legitimate business use. We reserve the right to suspend accounts that violate this policy.",
+      "eulaUrl": ""
+    },
+    "s2": {
+      "title": "2. Prohibited Uses",
+      "intro": "You may not use HABOS to:",
+      "items": [
+        "Send spam, phishing emails, or other unsolicited bulk communications.",
+        "Store, process, or transmit content that is illegal, defamatory, or violates the rights of others.",
+        "Attempt to gain unauthorized access to other users' accounts or data.",
+        "Use the platform in ways that degrade service quality for other users.",
+        "Resell or sublicense HABOS access without written permission.",
+        "Use AI features to generate content that impersonates individuals or organizations."
+      ]
+    },
+    "s3": {
+      "title": "3. Communication Guidelines",
+      "p1": "When using HABOS communication tools (email, SMS, phone), you must comply with all applicable laws including CAN-SPAM, GDPR, and local regulations regarding commercial communications."
+    },
+    "s4": {
+      "title": "4. Enforcement",
+      "intro": "If you violate this policy:",
+      "items": [
+        "We may issue a warning and request corrective action.",
+        "Repeated or severe violations may result in account suspension or termination.",
+        "We may report illegal activity to the appropriate authorities."
+      ]
+    },
+    "s5": {
+      "title": "5. Subscription Plans",
+      "p1": "HABOS subscription plans are managed through your account settings. See our Terms of Service for full pricing and renewal details.",
+      "tableHeaders": ["Plan", "Billing", "Description", "Trial"],
+      "rows": [
+        ["Starter", "Monthly or Annual", "For solo founders and very small teams", "14-day free trial"],
+        ["Professional", "Monthly or Annual", "For growing businesses and field teams", "14-day free trial"],
+        ["Enterprise", "Custom", "For larger organizations with custom needs", "Contact sales"]
+      ],
+      "freeTierNote": "A limited free plan is available for evaluation purposes.",
+      "autoRenewal": {
+        "title": "Billing & Cancellation",
+        "items": [
+          "Payment is processed via Stripe at the start of each billing cycle.",
+          "Free trials convert to paid subscriptions unless canceled before the trial ends.",
+          "You can cancel your subscription at any time from your account settings.",
+          "Cancellation takes effect at the end of your current billing period."
+        ]
+      },
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "fullDetailsNote": "For full details, see our Terms of Service and Privacy Policy."
+    },
+    "s6": {
+      "title": "6. Contact Information",
+      "p1": "For any questions about this policy, please contact:",
+      "developerLabel": "Company:",
+      "developerValue": "HABOS AI AS",
+      "emailLabel": "Email:",
+      "emailValue": "hello@habos.ai",
+      "addressLabel": "Address:",
+      "addressValue": "Alsvåg, Norway"
+    }
+  }
+}

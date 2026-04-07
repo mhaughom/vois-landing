@@ -16,9 +16,53 @@ function capture(event: string, properties?: Record<string, unknown>) {
   posthog.capture(event, properties);
 }
 
+/**
+ * Sync the visitor profile from localStorage to PostHog as person properties.
+ * Called on page views and identity events so PostHog always has the latest data.
+ */
+function syncProfileToPostHog() {
+  if (!_isPostHogReady()) return;
+  try {
+    // Dynamic import to avoid circular deps — visitorProfile is initialized before analytics
+    const { getVisitorProfile, calculateLeadScore } = require('./visitorProfile');
+    const profile = getVisitorProfile();
+    if (!profile) return;
+    const lead = calculateLeadScore();
+    posthog.register({
+      // Device
+      device_type: profile.device?.type,
+      device_os: profile.device?.os,
+      device_browser: profile.device?.browser,
+      screen_width: profile.device?.screenWidth,
+      screen_height: profile.device?.screenHeight,
+      browser_language: profile.device?.browserLanguage,
+      timezone: profile.device?.timezone,
+      // Geo
+      geo_country: profile.geo?.country,
+      geo_region: profile.geo?.region,
+      geo_city: profile.geo?.city,
+      // Engagement
+      visit_count: profile.visitCount,
+      total_pages_viewed: profile.totalPagesViewed,
+      chat_message_count: profile.chatMessageCount,
+      session_duration_ms: profile.sessionDurationMs,
+      // Attribution
+      landing_page: profile.landingPage,
+      referring_url: profile.referringUrl,
+      referral_source: profile.referralSource,
+      // Lead score
+      lead_score: lead.score,
+      lead_tier: lead.tier,
+      // IDs
+      visitor_id: profile.visitorId,
+    });
+  } catch { /* visitor profile not initialized yet */ }
+}
+
 export const Analytics = {
   // Page views
   pageView: (pageName: string) => {
+    syncProfileToPostHog();
     capture('$pageview', { page: pageName });
   },
 
@@ -129,6 +173,7 @@ export const Analytics = {
   // Chat conversion events
   chatEmailCaptured: (email: string, conversationLength: number) => {
     if (_isPostHogReady()) {
+      syncProfileToPostHog();
       posthog.identify(email, { email, captured_via: 'chat' });
     }
     capture('chat_email_captured', { conversation_length: conversationLength });

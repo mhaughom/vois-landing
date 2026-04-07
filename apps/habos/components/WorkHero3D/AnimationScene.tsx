@@ -147,7 +147,7 @@ export const AnimationScene: React.FC<AnimationSceneProps> = ({
         setPhase('dot');
         onPhaseChange?.('dot');
       }
-      if (introHoldRef.current >= INTRO_HOLD) {
+      if (introHoldRef.current >= INTRO_HOLD && !paused) {
         introHoldDone.current = true;
       }
       return;

@@ -1,0 +1,85 @@
+{
+  "userTypes": [
+    "Solo founder",
+    "Small team (2-10)",
+    "Growing business (10-50)",
+    "Enterprise (50+)",
+    "Agency / Consultancy",
+    "Franchise"
+  ],
+  "referralSources": [
+    "Twitter/X",
+    "Instagram",
+    "TikTok",
+    "Friend/colleague",
+    "Search engine",
+    "YouTube",
+    "Reddit",
+    "Other"
+  ],
+  "useCases": [
+    "Scheduling, dispatch & job management",
+    "Invoicing, payments & finance",
+    "CRM & customer communication",
+    "Marketing, ads & website",
+    "AI assistant & voice notes"
+  ],
+  "industries": [
+    "Plumbing / HVAC / Electrical",
+    "Construction / Contracting",
+    "Cleaning / Maintenance",
+    "Landscaping / Outdoor services",
+    "Auto / Mechanic / Bodywork",
+    "Salon / Beauty / Wellness",
+    "Restaurant / Food service",
+    "Consulting / Professional services",
+    "Real estate / Property management",
+    "E-commerce / Retail",
+    "Creative / Design / Marketing agency",
+    "Other"
+  ],
+  "stepUseCases": {
+    "heading": "What will you use HABOS for?",
+    "subLabel": "Select all that apply",
+    "stepIndicator": "Step 1 of 5"
+  },
+  "stepUserType": {
+    "heading": "What best describes your business?",
+    "subLabel": "Choose one",
+    "stepIndicator": "Step 2 of 5"
+  },
+  "stepIndustry": {
+    "heading": "What industry are you in?",
+    "subLabel": "This helps us tailor your experience",
+    "stepIndicator": "Step 3 of 5"
+  },
+  "stepReferral": {
+    "heading": "How did you hear about HABOS?",
+    "subLabel": "This helps us understand our community",
+    "stepIndicator": "Step 4 of 5"
+  },
+  "stepEmail": {
+    "heading": "What's your email?",
+    "subLabel": "We'll send you early access when we launch",
+    "placeholder": "Enter your work email",
+    "phonePlaceholder": "Phone number (optional)",
+    "joining": "Joining...",
+    "joinWaitlist": "Join Waitlist",
+    "stepIndicator": "Step 5 of 5"
+  },
+  "stepSuccess": {
+    "heading": "You're on the list!",
+    "willSendEmail": "We'll send you an email at",
+    "whatsNext": "What's next?",
+    "whatsNextBody": "We're launching soon! You'll be among the first to get early access and founding member pricing.",
+    "done": "Done",
+    "bookDemo": "Book a free demo",
+    "bookDemoSub": "Want a personalized walkthrough? Book a 15-min call."
+  },
+  "continue": "Continue",
+  "errors": {
+    "emailInvalid": "Please enter a valid email address",
+    "emailExists": "This email is already on the waitlist!",
+    "joinFailed": "Failed to join waitlist"
+  }
+}

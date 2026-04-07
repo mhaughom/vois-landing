@@ -486,9 +486,7 @@
       "heading": "Product",
       "login": "Login",
       "pricing": "Pricing",
-      "platform": "Platform",
-      "voisPersonal": "VOIS Personal",
-      "habosPersonal": "HABOS Personal"
+      "tryVois": "Try the VOIS app"
     },
     "support": {
       "heading": "Support",

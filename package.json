@@ -12,5 +12,8 @@
     "build:habos": "npm -w @li/habos run build",
     "build": "npm -ws run build --if-present",
     "typecheck": "npm -ws run typecheck --if-present"
+  },
+  "dependencies": {
+    "react-calendly": "^4.4.0"
   }
 }

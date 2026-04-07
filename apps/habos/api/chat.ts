@@ -96,21 +96,27 @@ Include 1-3 relevant actions when the user asks about a feature.
 When suggesting the user talk to the team, include: {"type":"navigate","target":"/support","label":"Talk to our team"}
 If no actions are needed, do NOT include the <<ACTIONS>> section.
 
-## Email Capture
+## Contact Capture (PRIORITY)
 
-After you've delivered 2-3 genuinely helpful exchanges and built some rapport, offer to send more info or a custom comparison — and ask for their email. Frame it as a value exchange:
-- "I can send you a comparison of what HABOS replaces in your stack — what's the best email?"
-- "Want me to send you our ROI breakdown for [their trade]? Drop your email and I'll fire it over."
+Capturing the visitor's contact info is your #1 priority after the first meaningful exchange. Visitors get distracted and leave — if you don't have their email/phone, that lead is gone forever.
 
-When you want to capture their email, include an email_capture action:
+**Timing:** After your FIRST helpful response (answering their question or greeting them), include the contact capture action. Do NOT wait for multiple exchanges.
+
+**How to ask:** Keep it natural and low-friction. Frame it as staying in touch:
+- "Drop your email and number so I can send you the details — takes 2 seconds."
+- "Want me to send you a breakdown? Leave your info and I'll fire it over."
+- "In case you need to run — drop your contact info so we can follow up."
+
+Include a contact_capture action:
 <<ACTIONS>>
-[{"type":"email_capture","label":"Share your email"}]
+[{"type":"email_capture","label":"Stay in touch"}]
 
 Rules:
-- NEVER ask for email in the first 3 exchanges. Build trust first.
-- NEVER gate information behind email capture. Answer their question first, then offer to send more.
+- Include email_capture in your FIRST response that answers a real question. Don't delay.
+- NEVER gate information behind the form. Answer their question first, then show the form.
 - Only include email_capture ONCE per conversation. If you already asked, don't ask again.
-- If the visitor has already shared their email (you'll see this in context), thank them and move on.
+- If the visitor has already shared their info (you'll see this in context), thank them and move on.
+- After capturing contact info, continue qualifying as normal.
 
 ## Meeting Booking
 
@@ -120,7 +126,7 @@ Do NOT suggest this too early. Wait for 4-5 meaningful exchanges minimum, or whe
 
 Include a book_meeting action:
 <<ACTIONS>>
-[{"type":"book_meeting","target":"https://calendly.com/habos/demo","label":"Book a 15-min demo"}]
+[{"type":"book_meeting","target":"https://calendly.com/hello-tryvois/30min","label":"Book a 15-min demo"}]
 
 Only suggest booking once per conversation. You can combine it with other actions.
 
@@ -352,7 +358,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const stream = client.messages.stream({
       model: 'claude-sonnet-4-6',
-      max_tokens: 400,
+      max_tokens: 1024,
       system: SYSTEM_PROMPT + ragContext + pageContext,
       messages: [
         ...recentHistory,
@@ -361,56 +367,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     let buffer = '';
-    let textSent = 0;
     let actionsStarted = false;
     let actionsBuffer = '';
 
-    // Flush a text segment, scanning for break markers and emitting break events
-    // Pause scales with message length: short texts ~300ms, longer ones up to ~800ms
-    async function flushWithBreaks(text: string) {
-      let offset = 0;
-      let breakIdx = text.indexOf(BREAK_MARKER, offset);
-      while (breakIdx !== -1) {
-        const before = text.substring(offset, breakIdx);
-        if (before) sendSSE(res, { type: 'delta', text: before });
-        sendSSE(res, { type: 'break' });
-        offset = breakIdx + BREAK_MARKER.length;
-        breakIdx = text.indexOf(BREAK_MARKER, offset);
-      }
-      const remainder = text.substring(offset);
-      if (remainder) sendSSE(res, { type: 'delta', text: remainder });
-    }
+    // We accumulate the FULL response in `buffer`, then only process it once
+    // the stream ends. This avoids all marker-splitting issues — no partial
+    // BREAK_MARKER or ACTIONS_MARKER can slip through chunk boundaries.
 
     for await (const event of stream) {
       if (event.type !== 'content_block_delta' || event.delta.type !== 'text_delta') continue;
 
       const delta = event.delta.text;
-
-      if (actionsStarted) {
-        actionsBuffer += delta;
-        continue;
-      }
-
       buffer += delta;
-
-      const markerIdx = buffer.indexOf(ACTIONS_MARKER);
-      if (markerIdx !== -1) {
-        const remaining = buffer.substring(textSent, markerIdx).trimEnd();
-        if (remaining) await flushWithBreaks(remaining);
-        actionsStarted = true;
-        actionsBuffer = buffer.substring(markerIdx + ACTIONS_MARKER.length);
-      } else {
-        const safeEnd = buffer.length - ACTIONS_MARKER.length;
-        if (safeEnd > textSent) {
-          await flushWithBreaks(buffer.substring(textSent, safeEnd));
-          textSent = safeEnd;
-        }
-      }
     }
 
-    // Flush remaining buffered text (if no marker was found)
-    if (!actionsStarted && textSent < buffer.length) {
-      await flushWithBreaks(buffer.substring(textSent));
+    // Split off actions block if present
+    const actionsIdx = buffer.indexOf(ACTIONS_MARKER);
+    let textContent: string;
+    if (actionsIdx !== -1) {
+      textContent = buffer.substring(0, actionsIdx).trimEnd();
+      actionsBuffer = buffer.substring(actionsIdx + ACTIONS_MARKER.length);
+      actionsStarted = true;
+    } else {
+      textContent = buffer;
+    }
+
+    // Split on break markers and emit each bubble as delta + break
+    const segments = textContent.split(BREAK_MARKER);
+    for (let i = 0; i < segments.length; i++) {
+      const seg = segments[i].trim();
+      if (seg) sendSSE(res, { type: 'delta', text: seg });
+      if (i < segments.length - 1) sendSSE(res, { type: 'break' });
     }
 
     // Parse actions from the actions buffer

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Navbar } from '@li/shared/components/Navbar';
+import { Footer } from '../components/Footer';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // HABOS LOGO — The 3-pillar icon (SVG version for web)
@@ -244,7 +246,7 @@ function WatchAppMockup({ availableAppsLabel, installButton }: { availableAppsLa
         <div className="w-[34px] h-[34px] rounded-lg bg-[#1A1A1A] flex items-center justify-center">
           <HabosLogo size={22} color="#FFF" />
         </div>
-        <span className="flex-1 text-[16px] font-semibold text-white">VOIS</span>
+        <span className="flex-1 text-[16px] font-semibold text-white">{t('watch.appName')}</span>
         <span className="text-[13px] font-bold text-[#FF9F0A] border border-[#FF9F0A] rounded-full py-1 px-3.5 tracking-wide">
           {installButton}
         </span>
@@ -377,23 +379,9 @@ const Setup = () => {
       className="min-h-screen"
       style={{ background: 'linear-gradient(180deg, #ffffff 0%, #ffffff 60%, #FAFCFF 70%, #FFE8F0 80%, #FFF4E8 90%, #F0E8FF 100%)' }}
     >
-      {/* Floating nav */}
-      <div className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4" style={{ paddingTop: 'calc(1rem + env(safe-area-inset-top, 0px))' }}>
-        <div className="max-w-7xl mx-auto flex items-center gap-3">
-          <Link
-            to="/"
-            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors flex-shrink-0 shadow-sm"
-          >
-            <ArrowLeft size={16} />
-          </Link>
-          <div className="flex items-center gap-2.5 bg-white/80 backdrop-blur-sm rounded-full pl-1.5 pr-4 py-1.5 border border-slate-100 shadow-sm">
-            <img src="/Logo/habos-icon.svg" alt={t('nav.logoAlt')} className="h-6 w-6" />
-            <span className="font-semibold text-sm text-slate-900">{t('nav.title')}</span>
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -518,6 +506,8 @@ const Setup = () => {
           </div>
         </motion.div>
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -108,6 +108,7 @@ const Legal = React.lazy(() => import('./pages/Legal'));
 const Success = React.lazy(() => import('./pages/Success'));
 const Support = React.lazy(() => import('./pages/Support'));
 const Setup = React.lazy(() => import('./pages/Setup'));
+const Pricing = React.lazy(() => import('./pages/Pricing'));
 
 // Work feature pages
 const VoiceNotes = React.lazy(() => import('./pages/work/voice-notes'));
@@ -278,6 +279,7 @@ root.render(
           <Route path="/philosophy/small-team-leverage" element={<SmallTeamLeverage />} />
           <Route path="/philosophy/supercharge-your-team" element={<SuperchargeYourTeam />} />
           <Route path="/philosophy/voice-first" element={<VoiceFirst />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/support" element={<Support />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/success" element={<Success />} />

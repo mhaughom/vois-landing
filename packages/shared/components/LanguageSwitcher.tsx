@@ -74,12 +74,12 @@ export const LanguageSwitcher: React.FC<{ className?: string; navPill?: boolean 
     >
       <div
         className={navPill
-          ? 'flex items-center justify-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg text-slate-500 hover:text-slate-900 transition-colors cursor-default pl-1.5 pr-1.5 py-1'
-          : 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-default'
+          ? 'flex items-center justify-center bg-white/80 backdrop-blur-md rounded-full border border-slate-100 shadow-lg text-slate-500 hover:text-slate-900 transition-colors cursor-pointer pl-1.5 pr-1.5 py-1'
+          : 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer'
         }
         aria-label="Change language"
       >
-        <div className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-slate-50/80 transition-colors">
+        <div className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-slate-50/80 transition-all duration-300 hover:scale-110 hover:rotate-12">
           <Globe size={16} />
         </div>
         {!navPill && <span>{current.code.toUpperCase()}</span>}

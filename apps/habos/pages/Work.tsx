@@ -27,6 +27,7 @@ import { BoxAnimation } from '@li/shared/components/BoxAnimation';
 import { appCategories } from '@li/shared/components/AppGridBox';
 import { CategoryShowcase } from '../components/CategoryShowcase';
 import { WaitlistModal } from '@li/shared/components/WaitlistModal';
+import { InlineWidget } from 'react-calendly';
 
 import FeatureSection from './work/features/FeatureSection';
 import VoiceNotesDemo from './work/features/VoiceNotesDemo';
@@ -803,8 +804,8 @@ const Work: React.FC = () => {
   const [muted, setMuted] = useState(false);
   const [geoVisible, setGeoVisible] = useState(false);
   const [geoPaused, setGeoPaused] = useState(false);
-  const [scrollLocked, setScrollLocked] = useState(false);
-  const scrollLockedRef = useRef(false);
+  const [geoIntroDone, setGeoIntroDone] = useState(false);
+  const [animStarted, setAnimStarted] = useState(false);
   const geoSectionRef = useRef<HTMLDivElement>(null);
   // Inline display style avoids Tailwind CDN race condition where R3F Canvas
   // mounts inside a display:none container and never initializes its render loop.
@@ -942,54 +943,6 @@ const Work: React.FC = () => {
     };
   }, []);
 
-  // Activate 3D section + lock scroll when it enters viewport from below
-  useEffect(() => {
-    const el = geoSectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.unobserve(el);
-        setGeoVisible(true);
-        const rect = entry.boundingClientRect;
-        // Only lock if the section is entering from below (not already visible on load)
-        if (rect.top > 0) {
-          window.scrollTo({ top: window.scrollY + rect.top, behavior: 'instant' });
-          scrollLockedRef.current = true;
-          setScrollLocked(true);
-        }
-      },
-      { threshold: 0.01 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Apply scroll lock — block wheel, touch, and keyboard scroll-down
-  useEffect(() => {
-    if (!scrollLocked) return;
-    const prevent = (e: Event) => e.preventDefault();
-    const preventKeys = (e: KeyboardEvent) => {
-      if (['ArrowDown', 'PageDown', ' '].includes(e.key)) e.preventDefault();
-    };
-    window.addEventListener('wheel', prevent, { passive: false });
-    window.addEventListener('touchmove', prevent, { passive: false });
-    window.addEventListener('keydown', preventKeys);
-    return () => {
-      window.removeEventListener('wheel', prevent);
-      window.removeEventListener('touchmove', prevent);
-      window.removeEventListener('keydown', preventKeys);
-    };
-  }, [scrollLocked]);
-
-  // Release scroll lock when animation reaches idle (shape fully formed + videos visible)
-  useEffect(() => {
-    if (animPhase === 'idle' && scrollLockedRef.current) {
-      scrollLockedRef.current = false;
-      setScrollLocked(false);
-    }
-  }, [animPhase]);
-
   // Pause hex 3D videos when section scrolls off-screen
   useEffect(() => {
     const el = geoSectionRef.current;
@@ -1000,6 +953,27 @@ const Work: React.FC = () => {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Start animation only when 3D section is well in view
+  useEffect(() => {
+    const el = geoSectionRef.current;
+    if (!el || animStarted) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setAnimStarted(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.5 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [animStarted]);
+
+  // Mark intro done when animation reaches idle
+  useEffect(() => {
+    if (animPhase === 'idle' && !geoIntroDone) {
+      setGeoIntroDone(true);
+    }
+  }, [animPhase, geoIntroDone]);
 
   // Play/pause hero video based on showVideo state
   useEffect(() => {
@@ -1128,12 +1102,12 @@ const Work: React.FC = () => {
                       {showVideo ? (
                         <>
                           <GlowText text={heroHeadlines[heroHeadlineIdx].bold} active={showVideo} globalOffset={2} totalWords={6}
-                            className={`font-bold tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out ${headlineSizeClass} whitespace-nowrap`}
-                            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#0f172a' }} />
+                            className={`font-bold tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out ${headlineSizeClass}`}
+                            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#0f172a', overflowWrap: 'break-word' }} />
                           <br />
                           <GlowText text={heroHeadlines[heroHeadlineIdx].light.replace('\n', ' ')} active={showVideo} globalOffset={3} totalWords={6}
-                            className={`font-normal tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out ${headlineSizeClass} whitespace-nowrap`}
-                            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#334155' }} />
+                            className={`font-normal tracking-tight leading-[1.08] inline-block origin-left transition-all duration-700 ease-in-out ${headlineSizeClass}`}
+                            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.35rem)', color: '#334155', overflowWrap: 'break-word' }} />
                         </>
                       ) : (
                         <AnimatePresence mode="wait">
@@ -1310,14 +1284,27 @@ const Work: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="max-w-2xl mx-auto text-center"
+            className="text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
-              {t('philosophyBreather.heading', 'AI power. Human control.')}
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
+              Book a 15-minute meeting
             </h2>
-            <p className="text-lg text-slate-500 leading-relaxed">
-              {t('philosophyBreather.body', 'Every draft is reviewed. Every action is approved. Every decision is yours. HABOS gives you superhuman leverage without giving up the steering wheel.')}
+            <p className="text-lg text-slate-500 mb-8">
+              See how HABOS can work for your business.
             </p>
+            <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <InlineWidget
+                url="https://calendly.com/hello-tryvois/30min"
+                styles={{ height: '660px', minWidth: '320px' }}
+                pageSettings={{
+                  hideEventTypeDetails: false,
+                  hideLandingPageDetails: false,
+                  primaryColor: '1e293b',
+                  backgroundColor: 'ffffff',
+                  textColor: '334155',
+                }}
+              />
+            </div>
           </motion.div>
         </div>
       </Section>
@@ -1325,7 +1312,7 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           INTERACTIVE 3D SECTION — No container, floats on page background
           ═══════════════════════════════════════════════════════════════════ */}
-      <div ref={geoSectionRef} id="explore" className="relative h-screen min-h-screen flex flex-col justify-center pt-24 md:pt-32">
+      <div ref={geoSectionRef} id="explore" className="relative flex flex-col justify-center pt-24 md:pt-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1402,18 +1389,22 @@ const Work: React.FC = () => {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            onViewportEnter={() => setGeoVisible(true)}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative w-full mx-auto"
             style={{ maxWidth: 'min(42rem, 62vh)' }}
           >
-            {geoVisible && <WorkHero3D onPhaseChange={setAnimPhase} onFocusChange={setFocusLabel} unfocusRef={unfocusRef} muted={muted} paused={geoPaused} onToggleMute={() => setMuted(m => !m)} />}
+            {geoVisible && <WorkHero3D onPhaseChange={setAnimPhase} onFocusChange={setFocusLabel} unfocusRef={unfocusRef} muted={muted} paused={geoPaused || !animStarted} onToggleMute={() => setMuted(m => !m)} />}
           </motion.div>
         </div>
       </div>
 
 
       {/* Feature sections removed — content now lives in the 3D hexcube panels */}
+
+      {/* Everything below 3D section hidden until intro animation completes */}
+      <div>
 
       {/* ═══════════════════════════════════════════════════════════════════
           AGENT PHILOSOPHY — ONE AGENT PER EMPLOYEE
@@ -1717,6 +1708,8 @@ const Work: React.FC = () => {
       </Section>
 
       <Footer />
+
+      </div>{/* end geoIntroDone wrapper */}
 
       </div>{/* end content z-10 wrapper */}
 
