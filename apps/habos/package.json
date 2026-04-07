@@ -28,7 +28,8 @@
     "react-markdown": "^10.1.0",
     "three": "^0.182.0",
     "@react-three/fiber": "^9.5.0",
-    "@react-three/drei": "^10.7.7"
+    "@react-three/drei": "^10.7.7",
+    "react-calendly": "^4.4.0"
   },
   "devDependencies": {
     "@vercel/node": "^5.7.0",
