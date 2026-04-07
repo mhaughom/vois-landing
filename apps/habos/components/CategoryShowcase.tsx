@@ -258,7 +258,15 @@ const CategorySection: React.FC<{
       variants={stagger}
       className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
     >
-      {imageLeft ? <>{imageBlock}{contentBlock}</> : <>{contentBlock}{imageBlock}</>}
+      {/* On mobile: always content (title+icons) first, image below.
+           On desktop: alternate left/right image placement. */}
+      <div className="contents md:hidden">
+        {contentBlock}
+        {imageBlock}
+      </div>
+      <div className="hidden md:contents">
+        {imageLeft ? <>{imageBlock}{contentBlock}</> : <>{contentBlock}{imageBlock}</>}
+      </div>
     </motion.div>
   );
 };
@@ -279,7 +287,7 @@ export const CategoryShowcase: React.FC<{ categories: Category[] }> = ({ categor
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto space-y-24 md:space-y-32">
+      <div className="max-w-6xl mx-auto space-y-14 md:space-y-32">
         {categories.map((cat, i) => (
           <CategorySection key={cat.category} cat={cat} index={i} />
         ))}
