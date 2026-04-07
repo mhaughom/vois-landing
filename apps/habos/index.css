@@ -32,10 +32,12 @@ body {
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Original image on top, flipped copy below it (image is 1:6 aspect → 600vw tall at 100% width) */
+  /* Original image on top, flipped copy below it.
+     On phones the 100%-width image gets very short, so we cap the width
+     at max(100%, 120vh) to keep the background tall enough to cover the hero. */
   background:
-    url("/work-bg.jpg") top / 100% auto no-repeat,
-    url("/work-bg-flipped.jpg") 0 600vw / 100% auto no-repeat,
+    url("/work-bg.jpg") top center / max(100%, 120vh) auto no-repeat,
+    url("/work-bg-flipped.jpg") left max(600vw, 720vh) / max(100%, 120vh) auto no-repeat,
     #F8F9FA;
 }
 

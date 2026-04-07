@@ -1024,7 +1024,7 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           HERO SECTION — Traditional headline + CTA
           ═══════════════════════════════════════════════════════════════════ */}
-      <Section className="h-screen min-h-screen pt-28 md:pt-44 pb-12 md:pb-28 px-6 md:px-12 flex flex-col relative" style={{ overflow: 'visible' }}>
+      <Section className="min-h-screen pt-20 md:pt-44 pb-8 md:pb-28 px-6 md:px-12 flex flex-col relative" style={{ overflow: 'visible' }}>
         {/* 3D box + intro video — desktop only, absolutely positioned */}
         {/* Box Animation — smooth crossfade out */}
         <div
@@ -1056,7 +1056,7 @@ const Work: React.FC = () => {
             {/* Left: Text content */}
             <div
               className="text-center lg:text-left lg:flex-shrink-0 transition-[width] duration-700 ease-in-out relative z-10 w-full lg:max-w-[50%]"
-              style={{ width: showVideo ? '20%' : undefined, minHeight: 'clamp(320px, 45vh, 500px)' }}
+              style={{ width: showVideo ? '20%' : undefined, minHeight: isDesktop ? 'clamp(320px, 45vh, 500px)' : undefined }}
             >
               {/* Animated story headline — synced to box animation */}
               {(() => {
@@ -1097,7 +1097,7 @@ const Work: React.FC = () => {
                     </p>
                     {/* Fixed-height headline container prevents layout shift */}
                     <h1 className="mb-3 md:mb-5"
-                      style={{ minHeight: 'clamp(80px, 18vh, 240px)', fontSize: 'clamp(1.5rem, min(5vw, 7vh), 4.5rem)' }}
+                      style={{ minHeight: isDesktop ? 'clamp(80px, 18vh, 240px)' : undefined, fontSize: 'clamp(1.5rem, min(5vw, 7vh), 4.5rem)' }}
                     >
                       {showVideo ? (
                         <>
@@ -1211,7 +1211,7 @@ const Work: React.FC = () => {
               </div>
 
               {/* Mobile: hero video on loop with synced label */}
-              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.24 }} className="lg:hidden mt-6 w-full max-w-sm mx-auto">
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.24 }} className="lg:hidden mt-4 w-full max-w-[280px] sm:max-w-sm mx-auto">
                 <MobileHeroVideo />
               </motion.div>
             </div>
