@@ -1312,7 +1312,7 @@ const Work: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           INTERACTIVE 3D SECTION — No container, floats on page background
           ═══════════════════════════════════════════════════════════════════ */}
-      <div ref={geoSectionRef} id="explore" className="relative flex flex-col justify-center pt-24 md:pt-32">
+      <div ref={geoSectionRef} id="explore" className="relative flex-col justify-center pt-24 md:pt-32 hidden md:flex">
         <motion.div
           initial="hidden"
           whileInView="visible"

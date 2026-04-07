@@ -69,7 +69,6 @@ const AppCard: React.FC<{
   isHovered: boolean;
   onHover: (label: string | null) => void;
 }> = ({ app, isHovered, onHover }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation('app-grid-box');
   const displayLabel = t(`apps.${app.label}`, { defaultValue: app.label });
 
@@ -111,6 +110,14 @@ const AppCard: React.FC<{
     }
   }, [onHover]);
 
+  // On mobile: tap toggles preview on the image; on desktop: click navigates
+  const handleClick = useCallback(() => {
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (isTouchDevice) {
+      onHover(isHovered ? null : app.label);
+    }
+  }, [app.label, isHovered, onHover]);
+
   return (
     <motion.div
       variants={cardVariant}
@@ -118,10 +125,10 @@ const AppCard: React.FC<{
       style={{ width: 'clamp(64px, 14vw, 100px)', zIndex: isHovered ? 50 : 1 }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() => app.href && navigate(app.href)}
+      onClick={handleClick}
     >
       <div
-        className="w-full aspect-square rounded-xl overflow-hidden border bg-white shadow-sm cursor-pointer transition-all group/card hover:scale-105 hover:shadow-md"
+        className={`w-full aspect-square rounded-xl overflow-hidden border bg-white shadow-sm cursor-pointer transition-all group/card hover:scale-105 hover:shadow-md ${isHovered ? 'ring-2 ring-blue-400 scale-105' : ''}`}
         style={{
           borderColor: `${app.color}20`,
           transition: 'transform 0.25s ease, box-shadow 0.25s ease',
@@ -156,6 +163,7 @@ const CategorySection: React.FC<{
   index: number;
 }> = ({ cat, index }) => {
   const { t } = useTranslation(['app-grid-box', 'work-home']);
+  const navigate = useNavigate();
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
   const variants = categoryVariants[cat.category];
   const [variantIdx, setVariantIdx] = useState(0);
@@ -211,6 +219,14 @@ const CategorySection: React.FC<{
                 <p className="text-sm text-slate-600 leading-relaxed">
                   {t(`appDescs.${hoveredApp.label}`, { ns: 'app-grid-box', defaultValue: hoveredApp.desc })}
                 </p>
+              )}
+              {hoveredApp.href && (
+                <button
+                  onClick={() => navigate(hoveredApp.href!)}
+                  className="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors self-start"
+                >
+                  {t('categoryShowcase.viewMore', { ns: 'work-home', defaultValue: 'View more →' })}
+                </button>
               )}
             </motion.div>
           )}
