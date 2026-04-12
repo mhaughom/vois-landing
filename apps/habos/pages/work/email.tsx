@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Clock, MessageSquare, Zap } from 'lucide-react';
+import { ArrowLeft, Clock, MessageSquare, Zap, Layers } from 'lucide-react';
 import MailDemo from './features/MailDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { Footer } from '../../components/Footer';
@@ -31,6 +31,40 @@ const Email: React.FC = () => {
             <p className="text-xl text-slate-500 max-w-2xl mx-auto">
               {t('hero.description')}
             </p>
+          </motion.div>
+
+          {/* Differentiator Callout */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="relative mb-16 rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 via-white to-sky-50/60 p-8 md:p-10 shadow-sm overflow-hidden"
+          >
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-400" />
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-9 h-9 rounded-xl bg-sky-600/10 flex items-center justify-center">
+                <Layers size={18} className="text-sky-700" />
+              </div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-sky-700">
+                {t('differentiator.eyebrow')}
+              </span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4 leading-tight">
+              {t('differentiator.headline')}
+            </h2>
+            <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-3xl mb-6">
+              {t('differentiator.subline')}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['classify', 'denoise', 'prioritize', 'draft', 'surface'].map((key, i) => (
+                <React.Fragment key={key}>
+                  <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-white border border-sky-200 text-sm font-medium text-sky-700">
+                    <span className="text-xs text-sky-400 mr-1.5">{i + 1}</span>
+                    {t(`differentiator.pills.${key}`)}
+                  </span>
+                </React.Fragment>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16"><p className="text-lg text-slate-600 leading-relaxed">{t('body')}</p></motion.div>

@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Anthropic from '@anthropic-ai/sdk';
+import { RAG_DOCS, retrieveContext } from '@li/shared/lib/habos-rag';
 
 const ACTIONS_MARKER = '<<ACTIONS>>';
 const BREAK_MARKER = '\n---\n';
@@ -147,80 +148,8 @@ Present it as a clear breakdown, like:
 
 Only calculate when you have enough data (team size at minimum). Keep numbers conservative — it's better to under-promise. Round to clean numbers. Don't present exact HABOS pricing (we don't have public pricing yet — say "founding member pricing is available on the waitlist").`;
 
-// ── RAG: simple keyword-based retrieval (upgrade to pgvector embeddings later) ──
-
-interface RagDoc {
-  route: string;
-  title: string;
-  category: string;
-  content: string;
-  keywords: string[];
-}
-
-const RAG_DOCS: RagDoc[] = [
-  { route: '/work/email', title: 'Email', category: 'Communication', content: 'AI-powered email that drafts replies in your tone. Inbox zero without the effort.', keywords: ['email', 'inbox', 'mail', 'reply', 'draft'] },
-  { route: '/work/messenger', title: 'Messenger', category: 'Communication', content: 'Unified messaging across all channels merged per contact.', keywords: ['messenger', 'chat', 'sms', 'text', 'message'] },
-  { route: '/work/telephony', title: 'Phone', category: 'Communication', content: 'AI receptionist that answers calls and books appointments 24/7.', keywords: ['phone', 'call', 'telephony', 'receptionist'] },
-  { route: '/work/calendar', title: 'Calendar', category: 'Scheduling', content: 'AI-powered calendar that finds optimal meeting times.', keywords: ['calendar', 'schedule', 'meeting', 'appointment'] },
-  { route: '/work/bookings', title: 'Bookings', category: 'Scheduling', content: 'Client self-scheduling with reminders and no-show protection.', keywords: ['booking', 'reservation', 'appointment'] },
-  { route: '/work/voice-notes', title: 'Voice Notes', category: 'Intelligence', content: 'Capture ideas by speaking. 150 WPM instead of 40.', keywords: ['voice', 'record', 'dictate', 'transcribe', 'note'] },
-  { route: '/work/meeting-notes', title: 'Meeting Notes', category: 'Intelligence', content: 'Live transcription with auto-extracted action items.', keywords: ['meeting', 'transcript', 'minutes', 'notes'] },
-  { route: '/work/assistant', title: 'AI Assistant', category: 'Intelligence', content: 'Chat with full business context across all your data.', keywords: ['assistant', 'ai', 'chat', 'help', 'agent'] },
-  { route: '/work/brain', title: 'The Brain', category: 'Intelligence', content: '19 data sources, one unified understanding.', keywords: ['brain', 'knowledge', 'search', 'memory'] },
-  { route: '/work/tasks', title: 'Tasks', category: 'Operations', content: 'AI-scored priority task management.', keywords: ['task', 'todo', 'priority', 'assign'] },
-  { route: '/work/projects', title: 'Projects', category: 'Operations', content: 'End-to-end project tracking with AI timelines.', keywords: ['project', 'timeline', 'milestone', 'plan'] },
-  { route: '/work/crm', title: 'CRM', category: 'Sales', content: 'Customer relationships with AI follow-up reminders.', keywords: ['crm', 'customer', 'contact', 'lead', 'sales', 'pipeline'] },
-  { route: '/work/finance', title: 'Finance', category: 'Sales', content: 'Invoicing, expense tracking, financial reporting.', keywords: ['finance', 'invoice', 'expense', 'billing', 'payment', 'money'] },
-  { route: '/work/payments', title: 'Payments', category: 'Sales', content: 'Payment processing and tracking.', keywords: ['payment', 'pay', 'charge', 'stripe'] },
-  { route: '/work/website-builder', title: 'Website Builder', category: 'Marketing', content: 'AI-powered no-code website builder.', keywords: ['website', 'site', 'builder', 'landing page', 'web'] },
-  { route: '/work/marketing', title: 'Marketing', category: 'Marketing', content: 'Campaigns across email, social, and ads.', keywords: ['marketing', 'campaign', 'social', 'promote'] },
-  { route: '/work/ads', title: 'Ads', category: 'Marketing', content: 'Ad management and optimization.', keywords: ['ads', 'advertise', 'google ads', 'facebook ads'] },
-  { route: '/work/dispatch', title: 'Dispatch', category: 'Operations', content: 'Field team job assignment and routing.', keywords: ['dispatch', 'field', 'job', 'technician', 'route'] },
-  { route: '/work/operations', title: 'Operations', category: 'Operations', content: 'Complete operations management for field businesses.', keywords: ['operations', 'ops', 'field', 'manage'] },
-  { route: '/work/reports', title: 'Reports', category: 'Intelligence', content: 'AI-generated business analytics and dashboards.', keywords: ['report', 'analytics', 'dashboard', 'metrics', 'data'] },
-  { route: '/work/tickets', title: 'Support Tickets', category: 'Communication', content: 'Auto-routing support tickets with escalation.', keywords: ['ticket', 'support', 'help desk', 'issue'] },
-  { route: '/work/forms', title: 'Forms', category: 'Other', content: 'Form builder connected to your workflows.', keywords: ['form', 'survey', 'questionnaire', 'input'] },
-  { route: '/work/people', title: 'People / HR', category: 'Other', content: 'Team management and HR tools.', keywords: ['people', 'hr', 'team', 'employee', 'staff', 'hire'] },
-  { route: '/work/research', title: 'Research', category: 'Intelligence', content: 'AI-powered business research and competitive intelligence.', keywords: ['research', 'competitive', 'market', 'analysis'] },
-  { route: '/work/agents', title: 'AI Agents', category: 'Intelligence', content: 'Autonomous AI workers that handle tasks end-to-end.', keywords: ['agent', 'autonomous', 'automate', 'worker'] },
-  { route: '/work/creative-studio', title: 'Creative Studio', category: 'Marketing', content: 'Design tools for social media, presentations, and marketing materials.', keywords: ['creative', 'design', 'graphic', 'image', 'photo'] },
-  { route: '/work/slides', title: 'Slides', category: 'Marketing', content: 'AI-powered presentation builder.', keywords: ['slides', 'presentation', 'deck', 'powerpoint'] },
-  { route: '#pricing', title: 'Pricing', category: 'General', content: 'Simple pricing. Join waitlist for founding member pricing.', keywords: ['price', 'cost', 'plan', 'how much', 'free', 'trial', 'waitlist', 'sign up'] },
-  { route: '/solutions/service-businesses', title: 'For Service Businesses', category: 'Solutions', content: 'For plumbers, electricians, HVAC, cleaning, contractors.', keywords: ['service', 'plumber', 'electrician', 'hvac', 'cleaning', 'contractor'] },
-  { route: '/solutions/creative-businesses', title: 'For Creative Businesses', category: 'Solutions', content: 'For agencies, designers, photographers, creative studios.', keywords: ['agency', 'designer', 'photographer', 'creative', 'studio'] },
-  { route: '/solutions/solo-founders', title: 'For Solo Founders', category: 'Solutions', content: 'Operate like a serious company without employees.', keywords: ['solo', 'founder', 'solopreneur', 'entrepreneur', 'one person'] },
-  { route: '/solutions/teams-startups', title: 'For Teams & Startups', category: 'Solutions', content: 'Scale operations without scaling headcount.', keywords: ['team', 'startup', 'scale', 'grow'] },
-  { route: '/philosophy/the-airlock', title: 'The Airlock', category: 'Philosophy', content: 'AI proposes, you decide. Human control over every action.', keywords: ['airlock', 'control', 'safety', 'approval', 'human'] },
-  { route: '/philosophy/everything-in-one-place', title: 'Everything in One Place', category: 'Philosophy', content: 'One login, every tool, shared context.', keywords: ['unified', 'one place', 'integrated', 'all-in-one'] },
-];
-
-function retrieveContext(query: string, topK = 5): string {
-  const q = query.toLowerCase();
-  const scored = RAG_DOCS.map((doc) => {
-    let score = 0;
-    for (const kw of doc.keywords) {
-      if (q.includes(kw.toLowerCase())) score += 2;
-    }
-    if (q.includes(doc.title.toLowerCase())) score += 3;
-    if (q.includes(doc.category.toLowerCase())) score += 1;
-    const words = q.split(/\s+/);
-    for (const w of words) {
-      if (w.length < 3) continue;
-      for (const kw of doc.keywords) {
-        if (kw.includes(w) || w.includes(kw)) score += 1;
-      }
-    }
-    return { doc, score };
-  })
-    .filter((s) => s.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, topK);
-
-  if (scored.length === 0) return '';
-
-  return '\n\n## Relevant Features (from RAG retrieval)\n' +
-    scored.map((s) => `- **${s.doc.title}** (${s.doc.route}): ${s.doc.content}`).join('\n');
-}
+// RAG knowledge base + retrieval moved to packages/shared/lib/habos-rag.ts
+// so the research-agent support-reply suggester can reuse it. See imports above.
 
 function sendSSE(res: VercelResponse, data: Record<string, unknown>) {
   res.write(`data: ${JSON.stringify(data)}\n\n`);

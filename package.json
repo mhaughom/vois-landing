@@ -8,8 +8,10 @@
   "scripts": {
     "dev:vois": "npm -w @li/vois run dev",
     "dev:habos": "npm -w @li/habos run dev",
+    "dev:research": "npm -w @li/research-agent run dev",
     "build:vois": "npm -w @li/vois run build",
     "build:habos": "npm -w @li/habos run build",
+    "build:research": "npm -w @li/research-agent run build",
     "build": "npm -ws run build --if-present",
     "typecheck": "npm -ws run typecheck --if-present"
   },

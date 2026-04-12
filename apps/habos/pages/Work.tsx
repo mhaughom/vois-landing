@@ -23,6 +23,8 @@ import { Navbar } from '@li/shared/components/Navbar';
 import { AnimatedHabosIcon } from '../components/AnimatedHabosIcon';
 import { Footer } from '../components/Footer';
 import { HeroBusinessCarousel } from '../components/HeroBusinessCarousel';
+import PersonalizedHero from '../components/PersonalizedHero';
+import type { PersonalizedProspect } from '../lib/personalized';
 import { BoxAnimation } from '@li/shared/components/BoxAnimation';
 import { appCategories } from '@li/shared/components/AppGridBox';
 import { CategoryShowcase } from '../components/CategoryShowcase';
@@ -792,7 +794,12 @@ const REPLACEMENT_ICONS: Record<string, React.ElementType> = {
 // WORK PAGE
 // ═══════════════════════════════════════════════════════════════════════════
 
-const Work: React.FC = () => {
+interface WorkProps {
+  /** When present, swaps the default hero for a PersonalizedHero. Used by /for/:slug. */
+  prospect?: PersonalizedProspect;
+}
+
+const Work: React.FC<WorkProps> = ({ prospect } = {}) => {
   const { t, i18n } = useTranslation('work-home');
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -1023,7 +1030,11 @@ const Work: React.FC = () => {
 
       {/* ═══════════════════════════════════════════════════════════════════
           HERO SECTION — Traditional headline + CTA
+          (swapped for PersonalizedHero on /for/:slug routes via `prospect` prop)
           ═══════════════════════════════════════════════════════════════════ */}
+      {prospect ? (
+        <PersonalizedHero prospect={prospect} />
+      ) : (
       <Section className="min-h-screen pt-20 md:pt-44 pb-8 md:pb-28 px-6 md:px-12 flex flex-col relative" style={{ overflow: 'visible' }}>
         {/* 3D box + intro video — desktop only, absolutely positioned */}
         {/* Box Animation — smooth crossfade out */}
@@ -1245,6 +1256,47 @@ const Work: React.FC = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </Section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FIELD-OPS WEDGE CALLOUT — Voice-report differentiator, above fold-2
+          ═══════════════════════════════════════════════════════════════════ */}
+      <Section className="pt-6 pb-10 md:pt-10 md:pb-16 px-6 md:px-12">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <Link
+              to="/solutions/field-operations"
+              className="group block rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 overflow-hidden"
+            >
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8 p-6 md:p-8">
+                <div className="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600">
+                  <Phone className="w-7 h-7" strokeWidth={2} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-indigo-600 mb-2">
+                    {t('fieldWedge.eyebrow')}
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mb-2">
+                    {t('fieldWedge.headline')}
+                  </h3>
+                  <p className="text-base text-slate-600 leading-relaxed">
+                    {t('fieldWedge.subline')}
+                  </p>
+                </div>
+                <div className="flex-shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  <span>{t('fieldWedge.cta')}</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
         </div>
       </Section>
 

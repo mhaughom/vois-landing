@@ -5,6 +5,10 @@
     "description": "Ask a question, give an instruction, or just think out loud\u00a0\u2014 the assistant handles the rest in under 300ms."
   },
   "heroPills": ["300ms response", "8 tools built-in", "Voice + text"],
+  "differentiator": {
+    "title": "AI that never writes without a click.",
+    "subline": "It navigates the app, fills forms, and drafts anything\u00a0\u2014 but every database change waits for your confirmation."
+  },
   "intro": "When you talk to the HABOS assistant, it already knows your projects, your calendar, your team, and your recent conversations. It doesn't need you to explain context \u2014 it has it. Ask 'how are receivables looking?' and it queries your finance data. Say 'draft a follow-up to Sarah' and it pulls the last email thread, your CRM notes, and her sentiment trend. Then it writes the draft and waits for you to approve before sending. One conversation replaces five apps and ten clicks.",
   "mockConversation": {
     "userMessage": "What's on my calendar tomorrow and draft a follow-up email to Sarah about the renovation quote",

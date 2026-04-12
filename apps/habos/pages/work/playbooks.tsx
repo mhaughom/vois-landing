@@ -10,6 +10,8 @@ import {
   Shield,
   X,
   Check,
+  Camera,
+  Sparkles,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../../components/Footer';
@@ -63,6 +65,40 @@ const PlaybooksPage: React.FC = () => {
             <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
               {t('hero.description')}
             </p>
+          </motion.div>
+
+          {/* ── 1b. Live Guide Mode Differentiator ───────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease }}
+            className="mb-16"
+          >
+            <div className="relative overflow-hidden rounded-3xl border border-teal-200 bg-gradient-to-br from-teal-50 via-white to-teal-50/40 p-8 md:p-10 shadow-sm">
+              <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" aria-hidden />
+              <div className="relative flex flex-col md:flex-row md:items-start gap-6">
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-md">
+                    <Camera size={20} />
+                  </div>
+                  <div className="w-11 h-11 rounded-xl bg-white border border-teal-200 text-teal-700 flex items-center justify-center shadow-sm -ml-3">
+                    <Sparkles size={18} />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-teal-600/10 text-teal-700 rounded-full text-xs font-semibold uppercase tracking-wide mb-3">
+                    {t('liveGuide.tag')}
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 leading-tight mb-3">
+                    {t('liveGuide.title')}
+                  </h2>
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                    {t('liveGuide.description')}
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">

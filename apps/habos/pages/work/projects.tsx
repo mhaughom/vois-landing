@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, AlertTriangle, Clock, Zap, Shield, Link2, ArrowRight } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, AlertTriangle, Clock, Zap, Shield, Link2, ArrowRight, Target } from 'lucide-react';
 import ProjectsDemo from './features/ProjectsDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
@@ -36,6 +36,27 @@ const Projects: React.FC = () => {
             <p className="text-xl text-slate-500 max-w-2xl mb-8">
               {t('hero.description')}
             </p>
+          </motion.div>
+
+          {/* Differentiator Callout */}
+          <motion.div
+            {...fadeUp}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative mb-16 rounded-3xl p-6 md:p-8 bg-gradient-to-br from-orange-50 via-orange-50/60 to-amber-50/40 border border-orange-200/70 shadow-sm"
+          >
+            <div className="flex items-start gap-4 md:gap-5">
+              <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-orange-600 text-white flex items-center justify-center shadow-sm">
+                <Target size={22} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h2 className="text-xl md:text-2xl font-serif font-medium text-slate-900 leading-tight mb-2">
+                  {t('differentiator.headline')}
+                </h2>
+                <p className="text-base text-slate-700 leading-relaxed">
+                  {t('differentiator.subline')}
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16"><p className="text-lg text-slate-600 leading-relaxed">{t('body')}</p></motion.div>

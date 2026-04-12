@@ -86,6 +86,12 @@
     "playVideo": "Play Video",
     "back": "Back"
   },
+  "fieldWedge": {
+    "eyebrow": "Built for the field",
+    "headline": "Field workers submit reports by phone. AI does the writing.",
+    "subline": "Each worker gets a Twilio number. Call it from the van, talk for 30 seconds, and a structured report lands in the system — no typing, no app.",
+    "cta": "See how it works"
+  },
   "animPhase": {
     "dot": "One mind that learns your entire business.",
     "split": "It connects everything you do.",

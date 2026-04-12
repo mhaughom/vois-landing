@@ -4,6 +4,11 @@
     "title": "One URL. Your Entire Business, Extracted.",
     "description": "Enter your website. HABOS crawls it, extracts your brand identity, products, team, and social profiles — then seeds your entire workspace with real data. Ready to work in minutes."
   },
+  "wedge": {
+    "eyebrow": "Why HABOS",
+    "headline": "Paste your URL. Three minutes later your whole business is inside.",
+    "subline": "HABOS reads your site, fills every app with your real data, and turns on only the apps that match your business. No setup week. No other operating system does this."
+  },
   "body": "Enter your company website URL and HABOS runs a seven-step intelligence workflow: identity resolution, human review, internal source analysis, external research via Perplexity, financial data gathering, social profile expansion, and final approval. Every data point carries a confidence score — Shopify API data scores 1.0, structured data 0.94, markdown extraction 0.58. The system then generates fourteen domains of workspace data from your company intelligence, so you walk into a working system, not an empty shell.",
   "extraction": {
     "urlPlaceholder": "hendersonplumbing.com",

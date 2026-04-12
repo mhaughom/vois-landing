@@ -1210,7 +1210,7 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
               <div className="w-10 h-1 rounded-full bg-gray-300" />
             </div>
             {/* Header */}
-            <div className="relative z-10 flex items-center justify-between px-5 py-4 md:py-4 bg-white md:rounded-t-2xl">
+            <div className="relative z-10 flex items-center justify-between px-5 pt-3 pb-1 md:py-4 bg-white md:rounded-t-2xl">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white">
                   <MessageCircle size={16} />
@@ -1302,11 +1302,31 @@ export default function ChatPanel({ onToggle, config }: ChatPanelProps) {
 
             {/* Messages + floating input wrapper */}
             <div className="flex-1 relative overflow-hidden">
-            {/* Gradient fade below header */}
-            <div className="pointer-events-none absolute top-0 left-0 right-0 h-6 z-[5]" style={{ background: 'linear-gradient(to bottom, white, transparent)' }} />
-
+            {/* Quick action pills */}
+            <div className="relative z-[6] flex justify-center gap-1.5 px-4 pt-0 pb-1.5 overflow-x-auto scrollbar-hide bg-white">
+              <button
+                onClick={() => {
+                  executeAction({ type: 'book_meeting', target: 'https://calendly.com/hello-tryvois/30min', label: t('quickPillDemo', 'Book a demo') });
+                }}
+                className="shrink-0 px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200 transition-colors"
+              >
+                {t('quickPillDemo', 'Book a demo')}
+              </button>
+              <button
+                onClick={() => handleSend(t('quickPillWaitlistMsg', 'I want to join the waitlist'))}
+                className="shrink-0 px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200 transition-colors"
+              >
+                {t('quickPillWaitlist', 'Join waitlist')}
+              </button>
+              <button
+                onClick={() => handleSend(t('quickPillPricingMsg', 'What does pricing look like?'))}
+                className="shrink-0 px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200 transition-colors"
+              >
+                {t('quickPillPricing', 'See pricing')}
+              </button>
+            </div>
             {/* Messages */}
-            <div className="absolute inset-0 overflow-y-auto overscroll-contain px-5 pt-4 pb-20 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
+            <div className="absolute inset-0 overflow-y-auto overscroll-contain px-5 pt-10 pb-20 space-y-4 md:bg-white/60 md:backdrop-blur-sm">
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}

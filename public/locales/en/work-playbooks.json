@@ -4,6 +4,11 @@
     "title": "Upload Once. Searchable Forever.",
     "description": "Drop a PDF, Word doc, or URL. AI cleans, structures, and embeds it in the Brain. Drag folders to departments \u2014 everyone who needs it gets access automatically."
   },
+  "liveGuide": {
+    "tag": "Live Guide Mode",
+    "title": "Your AI knows the exact software and machines you use.",
+    "description": "Upload a manual once. Screenshot your screen. The assistant sees your context and walks you through the next step \u2014 in DaVinci, on your CNC, in whatever you're running."
+  },
   "intro": "Upload a PDF, Word document, or URL \u2014 GPT-4o cleans, structures, and extracts metadata automatically. Every playbook is chunked into 512-dimensional vector embeddings and indexed in the Brain. Ask about a procedure months later and the Brain finds it with citations. Six permission models handle access: department auto-sync, org-level grouping, project linking, operation linking, custom teams, and manual folders. Drag a folder to a department and matching team members get access instantly.",
   "library": {
     "footer": "17 preset folders auto-created on setup. Drag any folder to a department, project, or operation \u2014 matching team members get access instantly.",

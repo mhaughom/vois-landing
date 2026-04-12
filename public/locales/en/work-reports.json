@@ -4,6 +4,16 @@
     "title": "Voice Reports",
     "description": "Talk reports into existence. Walk through a site inspection speaking your observations— AI generates a formatted PDF instantly."
   },
+  "differentiator": {
+    "tag": "The wedge",
+    "title": "Every field worker gets a phone number. The AI does the interview.",
+    "subline": "Call it from the van. It asks the right questions, fills the report, logs materials, and schedules follow-ups — before you drive off.",
+    "modes": [
+      "Call the number",
+      "Send a voice note",
+      "FaceTime + frame grab"
+    ]
+  },
   "intro": "Traditional reports require sitting down, opening a form, and typing answers. HABOS offers four fill modes: a real-time voice interview where AI asks questions field by field, a dictation mode where a single voice note fills all fields silently, a text chatbot that walks through each field conversationally, and traditional manual input as fallback. Upload a PDF or image and GPT-4 Vision extracts field labels, types, and validation patterns to generate a typed schema automatically.",
   "problem": {
     "title": "The Report Writing Problem",

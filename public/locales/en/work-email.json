@@ -4,6 +4,18 @@
     "title": "Clear Your Inbox by Talking.",
     "description": "Say \"read my inbox\" while driving. Dictate replies. AI generates 3 tone options per email. Send the one you like."
   },
+  "differentiator": {
+    "eyebrow": "Why HABOS mail is different",
+    "headline": "Five-stage triage. Three drafts in your voice. Clear the inbox by talking.",
+    "subline": "Every email is classified, de-noised, prioritized, and drafted before you open it. Reply in your own writing style with one tap — or clear the inbox by voice from the car.",
+    "pills": {
+      "classify": "Classify",
+      "denoise": "De-noise",
+      "prioritize": "Prioritize",
+      "draft": "Draft",
+      "surface": "Surface"
+    }
+  },
   "body": "Say 'read my inbox' while driving. HABOS summarizes your most important emails, reads the urgent ones aloud, and generates three reply drafts in different tones — Short & Direct, Warm & Professional, and Executive. You say 'send the second one' and it's done. Every email also gets AI-extracted action items: deadlines become tasks, meeting requests become calendar events, and follow-ups get flagged — all without you typing a single word.",
   "conversation": {
     "userAsk": "What's in my inbox?",

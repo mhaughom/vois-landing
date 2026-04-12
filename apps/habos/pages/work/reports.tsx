@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, FileText, Mic, Clock, CheckSquare } from 'lucide-react';
+import { ArrowLeft, FileText, Mic, Clock, CheckSquare, Phone, Video, MessageSquare } from 'lucide-react';
 import ReportsDemo from './features/ReportsDemo';
 import { Navbar } from '@li/shared/components/Navbar';
 import { Footer } from '../../components/Footer';
@@ -22,6 +22,9 @@ const Reports: React.FC = () => {
   }>;
 
   const exampleSteps = t('example.steps', { returnObjects: true }) as string[];
+
+  const differentiatorModes = t('differentiator.modes', { returnObjects: true }) as string[];
+  const differentiatorIcons = [Phone, Mic, Video] as const;
 
   return (
     <div className="min-h-screen">
@@ -45,6 +48,46 @@ const Reports: React.FC = () => {
             <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-8">
               {t('hero.description')}
             </p>
+          </motion.div>
+
+          {/* Differentiator Callout — the sharpest wedge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="relative mb-16 rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-indigo-50 p-8 md:p-10 shadow-sm overflow-hidden"
+          >
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
+            <div className="flex flex-col md:flex-row md:items-start gap-6">
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-200 flex items-center justify-center">
+                <Phone size={26} className="text-emerald-600" />
+              </div>
+              <div className="flex-1">
+                <div className="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-700 rounded-full text-xs font-medium mb-3 uppercase tracking-wide">
+                  {t('differentiator.tag')}
+                </div>
+                <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-3 leading-tight">
+                  {t('differentiator.title')}
+                </h2>
+                <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-5">
+                  {t('differentiator.subline')}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {differentiatorModes.map((mode, i) => {
+                    const Icon = differentiatorIcons[i] ?? MessageSquare;
+                    return (
+                      <div
+                        key={mode}
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-sm text-slate-700"
+                      >
+                        <Icon size={14} className="text-indigo-600" />
+                        {mode}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mx-auto mb-16 text-center">

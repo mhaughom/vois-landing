@@ -4,6 +4,11 @@
     "title": "Every Conversation, One Place",
     "description": "Email, messaging, phone, and support tickets — unified with AI that drafts replies, routes messages, and never lets anything slip."
   },
+  "differentiator": {
+    "badge": "The Wedge",
+    "title": "Every conversation with a person. In one place. No matter the app.",
+    "description": "Mail, Slack, Teams, Messenger, meetings, recorded calls — collapsed into one timeline per person. You stop switching tools to remember what was said."
+  },
   "items": [
     {
       "title": "Email",

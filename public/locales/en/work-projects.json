@@ -5,6 +5,10 @@
     "description": "HABOS continuously analyzes every task, dependency, and deadline to surface the critical path. You see bottlenecks before they become problems."
   },
   "body": "The project system uses AI analysis to continuously identify the critical path. GPT-4o examines all plan items, dependencies, and current status, then identifies bottlenecks and blocking chains. Critical path items automatically receive higher priority in the scheduling engine — when focus blocks fill, critical path tasks slot in first. Dependencies enforce topological ordering, so predecessor tasks are always scheduled before their dependents.",
+  "differentiator": {
+    "headline": "An AI per project that knows what's actually blocking you.",
+    "subline": "Not what's overdue — what's stopping the goal. Each project's AI reads the full context, spawns research, and surfaces the one thing to move next."
+  },
   "criticalPath": {
     "heading": "Henderson Kitchen Renovation — Critical Path",
     "items": {

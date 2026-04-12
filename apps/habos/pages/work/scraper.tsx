@@ -10,6 +10,7 @@ import {
   Layers,
   Paintbrush,
   KeyRound,
+  Sparkles,
 } from 'lucide-react';
 import { Footer } from '../../components/Footer';
 
@@ -85,6 +86,35 @@ const Scraper: React.FC = () => {
             >
               {t('hero.description')}
             </motion.p>
+          </motion.section>
+
+          {/* ── 1b. Differentiator Callout ────────────────────────────── */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: easeOutExpo }}
+            className="mb-16"
+          >
+            <div className="relative overflow-hidden rounded-3xl border border-orange-200/70 bg-gradient-to-br from-orange-50 via-orange-50/60 to-amber-50/40 p-7 md:p-10 shadow-sm">
+              <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-orange-200/30 blur-3xl pointer-events-none" />
+              <div className="relative flex flex-col md:flex-row md:items-start gap-5 md:gap-7">
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white border border-orange-200 shadow-sm flex items-center justify-center">
+                  <Sparkles size={22} className="text-orange-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.14em] text-orange-700/80 mb-3">
+                    {t('wedge.eyebrow')}
+                  </span>
+                  <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 leading-tight mb-3">
+                    {t('wedge.headline')}
+                  </h2>
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                    {t('wedge.subline')}
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.section>
 
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="max-w-3xl mb-16">

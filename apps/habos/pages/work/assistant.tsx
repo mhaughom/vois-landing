@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check } from 'lucide-react';
+import { ArrowLeft, Check, ShieldCheck } from 'lucide-react';
 import { Navbar } from '@li/shared/components/Navbar';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../../components/Footer';
@@ -45,6 +45,25 @@ const Assistant: React.FC = () => {
                   {label}
                 </span>
               ))}
+            </div>
+          </motion.section>
+
+          {/* ── Differentiator Callout ── */}
+          <motion.section
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="mb-16 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 md:p-7 flex items-start gap-4"
+          >
+            <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+              <ShieldCheck size={22} className="text-emerald-700" />
+            </div>
+            <div>
+              <h2 className="text-lg md:text-xl font-semibold text-emerald-900 mb-1.5">
+                {t('differentiator.title')}
+              </h2>
+              <p className="text-slate-700 leading-relaxed text-[15px]">
+                {t('differentiator.subline')}
+              </p>
             </div>
           </motion.section>
 

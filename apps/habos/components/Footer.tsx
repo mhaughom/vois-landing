@@ -7,12 +7,15 @@ export const Footer: React.FC = () => {
 
   return (
     <footer
-      className="pt-16 pb-8 px-6 md:px-16 text-white"
+      className="px-6 md:px-16 text-white"
       style={{
-        background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)',
         paddingBottom: 'calc(2rem + env(safe-area-inset-bottom, 0px))',
       }}
     >
+      {/* Gradient transition zone */}
+      <div className="h-32 md:h-48" style={{ background: 'linear-gradient(180deg, transparent 0%, #0f172a 100%)' }} />
+
+      <div className="pt-8 pb-0" style={{ backgroundColor: '#0f172a' }}>
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
 
@@ -99,6 +102,7 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} HABOS AI. All rights reserved.
           </p>
         </div>
+      </div>
       </div>
     </footer>
   );
